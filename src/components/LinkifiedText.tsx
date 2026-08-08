@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { teamSlug as toTeamSlug } from '@/lib/playerSlug'
+import { useLang } from '@/lib/LangContext'
 
 const ACCENT = '#003DA6'
 
@@ -57,6 +58,7 @@ type PreviewData = ChipData | CarteData
 function MemoLinkPreview({ url }: { url: string }) {
   const parsed = parseMemorabiliusLink(url)
   const [data, setData] = useState<PreviewData | null | undefined>(undefined)
+  const { t } = useLang()
 
   useEffect(() => {
     if (!parsed) return
@@ -75,17 +77,17 @@ function MemoLinkPreview({ url }: { url: string }) {
           : { kind: 'carte', nom: 'Carte', variation: null, annee: null, marque: null, collection: null, num: null, rc: false, auto: false, patch: false, img: parsed.card, isHorizontal: false })
       } else if (parsed.type === 'galerie') {
         const { data: p } = await supabase.from('profiles').select('display_name, avatar_url').eq('id', parsed.userId).single()
-        if (!cancelled) setData(p ? { kind: 'chip', title: p.display_name, subtitle: 'Collectionneur', img: p.avatar_url, icon: '👤', round: true } : null)
+        if (!cancelled) setData(p ? { kind: 'chip', title: p.display_name, subtitle: t('collector_label'), img: p.avatar_url, icon: '👤', round: true } : null)
       } else if (parsed.type === 'setlist') {
         const { data: s } = await supabase.from('card_sets').select('name, year, brand').eq('id', parsed.id).single()
         if (!cancelled) setData(s ? { kind: 'chip', title: s.name, subtitle: [s.year, s.brand].filter(Boolean).join(' · '), icon: '📋' } : null)
       } else if (parsed.type === 'teams') {
-        const { data: t } = await supabase.from('teams').select('name, avatar_url').eq('id', parsed.id).single()
-        if (!cancelled) setData(t ? { kind: 'chip', title: t.name, subtitle: 'Team', img: t.avatar_url, icon: '🛡️', round: true } : null)
+        const { data: teamData } = await supabase.from('teams').select('name, avatar_url').eq('id', parsed.id).single()
+        if (!cancelled) setData(teamData ? { kind: 'chip', title: teamData.name, subtitle: 'Team', img: teamData.avatar_url, icon: '🛡️', round: true } : null)
       } else if (parsed.type === 'joueur') {
         if (!cancelled) setData({ kind: 'chip', title: slugToLabel(parsed.slug), subtitle: 'Joueur', icon: '🏀' })
       } else if (parsed.type === 'equipe') {
-        const team = SPORTS_TEAMS.find(t => toTeamSlug(t.name) === parsed.slug)
+        const team = SPORTS_TEAMS.find(tm => toTeamSlug(tm.name) === parsed.slug)
         if (!cancelled) setData(team ? { kind: 'chip', title: team.name, subtitle: team.sport.toUpperCase(), img: teamLogoUrl(team), icon: '🏟️' } : null)
       }
     })()

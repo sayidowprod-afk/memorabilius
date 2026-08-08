@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface PodiumEntry {
   userId: string
@@ -9,6 +10,7 @@ interface PodiumEntry {
 }
 
 export default function PodiumSection({ entries }: { entries: PodiumEntry[] }) {
+  const { dark } = useTheme()
   if (entries.length === 0) return null
 
   const now = new Date()
@@ -16,7 +18,9 @@ export default function PodiumSection({ entries }: { entries: PodiumEntry[] }) {
 
   const medals = ['🥇', '🥈', '🥉']
   const colors = ['#f39c12', '#95a5a6', '#cd7f32']
-  const bgs = ['#fffbf0', '#f5f5f5', '#fdf6ef']
+  const bgs = dark
+    ? ['rgba(243,156,18,0.12)', 'rgba(149,165,166,0.10)', 'rgba(205,127,50,0.12)']
+    : ['#fffbf0', '#f5f5f5', '#fdf6ef']
 
   // Podium order: 2nd, 1st, 3rd
   const podiumOrder = entries.length >= 3
@@ -77,16 +81,16 @@ export default function PodiumSection({ entries }: { entries: PodiumEntry[] }) {
         <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 400, margin: '16px auto 0' }}>
           {entries.slice(3).map((entry, i) => (
             <Link key={entry.userId} href={`/galerie/${entry.userId}`}
-              style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 14px', background: '#f8f8f8', borderRadius: 8, textDecoration: 'none' }}>
+              style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 14px', background: dark ? '#1e1e1e' : '#f8f8f8', borderRadius: 8, textDecoration: 'none', border: dark ? '1px solid #2a2a2a' : 'none' }}>
               <span style={{ fontWeight: 900, fontSize: 13, color: '#bbb', width: 20 }}>{i + 4}</span>
               {entry.avatarUrl ? (
                 <img src={entry.avatarUrl} alt={entry.displayName} style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} />
               ) : (
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#ddd', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 12, color: '#666' }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: dark ? '#2a2a2a' : '#ddd', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 12, color: dark ? '#aaa' : '#666' }}>
                   {entry.displayName.charAt(0).toUpperCase()}
                 </div>
               )}
-              <span style={{ fontWeight: 700, fontSize: 13, color: '#121212', flex: 1 }}>{entry.displayName}</span>
+              <span style={{ fontWeight: 700, fontSize: 13, color: dark ? '#e0e0e0' : '#121212', flex: 1 }}>{entry.displayName}</span>
               <span style={{ fontSize: 12, color: '#999', fontWeight: 700 }}>+{entry.count}</span>
             </Link>
           ))}

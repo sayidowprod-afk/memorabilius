@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface CardSet {
   id: number
@@ -28,30 +29,34 @@ interface UnmatchedCard extends GalleryCard {
   candidates: SetCandidate[]
 }
 
-function CompletionBar({ pct }: { pct: number }) {
+function CompletionBar({ pct, dark = false }: { pct: number; dark?: boolean }) {
   const color = pct >= 80 ? '#2ecc71' : pct >= 40 ? '#f39c12' : pct > 0 ? '#3498db' : '#e0e0e0'
   return (
-    <div style={{ height: 5, borderRadius: 3, background: '#f0f0f0', overflow: 'hidden', marginTop: 6 }}>
+    <div style={{ height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden', marginTop: 6 }}>
       <div style={{ height: '100%', width: `${pct}%`, background: color, borderRadius: 3, transition: 'width 0.3s' }} />
     </div>
   )
 }
 
 function seasonLabel(year: number, sport = 'nba') {
-  return ['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)
+  return ['nfl', 'baseball', 'pokemon', 'mtg', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma'].includes(sport)
     ? String(year)
     : `${year}-${String(year + 1).slice(2)}`
 }
 
 export default function SetlistPage() {
   const { t } = useLang()
+  const { dark } = useTheme()
   const [sets, setSets] = useState<CardSet[]>([])
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
   const [authReady, setAuthReady] = useState(false)
-  const [activeSport, setActiveSport] = useState<'nba' | 'nfl' | 'baseball' | 'hockey' | 'pokemon' | 'mtg'>('nba')
+  const [activeSport, setActiveSport] = useState<'nba' | 'nfl' | 'baseball' | 'hockey' | 'pokemon' | 'mtg' | 'soccer-international' | 'racing' | 'tennis' | 'wrestling' | 'mma'>('nba')
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
   const [activeDecade, setActiveDecade] = useState<number | null>(null)
+  const [searchSet, setSearchSet] = useState('')
+  const [showOnlyOwned, setShowOnlyOwned] = useState(false)
+  const [sortSets, setSortSets] = useState<'az' | 'pct_desc' | 'pct_asc'>('az')
   const [syncing, setSyncing] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncDone, setSyncDone] = useState(false)
@@ -62,13 +67,14 @@ export default function SetlistPage() {
   const [showAddManual, setShowAddManual] = useState(false)
   const [manualForm, setManualForm] = useState({ nom: '', annee: '', marque: '', collection: '', variation: '' })
   const [placingIdx, setPlacingIdx] = useState<number | null>(null)
+  const [pendingPlace, setPendingPlace] = useState<{ cardIdx: number; entryId: number; setName: string; setId: number; setYear: number | null } | null>(null)
   const [gotoPickerIdx, setGotoPickerIdx] = useState<number | null>(null)
   const [gotoSetId, setGotoSetId] = useState<string>('')
   const [gotoAllSets, setGotoAllSets] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setUserId(data.user?.id || null)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserId(session?.user?.id || null)
       setAuthReady(true)
     })
   }, [])
@@ -270,14 +276,23 @@ export default function SetlistPage() {
     }
     if (!galleryCards.length) { setSyncing(false); return }
 
-    // Charger les entry_ids déjà en base (toutes les cartes déjà placées, auto ou manuelles)
-    // → on ne les recrée pas, et on ne les supprime jamais lors d'une sync
-    const existingEntryIds = new Set<number>()
+    // Déduplication galerie : même joueur+année+collection+variation = même carte
+    const gallerySeen = new Set<string>()
+    galleryCards = galleryCards.filter(c => {
+      const key = `${norm(c.nom)}|${c.annee}|${norm(c.collection || c.collection_tag || '')}|${norm(c.variation || '')}`
+      if (gallerySeen.has(key)) return false
+      gallerySeen.add(key)
+      return true
+    })
+
+    // Charger uniquement les entrées MANUELLEMENT cochées (manually_checked = true)
+    // → on respecte les choix explicites de l'utilisateur, les auto-matches seront recalculés
+    const manualEntryIds = new Set<number>()
     for (let from = 0; ; from += 1000) {
       const { data: page } = await supabase.from('user_set_completion')
-        .select('entry_id').eq('user_id', userId).range(from, from + 999)
+        .select('entry_id').eq('user_id', userId).eq('manually_checked', true).range(from, from + 999)
       if (!page?.length) break
-      page.forEach((r: any) => existingEntryIds.add(r.entry_id))
+      page.forEach((r: any) => manualEntryIds.add(r.entry_id))
       if (page.length < 1000) break
     }
     setSyncProgress(10)
@@ -315,20 +330,30 @@ export default function SetlistPage() {
     setSyncProgress(75)
 
     // 5. Matching : UNE carte galerie → AU PLUS UNE entrée setlist (la plus précise)
-    // On itère par carte galerie, pas par entrée, pour garantir max 1 match par carte.
-    // Index inversé entry_id → set pour marquer les cartes dont l'entrée est déjà en base
-    const existingSetIds = new Set<number>()
-    for (const e of allEntries) { if (existingEntryIds.has(e.id)) existingSetIds.add(e.id) }
-
     const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
 
-    // Index des entrées par nom de joueur normalisé pour accès rapide
+    // Index des entrées par nom de joueur — UNIQUEMENT pour le sport actif
+    // (les entrées d'autres sports sont ignorées pour éviter les faux positifs)
     const entriesByPlayer = new Map<string, typeof allEntries>()
     for (const e of allEntries) {
+      if (!setsMap.has(e.set_id)) continue  // filtre sport : ignore les autres sports
       const key = norm(e.player_name)
       if (!entriesByPlayer.has(key)) entriesByPlayer.set(key, [])
       entriesByPlayer.get(key)!.push(e)
+    }
+
+    // Formats d'année acceptés pour une année de set Y
+    const yearOk = (cy: string, y: number) => {
+      if (!cy) return false
+      const ys = String(y)
+      return cy === ys
+        || cy === `${y}-${String(y+1).slice(2)}`    // "2024-25"
+        || cy === `${y-1}-${ys.slice(2)}`            // "2023-24" (saison précédente)
+        || cy === `${y}-${y+1}`                      // "2024-2025"
+        || cy === `${y-1}-${y}`                      // "2023-2024"
+        || cy === `${String(y).slice(2)}-${String(y+1).slice(2)}`  // "24-25" (format court)
+        || cy === `${String(y-1).slice(2)}-${ys.slice(2)}`         // "23-24" (format court prev)
     }
 
     for (let gi = 0; gi < galleryCards.length; gi++) {
@@ -339,8 +364,8 @@ export default function SetlistPage() {
       const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
       if (!playerEntries.length) continue
 
-      // Si une entrée de ce joueur est déjà placée en DB → carte considérée comme matchée
-      if (playerEntries.some(e => existingEntryIds.has(e.id))) {
+      // Si une entrée de ce joueur a été MANUELLEMENT cochée → respecter ce choix
+      if (playerEntries.some(e => manualEntryIds.has(e.id))) {
         matchedGalleryIdx.add(gi)
         continue
       }
@@ -354,13 +379,9 @@ export default function SetlistPage() {
       for (const e of playerEntries) {
         const set = setsMap.get(e.set_id)
         if (!set?.year) continue
-        const y = set.year, ys = String(y), yn = `${y}-${String(y+1).slice(2)}`, yp = `${y-1}-${ys.slice(2)}`
 
         const cy = (card.annee || '').trim()
-        if (!cy) continue
-        // Formats acceptés : "2024", "2024-25", "2024-2025", "2023-24" (prev season)
-        const yn2 = `${y}-${y+1}`
-        if (cy !== ys && cy !== yn && cy !== yp && cy !== yn2 && cy !== `${y-1}-${y}`) continue
+        if (!yearOk(cy, set.year)) continue
 
         // La collection doit matcher le nom du set
         if (!uw.some(w => norm(set.name).includes(w))) continue
@@ -372,7 +393,6 @@ export default function SetlistPage() {
         }
 
         // Variation : base↔base = parfait ; carte a variation mais entrée n'en a pas = match faible
-        // (gap de scraping) ; entrée a variation mais carte n'en a pas = impossible
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
         let varScore = 0
         if (!cv && !ev) {
@@ -387,8 +407,6 @@ export default function SetlistPage() {
           varScore = 0
         }
 
-        // Score : mots extra dans le set + mots manquants + pénalité variation
-        // Bonus -1 si card_number correspond (renforce la correspondance exacte)
         const sn = norm(set.name)
         const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
         const missedWords = uw.filter(w => w.length > 3 && !sn.includes(w)).length
@@ -399,25 +417,18 @@ export default function SetlistPage() {
 
       if (!candidates.length) continue
 
-      // Garder uniquement l'entrée du set le plus précis (le moins de mots extra)
       candidates.sort((a, b) => a.extraWords - b.extraWords)
       const best = candidates[0]
 
       matchedGalleryIdx.add(gi)
       if (!best.entryId) continue
-      if (existingEntryIds.has(best.entryId)) continue  // déjà placée, on ne touche pas
       newRows.push({ user_id: userId, entry_id: best.entryId, manually_checked: false })
     }
     setSyncProgress(88)
 
-    // 6. Cartes galerie NON placées : on construit pour chacune les setlists candidats
-    // (même joueur + même année), pour permettre un placement manuel via menu déroulant.
-    const yearMatchesSet = (cardYear: string, setYear: number | null) => {
-      if (!setYear) return false
-      const ys = String(setYear), yn = `${setYear}-${String(setYear+1).slice(2)}`, yp = `${setYear-1}-${ys.slice(2)}`
-      const cy = (cardYear || '').trim()
-      return cy === ys || cy === yn || cy === yp
-    }
+    // 6. Cartes galerie NON placées
+    const yearMatchesSet = (cardYear: string, setYear: number | null) =>
+      setYear ? yearOk((cardYear || '').trim(), setYear) : false
 
     const unmatched: UnmatchedCard[] = []
     for (let gi = 0; gi < galleryCards.length; gi++) {
@@ -427,7 +438,6 @@ export default function SetlistPage() {
       const coll = (card.collection || card.collection_tag || '').trim()
       const uw = collWords(coll)
 
-      // Une entrée par set (on garde celle dont la variation colle le mieux)
       const bySet = new Map<number, { entryId: number; varMatch: boolean }>()
       for (const e of playerEntries) {
         const set = setsMap.get(e.set_id)
@@ -436,7 +446,6 @@ export default function SetlistPage() {
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
         const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
         const prev = bySet.get(e.set_id)
-        // priorité : entrée dont la variation matche, sinon entrée de base (ev vide), sinon la première
         if (!prev || (varMatch && !prev.varMatch) || (!ev && !prev.varMatch)) {
           bySet.set(e.set_id, { entryId: e.id, varMatch })
         }
@@ -447,7 +456,6 @@ export default function SetlistPage() {
         return { setId, setName: set.name, setYear: set.year, entryId: v.entryId }
       })
 
-      // Tri : sets dont le nom contient un mot de la collection en premier, puis alphabétique
       candidates.sort((a, b) => {
         const am = uw.some(w => norm(a.setName).includes(w)) ? 0 : 1
         const bm = uw.some(w => norm(b.setName).includes(w)) ? 0 : 1
@@ -457,17 +465,27 @@ export default function SetlistPage() {
 
       unmatched.push({ ...card, candidates })
     }
-    // Filtrer les cartes déjà ignorées par l'utilisateur
     const dismissed = getDismissed()
     const filteredUnmatched = unmatched.filter(c => !dismissed.has(cardFingerprint(c)))
     setUnmatchedCards(filteredUnmatched)
     saveUnmatched(filteredUnmatched)
 
-    // 7. Sauvegarde des nouveaux matches
+    // 7. Nettoyage des anciens auto-matches pour ce sport (évite l'accumulation)
+    // On supprime tous les auto-matches (manually_checked=false) pour les entrées du sport actif
+    // afin de repartir d'un état propre et éviter que plusieurs syncs s'accumulent.
+    const currentSportEntryIds = allEntries.filter(e => setsMap.has(e.set_id)).map(e => e.id)
+    for (let i = 0; i < currentSportEntryIds.length; i += 500) {
+      await supabase.from('user_set_completion')
+        .delete()
+        .eq('user_id', userId)
+        .eq('manually_checked', false)
+        .in('entry_id', currentSportEntryIds.slice(i, i + 500))
+    }
+
+    // 8. Insertion des nouveaux matches
     for (let i = 0; i < newRows.length; i += 500)
       await supabase.from('user_set_completion').upsert(newRows.slice(i, i + 500), { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
 
-    // Stocker le total de cartes galerie syncées (distinct du total user_set_completion)
     const syncedTotal = matchedGalleryIdx.size
     setTotalSynced(syncedTotal)
     if (userId) {
@@ -512,15 +530,86 @@ export default function SetlistPage() {
   const totalOwnedAllSets = sets.reduce((a, s) => a + (s.owned || 0), 0)
   const setsWithCards = sets.filter(s => (s.owned || 0) > 0).length
 
+  const displayedSets = seasonSets
+    .filter(s => {
+      if (showOnlyOwned && !(s.owned && s.owned > 0)) return false
+      if (searchSet && !s.name.toLowerCase().includes(searchSet.toLowerCase())) return false
+      return true
+    })
+    .sort((a, b) => {
+      if (sortSets === 'pct_desc') return (b.pct || 0) - (a.pct || 0) || a.name.localeCompare(b.name)
+      if (sortSets === 'pct_asc') return (a.pct || 0) - (b.pct || 0) || a.name.localeCompare(b.name)
+      return a.name.localeCompare(b.name)
+    })
+
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
-      <div style={{ marginBottom: 28, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-        <div>
-          <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 4 }}>Setlist</h1>
-          <p style={{ color: '#888', fontSize: 15 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
+    <>
+    <style>{`
+      .sl-container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+      .sl-h1 { font-size: 32px; font-weight: 900; margin-bottom: 4px; }
+      .sl-header-row { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+      .sl-sport-grid { flex: 1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; width: 100%; }
+      .sl-sport-btn { padding: 10px 8px; }
+      .sl-sport-label { font-size: 14px; }
+      .sl-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+      .sl-stats-box { min-width: 240px; }
+      .sl-sets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+      @media (max-width: 767px) {
+        .sl-container { padding: 20px 12px; }
+        .sl-h1 { font-size: 24px; }
+        .sl-header-row { flex-direction: column; }
+        .sl-sport-grid { grid-template-columns: repeat(3, 1fr); }
+        .sl-sport-btn { padding: 8px 4px; }
+        .sl-sport-label { font-size: 12px; }
+        .sl-actions { align-items: stretch; width: 100%; }
+        .sl-stats-box { min-width: unset; }
+        .sl-sets-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+      }
+    `}</style>
+    <div className="sl-container">
+      <div style={{ marginBottom: 16 }}>
+        <h1 className="sl-h1">Setlist</h1>
+        <p style={{ color: '#888', fontSize: 15, marginBottom: 0 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
+      </div>
+
+      <div className="sl-header-row">
+        {/* Sélecteur de sport */}
+        <div className="sl-sport-grid">
+          {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
+            const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
+            const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
+            const isActive = activeSport === sp
+            return (
+              <button key={sp} onClick={() => {
+                if (isActive) return
+                setActiveSport(sp)
+                setActiveSeason(null)
+                setActiveDecade(null)
+                setSets([])
+                setLoading(true)
+                setSyncDone(false)
+                setUnmatchedCards([])
+                setTotalSynced(null)
+                setNewMatchCount(0)
+              }} className="sl-sport-btn" style={{
+                borderRadius: 10, border: '2px solid',
+                borderColor: isActive ? accent : (dark ? '#444' : '#e0e0e0'),
+                background: isActive ? accent : (dark ? '#2a2a2a' : 'white'),
+                cursor: isActive ? 'default' : 'pointer',
+                transition: 'all 0.15s',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: '100%',
+              }}>
+                <span className="sl-sport-label" style={{ fontWeight: 800, color: isActive ? 'white' : (dark ? '#eee' : '#111'), whiteSpace: 'nowrap' }}>
+                  {label}
+                </span>
+              </button>
+            )
+          })}
         </div>
+
         {userId && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10 }}>
+          <div className="sl-actions">
             <button
               onClick={syncAll}
               disabled={syncing}
@@ -529,13 +618,13 @@ export default function SetlistPage() {
               {syncing ? `${t('setlist_syncing')} ${syncProgress}%` : t('setlist_sync_btn')}
             </button>
             {syncing && (
-              <div style={{ width: 240, height: 6, borderRadius: 3, background: '#f0f0f0', overflow: 'hidden' }}>
+              <div style={{ height: 6, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
                 <div style={{ height: '100%', width: `${syncProgress}%`, background: '#003DA6', borderRadius: 3, transition: 'width 0.3s' }} />
               </div>
             )}
             {/* Stats toujours visibles dès que les sets sont chargés */}
             {!loading && (
-              <div style={{ background: '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6, minWidth: 240 }}>
+              <div className="sl-stats-box" style={{ background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {syncDone && (
                   <div style={{ fontWeight: 800, color: '#2ecc71', marginBottom: 2 }}>
                     ✅ {newMatchCount} {t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one')}
@@ -568,7 +657,7 @@ export default function SetlistPage() {
                     }
                     setShowMissing(true)
                   }}
-                  style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                  style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: dark ? '#1e1e1e' : 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
                 >
                   {syncDone ? `${t('setlist_see_unplaced')} (${unmatchedCards.length})` : `${t('setlist_see_unplaced')} →`}
                 </button>
@@ -585,7 +674,7 @@ export default function SetlistPage() {
           onClick={() => setShowMissing(false)}
         >
           <div
-            style={{ background: 'white', borderRadius: 18, padding: '28px 24px', maxWidth: 620, width: '100%', maxHeight: '80vh', overflow: 'auto' }}
+            style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 18, padding: '28px 24px', maxWidth: 620, width: '100%', maxHeight: '80vh', overflow: 'auto' }}
             onClick={e => e.stopPropagation()}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
@@ -612,7 +701,7 @@ export default function SetlistPage() {
                   {!showAddManual ? (
                     <button
                       onClick={() => setShowAddManual(true)}
-                      style={{ fontSize: 13, padding: '7px 14px', borderRadius: 8, border: '1.5px dashed #ccc', background: 'white', color: '#888', cursor: 'pointer', width: '100%' }}
+                      style={{ fontSize: 13, padding: '7px 14px', borderRadius: 8, border: '1.5px dashed #ccc', background: dark ? '#2a2a2a' : 'white', color: '#888', cursor: 'pointer', width: '100%' }}
                     >
                       {t('setlist_add_manual')}
                     </button>
@@ -648,7 +737,7 @@ export default function SetlistPage() {
                         >
                           {t('setlist_add')}
                         </button>
-                        <button onClick={() => setShowAddManual(false)} style={{ fontSize: 13, padding: '8px 12px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>{t('profile_cancel')}</button>
+                        <button onClick={() => setShowAddManual(false)} style={{ fontSize: 13, padding: '8px 12px', borderRadius: 8, border: '1px solid #ccc', background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', color: '#888' }}>{t('profile_cancel')}</button>
                       </div>
                     </div>
                   )}
@@ -666,12 +755,47 @@ export default function SetlistPage() {
                     </div>
                     {placingIdx === i ? (
                       <span style={{ fontSize: 12, color: '#003DA6', fontWeight: 700 }}>{t('setlist_placing')}</span>
+                    ) : pendingPlace?.cardIdx === i ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: dark ? '#1a2a1a' : '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 10, padding: '10px 12px', maxWidth: 280 }}>
+                        <div style={{ fontSize: 12, color: dark ? '#aaa' : '#555' }}>Sera placé dans :</div>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: dark ? '#fff' : '#111' }}>
+                          {pendingPlace.setName}
+                          {pendingPlace.setYear && <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>({pendingPlace.setYear})</span>}
+                        </div>
+                        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                          <Link
+                            href={`/setlist/${pendingPlace.setId}`}
+                            target="_blank"
+                            style={{ fontSize: 11, color: '#003DA6', textDecoration: 'underline', whiteSpace: 'nowrap' }}
+                          >
+                            Voir le set →
+                          </Link>
+                          <button
+                            onClick={() => { placeCard(pendingPlace.cardIdx, pendingPlace.entryId); setPendingPlace(null) }}
+                            style={{ fontSize: 12, fontWeight: 700, color: 'white', background: '#2ecc71', border: 'none', borderRadius: 7, padding: '5px 12px', cursor: 'pointer' }}
+                          >
+                            Confirmer
+                          </button>
+                          <button
+                            onClick={() => setPendingPlace(null)}
+                            style={{ fontSize: 12, color: dark ? '#bbb' : '#555', background: dark ? '#333' : '#eee', border: 'none', borderRadius: 7, padding: '5px 10px', cursor: 'pointer' }}
+                          >
+                            Annuler
+                          </button>
+                        </div>
+                      </div>
                     ) : card.candidates && card.candidates.length > 0 && gotoPickerIdx !== i ? (
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                         <select
                           defaultValue=""
-                          onChange={e => { const v = Number(e.target.value); if (v) placeCard(i, v) }}
-                          style={{ fontSize: 13, padding: '7px 10px', borderRadius: 8, border: '1.5px solid #003DA6', color: '#003DA6', fontWeight: 600, background: 'white', cursor: 'pointer', maxWidth: 160 }}
+                          onChange={e => {
+                            const v = Number(e.target.value)
+                            if (v) {
+                              const cand = card.candidates.find(c => c.entryId === v)
+                              if (cand) setPendingPlace({ cardIdx: i, entryId: v, setName: cand.setName, setId: cand.setId, setYear: cand.setYear })
+                            }
+                          }}
+                          style={{ fontSize: 13, padding: '7px 10px', borderRadius: 8, border: '1.5px solid #003DA6', color: '#003DA6', fontWeight: 600, background: dark ? '#1e1e1e' : 'white', cursor: 'pointer', maxWidth: 160 }}
                         >
                           <option value="">{t('setlist_place_in')} ({card.candidates.length})</option>
                           {card.candidates.map(c => (
@@ -681,7 +805,7 @@ export default function SetlistPage() {
                         <button
                           onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
                           title={t('setlist_choose_set')}
-                          style={{ fontSize: 11, padding: '5px 8px', borderRadius: 6, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888', whiteSpace: 'nowrap' }}
+                          style={{ fontSize: 11, padding: '5px 8px', borderRadius: 6, border: '1px solid #ccc', background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', color: '#888', whiteSpace: 'nowrap' }}
                         >
                           {t('setlist_other')}
                         </button>
@@ -709,7 +833,7 @@ export default function SetlistPage() {
                         </select>
                         <button
                           onClick={() => { setGotoAllSets(v => !v); setGotoSetId('') }}
-                          style={{ fontSize: 11, padding: '5px 7px', borderRadius: 6, border: '1px solid #ccc', background: gotoAllSets ? '#eee' : 'white', cursor: 'pointer', color: '#666' }}
+                          style={{ fontSize: 11, padding: '5px 7px', borderRadius: 6, border: '1px solid #ccc', background: gotoAllSets ? (dark ? '#333' : '#eee') : (dark ? '#2a2a2a' : 'white'), cursor: 'pointer', color: dark ? '#bbb' : '#666' }}
                         >
                           {gotoAllSets ? t('setlist_filtered') : t('setlist_all_sets')}
                         </button>
@@ -718,13 +842,13 @@ export default function SetlistPage() {
                             Voir →
                           </Link>
                         )}
-                        <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>✕</button>
+                        <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', color: '#888' }}>✕</button>
                       </div>
                     ) : (
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                         <button
                           onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
-                          style={{ fontSize: 11, color: '#555', fontWeight: 700, background: '#f5f5f5', border: '1.5px solid #ddd', borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                          style={{ fontSize: 11, color: dark ? '#bbb' : '#555', fontWeight: 700, background: dark ? '#333' : '#f5f5f5', border: `1.5px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                         >
                           {t('setlist_see_set')}
                         </button>
@@ -745,46 +869,21 @@ export default function SetlistPage() {
         </div>
       )}
 
-      {/* Sélecteur de sport */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
-        {([ 'nba', 'nfl', 'baseball', 'hockey', 'pokemon', 'mtg' ] as const).map(sp => {
-          const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
-          const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
-          const isActive = activeSport === sp
-          return (
-            <button key={sp} onClick={() => {
-              if (isActive) return
-              setActiveSport(sp)
-              setActiveSeason(null)
-              setActiveDecade(null)
-              setSets([])
-              setLoading(true)
-              setSyncDone(false)
-              setUnmatchedCards([])
-              setTotalSynced(null)
-              setNewMatchCount(0)
-            }} style={{
-              padding: '10px 22px', borderRadius: 12, border: '2px solid',
-              borderColor: isActive ? accent : '#e0e0e0',
-              background: isActive ? accent : 'white',
-              cursor: isActive ? 'default' : 'pointer',
-              transition: 'all 0.15s',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
-              minWidth: 80,
-            }}>
-              <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : '#111' }}>
-                {label}
-              </span>
-            </button>
-          )
-        })}
-      </div>
+
+      {/* Coming soon si aucune collection */}
+      {!loading && sets.length === 0 && (
+        <div style={{ textAlign: 'center', padding: '48px 20px', color: dark ? '#555' : '#bbb' }}>
+          <div style={{ fontSize: 40, marginBottom: 12 }}>🚧</div>
+          <div style={{ fontWeight: 800, fontSize: 18, color: dark ? '#666' : '#aaa', marginBottom: 6 }}>Coming soon</div>
+          <div style={{ fontSize: 14 }}>Les collections de cette catégorie arrivent bientôt.</div>
+        </div>
+      )}
 
       {/* Navigation décennie → saison */}
-      {!loading && (
+      {!loading && sets.length > 0 && (
         <div style={{ marginBottom: 32 }}>
           {/* Onglets décennie */}
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: '2px solid #f0f0f0', paddingBottom: 0 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, paddingBottom: 0, overflowX: 'auto' }}>
             {decades.map(decade => {
               const isAct = resolvedDecade === decade
               const label = `${String(decade).slice(2)}s`
@@ -798,7 +897,7 @@ export default function SetlistPage() {
                   }}
                   style={{
                     padding: '10px 22px', border: 'none', background: 'none', cursor: 'pointer',
-                    fontWeight: 800, fontSize: 16, color: isAct ? '#003DA6' : '#aaa',
+                    fontWeight: 800, fontSize: 16, color: isAct ? (dark ? '#5b8fff' : '#003DA6') : '#aaa',
                     borderBottom: isAct ? '3px solid #003DA6' : '3px solid transparent',
                     marginBottom: -2, transition: 'all 0.15s',
                   }}
@@ -810,7 +909,7 @@ export default function SetlistPage() {
           </div>
 
           {/* Boutons d'années dans la décennie */}
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingTop: 8 }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingTop: 8, overflowX: 'auto' }}>
             {decadeSeasons.map(year => {
               const isActive = activeSeason === year
               const ssets = sets.filter(s => s.year === year)
@@ -820,13 +919,13 @@ export default function SetlistPage() {
               return (
                 <button key={year} onClick={() => setActiveSeason(year)} style={{
                   padding: '10px 18px', borderRadius: 12, border: '2px solid',
-                  borderColor: isActive ? '#003DA6' : '#e0e0e0',
-                  background: isActive ? '#003DA6' : 'white',
+                  borderColor: isActive ? '#003DA6' : (dark ? '#444' : '#e0e0e0'),
+                  background: isActive ? '#003DA6' : (dark ? '#2a2a2a' : 'white'),
                   cursor: 'pointer', transition: 'all 0.15s',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
                   minWidth: 80,
                 }}>
-                  <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : '#111' }}>
+                  <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : (dark ? '#eee' : '#111') }}>
                     {seasonLabel(year, activeSport)}
                   </span>
                   <span style={{ fontSize: 11, color: isActive ? 'rgba(255,255,255,0.7)' : '#aaa', fontWeight: 600 }}>
@@ -848,7 +947,7 @@ export default function SetlistPage() {
       {activeSeason && !loading && (
         <div style={{ marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div>
-            <span style={{ fontWeight: 900, fontSize: 20, color: '#111' }}>{t('setlist_season')} {seasonLabel(activeSeason, activeSport)}</span>
+            <span style={{ fontWeight: 900, fontSize: 20, color: dark ? '#eee' : '#111' }}>{t('setlist_season')} {seasonLabel(activeSeason, activeSport)}</span>
             <span style={{ color: '#aaa', fontSize: 14, marginLeft: 10 }}>{seasonSets.length} collections · {totalCards.toLocaleString()} {t('setlist_cards')}</span>
           </div>
           {userId && totalCards > 0 && (
@@ -857,22 +956,56 @@ export default function SetlistPage() {
         </div>
       )}
 
+      {/* Recherche + filtre rapide */}
+      {!loading && seasonSets.length > 0 && (
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>
+          <input
+            value={searchSet}
+            onChange={e => setSearchSet(e.target.value)}
+            placeholder="Rechercher un set..."
+            style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: `1.5px solid ${searchSet ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 10, fontSize: 14, background: dark ? '#2a2a2a' : 'white', color: dark ? '#eee' : '#111', outline: 'none' }}
+          />
+          {userId && setsWithCards > 0 && (
+            <button
+              onClick={() => setShowOnlyOwned(v => !v)}
+              style={{ padding: '10px 18px', borderRadius: 10, border: `1.5px solid ${showOnlyOwned ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, background: showOnlyOwned ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: showOnlyOwned ? 'white' : (dark ? '#bbb' : '#666'), fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}
+            >
+              ✦ Mes sets ({setsWithCards})
+            </button>
+          )}
+          {userId && (
+            <button
+              onClick={() => setSortSets(s => s === 'az' ? 'pct_desc' : s === 'pct_desc' ? 'pct_asc' : 'az')}
+              style={{ padding: '10px 14px', borderRadius: 10, border: `1.5px solid ${sortSets !== 'az' ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, background: sortSets !== 'az' ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: sortSets !== 'az' ? 'white' : (dark ? '#bbb' : '#666'), fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}
+            >
+              {sortSets === 'az' ? 'A→Z' : sortSets === 'pct_desc' ? '% ↓' : '% ↑'}
+            </button>
+          )}
+          {(searchSet || showOnlyOwned) && (
+            <span style={{ fontSize: 13, color: '#aaa' }}>{displayedSets.length} résultat{displayedSets.length !== 1 ? 's' : ''}</span>
+          )}
+        </div>
+      )}
+
       {/* Grille des sets */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_loading')}</div>
-      ) : seasonSets.length === 0 ? (
+      ) : sets.length === 0 ? null
+      : seasonSets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_collection')}</div>
+      ) : displayedSets.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Aucun set ne correspond à cette recherche.</div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12 }}>
-          {seasonSets.map(set => (
+        <div className="sl-sets-grid">
+          {displayedSets.map(set => (
             <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
               <div
-                style={{ background: 'white', borderRadius: 14, padding: '18px 20px', border: '1.5px solid #f0f0f0', cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s', height: '100%', boxSizing: 'border-box' }}
+                style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: '18px 20px', border: `1.5px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`, cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s', height: '100%', boxSizing: 'border-box' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 18px rgba(0,0,0,0.10)'; (e.currentTarget as HTMLDivElement).style.borderColor = '#003DA6' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; (e.currentTarget as HTMLDivElement).style.borderColor = '#f0f0f0' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; (e.currentTarget as HTMLDivElement).style.borderColor = dark ? '#2a2a2a' : '#f0f0f0' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-                  <div style={{ fontWeight: 800, fontSize: 15, color: '#111', lineHeight: 1.3, flex: 1, marginRight: 8 }}>
+                  <div style={{ fontWeight: 800, fontSize: 15, color: dark ? '#eee' : '#111', lineHeight: 1.3, flex: 1, marginRight: 8 }}>
                     {set.name}
                   </div>
                   {set.pct !== undefined && set.pct > 0 && (
@@ -883,7 +1016,7 @@ export default function SetlistPage() {
                 </div>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
                   {set.brand && (
-                    <span style={{ fontSize: 11, color: '#003DA6', fontWeight: 700, background: '#f0f4ff', borderRadius: 4, padding: '2px 7px' }}>
+                    <span style={{ fontSize: 11, color: dark ? '#7eb8ff' : '#003DA6', fontWeight: 700, background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 4, padding: '2px 7px' }}>
                       {set.brand}
                     </span>
                   )}
@@ -891,7 +1024,7 @@ export default function SetlistPage() {
                 </div>
                 {userId && (
                   <>
-                    <CompletionBar pct={set.pct || 0} />
+                    <CompletionBar pct={set.pct || 0} dark={dark} />
                     <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
                       {(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}
                     </div>
@@ -903,5 +1036,6 @@ export default function SetlistPage() {
         </div>
       )}
     </div>
+    </>
   )
 }

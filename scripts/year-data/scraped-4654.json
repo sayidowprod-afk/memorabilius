@@ -1,0 +1,4151 @@
+{
+  "year": 2004,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4654,
+        "name": "2004 Fleer Inscribed"
+      },
+      "unique": [
+        {
+          "card_number": "29",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWA-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Award Winners Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWA-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Award Winners Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWJ-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "J.P. Losman",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "J.P. Losman",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "J.P. Losman",
+          "team": "Buffalo Bills",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Bernard Berrian",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Bernard Berrian",
+          "team": "Chicago Bears",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Bernard Berrian",
+          "team": "Chicago Bears",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Chris Perry",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Chris Perry",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Chris Perry",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jeff Garcia",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kellen Winslow, Jr.",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jeff Garcia",
+          "team": "Cleveland Browns",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jeff Garcia",
+          "team": "Cleveland Browns",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KW",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KW",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KW",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KW",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KW",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Keyshawn Johnson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Keyshawn Johnson",
+          "team": "Dallas Cowboys",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Keyshawn Johnson",
+          "team": "Dallas Cowboys",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Darius Watts",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Darius Watts",
+          "team": "Denver Broncos",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Darius Watts",
+          "team": "Denver Broncos",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGA-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGA-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGJ-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JP",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JP",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JP",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JP",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JP",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPA-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Valuable Players Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VPA-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Valuable Players Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VPJ-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kevin Jones",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kevin Jones",
+          "team": "Detroit Lions",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kevin Jones",
+          "team": "Detroit Lions",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reggie Williams",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Greg Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reggie Williams",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Greg Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reggie Williams",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Greg Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGA-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGA-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGJ-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH2",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DH",
+          "player_name": "Dante Hall",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Randy McMichael",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "David Boston",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Randy McMichael",
+          "team": "Miami Dolphins",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "David Boston",
+          "team": "Miami Dolphins",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Randy McMichael",
+          "team": "Miami Dolphins",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "David Boston",
+          "team": "Miami Dolphins",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGA-DM3",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGA-DM3",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPA-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Valuable Players Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VPA-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Valuable Players Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VPJ-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Brown",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Corey Dillon",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ben Watson",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Brown",
+          "team": "New England Patriots",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Corey Dillon",
+          "team": "New England Patriots",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ben Watson",
+          "team": "New England Patriots",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Brown",
+          "team": "New England Patriots",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Corey Dillon",
+          "team": "New England Patriots",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ben Watson",
+          "team": "New England Patriots",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB2",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB2",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB2",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB2",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB2",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Devery Henderson",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Devery Henderson",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Devery Henderson",
+          "team": "New Orleans Saints",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGA-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGA-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGJ-BW",
+          "player_name": "Boo Williams",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-BW",
+          "player_name": "Boo Williams",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-BW",
+          "player_name": "Boo Williams",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-BW",
+          "player_name": "Boo Williams",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-BW",
+          "player_name": "Boo Williams",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM2",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-MS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-MS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-MS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGA-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGA-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TB",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jerry Porter",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jerry Porter",
+          "team": "Oakland Raiders",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jerry Porter",
+          "team": "Oakland Raiders",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-RG",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TO",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TO",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TO",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TO",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-DM3",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-TO",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-TM",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-TM",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-TM",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kevan Barlow",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Rashaun Woods",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Derrick Hamilton",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kevan Barlow",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Rashaun Woods",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Derrick Hamilton",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kevan Barlow",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Rashaun Woods",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Derrick Hamilton",
+          "team": "San Francisco 49ers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWA-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Autographs Notated",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWJ-DB",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-WS",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-DB",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-WS",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-DB",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-WS",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Ben Troupe",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Ben Troupe",
+          "team": "Tennessee Titans",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Ben Troupe",
+          "team": "Tennessee Titans",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NGJ-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Names of the Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VPJ-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Valuable Players Jersey Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "LaVar Arrington",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Award Winners Jersey Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Award Winners Jersey Purple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWJ-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Award Winners Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "LaVar Arrington",
+          "team": "Washington Redskins",
+          "variation": "Black Border Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "LaVar Arrington",
+          "team": "Washington Redskins",
+          "variation": "Black Border Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

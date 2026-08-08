@@ -1,0 +1,5255 @@
+{
+  "year": 2021,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 282202,
+        "name": "2021 Topps Archives Snapshots"
+      },
+      "unique": [
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KM",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KM",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KM",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KM",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KM",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JJ",
+          "player_name": "Jahmai Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Moises Alou",
+          "team": "Houston Astros",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JM",
+          "player_name": "Joe Maddon",
+          "team": "Los Angeles Angels",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JM",
+          "player_name": "Joe Maddon",
+          "team": "Los Angeles Angels",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JM",
+          "player_name": "Joe Maddon",
+          "team": "Los Angeles Angels",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JM",
+          "player_name": "Joe Maddon",
+          "team": "Los Angeles Angels",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JM",
+          "player_name": "Joe Maddon",
+          "team": "Los Angeles Angels",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WS",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WS",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WS",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WS",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-WS",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Starling Marte",
+          "team": "Miami Marlins",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Williams",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Williams",
+          "team": "Milwaukee Brewers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Williams",
+          "team": "Milwaukee Brewers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Williams",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Williams",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kolten Wong",
+          "team": "Milwaukee Brewers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Williams",
+          "team": "Milwaukee Brewers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "New York Mets",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "New York Mets",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Todd Hundley",
+          "team": "New York Mets",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gene Tenace",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gene Tenace",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gene Tenace",
+          "team": "Oakland Athletics",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gene Tenace",
+          "team": "Oakland Athletics",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gene Tenace",
+          "team": "Oakland Athletics",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gene Tenace",
+          "team": "Oakland Athletics",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SR",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SR",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SR",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SR",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SR",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ryan Weathers",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ryan Weathers",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ryan Weathers",
+          "team": "San Diego Padres",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ryan Weathers",
+          "team": "San Diego Padres",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ryan Weathers",
+          "team": "San Diego Padres",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ryan Weathers",
+          "team": "San Diego Padres",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jose Canseco",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RZ",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RZ",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RZ",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RZ",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RZ",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SH",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SH",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SH",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SH",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SH",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Blue Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tom Hatch",
+          "team": "Toronto Blue Jays",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Autographs Negative Inverse",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Base Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Base Autographs Black & White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Base Autographs Black Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Base Autographs Gold Border",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Blue Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Washington Nationals",
+          "variation": "Tintype Titans",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Washington Nationals",
+          "variation": "Tintype Titans Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Washington Nationals",
+          "variation": "Tintype Titans Black Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Washington Nationals",
+          "variation": "Tintype Titans Gold Border",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Washington Nationals",
+          "variation": "Tintype Titans Negative Inverse",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

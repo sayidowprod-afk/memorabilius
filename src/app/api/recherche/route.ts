@@ -13,6 +13,7 @@ interface CsvEntry { cards: any[]; expiry: number; url: string }
 const csvCache = new Map<string, CsvEntry>()
 
 async function getProfileCsvCards(profileId: string, csvUrl: string): Promise<any[]> {
+  if (!csvUrl.startsWith('https://docs.google.com/spreadsheets/')) return []
   const cached = csvCache.get(profileId)
   // Retourne le cache si valide ET si l'URL n'a pas changé
   if (cached && cached.expiry > Date.now() && cached.url === csvUrl) return cached.cards
@@ -49,30 +50,53 @@ async function getProfileCsvCards(profileId: string, csvUrl: string): Promise<an
   }
 }
 
+// Rate limiter : 20 req/min par IP
+const RATE_MAP = new Map<string, { count: number; reset: number }>()
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, e] of RATE_MAP) if (now > e.reset) RATE_MAP.delete(ip)
+}, 60 * 60 * 1000)
+function checkRate(ip: string): boolean {
+  const now = Date.now()
+  const e = RATE_MAP.get(ip)
+  if (!e || now > e.reset) { RATE_MAP.set(ip, { count: 1, reset: now + 60_000 }); return true }
+  if (e.count >= 20) return false
+  e.count++; return true
+}
+
 export async function GET(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+  if (!checkRate(ip)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+
   const query = req.nextUrl.searchParams.get('q')?.toLowerCase().trim()
   if (!query || query.length < 2) return NextResponse.json([])
 
-  const { data: profiles } = await supabase
-    .from('profiles')
-    .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+  // Échappe les wildcards SQL pour éviter un match total (% → \%, _ → \_)
+  const safeQ = query.replace(/%/g, '\\%').replace(/_/g, '\\_')
+
+  // Profils + manuelles en parallèle
+  const [{ data: profiles }, { data: manuelles }] = await Promise.all([
+    supabase.from('profiles')
+      .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+      .limit(500),
+    supabase.from('cartes_manuelles')
+      .select('id, nom, equipe, annee, marque, collection, variation, num, auto, rc, patch, image_recto, is_horizontal, disponible_vente, user_id')
+      .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
+      .limit(500),
+  ])
   if (!profiles) return NextResponse.json([])
 
   const results: any[] = []
 
-  const { data: privees } = await supabase
-    .from('cartes_privees')
-    .select('user_id, card_key')
-    .limit(50000)
+  // Cartes privées scoped aux user_ids pertinents — évite le scan de 5000 lignes
+  const manuellesUserIds = new Set((manuelles || []).map(m => m.user_id))
+  const csvUserIds = new Set(profiles.filter(p => p.lien_csv).map(p => p.id))
+  const relevantUserIds = [...new Set([...manuellesUserIds, ...csvUserIds])]
+  const { data: privees } = relevantUserIds.length > 0
+    ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', relevantUserIds)
+    : { data: null }
   const privateSet = new Set((privees || []).map(p => `${p.user_id}::${p.card_key}`))
   const isPrivate = (userId: string, cardKey: string) => privateSet.has(`${userId}::${cardKey}`)
-
-  // Cartes manuelles — filtre SQL
-  const { data: manuelles } = await supabase
-    .from('cartes_manuelles')
-    .select('*')
-    .or(`nom.ilike.%${query}%,equipe.ilike.%${query}%,variation.ilike.%${query}%,marque.ilike.%${query}%`)
-    .limit(500)
 
   const profileMap = new Map(profiles.map(p => [p.id, p]))
 
@@ -84,6 +108,8 @@ export async function GET(req: NextRequest) {
       name: m.nom || '', team: m.equipe || '', year: m.annee || '',
       brand: m.marque || '', serie: m.collection || '', variant: m.variation || '',
       num: m.num || '', auto: m.auto || false, rc: m.rc || false, patch: m.patch || false,
+      is_horizontal: m.is_horizontal || false,
+      disponible_vente: m.disponible_vente || false,
       collector: p.display_name, collectorId: p.id,
       collectorAvatar: p.avatar_url, accent: p.couleur_bordure || '#003DA6',
     })
@@ -103,10 +129,13 @@ export async function GET(req: NextRequest) {
     })
   }))
 
-  // Collectionneurs
-  const users = profiles
-    .filter(p => p.display_name?.toLowerCase().includes(query))
-    .map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
+  // Collectionneurs — filtre côté DB au lieu de scanner les 500 profils en JS
+  const { data: matchingProfiles } = await supabase
+    .from('profiles')
+    .select('id, display_name, avatar_url, couleur_bordure')
+    .ilike('display_name', `%${safeQ}%`)
+    .limit(10)
+  const users = (matchingProfiles || []).map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
 
   // ── Joueurs ────────────────────────────────────────────────────────────────
   // Normalise un nom pour comparaison insensible aux accents/ponctuation
@@ -125,7 +154,7 @@ export async function GET(req: NextRequest) {
     supabase
       .from('card_set_entries')
       .select('player_name, is_rc, card_sets(sport)')
-      .ilike('player_name', `%${query}%`)
+      .ilike('player_name', `%${safeQ}%`)
       .limit(200),
     ...ESPN_SPORTS.map(sport =>
       fetch(
@@ -212,5 +241,5 @@ export async function GET(req: NextRequest) {
     return aExact - bExact
   })
 
-  return NextResponse.json({ cards: results, users, players })
+  return NextResponse.json({ cards: results, users, players }, { headers: { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })
 }

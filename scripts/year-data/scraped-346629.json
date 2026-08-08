@@ -1,0 +1,463 @@
+{
+  "year": 2022,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 346629,
+        "name": "2022 Topps Chrome Update Sapphire Edition"
+      },
+      "unique": [
+        {
+          "card_number": "RA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SK",
+          "player_name": "Steven Kwan",
+          "team": "Cleveland Guardians",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SK",
+          "player_name": "Steven Kwan",
+          "team": "Cleveland Guardians",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SK",
+          "player_name": "Steven Kwan",
+          "team": "Cleveland Guardians",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SK",
+          "player_name": "Steven Kwan",
+          "team": "Cleveland Guardians",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JP",
+          "player_name": "Jeremy Pena",
+          "team": "Houston Astros",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JP",
+          "player_name": "Jeremy Pena",
+          "team": "Houston Astros",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JP",
+          "player_name": "Jeremy Pena",
+          "team": "Houston Astros",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JP",
+          "player_name": "Jeremy Pena",
+          "team": "Houston Astros",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MM",
+          "player_name": "MJ Melendez",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MM",
+          "player_name": "MJ Melendez",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MM",
+          "player_name": "MJ Melendez",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MM",
+          "player_name": "MJ Melendez",
+          "team": "Kansas City Royals",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RL",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RL",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RL",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RL",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GK",
+          "player_name": "George Kirby",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GK",
+          "player_name": "George Kirby",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GK",
+          "player_name": "George Kirby",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GK",
+          "player_name": "George Kirby",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CA",
+          "player_name": "CJ Abrams",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MG",
+          "player_name": "MacKenzie Gore",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CA",
+          "player_name": "CJ Abrams",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MG",
+          "player_name": "MacKenzie Gore",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CA",
+          "player_name": "CJ Abrams",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MG",
+          "player_name": "MacKenzie Gore",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CA",
+          "player_name": "CJ Abrams",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MG",
+          "player_name": "MacKenzie Gore",
+          "team": "Washington Nationals",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

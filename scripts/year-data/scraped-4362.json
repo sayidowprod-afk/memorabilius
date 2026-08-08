@@ -1,0 +1,551 @@
+{
+  "year": 1999,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4362,
+        "name": "1999 Upper Deck PowerDeck"
+      },
+      "unique": [
+        {
+          "card_number": "AUX-10",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-28",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-10",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-28",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-18",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-18",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-M5",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Most Valuable Performances Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WP-PD",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AUX-29",
+          "player_name": "Cade McNown",
+          "team": "Chicago Bears",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-29",
+          "player_name": "Cade McNown",
+          "team": "Chicago Bears",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-23",
+          "player_name": "Akili Smith",
+          "team": "Cincinnati Bengals",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-23",
+          "player_name": "Akili Smith",
+          "team": "Cincinnati Bengals",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-21",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-21",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PD-T6",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Time Capsule",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-T6",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Time Capsule Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-M4",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Most Valuable Performances Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-P6",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Powerful Moments Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PD-T4",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Time Capsule",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-T4",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Time Capsule Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-M3",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Most Valuable Performances Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-P2",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Powerful Moments Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-P3",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Powerful Moments Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PD-T3",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Time Capsule",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-T3",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Time Capsule Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PD-T2",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Time Capsule",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-T2",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Time Capsule Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-M1",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Most Valuable Performances Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-24",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-24",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PD-T1",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Time Capsule",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-T1",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Time Capsule Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-14",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-17",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-14",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-17",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-19",
+          "player_name": "Cecil Collins",
+          "team": "Miami Dolphins",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-19",
+          "player_name": "Cecil Collins",
+          "team": "Miami Dolphins",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-P5",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Powerful Moments Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PD-T5",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Time Capsule",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-T5",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Time Capsule Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-25",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-25",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-M6",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Most Valuable Performances Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-P4",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Powerful Moments Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-20",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-20",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-16",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-16",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-22",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-22",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-15",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-15",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-12",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-13",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-12",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-13",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-M2",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Most Valuable Performances Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-P1",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Powerful Moments Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-26",
+          "player_name": "Brock Huard",
+          "team": "Seattle Seahawks",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-26",
+          "player_name": "Brock Huard",
+          "team": "Seattle Seahawks",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-27",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-27",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-11",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-11",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-30",
+          "player_name": "Champ Bailey",
+          "team": "Washington Redskins",
+          "variation": "Auxiliary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AUX-30",
+          "player_name": "Champ Bailey",
+          "team": "Washington Redskins",
+          "variation": "Auxiliary Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

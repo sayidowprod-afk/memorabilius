@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { headers } from 'next/headers'
+import ResendConfirmButton from '@/components/ResendConfirmButton'
 
-export default async function Confirm() {
+export default async function Confirm({ searchParams }: { searchParams: Promise<{ email?: string }> }) {
   const headersList = await headers()
   const acceptLang = headersList.get('accept-language') || ''
   const lang = acceptLang.toLowerCase().startsWith('en') ? 'en' : 'fr'
+  const { email } = await searchParams
 
   return (
     <div style={{ maxWidth: 480, margin: '80px auto', textAlign: 'center' }}>
@@ -23,6 +25,7 @@ export default async function Confirm() {
       <Link href="/connexion" className="btn-main btn-primary">
         {lang === 'fr' ? 'Se connecter' : 'Sign in'}
       </Link>
+      {email && <ResendConfirmButton email={email} lang={lang} />}
     </div>
   )
 }

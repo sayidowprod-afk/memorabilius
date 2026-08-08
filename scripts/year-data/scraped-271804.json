@@ -1,0 +1,5999 @@
+{
+  "year": 2021,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 271804,
+        "name": "2021 Bowman Transcendent Collection"
+      },
+      "unique": [
+        {
+          "card_number": "22",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-IA",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adley Rutschman",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adley Rutschman",
+          "team": "Baltimore Orioles",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HK",
+          "player_name": "Heston Kjerstad",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-BJ",
+          "player_name": "Blaze Jordan",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NY",
+          "player_name": "Nick Yorke",
+          "team": "Boston Red Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-EHO",
+          "player_name": "Ed Howard",
+          "team": "Chicago Cubs",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CH",
+          "player_name": "Cristian Hernandez",
+          "team": "Chicago Cubs",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YC",
+          "player_name": "Yoelqui Cespedes",
+          "team": "Chicago White Sox",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Austin Hendrick",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Austin Hendrick",
+          "team": "Cincinnati Reds",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-AH",
+          "player_name": "Austin Hendrick",
+          "team": "Cincinnati Reds",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NJ",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Zac Veen",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Zac Veen",
+          "team": "Colorado Rockies",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-ZV",
+          "player_name": "Zac Veen",
+          "team": "Colorado Rockies",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AA",
+          "player_name": "Adael Amador",
+          "team": "Colorado Rockies",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PL",
+          "player_name": "Pedro Leon",
+          "team": "Houston Astros",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AL",
+          "player_name": "Asa Lacy",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-EP",
+          "player_name": "Erick Pena",
+          "team": "Kansas City Royals",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-KR",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LR",
+          "player_name": "Luis Rodriguez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WD",
+          "player_name": "Wilman Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jesus Sanchez",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jesus Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-JS",
+          "player_name": "Jesus Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MM",
+          "player_name": "Max Meyer",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-YCA",
+          "player_name": "Yiddi Cappe",
+          "team": "Miami Marlins",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-GM",
+          "player_name": "Garrett Mitchell",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-HP",
+          "player_name": "Hedbert Perez",
+          "team": "Milwaukee Brewers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AW",
+          "player_name": "Austin Wells",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JD",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-PP",
+          "player_name": "Pedro Pineda",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RP",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-TS",
+          "player_name": "Tyler Soderstrom",
+          "team": "Oakland Athletics",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Mick Abel",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AB-02SF",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-03SF",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-04SF",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-05SF",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-06SF",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-08SF",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-13PH",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1948",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1949",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1950",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1951",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1952",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1953",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1954",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1955",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1989",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1990",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1991",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2009",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2010",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2011",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2012",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2013",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2014",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2015",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2016",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2017",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2018",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2019",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-00BDA",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-01BDA",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-98BA",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-99BA",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1992",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1993",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1994",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1995",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1996",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1997",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1998",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-1999",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2000",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2001",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2002",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2003",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2004",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2005",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2006",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2007",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AB-2008",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Alec Bohm Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Mick Abel",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-MA",
+          "player_name": "Mick Abel",
+          "team": "Philadelphia Phillies",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-NG",
+          "player_name": "Nick Gonzales",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-SP",
+          "player_name": "Shalin Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-HKI",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-LC",
+          "player_name": "Luis Campusano",
+          "team": "San Diego Padres",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-RH",
+          "player_name": "Robert Hassell",
+          "team": "San Diego Padres",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Emerson Hancock",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Emerson Hancock",
+          "team": "Seattle Mariners",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-EH",
+          "player_name": "Emerson Hancock",
+          "team": "Seattle Mariners",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JKE",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CCO",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CCO",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CCO",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CCO",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CCO",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-CCO",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CC",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CC",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CC",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CC",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CC",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-CC",
+          "player_name": "Carlos Colmenarez",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-02SF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-03SF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-04SF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-05SF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-06SF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-08SF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-13PH",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1948",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1949",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1950",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1951",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1952",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1953",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1954",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1955",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1989",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1990",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1991",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2009",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2010",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2011",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2012",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2013",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2014",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2015",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2016",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2017",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2018",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2019",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-00BDA",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-01BDA",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-98BA",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-99BA",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1992",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1993",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1994",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1995",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1996",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1997",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1998",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-1999",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2000",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2001",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2002",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2003",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2004",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2005",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2006",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2007",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WF-2008",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Wander Franco Through The Years Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-SHU",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-MAC",
+          "player_name": "Maximo Acosta",
+          "team": "Texas Rangers",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BIDGA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AM",
+          "player_name": "Austin Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Base Bowman Icons Image Variation",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BIDGA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Bowman Icons Deco Gold Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Image Variations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Image Variations Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Image Variations Autographs Emerald",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Image Variations Autographs Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Image Variations Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BVTA-AC",
+          "player_name": "Armando Cruz",
+          "team": "Washington Nationals",
+          "variation": "Transcendent Collection Image Variations Autographs Rose Gold",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

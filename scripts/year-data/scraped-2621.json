@@ -1,0 +1,1934 @@
+{
+  "year": 1997,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2621,
+        "name": "1997-98 E-X2001"
+      },
+      "unique": [
+        {
+          "card_number": "34",
+          "player_name": "Christian Laettner",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Christian Laettner",
+          "team": "Atlanta Hawks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Christian Laettner",
+          "team": "Atlanta Hawks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Chauncey Billups",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Chauncey Billups",
+          "team": "Boston Celtics",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Chauncey Billups",
+          "team": "Boston Celtics",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Chris Anstey",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Chris Anstey",
+          "team": "Dallas Mavericks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Chris Anstey",
+          "team": "Dallas Mavericks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Bobby Jackson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Danny Fortson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Battie",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Bobby Jackson",
+          "team": "Denver Nuggets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Danny Fortson",
+          "team": "Denver Nuggets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Thomas",
+          "team": "Denver Nuggets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Bobby Jackson",
+          "team": "Denver Nuggets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Danny Fortson",
+          "team": "Denver Nuggets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Thomas",
+          "team": "Denver Nuggets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Joe Smith",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Joe Smith",
+          "team": "Golden State Warriors",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Joe Smith",
+          "team": "Golden State Warriors",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Clyde Drexler",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Clyde Drexler",
+          "team": "Houston Rockets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Clyde Drexler",
+          "team": "Houston Rockets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Austin Croshere",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Austin Croshere",
+          "team": "Indiana Pacers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Austin Croshere",
+          "team": "Indiana Pacers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Rodney Rogers",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Rodney Rogers",
+          "team": "Los Angeles Clippers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Rodney Rogers",
+          "team": "Los Angeles Clippers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Terrell Brandon",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Terrell Brandon",
+          "team": "Milwaukee Bucks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Terrell Brandon",
+          "team": "Milwaukee Bucks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Sam Cassell",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Sam Cassell",
+          "team": "New Jersey Nets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Sam Cassell",
+          "team": "New Jersey Nets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "John Starks",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "John Starks",
+          "team": "New York Knicks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "John Starks",
+          "team": "New York Knicks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Johnny Taylor",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Johnny Taylor",
+          "team": "Orlando Magic",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Johnny Taylor",
+          "team": "Orlando Magic",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cedric Ceballos",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cedric Ceballos",
+          "team": "Phoenix Suns",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cedric Ceballos",
+          "team": "Phoenix Suns",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Kelvin Cato",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Kelvin Cato",
+          "team": "Portland Trail Blazers",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Kelvin Cato",
+          "team": "Portland Trail Blazers",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Mahmoud Abdul-Rauf",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mitch Richmond",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Mahmoud Abdul-Rauf",
+          "team": "Sacramento Kings",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mitch Richmond",
+          "team": "Sacramento Kings",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Sacramento Kings",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Mahmoud Abdul-Rauf",
+          "team": "Sacramento Kings",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mitch Richmond",
+          "team": "Sacramento Kings",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Sacramento Kings",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Marcus Camby",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Damon Stoudamire",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Marcus Camby",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Damon Stoudamire",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Battie",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Marcus Camby",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Damon Stoudamire",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Battie",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jacque Vaughn",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jacque Vaughn",
+          "team": "Utah Jazz",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jacque Vaughn",
+          "team": "Utah Jazz",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Antonio Daniels",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Antonio Daniels",
+          "team": "Vancouver Grizzlies",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Antonio Daniels",
+          "team": "Vancouver Grizzlies",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chris Webber",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chris Webber",
+          "team": "Washington Wizards",
+          "variation": "Essential Credentials Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chris Webber",
+          "team": "Washington Wizards",
+          "variation": "Essential Credentials Now",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

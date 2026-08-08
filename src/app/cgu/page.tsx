@@ -4,6 +4,7 @@ import LegalShell from '@/components/LegalShell'
 export const metadata: Metadata = {
   title: "Conditions Générales d'Utilisation",
   description: "Conditions Générales d'Utilisation (CGU) du site Memorabilius.",
+  robots: { index: false, follow: false },
 }
 
 export default function CGUPage() {

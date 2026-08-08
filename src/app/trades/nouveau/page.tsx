@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -25,9 +26,9 @@ export default function NouveauTrade() {
   })
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
-      setUserId(data.user.id)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      setUserId(session.user.id)
     })
   }, [])
 
@@ -39,7 +40,7 @@ export default function NouveauTrade() {
       ...form,
       user_id: userId,
     })
-    if (error) { alert('Erreur : ' + error.message); setLoading(false); return }
+    if (error) { toast.error('Erreur : ' + error.message); setLoading(false); return }
     router.push('/trades')
   }
 

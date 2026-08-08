@@ -1,5 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { checkAiRateLimit } from '@/lib/rateLimit'
+import sharp from 'sharp'
+
+async function compressImage(base64: string): Promise<string> {
+  const buf = Buffer.from(base64, 'base64')
+  const out = await sharp(buf)
+    .resize(700, 700, { fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 85 })
+    .toBuffer()
+  return out.toString('base64')
+}
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -8,250 +19,171 @@ const supabase = createClient(
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 
-const PROMPT = `Tu es un expert en cartes de collection sportives (NBA, NFL, MLB, NHL, soccer) et TCG (Pokémon, Magic, etc.) avec une connaissance exhaustive des sets, parallèles et variations.
-
-Analyse cette image de carte et extrais les informations en JSON strict.
-Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication.
+const PROMPT = `Tu es un expert en cartes de collection sportives et TCG. Réponds UNIQUEMENT avec un objet JSON valide, sans markdown.
 
 {
-  "nom": "Nom complet du joueur ou personnage",
-  "equipe": "Nom complet ville + surnom (ex: Los Angeles Lakers, Golden State Warriors). Vide si TCG ou non applicable.",
-  "annee": "Année ou saison (ex: 2023-24, 2023, 2022)",
-  "marque": "Fabricant (ex: Panini, Topps, Upper Deck, Leaf, Fleer, Pokémon, Magic)",
-  "collection": "Nom du SET principal sans la marque (ex: Prizm, Chrome, Mosaic, Optic, Select, Hoops, Donruss, Bowman, Heritage, Stadium Club, National Treasures, Immaculate, Flawless, Obsidian, Revolution, Noir, Illusions, Court Kings)",
-  "variation": "Parallèle ou variante EXACTE visible sur la carte (voir guide ci-dessous). Vide si c'est la base standard.",
-  "num": "Numérotation sérielle au format X/Y ou /Y si visible et imprimée (ex: 48/99, /25, /10). Vide sinon.",
-  "card_number": "Numéro de la carte dans le set, imprimé au dos (ex: '48', 'HTR-IFS', 'EC-1', 'PP-LJ'). Souvent précédé de '#' au dos. NE PAS confondre avec la numérotation /99. Vide si absent.",
+  "nom": "Joueur/personnage. Multi: séparés par ' / '. Carte équipe: nom équipe.",
+  "equipe": "Sports US: ville+surnom (ex: Los Angeles Lakers). Soccer: club. World Cup: nation. Vide si TCG.",
+  "annee": "Année ou saison (ex: 2023-24). Lis sur la carte.",
+  "marque": "Fabricant (ex: Panini, Topps, Upper Deck, Pokémon, Konami)",
+  "collection": "Set sans la marque (ex: Prizm, Chrome, Mosaic, Select)",
+  "variation": "Parallèle/variante EXACTE imprimée. Vide si base standard.",
+  "num": "Tirage sériel imprimé: '/Y' ou 'X/Y'. Vide sinon.",
+  "card_number": "Numéro au verso, sans '#'. Vide si absent.",
   "grade": "Raw",
   "rc": false,
   "auto": false,
   "patch": false
 }
 
-═══ GUIDE DES VARIATIONS PAR MARQUE ═══
+═══ SLABS (PSA/BGS/CGC/SGC/HGA) ═══
+Étiquette = SOURCE PRIORITAIRE. Copie nom, année, collection, variation, num EXACTEMENT de l'étiquette.
+grade: "PSA 10" / "BGS 9.5" / "CGC 9" / "SGC 10" / "HGA 10". Illisible → "PSA ?" etc.
+AUTO→auto=true | PATCH/RELIC→patch=true | RC→rc=true
 
-PANINI PRIZM (NBA/NFL/MLB):
-Base → variation = ""
-Silver Prizm → "Silver Prizm" (holographique argenté, le plus courant)
-Red Prizm → "Red Prizm"
-Blue Prizm → "Blue Prizm"
-Blue Ice Prizm → "Blue Ice Prizm"
-Gold Prizm /10 → "Gold Prizm"
-Black Prizm /1 → "Black Prizm"
-Green Prizm → "Green Prizm"
-Purple Prizm → "Purple Prizm"
-Pink Prizm → "Pink Prizm"
-Orange Prizm → "Orange Prizm"
-Red White Blue → "Red White Blue Prizm"
-Cracked Ice → "Cracked Ice Prizm"
-Hyper → "Hyper Prizm"
-Fast Break → "Fast Break Prizm"
-Disco → "Disco Prizm"
-Gold Vinyl /1 → "Gold Vinyl Prizm"
-Mojo → "Mojo Prizm"
+═══ VARIATIONS ═══
+PRIORITÉ: 1.Texte imprimé 2.Étiquette slab 3.Tirage inferré 4.Visuel 5.Base→""
 
-PANINI OPTIC:
-Base → ""
-Holo → "Holo"
-Blue → "Blue Optic"
-Red → "Red Optic"
-Gold /10 → "Gold Optic"
-Black /1 → "Black Optic"
-Pink → "Pink Optic"
-Purple → "Purple Optic"
-Green → "Green Optic"
-Orange → "Orange Optic"
-Pandora → "Pandora"
-Velocity → "Velocity"
-Shock → "Shock"
-Checkerboard → "Checkerboard"
-Rated Rookie → note rc=true
+PANINI: variation = EFFET/COULEUR + SET. Ex: "Silver Prizm", "Holo Hoops", "Blue Mosaic", "Cracked Ice Select".
+/10 non imprimé→"Gold [Set]" | /1→"Black [Set]" (ou "Gold Vinyl/Logoman" si applicable).
+Inserts: lire NOM IMPRIMÉ en priorité (ex: "Bang!", "Stained Glass", "Kaboom"). Combo: "Bang! Silver Prizm".
+Select: niveaux Concourse/Field Level/Premier Level ≠ variation (ne pas inclure dans variation).
+Premium (Immaculate/NT/Noir/Obsidian/Flawless): texte imprimé priorité absolue, sinon ta connaissance du set.
 
-PANINI MOSAIC — INSERTS (subsets avec leur propre design/cadre distinct) :
-ATTENTION : Mosaic contient beaucoup d'INSERTS qui ont leur propre nom, à ne pas confondre avec les parallèles couleur.
-Si le design de la bordure/cadre de la carte est clairement différent du style Mosaic standard (carreaux bleus), c'est probablement un INSERT.
+TOPPS/BOWMAN: Refractor (miroir irisé)→"Refractor". 1st Bowman→rc=true, variation="".
+UPPER DECK: Young Guns→rc=true, variation="Young Guns". SP Authentic Future Watch→rc=true.
+SOCCER: equipe=CLUB (ex: Real Madrid) ou NATION si World Cup (ex: France). Mêmes règles parallèles que NBA.
+POKÉMON/TCG: VMAX/VSTAR/V/ex/GX/EX→inclure dans variation. Rareté (Holo Rare, Full Art, Alt Art…)→variation.
 
-Inserts Mosaic courants :
-  Bang! → bordure avec effet d'explosion/éclats, très colorée → variation = "Bang!" (base) ou "Bang! Silver Prizm" (holographique)
-  Jam! → joueur qui dunk, bordure dynamique → "Jam!" ou "Jam! Silver Prizm"
-  Stained Glass → effet vitrail → "Stained Glass" ou "Stained Glass Silver Prizm"
-  Will to Win → design motivationnel → "Will to Win"
-  Stare Down → gros plan visage → "Stare Down"
-  On the Rise → jeunes joueurs → "On the Rise"
-  Magnitude → bordure étoilée → "Magnitude"
-  Mosaic Memorabilia → relic → patch=true, "Mosaic Memorabilia"
+═══ RÈGLES ═══
+MARQUE vs COLLECTION: "Panini Prizm"→marque=Panini, collection=Prizm.
+ANNÉE: verso d'abord (copyright, logo set). Slab→étiquette. Set connu→ta connaissance. Impossible→"".
+rc: logo RC (étoile jaune), "Rookie Card"/"RC"/"Young Guns"/"1st Bowman", ou "Rookie" dans l'insert.
+auto: signature manuscrite ou "Autograph"/"Auto" imprimé (sticker inclus).
+patch: fenêtre tissu/jersey encapsulée. Manufactured patch (estampé en plastique)→false.
+num ≠ card_number: num=tirage limité imprimé, card_number=numéro catalogue au verso.
+Image: à l'envers→lire normalement | sleeve/toploader→lire à travers | slab→étiquette d'abord | plusieurs cartes→la plus centrale.
+SI VERSO: image 1=recto, image 2=verso. Verso AUTORITÉ: collection, variation, num, rc, auto, patch, année.`
 
-Parallèles Mosaic (même design de base, couleur différente) :
-Base → ""
-Silver Prizm → "Silver Mosaic" (holographique argenté)
-Pink Camo → "Pink Camo"
-Blue → "Blue Mosaic" (teinte bleue uniforme, SANS design d'insert spécial)
-Gold → "Gold Mosaic"
-Reactive Blue → "Reactive Blue"
-Reactive Yellow → "Reactive Yellow"
-Camo → "Camo"
-Genesis → "Genesis"
+const PROMPT_MEMORABILIA = `Tu es un expert en mémorabilias sportifs. Réponds UNIQUEMENT avec un objet JSON valide, sans markdown.
 
-RÈGLE CLÉ MOSAIC : Si la carte a un design de cadre/fond DISTINCT du carrelage Mosaic standard → c'est un INSERT, mets le nom de l'insert en variation.
-Si c'est juste le design standard Mosaic en couleur différente → c'est un parallèle couleur.
-Combinaison possible : insert + parallèle → "Bang! Silver Prizm"
+{
+  "nom": "Nom du joueur lisible sur l'objet (maillot, chaussure, etc.). Vide si absent.",
+  "equipe": "Équipe ou franchise (ex: Chicago Bulls, Dallas Cowboys). Vide si inconnu.",
+  "annee": "Année ou saison visible ou estimée (ex: 2023, 2023-24). Vide si inconnu.",
+  "marque": "Fabricant (ex: Nike, Adidas, Under Armour, Mitchell & Ness, Wilson). Vide si inconnu.",
+  "collection": "Gamme ou ligne si applicable (ex: Authentic, Throwback, Game Issued). Vide sinon.",
+  "variation": "Coloris ou version notable (ex: Alternate black, Road white, City edition). Vide si standard.",
+  "num": "Numérotation édition limitée imprimée (ex: 48/500). Vide sinon.",
+  "card_number": "",
+  "grade": "Raw",
+  "rc": false,
+  "auto": false,
+  "patch": false
+}
 
-PANINI PRIZM — INSERTS courants :
-Prizm contient aussi des inserts distincts des parallèles :
-  Emergent → design futuriste → "Emergent" ou "Emergent Silver Prizm"
-  Fearless → "Fearless"
-  Get Hyped! → "Get Hyped!"
-  Sensational Swatches → relic → patch=true
-  Signatures → auto=true
-  Prizm Dominance → "Prizm Dominance"
-  Color Blast → fond multicolore éclaté → "Color Blast"
-  Far & Away → "Far & Away"
+Identifie le type d'objet (maillot, casque, ballon, chaussure, photo, etc.), le joueur (nom + numéro de dos), l'équipe, la marque fabricant et l'année/saison si visible.`
 
-PANINI SELECT:
-Base (Concourse/Premier/Courtside tier) → ""
-Silver → "Silver Select"
-Blue/White → "Blue & White Select"
-Gold /10 → "Gold Select"
-Black /1 → "Black Select"
-Tie-Dye → "Tie-Dye"
-Light Blue Disco → "Light Blue Disco"
+function extractFirstJson(text: string): string | null {
+  const start = text.indexOf('{')
+  if (start === -1) return null
+  let depth = 0
+  for (let i = start; i < text.length; i++) {
+    if (text[i] === '{') depth++
+    else if (text[i] === '}') { depth--; if (depth === 0) return text.slice(start, i + 1) }
+  }
+  return null
+}
 
-PANINI NATIONAL TREASURES / IMMACULATE:
-Ces sets sont souvent numérotés et ont des relics/autos.
-Variation = couleur du fond ou bordure visible (Gold, Silver, Black, Platinum, etc.)
-
-TOPPS CHROME (MLB/NFL):
-Base → ""
-Refractor → "Refractor"
-Blue Refractor → "Blue Refractor"
-Orange Refractor → "Orange Refractor"
-Red Refractor /5 → "Red Refractor"
-Gold Refractor /50 → "Gold Refractor"
-SuperFractor /1 → "SuperFractor"
-Prism Refractor → "Prism Refractor"
-Atomic Refractor → "Atomic Refractor"
-Negative Refractor → "Negative Refractor"
-X-Fractor → "X-Fractor"
-
-TOPPS HERITAGE / BASE:
-Base → ""
-Short Print → "Short Print"
-High Number → "High Number"
-Chrome → "Chrome"
-Black → "Black"
-Blue → "Blue"
-Red → "Red"
-Gold /50 → "Gold"
-
-UPPER DECK (NHL/NBA):
-Young Guns → rc=true, variation="Young Guns"
-Canvas → "Canvas"
-French → "French"
-Clear Cut → "Clear Cut"
-Exclusives /100 → "Exclusives"
-
-POKÉMON:
-Holo Rare → "Holo Rare"
-Reverse Holo → "Reverse Holo"
-Full Art → "Full Art"
-Secret Rare → "Secret Rare"
-Rainbow Rare → "Rainbow Rare"
-Gold → "Gold"
-VMAX → note dans variation
-V → note dans variation
-ex → note dans variation
-
-═══ RÈGLES GÉNÉRALES ═══
-
-IDENTIFICATION DE LA VARIATION — ORDRE DE PRIORITÉ :
-1. INSERTS D'ABORD : Est-ce que le design général de la carte (fond, cadre, composition) est DIFFÉRENT du style de base du set ? Si oui → c'est un INSERT, identifie son nom (Bang!, Jam!, Stained Glass, Color Blast, Emergent, etc.)
-2. Cherche une indication TEXTUELLE sur la carte (nom de l'insert/parallèle imprimé)
-3. Observe la BORDURE : argentée/holographique = Silver/Refractor, dorée = Gold, colorée unie = noter la couleur
-4. Observe la TEXTURE : prismatique = Prizm/Holo, craquelée = Cracked Ice, rayures = Velocity
-5. Combine INSERT + PARALLÈLE si applicable : "Bang! Silver Prizm", "Stained Glass Gold"
-6. Regarde le numéro de tirage (/25 = souvent Gold ou Red, /10 = Gold, /1 = Black ou SuperFractor)
-7. Si design standard du set sans effet spécial ni couleur différente → variation = ""
-
-ERREUR FRÉQUENTE À ÉVITER : Une carte Mosaic avec une bordure bleue mais un design d'insert distinct (ex: Bang!, Jam!) N'EST PAS "Blue Mosaic" — c'est l'INSERT en question.
-
-COLLECTION (set) :
-- Lis le texte en bas ou en haut de la carte
-- Sur les slabs PSA/BGS, le set est souvent indiqué sur l'étiquette
-- Panini indique souvent le set sur le bas de la carte
-- Topps indique le set logo en haut
-
-RÈGLES BOOLÉENNES :
-- rc = true si tu vois "Rookie Card", "RC", logo rookie officiel (étoile jaune), ou "Young Guns" (Upper Deck)
-- auto = true si signature manuscrite visible OU "Autograph" OU "Auto" inscrit sur la carte
-- patch = true si morceau de tissu/jersey encapsulé visible OU "Patch" OU "Relic" inscrit
-- grade = "Raw" par défaut. Si slab PSA visible → "PSA X", BGS → "BGS X.X", CGC → "CGC X"
-- num : UNIQUEMENT si tu lis "X/Y" ou "/Y" imprimé sur la carte comme tirage limité. Pas le numéro de carte (#123), pas le numéro de maillot.
-- card_number : le numéro identifiant la carte dans le set, typiquement au dos (ex: "#48", "HTR-IFS", "EC-1"). Si visible, retourne UNIQUEMENT la valeur sans le '#' (ex: "48" pas "#48"). Le verso est souvent plus clair pour ça.
-
-Si une info est absente ou vraiment illisible → chaîne vide "".
-Ne devine pas. Reste factuel à ce qui est visible.
-
-IMPORTANT — SI DEUX IMAGES SONT FOURNIES (RECTO + VERSO) :
-- La première image est le RECTO (face avant)
-- La deuxième image est le VERSO (face arrière)
-- Le verso contient souvent : nom exact du set, nom de l'insert en grand, numérotation, infos RC/Auto
-- Le verso FAIT AUTORITÉ sur le recto pour : collection, variation, num, rc, auto, patch
-- Si le verso indique "BANG!" en gros → variation contient "Bang!" (+ parallèle si visible au recto)
-- Si le verso dit "PRIZM" → le parallèle du recto est probablement Silver Prizm ou similaire
-- Croiser les deux faces pour avoir l'information la plus complète et précise possible.`
+async function callGeminiWithRetry(url: string, body: object): Promise<Response> {
+  const delays = [1000, 2000, 4000]
+  for (let attempt = 0; attempt <= delays.length; attempt++) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(12000),
+    })
+    const retryable = res.status === 503 || res.status === 429
+    if (!retryable || attempt === delays.length) return res
+    await new Promise(r => setTimeout(r, delays[attempt]))
+  }
+  throw new Error('unreachable')
+}
 
 export async function POST(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const { data: { user } } = await supabase.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
-  const apiKey = process.env.GEMINI_API_KEY
-  if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY non configurée' }, { status: 500 })
+  const rateLimitErr = await checkAiRateLimit(user.id)
+  if (rateLimitErr) return NextResponse.json({ error: rateLimitErr }, { status: 429 })
 
   try {
-    const { imageBase64, imageBase64Verso, mimeType = 'image/jpeg' } = await req.json()
-    if (!imageBase64) return NextResponse.json({ error: 'Image manquante' }, { status: 400 })
+    const { imageBase64: rawRecto, imageBase64Verso: rawVerso, ebayHints, itemType } = await req.json()
+    if (!rawRecto) return NextResponse.json({ error: 'Image manquante' }, { status: 400 })
 
-    const imageParts: object[] = [
-      { inline_data: { mime_type: mimeType, data: imageBase64 } },
-    ]
-    if (imageBase64Verso) {
-      imageParts.push({ inline_data: { mime_type: mimeType, data: imageBase64Verso } })
+    const imageBase64 = await compressImage(rawRecto)
+    const imageBase64Verso = rawVerso ? await compressImage(rawVerso) : undefined
+
+    const modalUrl = process.env.MODAL_SCAN_URL
+
+    if (modalUrl) {
+      // ── Modèle maison via Modal ──────────────────────────────
+      const body: Record<string, string> = { recto: imageBase64 }
+      if (imageBase64Verso) body.verso = imageBase64Verso
+
+      const res = await fetch(modalUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+
+      if (!res.ok) {
+        const err = await res.text()
+        return NextResponse.json({ error: 'Modal error: ' + err }, { status: 500 })
+      }
+
+      const card = await res.json()
+      if (card.error) return NextResponse.json({ error: card.error }, { status: 500 })
+      return NextResponse.json(card)
     }
 
-    const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [
-            { text: PROMPT },
-            ...imageParts,
-          ],
-        }],
-        generationConfig: {
-          temperature: 0,
-          maxOutputTokens: 1024,
-          thinkingConfig: { thinkingBudget: 0 },
-        },
-      }),
+    // ── Fallback Gemini ──────────────────────────────────────
+    const apiKey = process.env.GEMINI_API_KEY
+    if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY non configurée' }, { status: 500 })
+
+    let fullPrompt = itemType === 'memorabilia' ? PROMPT_MEMORABILIA : PROMPT
+    if (itemType !== 'memorabilia' && Array.isArray(ebayHints) && ebayHints.length > 0) {
+      fullPrompt += `\n\n═══ TITRES EBAY — INDICES PRIORITAIRES ═══\nCes listings correspondent visuellement à cette carte exacte. RÈGLES OBLIGATOIRES :\n• Copie la variation VERBATIM depuis le titre (ex: titre contient "Silver Prizm" → variation="Silver Prizm", titre contient "Blue Hyper Prizm" → variation="Blue Hyper Prizm")\n• Copie l'année VERBATIM (ex: "2023-24 Panini" → annee="2023-24")\n• Si le titre mentionne "RC" ou "Rookie" → rc=true\n• Si le titre mentionne "Auto" ou "Autograph" → auto=true\n• Si le titre contient "/XX" ou "XX/XX" → num="/XX" ou "XX/XX"\n• Ces indices font AUTORITÉ sur tes déductions visuelles — utilise-les sauf contradiction flagrante avec l'image\n` +
+        ebayHints.slice(0, 5).map((t: string, i: number) => `${i + 1}. "${t}"`).join('\n')
+    }
+
+    const imageParts: object[] = [{ inline_data: { mime_type: 'image/jpeg', data: imageBase64 } }]
+    if (imageBase64Verso) imageParts.push({ inline_data: { mime_type: 'image/jpeg', data: imageBase64Verso } })
+
+    const res = await callGeminiWithRetry(`${GEMINI_URL}?key=${apiKey}`, {
+      contents: [{ parts: [{ text: fullPrompt }, ...imageParts] }],
+      generationConfig: { temperature: 0, maxOutputTokens: 512, thinkingConfig: { thinkingBudget: 0 } },
     })
 
     if (!res.ok) {
+      if (res.status === 503 || res.status === 429) {
+        return NextResponse.json({ error: 'Gemini est en forte demande, réessaie dans quelques secondes.' }, { status: 503 })
+      }
       const err = await res.text()
       return NextResponse.json({ error: 'Gemini error: ' + err }, { status: 500 })
     }
 
     const data = await res.json()
     const parts = data.candidates?.[0]?.content?.parts ?? []
-    const text = parts.map((p: any) => p.text ?? '').join('')
+    const answerParts = parts.filter((p: any) => !p.thought)
+    const text = answerParts.map((p: any) => p.text ?? '').join('')
 
-    const match = text.match(/\{[\s\S]*\}/)
-    if (!match) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
+    const jsonStr = extractFirstJson(text)
+    if (!jsonStr) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
 
-    const card = JSON.parse(match[0])
-    return NextResponse.json(card)
+    return NextResponse.json(JSON.parse(jsonStr))
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })
   }

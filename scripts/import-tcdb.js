@@ -82,6 +82,7 @@ async function main() {
   }
 
   console.log(`\n🏁 Terminé: ${ok} sets OK, ${err} erreurs`)
+  if (err > 0) process.exit(1)
 }
 
 main().catch(e => { console.error('Fatal:', e.message); process.exit(1) })

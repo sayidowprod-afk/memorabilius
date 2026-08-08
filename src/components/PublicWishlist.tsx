@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
+import { useLang } from '@/lib/LangContext'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -15,6 +16,7 @@ const empty = { nom: '', annee: '', marque: '', collection: '', variation: '', n
 
 function WishItemMatches({ item, accent }: { item: WishItem; accent: string }) {
   const [collectors, setCollectors] = useState<Collector[] | null>(null)
+  const { t } = useLang()
 
   useEffect(() => {
     const params = new URLSearchParams({ name: item.nom })
@@ -35,7 +37,7 @@ function WishItemMatches({ item, accent }: { item: WishItem; accent: string }) {
 
   return (
     <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-      <span style={{ fontSize: 10, color: '#999', fontWeight: 700 }}>Possédée par :</span>
+      <span style={{ fontSize: 10, color: '#999', fontWeight: 700 }}>{t('wishlist_owned_by')}</span>
       {collectors.map(c => (
         <Link key={c.id} href={`/galerie/${c.id}`} style={{
           fontSize: 10, fontWeight: 800, padding: '2px 8px', borderRadius: 20,
@@ -54,6 +56,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   const [form, setForm] = useState(empty)
   const [showForm, setShowForm] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { t, lang } = useLang()
 
   useEffect(() => {
     supabase.from('wishlist').select('*').eq('user_id', userId).order('created_at', { ascending: false })
@@ -95,7 +98,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   if (items.length === 0 && !isOwner) return (
     <div style={{ textAlign: 'center', padding: '60px 20px', color: '#ccc' }}>
       <div style={{ fontSize: 40, marginBottom: 8 }}>🎯</div>
-      <p style={{ fontWeight: 700 }}>Aucune carte recherchée</p>
+      <p style={{ fontWeight: 700 }}>{t('wishlist_none')}</p>
     </div>
   )
 
@@ -108,42 +111,42 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
             border: 'none', borderRadius: 10, padding: '10px 20px',
             fontWeight: 800, fontSize: 13, cursor: 'pointer',
           }}>
-            {showForm ? '✕ Annuler' : '+ Ajouter une carte'}
+            {showForm ? t('wishlist_cancel_add') : t('wishlist_add')}
           </button>
         </div>
       )}
 
       {showForm && isOwner && (
         <div style={{ background: 'white', borderRadius: 14, padding: 20, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #eee' }}>
-          <h3 style={{ fontWeight: 800, margin: '0 0 14px', fontSize: 14 }}>Nouvelle carte recherchée</h3>
+          <h3 style={{ fontWeight: 800, margin: '0 0 14px', fontSize: 14 }}>{t('wishlist_new_wanted')}</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Joueur *</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
               <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Année</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
               <input value={form.annee} onChange={e => setForm(p => ({ ...p, annee: e.target.value }))} placeholder="2024-25" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Marque</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_brand')}</label>
               <input value={form.marque} onChange={e => setForm(p => ({ ...p, marque: e.target.value }))} placeholder="Panini" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Collection</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_collection_label')}</label>
               <input value={form.collection} onChange={e => setForm(p => ({ ...p, collection: e.target.value }))} placeholder="National Treasures" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Variation</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_variation_label')}</label>
               <input value={form.variation} onChange={e => setForm(p => ({ ...p, variation: e.target.value }))} placeholder="Holo" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Numérotation</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_num_label')}</label>
               <input value={form.num} onChange={e => setForm(p => ({ ...p, num: e.target.value }))} placeholder="/99" />
             </div>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Notes</label>
-              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder="Budget max, état souhaité..." />
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
+              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={lang === 'fr' ? 'Budget max, état souhaité...' : 'Max budget, desired condition...'} />
             </div>
             <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8 }}>
               {(['rc', 'auto', 'patch'] as const).map(k => (
@@ -161,7 +164,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
             color: 'white', border: 'none', borderRadius: 10, padding: '11px',
             fontWeight: 800, fontSize: 13, cursor: form.nom.trim() ? 'pointer' : 'default',
           }}>
-            {saving ? 'Enregistrement...' : 'Ajouter à ma wishlist'}
+            {saving ? t('wishlist_saving') : t('wishlist_submit')}
           </button>
         </div>
       )}
@@ -179,8 +182,8 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
                 {[item.annee, item.marque, item.collection, item.variation].filter(Boolean).join(' · ')}
               </div>
               <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                {tags(item).map(t => (
-                  <span key={t.label} style={{ fontSize: 9, fontWeight: 900, padding: '2px 7px', borderRadius: 4, background: t.bg, color: 'white' }}>{t.label}</span>
+                {tags(item).map(tag => (
+                  <span key={tag.label} style={{ fontSize: 9, fontWeight: 900, padding: '2px 7px', borderRadius: 4, background: tag.bg, color: 'white' }}>{tag.label}</span>
                 ))}
               </div>
               {item.notes && <div style={{ fontSize: 11, color: '#aaa', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}

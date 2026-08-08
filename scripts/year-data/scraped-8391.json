@@ -1,0 +1,639 @@
+{
+  "year": 1993,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8391,
+        "name": "1993 Pro Line Portraits"
+      },
+      "unique": [
+        {
+          "card_number": "492",
+          "player_name": "Tony Smith",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "494",
+          "player_name": "Lincoln Kennedy",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Lincoln Kennedy",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Tony Smith",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "507",
+          "player_name": "Bert Jones",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "509",
+          "player_name": "John Mackey",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bert Jones",
+          "team": "Baltimore Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "500",
+          "player_name": "Frank Reich",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Frank Reich",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Cindy Reed",
+          "team": "Buffalo Bills",
+          "variation": "Wives",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cindy Reed",
+          "team": "Buffalo Bills",
+          "variation": "Wives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "472",
+          "player_name": "Ray Bentley",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "482",
+          "player_name": "John Copeland",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "John Copeland",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "470",
+          "player_name": "Jerry Ball",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "478",
+          "player_name": "Tony Casillas",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "511",
+          "player_name": "Harvey Martin",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Tony Casillas",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Harvey Martin",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "502",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Gaston Green",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "501",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "486",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "506",
+          "player_name": "Reggie White",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "499",
+          "player_name": "Mike Munchak",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mike Munchak",
+          "team": "Houston Oilers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Ann Stark",
+          "team": "Indianapolis Colts",
+          "variation": "Wives",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Ann Stark",
+          "team": "Indianapolis Colts",
+          "variation": "Wives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "471",
+          "player_name": "Patrick Bates",
+          "team": "Los Angeles Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "488",
+          "player_name": "Gaston Green",
+          "team": "Los Angeles Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "496",
+          "player_name": "Terry McDaniel",
+          "team": "Los Angeles Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Patrick Bates",
+          "team": "Los Angeles Raiders",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Terry McDaniel",
+          "team": "Los Angeles Raiders",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "473",
+          "player_name": "Jerome Bettis",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jerome Bettis",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "483",
+          "player_name": "Bryan Cox",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "505",
+          "player_name": "Richmond Webb",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "469",
+          "player_name": "Terry Allen",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "503",
+          "player_name": "Gino Torretta",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Gino Torretta",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "475",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "481",
+          "player_name": "Pat Harlow",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Pat Harlow",
+          "team": "New England Patriots",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "468",
+          "player_name": "Willie Roaf",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "510",
+          "player_name": "Archie Manning",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Archie Manning",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Willie Roaf",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "476",
+          "player_name": "Dave Brown",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "489",
+          "player_name": "Rodney Hampton",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rodney Hampton",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "485",
+          "player_name": "Jeff Lageman",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "493",
+          "player_name": "Marvin Jones",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Marvin Jones",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jeff Lageman",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "490",
+          "player_name": "Tim Harris",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Cindy Walker",
+          "team": "Philadelphia Eagles",
+          "variation": "Wives",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "474",
+          "player_name": "Steve Beuerlein",
+          "team": "Phoenix Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "479",
+          "player_name": "Chuck Cecil",
+          "team": "Phoenix Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "491",
+          "player_name": "Garrison Hearst",
+          "team": "Phoenix Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Beuerlein",
+          "team": "Phoenix Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chuck Cecil",
+          "team": "Phoenix Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "487",
+          "player_name": "Barry Foster",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "477",
+          "player_name": "Gill Byrd",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "504",
+          "player_name": "Ricky Watters",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "497",
+          "player_name": "Rick Mirer",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "480",
+          "player_name": "Reggie Cobb",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "484",
+          "player_name": "Eric Curry",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Reggie Cobb",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Eric Curry",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "495",
+          "player_name": "Wilber Marshall",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "498",
+          "player_name": "Art Monk",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "508",
+          "player_name": "Billy Kilmer",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Billy Kilmer",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Annette Rypien",
+          "team": "Washington Redskins",
+          "variation": "Wives",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Annette Rypien",
+          "team": "Washington Redskins",
+          "variation": "Wives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

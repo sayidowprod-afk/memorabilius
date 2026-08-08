@@ -16,23 +16,36 @@ export async function GET(req: NextRequest) {
   const rc = req.nextUrl.searchParams.get('rc') || ''
   const auto = req.nextUrl.searchParams.get('auto') || ''
   const patch = req.nextUrl.searchParams.get('patch') || ''
-  const excludeUserId = req.nextUrl.searchParams.get('exclude') || ''
+  const excludeRaw = req.nextUrl.searchParams.get('exclude') || ''
+  // Valide que excludeUserId est un UUID avant de l'utiliser en filtre DB
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+  const excludeUserId = UUID_RE.test(excludeRaw) ? excludeRaw : ''
   if (!name || name.length < 2) return NextResponse.json([])
 
   const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
   // Pour la numérotation : garde seulement le tirage (/99), ignore le numéro individuel (23/99 → 99)
   const normNum = (s: string) => { const m = s.match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 
-  // Cartes manuelles
-  const { data: manuelles } = await supabase
-    .from('cartes_manuelles')
+  // Cartes manuelles — filtrées côté DB par nom pour réduire les candidats
+  const safeQ = name.replace(/%/g, '\\%').replace(/_/g, '\\_')
+  const { data: manuelles } = await supabase.from('cartes_manuelles')
     .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
-    .neq('user_id', excludeUserId)
+    .ilike('nom', `%${safeQ}%`)
+    .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
+    .limit(500)
+
+  // Cartes privées scoped aux user_ids des cartes candidates — évite le scan de 2000 lignes
+  const candidateUserIds = [...new Set((manuelles || []).map((m: any) => m.user_id))]
+  const { data: privees } = candidateUserIds.length > 0
+    ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', candidateUserIds)
+    : { data: null }
+  const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
 
   const matchIds = new Set<string>()
   const cardsByUser = new Map<string, any>()
 
   ;(manuelles || []).forEach(m => {
+    if (privateSet.has(`${m.user_id}::${m.image_recto}`)) return
     const sameName    = normalize(m.nom || '') === normalize(name)
     const sameYear    = !year    || normalize(m.annee || '')      === normalize(year)
     const sameBrand   = !brand   || normalize(m.marque || '')     === normalize(brand)

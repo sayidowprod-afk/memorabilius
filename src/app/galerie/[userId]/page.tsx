@@ -63,10 +63,10 @@ export async function generateMetadata({
     openGraph: {
       title: `Galerie de ${name} | Memorabilius`,
       description: `Découvrez la collection de cartes de sport de ${name}.`,
-      images: profile?.avatar_url ? [{ url: profile.avatar_url, width: 200, height: 200, alt: name }] : [],
+      // openGraph.images omis → Next.js utilise opengraph-image.tsx (1200×630)
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: `Galerie de ${name} | Memorabilius`,
       description: `Découvrez la collection de cartes de sport de ${name}.`,
     },
@@ -76,7 +76,7 @@ export async function generateMetadata({
 export default async function GaleriePage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
   return (
-    <Suspense>
+    <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>
       <GalerieClient userId={userId} />
     </Suspense>
   )

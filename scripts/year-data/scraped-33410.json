@@ -1,0 +1,47 @@
+{
+  "year": 1990,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 33410,
+        "name": "1990-91 Pro Set Pro Bowl 106"
+      },
+      "unique": [
+        {
+          "card_number": "754",
+          "player_name": "Steve Tasker",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "766",
+          "player_name": "Reyna Thompson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "771",
+          "player_name": "Johnny Johnson",
+          "team": "Phoenix Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "778",
+          "player_name": "Wayne Haddix",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

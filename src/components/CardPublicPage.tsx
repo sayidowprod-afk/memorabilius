@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 import CardValueModule from './CardValueModule'
@@ -17,12 +18,19 @@ interface Props {
 }
 
 export default function CardPublicPage({ userId, cardSlug, src }: Props) {
+  const router = useRouter()
   const [profile, setProfile] = useState<any>(null)
   const [card, setCard] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const cardRef = useRef<HTMLDivElement>(null)
 
   const accent = profile?.couleur_bordure || '#003DA6'
+
+  // Redirige vers la galerie avec Viewer3D ouvert. Les bots (Discord, Google)
+  // ne font pas tourner JS et voient la page SSR avec og:image/metadata intacts.
+  useEffect(() => {
+    if (src) router.replace(`/galerie/${userId}?card=${encodeURIComponent(src)}`)
+  }, [src, userId, router])
 
   useEffect(() => {
     const load = async () => {

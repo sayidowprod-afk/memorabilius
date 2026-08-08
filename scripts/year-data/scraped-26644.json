@@ -1,0 +1,246 @@
+{
+  "year": 2000,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 26644,
+        "name": "2000 Upper Deck Legends Master Collection"
+      },
+      "unique": [
+        {
+          "card_number": "2",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Bob Cousy",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BR-EJ",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DR-BR",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DR-LB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-BR",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-EJ",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Wilt Chamberlain",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BR-EJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DR-EJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-EJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Pete Maravich",
+          "team": "New Orleans Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Moses Malone",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DR-BR",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DR-EJ",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DR-LB",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Mystery Pack Inserts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

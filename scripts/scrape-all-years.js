@@ -216,11 +216,8 @@ async function fetchTeamCards(page, sid, teamId, teamName) {
 // ── Import via nouveau process PowerShell ─────────────────────────────────────
 
 function importYear(jsonFile) {
-  console.log(`\n🚀 Import via nouveau process...`)
-  const result = spawnSync('powershell', [
-    '-NoProfile', '-NonInteractive', '-Command',
-    `Start-Process -Wait -NoNewWindow -FilePath node -ArgumentList '${IMPORT_SCRIPT}','${jsonFile}'`
-  ], { stdio: 'inherit' })
+  console.log(`\n🚀 Import...`)
+  const result = spawnSync('node', [IMPORT_SCRIPT, jsonFile], { stdio: 'inherit' })
   return result.status === 0
 }
 
@@ -300,7 +297,8 @@ async function main() {
       executablePath: findChrome(),
       headless: false,
       defaultViewport: null,
-      args: ['--no-sandbox', '--window-size=1280,900'],
+      userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'scrape-profile-tcdb'),
+      args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled'],
     })
     browserOpenedAt = totalSets
     const page = await browser.newPage()

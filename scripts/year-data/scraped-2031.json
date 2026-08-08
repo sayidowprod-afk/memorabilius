@@ -1,0 +1,2254 @@
+{
+  "year": 1980,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2031,
+        "name": "1980-81 Topps"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Dan Roundfield",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "John Drew",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Eddie Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "John Drew",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dan Roundfield",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Armond Hill",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Charlie Criss",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "John Drew",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Steve Hawes",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Armond Hill",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Eddie Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "James McElroy",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Wayne Rollins",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dan Roundfield",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Tom Burleson",
+          "team": "Atlanta Hawks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Nate Archibald",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nate Archibald",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "M.L. Carr",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Dave Cowens",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Chris Ford",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Cedric Maxwell",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Rick Robey",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "254",
+          "player_name": "Rick Robey",
+          "team": "Boston Celtics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "David Greenwood",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Artis Gilmore",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "David Greenwood",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Dwight Jones",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Scott May",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "John Mengelt",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Ricky Sobers",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "259",
+          "player_name": "Artis Gilmore",
+          "team": "Chicago Bulls",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Mike Mitchell",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Dave Robisch",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Foots Walker",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kenny Carr",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Don Ford",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Mitchell",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Dave Robisch",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Campy Russell",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Randy Smith",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Foots Walker",
+          "team": "Cleveland Cavaliers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Austin Carr",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Abdul Jeelani",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jim Cleamons",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Winford Boynes",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Mike Bratz",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Joe Hassett",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Geoff Huston",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tom LaGarde",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Richard Washington",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jerome Whitehead",
+          "team": "Dallas Mavericks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Dan Issel",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Dan Issel",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "John Roche",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Alex English",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Dan Issel",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Charlie Scott",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "John Roche",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Bobby Wilkerson",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "264",
+          "player_name": "Lloyd Free",
+          "team": "Denver Nuggets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Terry Tyler",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Terry Tyler",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Eric Money",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Kent Benson",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Phil Hubbard",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Greg Kelser",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "John Long",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bob McAdoo",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Eric Money",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Terry Tyler",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "253",
+          "player_name": "John Shumate",
+          "team": "Detroit Pistons",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Robert Parish",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Robert Parish",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Lucas",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Wayne Cooper",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "John Lucas",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Sonny Parker",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Clifford Ray",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Purvis Short",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Phil Smith",
+          "team": "Golden State Warriors",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Moses Malone",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Calvin Murphy",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Moses Malone",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Moses Malone",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Allen Leavell",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Rick Barry",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Allen Leavell",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Moses Malone",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Calvin Murphy",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Billy Paultz",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Robert Reid",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Rudy Tomjanovich",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "256",
+          "player_name": "Robert Reid",
+          "team": "Houston Rockets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Mickey Johnson",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Mickey Johnson",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Johnny Davis",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Mike Bantom",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Dudley Bradley",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Johnny Davis",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "James Edwards",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Mickey Johnson",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Billy Knight",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "George McGinnis",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "261",
+          "player_name": "James Edwards",
+          "team": "Indiana Pacers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Leon Douglas",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Sam Lacey",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Phil Ford",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Phil Ford",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Reggie King",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Sam Lacey",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Bill Robinzine",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Scott Wedman",
+          "team": "Kansas City Kings",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Norm Nixon",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Jim Chones",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Michael Cooper",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Brad Holland",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Mark Landsberger",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Norm Nixon",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Jamaal Wilkes",
+          "team": "Los Angeles Lakers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Marques Johnson",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Marques Johnson",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Marques Johnson",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Quinn Buckner",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Junior Bridgeman",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Quinn Buckner",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "George L. Johnson",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Marques Johnson",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Sidney Moncrief",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Brian Winters",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Mike Newlin",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "George Johnson",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Eddie Jordan",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Eddie Jordan",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Maurice Lucas",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Mike Newlin",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Roger Phegley",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Cliff Robinson",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Jan van Breda Kolff",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Bill Cartwright",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "M.R. Richardson",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Bill Cartwright",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Bill Cartwright",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Bill Cartwright",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Larry Demic",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Toby Knight",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Joe Meriweather",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Earl Monroe",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Marvin Webster",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Ray Williams",
+          "team": "New York Knicks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Caldwell Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Maurice Cheeks",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Henry Bibby",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Maurice Cheeks",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Doug Collins",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Darryl Dawkins",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Lionel Hollins",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Caldwell Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Steve Mix",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "262",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "263",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Walter Davis",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Paul Westphal",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Paul Westphal",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Leonard Robinson",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Paul Westphal",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Alvan Adams",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Don Buse",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Walter Davis",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Rich Kelley",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Leonard Robinson",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Dennis Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Tom Owens",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Kermit Washington",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Dave Twardzik",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Ron Brewer",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Bob Gross",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Calvin Natt",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Tom Owens",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Dave Twardzik",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Kermit Washington",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "258",
+          "player_name": "Ron Brewer",
+          "team": "Portland Trail Blazers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "George Johnson",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "Larry Kenon",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "James Silas",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Mike Gale",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Larry Kenon",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "210",
+          "player_name": "Mark Olberding",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Kevin Restani",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "212",
+          "player_name": "John Shumate",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "James Silas",
+          "team": "San Antonio Spurs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Lloyd Free",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "214",
+          "player_name": "Lloyd Free",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "215",
+          "player_name": "Swen Nater",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Brian Taylor",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "217",
+          "player_name": "Joe Bryant",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "218",
+          "player_name": "Lloyd Free",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Swen Nater",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Paul Silas",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Brian Taylor",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "222",
+          "player_name": "Bill Walton",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Freeman Williams",
+          "team": "San Diego Clippers",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Gus Williams",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Gus Williams",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Jack Sikma",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "226",
+          "player_name": "John Johnson",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "227",
+          "player_name": "James Bailey",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Fred Brown",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Paul Westphal",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "John Johnson",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "231",
+          "player_name": "Lonnie Shelton",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "232",
+          "player_name": "Jack Sikma",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "233",
+          "player_name": "Gus Williams",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "255",
+          "player_name": "James Bailey",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "260",
+          "player_name": "Lonnie Shelton",
+          "team": "Seattle SuperSonics",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Adrian Dantley",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jeff Judkins",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "234",
+          "player_name": "Adrian Dantley",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "235",
+          "player_name": "Ben Poquette",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "236",
+          "player_name": "Allan Bristow",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "237",
+          "player_name": "Ron Boone",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "238",
+          "player_name": "Tom Boswell",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Allan Bristow",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "240",
+          "player_name": "Adrian Dantley",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "241",
+          "player_name": "Ben Poquette",
+          "team": "Utah Jazz",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "242",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "243",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "244",
+          "player_name": "Kevin Porter",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "245",
+          "player_name": "Greg Ballard",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "246",
+          "player_name": "Bob Dandridge",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "247",
+          "player_name": "Kevin Grevey",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "248",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "249",
+          "player_name": "Mitch Kupchak",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Kevin Porter",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "251",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "252",
+          "player_name": "John Williamson",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "257",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Washington Bullets",
+          "team": null,
+          "variation": "Team Posters",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

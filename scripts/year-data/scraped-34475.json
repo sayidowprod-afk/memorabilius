@@ -1,0 +1,975 @@
+{
+  "year": 1997,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 34475,
+        "name": "1997 Score Board Playbook By The Numbers"
+      },
+      "unique": [
+        {
+          "card_number": "21a",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21b",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21c",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21d",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4a",
+          "player_name": "Peter Boulware",
+          "team": "Baltimore Ravens",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4b",
+          "player_name": "Peter Boulware",
+          "team": "Baltimore Ravens",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4c",
+          "player_name": "Peter Boulware",
+          "team": "Baltimore Ravens",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4d",
+          "player_name": "Peter Boulware",
+          "team": "Baltimore Ravens",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23a",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23b",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23c",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23d",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5a",
+          "player_name": "Rae Carruth",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5b",
+          "player_name": "Rae Carruth",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5c",
+          "player_name": "Rae Carruth",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5d",
+          "player_name": "Rae Carruth",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6a",
+          "player_name": "Kerry Collins",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6b",
+          "player_name": "Kerry Collins",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6c",
+          "player_name": "Kerry Collins",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6d",
+          "player_name": "Kerry Collins",
+          "team": "Carolina Panthers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28a",
+          "player_name": "Reinard Wilson",
+          "team": "Cincinnati Bengals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28b",
+          "player_name": "Reinard Wilson",
+          "team": "Cincinnati Bengals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28c",
+          "player_name": "Reinard Wilson",
+          "team": "Cincinnati Bengals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28d",
+          "player_name": "Reinard Wilson",
+          "team": "Cincinnati Bengals",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1a",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1b",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1c",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1d",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24a",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24b",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24c",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24d",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7a",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7b",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7c",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7d",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27a",
+          "player_name": "Bryant Westbrook",
+          "team": "Detroit Lions",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27b",
+          "player_name": "Bryant Westbrook",
+          "team": "Detroit Lions",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27c",
+          "player_name": "Bryant Westbrook",
+          "team": "Detroit Lions",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27d",
+          "player_name": "Bryant Westbrook",
+          "team": "Detroit Lions",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10a",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10b",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10c",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10d",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15a",
+          "player_name": "Kevin Hardy",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15b",
+          "player_name": "Kevin Hardy",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15c",
+          "player_name": "Kevin Hardy",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15d",
+          "player_name": "Kevin Hardy",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18a",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18b",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18c",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18d",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25a",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25b",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25c",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25d",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2a",
+          "player_name": "Marcus Allen",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2b",
+          "player_name": "Marcus Allen",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2c",
+          "player_name": "Marcus Allen",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2d",
+          "player_name": "Marcus Allen",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14a",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14b",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14c",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14d",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13a",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13b",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13c",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13d",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17a",
+          "player_name": "Curtis Martin",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17b",
+          "player_name": "Curtis Martin",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17c",
+          "player_name": "Curtis Martin",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17d",
+          "player_name": "Curtis Martin",
+          "team": "New England Patriots",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29a",
+          "player_name": "Danny Wuerffel",
+          "team": "New Orleans Saints",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29b",
+          "player_name": "Danny Wuerffel",
+          "team": "New Orleans Saints",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29c",
+          "player_name": "Danny Wuerffel",
+          "team": "New Orleans Saints",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29d",
+          "player_name": "Danny Wuerffel",
+          "team": "New Orleans Saints",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16a",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16b",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16c",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16d",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22a",
+          "player_name": "Darrell Russell",
+          "team": "Oakland Raiders",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22b",
+          "player_name": "Darrell Russell",
+          "team": "Oakland Raiders",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22c",
+          "player_name": "Darrell Russell",
+          "team": "Oakland Raiders",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22d",
+          "player_name": "Darrell Russell",
+          "team": "Oakland Raiders",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26a",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26b",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26c",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26d",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8a",
+          "player_name": "Jim Druckenmiller",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8b",
+          "player_name": "Jim Druckenmiller",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8c",
+          "player_name": "Jim Druckenmiller",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8d",
+          "player_name": "Jim Druckenmiller",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30a",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30b",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30c",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30d",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20a",
+          "player_name": "Orlando Pace",
+          "team": "St. Louis Rams",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20b",
+          "player_name": "Orlando Pace",
+          "team": "St. Louis Rams",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20c",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20d",
+          "player_name": "Orlando Pace",
+          "team": "St. Louis Rams",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3a",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3b",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3c",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3d",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9a",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9b",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9c",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9d",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12a",
+          "player_name": "Eddie George",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12b",
+          "player_name": "Eddie George",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12c",
+          "player_name": "Eddie George",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12d",
+          "player_name": "Eddie George",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19a",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19b",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19c",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19d",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Oilers",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11a",
+          "player_name": "Gus Frerotte",
+          "team": "Washington Redskins",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11b",
+          "player_name": "Gus Frerotte",
+          "team": "Washington Redskins",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11c",
+          "player_name": "Gus Frerotte",
+          "team": "Washington Redskins",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11d",
+          "player_name": "Gus Frerotte",
+          "team": "Washington Redskins",
+          "variation": "Master Signings",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Score"
+    }
+  ]
+}

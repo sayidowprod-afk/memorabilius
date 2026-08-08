@@ -21,6 +21,15 @@ export async function POST(req: NextRequest) {
   const isAdmin = callerMember?.role === 'admin'
   if (!isChef && !isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
+  // La candidature doit réellement correspondre à cette team/cet utilisateur et être
+  // encore en attente — sinon un chef pourrait ajouter n'importe quel userId comme
+  // membre, ou manipuler la candidature d'une autre team en réutilisant son id.
+  const { data: candidature } = await supabase.from('team_candidatures')
+    .select('id, team_id, user_id, statut').eq('id', candidatureId).single()
+  if (!candidature || candidature.team_id !== teamId || candidature.user_id !== userId || candidature.statut !== 'en_attente') {
+    return NextResponse.json({ error: 'Candidature invalide' }, { status: 400 })
+  }
+
   if (action === 'accept') {
     // L'ajout au team_members doit réussir AVANT de marquer la candidature comme acceptée,
     // sinon on se retrouve avec une candidature "acceptée" mais personne n'est membre.
