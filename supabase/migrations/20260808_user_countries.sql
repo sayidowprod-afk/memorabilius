@@ -26,7 +26,7 @@ AS $$
 $$;
 
 -- RPC : liste des utilisateurs pour un pays donné (pour le drilldown admin)
-CREATE OR REPLACE FUNCTION get_users_by_country(p_country text)
+CREATE OR REPLACE FUNCTION get_users_by_country(p_country text, p_minutes int DEFAULT NULL)
 RETURNS TABLE(
   user_id        uuid,
   email          text,
@@ -48,6 +48,7 @@ AS $$
   LEFT JOIN public.profiles p ON p.id = uc.user_id
   WHERE uc.country = p_country
     AND uc.country != 'XX'
+    AND (p_minutes IS NULL OR uc.updated_at >= now() - (p_minutes || ' minutes')::interval)
   ORDER BY au.last_sign_in_at DESC NULLS LAST
   LIMIT 200;
 $$;

@@ -746,7 +746,11 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
     setExpanded(code)
     setUserList([])
     setUserLoad(true)
-    fetch(`/api/admin/users-geo?country=${code}`, { headers: { Authorization: `Bearer ${token}` } })
+    const minutes = GEO_MINUTES[period]
+    const url = minutes
+      ? `/api/admin/users-geo?country=${code}&minutes=${minutes}`
+      : `/api/admin/users-geo?country=${code}`
+    fetch(url, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
       .then(({ users }) => setUserList(users ?? []))
       .catch(() => {})

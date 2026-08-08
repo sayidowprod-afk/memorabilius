@@ -28,8 +28,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'country param required (2 chars)' }, { status: 400 })
   }
 
+  const minutesParam = req.nextUrl.searchParams.get('minutes')
+  const pMinutes = minutesParam ? parseInt(minutesParam, 10) : null
+
   const { data, error } = await admin.rpc('get_users_by_country', {
     p_country: country.toUpperCase(),
+    ...(pMinutes ? { p_minutes: pMinutes } : {}),
   })
   if (error) {
     console.error('[users-geo] error', error)
