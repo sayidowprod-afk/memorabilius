@@ -20,7 +20,6 @@ async function fetchVercelCountries(days: number): Promise<{ code: string; visit
   const project = process.env.VERCEL_PROJECT_NAME
   if (!token || !team || !project) return null
 
-  // Résoudre le slug équipe en teamId réel via l'API Vercel
   let teamId = team
   let projectId = project
   try {
@@ -56,8 +55,7 @@ async function fetchVercelCountries(days: number): Promise<{ code: string; visit
       signal: AbortSignal.timeout(8000),
     })
     if (!res.ok) {
-      const errText = await res.text().catch(() => '')
-      console.error('[geo] Vercel breakdown API error', res.status, errText.slice(0, 200))
+      console.error('[geo] Vercel breakdown API error', res.status, await res.text().catch(() => '').then(t => t.slice(0, 200)))
       return null
     }
 
@@ -76,6 +74,28 @@ async function fetchVercelCountries(days: number): Promise<{ code: string; visit
   }
 }
 
+async function fetchPageViewsByCountry(days: number): Promise<{ code: string; visitors: number }[]> {
+  try {
+    const since = new Date(Date.now() - days * 86400000).toISOString()
+    const { data } = await admin
+      .from('page_views')
+      .select('country')
+      .gte('created_at', since)
+    if (!data) return []
+    const counts: Record<string, number> = {}
+    for (const row of data as { country: string }[]) {
+      const c = (row.country || 'XX').toUpperCase()
+      if (c !== 'XX' && c.length === 2) counts[c] = (counts[c] || 0) + 1
+    }
+    return Object.entries(counts)
+      .map(([code, visitors]) => ({ code, visitors }))
+      .filter(r => r.visitors > 0)
+      .sort((a, b) => b.visitors - a.visitors)
+  } catch {
+    return []
+  }
+}
+
 export async function GET(req: NextRequest) {
   const authToken = req.headers.get('authorization')?.replace('Bearer ', '')
   if (!authToken) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -85,17 +105,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
+  const days = Math.min(365, Math.max(1, parseInt(req.nextUrl.searchParams.get('days') ?? '30', 10)))
+
   const token   = process.env.VERCEL_TOKEN
   const team    = process.env.VERCEL_TEAM_SLUG
   const project = process.env.VERCEL_PROJECT_NAME
   const varsOk  = !!(token && team && project)
 
-  const days = Math.min(365, Math.max(1, parseInt(req.nextUrl.searchParams.get('days') ?? '30', 10)))
-  const countries = varsOk ? await fetchVercelCountries(days) : null
+  const countries = varsOk
+    ? ((await fetchVercelCountries(days)) ?? await fetchPageViewsByCountry(days))
+    : await fetchPageViewsByCountry(days)
 
   return NextResponse.json({
     countries: countries ?? [],
-    available: varsOk && countries !== null,
+    available: true,
     varsPresent: varsOk,
   })
 }

@@ -110,10 +110,12 @@ export async function GET(req: NextRequest) {
 
   const d7Start = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
 
-  const [rpcResult, signinsResult, pageviewsByDay] = await Promise.all([
+  const d7StartTs = d7Start + 'T00:00:00.000Z'
+  const [rpcResult, signinsResult, vercelPageviews, pageViewsResult] = await Promise.all([
     admin.rpc('admin_stats'),
     admin.rpc('get_signins_by_day'),
     getVercelPageviews(d7Start),
+    admin.from('page_views').select('created_at').gte('created_at', d7StartTs),
   ])
 
   if (rpcResult.error) return NextResponse.json({ error: rpcResult.error.message }, { status: 500 })
@@ -124,11 +126,18 @@ export async function GET(req: NextRequest) {
     ((signinsResult.data ?? []) as { day: string; count: number }[]).map(r => [r.day, r.count])
   )
 
+  const selfPageviewsByDay: Record<string, number> = {}
+  for (const row of (pageViewsResult.data ?? []) as { created_at: string }[]) {
+    const day = row.created_at.slice(0, 10)
+    selfPageviewsByDay[day] = (selfPageviewsByDay[day] || 0) + 1
+  }
+  const pageviewsByDay = vercelPageviews ?? selfPageviewsByDay
+
   const last_7_days = {
     users:     last7FromSeries(rpcData.user_daily ?? []),
     cards:     last7FromSeries(rpcData.card_daily ?? []),
     active:    daily7(signinsByDay),
-    pageviews: pageviewsByDay ? daily7(pageviewsByDay) : null,
+    pageviews: daily7(pageviewsByDay),
   }
 
   return NextResponse.json({ ...rpcData, last_7_days })

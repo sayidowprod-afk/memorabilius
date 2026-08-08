@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import TrackView from '@/components/TrackView'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
+        <TrackView />
       </body>
     </html>
   )
