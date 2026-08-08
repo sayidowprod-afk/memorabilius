@@ -73,12 +73,13 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { setId, setYear, setBrand, setName, galleryCards } = await req.json() as {
+  const { setId, setYear, setBrand, setName, galleryCards, playerImages } = await req.json() as {
     setId: number
     setYear: number | null
     setBrand: string | null
     setName: string
     galleryCards: GalleryCard[]
+    playerImages: Record<string, string> // normStr(nom) → image_url
   }
   if (!setId) return NextResponse.json({ error: 'Missing setId' }, { status: 400 })
 
@@ -172,6 +173,21 @@ export async function POST(req: NextRequest) {
           autoMatchedIds.map(eid => ({ user_id: user.id, entry_id: eid, manually_checked: false })),
           { onConflict: 'user_id,entry_id', ignoreDuplicates: true }
         )
+    }
+  }
+
+  // 4b. Stocker les images dans entry_images pour toutes les entries owned avec une image dispo
+  if (playerImages && Object.keys(playerImages).length > 0) {
+    const imageRows: { entry_id: number; image_url: string; user_id: string }[] = []
+    for (const e of entries) {
+      if (!completedEntryIds.has(e.id)) continue
+      const img = playerImages[norm(e.player_name)]
+      if (img) imageRows.push({ entry_id: e.id, image_url: img, user_id: user.id })
+    }
+    if (imageRows.length > 0) {
+      await supabase
+        .from('entry_images')
+        .upsert(imageRows, { onConflict: 'entry_id,user_id', ignoreDuplicates: true })
     }
   }
 

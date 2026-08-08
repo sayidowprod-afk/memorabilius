@@ -14,16 +14,6 @@ const ADMIN_EMAILS = new Set([
   ...(process.env.ADMIN_EMAIL ? [process.env.ADMIN_EMAIL] : []),
 ].map(e => e.toLowerCase()))
 
-function distinctByDay(rows: Array<{ user_id?: string | null; created_at: string }>): Record<string, number> {
-  const sets: Record<string, Set<string>> = {}
-  for (const r of rows) {
-    if (!r.user_id) continue
-    const day = r.created_at.slice(0, 10)
-    if (!sets[day]) sets[day] = new Set()
-    sets[day].add(r.user_id)
-  }
-  return Object.fromEntries(Object.entries(sets).map(([d, s]) => [d, s.size]))
-}
 
 function daily7(counts: Record<string, number>): Array<{ day: string; count: number }> {
   return Array.from({ length: 7 }, (_, i) => {
@@ -42,6 +32,24 @@ function last7FromSeries(series: Array<{ day: string; count: number }>): Array<{
     const day = d.toISOString().slice(0, 10)
     return { day, count: map.get(day) ?? 0 }
   })
+}
+
+// Connexions par jour : pagine tous les users et regroupe par last_sign_in_at
+async function getSigninsByDay(d7Start: string): Promise<Record<string, number>> {
+  const signins: Record<string, number> = {}
+  let page = 1
+  while (true) {
+    const { data } = await admin.auth.admin.listUsers({ page, perPage: 1000 })
+    if (!data?.users?.length) break
+    for (const u of data.users) {
+      if (!u.last_sign_in_at) continue
+      const day = u.last_sign_in_at.slice(0, 10)
+      if (day >= d7Start) signins[day] = (signins[day] || 0) + 1
+    }
+    if (data.users.length < 1000) break
+    page++
+  }
+  return signins
 }
 
 // Résout VERCEL_TEAM_SLUG → teamId et VERCEL_PROJECT_NAME → projectId
@@ -120,22 +128,20 @@ export async function GET(req: NextRequest) {
   const d7Start   = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
   const d7StartTs = d7Start + 'T00:00:00.000Z'
 
-  const [rpcResult, activityCards, activityScans, pageviewsByDay] = await Promise.all([
+  const [rpcResult, signinsByDay, pageviewsByDay] = await Promise.all([
     admin.rpc('admin_stats'),
-    admin.from('cartes_manuelles').select('user_id, created_at').gte('created_at', d7StartTs),
-    admin.from('ai_scan_events').select('user_id, created_at').gte('created_at', d7StartTs),
+    getSigninsByDay(d7Start),
     getVercelPageviews(d7Start),
   ])
 
   if (rpcResult.error) return NextResponse.json({ error: rpcResult.error.message }, { status: 500 })
 
-  const rpcData    = rpcResult.data as any
-  const allActivity = [...(activityCards.data || []), ...(activityScans.data || [])]
+  const rpcData = rpcResult.data as any
 
   const last_7_days = {
     users:     last7FromSeries(rpcData.user_daily ?? []),
     cards:     last7FromSeries(rpcData.card_daily ?? []),
-    active:    daily7(distinctByDay(allActivity)),
+    active:    daily7(signinsByDay),
     pageviews: pageviewsByDay ? daily7(pageviewsByDay) : null,
   }
 

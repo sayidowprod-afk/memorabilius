@@ -495,7 +495,7 @@ function Last7DaysTable({ data }: {
   const COLS = [
     { label: '👤 Inscrits',   color: ACCENT,    series: data.users,     note: '' },
     { label: '🃏 Cartes',     color: '#059669', series: data.cards,     note: '' },
-    { label: '⚡ Actifs',     color: '#8b5cf6', series: data.active,    note: 'ont ajouté/scanné' },
+    { label: '⚡ Actifs',     color: '#8b5cf6', series: data.active,    note: 'dernière connexion ce jour' },
     { label: '👁 Pages vues', color: '#f59e0b', series: data.pageviews, note: data.pageviews ? '' : 'VERCEL_TOKEN requis' },
   ]
   return (

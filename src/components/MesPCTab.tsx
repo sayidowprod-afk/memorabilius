@@ -250,8 +250,8 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function MesPCTab({ cards, userId, accent, dark, isOwner, initialPCs }: {
-  cards: Card[]; userId: string; accent: string; dark: boolean; isOwner: boolean; initialPCs?: PCEntry[]
+export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, dark, isOwner, initialPCs }: {
+  cards: Card[]; cardsLoaded?: boolean; userId: string; accent: string; dark: boolean; isOwner: boolean; initialPCs?: PCEntry[]
 }) {
   const storageKey = `memorabilius_pcs_${userId}`
   const [pcs, setPCs]   = useState<PCEntry[]>([])
@@ -481,7 +481,12 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
             placeholder={addType === 'player' ? 'Ex: Joel Embiid, Luka Doncic…' : addType === 'team' ? 'Ex: Philadelphia 76ers…' : 'Ex: Prizm 2023-24…'}
             style={{ width: '100%', padding: '10px 14px', borderRadius: 8, border: `2px solid ${accent}`, fontSize: 14, fontWeight: 600, background: bg, color: text, outline: 'none', boxSizing: 'border-box' }}
           />
-          {showSug && (suggestions.length > 0 || addSearch.trim()) && (
+          {showSug && !cardsLoaded && cards.length === 0 && !addSearch.trim() && (
+            <div style={{ position: 'absolute', top: 'calc(100% - 6px)', left: 16, right: 16, background: bg, border: `1.5px solid ${border}`, borderRadius: 10, boxShadow: '0 8px 28px rgba(0,0,0,0.14)', zIndex: 60, padding: '12px 14px', fontSize: 13, color: muted, fontStyle: 'italic' }}>
+              Chargement de la galerie…
+            </div>
+          )}
+          {showSug && (cardsLoaded || addSearch.trim()) && (suggestions.length > 0 || addSearch.trim()) && (
             <div style={{ position: 'absolute', top: 'calc(100% - 6px)', left: 16, right: 16, background: bg, border: `1.5px solid ${border}`, borderRadius: 10, boxShadow: '0 8px 28px rgba(0,0,0,0.14)', zIndex: 60, maxHeight: 260, overflowY: 'auto' }}>
               {suggestions.map(name => (
                 <button key={name}

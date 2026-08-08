@@ -285,6 +285,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const router = useRouter()
   const [profile, setProfile] = useState<any>(null)
   const [cards, setCards] = useState<Card[]>([])
+  const [cardsLoaded, setCardsLoaded] = useState(false)
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
@@ -610,6 +611,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         })
       }
       setCards(allCards)
+      setCardsLoaded(true)
       setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
       setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
       setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
@@ -1375,7 +1377,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         {(isOwner || grailCards.length > 0) && (() => {
           const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
-          const emptySlots = 5 - grailItems.length
+          const grailLoading = grailCards.length > 0 && !cardsLoaded
+          const emptySlots = grailLoading ? (5 - grailCards.length) : (5 - grailItems.length)
 
           return (
             <div style={{ marginBottom: 24 }}>
@@ -1386,7 +1389,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               </div>
 
               <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
-                {grailItems.map((card, i) => {
+                {/* Skeleton placeholders while gallery loads */}
+                {grailLoading && Array.from({ length: grailCards.length }).map((_, i) => (
+                  <div key={`sk-${i}`} style={{
+                    flexShrink: 0, width: 120, borderRadius: 10, aspectRatio: '2.5/3.5',
+                    background: dark
+                      ? 'linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%)'
+                      : 'linear-gradient(90deg,#f0f0f0 25%,#e4e4e4 50%,#f0f0f0 75%)',
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 1.5s infinite',
+                  }} />
+                ))}
+                {!grailLoading && grailItems.map((card, i) => {
                   const tabColor = (card.collection_tag && tabSettings.get(card.collection_tag)?.color) || accent
                   const resolvedColor = isGradient(tabColor) ? (tabColor.match(/#[0-9a-fA-F]{6}/)?.[0] || accent) : tabColor
                   return (
@@ -1541,7 +1555,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 </button>
               ))}
             </div>
-            {objectifsSubTab === 'pc' && <MesPCTab cards={cards} userId={userId} accent={accent} dark={dark} isOwner={isOwner} initialPCs={profile?.pcs} />}
+            {objectifsSubTab === 'pc' && <MesPCTab cards={cards} cardsLoaded={cardsLoaded} userId={userId} accent={accent} dark={dark} isOwner={isOwner} initialPCs={profile?.pcs} />}
             {objectifsSubTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
           </div>
         )}
