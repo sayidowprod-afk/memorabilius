@@ -15,8 +15,6 @@ interface GalleryCard {
   collection?: string
   collection_tag?: string
   variation?: string
-  image_recto?: string | null
-  id?: string
 }
 
 const BRAND_PARENT: Record<string, string> = {
@@ -125,15 +123,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 3. Build playerToImg
-  const playerToImg: Record<string, string> = {}
-  for (const card of galleryCards) {
-    if (card.image_recto && !playerToImg[norm(card.nom)]) {
-      playerToImg[norm(card.nom)] = card.image_recto
-    }
-  }
-
-  // 4. Auto-match gallery cards → unmatched entries
+  // 3. Auto-match gallery cards → unmatched entries
   const autoMatchedIds: number[] = []
 
   if (galleryCards.length > 0 && setYear && entries.length > 0) {
@@ -185,24 +175,16 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 5. Build entryToCard + ownedPlayerNorms
-  const entryToCard: Record<number, string> = {}
+  // 5. Build ownedPlayerNorms (pour mySetCards côté client)
   const ownedPlayerNormsSet = new Set<string>()
-
   for (const e of entries) {
-    if (!completedEntryIds.has(e.id)) continue
-    const n = norm(e.player_name)
-    ownedPlayerNormsSet.add(n)
-    const img = playerToImg[n]
-    if (img) entryToCard[e.id] = img
+    if (completedEntryIds.has(e.id)) ownedPlayerNormsSet.add(norm(e.player_name))
   }
 
   return NextResponse.json({
     completedEntryIds: Array.from(completedEntryIds),
     completionDetails,
     autoMatchedCount: autoMatchedIds.length,
-    entryToCard,
     ownedPlayerNorms: Array.from(ownedPlayerNormsSet),
-    playerToImg,
   })
 }

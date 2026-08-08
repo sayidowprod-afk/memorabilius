@@ -1,9 +1,12 @@
 'use client'
-import { useEffect, useState, use } from 'react'
+import { useEffect, useState, use, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { playerSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
+
+const normStr = (s: string) =>
+  s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
 
 interface Entry {
   id: number
@@ -53,6 +56,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [mySetCards, setMySetCards] = useState<{ id: string; image: string; nom: string; variation: string }[]>([])
   const [previewCard, setPreviewCard] = useState<{ image: string; nom: string; variation: string } | null>(null)
   const [copied, setCopied] = useState(false)
+  const playerToImgRef = useRef<Map<string, string>>(new Map())
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
@@ -105,7 +109,16 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         } catch { /* CSV indisponible */ }
       }
 
-      // Un seul appel API pour completions + auto-matching (remplace ~60 requêtes Supabase)
+      // Construire playerToImg côté client (évite d'envoyer les images au serveur)
+      const pToImg = new Map<string, string>()
+      for (const card of galleryCards) {
+        if (card.image_recto && !pToImg.has(normStr(card.nom))) {
+          pToImg.set(normStr(card.nom), card.image_recto)
+        }
+      }
+      playerToImgRef.current = pToImg
+
+      // Un seul appel API pour completions + auto-matching (images exclues du payload)
       const { data: { session } } = await supabase.auth.getSession()
       if (session?.access_token) {
         try {
@@ -117,35 +130,23 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               setYear: setData.year,
               setBrand: setData.brand,
               setName: setData.name,
-              galleryCards,
+              // image_recto exclu intentionnellement — reste côté client dans playerToImgRef
+              galleryCards: galleryCards.map(({ image_recto: _img, id: _id, ...rest }) => rest),
             }),
           })
           if (res.ok) {
-            const {
-              completedEntryIds: ids,
-              completionDetails: dets,
-              entryToCard: etc,
-              ownedPlayerNorms,
-              autoMatchedCount,
-            } = await res.json()
-
+            const { completedEntryIds: ids, completionDetails: dets, ownedPlayerNorms } = await res.json()
             completedEntryIds = new Set<number>(ids)
             for (const [k, v] of Object.entries(dets as Record<string, { id: string; manually_checked: boolean }>)) {
               completionDetails.set(parseInt(k), v)
             }
-
-            setEntryToCard(new Map(Object.entries(etc as Record<string, string>).map(([k, v]) => [parseInt(k), v])))
-
-            // Section "Mes cartes" depuis les norms retournés par le serveur
-            const normSet = new Set<string>(ownedPlayerNorms as string[])
-            const norm = (s: string) => s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+            // "Mes cartes" depuis les norms propriétaires + galerie locale
+            const ownedNorms = new Set<string>(ownedPlayerNorms as string[])
             setMySetCards(
               galleryCards
-                .filter(c => c.image_recto && normSet.has(norm(c.nom)))
+                .filter(c => c.image_recto && ownedNorms.has(normStr(c.nom)))
                 .map(c => ({ id: c.id || '', image: c.image_recto!, nom: c.nom, variation: c.variation || '' }))
             )
-
-            if (autoMatchedCount > 0) console.log(`[setlist] ${autoMatchedCount} cartes auto-matchées`)
           }
         } catch { /* si set-sync échoue, on continue sans completions */ }
       }
@@ -218,6 +219,21 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
       })
 
     const ownedCount = entries.filter(e => e.owned).length
+
+    // Construire entryToCard pour cette variation depuis le ref local (pas de payload images au serveur)
+    const pToImg = playerToImgRef.current
+    if (pToImg.size > 0) {
+      setEntryToCard(prev => {
+        const next = new Map(prev)
+        for (const e of entries) {
+          if (e.owned) {
+            const img = pToImg.get(normStr(e.player_name))
+            if (img) next.set(e.id, img)
+          }
+        }
+        return next
+      })
+    }
 
     setVariations(prev => prev.map(v =>
       v.name === varName ? { ...v, loaded: true, entries, owned: ownedCount } : v
