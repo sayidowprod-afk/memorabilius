@@ -67,6 +67,7 @@ export default function SetlistPage() {
   const [showAddManual, setShowAddManual] = useState(false)
   const [manualForm, setManualForm] = useState({ nom: '', annee: '', marque: '', collection: '', variation: '' })
   const [placingIdx, setPlacingIdx] = useState<number | null>(null)
+  const [pendingPlace, setPendingPlace] = useState<{ cardIdx: number; entryId: number; setName: string; setId: number; setYear: number | null } | null>(null)
   const [gotoPickerIdx, setGotoPickerIdx] = useState<number | null>(null)
   const [gotoSetId, setGotoSetId] = useState<string>('')
   const [gotoAllSets, setGotoAllSets] = useState(false)
@@ -754,11 +755,46 @@ export default function SetlistPage() {
                     </div>
                     {placingIdx === i ? (
                       <span style={{ fontSize: 12, color: '#003DA6', fontWeight: 700 }}>{t('setlist_placing')}</span>
+                    ) : pendingPlace?.cardIdx === i ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: dark ? '#1a2a1a' : '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 10, padding: '10px 12px', maxWidth: 280 }}>
+                        <div style={{ fontSize: 12, color: dark ? '#aaa' : '#555' }}>Sera placé dans :</div>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: dark ? '#fff' : '#111' }}>
+                          {pendingPlace.setName}
+                          {pendingPlace.setYear && <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>({pendingPlace.setYear})</span>}
+                        </div>
+                        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                          <Link
+                            href={`/setlist/${pendingPlace.setId}`}
+                            target="_blank"
+                            style={{ fontSize: 11, color: '#003DA6', textDecoration: 'underline', whiteSpace: 'nowrap' }}
+                          >
+                            Voir le set →
+                          </Link>
+                          <button
+                            onClick={() => { placeCard(pendingPlace.cardIdx, pendingPlace.entryId); setPendingPlace(null) }}
+                            style={{ fontSize: 12, fontWeight: 700, color: 'white', background: '#2ecc71', border: 'none', borderRadius: 7, padding: '5px 12px', cursor: 'pointer' }}
+                          >
+                            Confirmer
+                          </button>
+                          <button
+                            onClick={() => setPendingPlace(null)}
+                            style={{ fontSize: 12, color: dark ? '#bbb' : '#555', background: dark ? '#333' : '#eee', border: 'none', borderRadius: 7, padding: '5px 10px', cursor: 'pointer' }}
+                          >
+                            Annuler
+                          </button>
+                        </div>
+                      </div>
                     ) : card.candidates && card.candidates.length > 0 && gotoPickerIdx !== i ? (
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                         <select
                           defaultValue=""
-                          onChange={e => { const v = Number(e.target.value); if (v) placeCard(i, v) }}
+                          onChange={e => {
+                            const v = Number(e.target.value)
+                            if (v) {
+                              const cand = card.candidates.find(c => c.entryId === v)
+                              if (cand) setPendingPlace({ cardIdx: i, entryId: v, setName: cand.setName, setId: cand.setId, setYear: cand.setYear })
+                            }
+                          }}
                           style={{ fontSize: 13, padding: '7px 10px', borderRadius: 8, border: '1.5px solid #003DA6', color: '#003DA6', fontWeight: 600, background: dark ? '#1e1e1e' : 'white', cursor: 'pointer', maxWidth: 160 }}
                         >
                           <option value="">{t('setlist_place_in')} ({card.candidates.length})</option>
