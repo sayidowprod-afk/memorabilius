@@ -1,4 +1,4 @@
-﻿export type Sport = 'nba' | 'nfl' | 'mlb' | 'nhl' | 'football'
+﻿export type Sport = 'nba' | 'wnba' | 'nfl' | 'mlb' | 'nhl' | 'football'
 export type FootballLeague = 'premier-league' | 'bundesliga' | 'serie-a' | 'laliga' | 'ligue-1'
 
 export interface SportsTeam {
@@ -13,6 +13,9 @@ export interface SportsTeam {
 
 // ESPN abbr overrides (quand notre abbr ≠ code ESPN)
 const ESPN_CODES: Record<string, string> = {
+  'wnba:CON': 'conn', // Connecticut Sun
+  'wnba:LVA': 'lv',   // Las Vegas Aces
+  'wnba:WAS': 'wsh',  // Washington Mystics
   'nba:WAS': 'wsh',   // Washington Wizards
   'nba:NOP': 'no',    // New Orleans Pelicans (ESPN: no)
   'nba:UTA': 'utah',  // Utah Jazz (ESPN: utah)
@@ -69,6 +72,21 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'nba:TOR', sport: 'nba', abbr: 'TOR', name: 'Toronto Raptors',          color: '#CE1141' },
   { id: 'nba:UTA', sport: 'nba', abbr: 'UTA', name: 'Utah Jazz',                color: '#002B5C' },
   { id: 'nba:WAS', sport: 'nba', abbr: 'WAS', name: 'Washington Wizards',       color: '#E31837' },
+
+  // WNBA
+  { id: 'wnba:ATL', sport: 'wnba', abbr: 'ATL', name: 'Atlanta Dream',              color: '#E31B23' },
+  { id: 'wnba:CHI', sport: 'wnba', abbr: 'CHI', name: 'Chicago Sky',                color: '#418FDE' },
+  { id: 'wnba:CON', sport: 'wnba', abbr: 'CON', name: 'Connecticut Sun',            color: '#E96B21' },
+  { id: 'wnba:DAL', sport: 'wnba', abbr: 'DAL', name: 'Dallas Wings',               color: '#002B5C' },
+  { id: 'wnba:GSV', sport: 'wnba', abbr: 'GSV', name: 'Golden State Valkyries',     color: '#1D428A' },
+  { id: 'wnba:IND', sport: 'wnba', abbr: 'IND', name: 'Indiana Fever',              color: '#002D62' },
+  { id: 'wnba:LVA', sport: 'wnba', abbr: 'LVA', name: 'Las Vegas Aces',             color: '#000000' },
+  { id: 'wnba:LA',  sport: 'wnba', abbr: 'LA',  name: 'Los Angeles Sparks',         color: '#702F8A' },
+  { id: 'wnba:MIN', sport: 'wnba', abbr: 'MIN', name: 'Minnesota Lynx',             color: '#236192' },
+  { id: 'wnba:NY',  sport: 'wnba', abbr: 'NY',  name: 'New York Liberty',           color: '#86CEBC' },
+  { id: 'wnba:PHX', sport: 'wnba', abbr: 'PHX', name: 'Phoenix Mercury',            color: '#CB6015' },
+  { id: 'wnba:SEA', sport: 'wnba', abbr: 'SEA', name: 'Seattle Storm',              color: '#2C5F4A' },
+  { id: 'wnba:WAS', sport: 'wnba', abbr: 'WAS', name: 'Washington Mystics',         color: '#E31837' },
 
   // NFL
   { id: 'nfl:ARI', sport: 'nfl', abbr: 'ARI', name: 'Arizona Cardinals',        color: '#97233F' },
@@ -278,7 +296,7 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:GDB', sport: 'football', abbr: 'GDB', name: 'Girondins de Bordeaux', color: '#003399', league: 'ligue-1', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/11/FC_Girondins_de_Bordeaux_logo.svg/250px-FC_Girondins_de_Bordeaux_logo.svg.png' },
 ]
 
-export const SPORT_LABELS: Record<Sport, string> = { nba: '🏀 NBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: '⚽ Foot' }
+export const SPORT_LABELS: Record<Sport, string> = { nba: '🏀 NBA', wnba: '🏀 WNBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: '⚽ Foot' }
 
 export const FOOTBALL_LEAGUE_LABELS: Record<FootballLeague, string> = {
   'premier-league': '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League',
