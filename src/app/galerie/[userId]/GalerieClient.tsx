@@ -983,27 +983,56 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (!draggedTag || draggedTag === overTag) return
     if (dragLastOverRef.current === overTag) return
     dragLastOverRef.current = overTag
-    const order = principals.map(t => t)
-    const fromIdx = order.indexOf(draggedTag)
-    const toIdx = order.indexOf(overTag)
-    if (fromIdx === -1 || toIdx === -1) return
-    order.splice(fromIdx, 1)
-    order.splice(toIdx, 0, draggedTag)
+    const dragParent = parentOf(draggedTag)
+    const overParent = parentOf(overTag)
     const newMap = new Map(tabSettings)
-    order.forEach((tag, i) => {
-      newMap.set(tag, { ...(newMap.get(tag) || { color: accent }), position: i })
-    })
+    if (!dragParent && !overParent) {
+      const order = principals.map(t => t)
+      const fromIdx = order.indexOf(draggedTag)
+      const toIdx = order.indexOf(overTag)
+      if (fromIdx === -1 || toIdx === -1) return
+      order.splice(fromIdx, 1)
+      order.splice(toIdx, 0, draggedTag)
+      order.forEach((tag, i) => {
+        newMap.set(tag, { ...(newMap.get(tag) || { color: accent }), position: i })
+      })
+    } else if (dragParent && dragParent === overParent) {
+      const siblings = getChildren(dragParent)
+      const order = siblings.map(t => t)
+      const fromIdx = order.indexOf(draggedTag)
+      const toIdx = order.indexOf(overTag)
+      if (fromIdx === -1 || toIdx === -1) return
+      order.splice(fromIdx, 1)
+      order.splice(toIdx, 0, draggedTag)
+      order.forEach((tag, i) => {
+        newMap.set(tag, { ...(newMap.get(tag) || { color: accent }), position: i })
+      })
+    } else {
+      return
+    }
     setTabSettings(newMap)
   }
   const handleDragEnd = async () => {
     dragLastOverRef.current = null
     if (!draggedTag) return
-    const allUpdates = principals.map((tag, i) => ({
-      user_id: userId, tag,
-      color: tabSettings.get(tag)?.color || accent,
-      position: tabSettings.get(tag)?.position ?? i,
-    }))
-    await supabase.from('collection_tab_settings').upsert(allUpdates, { onConflict: 'user_id,tag' })
+    const dragParent = parentOf(draggedTag)
+    if (!dragParent) {
+      const allUpdates = principals.map((tag, i) => ({
+        user_id: userId, tag,
+        color: tabSettings.get(tag)?.color || accent,
+        position: tabSettings.get(tag)?.position ?? i,
+      }))
+      await supabase.from('collection_tab_settings').upsert(allUpdates, { onConflict: 'user_id,tag' })
+    } else {
+      const siblings = getChildren(dragParent)
+      const allUpdates = siblings.map((tag, i) => ({
+        user_id: userId, tag,
+        color: tabSettings.get(tag)?.color || accent,
+        position: tabSettings.get(tag)?.position ?? i,
+        parent: dragParent,
+      }))
+      await supabase.from('collection_tab_settings').upsert(allUpdates, { onConflict: 'user_id,tag' })
+    }
     setDraggedTag(null)
   }
   const renderTagPill = (tag: string, depth: number): React.ReactNode => {
