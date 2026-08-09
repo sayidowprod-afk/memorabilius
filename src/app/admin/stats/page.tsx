@@ -1013,7 +1013,7 @@ export default function AdminStats() {
   const [isMobile, setIsMobile]   = useState(false)
   const [sessionToken, setSessionToken] = useState<string | null>(null)
   const [reengaging, setReengaging] = useState(false)
-  const [reengageResult, setReengageResult] = useState<{ sent: number; total: number; errors: string[] } | null>(null)
+  const [reengageResult, setReengageResult] = useState<{ sent?: number; total?: number; errors?: string[]; message?: string; error?: string } | null>(null)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -1377,9 +1377,13 @@ export default function AdminStats() {
               {reengaging ? 'Envoi en cours…' : '✉️ Envoyer email aux inscrits sans cartes'}
             </button>
             {reengageResult && (
-              <span style={{ fontSize: 13, color: reengageResult.errors.length ? '#ef4444' : '#059669', fontWeight: 500 }}>
-                {reengageResult.sent} email{reengageResult.sent > 1 ? 's' : ''} envoyé{reengageResult.sent > 1 ? 's' : ''} sur {reengageResult.total}
-                {reengageResult.errors.length > 0 && ` — ${reengageResult.errors.length} échec(s)`}
+              <span style={{ fontSize: 13, color: (reengageResult.error || (reengageResult.errors ?? []).length) ? '#ef4444' : '#059669', fontWeight: 500 }}>
+                {reengageResult.error
+                  ? `Erreur : ${reengageResult.error}`
+                  : reengageResult.message
+                  ? reengageResult.message
+                  : `${reengageResult.sent} email${(reengageResult.sent ?? 0) > 1 ? 's' : ''} envoyé${(reengageResult.sent ?? 0) > 1 ? 's' : ''} sur ${reengageResult.total}${(reengageResult.errors ?? []).length > 0 ? ` — ${reengageResult.errors!.length} échec(s)` : ''}`
+                }
               </span>
             )}
           </div>
