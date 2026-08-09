@@ -86,6 +86,8 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'wnba:NY',  sport: 'wnba', abbr: 'NY',  name: 'New York Liberty',           color: '#86CEBC' },
   { id: 'wnba:PHX', sport: 'wnba', abbr: 'PHX', name: 'Phoenix Mercury',            color: '#CB6015' },
   { id: 'wnba:SEA', sport: 'wnba', abbr: 'SEA', name: 'Seattle Storm',              color: '#2C5F4A' },
+  { id: 'wnba:POR', sport: 'wnba', abbr: 'POR', name: 'Portland Fire',              color: '#E03A3E' },
+  { id: 'wnba:TOR', sport: 'wnba', abbr: 'TOR', name: 'Toronto Tempo',              color: '#CE1141' },
   { id: 'wnba:WAS', sport: 'wnba', abbr: 'WAS', name: 'Washington Mystics',         color: '#E31837' },
 
   // NFL
