@@ -14,7 +14,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
   const [league, setLeague] = useState<FootballLeague>('premier-league')
   const [search, setSearch] = useState('')
 
-  const sports: Sport[] = ['nba', 'nfl', 'mlb', 'nhl', 'football']
+  const sports: Sport[] = ['nba', 'wnba', 'nfl', 'mlb', 'nhl', 'football']
   const footballLeagues: FootballLeague[] = ['premier-league', 'bundesliga', 'serie-a', 'laliga', 'ligue-1']
 
   const filtered = SPORTS_TEAMS.filter(t => {

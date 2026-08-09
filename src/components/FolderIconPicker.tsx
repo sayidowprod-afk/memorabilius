@@ -21,7 +21,7 @@ function buildEmojis(): string[] {
 }
 
 const SPORT_LABELS: Record<Sport, string> = {
-  nba: '🏀 NBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: '⚽ Foot',
+  nba: '🏀 NBA', wnba: '🏀 WNBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: '⚽ Foot',
 }
 
 export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: string) => void; onClose: () => void }) {
