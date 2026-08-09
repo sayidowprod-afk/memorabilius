@@ -816,6 +816,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{v}</span>
               </div>
             ))}
+            {isMemo && popup.v?.trim() && (
+              <div>
+                <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>Variation</label>
+                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.v}</span>
+              </div>
+            )}
             {isMemo && popup.cert_number?.trim() && (
               <div>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>✍️ Signé par</label>
