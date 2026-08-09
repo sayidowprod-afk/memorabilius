@@ -83,6 +83,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
+    // Récupère tous les utilisateurs (même pattern que wrap-mensuel)
+    let page = 1
+    const allUsers: any[] = []
+    while (true) {
+      const { data } = await admin.auth.admin.listUsers({ perPage: 1000, page })
+      if (!data || data.users.length === 0) break
+      allUsers.push(...data.users)
+      if (data.users.length < 1000) break
+      page++
+    }
+    if (allUsers.length === 0) return NextResponse.json({ error: 'Impossible de récupérer les utilisateurs' }, { status: 500 })
+
     // Récupère tous les user_ids ayant au moins une carte
     const { data: cardCounts, error: cardErr } = await admin
       .from('cartes_manuelles')
@@ -90,17 +102,6 @@ export async function POST(req: NextRequest) {
     if (cardErr) return NextResponse.json({ error: cardErr.message }, { status: 500 })
 
     const usersWithCards = new Set((cardCounts ?? []).map((r: { user_id: string }) => r.user_id))
-
-    // Récupère tous les utilisateurs (paginé par 1000)
-    const allUsers: { id: string; email?: string; user_metadata?: Record<string, string> }[] = []
-    let page = 1
-    while (true) {
-      const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 1000 })
-      if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-      allUsers.push(...(data?.users ?? []))
-      if ((data?.users ?? []).length < 1000) break
-      page++
-    }
 
     const targets = allUsers.filter(u => u.email && !usersWithCards.has(u.id))
 
