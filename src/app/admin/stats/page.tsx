@@ -708,7 +708,7 @@ const GEO_MINUTES: Partial<Record<GeoPeriod, number>> = {
 }
 
 function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
-  const [period, setPeriod]     = useState<GeoPeriod>('all')
+  const [period, setPeriod]     = useState<GeoPeriod>('live')
   const [geoCntrs, setGeoCntrs] = useState<{ code: string; visitors: number }[]>([])
   const [geoLoad, setGeoLoad]   = useState(false)
   const [geoHov, setGeoHov]     = useState<{ code: string; visitors: number } | null>(null)
