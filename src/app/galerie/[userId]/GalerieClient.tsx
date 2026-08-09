@@ -235,11 +235,11 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
   )
 }
 
-const PAGE_SIZE = 48
+const PAGE_SIZE = 24
 
 function cardThumb(url: string): string {
   if (!url || !url.includes('.supabase.co/storage/v1/object/public/')) return url
-  return url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=600&quality=75&resize=contain'
+  return url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=300&quality=70&resize=contain'
 }
 
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
@@ -255,7 +255,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   if (fmt.isSlab) {
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: '#111' }}>
-        <img src={src} alt={card.n} loading="lazy"
+        <img src={src} alt={card.n} loading="lazy" decoding="async"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
     )
@@ -264,10 +264,10 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   return (
     <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
       {horiz ? (
-        <img src={src} alt={card.n} loading="lazy"
+        <img src={src} alt={card.n} loading="lazy" decoding="async"
           style={{ position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }} />
       ) : (
-        <img src={src} alt={card.n} loading="lazy"
+        <img src={src} alt={card.n} loading="lazy" decoding="async"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       )}
     </div>
