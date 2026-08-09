@@ -83,22 +83,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    // Récupère tous les utilisateurs via l'API GoTrue directement
-    const authRes = await fetch(
-      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/admin/users?per_page=10000`,
-      {
-        headers: {
-          apikey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-          Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY!}`,
-        },
+    // Récupère tous les utilisateurs via GoTrue (paginé par 1000)
+    const allUsers: any[] = []
+    let gotruePage = 1
+    while (true) {
+      const authRes = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/admin/users?page=${gotruePage}&per_page=1000`,
+        {
+          headers: {
+            apikey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+            Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY!}`,
+          },
+        }
+      )
+      if (!authRes.ok) {
+        const txt = await authRes.text()
+        return NextResponse.json({ error: `GoTrue p${gotruePage} ${authRes.status}: ${txt}` }, { status: 500 })
       }
-    )
-    if (!authRes.ok) {
-      const txt = await authRes.text()
-      return NextResponse.json({ error: `GoTrue ${authRes.status}: ${txt}` }, { status: 500 })
+      const { users } = await authRes.json()
+      if (!users || users.length === 0) break
+      allUsers.push(...users)
+      if (users.length < 1000) break
+      gotruePage++
     }
-    const authJson = await authRes.json()
-    const allUsers: any[] = authJson.users ?? []
     if (allUsers.length === 0) return NextResponse.json({ error: 'Aucun utilisateur trouvé' }, { status: 500 })
 
     // Récupère tous les user_ids ayant au moins une carte
