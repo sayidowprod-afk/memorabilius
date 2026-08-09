@@ -142,18 +142,44 @@ async function fetchPodium() {
     .slice(0, 10)
 }
 
+async function fetchPodiumPeriod(pStart: string) {
+  const { data } = await supabase.rpc('get_monthly_card_counts', { p_start: pStart })
+  return (data || [])
+    .filter((r: any) => r.display_name)
+    .map((r: any) => ({ userId: r.user_id, displayName: r.display_name, avatarUrl: r.avatar_url || null, count: Number(r.count) }))
+    .sort((a: any, b: any) => b.count - a.count)
+    .slice(0, 10)
+}
+
+async function fetchPodiumDay() {
+  const now = new Date()
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString()
+  return fetchPodiumPeriod(start)
+}
+
+async function fetchPodiumWeek() {
+  const now = new Date()
+  const diff = now.getDay() === 0 ? 6 : now.getDay() - 1
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff).toISOString()
+  return fetchPodiumPeriod(start)
+}
+
 export default async function Home() {
   const [
     { count },
     { data: statsData },
     cards,
     podium,
+    podiumDay,
+    podiumWeek,
     featuredGalleries,
   ] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
     supabase.from('profiles').select('stats_total').gt('stats_total', 0),
     fetchPepites(),
     fetchPodium(),
+    fetchPodiumDay(),
+    fetchPodiumWeek(),
     fetchFeaturedGalleries(),
   ])
 
@@ -177,7 +203,7 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }} />
       <HomeHero total={total} totalCartes={totalCartes} featuredGalleries={featuredGalleries} />
       <PepitesSection cards={cards} />
-      <PodiumSection entries={podium} />
+      <PodiumSection month={podium} week={podiumWeek} day={podiumDay} />
       <PWAInstall />
     </div>
   )
