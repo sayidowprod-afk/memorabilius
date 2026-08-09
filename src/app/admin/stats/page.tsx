@@ -892,116 +892,6 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   )
 }
 
-// ── En direct ─────────────────────────────────────────────────────────────
-
-type LiveCounts = { m5: number; m15: number; h1: number; today: number }
-type LiveView   = { path: string; country: string; created_at: string }
-
-function relTime(iso: string): string {
-  const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000)
-  if (s < 5)  return 'à l\'instant'
-  if (s < 60) return `il y a ${s}s`
-  const m = Math.floor(s / 60)
-  if (m < 60) return `il y a ${m}min`
-  return `il y a ${Math.floor(m / 60)}h`
-}
-
-function LiveSection({ token }: { token: string }) {
-  const [counts, setCounts]   = useState<LiveCounts | null>(null)
-  const [recent, setRecent]   = useState<LiveView[]>([])
-  const [lastUp, setLastUp]   = useState<Date | null>(null)
-  const [, setTick]           = useState(0)
-
-  const fetchLive = useCallback(() => {
-    fetch('/api/admin/live', { headers: { Authorization: `Bearer ${token}` } })
-      .then(r => r.json())
-      .then(({ counts, recent }) => {
-        setCounts(counts)
-        setRecent(recent ?? [])
-        setLastUp(new Date())
-      })
-      .catch(() => {})
-  }, [token])
-
-  useEffect(() => { fetchLive() }, [fetchLive])
-
-  // Auto-refresh toutes les 15s
-  useEffect(() => {
-    const iv = setInterval(fetchLive, 15000)
-    return () => clearInterval(iv)
-  }, [fetchLive])
-
-  // Tick toutes les 5s pour mettre à jour les "il y a Xs"
-  useEffect(() => {
-    const iv = setInterval(() => setTick(t => t + 1), 5000)
-    return () => clearInterval(iv)
-  }, [])
-
-  const WINDOWS = [
-    { key: 'm5'  as const, label: '5 min',   color: '#ef4444' },
-    { key: 'm15' as const, label: '15 min',  color: '#f59e0b' },
-    { key: 'h1'  as const, label: '1 heure', color: '#0ea5e9' },
-    { key: 'today' as const, label: "Auj.", color: ACCENT    },
-  ]
-
-  return (
-    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
-      {/* Header */}
-      <div style={{ padding: '14px 20px', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{
-            display: 'inline-block', width: 10, height: 10, borderRadius: '50%',
-            background: '#22c55e',
-            boxShadow: '0 0 0 0 rgba(34,197,94,0.5)',
-            animation: 'livePulse 2s ease-in-out infinite',
-          }} />
-          <style>{`@keyframes livePulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)} 50%{box-shadow:0 0 0 7px rgba(34,197,94,0)} }`}</style>
-          <span style={{ fontWeight: 700, fontSize: 14, color: '#0f172a' }}>En direct</span>
-          <span style={{ fontSize: 11, color: '#94a3b8' }}>pages vues · auto-refresh 15s</span>
-        </div>
-        {lastUp && (
-          <span style={{ fontSize: 10, color: '#94a3b8' }}>
-            Mis à jour {lastUp.toLocaleTimeString('fr-FR')}
-          </span>
-        )}
-      </div>
-
-      {/* Compteurs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', borderBottom: '1px solid #f1f5f9' }}>
-        {WINDOWS.map(w => (
-          <div key={w.key} style={{ padding: '14px 16px', borderRight: '1px solid #f1f5f9', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: '#94a3b8', marginBottom: 4, fontWeight: 500 }}>{w.label}</div>
-            <div style={{ fontSize: 28, fontWeight: 800, color: w.color, lineHeight: 1 }}>
-              {counts ? counts[w.key] : '—'}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Feed */}
-      <div style={{ maxHeight: 260, overflowY: 'auto' }}>
-        {recent.length === 0 && (
-          <div style={{ padding: '20px 20px', color: '#94a3b8', fontSize: 12, textAlign: 'center' }}>
-            Aucune page vue récente — la table page_views doit être créée.
-          </div>
-        )}
-        {recent.map((v, i) => (
-          <div key={i} style={{
-            display: 'flex', alignItems: 'center', gap: 10, padding: '7px 20px',
-            borderBottom: '1px solid #f8fafc', fontSize: 12,
-          }}>
-            <span style={{ fontSize: 15, lineHeight: 1, flexShrink: 0 }}>{geoFlag(v.country || 'XX')}</span>
-            <span style={{ flex: 1, color: '#334155', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {v.path}
-            </span>
-            <span style={{ color: '#94a3b8', fontSize: 10, flexShrink: 0 }}>{relTime(v.created_at)}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 // ── Historique mensuel ────────────────────────────────────────────────────
 
 type Snapshot = { day: string; total_users: number; total_cards: number; active_users: number; total_scans: number }
@@ -1271,12 +1161,6 @@ export default function AdminStats() {
           <KpiCard label="Cartes total"            value={stats.total_cards} sub={cardSub} />
           <KpiCard label="Nouveaux inscrits auj."  value={stats.today_users} />
           <KpiCard label="Cartes ajoutées auj."    value={stats.today_cards} />
-        </div>
-
-        {/* En direct */}
-        <SectionTitle>En direct</SectionTitle>
-        <div style={{ marginBottom: isMobile ? 20 : 32 }}>
-          {sessionToken && <LiveSection token={sessionToken} />}
         </div>
 
         {/* 7 derniers jours */}
