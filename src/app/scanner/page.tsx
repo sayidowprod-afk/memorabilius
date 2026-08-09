@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 
+declare const BarcodeDetector: any
+
 interface CardInfo {
   nom: string; equipe: string; annee: string; marque: string
   collection: string; variation: string; num: string; card_number: string
@@ -67,6 +69,9 @@ export default function ScannerPage() {
   const cameraRef  = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
   const versoRef   = useRef<HTMLInputElement>(null)
+  const videoRef   = useRef<HTMLVideoElement>(null)
+  const qrAnimRef  = useRef<number | null>(null)
+  const qrStreamRef = useRef<MediaStream | null>(null)
 
   const [phase,         setPhase]         = useState<Phase>('idle')
   const [imgSrc,        setImgSrc]        = useState<string | null>(null)
@@ -86,6 +91,8 @@ export default function ScannerPage() {
   const [err,           setErr]           = useState('')
   const [ownedCards, setOwnedCards] = useState<{ nom: string; annee: string; collection: string; variation: string }[]>([])
   const [collectionLoaded, setCollectionLoaded] = useState(false)
+  const [qrMode, setQrMode] = useState(false)
+  const [qrFound, setQrFound] = useState<string | null>(null)
 
   const bg     = dark ? '#0a0a0a' : '#f0f2f7'
   const cardBg = dark ? '#161616' : '#ffffff'
@@ -133,6 +140,61 @@ export default function ScannerPage() {
       setCollectionLoaded(true)
     })
   }, [])
+
+  const stopQrScan = useCallback(() => {
+    if (qrAnimRef.current) { cancelAnimationFrame(qrAnimRef.current); qrAnimRef.current = null }
+    if (qrStreamRef.current) { qrStreamRef.current.getTracks().forEach(t => t.stop()); qrStreamRef.current = null }
+    setQrMode(false)
+    setQrFound(null)
+  }, [])
+
+  const startQrScan = useCallback(async () => {
+    setQrFound(null)
+    setQrMode(true)
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+      qrStreamRef.current = stream
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream
+        await videoRef.current.play()
+      }
+
+      if (typeof BarcodeDetector === 'undefined') {
+        // Fallback: invite l'utilisateur à utiliser l'appareil photo
+        stopQrScan()
+        cameraRef.current?.click()
+        return
+      }
+
+      const detector = new BarcodeDetector({ formats: ['qr_code'] })
+
+      const scan = async () => {
+        const video = videoRef.current
+        if (!video || video.readyState < 2) { qrAnimRef.current = requestAnimationFrame(scan); return }
+        try {
+          const codes = await detector.detect(video)
+          for (const code of codes) {
+            const val: string = code.rawValue
+            if (val.includes('memorabilius')) {
+              setQrFound(val)
+              stopQrScan()
+              setTimeout(() => {
+                const url = new URL(val)
+                router.push(url.pathname + url.search)
+              }, 600)
+              return
+            }
+          }
+        } catch { /* frame skip */ }
+        qrAnimRef.current = requestAnimationFrame(scan)
+      }
+      qrAnimRef.current = requestAnimationFrame(scan)
+    } catch {
+      stopQrScan()
+    }
+  }, [router, stopQrScan])
+
+  useEffect(() => () => stopQrScan(), [stopQrScan])
 
   const reset = () => {
     setPhase('idle'); setImgSrc(null); setVersoSrc(null)
@@ -304,12 +366,76 @@ export default function ScannerPage() {
             </button>
             <button onClick={() => galleryRef.current?.click()} style={{
               width: '100%', padding: '14px 0', background: 'none', border: `2px solid ${border}`,
-              borderRadius: 14, cursor: 'pointer', color: muted, fontSize: 14, fontWeight: 700,
+              borderRadius: 14, cursor: 'pointer', color: muted, fontSize: 14, fontWeight: 700, marginBottom: 12,
             }}>
               🖼️ Importer depuis la galerie
             </button>
+
+            {/* ── QR Memorabilius ── */}
+            <div style={{ borderTop: `1px solid ${border}`, paddingTop: 16, marginTop: 4 }}>
+              <p style={{ textAlign: 'center', fontSize: 12, color: muted, marginBottom: 10 }}>
+                Tu as un QR code Memorabilius ?
+              </p>
+              <button onClick={startQrScan} style={{
+                width: '100%', padding: '14px 0', background: 'none',
+                border: `2px solid #003DA6`, borderRadius: 14,
+                cursor: 'pointer', color: '#003DA6', fontSize: 14, fontWeight: 800,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              }}>
+                <span style={{ fontSize: 20 }}>▦</span> Scanner un QR Memorabilius
+              </button>
+            </div>
+
             <input ref={cameraRef}  type="file" accept="image/*" capture="environment" style={{ display: 'none' }} onChange={e => { const f = e.target.files?.[0]; if (f) handleRecto(f); e.target.value = '' }} />
             <input ref={galleryRef} type="file" accept="image/*"                        style={{ display: 'none' }} onChange={e => { const f = e.target.files?.[0]; if (f) handleRecto(f); e.target.value = '' }} />
+          </div>
+        )}
+
+        {/* ── QR SCAN MODE ── */}
+        {qrMode && (
+          <div style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 1000, display: 'flex', flexDirection: 'column' }}>
+            <video
+              ref={videoRef}
+              playsInline
+              muted
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            {/* Overlay */}
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+              {/* Viseur */}
+              <div style={{ width: 220, height: 220, position: 'relative' }}>
+                {(['tl','tr','bl','br'] as const).map(c => (
+                  <div key={c} style={{
+                    position: 'absolute',
+                    width: 36, height: 36,
+                    ...(c.includes('t') ? { top: 0 } : { bottom: 0 }),
+                    ...(c.includes('l') ? { left: 0 } : { right: 0 }),
+                    borderTop:    c.includes('t') ? '3px solid #003DA6' : 'none',
+                    borderBottom: c.includes('b') ? '3px solid #003DA6' : 'none',
+                    borderLeft:   c.includes('l') ? '3px solid #003DA6' : 'none',
+                    borderRight:  c.includes('r') ? '3px solid #003DA6' : 'none',
+                  }} />
+                ))}
+              </div>
+              <div style={{
+                marginTop: 24, background: 'rgba(0,0,0,0.6)', borderRadius: 12,
+                padding: '10px 20px', color: '#fff', fontSize: 14, fontWeight: 700,
+              }}>
+                {qrFound ? '✅ QR détecté !' : 'Vise le QR Memorabilius…'}
+              </div>
+            </div>
+            {/* Bouton fermer */}
+            <button
+              onClick={stopQrScan}
+              style={{
+                position: 'absolute', bottom: 48, left: '50%', transform: 'translateX(-50%)',
+                background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.4)',
+                color: '#fff', borderRadius: 50, padding: '12px 32px',
+                fontSize: 15, fontWeight: 700, cursor: 'pointer', backdropFilter: 'blur(8px)',
+              }}
+            >
+              Annuler
+            </button>
           </div>
         )}
 
