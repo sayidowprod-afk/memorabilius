@@ -57,6 +57,7 @@ self.addEventListener('fetch', (event) => {
   if (
     event.request.url.includes('/api/') ||
     event.request.url.includes('supabase') ||
+    event.request.url.includes('/_next/') ||
     event.request.method !== 'GET'
   ) return
 
