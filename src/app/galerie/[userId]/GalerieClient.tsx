@@ -237,7 +237,13 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
 
 const PAGE_SIZE = 48
 
+function cardThumb(url: string): string {
+  if (!url || !url.includes('.supabase.co/storage/v1/object/public/')) return url
+  return url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=600&quality=75&resize=contain'
+}
+
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
+  const src = cardThumb(card.f)
   const fmt = getFormat(card.format)
   const horiz = isHorizontalFormat(card.format, card.is_horizontal)
   // La grille utilise des emplacements uniformément portrait (2.5/3.5) pour
@@ -249,7 +255,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   if (fmt.isSlab) {
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: '#111' }}>
-        <img src={card.f} alt={card.n} loading="lazy"
+        <img src={src} alt={card.n} loading="lazy"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
     )
@@ -258,10 +264,10 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   return (
     <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
       {horiz ? (
-        <img src={card.f} alt={card.n} loading="lazy"
+        <img src={src} alt={card.n} loading="lazy"
           style={{ position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }} />
       ) : (
-        <img src={card.f} alt={card.n} loading="lazy"
+        <img src={src} alt={card.n} loading="lazy"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       )}
     </div>
