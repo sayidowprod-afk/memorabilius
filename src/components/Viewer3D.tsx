@@ -822,6 +822,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.cert_number}</span>
               </div>
             )}
+            {isMemo && popup.card_number?.trim() && (
+              <div>
+                <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>🏷️ Patch</label>
+                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.card_number}</span>
+              </div>
+            )}
           </div>
 
           {/* Localisation physique */}
