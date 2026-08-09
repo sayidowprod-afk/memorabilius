@@ -1,4 +1,4 @@
-const CACHE_NAME = 'memorabilius-v1'
+const CACHE_NAME = 'memorabilius-v2'
 const STATIC_ASSETS = [
   '/',
   '/annuaire',
@@ -6,6 +6,7 @@ const STATIC_ASSETS = [
   '/teams',
   '/manifest.json',
   '/favicon.ico',
+  '/offline.html',
 ]
 
 self.addEventListener('install', (event) => {
@@ -53,10 +54,11 @@ self.addEventListener('notificationclick', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
-  // Ne pas intercepter les requêtes API et Supabase
-  if (event.request.url.includes('/api/') || 
-      event.request.url.includes('supabase') ||
-      event.request.method !== 'GET') return
+  if (
+    event.request.url.includes('/api/') ||
+    event.request.url.includes('supabase') ||
+    event.request.method !== 'GET'
+  ) return
 
   event.respondWith(
     fetch(event.request)
@@ -65,6 +67,10 @@ self.addEventListener('fetch', (event) => {
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone))
         return response
       })
-      .catch(() => caches.match(event.request))
+      .catch(() =>
+        caches.match(event.request).then((cached) =>
+          cached || caches.match('/offline.html')
+        )
+      )
   )
 })
