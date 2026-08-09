@@ -1,4 +1,4 @@
-const CACHE_NAME = 'memorabilius-v2'
+const CACHE_NAME = 'memorabilius-v3'
 const STATIC_ASSETS = [
   '/',
   '/annuaire',
