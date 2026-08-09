@@ -83,40 +83,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    // Récupère tous les utilisateurs via GoTrue (paginé par 1000)
-    const allUsers: any[] = []
-    let gotruePage = 1
-    while (true) {
-      const authRes = await fetch(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/admin/users?page=${gotruePage}&per_page=1000`,
-        {
-          headers: {
-            apikey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-            Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY!}`,
-          },
-        }
-      )
-      if (!authRes.ok) {
-        const txt = await authRes.text()
-        return NextResponse.json({ error: `GoTrue p${gotruePage} ${authRes.status}: ${txt}` }, { status: 500 })
-      }
-      const { users } = await authRes.json()
-      if (!users || users.length === 0) break
-      allUsers.push(...users)
-      if (users.length < 1000) break
-      gotruePage++
-    }
-    if (allUsers.length === 0) return NextResponse.json({ error: 'Aucun utilisateur trouvé' }, { status: 500 })
-
-    // Récupère tous les user_ids ayant au moins une carte
-    const { data: cardCounts, error: cardErr } = await admin
-      .from('cartes_manuelles')
-      .select('user_id')
-    if (cardErr) return NextResponse.json({ error: cardErr.message }, { status: 500 })
-
-    const usersWithCards = new Set((cardCounts ?? []).map((r: { user_id: string }) => r.user_id))
-
-    const targets = allUsers.filter(u => u.email && !usersWithCards.has(u.id))
+    // Récupère directement les users sans cartes via RPC SQL
+    const { data: targets, error: rpcErr } = await admin.rpc('get_users_without_cards')
+    if (rpcErr) return NextResponse.json({ error: rpcErr.message }, { status: 500 })
 
     if (targets.length === 0) {
       return NextResponse.json({ sent: 0, total: 0, message: 'Aucun utilisateur sans carte.' })
@@ -127,7 +96,7 @@ export async function POST(req: NextRequest) {
     const errors: string[] = []
 
     for (const u of targets) {
-      const name = (u.user_metadata?.display_name || u.user_metadata?.full_name || '') as string
+      const name = (u.display_name || '') as string
       try {
         await resend.emails.send({
           from: 'Memorabilius <contact@memorabilius.fr>',
