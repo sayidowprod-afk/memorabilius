@@ -22,6 +22,10 @@ export default function InstallBanner() {
   const [iosStep, setIosStep] = useState(false)
 
   useEffect(() => {
+    const forceParam = new URLSearchParams(location.search).get('install')
+    if (forceParam === 'ios') { setPlatform('ios'); return }
+    if (forceParam === 'android') { setPlatform('android'); return }
+
     if (isInStandaloneMode()) return
     if (sessionStorage.getItem('install-dismissed')) return
 
