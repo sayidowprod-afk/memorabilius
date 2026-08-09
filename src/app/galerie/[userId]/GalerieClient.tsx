@@ -2,7 +2,6 @@
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
-import NextImage from 'next/image'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -250,8 +249,8 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   if (fmt.isSlab) {
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: '#111' }}>
-        <NextImage src={card.f} alt={card.n} fill sizes="(max-width: 900px) 50vw, 20vw"
-          style={{ objectFit: 'cover' }} />
+        <img src={card.f} alt={card.n} loading="lazy"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
     )
   }
@@ -262,8 +261,8 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         <img src={card.f} alt={card.n} loading="lazy"
           style={{ position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }} />
       ) : (
-        <NextImage src={card.f} alt={card.n} fill sizes="(max-width: 900px) 50vw, 20vw"
-          style={{ objectFit: 'cover' }} />
+        <img src={card.f} alt={card.n} loading="lazy"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       )}
     </div>
   )
