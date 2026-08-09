@@ -13,15 +13,15 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { targetUserId, message, lien } = await req.json()
-  if (!targetUserId || !message) return NextResponse.json({ ok: false })
+  const { targetUserId, lien } = await req.json()
+  if (!targetUserId) return NextResponse.json({ ok: false })
   if (targetUserId === user.id) return NextResponse.json({ ok: true })
 
   // Valider qu'un commentaire récent existe bien (anti-spam)
   const since = new Date(Date.now() - 30_000).toISOString()
   const { data: recentComment } = await supabaseAdmin
     .from('galerie_comments')
-    .select('id')
+    .select('id, content')
     .eq('author_id', user.id)
     .gte('created_at', since)
     .limit(1)
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
   await sendPushToUser(targetUserId, {
     title: '💬 Nouveau commentaire',
-    body: message.slice(0, 120),
+    body: (recentComment.content || '').slice(0, 120),
     url: lien,
   })
 

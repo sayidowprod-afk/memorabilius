@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { createPublicKey, verify as cryptoVerify } from 'crypto'
+import { isAllowedCsvUrl } from '@/lib/csvParse'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -115,7 +116,7 @@ function matchesCsvCard(card: any, tk: ReturnType<typeof parseTokens>): boolean 
 
 async function searchCsv(profiles: any[], tk: ReturnType<typeof parseTokens>) {
   const searchOne = async (p: any): Promise<{ card: any; profile: any } | null> => {
-    if (!p.lien_csv) return null
+    if (!p.lien_csv || !isAllowedCsvUrl(p.lien_csv)) return null
     try {
       const res = await fetch(p.lien_csv, { signal: AbortSignal.timeout(2000), next: { revalidate: 3600 } } as any)
       if (!res.ok) return null

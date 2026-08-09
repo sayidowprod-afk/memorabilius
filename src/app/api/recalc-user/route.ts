@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
+import { fetchCsvCapped, parseCardStats, isAllowedCsvUrl } from '@/lib/csvParse'
 
 export const maxDuration = 30
 
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    const csvText = profile.lien_csv
+    const csvText = profile.lien_csv && isAllowedCsvUrl(profile.lien_csv)
       ? await fetchCsvCapped(profile.lien_csv, { cache: 'no-store', signal: AbortSignal.timeout(12000) })
       : null
 

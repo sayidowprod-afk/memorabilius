@@ -1,10 +1,15 @@
-// Logique de lecture/analyse du CSV de collection (export Google Sheets), partagée
-// entre update-stats, recalcul-stats et csv-stats — auparavant dupliquée 3 fois avec
-// des décalages d'en-tête différents (slice(1) vs slice(4)), ce qui faussait le
-// comptage selon la route appelée. slice(4) + filtre "http" est la convention
-// correcte (alignée sur src/lib/csvCards.ts, qui charge réellement les cartes).
+const MAX_CSV_BYTES = 5 * 1024 * 1024
 
-const MAX_CSV_BYTES = 5 * 1024 * 1024 // 5 Mo : largement suffisant pour une collection, évite un fetch illimité
+// Seuls les exports Google Sheets sont autorisés — bloque le SSRF vers les endpoints internes
+export function isAllowedCsvUrl(url: string): boolean {
+  try {
+    const u = new URL(url)
+    return u.protocol === 'https:' && (
+      u.hostname === 'docs.google.com' ||
+      u.hostname === 'sheets.googleapis.com'
+    )
+  } catch { return false }
+}
 
 export async function fetchCsvCapped(url: string, init?: RequestInit): Promise<string | null> {
   try {

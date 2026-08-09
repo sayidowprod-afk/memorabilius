@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
+import { fetchCsvCapped, parseCardStats, isAllowedCsvUrl } from '@/lib/csvParse'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     try {
       const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-      if (p.lien_csv) {
+      if (p.lien_csv && isAllowedCsvUrl(p.lien_csv)) {
         const text = await fetchCsvCapped(p.lien_csv)
         if (text) {
           const csvStats = parseCardStats(text)

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { fetchCsvCapped } from '@/lib/csvParse'
+import { fetchCsvCapped, isAllowedCsvUrl } from '@/lib/csvParse'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,16 +14,6 @@ const CSV_TTL = 10 * 60 * 1000 // 10 min
 interface CsvCacheEntry { text: string; expiry: number }
 const csvCache = new Map<string, CsvCacheEntry>()
 
-// Only allow Google Sheets CSV exports — blocks SSRF to internal metadata endpoints
-function isAllowedCsvUrl(url: string): boolean {
-  try {
-    const u = new URL(url)
-    return u.protocol === 'https:' && (
-      u.hostname === 'docs.google.com' ||
-      u.hostname === 'sheets.googleapis.com'
-    )
-  } catch { return false }
-}
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string

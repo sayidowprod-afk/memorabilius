@@ -82,6 +82,11 @@ interface GalleryCard {
 }
 
 export async function POST(req: NextRequest) {
+  const token = req.headers.get('authorization')?.replace('Bearer ', '')
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { data: { user } } = await admin.auth.getUser(token)
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
   const { setId, setYear, setBrand, setName, entryIds } = await req.json() as {
     setId: number; setYear: number | null; setBrand: string | null
     setName: string; entryIds: number[]
