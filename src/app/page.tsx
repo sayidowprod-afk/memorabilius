@@ -143,24 +143,39 @@ async function fetchPodium() {
 }
 
 async function fetchPodiumPeriod(pStart: string) {
-  const { data } = await supabase.rpc('get_monthly_card_counts', { p_start: pStart })
-  return (data || [])
-    .filter((r: any) => r.display_name)
-    .map((r: any) => ({ userId: r.user_id, displayName: r.display_name, avatarUrl: r.avatar_url || null, count: Number(r.count) }))
-    .sort((a: any, b: any) => b.count - a.count)
+  const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
+  let offset = 0
+  const PAGE = 1000
+  while (true) {
+    const { data } = await supabase
+      .from('cartes_manuelles')
+      .select('user_id, profiles(display_name, avatar_url)')
+      .gte('created_at', pStart)
+      .range(offset, offset + PAGE - 1)
+    if (!data?.length) break
+    for (const row of data as any[]) {
+      if (!row.profiles?.display_name) continue
+      const existing = counts.get(row.user_id)
+      if (existing) existing.count++
+      else counts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
+    }
+    if (data.length < PAGE) break
+    offset += PAGE
+  }
+  return [...counts.entries()]
+    .map(([userId, v]) => ({ userId, ...v }))
+    .sort((a, b) => b.count - a.count)
     .slice(0, 10)
 }
 
 async function fetchPodiumDay() {
-  const now = new Date()
-  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString()
+  // dernières 24h (évite les problèmes de timezone)
+  const start = new Date(Date.now() - 24 * 3600 * 1000).toISOString()
   return fetchPodiumPeriod(start)
 }
 
 async function fetchPodiumWeek() {
-  const now = new Date()
-  const diff = now.getDay() === 0 ? 6 : now.getDay() - 1
-  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff).toISOString()
+  const start = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString()
   return fetchPodiumPeriod(start)
 }
 
