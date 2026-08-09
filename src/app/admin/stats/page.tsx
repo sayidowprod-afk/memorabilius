@@ -1012,6 +1012,8 @@ export default function AdminStats() {
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null)
   const [isMobile, setIsMobile]   = useState(false)
   const [sessionToken, setSessionToken] = useState<string | null>(null)
+  const [reengaging, setReengaging] = useState(false)
+  const [reengageResult, setReengageResult] = useState<{ sent: number; total: number; errors: string[] } | null>(null)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -1343,6 +1345,42 @@ export default function AdminStats() {
               </div>
             )
           })()}
+          {/* Bouton ré-engagement */}
+          <div style={{ marginTop: 20, paddingTop: 18, borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+            <button
+              disabled={reengaging}
+              onClick={async () => {
+                if (!sessionToken) return
+                if (!window.confirm(`Envoyer un email de ré-engagement à tous les utilisateurs sans carte ?`)) return
+                setReengaging(true)
+                setReengageResult(null)
+                try {
+                  const r = await fetch('/api/admin/send-reengagement', {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${sessionToken}` },
+                  })
+                  const data = await r.json()
+                  setReengageResult(data)
+                } finally {
+                  setReengaging(false)
+                }
+              }}
+              style={{
+                background: reengaging ? '#94a3b8' : ACCENT,
+                color: '#fff', border: 'none', borderRadius: 8,
+                padding: '9px 18px', fontSize: 13, fontWeight: 600,
+                cursor: reengaging ? 'not-allowed' : 'pointer',
+              }}
+            >
+              {reengaging ? 'Envoi en cours…' : '✉️ Envoyer email aux inscrits sans cartes'}
+            </button>
+            {reengageResult && (
+              <span style={{ fontSize: 13, color: reengageResult.errors.length ? '#ef4444' : '#059669', fontWeight: 500 }}>
+                {reengageResult.sent} email{reengageResult.sent > 1 ? 's' : ''} envoyé{reengageResult.sent > 1 ? 's' : ''} sur {reengageResult.total}
+                {reengageResult.errors.length > 0 && ` — ${reengageResult.errors.length} échec(s)`}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Rétention & churn */}
