@@ -561,15 +561,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         }).filter(Boolean) as Card[]
       }
 
-      const { count: manuellesCount } = await supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', userId)
-      const pageCount = Math.ceil((manuellesCount || 0) / 1000) || 1
-      const manuelleBatches = await Promise.all(
-        Array.from({ length: pageCount }, (_, i) =>
-          supabase.from('cartes_manuelles').select('*').eq('user_id', userId).order('created_at', { ascending: true }).range(i * 1000, i * 1000 + 999).then(r => r.data || [])
-        )
-      )
-      const manuelles = manuelleBatches.flat()
-      const cartesM: Card[] = (manuelles || []).map((m: any) => ({
+      const mapManuelle = (m: any): Card => ({
         id_manuelle: m.id,
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
@@ -582,51 +574,62 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         created_at: m.created_at || '', position: m.position ?? 9999,
         collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
-      }))
+      })
 
-      // Appartenance multi-collections (table card_collections) → Map<card_key, string[]>
-      const { data: ccData } = await supabase.from('card_collections').select('card_key, collection').eq('user_id', userId)
+      const applyAndShow = (manuelles: any[], ccMap: Map<string, string[]>) => {
+        const cartesM: Card[] = manuelles.map(mapManuelle)
+        const attachCollections = (card: Card) => {
+          const legacy = card.collection_tag ? [card.collection_tag] : []
+          const cols = [...new Set([...(ccMap.get(card.f) || []), ...legacy])]
+          card.collections = cols
+          card.collection_tag = cols[0] || ''
+        }
+        parsed.forEach(attachCollections)
+        cartesM.forEach(attachCollections)
+        cartesM.sort((a, b) => (a.position ?? 9999) - (b.position ?? 9999))
+        const allCards = [...parsed, ...cartesM]
+        if (galleryOrder.length > 0) {
+          const orderMap = new Map(galleryOrder.map((key, idx) => [key, idx]))
+          allCards.sort((a, b) => {
+            const pa = orderMap.get(a.id_manuelle || a.f) ?? 99999
+            const pb = orderMap.get(b.id_manuelle || b.f) ?? 99999
+            return pa - pb
+          })
+        }
+        setCards(allCards)
+        setCardsLoaded(true)
+        setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+        setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
+        setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
+        setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
+        setLoaded(true)
+        const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
+        if (target) { const match = allCards.find(c => c.f === target); if (match) setPopup(match) }
+      }
+
+      // Premier batch + card_collections en parallèle → affichage immédiat
+      const [firstResult, ccResult] = await Promise.all([
+        supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', userId).order('created_at', { ascending: true }).range(0, 999),
+        supabase.from('card_collections').select('card_key, collection').eq('user_id', userId),
+      ])
+      const firstBatch = firstResult.data || []
+      const totalCount = firstResult.count || 0
       const ccMap = new Map<string, string[]>()
-      for (const r of ccData || []) {
-        const arr = ccMap.get(r.card_key) || []
-        arr.push(r.collection); ccMap.set(r.card_key, arr)
+      for (const r of ccResult.data || []) {
+        const arr = ccMap.get(r.card_key) || []; arr.push(r.collection); ccMap.set(r.card_key, arr)
       }
-      // Attache collections[] (union card_collections + ancien collection_tag) et
-      // fixe collection_tag = 1re collection (utilisé pour la couleur de bordure)
-      const attachCollections = (card: Card) => {
-        const legacy = card.collection_tag ? [card.collection_tag] : []
-        const cols = [...new Set([...(ccMap.get(card.f) || []), ...legacy])]
-        card.collections = cols
-        card.collection_tag = cols[0] || ''
-      }
-      parsed.forEach(attachCollections)
-      cartesM.forEach(attachCollections)
 
-      // Trier les cartes manuelles par position sauvegardée (fallback sans gallery_order)
-      cartesM.sort((a, b) => (a.position ?? 9999) - (b.position ?? 9999))
-      const allCards = [...parsed, ...cartesM]
+      applyAndShow(firstBatch, ccMap)
 
-      // Appliquer l'ordre personnalisé global si défini
-      if (galleryOrder.length > 0) {
-        const orderMap = new Map(galleryOrder.map((key, idx) => [key, idx]))
-        allCards.sort((a, b) => {
-          const pa = orderMap.get(a.id_manuelle || a.f) ?? 99999
-          const pb = orderMap.get(b.id_manuelle || b.f) ?? 99999
-          return pa - pb
-        })
-      }
-      setCards(allCards)
-      setCardsLoaded(true)
-      setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
-      setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
-      setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
-      setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
-      setLoaded(true)
-      // Auto-ouvre la carte depuis ?card= ou depuis initialCardUrl (route /[cardSlug])
-      const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
-      if (target) {
-        const match = allCards.find(c => c.f === target)
-        if (match) setPopup(match)
+      // Si plus de 1000 cartes, charge le reste en arrière-plan
+      if (totalCount > 1000) {
+        const pageCount = Math.ceil(totalCount / 1000)
+        const remainingBatches = await Promise.all(
+          Array.from({ length: pageCount - 1 }, (_, i) =>
+            supabase.from('cartes_manuelles').select('*').eq('user_id', userId).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
+          )
+        )
+        applyAndShow([...firstBatch, ...remainingBatches.flat()], ccMap)
       }
     } catch (e) { console.error('CSV error', e); setLoaded(true) }
   }
