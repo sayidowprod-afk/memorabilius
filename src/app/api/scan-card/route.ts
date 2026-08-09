@@ -17,7 +17,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent'
 
 const PROMPT = `Tu es un expert en cartes de collection sportives et TCG. Réponds UNIQUEMENT avec un objet JSON valide, sans markdown.
 
@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
 
     const res = await callGeminiWithRetry(`${GEMINI_URL}?key=${apiKey}`, {
       contents: [{ parts: [{ text: fullPrompt }, ...imageParts] }],
-      generationConfig: { temperature: 0, maxOutputTokens: 512, thinkingConfig: { thinkingBudget: 0 } },
+      generationConfig: { temperature: 0, maxOutputTokens: 512 },
     })
 
     if (!res.ok) {
