@@ -1361,6 +1361,8 @@ export default function AdminStats() {
                   })
                   const data = await r.json()
                   setReengageResult(data)
+                } catch (err) {
+                  setReengageResult({ sent: 0, total: 0, errors: [String(err)] })
                 } finally {
                   setReengaging(false)
                 }

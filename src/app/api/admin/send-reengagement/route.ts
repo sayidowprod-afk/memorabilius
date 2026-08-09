@@ -74,46 +74,61 @@ function buildEmail(name: string): string {
 }
 
 export async function POST(req: NextRequest) {
-  const token = req.headers.get('authorization')?.replace('Bearer ', '')
-  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  try {
+    const token = req.headers.get('authorization')?.replace('Bearer ', '')
+    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { data: { user } } = await admin.auth.getUser(token)
-  if (!user || !ADMIN_EMAILS.has(user.email?.toLowerCase() ?? '')) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-
-  const { data: allUsersData } = await admin.auth.admin.listUsers({ perPage: 1000 })
-  const { data: cardCounts } = await admin
-    .from('cartes_manuelles')
-    .select('user_id')
-
-  const usersWithCards = new Set((cardCounts ?? []).map((r: { user_id: string }) => r.user_id))
-  const targets = (allUsersData?.users ?? []).filter(u =>
-    u.email && !usersWithCards.has(u.id)
-  )
-
-  if (targets.length === 0) {
-    return NextResponse.json({ sent: 0, total: 0, message: 'Aucun utilisateur sans carte.' })
-  }
-
-  const resend = getResend()
-  let sent = 0
-  const errors: string[] = []
-
-  for (const u of targets) {
-    const name = (u.user_metadata?.display_name || u.user_metadata?.full_name || '') as string
-    try {
-      await resend.emails.send({
-        from: 'Memorabilius <contact@memorabilius.fr>',
-        to: u.email!,
-        subject: "📦 Ta collection t'attend sur Memorabilius",
-        html: buildEmail(name),
-      })
-      sent++
-    } catch {
-      errors.push(u.email!)
+    const { data: { user } } = await admin.auth.getUser(token)
+    if (!user || !ADMIN_EMAILS.has(user.email?.toLowerCase() ?? '')) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
-  }
 
-  return NextResponse.json({ sent, total: targets.length, errors })
+    // Récupère tous les user_ids ayant au moins une carte
+    const { data: cardCounts, error: cardErr } = await admin
+      .from('cartes_manuelles')
+      .select('user_id')
+    if (cardErr) return NextResponse.json({ error: cardErr.message }, { status: 500 })
+
+    const usersWithCards = new Set((cardCounts ?? []).map((r: { user_id: string }) => r.user_id))
+
+    // Récupère tous les utilisateurs (paginé par 1000)
+    const allUsers: { id: string; email?: string; user_metadata?: Record<string, string> }[] = []
+    let page = 1
+    while (true) {
+      const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 1000 })
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+      allUsers.push(...(data?.users ?? []))
+      if ((data?.users ?? []).length < 1000) break
+      page++
+    }
+
+    const targets = allUsers.filter(u => u.email && !usersWithCards.has(u.id))
+
+    if (targets.length === 0) {
+      return NextResponse.json({ sent: 0, total: 0, message: 'Aucun utilisateur sans carte.' })
+    }
+
+    const resend = getResend()
+    let sent = 0
+    const errors: string[] = []
+
+    for (const u of targets) {
+      const name = (u.user_metadata?.display_name || u.user_metadata?.full_name || '') as string
+      try {
+        await resend.emails.send({
+          from: 'Memorabilius <contact@memorabilius.fr>',
+          to: u.email!,
+          subject: "📦 Ta collection t'attend sur Memorabilius",
+          html: buildEmail(name),
+        })
+        sent++
+      } catch {
+        errors.push(u.email!)
+      }
+    }
+
+    return NextResponse.json({ sent, total: targets.length, errors })
+  } catch (err) {
+    return NextResponse.json({ error: String(err) }, { status: 500 })
+  }
 }
