@@ -121,17 +121,23 @@ export async function POST(req: NextRequest) {
                   cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
             }
 
-            // Collection / marque : les mots spécifiques du set doivent être dans les champs de la carte
+            // Collection / marque : on rejette SEULEMENT si la carte a une info spécifique
+            // qui contredit le set. Si pas d'info spécifique → ambiguë → laisser passer.
             if (specificWords.length > 0) {
-              const cardText = norm(
-                (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
-              )
-              if (!specificWords.some(w => cardText.includes(w))) return false
+              const cardCollText = (card.collection || '') + ' ' + (card.collection_tag || '')
+              const cardSpecific = [...words(card.marque || ''), ...words(cardCollText)]
+                .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
+              if (cardSpecific.length > 0) {
+                // La carte a une info produit spécifique → elle doit chevaucher le set
+                const matches = cardSpecific.some(w => specificWords.includes(w))
+                  || specificWords.some(w => cardSpecific.includes(w))
+                if (!matches) return false
+              }
+              // cardSpecific vide → pas d'info discriminante → on laisse passer
             } else if (setBrand && card.marque) {
-              // Pas de mot spécifique → vérifier au moins la brand parente
-              const normCardBrand = norm(card.marque)
-              const normSetBrand = norm(setBrand)
-              if (normCardBrand && normSetBrand && !normCardBrand.includes(normSetBrand) && !normSetBrand.includes(normCardBrand)) return false
+              // Set sans mot spécifique → vérifier au moins la brand parente
+              const nb = norm(card.marque), ns = norm(setBrand)
+              if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
             }
 
             // Numéro de carte : si les deux sont renseignés, ils doivent correspondre
