@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useTheme } from '@/lib/ThemeContext'
 import { createPortal } from 'react-dom'
 import dynamic from 'next/dynamic'
@@ -120,6 +121,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   initialBinderId?: number | null
 }) {
   const { dark } = useTheme()
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
   const [binders, setBinders] = useState<Binder[]>([])
   const [folders, setFolders] = useState<Folder[]>([])
   const [currentFolder, setCurrentFolder] = useState<Folder | null>(null)
@@ -337,10 +341,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setCommentCount(count || 0)
   }
 
+  const syncBinderUrl = (binderId: number | null) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (binderId) params.set('binder', String(binderId))
+    else params.delete('binder')
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+  }
+
+  const closeBinder = () => {
+    setSelected(null)
+    syncBinderUrl(null)
+  }
+
   const openBinder = async (binder: Binder) => {
     setSelected(binder)
     setPageIndex(0)
     setIsOpen(false)
+    syncBinderUrl(binder.id)
     loadCommentCount(binder.id)
     const { data } = await supabase.from('binder_slots').select('*').eq('binder_id', binder.id)
     const map = new Map<string, Slot>()
@@ -427,7 +444,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (!confirm('Supprimer définitivement ce classeur et son contenu ?')) return
     await supabase.from('binders').delete().eq('id', id)
     setBinders(prev => prev.filter(b => b.id !== id))
-    setSelected(null)
+    closeBinder()
   }
 
   // Réorganisation des classeurs par glisser-déposer.
@@ -1605,7 +1622,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {!binderFullscreen && (
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
-          <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
+          <button onClick={closeBinder} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
             ←{!isMobile && ` Retour ${pendingCard ? 'aux classeurs' : 'à la bibliothèque'}`}
           </button>
           <span style={{ fontWeight: 900, fontSize: isMobile ? 13 : 15, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0, color: dark ? '#f0f0f0' : '#111' }}>{selected.name}</span>
