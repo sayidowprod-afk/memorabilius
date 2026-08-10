@@ -16,6 +16,12 @@ import { createClient } from '@supabase/supabase-js'
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
+// Polyfill WebSocket pour Node.js < 22 (requis par @supabase/realtime-js)
+if (typeof globalThis.WebSocket === 'undefined') {
+  const { default: ws } = await import('ws')
+  globalThis.WebSocket = ws
+}
+
 // ── Charger .env.local si présent ──────────────────────────────────────────
 const envPath = resolve(process.cwd(), '.env.local')
 if (existsSync(envPath)) {
@@ -32,7 +38,8 @@ const PAGE      = 1000 // cartes par page Supabase
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+  { auth: { persistSession: false } }
 )
 const s3 = new S3Client({
   region: 'auto',
