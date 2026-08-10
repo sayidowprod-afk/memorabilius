@@ -19,21 +19,43 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const [torchCapable, setTorchCapable] = useState(false)   // useState → re-render quand détecté
   const [focusPt, setFocusPt] = useState<{ x: number; y: number } | null>(null)
 
-  useEffect(() => {
-    navigator.mediaDevices.getUserMedia({
-      video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } },
-      audio: false,
-    }).then(stream => {
+  const startCamera = () => {
+    setError(null)
+    setReady(false)
+    const attach = (stream: MediaStream) => {
       streamRef.current = stream
       const track = stream.getVideoTracks()[0]
       const caps = (track.getCapabilities?.() ?? {}) as any
-      if (caps.torch) setTorchCapable(true)   // déclenche le re-render → bouton apparaît
+      if (caps.torch) setTorchCapable(true)
       if (videoRef.current) {
         videoRef.current.srcObject = stream
         videoRef.current.onloadedmetadata = () => setReady(true)
       }
-    }).catch(() => setError('Caméra non accessible'))
+    }
+    const handleError = (err: unknown) => {
+      const name = (err as any)?.name ?? ''
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError')
+        setError('Permission refusée — autorisez la caméra dans les réglages de votre navigateur')
+      else if (name === 'NotFoundError' || name === 'DevicesNotFoundError')
+        setError('Aucune caméra détectée sur cet appareil')
+      else if (name === 'NotReadableError' || name === 'TrackStartError')
+        setError('Caméra utilisée par une autre application')
+      else
+        setError('Caméra inaccessible')
+    }
+    navigator.mediaDevices
+      .getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false })
+      .then(attach)
+      .catch(() =>
+        // Fallback sans contrainte facingMode (desktop / webcam)
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+          .then(attach)
+          .catch(handleError)
+      )
+  }
 
+  useEffect(() => {
+    startCamera()
     return () => { streamRef.current?.getTracks().forEach(t => t.stop()) }
   }, [])
 
@@ -145,9 +167,13 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     <div style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 9999, display: 'flex', flexDirection: 'column' }}>
       <style>{`@keyframes focusFade { 0%{opacity:1;transform:scale(1)} 60%{opacity:1;transform:scale(0.85)} 100%{opacity:0;transform:scale(0.8)} }`}</style>
       {error ? (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', gap: 16 }}>
-          <p style={{ fontSize: 16 }}>{error}</p>
-          <button onClick={onClose} style={{ padding: '10px 24px', background: 'white', color: 'black', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Fermer</button>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', gap: 16, padding: '0 24px', textAlign: 'center' }}>
+          <span style={{ fontSize: 40 }}>📷</span>
+          <p style={{ fontSize: 15, margin: 0, lineHeight: 1.5 }}>{error}</p>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button onClick={startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
+            <button onClick={onClose} style={{ padding: '10px 24px', background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Fermer</button>
+          </div>
         </div>
       ) : (
         <>
