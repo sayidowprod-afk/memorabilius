@@ -129,9 +129,17 @@ export async function POST(req: NextRequest) {
         if (cardYear && cardYear !== yearStr && cardYear !== yearNext &&
             cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
       }
-      if (setBrand && card.marque) {
-        const nb = normBrand(card.marque), ns = normBrand(setBrand)
-        if (!nb.includes(ns) && !ns.includes(nb)) return false
+      if (card.marque) {
+        const normCardRaw = norm(card.marque).replace('america', '').replace('sports', '')
+        const normSetNameVal = norm(setName)
+        if (BRAND_PARENT[normCardRaw]) {
+          // Marque spécifique (ex: "Donruss", "Mosaic") — doit apparaître dans le nom du set
+          if (!normSetNameVal.includes(normCardRaw)) return false
+        } else if (setBrand) {
+          // Marque générique (ex: "Panini", "Topps") — comparer les parents
+          const nb = normBrand(card.marque), ns = normBrand(setBrand)
+          if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
+        }
       }
       if (!matchCollection(card.collection || '', card.collection_tag || '', setName)) return false
       return matchVariation(card.variation || '', entry.variation || '')
