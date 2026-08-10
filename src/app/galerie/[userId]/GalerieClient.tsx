@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
+import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
@@ -245,30 +246,33 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   const src = cardThumb(card.f)
   const fmt = getFormat(card.format)
   const horiz = isHorizontalFormat(card.format, card.is_horizontal)
-  // La grille utilise des emplacements uniformément portrait (2.5/3.5) pour
-  // garder l'alignement des colonnes ; les cartes horizontales sont pivotées
-  // à l'intérieur plutôt que d'élargir leur emplacement (sinon incohérent
-  // avec la rotation ci-dessous, qui est calculée pour un cadre portrait fixe)
   const ratio = fmt.isSlab ? cardDisplayRatio(card.format, card.is_horizontal) : '2.5/3.5'
+  // Optimisation Vercel uniquement pour les images Supabase Storage — les images
+  // CSV (domaines externes variés) passent en unoptimized pour éviter les
+  // restrictions de remotePatterns.
+  const isSupabase = src.includes('.supabase.co/storage/v1/object/public/')
 
-  if (fmt.isSlab) {
+  if (fmt.isSlab || horiz) {
+    // Slab et cartes horizontales (rotation complexe) : img classique
     return (
-      <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: '#111' }}>
+      <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: fmt.isSlab ? '#111' : undefined }}>
         <img src={src} alt={card.n} loading="lazy" decoding="async"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          style={horiz
+            ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }
+            : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
+          } />
       </div>
     )
   }
 
   return (
     <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
-      {horiz ? (
-        <img src={src} alt={card.n} loading="lazy" decoding="async"
-          style={{ position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }} />
-      ) : (
-        <img src={src} alt={card.n} loading="lazy" decoding="async"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-      )}
+      <NextImage
+        src={src} alt={card.n} fill
+        sizes="(max-width: 640px) 150px, 220px"
+        style={{ objectFit: 'cover' }}
+        unoptimized={!isSupabase}
+      />
     </div>
   )
 }
