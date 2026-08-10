@@ -196,8 +196,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const measure = () => {
       const avail = el.clientWidth - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
-      const hRatio = binderFullscreenRef.current ? 0.88 : 0.74
-      const byHeight = Math.floor((window.innerHeight * hRatio) / PAGE_RATIO)
+      const byHeight = binderFullscreenRef.current
+        ? Math.floor((window.innerHeight - 120) / PAGE_RATIO)   // soustrait bottom-bar (~48px) + padding stage (68px)
+        : Math.floor((window.innerHeight * 0.74) / PAGE_RATIO)
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, byWidth, byHeight)))
     }
     measure()
@@ -1705,13 +1706,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       )}
 
       {/* Stage area — in fullscreen wraps with side arrows */}
-      <div style={binderFullscreen ? { flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' } : {}}>
+      <div style={binderFullscreen ? { flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' } : {}}>
         {binderFullscreen && isOpen && (
           <button style={fsArrowStyle('left', canPrev)}
             onClick={() => { if (canPrev) clickFlip('prev') }} aria-label="Page précédente">‹</button>
         )}
 
-        <div ref={stageRef} style={{ ...(binderFullscreen ? { maxWidth: 'calc(100% - 160px)', width: '100%' } : {}), background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: coverH + 40, perspective: 1600 }}>
+        <div ref={stageRef} style={{ ...(binderFullscreen ? { maxWidth: 'calc(100% - 160px)', width: '100%' } : {}), background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: binderFullscreen ? 12 : 16, padding: binderFullscreen ? '18px 16px' : '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: binderFullscreen ? 0 : coverH + 40, perspective: 1600 }}>
         {!isOpen ? (
           /* ── Classeur fermé : on voit la couverture (pivote à l'ouverture) ── */
           <div onClick={openTheBinder} title="Ouvrir le classeur" style={{
