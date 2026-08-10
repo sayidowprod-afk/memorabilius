@@ -16,6 +16,7 @@ interface Entry {
   team: string | null
   variation: string | null
   is_rc: boolean
+  image_url: string | null
   owned: boolean
   manually_checked: boolean
   completion_id: string | null
@@ -220,6 +221,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         const det = usedDets.get(e.id)
         return {
           ...e,
+          image_url: e.image_url || null,
           owned: usedIds.has(e.id),
           manually_checked: det?.manually_checked || false,
           completion_id: det?.id || null,
@@ -228,8 +230,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
     const ownedCount = entries.filter(e => e.owned).length
 
-    // Charger les images communauté via API JS (matching strict : année + variation + collection)
-    const entryIds = finalData.map((e: any) => e.id)
+    // Charger les images communauté via API JS uniquement pour les entrées sans image côté site
+    const entryIds = finalData.filter((e: any) => !e.image_url).map((e: any) => e.id)
     if (entryIds.length > 0 && setInfo) {
       fetch('/api/setlist-images', {
         method: 'POST',
@@ -544,7 +546,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
                       ) : displayEntries.map(entry => {
-                        const communityImg = communityImages.get(entry.id)
+                        // Priorité : image côté site (card_set_entries.image_url) → fallback API temps réel
+                        const communityImg = entry.image_url || communityImages.get(entry.id)
                         return (
                         <div key={entry.id}
                           style={{ display: 'grid', gridTemplateColumns: '52px 44px 1fr 140px 36px', padding: '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>

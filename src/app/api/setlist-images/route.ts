@@ -14,14 +14,16 @@ const norm = (s: string) =>
 const words = (s: string) =>
   s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 1) || []
 
-// Parent brands et mots de sport — pas les sous-produits (Mosaic, Prizm, Donruss…)
+// Mots génériques qui ne distinguent pas les produits entre eux
 const PARENT_WORDS = new Set([
   'panini', 'topps', 'upper', 'deck', 'leaf', 'fleer',
   'basketball', 'baseball', 'football', 'hockey', 'soccer',
   'nba', 'nfl', 'mlb', 'nhl', 'trading', 'cards', 'card', 'sport', 'sports',
 ])
 
-// Extraire les mots produit spécifiques d'un set (ex: ["mosaic"] pour "2024-25 Panini Mosaic")
+// Ex: "2024-25 Panini Mosaic" → ["mosaic"]
+// Ex: "2024-25 Panini Prizm" → ["prizm"]
+// Ex: "2024-25 Panini" → [] (aucun mot produit spécifique)
 function getSetSpecificWords(setName: string): string[] {
   return setName.toLowerCase().split(/[^a-z0-9]+/)
     .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
@@ -61,38 +63,30 @@ export async function POST(req: NextRequest) {
 
   const results = new Map<number, string>()
 
-  // ── ÉTAPE 1 : images déjà vérifiées via la synchronisation (entry_images) ──
-  // La sync set-sync a déjà fait le matching exact carte↔entrée → source de vérité
-  const { data: syncedImages } = await admin
-    .from('entry_images')
-    .select('entry_id, image_url')
-    .in('entry_id', entryIds)
-    .not('image_url', 'is', null)
-    .neq('image_url', '')
-    .limit(10000)
-
-  for (const row of syncedImages || []) {
-    if (!results.has(row.entry_id)) results.set(row.entry_id, row.image_url)
-  }
-
-  // ── ÉTAPE 2 : fuzzy match strict pour les entrées sans image synchée ──
-  const missing = entryIds.filter(id => !results.has(id))
-  if (missing.length > 0) {
-    // Détails des entrées manquantes (joueur, numéro de carte, variation)
-    const { data: entries } = await admin
+  // ─── ÉTAPE 1 : fuzzy strict sur toutes les cartes communauté ───────────────
+  // Conditions pour qu'une carte soit retenue :
+  //   • l'année doit correspondre (si la carte n'a pas d'année et le set en a une → rejetée)
+  //   • les mots produit du set (mosaic, prizm…) doivent être dans les champs collection/marque
+  //   • la variation doit correspondre
+  // → jamais de Donruss sur une Mosaic, jamais de 2021 sur un set 2024
+  {
+    const { data: rawEntries } = await admin
       .from('card_set_entries')
       .select('id, player_name, card_number, variation')
-      .in('id', missing)
-    if (entries?.length) {
-      const playerNames = [...new Set(entries.map((e: any) => e.player_name.trim()))]
+      .in('id', entryIds)
 
-      // Toutes les cartes communauté pour ces joueurs (avec card_number maintenant)
+    const entries = (rawEntries || []) as {
+      id: number; player_name: string; card_number: string | null; variation: string | null
+    }[]
+
+    if (entries.length > 0) {
+      const playerNames = [...new Set(entries.map(e => e.player_name.trim()))]
+
       const { data: cards } = await admin.rpc('get_cards_for_players', {
         p_player_names: playerNames,
       }) as { data: GalleryCard[] | null }
 
       if (cards?.length) {
-        // Index joueur → cartes
         const byPlayer = new Map<string, GalleryCard[]>()
         for (const c of cards) {
           const key = norm(c.nom || '')
@@ -107,23 +101,20 @@ export async function POST(req: NextRequest) {
         const yearPrev = y ? `${y - 1}-${yearStr.slice(2)}` : ''
         const yearNextFull = y ? String(y + 1) : ''
         const yearFull2 = y ? `${y}-${y + 1}` : ''
-
-        // Mots produit spécifiques du set (ex: ["mosaic"])
         const specificWords = getSetSpecificWords(setName)
 
-        for (const entry of entries as any[]) {
+        for (const entry of entries) {
           const candidates = byPlayer.get(norm(entry.player_name)) || []
           const matched = candidates.find(card => {
-            // Année
+            // Année obligatoire si le set en a une
+            const cardYear = (card.annee || '').trim()
             if (y) {
-              const cardYear = (card.annee || '').trim()
-              if (cardYear && cardYear !== yearStr && cardYear !== yearNext &&
+              if (!cardYear) return false  // carte sans année → rejetée
+              if (cardYear !== yearStr && cardYear !== yearNext &&
                   cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
             }
 
-            // Collection / marque : matching strict.
-            // Les mots produit du set doivent être présents dans les champs de la carte.
-            // Si la carte n'a pas l'info → pas d'affichage (vaut mieux rien que du faux).
+            // Collection : les mots produit du set doivent être présents dans la carte
             if (specificWords.length > 0) {
               const cardText = norm(
                 (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
@@ -134,13 +125,12 @@ export async function POST(req: NextRequest) {
               if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
             }
 
-            // Numéro de carte : si les deux sont renseignés, ils doivent correspondre
+            // Numéro de carte (si les deux sont renseignés)
             if (entry.card_number && card.card_number) {
               const nc = norm(entry.card_number), cc = norm(card.card_number)
               if (nc && cc && nc !== cc) return false
             }
 
-            // Variation (insert, parallel, etc.)
             return matchVariation(card.variation || '', entry.variation || '')
           })
 
@@ -148,7 +138,33 @@ export async function POST(req: NextRequest) {
             results.set(entry.id, matched.image_recto)
           }
         }
+
+        // Sauvegarder dans card_set_entries.image_url pour les futurs visiteurs
+        // (silencieux si la colonne n'existe pas encore — migration à appliquer séparément)
+        if (results.size > 0) {
+          admin.from('card_set_entries').upsert(
+            [...results.entries()].map(([id, image_url]) => ({ id, image_url })),
+            { onConflict: 'id', ignoreDuplicates: true }
+          ).then(() => {}) // fire and forget
+        }
       }
+    }
+  }
+
+  // ─── ÉTAPE 2 : fallback entry_images pour les entrées sans match fuzzy ─────
+  // Couvre les cartes sans info collection/année ou les joueurs peu représentés
+  const missing = entryIds.filter(id => !results.has(id))
+  if (missing.length > 0) {
+    const { data: syncedImages } = await admin
+      .from('entry_images')
+      .select('entry_id, image_url')
+      .in('entry_id', missing)
+      .not('image_url', 'is', null)
+      .neq('image_url', '')
+      .limit(10000)
+
+    for (const row of (syncedImages || [])) {
+      if (!results.has(row.entry_id)) results.set(row.entry_id, row.image_url)
     }
   }
 

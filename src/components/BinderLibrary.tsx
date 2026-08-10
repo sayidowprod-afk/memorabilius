@@ -197,7 +197,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const avail = el.clientWidth - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
       const byHeight = binderFullscreenRef.current
-        ? Math.floor((window.innerHeight - 115) / PAGE_RATIO)   // header(~42) + bottom-bar(~48) + padding stage(20) + marge
+        ? Math.floor((window.innerHeight - 62) / PAGE_RATIO)    // bottom-bar(~42) + stage padding(12) + marge(8)
         : Math.floor((window.innerHeight * 0.74) / PAGE_RATIO)
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, byWidth, byHeight)))
     }
@@ -626,28 +626,38 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   // Trie toutes les cartes du classeur et réécrit les slots dans le nouvel ordre
-  const sortBinder = async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc') => {
+  const sortBinder = async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc' | 'equipe_asc' | 'num_asc' | 'num_desc') => {
     if (!selected || sorting) return
     setShowSortMenu(false)
     setSorting(true)
     try {
       const allSlots = [...slots.values()]
 
-      // Tri par année de la carte (ex: "2021-22" < "2022-23" < "2023-24")
-      // img→annee raw string, comparaison lexicographique sur la partie normalisée
-      const yearMap = new Map<string, string>()
+      const yearMap  = new Map<string, string>()
+      const equipeMap = new Map<string, string>()
+      const numMap   = new Map<string, string>()
+
       const normYear = (s: string) => {
-        // "2021-22", "2022", "2021-2022" → extrait "20XX..." pour comparaison stable
         const m = (s || '').match(/((?:19|20)\d{2}(?:[-\/]\d{2,4})?)/)
         return m ? m[1] : ''
       }
-      if (by === 'annee_asc' || by === 'annee_desc') {
+      const cardNumValue = (s: string) => {
+        if (!s) return Infinity
+        const m = s.match(/(\d+)/)
+        return m ? parseInt(m[1]) : Infinity
+      }
+
+      // Charger les champs nécessaires depuis cartes_manuelles
+      if (by !== 'nom_asc' && by !== 'nom_desc') {
         const [{ data: cartes }, { data: csvProfile }] = await Promise.all([
-          supabase.from('cartes_manuelles').select('image_recto, annee').eq('user_id', userId).limit(10000),
+          supabase.from('cartes_manuelles').select('image_recto, annee, equipe, card_number').eq('user_id', userId).limit(10000),
           supabase.from('profiles').select('id, display_name, avatar_url, lien_csv').eq('id', userId).single(),
         ])
         for (const c of cartes || []) {
-          if (c.annee && c.image_recto) yearMap.set(c.image_recto, c.annee)
+          if (!c.image_recto) continue
+          if (c.annee)       yearMap.set(c.image_recto, c.annee)
+          if (c.equipe)      equipeMap.set(c.image_recto, c.equipe)
+          if (c.card_number) numMap.set(c.image_recto, c.card_number)
         }
         if (csvProfile?.lien_csv) {
           const csvCards = await fetchCsvCardsForProfiles([{ ...csvProfile, couleur_bordure: null }])
@@ -661,10 +671,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         const na = a.nom || '', nb = b.nom || ''
         if (by === 'nom_asc') return na.localeCompare(nb, 'fr', { sensitivity: 'base' })
         if (by === 'nom_desc') return nb.localeCompare(na, 'fr', { sensitivity: 'base' })
+
+        if (by === 'equipe_asc') {
+          const ea = equipeMap.get(a.img) || '', eb = equipeMap.get(b.img) || ''
+          return ea.localeCompare(eb, 'fr', { sensitivity: 'base' }) || na.localeCompare(nb, 'fr', { sensitivity: 'base' })
+        }
+
+        if (by === 'num_asc' || by === 'num_desc') {
+          const va = cardNumValue(numMap.get(a.img) || ''), vb = cardNumValue(numMap.get(b.img) || '')
+          const cmp = va !== vb ? va - vb : na.localeCompare(nb, 'fr', { sensitivity: 'base' })
+          return by === 'num_asc' ? cmp : -cmp
+        }
+
         const ya = normYear(yearMap.get(a.img) || '')
         const yb = normYear(yearMap.get(b.img) || '')
-        if (by === 'annee_asc') return ya.localeCompare(yb) || (a.nom || '').localeCompare(b.nom || '')
-        if (by === 'annee_desc') return yb.localeCompare(ya) || (b.nom || '').localeCompare(a.nom || '')
+        if (by === 'annee_asc') return ya.localeCompare(yb) || na.localeCompare(nb, 'fr', { sensitivity: 'base' })
+        if (by === 'annee_desc') return yb.localeCompare(ya) || nb.localeCompare(na, 'fr', { sensitivity: 'base' })
         return 0
       })
       const newSlots = new Map<string, Slot>()
@@ -1048,8 +1070,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         })}
       </div>
     )
-    // Le côté de la reliure s'inverse sur un dos (la feuille est retournée)
-    const stripLeft = face === 'back' ? side === 'right' : side === 'left'
+    // La reliure (trous/anneaux) est toujours côté spine : droite pour la page gauche, gauche pour la droite
+    const stripLeft = side === 'left'
     return (
       <div style={{ display: 'flex', flexDirection: stripLeft ? 'row' : 'row-reverse', height: '100%', width: '100%' }}>
         {grid}
@@ -1554,21 +1576,24 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       display: 'flex', flexDirection: 'column',
     } : {}}>
 
-      {/* ── FULLSCREEN HEADER ── */}
+      {/* ── FULLSCREEN OVERLAY : nom + quitter flottants, sans barre ── */}
       {binderFullscreen && (
         <div style={{
-          flexShrink: 0,
-          padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 12,
-          borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)'}`,
+          position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10,
+          display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px',
+          pointerEvents: 'none',
         }}>
-          <span style={{ color: dark ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.6)', fontWeight: 700, fontSize: 13, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <span style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.45)', fontWeight: 700, fontSize: 13, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', pointerEvents: 'none' }}>
             {selected.name}
           </span>
           <button onClick={toggleFullscreen}
             style={{
-              background: 'none', border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)'}`,
+              pointerEvents: 'auto',
+              background: dark ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.55)',
+              backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)',
+              border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)'}`,
               borderRadius: 7, padding: '4px 12px', cursor: 'pointer',
-              color: dark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)', fontSize: 12, fontWeight: 600,
+              color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.55)', fontSize: 12, fontWeight: 600,
             }}>✕ Quitter</button>
         </div>
       )}
@@ -1611,10 +1636,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                       <div onMouseLeave={() => setShowSortMenu(false)}
                         style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}>
                         {([
-                          ['nom_asc',   'Nom  A → Z'],
-                          ['nom_desc',  'Nom  Z → A'],
-                          ['annee_asc', 'Année  ↑ (ancienne en premier)'],
-                          ['annee_desc','Année  ↓ (récente en premier)'],
+                          ['nom_asc',    'Nom  A → Z'],
+                          ['nom_desc',   'Nom  Z → A'],
+                          ['equipe_asc', 'Équipe  A → Z'],
+                          ['annee_asc',  'Année  ↑ (ancienne en premier)'],
+                          ['annee_desc', 'Année  ↓ (récente en premier)'],
+                          ['num_asc',    'Numérotation  ↑'],
+                          ['num_desc',   'Numérotation  ↓'],
                         ] as const).map(([key, label]) => (
                           <button key={key} onClick={() => sortBinder(key)}
                             style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: dark ? '#e0e0e0' : '#222' }}
@@ -1661,8 +1689,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                           <div style={{ padding: '8px 14px', fontSize: 12, color: '#aaa' }}>Classeur vide</div>
                         ) : (
                           ([
-                            ['nom_asc', 'Nom A → Z'], ['nom_desc', 'Nom Z → A'],
-                            ['annee_asc', 'Ancienne en premier'], ['annee_desc', 'Récente en premier'],
+                            ['nom_asc',    'Nom A → Z'],
+                            ['nom_desc',   'Nom Z → A'],
+                            ['equipe_asc', 'Équipe A → Z'],
+                            ['annee_asc',  'Ancienne en premier'],
+                            ['annee_desc', 'Récente en premier'],
+                            ['num_asc',    'Numérotation ↑'],
+                            ['num_desc',   'Numérotation ↓'],
                           ] as const).map(([key, label]) => (
                             <button key={key} onClick={() => { sortBinder(key); setShowOwnerMenu(false) }}
                               style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 14px', fontSize: 14, cursor: 'pointer', color: dark ? '#e0e0e0' : '#333', borderRadius: 8 }}>
@@ -1709,7 +1742,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             onClick={() => { if (canPrev) clickFlip('prev') }} aria-label="Page précédente">‹</button>
         )}
 
-        <div ref={stageRef} style={{ ...(binderFullscreen ? { width: '100%' } : {}), background: binderFullscreen ? 'transparent' : 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: binderFullscreen ? 0 : 16, padding: binderFullscreen ? '10px 8px' : '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: binderFullscreen ? 0 : coverH + 40, perspective: 1600 }}>
+        <div ref={stageRef} style={{ ...(binderFullscreen ? { width: '100%' } : {}), background: binderFullscreen ? 'transparent' : 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: binderFullscreen ? 0 : 16, padding: binderFullscreen ? '4px 8px' : '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: binderFullscreen ? 0 : coverH + 40, perspective: 1600 }}>
         {!isOpen ? (
           /* ── Classeur fermé : on voit la couverture (pivote à l'ouverture) ── */
           <div onClick={openTheBinder} title="Ouvrir le classeur" style={{

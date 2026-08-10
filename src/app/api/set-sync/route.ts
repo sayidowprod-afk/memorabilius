@@ -182,16 +182,28 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 4b. Stocker les images dans entry_images
+  // 4b. Stocker les images
   {
+    // a) card_set_entries.image_url — image côté site, visible par tous
+    //    Seulement les auto-matchés (image exacte de la carte trouvée)
+    //    ignoreDuplicates: true pour ne pas écraser une image déjà en place
+    if (autoMatchedImages.length > 0) {
+      await supabase
+        .from('card_set_entries')
+        .upsert(
+          autoMatchedImages.map(r => ({ id: r.entry_id, image_url: r.image_url })),
+          { onConflict: 'id', ignoreDuplicates: true }
+        )
+    }
+
+    // b) entry_images — image par utilisateur (ownership display)
     const imageRows: { entry_id: number; image_url: string; user_id: string }[] = [...autoMatchedImages]
 
-    // Pour les entrées complétées manuellement (pas auto-matchées), fallback player→image
     if (playerImages && Object.keys(playerImages).length > 0) {
       const autoMatchedEntryIds = new Set(autoMatchedImages.map(r => r.entry_id))
       for (const e of entries) {
         if (!completedEntryIds.has(e.id)) continue
-        if (autoMatchedEntryIds.has(e.id)) continue // déjà traité avec la carte exacte
+        if (autoMatchedEntryIds.has(e.id)) continue
         const img = playerImages[norm(e.player_name)]
         if (img) imageRows.push({ entry_id: e.id, image_url: img, user_id: user.id })
       }
@@ -200,7 +212,7 @@ export async function POST(req: NextRequest) {
     if (imageRows.length > 0) {
       await supabase
         .from('entry_images')
-        .upsert(imageRows, { onConflict: 'entry_id,user_id', ignoreDuplicates: true })
+        .upsert(imageRows, { onConflict: 'entry_id,user_id' })
     }
   }
 
