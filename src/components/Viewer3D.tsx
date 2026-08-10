@@ -287,7 +287,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   return (
     <div style={{
-      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+      position: 'fixed', inset: 0,
       background: bg, zIndex: 9999999,
       display: 'flex', overflow: 'hidden',
     }}>
@@ -301,12 +301,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 359px !important; height: 588px !important; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
-          .viewer-zone { flex: 0 0 65% !important; width: 100% !important; }
-          .viewer-info { flex: 1 !important; width: 100% !important; padding: 10px 14px !important; justify-content: flex-start !important; }
+          .viewer-zone { flex: 0 0 56% !important; width: 100% !important; min-height: 0; }
+          .viewer-info { flex: 1 !important; width: 100% !important; min-height: 0; padding: 10px 14px !important; justify-content: flex-start !important; }
           .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
-          .viewer-card { width: 240px !important; height: 336px !important; }
-          .viewer-card--horizontal { width: min(260px, 80vw) !important; height: min(186px, 57vw) !important; }
-          .viewer-card--slab { width: 205px !important; height: 336px !important; }
+          .viewer-card { width: min(220px, 54vw) !important; height: min(308px, 75.6vw) !important; }
+          .viewer-card--horizontal { width: min(280px, 76vw) !important; height: min(200px, 54.3vw) !important; }
+          .viewer-card--slab { width: min(188px, 46vw) !important; height: min(308px, 75.6vw) !important; }
           .viewer-hint { display: none !important; }
         }
       `}</style>
