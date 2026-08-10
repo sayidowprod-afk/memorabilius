@@ -71,6 +71,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [tagInput, setTagInput] = useState(popup.collection_tag || '')
   const [tagSaving, setTagSaving] = useState(false)
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
+  useEffect(() => { setValeurInput(cardValue != null ? String(cardValue) : '') }, [popup.f, cardValue])
 
   const saveTag = async () => {
     if (!onCollectionTagChange) return
