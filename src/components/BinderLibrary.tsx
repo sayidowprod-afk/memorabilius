@@ -71,7 +71,7 @@ const FOLDER_SHELF_COLORS = ['#4a6741', '#1f3a5f', '#6b2737', '#7a5c00', '#374a6
 const SHELF_ROW_SIZE = 12
 const PAGE_MAX_W = 620
 const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
-const FLIP_MS = 620
+const FLIP_MS = 680
 
 // Détecte l'orientation réelle de l'image (fiable pour toutes les sources : cartes
 // manuelles, CSV... contrairement au champ `format` en base qui n'existe pas pour
@@ -197,7 +197,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const avail = el.clientWidth - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
       const byHeight = binderFullscreenRef.current
-        ? Math.floor((window.innerHeight - 62) / PAGE_RATIO)    // bottom-bar(~42) + stage padding(12) + marge(8)
+        ? Math.floor((window.innerHeight - 16) / PAGE_RATIO)    // stage padding(8) + marge(8) — bottom bar flotte en absolu
         : Math.floor((window.innerHeight * 0.74) / PAGE_RATIO)
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, byWidth, byHeight)))
     }
@@ -1785,7 +1785,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 transformStyle: 'preserve-3d',
                 transformOrigin: flip.dir === 'next' ? 'left center' : 'right center',
                 transform: `rotateY(${flip.angle}deg)`,
-                transition: flip.anim ? `transform ${FLIP_MS}ms cubic-bezier(0.33,0,0.30,1)` : 'none',
+                transition: flip.anim ? `transform ${FLIP_MS}ms cubic-bezier(0.4,0,0.2,1)` : 'none',
+                willChange: 'transform',
                 zIndex: 30,
               }}>
                 <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'right' : 'left'), position: 'absolute', inset: 0, width: '100%', height: '100%', backfaceVisibility: 'hidden' }}>
@@ -1827,16 +1828,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
       </div>
 
-      {/* ── FULLSCREEN bottom bar ── */}
+      {/* ── FULLSCREEN bottom bar (flottant, sans hauteur dans le flex) ── */}
       {binderFullscreen && (
-        <div style={{ padding: '12px 0 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16,
+          padding: '8px 16px', pointerEvents: 'none',
+        }}>
           {!isOpen ? (
             <button onClick={openTheBinder}
-              style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 10, padding: '8px 20px', cursor: 'pointer', color: 'rgba(255,255,255,0.8)', fontSize: 13, fontWeight: 600, backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}>
+              style={{ pointerEvents: 'auto', background: dark ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.55)', border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)'}`, borderRadius: 10, padding: '8px 20px', cursor: 'pointer', color: dark ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)', fontSize: 13, fontWeight: 600, backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}>
               Ouvrir le classeur
             </button>
           ) : (
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.04em' }}>{pageLabel}</span>
+            <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.35)', letterSpacing: '0.04em' }}>{pageLabel}</span>
           )}
         </div>
       )}
