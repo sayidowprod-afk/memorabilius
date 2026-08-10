@@ -34,7 +34,8 @@ const translations = {
     home_cta2: "Voir l'annuaire",
     home_collectors: 'Collectionneurs',
     home_cards: 'Cartes répertoriées',
-    home_3d: '100% Interactif & 3D',
+    home_binders: 'Classeurs partagés',
+    home_trade: 'Cartes à échanger / vendre',
     home_pepites: '✨ Dernières pépites',
 
     // Galerie
@@ -384,7 +385,8 @@ const translations = {
     home_cta2: 'View directory',
     home_collectors: 'Collectors',
     home_cards: 'Cards listed',
-    home_3d: '100% Interactive & 3D',
+    home_binders: 'Shared binders',
+    home_trade: 'Cards for trade / sale',
     home_pepites: '✨ Latest gems',
 
     // Gallery
@@ -734,7 +736,8 @@ const translations = {
     home_cta2: 'Verzeichnis ansehen',
     home_collectors: 'Sammler',
     home_cards: 'Erfasste Karten',
-    home_3d: '100% Interaktiv & 3D',
+    home_binders: 'Geteilte Ordner',
+    home_trade: 'Karten zum Tauschen / Verkaufen',
     home_pepites: '✨ Neueste Highlights',
 
     // Galerie

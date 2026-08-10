@@ -94,7 +94,7 @@ interface FeaturedGallery {
   stats_total: number; topCards: string[]
 }
 
-export default function HomeHero({ total, totalCartes, featuredGalleries = [] }: { total: number; totalCartes: number; featuredGalleries?: FeaturedGallery[] }) {
+export default function HomeHero({ total, totalCartes, totalBinders, totalTrade, featuredGalleries = [] }: { total: number; totalCartes: number; totalBinders: number; totalTrade: number; featuredGalleries?: FeaturedGallery[] }) {
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const [cardImgs, setCardImgs] = useState<string[]>([])
@@ -306,7 +306,8 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
         {[
           { val: total, label: t('home_collectors') },
           { val: totalCartes.toLocaleString('fr-FR'), label: t('home_cards') },
-          { val: '100%', label: t('home_3d') },
+          { val: totalBinders.toLocaleString('fr-FR'), label: t('home_binders') },
+          { val: totalTrade.toLocaleString('fr-FR'), label: t('home_trade') },
         ].map(s => (
           <div key={s.label} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.3)' : '0 10px 30px rgba(0,0,0,0.05)', border: dark ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
             <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6' }}>{s.val}</h3>

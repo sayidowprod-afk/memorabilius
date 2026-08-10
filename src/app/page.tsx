@@ -183,6 +183,8 @@ export default async function Home() {
   const [
     { count },
     { data: statsData },
+    { count: bindersCount },
+    { count: tradeCount },
     cards,
     podium,
     podiumDay,
@@ -191,6 +193,8 @@ export default async function Home() {
   ] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
     supabase.from('profiles').select('stats_total').gt('stats_total', 0),
+    supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
+    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
     fetchPepites(),
     fetchPodium(),
     fetchPodiumDay(),
@@ -200,6 +204,8 @@ export default async function Home() {
 
   const total = count ?? 0
   const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
+  const totalBinders = bindersCount ?? 0
+  const totalTrade = tradeCount ?? 0
 
   const navJsonLd = {
     '@context': 'https://schema.org',
@@ -216,7 +222,7 @@ export default async function Home() {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }} />
-      <HomeHero total={total} totalCartes={totalCartes} featuredGalleries={featuredGalleries} />
+      <HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />
       <PepitesSection cards={cards} />
       <PodiumSection month={podium} week={podiumWeek} day={podiumDay} />
       <PWAInstall />
