@@ -121,21 +121,15 @@ export async function POST(req: NextRequest) {
                   cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
             }
 
-            // Collection / marque : on rejette SEULEMENT si la carte a une info spécifique
-            // qui contredit le set. Si pas d'info spécifique → ambiguë → laisser passer.
+            // Collection / marque : matching strict.
+            // Les mots produit du set doivent être présents dans les champs de la carte.
+            // Si la carte n'a pas l'info → pas d'affichage (vaut mieux rien que du faux).
             if (specificWords.length > 0) {
-              const cardCollText = (card.collection || '') + ' ' + (card.collection_tag || '')
-              const cardSpecific = [...words(card.marque || ''), ...words(cardCollText)]
-                .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
-              if (cardSpecific.length > 0) {
-                // La carte a une info produit spécifique → elle doit chevaucher le set
-                const matches = cardSpecific.some(w => specificWords.includes(w))
-                  || specificWords.some(w => cardSpecific.includes(w))
-                if (!matches) return false
-              }
-              // cardSpecific vide → pas d'info discriminante → on laisse passer
+              const cardText = norm(
+                (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
+              )
+              if (!specificWords.some(w => cardText.includes(w))) return false
             } else if (setBrand && card.marque) {
-              // Set sans mot spécifique → vérifier au moins la brand parente
               const nb = norm(card.marque), ns = norm(setBrand)
               if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
             }
