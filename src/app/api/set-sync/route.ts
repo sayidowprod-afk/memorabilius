@@ -15,6 +15,7 @@ interface GalleryCard {
   collection?: string
   collection_tag?: string
   variation?: string
+  image_recto?: string
 }
 
 const BRAND_PARENT: Record<string, string> = {
@@ -126,6 +127,7 @@ export async function POST(req: NextRequest) {
 
   // 3. Auto-match gallery cards → unmatched entries
   const autoMatchedIds: number[] = []
+  const autoMatchedImages: { entry_id: number; image_url: string; user_id: string }[] = []
 
   if (galleryCards.length > 0 && setYear && entries.length > 0) {
     const y = setYear
@@ -163,6 +165,10 @@ export async function POST(req: NextRequest) {
       if (matched) {
         completedEntryIds.add(e.id)
         autoMatchedIds.push(e.id)
+        // Stocker l'image de la carte exactement matchée (pas juste la première du joueur)
+        if (matched.image_recto) {
+          autoMatchedImages.push({ entry_id: e.id, image_url: matched.image_recto, user_id: user.id })
+        }
       }
     }
 
@@ -176,14 +182,21 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 4b. Stocker les images dans entry_images pour toutes les entries owned avec une image dispo
-  if (playerImages && Object.keys(playerImages).length > 0) {
-    const imageRows: { entry_id: number; image_url: string; user_id: string }[] = []
-    for (const e of entries) {
-      if (!completedEntryIds.has(e.id)) continue
-      const img = playerImages[norm(e.player_name)]
-      if (img) imageRows.push({ entry_id: e.id, image_url: img, user_id: user.id })
+  // 4b. Stocker les images dans entry_images
+  {
+    const imageRows: { entry_id: number; image_url: string; user_id: string }[] = [...autoMatchedImages]
+
+    // Pour les entrées complétées manuellement (pas auto-matchées), fallback player→image
+    if (playerImages && Object.keys(playerImages).length > 0) {
+      const autoMatchedEntryIds = new Set(autoMatchedImages.map(r => r.entry_id))
+      for (const e of entries) {
+        if (!completedEntryIds.has(e.id)) continue
+        if (autoMatchedEntryIds.has(e.id)) continue // déjà traité avec la carte exacte
+        const img = playerImages[norm(e.player_name)]
+        if (img) imageRows.push({ entry_id: e.id, image_url: img, user_id: user.id })
+      }
     }
+
     if (imageRows.length > 0) {
       await supabase
         .from('entry_images')

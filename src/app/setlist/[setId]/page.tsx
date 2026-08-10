@@ -131,8 +131,9 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               setYear: setData.year,
               setBrand: setData.brand,
               setName: setData.name,
-              galleryCards: galleryCards.map(({ image_recto: _img, id: _id, ...rest }) => rest),
-              // Map compacte nom→URL pour stocker dans entry_images (communauté)
+              // image_recto inclus pour que set-sync stocke l'image exacte matchée
+              galleryCards: galleryCards.map(({ id: _id, ...rest }) => rest),
+              // Fallback player→image pour les entrées cochées manuellement
               playerImages: Object.fromEntries(
                 galleryCards
                   .filter(c => c.image_recto)
