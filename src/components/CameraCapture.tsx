@@ -35,11 +35,11 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     const handleError = (err: unknown) => {
       const name = (err as any)?.name ?? ''
       if (name === 'NotAllowedError' || name === 'PermissionDeniedError')
-        setError('Permission refusée — autorisez la caméra dans les réglages de votre navigateur')
+        setError('permission-denied')
       else if (name === 'NotFoundError' || name === 'DevicesNotFoundError')
         setError('Aucune caméra détectée sur cet appareil')
       else if (name === 'NotReadableError' || name === 'TrackStartError')
-        setError('Caméra utilisée par une autre application')
+        setError('Caméra utilisée par une autre application — fermez les autres apps qui utilisent la caméra')
       else
         setError('Caméra inaccessible')
     }
@@ -167,9 +167,38 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     <div style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 9999, display: 'flex', flexDirection: 'column' }}>
       <style>{`@keyframes focusFade { 0%{opacity:1;transform:scale(1)} 60%{opacity:1;transform:scale(0.85)} 100%{opacity:0;transform:scale(0.8)} }`}</style>
       {error ? (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', gap: 16, padding: '0 24px', textAlign: 'center' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', gap: 16, padding: '0 28px', textAlign: 'center' }}>
           <span style={{ fontSize: 40 }}>📷</span>
-          <p style={{ fontSize: 15, margin: 0, lineHeight: 1.5 }}>{error}</p>
+          {error === 'permission-denied' ? (
+            <>
+              <p style={{ fontSize: 15, margin: 0, fontWeight: 700 }}>Accès à la caméra refusé</p>
+              <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 12, padding: '14px 16px', textAlign: 'left', width: '100%', maxWidth: 340 }}>
+                {/iphone|ipad|ipod/i.test(typeof navigator !== 'undefined' ? navigator.userAgent : '') ? (
+                  <>
+                    <p style={{ margin: '0 0 8px', fontSize: 13, fontWeight: 700, color: '#86CEBC' }}>Sur Safari / iOS :</p>
+                    <ol style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.8 }}>
+                      <li>Ouvre <strong>Réglages</strong> → <strong>Applications</strong> → <strong>Safari</strong></li>
+                      <li>Appuie sur <strong>Caméra</strong></li>
+                      <li>Sélectionne <strong>Autoriser</strong></li>
+                      <li>Reviens ici et appuie sur <strong>Réessayer</strong></li>
+                    </ol>
+                  </>
+                ) : (
+                  <>
+                    <p style={{ margin: '0 0 8px', fontSize: 13, fontWeight: 700, color: '#86CEBC' }}>Sur Chrome / Android :</p>
+                    <ol style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.8 }}>
+                      <li>Appuie sur l'icône 🔒 dans la barre d'adresse</li>
+                      <li>Sélectionne <strong>Paramètres du site</strong></li>
+                      <li>Change <strong>Caméra</strong> sur <strong>Autoriser</strong></li>
+                      <li>Recharge la page et réessaie</li>
+                    </ol>
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            <p style={{ fontSize: 15, margin: 0, lineHeight: 1.5 }}>{error}</p>
+          )}
           <div style={{ display: 'flex', gap: 10 }}>
             <button onClick={startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
             <button onClick={onClose} style={{ padding: '10px 24px', background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Fermer</button>
