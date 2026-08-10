@@ -14,18 +14,17 @@ const norm = (s: string) =>
 const words = (s: string) =>
   s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 1) || []
 
-const BRAND_PARENT: Record<string, string> = {
-  hoops: 'panini', prizm: 'panini', select: 'panini', donruss: 'panini',
-  optic: 'panini', mosaic: 'panini', chronicles: 'panini', contenders: 'panini',
-  spectra: 'panini', noir: 'panini', obsidian: 'panini', immaculate: 'panini',
-  flawless: 'panini', titanium: 'panini', nationaltreasures: 'panini',
-  flux: 'panini', origins: 'panini', courtkings: 'panini', certified: 'panini',
-  flagship: 'topps', finest: 'topps', bowman: 'topps', chrome: 'topps',
-  heritage: 'topps', stadium: 'topps', update: 'topps',
-}
-const normBrand = (b: string) => {
-  const n = norm(b).replace('america', '').replace('sports', '')
-  return BRAND_PARENT[n] ?? n
+// Parent brands et mots de sport — pas les sous-produits (Mosaic, Prizm, Donruss…)
+const PARENT_WORDS = new Set([
+  'panini', 'topps', 'upper', 'deck', 'leaf', 'fleer',
+  'basketball', 'baseball', 'football', 'hockey', 'soccer',
+  'nba', 'nfl', 'mlb', 'nhl', 'trading', 'cards', 'card', 'sport', 'sports',
+])
+
+// Extraire les mots produit spécifiques d'un set (ex: ["mosaic"] pour "2024-25 Panini Mosaic")
+function getSetSpecificWords(setName: string): string[] {
+  return setName.toLowerCase().split(/[^a-z0-9]+/)
+    .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
 }
 
 const EXPAND: Record<string, string> = {
@@ -33,19 +32,6 @@ const EXPAND: Record<string, string> = {
   patch: 'patch', mem: 'memorabilia', rpa: 'rookiepatchautograph',
 }
 const expandWord = (w: string) => EXPAND[w] ?? w
-
-// Mots parent-brand et sport — pas les sous-produits spécifiques (Mosaic, Prizm, etc.)
-const PARENT_WORDS = new Set([
-  'panini', 'topps', 'upper', 'deck', 'leaf', 'fleer',
-  'basketball', 'baseball', 'football', 'hockey', 'soccer',
-  'nba', 'nfl', 'mlb', 'nhl', 'trading', 'cards', 'card', 'sport', 'sports',
-])
-
-// Mots spécifiques du set (ex: ["mosaic"] pour "2024-25 Panini Mosaic")
-function setSpecificWords(setName: string): string[] {
-  return setName.toLowerCase().split(/[^a-z0-9]+/)
-    .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
-}
 
 function matchVariation(cardVar: string, entryVar: string): boolean {
   const cv = (cardVar || '').trim()
@@ -63,7 +49,7 @@ function matchVariation(cardVar: string, entryVar: string): boolean {
 
 interface GalleryCard {
   nom: string; annee?: string; marque?: string; collection?: string
-  collection_tag?: string; variation?: string; image_recto?: string
+  collection_tag?: string; variation?: string; card_number?: string; image_recto?: string
 }
 
 export async function POST(req: NextRequest) {
@@ -73,71 +59,100 @@ export async function POST(req: NextRequest) {
   }
   if (!setId || !entryIds?.length) return NextResponse.json([])
 
-  // 1. Détails des entrées (player_name + variation)
-  const { data: entries } = await admin
-    .from('card_set_entries')
-    .select('id, player_name, variation')
-    .in('id', entryIds)
-  if (!entries?.length) return NextResponse.json([])
+  const results = new Map<number, string>()
 
-  // 2. Noms de joueurs uniques
-  const playerNames = [...new Set(entries.map(e => e.player_name.trim()))]
+  // ── ÉTAPE 1 : images déjà vérifiées via la synchronisation (entry_images) ──
+  // La sync set-sync a déjà fait le matching exact carte↔entrée → source de vérité
+  const { data: syncedImages } = await admin
+    .from('entry_images')
+    .select('entry_id, image_url')
+    .in('entry_id', entryIds)
+    .not('image_url', 'is', null)
+    .neq('image_url', '')
+    .limit(10000)
 
-  // 3. Cartes de TOUS les utilisateurs pour ces joueurs (service role bypass RLS)
-  const { data: cards } = await admin.rpc('get_cards_for_players', { p_player_names: playerNames }) as { data: GalleryCard[] | null }
-  if (!cards?.length) return NextResponse.json([])
-
-  // 4. Index : norm(nom) → cartes[]
-  const byPlayer = new Map<string, GalleryCard[]>()
-  for (const c of cards) {
-    const key = norm(c.nom || '')
-    const arr = byPlayer.get(key) || []
-    arr.push(c)
-    byPlayer.set(key, arr)
+  for (const row of syncedImages || []) {
+    if (!results.has(row.entry_id)) results.set(row.entry_id, row.image_url)
   }
 
-  // 5. Matching strict : année + collection + variation
-  const y = setYear ?? 0
-  const yearStr = String(y)
-  const yearNext = y ? `${y}-${String(y + 1).slice(2)}` : ''
-  const yearPrev = y ? `${y - 1}-${yearStr.slice(2)}` : ''
-  const yearNextFull = y ? String(y + 1) : ''
-  const yearFull2 = y ? `${y}-${y + 1}` : ''
+  // ── ÉTAPE 2 : fuzzy match strict pour les entrées sans image synchée ──
+  const missing = entryIds.filter(id => !results.has(id))
+  if (missing.length > 0) {
+    // Détails des entrées manquantes (joueur, numéro de carte, variation)
+    const { data: entries } = await admin
+      .from('card_set_entries')
+      .select('id, player_name, card_number, variation')
+      .in('id', missing)
+    if (entries?.length) {
+      const playerNames = [...new Set(entries.map((e: any) => e.player_name.trim()))]
 
-  // Mots produit spécifiques du set (ex: ["mosaic"] pour "2024-25 Panini Mosaic")
-  const specificWords = setSpecificWords(setName)
+      // Toutes les cartes communauté pour ces joueurs (avec card_number maintenant)
+      const { data: cards } = await admin.rpc('get_cards_for_players', {
+        p_player_names: playerNames,
+      }) as { data: GalleryCard[] | null }
 
-  const results: { entry_id: number; image_url: string }[] = []
+      if (cards?.length) {
+        // Index joueur → cartes
+        const byPlayer = new Map<string, GalleryCard[]>()
+        for (const c of cards) {
+          const key = norm(c.nom || '')
+          const arr = byPlayer.get(key) || []
+          arr.push(c)
+          byPlayer.set(key, arr)
+        }
 
-  for (const entry of entries) {
-    const candidates = byPlayer.get(norm(entry.player_name)) || []
-    const matched = candidates.find(card => {
-      // Année stricte
-      if (y) {
-        const cardYear = (card.annee || '').trim()
-        if (cardYear && cardYear !== yearStr && cardYear !== yearNext &&
-            cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
+        const y = setYear ?? 0
+        const yearStr = String(y)
+        const yearNext = y ? `${y}-${String(y + 1).slice(2)}` : ''
+        const yearPrev = y ? `${y - 1}-${yearStr.slice(2)}` : ''
+        const yearNextFull = y ? String(y + 1) : ''
+        const yearFull2 = y ? `${y}-${y + 1}` : ''
+
+        // Mots produit spécifiques du set (ex: ["mosaic"])
+        const specificWords = getSetSpecificWords(setName)
+
+        for (const entry of entries as any[]) {
+          const candidates = byPlayer.get(norm(entry.player_name)) || []
+          const matched = candidates.find(card => {
+            // Année
+            if (y) {
+              const cardYear = (card.annee || '').trim()
+              if (cardYear && cardYear !== yearStr && cardYear !== yearNext &&
+                  cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
+            }
+
+            // Collection / marque : les mots spécifiques du set doivent être dans les champs de la carte
+            if (specificWords.length > 0) {
+              const cardText = norm(
+                (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
+              )
+              if (!specificWords.some(w => cardText.includes(w))) return false
+            } else if (setBrand && card.marque) {
+              // Pas de mot spécifique → vérifier au moins la brand parente
+              const normCardBrand = norm(card.marque)
+              const normSetBrand = norm(setBrand)
+              if (normCardBrand && normSetBrand && !normCardBrand.includes(normSetBrand) && !normSetBrand.includes(normCardBrand)) return false
+            }
+
+            // Numéro de carte : si les deux sont renseignés, ils doivent correspondre
+            if (entry.card_number && card.card_number) {
+              const nc = norm(entry.card_number), cc = norm(card.card_number)
+              if (nc && cc && nc !== cc) return false
+            }
+
+            // Variation (insert, parallel, etc.)
+            return matchVariation(card.variation || '', entry.variation || '')
+          })
+
+          if (matched?.image_recto) {
+            results.set(entry.id, matched.image_recto)
+          }
+        }
       }
-
-      // Collection stricte : les mots spécifiques du set doivent apparaître
-      // dans marque + collection + collection_tag de la carte
-      if (specificWords.length > 0) {
-        const cardText = norm(
-          (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
-        )
-        if (!specificWords.some(w => cardText.includes(w))) return false
-      } else if (setBrand) {
-        // Pas de mot spécifique → vérification parent-brand uniquement
-        const nb = normBrand(card.marque || ''), ns = normBrand(setBrand)
-        if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
-      }
-
-      return matchVariation(card.variation || '', entry.variation || '')
-    })
-    if (matched?.image_recto) {
-      results.push({ entry_id: entry.id, image_url: matched.image_recto })
     }
   }
 
-  return NextResponse.json(results)
+  return NextResponse.json(
+    [...results.entries()].map(([entry_id, image_url]) => ({ entry_id, image_url }))
+  )
 }
