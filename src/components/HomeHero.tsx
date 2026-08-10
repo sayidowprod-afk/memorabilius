@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
@@ -192,6 +193,7 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
           <div style={{ display: 'flex', gap: 15, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/sinscrire" className="btn-main btn-primary">{t('home_cta1')}</Link>
             <Link href="/annuaire" className="btn-main btn-secondary">{t('home_cta2')}</Link>
+            <RandomBinderButton dark={dark} lang={lang} />
           </div>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginTop: 22 }}>
             {(lang === 'fr'
@@ -315,5 +317,30 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
 
       <div className="section-title">{t('home_pepites')}</div>
     </>
+  )
+}
+
+function RandomBinderButton({ dark, lang }: { dark: boolean; lang: string }) {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+
+  const go = async () => {
+    if (loading) return
+    setLoading(true)
+    try {
+      const res = await fetch('/api/random-binder')
+      if (!res.ok) return
+      const { userId, binderId } = await res.json()
+      router.push(`/galerie/${userId}?tab=library&binder=${binderId}`)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <button onClick={go} disabled={loading} className="btn-main btn-secondary"
+      style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+      {loading ? '⏳' : '🎲'} {lang === 'fr' ? 'Classeur aléatoire' : 'Random binder'}
+    </button>
   )
 }

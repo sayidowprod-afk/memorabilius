@@ -170,6 +170,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [pageW, setPageW] = useState(PAGE_MAX_W)
   const stageRef = useRef<HTMLDivElement>(null)
   const pageH = Math.round(pageW * PAGE_RATIO)
+  const [binderFullscreen, setBinderFullscreen] = useState(false)
+  const binderFullscreenRef = useRef(false)
 
   const [shelfRowSize, setShelfRowSize] = useState(SHELF_ROW_SIZE)
   const shelfContainerRef = useRef<HTMLDivElement>(null)
@@ -194,15 +196,25 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const measure = () => {
       const avail = el.clientWidth - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
-      const byHeight = Math.floor((window.innerHeight * 0.74) / PAGE_RATIO) // ne dépasse pas l'écran
+      const hRatio = binderFullscreenRef.current ? 0.88 : 0.74
+      const byHeight = Math.floor((window.innerHeight * hRatio) / PAGE_RATIO)
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, byWidth, byHeight)))
     }
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(el)
     window.addEventListener('resize', measure)
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure) }
-  }, [selected])
+    const onKey = (e: KeyboardEvent) => {
+      if (!binderFullscreenRef.current) return
+      if (e.key === 'Escape') {
+        binderFullscreenRef.current = false
+        setBinderFullscreen(false)
+        try { screen.orientation.unlock() } catch {}
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => { ro.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('keydown', onKey) }
+  }, [selected, binderFullscreen])
 
   // Feuilletage à deux faces : la feuille tourne en continu de 0 à ±180°.
   // Face avant = page qui part, face arrière (pré-retournée) = page qui arrive.
@@ -1478,8 +1490,25 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setTimeout(() => { setCoverAnimating(false); setCoverAngle(0) }, 660)
   }
 
-  return (
-    <div>
+  const toggleFullscreen = () => {
+    const next = !binderFullscreen
+    binderFullscreenRef.current = next
+    setBinderFullscreen(next)
+    if (isMobile) {
+      try {
+        if (next) (screen.orientation as any).lock('landscape').catch(() => {})
+        else screen.orientation.unlock()
+      } catch {}
+    }
+  }
+
+  const binderViewContent = (
+    <div style={binderFullscreen ? {
+      position: 'fixed', inset: 0, zIndex: 9500,
+      background: dark ? '#111' : '#f0ede8',
+      overflowY: 'auto', padding: '12px 16px',
+      display: 'flex', flexDirection: 'column',
+    } : {}}>
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
           <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
@@ -1490,6 +1519,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {/* Desktop : toutes les actions en ligne */}
           {!isMobile && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+              <button onClick={toggleFullscreen} title={binderFullscreen ? 'Quitter le plein écran (Échap)' : 'Plein écran'}
+                style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                {binderFullscreen ? '⊡' : '⛶'}
+              </button>
               {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
               {!pendingCard && (
                 <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
@@ -1536,6 +1569,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {/* Mobile : icônes compactes + menu ··· pour les actions owner */}
           {isMobile && !pendingCard && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+              <button onClick={toggleFullscreen} title={binderFullscreen ? 'Quitter le plein écran' : 'Plein écran'}
+                style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                {binderFullscreen ? '⊡' : '⛶'}
+              </button>
               <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
               <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
               <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: '#666', lineHeight: 1 }}>
@@ -1789,4 +1826,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {binderForm}
     </div>
   )
+
+  return typeof document !== 'undefined' && binderFullscreen
+    ? createPortal(binderViewContent, document.body)
+    : binderViewContent
 }
