@@ -1,0 +1,95 @@
+name: Backup quotidien Memorabilius → R2
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 3h UTC = 4h Paris (hiver) / 5h (été)
+  workflow_dispatch:        # déclenchement manuel possible
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Télécharger le progress depuis R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CF_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          aws s3 cp "s3://${{ secrets.CF_R2_BUCKET }}/_meta/backup-progress.json" scripts/.backup-progress.json \
+            && echo "✅ Progress récupéré depuis R2" \
+            || echo "ℹ️  Aucun progress précédent, départ à zéro"
+
+      - name: Lancer le backup
+        id: backup
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          CF_R2_ACCOUNT_ID: ${{ secrets.CF_R2_ACCOUNT_ID }}
+          CF_R2_ACCESS_KEY_ID: ${{ secrets.CF_R2_ACCESS_KEY_ID }}
+          CF_R2_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
+          CF_R2_BUCKET: ${{ secrets.CF_R2_BUCKET }}
+        run: |
+          node scripts/backup-full.mjs 2>&1 | tee /tmp/backup-output.txt
+          SUMMARY=$(grep "Terminé" /tmp/backup-output.txt | tail -1 || echo "Backup terminé")
+          echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
+
+      - name: Sauvegarder le progress dans R2
+        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CF_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          if [ -f scripts/.backup-progress.json ]; then
+            aws s3 cp scripts/.backup-progress.json "s3://${{ secrets.CF_R2_BUCKET }}/_meta/backup-progress.json"
+            echo "✅ Progress sauvegardé dans R2"
+          fi
+
+      - name: Notification succès
+        if: success()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          DATE=$(date +'%d/%m/%Y')
+          SUMMARY="${{ steps.backup.outputs.summary }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"from\": \"Memorabilius <contact@memorabilius.fr>\",
+              \"to\": [\"contact@memorabilius.fr\"],
+              \"subject\": \"Backup quotidien reussi — $DATE\",
+              \"html\": \"<p><strong>$SUMMARY</strong></p><p><a href='$RUN_URL'>Voir les logs</a></p>\"
+            }"
+
+      - name: Notification échec
+        if: failure()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          DATE=$(date +'%d/%m/%Y')
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"from\": \"Memorabilius <contact@memorabilius.fr>\",
+              \"to\": [\"contact@memorabilius.fr\"],
+              \"subject\": \"ECHEC backup quotidien — $DATE\",
+              \"html\": \"<p>Le backup automatique a echoue.</p><p><a href='$RUN_URL'>Voir les logs GitHub Actions</a></p>\"
+            }"
