@@ -643,6 +643,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       }
       const cardNumValue = (s: string) => {
         if (!s) return Infinity
+        // "12/65" → trier par le tirage total (65), pas par le numéro de copie (12)
+        const slash = s.match(/\/(\d+)/)
+        if (slash) return parseInt(slash[1])
         const m = s.match(/(\d+)/)
         return m ? parseInt(m[1]) : Infinity
       }
