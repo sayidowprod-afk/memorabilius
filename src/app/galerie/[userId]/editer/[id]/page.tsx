@@ -76,7 +76,6 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     beckett_designation: '',
     storage_binder: '', storage_page: '', storage_slot: '',
     item_type: 'card',
-    valeur: '',
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -117,7 +116,6 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         storage_page: data.storage_page != null ? String(data.storage_page) : '',
         storage_slot: data.storage_slot || '',
         item_type: (data.item_type && data.item_type !== 'card') ? 'memorabilia' : 'card',
-        valeur: data.valeur != null ? String(data.valeur) : '',
       })
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
@@ -415,7 +413,6 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       storage_binder: form.storage_binder || null,
       storage_page: form.storage_page ? parseInt(form.storage_page) : null,
       storage_slot: form.storage_slot || null,
-      valeur: form.valeur !== '' ? parseFloat(form.valeur) : null,
     }).eq('id', id).eq('user_id', user.id)
 
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
@@ -698,23 +695,6 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               {lang === 'fr' ? 'Ajouter à la collection...' : 'Add to collection...'}
             </label>
             <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
-          </div>
-
-          {/* Valeur estimée */}
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Valeur estimée (€)' : 'Estimated value (€)'}
-            </label>
-            <div style={{ position: 'relative' }}>
-              <input type="number" min="0" step="0.01" value={form.valeur}
-                onChange={e => setForm({ ...form, valeur: e.target.value })}
-                placeholder={lang === 'fr' ? 'Ex : 149.99' : 'Ex: 149.99'}
-                style={{ paddingRight: 32 }} />
-              <span style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', color: '#aaa', fontWeight: 700, pointerEvents: 'none' }}>€</span>
-            </div>
-            <p style={{ fontSize: 11, color: '#bbb', margin: '4px 0 0' }}>
-              {lang === 'fr' ? 'Privé — visible uniquement dans vos stats et exports PDF.' : 'Private — only visible in your stats and PDF exports.'}
-            </p>
           </div>
 
           {/* Disponibilité vente / trade */}

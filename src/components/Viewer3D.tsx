@@ -40,7 +40,7 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -57,6 +57,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
   onProposeTrade?: () => void
+  cardValue?: number
+  onValueSave?: (val: number | null) => void
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
@@ -68,6 +70,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const [tagInput, setTagInput] = useState(popup.collection_tag || '')
   const [tagSaving, setTagSaving] = useState(false)
+  const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
 
   const saveTag = async () => {
     if (!onCollectionTagChange) return
@@ -949,6 +952,34 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               >
                 {addState === 'loading' ? '...' : addState === 'added' ? (lang === 'fr' ? '✓ Ajoutée à ta galerie !' : '✓ Added to your gallery!') : addState === 'duplicate' ? (lang === 'fr' ? 'Déjà dans ta galerie' : 'Already in your gallery') : (lang === 'fr' ? '+ J\'ai cette carte' : '+ I have this card')}
               </button>
+            </div>
+          )}
+
+          {onValueSave && (
+            <div style={{ borderTop: `1px solid ${borderColor}`, paddingTop: 14, marginTop: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1, whiteSpace: 'nowrap' }}>Valeur est.</span>
+              <div style={{ position: 'relative', flex: 1, maxWidth: 140 }}>
+                <input
+                  type="number" min="0" step="0.01"
+                  value={valeurInput}
+                  onChange={e => setValeurInput(e.target.value)}
+                  onBlur={() => {
+                    const v = valeurInput.trim()
+                    onValueSave(v === '' ? null : parseFloat(v))
+                  }}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') {
+                      const v = valeurInput.trim()
+                      onValueSave(v === '' ? null : parseFloat(v))
+                      ;(e.target as HTMLInputElement).blur()
+                    }
+                  }}
+                  placeholder="0.00"
+                  style={{ width: '100%', padding: '5px 28px 5px 8px', borderRadius: 7, border: `1px solid ${borderColor}`, fontSize: 13, fontWeight: 700, background: dark ? '#222' : '#fafafa', color: textColor, boxSizing: 'border-box' }}
+                />
+                <span style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', color: '#aaa', fontSize: 12, fontWeight: 700, pointerEvents: 'none' }}>€</span>
+              </div>
+              <span style={{ fontSize: 10, color: '#bbb' }}>Privé</span>
             </div>
           )}
 

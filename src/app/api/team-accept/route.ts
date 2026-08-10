@@ -31,12 +31,15 @@ export async function POST(req: NextRequest) {
   }
 
   if (action === 'accept') {
-    // L'ajout au team_members doit réussir AVANT de marquer la candidature comme acceptée,
-    // sinon on se retrouve avec une candidature "acceptée" mais personne n'est membre.
-    const { error: memberError } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
-    // 23505 = violation de contrainte unique → déjà membre, on continue (idempotent)
-    if (memberError && memberError.code !== '23505') {
-      return NextResponse.json({ error: memberError.message }, { status: 500 })
+    // Vérifier d'abord si l'utilisateur est déjà membre de cette team (idempotent)
+    const { data: alreadyMember } = await supabase.from('team_members')
+      .select('user_id').eq('team_id', teamId).eq('user_id', userId).single()
+
+    if (!alreadyMember) {
+      const { error: memberError } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
+      if (memberError) {
+        return NextResponse.json({ error: memberError.message }, { status: 500 })
+      }
     }
 
     const { error: candError } = await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)
