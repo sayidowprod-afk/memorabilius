@@ -252,7 +252,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const check = () => setIsMobile(window.innerWidth < 560)
     check()
     window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
+    const onFsChange = () => {
+      if (!document.fullscreenElement && binderFullscreenRef.current) {
+        binderFullscreenRef.current = false
+        setBinderFullscreen(false)
+        try { screen.orientation.unlock() } catch {}
+      }
+    }
+    document.addEventListener('fullscreenchange', onFsChange)
+    return () => {
+      window.removeEventListener('resize', check)
+      document.removeEventListener('fullscreenchange', onFsChange)
+    }
   }, [])
 
   const loadBinders = async () => {
@@ -1491,24 +1502,81 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const toggleFullscreen = () => {
-    const next = !binderFullscreen
-    binderFullscreenRef.current = next
-    setBinderFullscreen(next)
-    if (isMobile) {
-      try {
-        if (next) (screen.orientation as any).lock('landscape').catch(() => {})
-        else screen.orientation.unlock()
-      } catch {}
+    if (!binderFullscreen) {
+      binderFullscreenRef.current = true
+      setBinderFullscreen(true)
+      document.documentElement.requestFullscreen?.().catch(() => {})
+      if (isMobile) {
+        try { (screen.orientation as any).lock('landscape').catch(() => {}) } catch {}
+      }
+    } else {
+      binderFullscreenRef.current = false
+      setBinderFullscreen(false)
+      if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {})
+      try { screen.orientation.unlock() } catch {}
     }
   }
+
+  const pageLabel = (() => {
+    if (!selected || !isOpen) return ''
+    const cnt = selected.page_count
+    const l = leftFace(pageIndex), r = rightFace(pageIndex)
+    if (isRings) {
+      const parts: string[] = []
+      if (l) parts.push(`Feuille ${l.page} (dos)`)
+      if (r) parts.push(`Feuille ${r.page} (recto)`)
+      return `${parts.join(' · ') || 'Couverture'} / ${cnt}`
+    }
+    const label = l && r ? `Pages ${l.page}–${r.page}` : r ? `Page ${r.page}` : l ? `Page ${l.page}` : 'Couverture'
+    return `${label} / ${cnt}`
+  })()
+
+  const fsArrowStyle = (side: 'left' | 'right', enabled: boolean): React.CSSProperties => ({
+    position: 'absolute',
+    ...(side === 'left' ? { left: 12 } : { right: 12 }),
+    top: '50%', transform: 'translateY(-50%)',
+    zIndex: 10, width: 52, height: 88, borderRadius: 14,
+    background: 'rgba(255,255,255,0.07)', border: 'none',
+    cursor: enabled ? 'pointer' : 'default',
+    color: 'rgba(255,255,255,0.9)', fontSize: 38,
+    opacity: enabled ? 0.85 : 0.12,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    transition: 'opacity 0.15s', backdropFilter: 'blur(6px)',
+    WebkitBackdropFilter: 'blur(6px)',
+  })
 
   const binderViewContent = (
     <div style={binderFullscreen ? {
       position: 'fixed', inset: 0, zIndex: 9500,
-      background: dark ? '#111' : '#f0ede8',
-      overflowY: 'auto', padding: '12px 16px',
+      background: '#0e0e10',
       display: 'flex', flexDirection: 'column',
+      overflow: 'hidden',
     } : {}}>
+
+      {/* ── FULLSCREEN HEADER overlay ── */}
+      {binderFullscreen && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, zIndex: 20,
+          padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)',
+          pointerEvents: 'none',
+        }}>
+          <span style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 700, fontSize: 14, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {selected.name}
+          </span>
+          <button onClick={toggleFullscreen}
+            style={{
+              pointerEvents: 'auto',
+              background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.18)',
+              borderRadius: 8, padding: '5px 14px', cursor: 'pointer',
+              color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: 600,
+              backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+            }}>✕ Quitter</button>
+        </div>
+      )}
+
+      {/* ── NORMAL HEADER ── */}
+      {!binderFullscreen && (
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
           <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
@@ -1519,9 +1587,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {/* Desktop : toutes les actions en ligne */}
           {!isMobile && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-              <button onClick={toggleFullscreen} title={binderFullscreen ? 'Quitter le plein écran (Échap)' : 'Plein écran'}
+              <button onClick={toggleFullscreen} title="Plein écran"
                 style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
-                {binderFullscreen ? '⊡' : '⛶'}
+                ⛶
               </button>
               {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
               {!pendingCard && (
@@ -1627,15 +1695,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           )}
         </div>
       </div>
+      )}
 
-      {pendingCard && (
+      {!binderFullscreen && pendingCard && (
         <div style={{ background: '#f0f4ff', border: `1px solid ${accent}44`, borderRadius: 10, padding: '10px 14px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
           <img src={pendingCard.img} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 3 }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Clique une pochette vide pour ranger « {pendingCard.nom} »</span>
         </div>
       )}
 
-      <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: coverH + 40, perspective: 1600 }}>
+      {/* Stage area — in fullscreen wraps with side arrows */}
+      <div style={binderFullscreen ? { flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' } : {}}>
+        {binderFullscreen && isOpen && (
+          <button style={fsArrowStyle('left', canPrev)}
+            onClick={() => { if (canPrev) clickFlip('prev') }} aria-label="Page précédente">‹</button>
+        )}
+
+        <div ref={stageRef} style={{ ...(binderFullscreen ? { maxWidth: 'calc(100% - 160px)', width: '100%' } : {}), background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: coverH + 40, perspective: 1600 }}>
         {!isOpen ? (
           /* ── Classeur fermé : on voit la couverture (pivote à l'ouverture) ── */
           <div onClick={openTheBinder} title="Ouvrir le classeur" style={{
@@ -1714,6 +1790,28 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
       </div>
 
+        {binderFullscreen && isOpen && (
+          <button style={fsArrowStyle('right', canNext)}
+            onClick={() => { if (canNext) clickFlip('next') }} aria-label="Page suivante">›</button>
+        )}
+      </div>
+
+      {/* ── FULLSCREEN bottom bar ── */}
+      {binderFullscreen && (
+        <div style={{ padding: '12px 0 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+          {!isOpen ? (
+            <button onClick={openTheBinder}
+              style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 10, padding: '8px 20px', cursor: 'pointer', color: 'rgba(255,255,255,0.8)', fontSize: 13, fontWeight: 600, backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}>
+              Ouvrir le classeur
+            </button>
+          ) : (
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.04em' }}>{pageLabel}</span>
+          )}
+        </div>
+      )}
+
+      {/* ── NORMAL bottom nav ── */}
+      {!binderFullscreen && (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
         {!isOpen ? (
           <>
@@ -1729,20 +1827,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? 'Page précédente' : 'Fermer'}>
               ←<span className="binder-nav-label"> {canPrev ? 'Page précédente' : 'Fermer'}</span>
             </button>
-            <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>
-              {(() => {
-                const cnt = selected.page_count
-                const l = leftFace(pageIndex), r = rightFace(pageIndex)
-                if (isRings) {
-                  const parts: string[] = []
-                  if (l) parts.push(`Feuille ${l.page} (dos)`)
-                  if (r) parts.push(`Feuille ${r.page} (recto)`)
-                  return `${parts.join(' · ') || 'Couverture'} / ${cnt}`
-                }
-                const label = l && r ? `Pages ${l.page}–${r.page}` : r ? `Page ${r.page}` : l ? `Page ${l.page}` : 'Couverture'
-                return `${label} / ${cnt}`
-              })()}
-            </span>
+            <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>{pageLabel}</span>
             <div style={{ display: 'flex', gap: 8 }}>
               {isOwner && !canNext && (
                 <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
@@ -1757,6 +1842,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </>
         )}
       </div>
+      )}
 
       {pickerTarget && (
         <CardPicker
