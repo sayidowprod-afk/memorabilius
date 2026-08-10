@@ -197,7 +197,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const avail = el.clientWidth - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
       const byHeight = binderFullscreenRef.current
-        ? Math.floor((window.innerHeight - 120) / PAGE_RATIO)   // soustrait bottom-bar (~48px) + padding stage (68px)
+        ? Math.floor((window.innerHeight - 115) / PAGE_RATIO)   // header(~42) + bottom-bar(~48) + padding stage(20) + marge
         : Math.floor((window.innerHeight * 0.74) / PAGE_RATIO)
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, byWidth, byHeight)))
     }
@@ -1534,44 +1534,41 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const fsArrowStyle = (side: 'left' | 'right', enabled: boolean): React.CSSProperties => ({
     position: 'absolute',
-    ...(side === 'left' ? { left: 12 } : { right: 12 }),
+    ...(side === 'left' ? { left: 8 } : { right: 8 }),
     top: '50%', transform: 'translateY(-50%)',
-    zIndex: 10, width: 52, height: 88, borderRadius: 14,
-    background: 'rgba(255,255,255,0.07)', border: 'none',
+    zIndex: 10, width: 40, height: 64, borderRadius: 10,
+    background: dark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.09)',
+    border: 'none',
     cursor: enabled ? 'pointer' : 'default',
-    color: 'rgba(255,255,255,0.9)', fontSize: 38,
-    opacity: enabled ? 0.85 : 0.12,
+    color: dark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.5)',
+    fontSize: 28,
+    opacity: enabled ? 1 : 0.15,
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    transition: 'opacity 0.15s', backdropFilter: 'blur(6px)',
-    WebkitBackdropFilter: 'blur(6px)',
+    transition: 'opacity 0.15s',
   })
 
   const binderViewContent = (
     <div style={binderFullscreen ? {
       position: 'fixed', inset: 0, zIndex: 9500,
-      background: '#0e0e10',
+      background: dark ? '#1a1a1a' : '#efede8',
       display: 'flex', flexDirection: 'column',
-      overflow: 'hidden',
     } : {}}>
 
-      {/* ── FULLSCREEN HEADER overlay ── */}
+      {/* ── FULLSCREEN HEADER ── */}
       {binderFullscreen && (
         <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, zIndex: 20,
-          padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)',
-          pointerEvents: 'none',
+          flexShrink: 0,
+          padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 12,
+          borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)'}`,
         }}>
-          <span style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 700, fontSize: 14, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <span style={{ color: dark ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.6)', fontWeight: 700, fontSize: 13, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {selected.name}
           </span>
           <button onClick={toggleFullscreen}
             style={{
-              pointerEvents: 'auto',
-              background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.18)',
-              borderRadius: 8, padding: '5px 14px', cursor: 'pointer',
-              color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: 600,
-              backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+              background: 'none', border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)'}`,
+              borderRadius: 7, padding: '4px 12px', cursor: 'pointer',
+              color: dark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)', fontSize: 12, fontWeight: 600,
             }}>✕ Quitter</button>
         </div>
       )}
@@ -1712,7 +1709,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             onClick={() => { if (canPrev) clickFlip('prev') }} aria-label="Page précédente">‹</button>
         )}
 
-        <div ref={stageRef} style={{ ...(binderFullscreen ? { maxWidth: 'calc(100% - 160px)', width: '100%' } : {}), background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: binderFullscreen ? 12 : 16, padding: binderFullscreen ? '18px 16px' : '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: binderFullscreen ? 0 : coverH + 40, perspective: 1600 }}>
+        <div ref={stageRef} style={{ ...(binderFullscreen ? { width: '100%' } : {}), background: binderFullscreen ? 'transparent' : 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: binderFullscreen ? 0 : 16, padding: binderFullscreen ? '10px 8px' : '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: binderFullscreen ? 0 : coverH + 40, perspective: 1600 }}>
         {!isOpen ? (
           /* ── Classeur fermé : on voit la couverture (pivote à l'ouverture) ── */
           <div onClick={openTheBinder} title="Ouvrir le classeur" style={{
