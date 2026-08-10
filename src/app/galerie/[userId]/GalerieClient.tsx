@@ -220,10 +220,10 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
         <div
           {...listeners}
           style={{
-            position: 'absolute', bottom: 6, right: 6, zIndex: 10,
-            width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: 'rgba(0,0,0,0.45)', borderRadius: 6, cursor: 'grab',
-            touchAction: 'none', color: 'white', fontSize: 16, lineHeight: 1,
+            position: 'absolute', bottom: 4, right: 4, zIndex: 10,
+            width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(0,0,0,0.45)', borderRadius: 8, cursor: 'grab',
+            touchAction: 'none', color: 'white', fontSize: 18, lineHeight: 1,
             userSelect: 'none',
           }}
         >
@@ -1099,7 +1099,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             )}
           </button>
           {colorPickerTag === tag && (
-            <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 220 }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', right: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 'min(220px, calc(100vw - 24px))' }}>
               <input
                 value={renameValue}
                 onChange={e => setRenameValue(e.target.value)}
@@ -1928,7 +1928,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         `}</style>
         
         {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, env(safe-area-inset-bottom))', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
@@ -1988,7 +1988,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         )}
 
         {mounted && qrMode && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, env(safe-area-inset-bottom))', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
                 ? '▦ Clique sur des cartes pour les sélectionner'
@@ -2331,8 +2331,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 8500,
           background: dark ? '#0d1432' : 'white',
           borderTop: dark ? '1px solid rgba(0,120,255,0.2)' : '1px solid rgba(0,61,166,0.12)',
-          padding: '14px 20px',
-          display: 'flex', alignItems: 'center', gap: 14,
+          padding: '14px 20px', paddingBottom: 'max(14px, env(safe-area-inset-bottom))',
+          display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap',
           boxShadow: '0 -4px 24px rgba(0,0,0,0.12)',
         }}>
           <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: dark ? '#e8eeff' : '#0a2a6b', lineHeight: 1.4 }}>

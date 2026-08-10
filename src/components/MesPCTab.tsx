@@ -212,13 +212,13 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
                             background: owned ? 'rgba(39,174,96,0.08)' : 'transparent',
                           }}>
                             <div style={{
-                              width: 16, height: 16, borderRadius: 4, flexShrink: 0,
+                              width: 24, height: 24, borderRadius: 6, flexShrink: 0,
                               border: owned ? '2px solid #27ae60' : `2px solid ${border}`,
                               background: owned ? '#27ae60' : 'transparent',
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
                               opacity: saving === entry.id ? 0.5 : 1, transition: 'all 0.15s',
                             }}>
-                              {owned && <span style={{ color: 'white', fontSize: 10, lineHeight: 1 }}>✓</span>}
+                              {owned && <span style={{ color: 'white', fontSize: 12, lineHeight: 1 }}>✓</span>}
                             </div>
                             {entry.card_number && (
                               <span style={{ fontSize: 11, fontWeight: 800, color: muted, minWidth: 32 }}>#{entry.card_number}</span>

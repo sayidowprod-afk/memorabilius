@@ -35,10 +35,11 @@ function EmojiPicker({ onPick, accent, dark }: { onPick: (e: string) => void; ac
       }} title="Emojis">😊</button>
       {open && (
         <div style={{
-          position: 'absolute', bottom: '110%', left: 0, zIndex: 100,
+          position: 'absolute', bottom: '110%', right: 0, zIndex: 100,
           background: popupBg, borderRadius: 12, padding: 10,
           boxShadow: '0 8px 30px rgba(0,0,0,0.3)', border: `1px solid ${popupBorder}`,
-          display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: 2, width: 280,
+          display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: 2,
+          width: 'min(280px, calc(100vw - 24px))',
         }}>
           {EMOJIS.map(e => (
             <button key={e} type="button" onClick={() => { onPick(e); setOpen(false) }} style={{

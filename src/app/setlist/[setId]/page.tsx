@@ -58,6 +58,13 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [mySetCards, setMySetCards] = useState<{ id: string; image: string; nom: string; variation: string }[]>([])
   const [previewCard, setPreviewCard] = useState<{ image: string; nom: string; variation: string } | null>(null)
   const [copied, setCopied] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 600)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
   const playerToImgRef = useRef<Map<string, string>>(new Map())
 
   useEffect(() => {
@@ -540,8 +547,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                     <div style={{ padding: '20px', textAlign: 'center', color: '#aaa', fontSize: 13 }}>Chargement...</div>
                   ) : (
                     <>
-                      <div style={{ display: 'grid', gridTemplateColumns: '52px 44px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
-                        <span>#</span><span></span><span>Joueur</span><span>Équipe</span><span></span>
+                      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
+                        <span>#</span><span></span><span>Joueur</span>{!isMobile && <span>Équipe</span>}<span></span>
                       </div>
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
@@ -550,7 +557,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                         const communityImg = entry.image_url || communityImages.get(entry.id)
                         return (
                         <div key={entry.id}
-                          style={{ display: 'grid', gridTemplateColumns: '52px 44px 1fr 140px 36px', padding: '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
+                          style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: isMobile ? '6px 12px' : '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
                           <span style={{ fontSize: 12, color: '#bbb', fontWeight: 700 }}>{entry.card_number || '—'}</span>
                           <div style={{ width: 36, height: 50, flexShrink: 0 }}>
                             {communityImg ? (
@@ -565,10 +572,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                             {entry.is_rc && <span style={{ fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px', flexShrink: 0 }}>RC</span>}
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
                           </div>
-                          <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>
+                          {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
                           {userId ? (
                             <button onClick={() => toggleOwned(entry, variation.name)} disabled={saving === entry.id}
-                              style={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid', borderColor: entry.owned ? '#2ecc71' : (dark ? '#444' : '#ddd'), background: entry.owned ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: entry.owned ? 'white' : '#ccc', fontWeight: 900, fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: saving === entry.id ? 0.5 : 1 }}>
+                              style={{ width: 34, height: 34, borderRadius: '50%', border: '2px solid', borderColor: entry.owned ? '#2ecc71' : (dark ? '#444' : '#ddd'), background: entry.owned ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: entry.owned ? 'white' : '#ccc', fontWeight: 900, fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: saving === entry.id ? 0.5 : 1 }}>
                               ✓
                             </button>
                           ) : <span />}

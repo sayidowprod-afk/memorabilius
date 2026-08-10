@@ -1058,9 +1058,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     onClick={e => { e.stopPropagation(); removeCard(page, idx) }}
                     title="Retirer du classeur"
                     style={{
-                      position: 'absolute', top: 3, right: 3, width: 18, height: 18, borderRadius: '50%',
+                      position: 'absolute', top: 2, right: 2, width: isMobile ? 26 : 20, height: isMobile ? 26 : 20, borderRadius: '50%',
                       background: 'rgba(0,0,0,0.55)', color: 'white', border: 'none', fontSize: 11, lineHeight: 1,
-                      cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0,
+                      cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: isMobile ? 1 : 0,
                     }}
                     className="binder-slot-remove"
                   >✕</button>
@@ -1183,7 +1183,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             {BINDER_COLORS.map(c => (
               <button key={c} onClick={() => setFColor(c)} style={{
-                width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
+                width: 36, height: 36, borderRadius: '50%', cursor: 'pointer', background: c,
                 border: fColor === c ? `3px solid ${accent}` : '3px solid transparent',
                 boxShadow: fColor === c ? 'none' : '0 0 0 1px #ddd',
               }} />
@@ -1193,7 +1193,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               onClick={() => binderColorInputRef.current?.click()}
               title="Couleur personnalisée"
               style={{
-                width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', padding: 0, border: 'none',
+                width: 36, height: 36, borderRadius: '50%', cursor: 'pointer', padding: 0, border: 'none',
                 background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
                 boxShadow: !BINDER_COLORS.includes(fColor) ? `0 0 0 3px ${accent}` : '0 0 0 1px #ddd',
                 flexShrink: 0,
@@ -1376,15 +1376,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                         {FOLDER_SHELF_COLORS.map(c => (
                           <div key={c} onClick={() => saveFolderColor(section.folder!, c)} title={c}
                             style={{
-                              width: 14, height: 14, borderRadius: '50%', background: c, cursor: 'pointer', flexShrink: 0,
+                              width: 20, height: 20, borderRadius: '50%', background: c, cursor: 'pointer', flexShrink: 0,
                               border: c === (section.folder!.color || FOLDER_SHELF_COLORS[0]) ? '2.5px solid white' : '2.5px solid rgba(255,255,255,0.2)',
                             }}
                           />
                         ))}
                         {/* Couleur personnalisée pour le dossier */}
-                        <label title="Couleur personnalisée" style={{ position: 'relative', width: 14, height: 14, flexShrink: 0, cursor: 'pointer' }}>
+                        <label title="Couleur personnalisée" style={{ position: 'relative', width: 20, height: 20, flexShrink: 0, cursor: 'pointer' }}>
                           <div style={{
-                            width: 14, height: 14, borderRadius: '50%',
+                            width: 20, height: 20, borderRadius: '50%',
                             background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
                             border: !FOLDER_SHELF_COLORS.includes(section.folder!.color || '') ? '2.5px solid white' : '2.5px solid rgba(255,255,255,0.2)',
                           }} />
@@ -1653,7 +1653,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                       {sorting ? '⏳ Tri…' : '⇅ Trier'}
                     </button>
                     {showSortMenu && (
-                      <div onMouseLeave={() => setShowSortMenu(false)}
+                      <>
+                        {/* overlay transparent pour fermer au tap sur mobile */}
+                        <div style={{ position: 'fixed', inset: 0, zIndex: 199 }} onClick={() => setShowSortMenu(false)} />
+                      <div onMouseLeave={() => !isMobile && setShowSortMenu(false)}
                         style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}>
                         {([
                           ['nom_asc',    'Nom  A → Z'],
@@ -1670,6 +1673,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                             onMouseLeave={e => (e.currentTarget.style.background = 'none')}>{label}</button>
                         ))}
                       </div>
+                      </>
                     )}
                   </div>
                   <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
