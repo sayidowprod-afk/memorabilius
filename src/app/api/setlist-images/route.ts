@@ -34,12 +34,18 @@ const EXPAND: Record<string, string> = {
 }
 const expandWord = (w: string) => EXPAND[w] ?? w
 
-// Mots trop génériques pour discriminer deux sets du même parent brand
-const GENERIC_WORDS = new Set([
-  'topps', 'panini', 'upper', 'deck', 'leaf', 'donruss', 'fleer', 'score',
+// Mots parent-brand et sport — pas les sous-produits spécifiques (Mosaic, Prizm, etc.)
+const PARENT_WORDS = new Set([
+  'panini', 'topps', 'upper', 'deck', 'leaf', 'fleer',
   'basketball', 'baseball', 'football', 'hockey', 'soccer',
-  'nba', 'nfl', 'mlb', 'nhl', 'trading', 'cards', 'card',
+  'nba', 'nfl', 'mlb', 'nhl', 'trading', 'cards', 'card', 'sport', 'sports',
 ])
+
+// Mots spécifiques du set (ex: ["mosaic"] pour "2024-25 Panini Mosaic")
+function setSpecificWords(setName: string): string[] {
+  return setName.toLowerCase().split(/[^a-z0-9]+/)
+    .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
+}
 
 function matchVariation(cardVar: string, entryVar: string): boolean {
   const cv = (cardVar || '').trim()
@@ -53,27 +59,6 @@ function matchVariation(cardVar: string, entryVar: string): boolean {
   if (cWords.size === 0 || eWords.size === 0) return false
   if (![...cWords].every(w => eWords.has(w))) return false
   return cWords.size / eWords.size >= 0.5
-}
-
-function matchCollection(cardCollection: string, cardCollectionTag: string, setName: string): boolean {
-  const collToTest = (cardCollection || cardCollectionTag || '').trim()
-  if (!collToTest) return true // pas de contrainte si non renseigné
-
-  const setNorm = norm(setName)
-  const allWords = words(collToTest)
-  if (allWords.length === 0) return true
-
-  // Mots spécifiques au produit (hors brand générique)
-  const specificWords = allWords.filter(w => !GENERIC_WORDS.has(w))
-
-  if (specificWords.length > 0) {
-    // Si la carte a un mot spécifique (ex. "chrome", "bowman", "prizm"),
-    // il doit apparaître dans le nom du set
-    return specificWords.some(w => setNorm.includes(w))
-  }
-  // Si la collection ne contient que des mots génériques (ex. "Topps"),
-  // on ne peut pas discriminer → on laisse passer (brand + année suffisent)
-  return true
 }
 
 interface GalleryCard {
@@ -111,7 +96,7 @@ export async function POST(req: NextRequest) {
     byPlayer.set(key, arr)
   }
 
-  // 5. Matching identique à set-sync pour chaque entrée
+  // 5. Matching strict : année + collection + variation
   const y = setYear ?? 0
   const yearStr = String(y)
   const yearNext = y ? `${y}-${String(y + 1).slice(2)}` : ''
@@ -119,29 +104,34 @@ export async function POST(req: NextRequest) {
   const yearNextFull = y ? String(y + 1) : ''
   const yearFull2 = y ? `${y}-${y + 1}` : ''
 
+  // Mots produit spécifiques du set (ex: ["mosaic"] pour "2024-25 Panini Mosaic")
+  const specificWords = setSpecificWords(setName)
+
   const results: { entry_id: number; image_url: string }[] = []
 
   for (const entry of entries) {
     const candidates = byPlayer.get(norm(entry.player_name)) || []
     const matched = candidates.find(card => {
+      // Année stricte
       if (y) {
         const cardYear = (card.annee || '').trim()
         if (cardYear && cardYear !== yearStr && cardYear !== yearNext &&
             cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
       }
-      if (card.marque) {
-        const normCardRaw = norm(card.marque).replace('america', '').replace('sports', '')
-        const normSetNameVal = norm(setName)
-        if (BRAND_PARENT[normCardRaw]) {
-          // Marque spécifique (ex: "Donruss", "Mosaic") — doit apparaître dans le nom du set
-          if (!normSetNameVal.includes(normCardRaw)) return false
-        } else if (setBrand) {
-          // Marque générique (ex: "Panini", "Topps") — comparer les parents
-          const nb = normBrand(card.marque), ns = normBrand(setBrand)
-          if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
-        }
+
+      // Collection stricte : les mots spécifiques du set doivent apparaître
+      // dans marque + collection + collection_tag de la carte
+      if (specificWords.length > 0) {
+        const cardText = norm(
+          (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
+        )
+        if (!specificWords.some(w => cardText.includes(w))) return false
+      } else if (setBrand) {
+        // Pas de mot spécifique → vérification parent-brand uniquement
+        const nb = normBrand(card.marque || ''), ns = normBrand(setBrand)
+        if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
       }
-      if (!matchCollection(card.collection || '', card.collection_tag || '', setName)) return false
+
       return matchVariation(card.variation || '', entry.variation || '')
     })
     if (matched?.image_recto) {

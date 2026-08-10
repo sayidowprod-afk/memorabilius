@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, use, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { playerSlug } from '@/lib/playerSlug'
@@ -429,9 +430,9 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         </div>
       )}
 
-      {/* Modal preview carte galerie */}
-      {previewCard && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+      {/* Modal preview carte galerie — portal pour échapper au stacking context */}
+      {previewCard && createPortal(
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
           onClick={() => setPreviewCard(null)}>
           <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 22, padding: '28px 24px', maxWidth: 320, width: '100%', textAlign: 'center', boxShadow: '0 16px 48px rgba(0,0,0,0.4)' }}
             onClick={e => e.stopPropagation()}>
@@ -446,7 +447,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               Fermer
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Filtres */}
