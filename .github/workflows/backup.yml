@@ -15,7 +15,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Installer les dépendances
@@ -42,6 +42,7 @@ jobs:
           CF_R2_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
           CF_R2_BUCKET: ${{ secrets.CF_R2_BUCKET }}
         run: |
+          set -o pipefail
           node scripts/backup-full.mjs 2>&1 | tee /tmp/backup-output.txt
           SUMMARY=$(grep "Terminé" /tmp/backup-output.txt | tail -1 || echo "Backup terminé")
           echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
