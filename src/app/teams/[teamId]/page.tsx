@@ -382,8 +382,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const postuler = async () => {
     if (!currentUser) { router.push('/connexion'); return }
-    await supabase.from('team_candidatures').insert({ team_id: parseInt(teamId), user_id: currentUser })
-    setHasCandidature(true)
+    // Supprimer une éventuelle ancienne candidature (bug d'acceptation) avant d'en créer une nouvelle
+    await supabase.from('team_candidatures').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser).neq('statut', 'en_attente')
+    const { error } = await supabase.from('team_candidatures').insert({ team_id: parseInt(teamId), user_id: currentUser })
+    if (!error) setHasCandidature(true)
   }
 
   const accepterCandidature = async (cand: any) => {

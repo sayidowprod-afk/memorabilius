@@ -238,8 +238,7 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
 const PAGE_SIZE = 24
 
 function cardThumb(url: string): string {
-  if (!url || !url.includes('.supabase.co/storage/v1/object/public/')) return url
-  return url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=300&quality=70&resize=contain'
+  return url
 }
 
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
