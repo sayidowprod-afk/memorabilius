@@ -1,0 +1,1 @@
+ALTER TABLE cartes_manuelles ADD COLUMN IF NOT EXISTS valeur DECIMAL;

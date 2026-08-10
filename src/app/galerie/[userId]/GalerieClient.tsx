@@ -283,6 +283,7 @@ interface Card {
   isManuelle?: boolean; disponible_vente?: boolean; beckett_designation?: string; item_type?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
+  valeur?: number;
 }
 
 export default function GalerieClient({ userId, initialCardUrl }: { userId: string; initialCardUrl?: string }) {
@@ -340,7 +341,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [loaded, setLoaded] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
-  const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
+  const cardValues = useMemo(() => {
+    const map = new Map<string, number>()
+    for (const c of cards) {
+      if (c.isManuelle && c.valeur != null) map.set(c.f, c.valeur)
+    }
+    return map
+  }, [cards])
   const [editMode, setEditMode] = useState(false)
   const [qrMode, setQrMode] = useState(false)
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
@@ -436,10 +443,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     supabase.from('cartes_privees').select('card_key').eq('user_id', userId)
       .then(({ data }) => {
         if (data) setPrivateCards(new Set(data.map((d: any) => d.card_key)))
-      })
-    supabase.from('card_values').select('card_key,valeur').eq('user_id', userId)
-      .then(({ data }) => {
-        if (data) setCardValues(new Map(data.map((d: any) => [d.card_key, d.valeur])))
       })
   }, [userId])
 
@@ -574,6 +577,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         created_at: m.created_at || '', position: m.position ?? 9999,
         collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
+        valeur: m.valeur ?? undefined,
       })
 
       const applyAndShow = (manuelles: any[], ccMap: Map<string, string[]>) => {
@@ -1407,7 +1411,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {/* Stats de collection */}
         {showStats && loaded && (
-          <CollectionStats cards={cards} accent={accent} />
+          <CollectionStats cards={cards} accent={accent} totalValeur={isOwner ? Array.from(cardValues.values()).reduce((a, b) => a + b, 0) : undefined} />
         )}
 
         {/* Grail Wall */}

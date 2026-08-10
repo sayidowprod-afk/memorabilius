@@ -9,6 +9,7 @@ interface Card {
 interface Props {
   cards: Card[]
   accent: string
+  totalValeur?: number
 }
 
 function top<T extends string>(arr: T[], n = 6): { label: T; count: number }[] {
@@ -37,7 +38,7 @@ function Bar({ label, count, max, color }: { label: string; count: number; max: 
   )
 }
 
-export default function CollectionStats({ cards, accent }: Props) {
+export default function CollectionStats({ cards, accent, totalValeur }: Props) {
   const stats = useMemo(() => {
     const total = cards.length
     const graded = cards.filter(c => c.g && c.g !== 'Raw' && c.g !== 'Non gradée' && c.g !== '')
@@ -93,6 +94,12 @@ export default function CollectionStats({ cards, accent }: Props) {
             <div style={{ fontSize: 9, fontWeight: 700, color: '#aaa', textTransform: 'uppercase' }}>{s.label}</div>
           </div>
         ))}
+        {totalValeur != null && totalValeur > 0 && (
+          <div style={{ textAlign: 'center', minWidth: 50 }}>
+            <div style={{ fontSize: 24, fontWeight: 900, color: '#27ae60' }}>{totalValeur % 1 === 0 ? totalValeur : totalValeur.toFixed(2)}€</div>
+            <div style={{ fontSize: 9, fontWeight: 700, color: '#aaa', textTransform: 'uppercase' }}>Valeur est.</div>
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '18px 32px' }}>
