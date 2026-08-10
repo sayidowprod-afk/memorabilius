@@ -1,13 +1,7 @@
-const CACHE_NAME = 'memorabilius-v3'
-const STATIC_ASSETS = [
-  '/',
-  '/annuaire',
-  '/trades',
-  '/teams',
-  '/manifest.json',
-  '/favicon.ico',
-  '/offline.html',
-]
+const CACHE_NAME = 'memorabilius-v4'
+
+// Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
+const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -53,25 +47,11 @@ self.addEventListener('notificationclick', (event) => {
   )
 })
 
+// Fetch : uniquement fallback offline pour les navigations de page
+// On ne met RIEN en cache dynamiquement pour éviter les pages obsolètes après déploiement
 self.addEventListener('fetch', (event) => {
-  if (
-    event.request.url.includes('/api/') ||
-    event.request.url.includes('supabase') ||
-    event.request.url.includes('/_next/') ||
-    event.request.method !== 'GET'
-  ) return
-
+  if (event.request.mode !== 'navigate') return
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        const clone = response.clone()
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone))
-        return response
-      })
-      .catch(() =>
-        caches.match(event.request).then((cached) =>
-          cached || caches.match('/offline.html')
-        )
-      )
+    fetch(event.request).catch(() => caches.match('/offline.html'))
   )
 })
