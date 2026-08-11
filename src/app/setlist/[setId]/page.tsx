@@ -112,7 +112,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             ...text.split(/\r?\n/).slice(4).flatMap(row => {
               const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
               if (!c[0] || !c[0].includes('http')) return []
-              return [{ nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '' }]
+              return [{ nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '', image_recto: c[0]?.trim() || undefined }]
             })
           ]
         } catch { /* CSV indisponible */ }
