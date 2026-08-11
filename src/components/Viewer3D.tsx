@@ -231,14 +231,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       if (collName && collName.length >= 3) q = q.ilike('name', `%${collName}%`)
       else if (brandName && brandName.length >= 2) q = q.ilike('brand', `%${brandName}%`)
       const { data } = await q.order('total_cards', { ascending: false })
-      const seenS = new Set<string>()
-      const dedupedS = (data || []).filter(s => {
-        const key = normSetKey(s)
-        if (seenS.has(key)) return false
-        seenS.add(key)
-        return true
-      })
-      setSetPickerSuggestions(dedupedS)
+      setSetPickerSuggestions(dedupSets(data || []))
     }
   }
 
@@ -250,20 +243,26 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     return `${s.year}_${base}`
   }
 
+  // Dedup sets avec le même nom normalisé, SAUF si les counts de cartes diffèrent
+  // significativement (>50%) → ce sont des sets genuinement différents
+  const dedupSets = <T extends { name: string; year: number | null; total_cards: number }>(sets: T[]): T[] => {
+    const seen = new Map<string, number>()
+    return sets.filter(s => {
+      const key = normSetKey(s)
+      if (!seen.has(key)) { seen.set(key, s.total_cards); return true }
+      const first = seen.get(key)!
+      const ratio = Math.max(first, s.total_cards) / Math.max(Math.min(first, s.total_cards), 1)
+      return ratio > 1.5
+    })
+  }
+
   const searchSets = async (q: string, year: string) => {
     if (q.trim().length < 2 && year.trim().length < 4) { setSetPickerResults([]); return }
     let qry = supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').limit(20)
     if (year.trim().length >= 4) qry = qry.eq('year', parseInt(year))
     if (q.trim().length >= 2) qry = qry.ilike('name', `%${q.trim()}%`)
     const { data } = await qry.order('total_cards', { ascending: false })
-    const seen = new Set<string>()
-    const deduped = (data || []).filter(s => {
-      const key = normSetKey(s)
-      if (seen.has(key)) return false
-      seen.add(key)
-      return true
-    })
-    setSetPickerResults(deduped.slice(0, 12))
+    setSetPickerResults(dedupSets(data || []).slice(0, 12))
   }
 
   const LARGE_SET_THRESHOLD = 1500
@@ -302,14 +301,6 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       setSetPickerOpenVars(new Set([matches[0]?.variation ?? 'Base']))
       setSetPickerEntryMatches(matches)
       setSetPickerEntries([])
-      // Si aucun match auto, lancer directement la recherche par nom
-      if (!matches.length && popup.n) {
-        setSetPickerEntrySearch(popup.n)
-        setSetPickerLoading(false)
-        setSetPickerEntryLoading(true)
-        searchEntries(popup.n, s.id)
-        return
-      }
     } else {
       const { data: allData } = await supabase.from('card_set_entries')
         .select('id, card_number, player_name, variation, is_rc, image_url')
