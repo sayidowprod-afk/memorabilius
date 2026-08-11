@@ -123,6 +123,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [setPickerVariations, setSetPickerVariations] = useState<string[]>([])
   const [setPickerOpenVars, setSetPickerOpenVars] = useState<Set<string>>(new Set(['Base']))
   const [setPickerError, setSetPickerError] = useState<string | null>(null)
+  const [setPickerIsLargeSet, setSetPickerIsLargeSet] = useState(false)
   const setPickerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const setPickerEntryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -263,6 +264,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     setSetPickerResults(deduped.slice(0, 12))
   }
 
+  const LARGE_SET_THRESHOLD = 1500
+
   const selectSet = async (s: { id: number; name: string; year: number | null; brand: string | null; sport: string; total_cards: number }) => {
     setSetPickerSelectedSet(s)
     setSetPickerStep('entries')
@@ -271,18 +274,15 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     setSetPickerEntryMatches([])
     setSetPickerEntrySearch('')
     setSetPickerError(null)
+    const isLarge = s.total_cards > LARGE_SET_THRESHOLD
+    setSetPickerIsLargeSet(isLarge)
 
-    // Charger correspondances joueur + toutes les entrées du set (jusqu'à 500)
-    const [exactRes, allRes] = await Promise.all([
-      supabase.from('card_set_entries')
-        .select('id, card_number, player_name, variation, is_rc, image_url')
-        .eq('set_id', s.id).eq('player_name', popup.n).order('card_number').limit(50),
-      supabase.from('card_set_entries')
-        .select('id, card_number, player_name, variation, is_rc, image_url')
-        .eq('set_id', s.id).order('variation, card_number').limit(500),
-    ])
-
-    let matches: SetEntryRow[] = exactRes.data || []
+    // Charger correspondances joueur (exact puis fuzzy)
+    let matches: SetEntryRow[] = []
+    const exactRes = await supabase.from('card_set_entries')
+      .select('id, card_number, player_name, variation, is_rc, image_url')
+      .eq('set_id', s.id).eq('player_name', popup.n).order('card_number').limit(50)
+    matches = exactRes.data || []
     if (!matches.length) {
       const { data: fuzzy } = await supabase.from('card_set_entries')
         .select('id, card_number, player_name, variation, is_rc, image_url')
@@ -291,31 +291,45 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
 
     const matchIds = new Set(matches.map(e => e.id))
-    const allEntries = allRes.data || []
-    const rest = allEntries.filter(e => !matchIds.has(e.id))
 
-    // Variations disponibles dans les 200 premières entrées
-    const varSet = new Set<string>()
-    for (const e of allEntries) varSet.add(e.variation ?? 'Base')
-    const vars = ['Base', ...Array.from(varSet).filter(v => v !== 'Base').sort()]
+    if (isLarge) {
+      // Grand set : ne pas charger les 30k+ entrées, on se repose sur la recherche
+      const varSet = new Set(matches.map(e => e.variation ?? 'Base'))
+      const vars = ['Base', ...Array.from(varSet).filter(v => v !== 'Base').sort()]
+      setSetPickerVariations(vars)
+      setSetPickerOpenVars(new Set([matches[0]?.variation ?? 'Base']))
+      setSetPickerEntryMatches(matches)
+      setSetPickerEntries([])
+    } else {
+      const { data: allData } = await supabase.from('card_set_entries')
+        .select('id, card_number, player_name, variation, is_rc, image_url')
+        .eq('set_id', s.id).order('variation, card_number').limit(1500)
+      const allEntries = allData || []
+      const rest = allEntries.filter(e => !matchIds.has(e.id))
+      const varSet = new Set<string>()
+      for (const e of allEntries) varSet.add(e.variation ?? 'Base')
+      const vars = ['Base', ...Array.from(varSet).filter(v => v !== 'Base').sort()]
+      const matchVar = matches[0]?.variation ?? 'Base'
+      setSetPickerOpenVars(new Set([matchVar]))
+      setSetPickerVariations(vars)
+      setSetPickerEntryMatches(matches)
+      setSetPickerEntries(rest)
+    }
 
-    // Auto-ouvrir la variation de la carte correspondante
-    const matchVar = matches[0]?.variation ?? 'Base'
-    setSetPickerOpenVars(new Set([matchVar]))
-    setSetPickerVariations(vars)
-    setSetPickerEntryMatches(matches)
-    setSetPickerEntries(rest)
     setSetPickerLoading(false)
   }
 
   const searchEntries = async (q: string, setId: number) => {
     if (!q.trim() || q.trim().length < 2) { setSetPickerEntries([]); setSetPickerEntryLoading(false); return }
     setSetPickerEntryLoading(true)
-    const { data } = await supabase.from('card_set_entries')
+    const tokens = q.trim().split(/\s+/).filter(t => t.length >= 2)
+    let qry = supabase.from('card_set_entries')
       .select('id, card_number, player_name, variation, is_rc, image_url')
       .eq('set_id', setId)
-      .or(`player_name.ilike.%${q.trim()}%,card_number.ilike.%${q.trim()}%,variation.ilike.%${q.trim()}%`)
-      .order('card_number').limit(100)
+    for (const token of tokens) {
+      qry = qry.or(`player_name.ilike.%${token}%,card_number.ilike.%${token}%,variation.ilike.%${token}%`)
+    }
+    const { data } = await qry.order('card_number').limit(100)
     setSetPickerEntries(data || [])
     setSetPickerEntryLoading(false)
   }
@@ -1442,6 +1456,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                                   <span style={{ background: grn, color: 'white', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 800 }}>{setPickerEntryMatches.length}</span>
                                 </div>
                                 {setPickerEntryMatches.map(e => <ER key={e.id} e={e} hi={true} />)}
+                              </div>
+                            )}
+
+                            {/* Grand set : hint recherche */}
+                            {setPickerIsLargeSet && setPickerEntries.length === 0 && !isSearching && (
+                              <div style={{ textAlign: 'center', padding: '18px 16px', fontSize: 13, color: dark ? '#888' : '#999', background: dark ? '#1a1a1a' : '#fafafa', borderRadius: 12, border: `1px dashed ${dark ? '#333' : '#e0e0e0'}` }}>
+                                Ce set a {setPickerSelectedSet?.total_cards?.toLocaleString()} cartes —<br />
+                                utilise la recherche pour trouver ta variation
                               </div>
                             )}
 
