@@ -9,6 +9,7 @@ const supabase = createClient(
 )
 
 interface GalleryCard {
+  id?: string   // cartes_manuelles UUID (absent pour les cartes CSV)
   nom: string
   annee?: string
   marque?: string
@@ -128,6 +129,7 @@ export async function POST(req: NextRequest) {
   // 3. Auto-match gallery cards → unmatched entries
   const autoMatchedIds: number[] = []
   const autoMatchedImages: { entry_id: number; image_url: string; user_id: string }[] = []
+  const autoMatchedGalleryLinks: { gallery_id: string; entry_id: number }[] = []
 
   if (galleryCards.length > 0 && setYear && entries.length > 0) {
     const y = setYear
@@ -165,9 +167,11 @@ export async function POST(req: NextRequest) {
       if (matched) {
         completedEntryIds.add(e.id)
         autoMatchedIds.push(e.id)
-        // Stocker l'image de la carte exactement matchée (pas juste la première du joueur)
         if (matched.image_recto) {
           autoMatchedImages.push({ entry_id: e.id, image_url: matched.image_recto, user_id: user.id })
+        }
+        if (matched.id) {
+          autoMatchedGalleryLinks.push({ gallery_id: matched.id, entry_id: e.id })
         }
       }
     }
@@ -179,6 +183,17 @@ export async function POST(req: NextRequest) {
           autoMatchedIds.map(eid => ({ user_id: user.id, entry_id: eid, manually_checked: false })),
           { onConflict: 'user_id,entry_id', ignoreDuplicates: true }
         )
+    }
+
+    // Écrire set_entry_id dans cartes_manuelles pour les cartes auto-matchées
+    // N'écrase pas les valeurs déjà définies manuellement (set_entry_id IS NULL)
+    for (const { gallery_id, entry_id } of autoMatchedGalleryLinks) {
+      await supabase
+        .from('cartes_manuelles')
+        .update({ set_entry_id: entry_id })
+        .eq('id', gallery_id)
+        .eq('user_id', user.id)
+        .is('set_entry_id', null)
     }
   }
 

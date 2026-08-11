@@ -14,6 +14,11 @@ import ShareButton from '@/components/ShareButton'
 import { getFormat } from '@/lib/cardFormats'
 import { supabase } from '@/lib/supabase'
 
+interface SetPlacementData {
+  entry_id: number; set_id: number; set_name: string
+  set_year: number | null; set_brand: string | null; set_sport: string
+}
+
 interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
@@ -90,6 +95,89 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       .maybeSingle()
       .then(({ data }) => setInWishlist(!!data))
   }, [popup.f, currentUserId, isOwner])
+
+  // ── Setlist placement ──────────────────────────────────────────────────────
+  const [setPlacement, setSetPlacement] = useState<SetPlacementData | null | 'loading'>('loading')
+  const [setPickerOpen, setSetPickerOpen] = useState(false)
+  const [setPickerSearch, setSetPickerSearch] = useState('')
+  const [setPickerYear, setSetPickerYear] = useState('')
+  const [setPickerResults, setSetPickerResults] = useState<{ id: number; name: string; year: number | null; brand: string | null; sport: string }[]>([])
+  const [setPickerSaving, setSetPickerSaving] = useState(false)
+  const [setPickerError, setSetPickerError] = useState<string | null>(null)
+  const setPickerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    if (!isOwner || !popup.id_manuelle || !userId) { setSetPlacement(null); return }
+    setSetPlacement('loading')
+    setSetPickerOpen(false)
+    supabase.from('cartes_manuelles')
+      .select('set_entry_id')
+      .eq('id', popup.id_manuelle)
+      .maybeSingle()
+      .then(async ({ data }) => {
+        if (!data?.set_entry_id) { setSetPlacement(null); return }
+        const eid = data.set_entry_id as number
+        const { data: cse } = await supabase.from('card_set_entries').select('id, set_id').eq('id', eid).maybeSingle()
+        if (!cse) { setSetPlacement(null); return }
+        const { data: cs } = await supabase.from('card_sets').select('id, name, year, brand, sport').eq('id', cse.set_id).maybeSingle()
+        if (!cs) { setSetPlacement(null); return }
+        setSetPlacement({ entry_id: eid, set_id: cs.id, set_name: cs.name, set_year: cs.year, set_brand: cs.brand, set_sport: cs.sport })
+      })
+  }, [popup.id_manuelle, popup.f, isOwner, userId])
+
+  const searchSets = async (q: string, year: string) => {
+    if (q.trim().length < 2 && year.trim().length < 4) { setSetPickerResults([]); return }
+    let qry = supabase.from('card_sets').select('id, name, year, brand, sport').limit(12)
+    if (year.trim().length >= 4) qry = qry.eq('year', parseInt(year))
+    if (q.trim().length >= 2) qry = qry.ilike('name', `%${q.trim()}%`)
+    const { data } = await qry.order('year', { ascending: false }).order('name')
+    setSetPickerResults(data || [])
+  }
+
+  const saveSetEntry = async (setId: number, setName: string, setYear: number | null, setBrand: string | null, setSport: string) => {
+    if (!userId || !popup.id_manuelle) return
+    setSetPickerSaving(true)
+    setSetPickerError(null)
+    const normStr = (s: string) => s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+    // Exact match first, then ILIKE fallback
+    let entries: { id: number; player_name: string; variation: string | null }[] = []
+    const { data: exact } = await supabase.from('card_set_entries')
+      .select('id, player_name, variation').eq('set_id', setId).eq('player_name', popup.n).limit(10)
+    if (exact?.length) {
+      entries = exact
+    } else {
+      const { data: fuzzy } = await supabase.from('card_set_entries')
+        .select('id, player_name, variation').eq('set_id', setId).ilike('player_name', `%${popup.n}%`).limit(10)
+      entries = fuzzy || []
+    }
+    if (!entries.length) {
+      setSetPickerError(`${popup.n} introuvable dans ce set`)
+      setSetPickerSaving(false)
+      return
+    }
+    const cardVar = (popup.v || '').trim()
+    const varMatch = cardVar ? entries.find(e => e.variation && normStr(e.variation).includes(normStr(cardVar))) : null
+    const baseMatch = entries.find(e => !e.variation)
+    const entryId = (varMatch || baseMatch || entries[0]).id
+    await supabase.from('cartes_manuelles').update({ set_entry_id: entryId }).eq('id', popup.id_manuelle)
+    await supabase.from('user_set_completion').upsert(
+      { user_id: userId, entry_id: entryId, manually_checked: true },
+      { onConflict: 'user_id,entry_id' }
+    )
+    setSetPlacement({ entry_id: entryId, set_id: setId, set_name: setName, set_year: setYear, set_brand: setBrand, set_sport: setSport })
+    setSetPickerOpen(false)
+    setSetPickerSearch('')
+    setSetPickerYear('')
+    setSetPickerResults([])
+    setSetPickerSaving(false)
+  }
+
+  const removeSetEntry = async () => {
+    if (!userId || !popup.id_manuelle || setPlacement === 'loading' || !setPlacement) return
+    await supabase.from('cartes_manuelles').update({ set_entry_id: null }).eq('id', popup.id_manuelle)
+    await supabase.from('user_set_completion').delete().eq('user_id', userId).eq('entry_id', setPlacement.entry_id)
+    setSetPlacement(null)
+  }
 
   const saveTag = async () => {
     if (!onCollectionTagChange) return
@@ -888,6 +976,93 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   value={tagInput}
                   onChange={async (tag) => { setTagInput(tag); setTagSaving(true); await onCollectionTagChange!(popup, tag); setTagSaving(false) }}
                 />
+              )}
+            </div>
+          )}
+
+          {/* Setlist — owner + carte manuelle seulement */}
+          {isOwner && popup.isManuelle && popup.id_manuelle && userId && (
+            <div style={{ marginTop: 10, borderTop: `1px solid ${borderColor}`, paddingTop: 10 }}>
+              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 6 }}>
+                🃏 Setlist
+              </label>
+
+              {setPlacement === 'loading' ? (
+                <span style={{ fontSize: 11, color: metaColor }}>…</span>
+              ) : setPlacement ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+                  <Link href={`/setlist/${setPlacement.set_id}`} style={{ fontSize: 11, fontWeight: 800, color: accent, textDecoration: 'none' }}>
+                    {setPlacement.set_name}
+                    {setPlacement.set_year && <span style={{ fontWeight: 400, color: metaColor, marginLeft: 4 }}>({setPlacement.set_year})</span>}
+                  </Link>
+                  <button onClick={() => { setSetPickerOpen(v => !v); setSetPickerYear(popup.y ? popup.y.slice(0, 4) : ''); setSetPickerSearch(''); setSetPickerResults([]); setSetPickerError(null) }}
+                    style={{ fontSize: 10, padding: '2px 7px', borderRadius: 6, border: `1px solid ${borderColor}`, background: 'none', color: metaColor, cursor: 'pointer' }}>
+                    Changer
+                  </button>
+                  <button onClick={removeSetEntry}
+                    style={{ fontSize: 10, padding: '2px 6px', borderRadius: 6, border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 800 }}>
+                    ✕
+                  </button>
+                </div>
+              ) : (
+                <button onClick={() => { setSetPickerOpen(true); setSetPickerYear(popup.y ? popup.y.slice(0, 4) : ''); setSetPickerSearch(''); setSetPickerResults([]); setSetPickerError(null) }}
+                  style={{ fontSize: 11, padding: '5px 10px', borderRadius: 8, border: `1.5px dashed ${borderColor}`, background: 'none', color: metaColor, cursor: 'pointer', width: '100%', textAlign: 'left' }}>
+                  + Placer dans un set
+                </button>
+              )}
+
+              {setPickerOpen && (
+                <div style={{ marginTop: 8, background: dark ? '#252525' : '#f8f8f8', borderRadius: 10, padding: '10px 12px' }}>
+                  <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
+                    <input
+                      type="text"
+                      placeholder="Année"
+                      value={setPickerYear}
+                      onChange={e => {
+                        setSetPickerYear(e.target.value)
+                        if (setPickerTimerRef.current) clearTimeout(setPickerTimerRef.current)
+                        setPickerTimerRef.current = setTimeout(() => searchSets(setPickerSearch, e.target.value), 300)
+                      }}
+                      style={{ width: 56, padding: '5px 7px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor }}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Nom du set…"
+                      value={setPickerSearch}
+                      autoFocus
+                      onChange={e => {
+                        setSetPickerSearch(e.target.value)
+                        if (setPickerTimerRef.current) clearTimeout(setPickerTimerRef.current)
+                        setPickerTimerRef.current = setTimeout(() => searchSets(e.target.value, setPickerYear), 300)
+                      }}
+                      style={{ flex: 1, padding: '5px 7px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor }}
+                    />
+                    <button onClick={() => setSetPickerOpen(false)}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 14, lineHeight: 1 }}>✕</button>
+                  </div>
+
+                  {setPickerError && (
+                    <div style={{ fontSize: 10, color: '#e74c3c', marginBottom: 4, fontWeight: 700 }}>{setPickerError}</div>
+                  )}
+
+                  {setPickerResults.length === 0 ? (
+                    <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '6px 0' }}>
+                      {setPickerSearch.length < 2 && setPickerYear.length < 4 ? 'Entre le nom ou l\'année…' : 'Aucun résultat'}
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, maxHeight: 150, overflowY: 'auto' }}>
+                      {setPickerResults.map(s => (
+                        <button key={s.id} disabled={setPickerSaving}
+                          onClick={() => saveSetEntry(s.id, s.name, s.year, s.brand, s.sport)}
+                          style={{ textAlign: 'left', padding: '6px 9px', borderRadius: 6, border: 'none', background: dark ? '#333' : 'white', cursor: 'pointer', fontSize: 11, color: dark ? '#eee' : '#111', opacity: setPickerSaving ? 0.5 : 1 }}>
+                          <span style={{ fontWeight: 700 }}>{s.name}</span>
+                          {s.year && <span style={{ color: metaColor, marginLeft: 4 }}>({s.year})</span>}
+                          {s.brand && <span style={{ color: accent, marginLeft: 4, fontSize: 10 }}>{s.brand}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               )}
             </div>
           )}
