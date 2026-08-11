@@ -25,9 +25,8 @@ const REGIONS: Region[] = [
   { label: '🌊 Océanie',   scale: 430,  center: [140, -25] },
 ]
 
-// En dessous de ce seuil de zoom → mode cluster (bulles par pays)
-// Au dessus → mode précis (points individuels)
 const CLUSTER_ZOOM = 2.5
+const ACCENT = '#3b82f6'
 
 export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserHover, period }: Props) {
   const [view, setView]                 = useState<Region>(REGIONS[0])
@@ -36,6 +35,7 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
   const [isPanning, setIsPanning]       = useState(false)
   const lastPanPos = useRef<[number, number]>([0, 0])
   const hasMoved   = useRef(false)
+  const mapWrapRef = useRef<HTMLDivElement>(null)
 
   const maxV = geoCntrs.length ? Math.max(...geoCntrs.map(c => c.visitors)) : 1
   const effectiveScale: number = view.scale * zoom
@@ -44,11 +44,23 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
     view.center[1] + centerOffset[1],
   ]
 
-  // Mode cluster : zoom < seuil OU mode "En direct" (points individuels = tous les temps → incohérent)
   const inClusterMode = zoom < CLUSTER_ZOOM || period === 'live'
   const hasUsers = (geoUsers?.length ?? 0) > 0
 
   useEffect(() => { setCenterOffset([0, 0]) }, [view])
+
+  // Wheel zoom with passive:false so we can preventDefault (stops page scroll)
+  useEffect(() => {
+    const el = mapWrapRef.current
+    if (!el) return
+    const handler = (e: WheelEvent) => {
+      e.preventDefault()
+      const delta = e.deltaY < 0 ? 1.25 : 0.8
+      setZoom(z => Math.max(0.4, Math.min(20, z * delta)))
+    }
+    el.addEventListener('wheel', handler, { passive: false })
+    return () => el.removeEventListener('wheel', handler)
+  }, [])
 
   function changeView(r: Region) { setView(r); setZoom(1); setCenterOffset([0, 0]) }
 
@@ -72,86 +84,83 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
 
   function onMapMouseUp() { setIsPanning(false) }
 
-  function handleWheel(e: React.WheelEvent) {
-    e.preventDefault()
-    const delta = e.deltaY < 0 ? 1.25 : 0.8
-    setZoom(z => Math.max(0.4, Math.min(20, z * delta)))
-  }
-
   return (
     <div>
-      {/* Contrôles région + zoom */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8, alignItems: 'center' }}>
-        {REGIONS.map(r => (
-          <button key={r.label} onClick={() => changeView(r)} style={{
-            fontSize: 11, padding: '3px 9px', borderRadius: 6, border: '1px solid',
-            borderColor: view.label === r.label ? '#3b82f6' : '#cbd5e1',
-            background:  view.label === r.label ? '#eff6ff' : '#f8fafc',
-            color:       view.label === r.label ? '#1d4ed8' : '#475569',
-            cursor: 'pointer', fontWeight: view.label === r.label ? 600 : 400,
-            transition: 'all .12s',
-          }}>
-            {r.label}
-          </button>
-        ))}
-        <div style={{ display: 'flex', gap: 4, marginLeft: 'auto', alignItems: 'center' }}>
+      {/* Région + zoom — scrollable horizontalement sur mobile */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, overflowX: 'auto', WebkitOverflowScrolling: 'touch' as never, paddingBottom: 2 }}>
+        <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+          {REGIONS.map(r => (
+            <button key={r.label} onClick={() => changeView(r)} style={{
+              fontSize: 10, padding: '3px 7px', borderRadius: 6, border: '1px solid',
+              borderColor: view.label === r.label ? ACCENT : '#cbd5e1',
+              background:  view.label === r.label ? '#eff6ff' : '#f8fafc',
+              color:       view.label === r.label ? '#1d4ed8' : '#475569',
+              cursor: 'pointer', fontWeight: view.label === r.label ? 600 : 400,
+              transition: 'all .12s', whiteSpace: 'nowrap', flexShrink: 0,
+            }}>
+              {r.label}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: 4, marginLeft: 'auto', alignItems: 'center', flexShrink: 0 }}>
           {hasUsers && period !== 'live' && (
             <span style={{
-              fontSize: 10, color: inClusterMode ? '#3b82f6' : '#ef4444',
+              fontSize: 10, color: inClusterMode ? ACCENT : '#ef4444',
               background: inClusterMode ? '#eff6ff' : '#fef2f2',
-              borderRadius: 4, padding: '2px 7px', fontWeight: 600, transition: 'all .2s',
+              borderRadius: 4, padding: '2px 6px', fontWeight: 600, transition: 'all .2s', whiteSpace: 'nowrap',
             }}>
-              {inClusterMode ? '🗺 par pays' : '📍 précis'}
+              {inClusterMode ? '🗺 pays' : '📍 précis'}
             </span>
           )}
           <button onClick={() => setZoom(z => Math.min(z * 1.6, 20))}
-            style={{ fontSize: 16, width: 26, height: 26, borderRadius: 6, border: '1px solid #cbd5e1', background: '#f8fafc', color: '#334155', cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            style={{ fontSize: 16, width: 26, height: 26, borderRadius: 6, border: '1px solid #cbd5e1', background: '#f8fafc', color: '#334155', cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             +
           </button>
           <button onClick={() => setZoom(z => Math.max(z / 1.6, 0.4))}
-            style={{ fontSize: 16, width: 26, height: 26, borderRadius: 6, border: '1px solid #cbd5e1', background: '#f8fafc', color: '#334155', cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            style={{ fontSize: 16, width: 26, height: 26, borderRadius: 6, border: '1px solid #cbd5e1', background: '#f8fafc', color: '#334155', cursor: 'pointer', lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             −
           </button>
         </div>
       </div>
 
-      {/* Hint transition cluster → précis */}
+      {/* Hint */}
       {hasUsers && period !== 'live' && (
         <div style={{ fontSize: 10, color: '#94a3b8', marginBottom: 6, textAlign: 'right' }}>
           {inClusterMode
-            ? `Zoomez pour voir les ${geoUsers!.length} comptes individuellement`
-            : `Dézoomez pour revenir aux bulles par pays · roulette souris supportée`}
+            ? `Zoomez pour voir les ${geoUsers!.length} comptes`
+            : `Dézoomez pour revenir aux bulles · roulette souris supportée`}
         </div>
       )}
 
       {/* Carte */}
       <div
-        style={{ cursor: isPanning && hasMoved.current ? 'grabbing' : 'grab', userSelect: 'none', position: 'relative' }}
+        ref={mapWrapRef}
+        style={{ cursor: isPanning && hasMoved.current ? 'grabbing' : 'grab', userSelect: 'none', position: 'relative', touchAction: 'none' }}
         onMouseDown={onMapMouseDown}
         onMouseMove={onMapMouseMove}
         onMouseUp={onMapMouseUp}
         onMouseLeave={onMapMouseUp}
-        onWheel={handleWheel}
       >
         <ComposableMap
           projection="geoNaturalEarth1"
           projectionConfig={{ scale: effectiveScale, center: effectiveCenter }}
           style={{ width: '100%', height: 'auto', display: 'block' }}
         >
-          <Sphere id="sphere" fill="#eef6fb" stroke="#cde4f0" strokeWidth={0.4} />
-          <Graticule stroke="#cde4f0" strokeWidth={0.3} />
+          {/* Océan bleu doux */}
+          <Sphere id="sphere" fill="#eff6ff" stroke="#bfdbfe" strokeWidth={0.5} />
+          <Graticule stroke="#dbeafe" strokeWidth={0.3} />
           <Geographies geography="/world-110m.json">
             {({ geographies }) =>
               geographies.map(geo => (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill="#d4e8c0"
-                  stroke="#b0cc96"
+                  fill="#dbeafe"
+                  stroke="#93c5fd"
                   strokeWidth={0.5}
                   style={{
                     default: { outline: 'none' },
-                    hover:   { outline: 'none', fill: '#c4d8b0' },
+                    hover:   { outline: 'none', fill: '#bfdbfe' },
                     pressed: { outline: 'none' },
                   }}
                 />
@@ -169,8 +178,8 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
               <Marker key={code} coordinates={c}>
                 <circle
                   r={r}
-                  fill="rgba(0,61,166,0.35)"
-                  stroke="rgba(0,40,140,0.55)"
+                  fill="rgba(59,130,246,0.38)"
+                  stroke="rgba(29,78,216,0.65)"
                   strokeWidth={1}
                   style={{ cursor: 'pointer' }}
                   onMouseEnter={() => { if (!hasMoved.current) onHover({ code, visitors }) }}
@@ -181,7 +190,7 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
                     textAnchor="middle"
                     dy="0.35em"
                     fontSize={r * 0.65}
-                    fill="rgba(0,20,100,0.8)"
+                    fill="rgba(30,58,138,0.9)"
                     fontWeight="700"
                     style={{ pointerEvents: 'none', userSelect: 'none' }}
                   >
@@ -192,7 +201,7 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
             )
           })}
 
-          {/* Mode précis : points individuels (non disponible en "En direct") */}
+          {/* Mode précis : points individuels */}
           {!inClusterMode && geoUsers?.map((u, i) => (
             <Marker key={`u-${i}`} coordinates={[u.lon, u.lat]}>
               <circle
@@ -217,7 +226,7 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
         }}>
           {inClusterMode ? (
             <>
-              <div style={{ width: 9, height: 9, borderRadius: '50%', background: 'rgba(0,61,166,0.35)', border: '1px solid rgba(0,40,140,0.55)', flexShrink: 0 }} />
+              <div style={{ width: 9, height: 9, borderRadius: '50%', background: 'rgba(59,130,246,0.38)', border: '1px solid rgba(29,78,216,0.65)', flexShrink: 0 }} />
               Comptes par pays · taille proportionnelle
             </>
           ) : (
