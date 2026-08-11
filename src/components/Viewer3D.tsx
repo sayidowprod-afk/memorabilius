@@ -251,10 +251,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   }
 
   const normSetKey = (s: { name: string; year: number | null }) => {
-    const base = s.name.toLowerCase()
-      .replace(/^\d{4}-\d{2,4}\s+/, '')
-      .replace(/^\d{4}\s+/, '')
-      .replace(/\s+/g, ' ').trim()
+    // Garde le nom COMPLET (avec préfixe année) → "2021 Panini Mosaic" ≠ "2021-22 Panini Mosaic"
+    // Seul le ratio de cartes (dans dedupSets) peut encore fusionner deux entrées
+    const base = s.name.toLowerCase().replace(/\s+/g, ' ').trim()
     return `${s.year}_${base}`
   }
 
