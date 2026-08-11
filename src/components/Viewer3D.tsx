@@ -228,17 +228,31 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       if (collName && collName.length >= 3) q = q.ilike('name', `%${collName}%`)
       else if (brandName && brandName.length >= 2) q = q.ilike('brand', `%${brandName}%`)
       const { data } = await q.order('total_cards', { ascending: false })
-      setSetPickerSuggestions(data || [])
+      const seenS = new Set<string>()
+      const dedupedS = (data || []).filter(s => {
+        const key = `${s.year}_${s.name.trim().toLowerCase()}`
+        if (seenS.has(key)) return false
+        seenS.add(key)
+        return true
+      })
+      setSetPickerSuggestions(dedupedS)
     }
   }
 
   const searchSets = async (q: string, year: string) => {
     if (q.trim().length < 2 && year.trim().length < 4) { setSetPickerResults([]); return }
-    let qry = supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').limit(12)
+    let qry = supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').limit(20)
     if (year.trim().length >= 4) qry = qry.eq('year', parseInt(year))
     if (q.trim().length >= 2) qry = qry.ilike('name', `%${q.trim()}%`)
     const { data } = await qry.order('total_cards', { ascending: false })
-    setSetPickerResults(data || [])
+    const seen = new Set<string>()
+    const deduped = (data || []).filter(s => {
+      const key = `${s.year}_${s.name.trim().toLowerCase()}`
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    setSetPickerResults(deduped.slice(0, 12))
   }
 
   const selectSet = async (s: { id: number; name: string; year: number | null; brand: string | null; sport: string; total_cards: number }) => {
@@ -310,7 +324,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
 
     const { data: uscData, error: uscErr } = await supabase.from('user_set_completion').upsert(
-      { user_id: userId, entry_id: entry.id, manually_checked: true },
+      { user_id: userId, entry_id: entry.id, manually_checked: true, matched_card_key: popup.f || null },
       { onConflict: 'user_id,entry_id' }
     ).select('id')
     if (uscErr || !uscData?.length) {

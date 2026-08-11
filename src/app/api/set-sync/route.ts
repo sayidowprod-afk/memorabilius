@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
   // 2. Get completions — prefer RPC JOIN (migration 20260808_set_sync_rpc.sql),
   //    fallback to chunked .in() if RPC not yet deployed.
   const completedEntryIds = new Set<number>()
-  const completionDetails: Record<number, { id: string; manually_checked: boolean }> = {}
+  const completionDetails: Record<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }> = {}
 
   const { data: rpcRows, error: rpcErr } = await supabase.rpc('get_set_completions', {
     p_set_id: setId,
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
   if (!rpcErr && rpcRows) {
     for (const row of rpcRows) {
       completedEntryIds.add(row.entry_id)
-      completionDetails[row.entry_id] = { id: row.completion_id, manually_checked: row.manually_checked }
+      completionDetails[row.entry_id] = { id: row.completion_id, manually_checked: row.manually_checked, matched_card_key: row.matched_card_key || null }
     }
   } else {
     // Fallback: chunked .in() (max 2000 per chunk to stay under URL limits)
@@ -116,12 +116,12 @@ export async function POST(req: NextRequest) {
     for (let i = 0; i < entryIds.length; i += CHUNK) {
       const { data } = await supabase
         .from('user_set_completion')
-        .select('id, entry_id, manually_checked')
+        .select('id, entry_id, manually_checked, matched_card_key')
         .eq('user_id', user.id)
         .in('entry_id', entryIds.slice(i, i + CHUNK))
       for (const c of data || []) {
         completedEntryIds.add(c.entry_id)
-        completionDetails[c.entry_id] = { id: c.id, manually_checked: c.manually_checked }
+        completionDetails[c.entry_id] = { id: c.id, manually_checked: c.manually_checked, matched_card_key: c.matched_card_key || null }
       }
     }
   }
@@ -214,12 +214,14 @@ export async function POST(req: NextRequest) {
     // b) entry_images — image par utilisateur (ownership display)
     const imageRows: { entry_id: number; image_url: string; user_id: string }[] = [...autoMatchedImages]
 
-    if (playerImages && Object.keys(playerImages).length > 0) {
+    {
       const autoMatchedEntryIds = new Set(autoMatchedImages.map(r => r.entry_id))
       for (const e of entries) {
         if (!completedEntryIds.has(e.id)) continue
         if (autoMatchedEntryIds.has(e.id)) continue
-        const img = playerImages[norm(e.player_name)]
+        // Prefer explicit card choice over fuzzy player-name lookup
+        const matchedKey = completionDetails[e.id]?.matched_card_key
+        const img = matchedKey || (playerImages && playerImages[norm(e.player_name)])
         if (img) imageRows.push({ entry_id: e.id, image_url: img, user_id: user.id })
       }
     }

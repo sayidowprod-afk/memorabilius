@@ -66,6 +66,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     return () => window.removeEventListener('resize', check)
   }, [])
   const playerToImgRef = useRef<Map<string, string>>(new Map())
+  const matchedCardImagesRef = useRef<Map<number, string>>(new Map())
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
@@ -90,7 +91,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     }
 
     let completedEntryIds = new Set<number>()
-    let completionDetails = new Map<number, { id: string; manually_checked: boolean }>()
+    let completionDetails = new Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>()
 
     if (userId) {
       // Charger les cartes galerie (Supabase + CSV) pour le matching
@@ -152,9 +153,13 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           if (res.ok) {
             const { completedEntryIds: ids, completionDetails: dets, ownedPlayerNorms } = await res.json()
             completedEntryIds = new Set<number>(ids)
-            for (const [k, v] of Object.entries(dets as Record<string, { id: string; manually_checked: boolean }>)) {
-              completionDetails.set(parseInt(k), v)
+            const matchedImgs = new Map<number, string>()
+            for (const [k, v] of Object.entries(dets as Record<string, { id: string; manually_checked: boolean; matched_card_key?: string | null }>)) {
+              const eid = parseInt(k)
+              completionDetails.set(eid, v)
+              if (v.matched_card_key) matchedImgs.set(eid, v.matched_card_key)
             }
+            matchedCardImagesRef.current = matchedImgs
             // "Mes cartes" depuis les norms propriétaires + galerie locale
             const ownedNorms = new Set<string>(ownedPlayerNorms as string[])
             setMySetCards(
@@ -191,7 +196,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     currentVariations?: VariationMeta[],
     currentSet?: CardSet | null,
     completedIds?: Set<number>,
-    completionDets?: Map<number, { id: string; manually_checked: boolean }>
+    completionDets?: Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>
   ) {
     const vars = currentVariations || variations
     const setInfo = currentSet || set
@@ -552,8 +557,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
                       ) : displayEntries.map(entry => {
-                        // Priorité : image côté site (card_set_entries.image_url) → fallback API temps réel
-                        const communityImg = entry.image_url || communityImages.get(entry.id)
+                        // Priorité : carte choisie explicitement → image site → fallback API
+                        const communityImg = matchedCardImagesRef.current.get(entry.id) || entry.image_url || communityImages.get(entry.id)
                         return (
                         <div key={entry.id}
                           style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: isMobile ? '6px 12px' : '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
