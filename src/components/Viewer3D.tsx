@@ -235,6 +235,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
   }
 
+  const sportEmoji = (sport: string) => {
+    const s = (sport || '').toLowerCase()
+    if (s.includes('basket') || s === 'nba') return '🏀'
+    if (s.includes('baseball') || s === 'mlb') return '⚾'
+    if (s.includes('football') || s === 'nfl') return '🏈'
+    if (s.includes('hockey') || s === 'nhl') return '🏒'
+    if (s.includes('soccer') || s.includes('foot') || s === 'mls') return '⚽'
+    if (s.includes('tennis')) return '🎾'
+    if (s.includes('mma') || s.includes('ufc')) return '🥊'
+    if (s.includes('wrestling') || s.includes('wwe')) return '🤼'
+    if (s.includes('racing') || s.includes('nascar') || s.includes('formula')) return '🏎️'
+    if (s.includes('golf')) return '⛳'
+    return null
+  }
+
   const normSetKey = (s: { name: string; year: number | null }) => {
     const base = s.name.toLowerCase()
       .replace(/^\d{4}-\d{2,4}\s+/, '')
@@ -1259,6 +1274,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                           {setPickerSuggestions.map(s => (
                             <button key={s.id} onClick={() => selectSet(s)}
                               style={{ width: '100%', textAlign: 'left', padding: '7px 10px', border: 'none', background: 'none', cursor: 'pointer', fontSize: 11, color: dark ? '#eee' : '#111', display: 'flex', alignItems: 'center', gap: 6, borderBottom: `1px solid ${borderColor}` }}>
+                              {sportEmoji(s.sport) && <span style={{ fontSize: 14, flexShrink: 0 }}>{sportEmoji(s.sport)}</span>}
                               <span style={{ flex: 1, fontWeight: 700 }}>{s.name}</span>
                               {s.total_cards > 0 && <span style={{ color: metaColor, flexShrink: 0, fontSize: 10 }}>{s.total_cards.toLocaleString()}</span>}
                               {s.brand && <span style={{ color: accent, fontSize: 10, flexShrink: 0 }}>{s.brand}</span>}
@@ -1280,6 +1296,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                             {setPickerResults.map(s => (
                               <button key={s.id} onClick={() => selectSet(s)}
                                 style={{ width: '100%', textAlign: 'left', padding: '7px 10px', border: 'none', background: 'none', cursor: 'pointer', fontSize: 11, color: dark ? '#eee' : '#111', display: 'flex', alignItems: 'center', gap: 6, borderBottom: `1px solid ${borderColor}` }}>
+                                {sportEmoji(s.sport) && <span style={{ fontSize: 14, flexShrink: 0 }}>{sportEmoji(s.sport)}</span>}
                                 <span style={{ flex: 1, fontWeight: 700 }}>{s.name}</span>
                                 {s.year && <span style={{ color: metaColor, flexShrink: 0, fontSize: 10 }}>{s.year}</span>}
                                 {s.brand && <span style={{ color: accent, fontSize: 10, flexShrink: 0 }}>{s.brand}</span>}
