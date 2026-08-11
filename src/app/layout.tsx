@@ -59,6 +59,9 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  other: {
+    'privacy-policy': 'https://www.memorabilius.fr/confidentialite',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
