@@ -124,25 +124,28 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const setPickerEntryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    if (!isOwner || !userId) { setSetPlacement(null); return }
+    let cancelled = false
+    if (!isOwner || !userId) { setSetPlacement(null); return () => { cancelled = true } }
     setSetPlacement('loading')
     setSetPickerOpen(false)
 
-    // Lookup via user_set_completion (fonctionne pour DB et CSV)
     const lookupViaCompletion = async () => {
       const { data: entries } = await supabase
         .from('card_set_entries').select('id, set_id, variation')
-        .eq('player_name', popup.n).limit(200)
+        .eq('player_name', popup.n).limit(500)
+      if (cancelled) return
       if (!entries?.length) { setSetPlacement(null); return }
       const { data: completions } = await supabase
         .from('user_set_completion').select('entry_id')
         .eq('user_id', userId).in('entry_id', entries.map(e => e.id))
+      if (cancelled) return
       if (!completions?.length) { setSetPlacement(null); return }
       const completedIds = new Set(completions.map(c => c.entry_id))
       const matched = entries.filter(e => completedIds.has(e.id))
       if (!matched.length) { setSetPlacement(null); return }
       const setIds = [...new Set(matched.map(e => e.set_id))]
       const { data: sets } = await supabase.from('card_sets').select('id, name, year, brand, sport').in('id', setIds)
+      if (cancelled) return
       if (!sets?.length) { setSetPlacement(null); return }
       const setMap = new Map(sets.map(s => [s.id, s]))
       const yearNum = popup.y ? parseInt(popup.y.slice(0, 4)) : null
@@ -160,24 +163,26 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       ;(async () => {
         const { data } = await supabase.from('cartes_manuelles')
           .select('set_entry_id').eq('id', popup.id_manuelle).maybeSingle()
+        if (cancelled) return
         if (data?.set_entry_id) {
-          // Chemin direct : set_entry_id est renseigné (migration appliquée + placement fait)
           const eid = data.set_entry_id as number
           const { data: cse } = await supabase.from('card_set_entries').select('id, set_id').eq('id', eid).maybeSingle()
+          if (cancelled) return
           if (!cse) { await lookupViaCompletion(); return }
           const { data: cs } = await supabase.from('card_sets').select('id, name, year, brand, sport').eq('id', cse.set_id).maybeSingle()
+          if (cancelled) return
           if (!cs) { await lookupViaCompletion(); return }
           setSetPlacement({ entry_id: eid, set_id: cs.id, set_name: cs.name, set_year: cs.year, set_brand: cs.brand, set_sport: cs.sport })
         } else {
-          // Fallback : migration pas encore appliquée ou update raté → cherche via user_set_completion
           await lookupViaCompletion()
         }
       })()
     } else {
-      // Carte CSV : toujours via user_set_completion
       lookupViaCompletion()
     }
-  }, [popup.id_manuelle, popup.f, isOwner, userId])
+
+    return () => { cancelled = true }
+  }, [popup.id_manuelle, popup.f, popup.n, isOwner, userId])
 
   const openPicker = async () => {
     setSetPickerOpen(true)
@@ -224,14 +229,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     setSetPickerEntrySearch('')
     setSetPickerError(null)
 
-    // Charger correspondances joueur + premières 200 entrées en parallèle
+    // Charger correspondances joueur + toutes les entrées du set (jusqu'à 500)
     const [exactRes, allRes] = await Promise.all([
       supabase.from('card_set_entries')
         .select('id, card_number, player_name, variation, is_rc, image_url')
         .eq('set_id', s.id).eq('player_name', popup.n).order('card_number').limit(50),
       supabase.from('card_set_entries')
         .select('id, card_number, player_name, variation, is_rc, image_url')
-        .eq('set_id', s.id).order('card_number').limit(200),
+        .eq('set_id', s.id).order('variation, card_number').limit(500),
     ])
 
     let matches: SetEntryRow[] = exactRes.data || []
@@ -1225,196 +1230,221 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
           {/* ── Modal plein écran Étape 2 : setlist complète ── */}
           {setPickerOpen && setPickerStep === 'entries' && setPickerSelectedSet && createPortal(
-            <div style={{ position: 'fixed', inset: 0, zIndex: 99999999, display: 'flex', flexDirection: 'column', background: dark ? '#0c0c10' : '#ededf2', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+            (() => {
+              const mob = typeof window !== 'undefined' && window.innerWidth < 600
+              const surf = dark ? '#16161e' : '#ffffff'
+              const bg   = dark ? '#0d0d14' : '#f2f2f7'
+              const sec  = dark ? '#1c1c26' : '#e8e8f0'
+              const row  = dark ? '#0d0d14' : '#ffffff'
+              const rowH = dark ? '#1a1a24' : '#f6f6fd'
+              const mRow = dark ? '#0c1a10' : '#f0fdf5'
+              const mRowH= dark ? '#122018' : '#e5f9ec'
+              const mSec = dark ? '#0a160d' : '#ebfaf0'
+              const mBdr = dark ? '#1c3822' : '#b8e8c5'
+              const grn  = '#22c55e'
 
-              {/* ── Header ── */}
-              <div style={{ background: dark ? '#14141a' : 'white', borderBottom: `1px solid ${borderColor}`, flexShrink: 0 }}>
-
-                {/* Row 1 : carte 3D + infos set + boutons */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '16px 20px 12px' }}>
-
-                  {/* Mini carte 3D */}
-                  <div style={{ width: 60, height: 84, perspective: '500px', flexShrink: 0 }}>
-                    <div style={{
-                      width: '100%', height: '100%',
-                      transform: 'rotateY(-16deg) rotateX(6deg)',
-                      borderRadius: 6,
-                      overflow: 'hidden',
-                      background: dark ? '#28282e' : '#dddde8',
-                      boxShadow: dark
-                        ? '5px 8px 24px rgba(0,0,0,0.65), 0 1px 3px rgba(0,0,0,0.5)'
-                        : '4px 6px 18px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.1)',
-                    }}>
-                      {popup.f
-                        ? <img src={popup.f} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                        : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, opacity: 0.3 }}>🃏</div>
+              const ER = ({ e, hi }: { e: SetEntryRow; hi: boolean }) => {
+                const saving = setPickerSaving === e.id
+                const base = hi ? mRow : row
+                const hover = hi ? mRowH : rowH
+                return (
+                  <div
+                    onClick={() => !saving && confirmEntry(e)}
+                    style={{ display: 'grid', gridTemplateColumns: '52px 48px 1fr', alignItems: 'center', minHeight: 62, padding: '8px 16px 8px 0', borderBottom: `1px solid ${borderColor}`, background: base, borderLeft: `4px solid ${hi ? grn : 'transparent'}`, cursor: saving ? 'default' : 'pointer', opacity: saving ? 0.4 : 1 }}
+                    onMouseEnter={ev => { (ev.currentTarget as HTMLElement).style.background = hover }}
+                    onMouseLeave={ev => { (ev.currentTarget as HTMLElement).style.background = base }}
+                  >
+                    <span style={{ fontSize: 12, fontWeight: 800, textAlign: 'right', paddingRight: 12, color: hi ? grn : (dark ? '#3a3a50' : '#ccc'), fontVariantNumeric: 'tabular-nums' }}>
+                      {e.card_number || '—'}
+                    </span>
+                    <div style={{ width: 38, height: 54, flexShrink: 0 }}>
+                      {e.image_url
+                        ? <img src={e.image_url} alt="" style={{ width: 38, height: 54, objectFit: 'cover', borderRadius: 5, display: 'block', boxShadow: '0 2px 8px rgba(0,0,0,.25)' }} />
+                        : <div style={{ width: 38, height: 54, background: dark ? '#252530' : '#e8e8f2', borderRadius: 5 }} />
                       }
                     </div>
-                  </div>
-
-                  {/* Infos set */}
-                  <div style={{ flex: 1, minWidth: 0, paddingTop: 2 }}>
-                    <div style={{ fontSize: 18, fontWeight: 900, color: dark ? '#f0f0f0' : '#111', letterSpacing: '-0.3px', lineHeight: 1.15, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {setPickerSelectedSet.name}
-                    </div>
-                    <div style={{ fontSize: 12, color: metaColor, marginTop: 3, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-                      {setPickerSelectedSet.year && <span>{setPickerSelectedSet.year}</span>}
-                      {setPickerSelectedSet.brand && <><span style={{ color: borderColor }}>·</span><span>{setPickerSelectedSet.brand}</span></>}
-                      {setPickerSelectedSet.total_cards > 0 && (
-                        <><span style={{ color: borderColor }}>·</span><span style={{ background: dark ? '#2a2a32' : '#f0f0f5', borderRadius: 4, padding: '1px 6px', fontWeight: 700, fontSize: 11 }}>{setPickerSelectedSet.total_cards.toLocaleString()} cartes</span></>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Boutons */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-                    <button onClick={() => setSetPickerStep('search')}
-                      style={{ background: dark ? '#28282e' : '#f0f0f5', border: 'none', borderRadius: 8, cursor: 'pointer', color: accent, fontSize: 12, fontWeight: 800, padding: '7px 12px', display: 'flex', alignItems: 'center', gap: 4 }}>
-                      ← Changer
-                    </button>
-                    <button onClick={() => setSetPickerOpen(false)}
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 22, lineHeight: 1, padding: '4px 2px' }}>✕</button>
-                  </div>
-                </div>
-
-                {/* Row 2 : carte à placer + recherche */}
-                <div style={{ padding: '0 20px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                  {/* Bannière "placer" */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 12px', background: dark ? accent + '18' : accent + '12', borderRadius: 8, border: `1px solid ${accent}30` }}>
-                    <span style={{ fontSize: 10, fontWeight: 900, background: accent, color: 'white', borderRadius: 4, padding: '2px 6px', flexShrink: 0, letterSpacing: '0.3px' }}>PLACER</span>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: dark ? '#eee' : '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{popup.n}</span>
-                    {popup.v && <span style={{ fontSize: 12, color: accent, fontWeight: 600, flexShrink: 0 }}>{popup.v}</span>}
-                    <span style={{ fontSize: 11, color: metaColor, marginLeft: 'auto', flexShrink: 0 }}>↓ Clique sur la bonne ligne</span>
-                  </div>
-                  {/* Recherche */}
-                  <div style={{ position: 'relative' }}>
-                    <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: '#888', pointerEvents: 'none' }}>🔍</span>
-                    <input type="text" autoFocus
-                      placeholder="Rechercher joueur, numéro de carte…"
-                      value={setPickerEntrySearch}
-                      onChange={e => {
-                        const v = e.target.value
-                        setSetPickerEntrySearch(v)
-                        if (setPickerEntryTimerRef.current) clearTimeout(setPickerEntryTimerRef.current)
-                        if (v.trim().length >= 2) {
-                          setSetPickerEntryLoading(true)
-                          setPickerEntryTimerRef.current = setTimeout(() => searchEntries(v, setPickerSelectedSet!.id), 350)
-                        } else {
-                          setSetPickerEntries([])
-                          setSetPickerEntryLoading(false)
+                    <div style={{ minWidth: 0, paddingLeft: 12 }}>
+                      <div style={{ fontSize: 14, fontWeight: hi ? 700 : 500, color: hi ? (dark ? '#e8f5e8' : '#0a2a14') : (dark ? '#888' : '#555'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {e.player_name}
+                        {e.is_rc && <span style={{ marginLeft: 6, fontSize: 9, fontWeight: 900, background: '#f97316', color: 'white', borderRadius: 3, padding: '1px 5px' }}>RC</span>}
+                      </div>
+                      <div style={{ fontSize: 12, marginTop: 3 }}>
+                        {e.variation
+                          ? <span style={{ color: accent, fontWeight: 700 }}>{e.variation}</span>
+                          : <span style={{ color: dark ? '#383850' : '#d0d0e0' }}>Base</span>
                         }
-                      }}
-                      style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px 10px 38px', borderRadius: 10, border: `1.5px solid ${borderColor}`, fontSize: 14, background: dark ? '#1e1e26' : '#f5f5fa', color: dark ? '#eee' : '#111', outline: 'none' }}
-                    />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                )
+              }
 
-              {/* ── En-tête colonnes ── */}
-              <div style={{ display: 'grid', gridTemplateColumns: '60px 44px 1fr', padding: '6px 20px', background: dark ? '#1a1a22' : '#e8e8ef', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: '0.7px', flexShrink: 0, borderBottom: `1px solid ${borderColor}` }}>
-                <span style={{ textAlign: 'right', paddingRight: 12 }}>#</span><span></span><span style={{ paddingLeft: 8 }}>Joueur · Variation</span>
-              </div>
+              const isSearching = setPickerEntrySearch.trim().length >= 2
+              const matchIds = new Set(setPickerEntryMatches.map(e => e.id))
 
-              {/* ── Liste des entrées ── */}
-              <div style={{ flex: 1, overflowY: 'auto' }}>
-                {setPickerError && (
-                  <div style={{ margin: '12px 20px', padding: '10px 14px', background: '#e74c3c22', border: '1px solid #e74c3c44', borderRadius: 8, fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>
-                    {setPickerError}
-                  </div>
-                )}
-                {setPickerLoading ? (
-                  <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor, fontSize: 14 }}>Chargement…</div>
-                ) : setPickerEntryLoading ? (
-                  <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor, fontSize: 14 }}>Recherche…</div>
-                ) : (() => {
-                  const isSearching = setPickerEntrySearch.trim().length >= 2
-                  const matchIds = new Set(setPickerEntryMatches.map(e => e.id))
+              return (
+                <div style={{ position: 'fixed', inset: 0, zIndex: 99999999, display: 'flex', flexDirection: 'column', background: bg, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
 
-                  const EntryRow = ({ entry, highlight }: { entry: SetEntryRow; highlight: boolean }) => {
-                    const isSaving = setPickerSaving === entry.id
-                    const baseRowBg = highlight
-                      ? (dark ? '#1a2820' : '#f2fff6')
-                      : (dark ? '#0c0c10' : 'white')
-                    const hoverBg = highlight
-                      ? (dark ? '#1e3024' : '#e8fced')
-                      : (dark ? '#18181e' : '#f5f5fa')
-                    return (
-                      <div
-                        onClick={() => !isSaving && confirmEntry(entry)}
-                        style={{
-                          display: 'grid', gridTemplateColumns: '60px 44px 1fr', alignItems: 'center',
-                          padding: '9px 20px 9px 0', borderBottom: `1px solid ${borderColor}`,
-                          background: baseRowBg,
-                          borderLeft: `4px solid ${highlight ? '#2ecc71' : 'transparent'}`,
-                          cursor: isSaving ? 'default' : 'pointer', opacity: isSaving ? 0.4 : 1,
-                          transition: 'background 0.12s',
-                        }}
-                        onMouseEnter={e => { if (!isSaving) (e.currentTarget as HTMLElement).style.background = hoverBg }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = baseRowBg }}
-                      >
-                        <span style={{ fontSize: 13, color: highlight ? '#2ecc71' : (dark ? '#555' : '#bbb'), fontWeight: 800, textAlign: 'right', paddingRight: 12, fontVariantNumeric: 'tabular-nums' }}>
-                          {entry.card_number || '—'}
-                        </span>
-                        <div style={{ width: 36, height: 50, flexShrink: 0 }}>
-                          {entry.image_url
-                            ? <img src={entry.image_url} alt="" style={{ width: 36, height: 50, objectFit: 'cover', borderRadius: 4, display: 'block', boxShadow: dark ? '0 2px 8px rgba(0,0,0,0.5)' : '0 1px 5px rgba(0,0,0,0.15)' }} />
-                            : <div style={{ width: 36, height: 50, background: dark ? '#222228' : '#ebebf2', borderRadius: 4 }} />
-                          }
+                  {/* ── HEADER ── */}
+                  <div style={{ background: surf, borderBottom: `1px solid ${borderColor}`, flexShrink: 0, boxShadow: dark ? '0 2px 12px rgba(0,0,0,.4)' : '0 2px 12px rgba(0,0,0,.06)' }}>
+
+                    {/* Ligne 1 : infos set + boutons */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px 0' }}>
+
+                      {/* Carte 3D (desktop seulement) */}
+                      {!mob && popup.f && (
+                        <div style={{ width: 68, height: 96, perspective: '600px', flexShrink: 0, marginBottom: -8 }}>
+                          <div style={{ width: '100%', height: '100%', transform: 'rotateY(-18deg) rotateX(8deg)', background: dark ? '#252532' : '#dddde8', boxShadow: dark ? '6px 10px 30px rgba(0,0,0,.7)' : '4px 7px 22px rgba(0,0,0,.22)' }}>
+                            <img src={popup.f} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 5 }} />
+                          </div>
                         </div>
-                        <div style={{ minWidth: 0, paddingLeft: 10 }}>
-                          <div style={{ fontSize: 13, fontWeight: highlight ? 700 : 500, color: highlight ? (dark ? '#f0f0f0' : '#111') : (dark ? '#999' : '#555'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 6 }}>
-                            {entry.player_name}
-                            {entry.is_rc && <span style={{ fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 3, padding: '1px 5px', flexShrink: 0 }}>RC</span>}
-                          </div>
-                          <div style={{ fontSize: 11, marginTop: 2 }}>
-                            {entry.variation
-                              ? <span style={{ color: accent, fontWeight: 700 }}>{entry.variation}</span>
-                              : <span style={{ color: dark ? '#444' : '#ccc', fontWeight: 400 }}>Base</span>
-                            }
-                          </div>
+                      )}
+
+                      {/* Nom du set */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: mob ? 15 : 19, fontWeight: 900, color: dark ? '#f0f0f8' : '#0a0a14', letterSpacing: '-.3px', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {setPickerSelectedSet.name}
+                        </div>
+                        <div style={{ fontSize: 11, color: metaColor, marginTop: 3, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                          {[setPickerSelectedSet.year, setPickerSelectedSet.brand].filter(Boolean).join(' · ')}
+                          {setPickerSelectedSet.total_cards > 0 && (
+                            <span style={{ background: dark ? '#28283c' : '#eeeef8', color: dark ? '#8888cc' : '#7070cc', borderRadius: 5, padding: '1px 7px', fontWeight: 700 }}>
+                              {setPickerSelectedSet.total_cards.toLocaleString()}
+                            </span>
+                          )}
                         </div>
                       </div>
-                    )
-                  }
 
-                  if (isSearching) {
-                    if (!setPickerEntries.length) return <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor }}>Aucun résultat pour &ldquo;{setPickerEntrySearch}&rdquo;</div>
-                    return <>{setPickerEntries.map(e => <EntryRow key={e.id} entry={e} highlight={matchIds.has(e.id)} />)}</>
-                  }
+                      {/* Boutons */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                        <button onClick={() => setSetPickerStep('search')} style={{ background: dark ? '#28283c' : '#f0f0f8', border: 'none', borderRadius: 8, cursor: 'pointer', color: accent, fontSize: 12, fontWeight: 800, padding: '8px 14px', whiteSpace: 'nowrap' }}>
+                          ← Changer
+                        </button>
+                        <button onClick={() => setSetPickerOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 24, lineHeight: 1, padding: '4px 2px', display: 'flex', alignItems: 'center' }}>
+                          ✕
+                        </button>
+                      </div>
+                    </div>
 
-                  return (
-                    <>
-                      {setPickerEntryMatches.length > 0 && (
-                        <>
-                          <div style={{ padding: '8px 20px', background: dark ? '#142014' : '#edfbf2', borderBottom: `1px solid ${dark ? '#1e3a1e' : '#b7e8c8'}`, fontSize: 11, fontWeight: 800, color: '#27ae60', display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <span style={{ fontSize: 13 }}>🎯</span>
-                            <span>Correspondances pour &ldquo;{popup.n}&rdquo;</span>
-                            <span style={{ marginLeft: 'auto', background: '#27ae60', color: 'white', borderRadius: 10, padding: '1px 8px', fontSize: 10 }}>{setPickerEntryMatches.length}</span>
+                    {/* Ligne 2 : bannière "placer" + carte mobile */}
+                    <div style={{ padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+                      {mob && popup.f && (
+                        <div style={{ width: 38, height: 54, perspective: '400px', flexShrink: 0 }}>
+                          <div style={{ width: '100%', height: '100%', transform: 'rotateY(-14deg) rotateX(5deg)', background: dark ? '#252532' : '#dddde8', boxShadow: dark ? '3px 5px 16px rgba(0,0,0,.6)' : '3px 5px 14px rgba(0,0,0,.2)' }}>
+                            <img src={popup.f} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 4 }} />
                           </div>
-                          {setPickerEntryMatches.map(e => <EntryRow key={e.id} entry={e} highlight={true} />)}
-                        </>
+                        </div>
                       )}
-                      {setPickerEntries.length > 0 && (
-                        <>
-                          <div style={{ padding: '8px 20px', background: dark ? '#1a1a22' : '#e8e8ef', borderBottom: `1px solid ${borderColor}`, fontSize: 10, fontWeight: 800, color: metaColor, textTransform: 'uppercase', letterSpacing: '0.6px', display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <span>Toutes les cartes</span>
-                            {setPickerSelectedSet.total_cards > setPickerEntries.length + setPickerEntryMatches.length && (
-                              <span style={{ fontSize: 10, color: dark ? '#444' : '#bbb', fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>
-                                {setPickerEntries.length + setPickerEntryMatches.length} sur {setPickerSelectedSet.total_cards.toLocaleString()} — recherche pour plus
-                              </span>
+                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: dark ? accent + '14' : accent + '0d', border: `1.5px solid ${accent}30`, borderRadius: 10, flexWrap: 'wrap', minWidth: 0 }}>
+                        <span style={{ fontSize: 10, fontWeight: 900, background: accent, color: 'white', borderRadius: 5, padding: '2px 8px', flexShrink: 0, letterSpacing: '.4px' }}>PLACER</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: dark ? '#e8e8f8' : '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: mob ? '140px' : '300px' }}>{popup.n}</span>
+                        {popup.v && <span style={{ fontSize: 12, color: accent, fontWeight: 700, flexShrink: 0 }}>{popup.v}</span>}
+                        <span style={{ fontSize: 11, color: metaColor, marginLeft: 'auto', flexShrink: 0 }}>↓ sélectionne</span>
+                      </div>
+                    </div>
+
+                    {/* Ligne 3 : recherche */}
+                    <div style={{ padding: '0 16px 14px', position: 'relative' }}>
+                      <span style={{ position: 'absolute', left: 28, top: '50%', transform: 'translateY(-50%)', fontSize: 15, color: dark ? '#444' : '#bbb', pointerEvents: 'none' }}>🔍</span>
+                      <input type="text" autoFocus
+                        placeholder="Joueur, numéro de carte…"
+                        value={setPickerEntrySearch}
+                        onChange={ev => {
+                          const v = ev.target.value
+                          setSetPickerEntrySearch(v)
+                          if (setPickerEntryTimerRef.current) clearTimeout(setPickerEntryTimerRef.current)
+                          if (v.trim().length >= 2) {
+                            setSetPickerEntryLoading(true)
+                            setPickerEntryTimerRef.current = setTimeout(() => searchEntries(v, setPickerSelectedSet!.id), 350)
+                          } else {
+                            setSetPickerEntries([])
+                            setSetPickerEntryLoading(false)
+                          }
+                        }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '12px 14px 12px 42px', borderRadius: 12, border: `1.5px solid ${borderColor}`, fontSize: 15, background: dark ? '#1c1c28' : '#f5f5fb', color: dark ? '#eee' : '#111', outline: 'none', WebkitAppearance: 'none' as const }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* ── En-tête colonnes ── */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '52px 48px 1fr', padding: '7px 16px 7px 0', background: sec, fontSize: 10, fontWeight: 900, textTransform: 'uppercase' as const, color: dark ? '#444' : '#aaa', letterSpacing: '.8px', flexShrink: 0, borderBottom: `1px solid ${borderColor}` }}>
+                    <span style={{ textAlign: 'right', paddingRight: 12 }}>#</span>
+                    <span />
+                    <span style={{ paddingLeft: 12 }}>Joueur · Variation</span>
+                  </div>
+
+                  {/* ── Liste ── */}
+                  <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' as const }}>
+                    {setPickerError && (
+                      <div style={{ margin: '12px 16px', padding: '10px 14px', background: '#ef444420', border: '1px solid #ef444440', borderRadius: 10, fontSize: 13, color: '#ef4444', fontWeight: 700 }}>
+                        ⚠️ {setPickerError}
+                      </div>
+                    )}
+                    {setPickerLoading ? (
+                      <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor }}>Chargement…</div>
+                    ) : setPickerEntryLoading ? (
+                      <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor }}>Recherche…</div>
+                    ) : isSearching ? (
+                      setPickerEntries.length === 0
+                        ? <div style={{ textAlign: 'center', padding: '60px 20px', color: metaColor }}>Aucun résultat pour &ldquo;{setPickerEntrySearch}&rdquo;</div>
+                        : <>{setPickerEntries.map(e => <ER key={e.id} e={e} hi={matchIds.has(e.id)} />)}</>
+                    ) : (() => {
+                        const byVar = new Map<string, SetEntryRow[]>()
+                        for (const e of setPickerEntries) {
+                          const v = e.variation || 'Base'
+                          if (!byVar.has(v)) byVar.set(v, [])
+                          byVar.get(v)!.push(e)
+                        }
+                        const toggleVar = (v: string) => setSetPickerOpenVars(prev => {
+                          const n = new Set(prev); n.has(v) ? n.delete(v) : n.add(v); return n
+                        })
+                        const varList = setPickerVariations.length > 0 ? setPickerVariations : [...byVar.keys()]
+                        return (
+                          <>
+                            {setPickerEntryMatches.length > 0 && (
+                              <>
+                                <div style={{ padding: '10px 16px', background: mSec, borderBottom: `1px solid ${mBdr}`, display: 'flex', alignItems: 'center', gap: 8 }}>
+                                  <span style={{ fontSize: 14 }}>🎯</span>
+                                  <span style={{ fontSize: 12, fontWeight: 800, color: grn }}>Correspondances pour &ldquo;{popup.n}&rdquo;</span>
+                                  <span style={{ marginLeft: 'auto', background: grn, color: 'white', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 800 }}>{setPickerEntryMatches.length}</span>
+                                </div>
+                                {setPickerEntryMatches.map(e => <ER key={e.id} e={e} hi={true} />)}
+                              </>
                             )}
-                          </div>
-                          {setPickerEntries.map(e => <EntryRow key={e.id} entry={e} highlight={false} />)}
-                        </>
-                      )}
-                      {setPickerEntryMatches.length === 0 && setPickerEntries.length === 0 && !setPickerLoading && (
-                        <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor, fontSize: 14 }}>Aucune carte chargée</div>
-                      )}
-                    </>
-                  )
-                })()}
-              </div>
-            </div>,
+                            {varList.map(varName => {
+                              const varEntries = byVar.get(varName) || []
+                              if (varEntries.length === 0) return null
+                              const open = setPickerOpenVars.has(varName)
+                              const isBase = varName === 'Base'
+                              return (
+                                <div key={varName}>
+                                  <div
+                                    onClick={() => toggleVar(varName)}
+                                    style={{ padding: '10px 16px', background: isBase ? sec : (dark ? '#1a1a2e' : '#f0f0ff'), borderBottom: `1px solid ${borderColor}`, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', userSelect: 'none' as const }}
+                                  >
+                                    <span style={{ fontSize: 11, color: dark ? '#555' : '#ccc', display: 'inline-block', transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform .15s' }}>▶</span>
+                                    <span style={{ fontSize: 13, fontWeight: 800, color: isBase ? (dark ? '#ccc' : '#444') : accent, flex: 1 }}>{varName}</span>
+                                    <span style={{ fontSize: 11, background: isBase ? (dark ? '#28283c' : '#e8e8f8') : (dark ? '#1e2040' : '#e0e0ff'), color: isBase ? (dark ? '#8888bb' : '#7070bb') : accent, borderRadius: 20, padding: '2px 9px', fontWeight: 700 }}>{varEntries.length}</span>
+                                  </div>
+                                  {open && varEntries.map(e => <ER key={e.id} e={e} hi={false} />)}
+                                </div>
+                              )
+                            })}
+                            {setPickerEntries.length === 0 && setPickerEntryMatches.length === 0 && (
+                              <div style={{ textAlign: 'center', padding: '60px 20px', color: metaColor }}>Aucune carte chargée</div>
+                            )}
+                            {setPickerSelectedSet.total_cards > setPickerEntries.length + setPickerEntryMatches.length && (
+                              <div style={{ textAlign: 'center', padding: '12px 16px', color: dark ? '#444' : '#bbb', fontSize: 12, borderTop: `1px solid ${borderColor}` }}>
+                                {setPickerEntries.length + setPickerEntryMatches.length} / {setPickerSelectedSet.total_cards.toLocaleString()} cartes — utilisez la recherche pour affiner
+                              </div>
+                            )}
+                          </>
+                        )
+                      })()}
+                  </div>
+                </div>
+              )
+            })(),
             document.body
           )}
 
