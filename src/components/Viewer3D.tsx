@@ -132,14 +132,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     const lookupViaCompletion = async () => {
       const { data: entries } = await supabase
         .from('card_set_entries').select('id, set_id, variation')
-        .eq('player_name', popup.n).limit(500)
+        .ilike('player_name', popup.n).limit(500)
       if (cancelled) return
       if (!entries?.length) { setSetPlacement(null); return }
-      const { data: completions } = await supabase
-        .from('user_set_completion').select('entry_id')
-        .eq('user_id', userId).in('entry_id', entries.map(e => e.id))
+      // chunk .in() queries to avoid URL length limits (max 200 IDs per batch)
+      const allIds = entries.map(e => e.id)
+      let completions: { entry_id: number }[] = []
+      for (let i = 0; i < allIds.length; i += 200) {
+        const { data: chunk } = await supabase
+          .from('user_set_completion').select('entry_id')
+          .eq('user_id', userId).in('entry_id', allIds.slice(i, i + 200))
+        if (cancelled) return
+        if (chunk?.length) completions = completions.concat(chunk as { entry_id: number }[])
+      }
       if (cancelled) return
-      if (!completions?.length) { setSetPlacement(null); return }
+      if (!completions.length) { setSetPlacement(null); return }
       const completedIds = new Set(completions.map(c => c.entry_id))
       const matched = entries.filter(e => completedIds.has(e.id))
       if (!matched.length) { setSetPlacement(null); return }
@@ -288,12 +295,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       if (cmErr) console.warn('[setlist] cartes_manuelles update error:', cmErr.message)
     }
 
-    const { error: uscErr } = await supabase.from('user_set_completion').upsert(
+    const { data: uscData, error: uscErr } = await supabase.from('user_set_completion').upsert(
       { user_id: userId, entry_id: entry.id, manually_checked: true },
       { onConflict: 'user_id,entry_id' }
-    )
-    if (uscErr) {
-      setSetPickerError(`Erreur: ${uscErr.message}`)
+    ).select('id')
+    if (uscErr || !uscData?.length) {
+      setSetPickerError(uscErr ? `Erreur DB: ${uscErr.message}` : 'Erreur: la sauvegarde a échoué (permissions?). Vérifie ta connexion.')
       setSetPickerSaving(null)
       return
     }
@@ -1232,49 +1239,48 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           {setPickerOpen && setPickerStep === 'entries' && setPickerSelectedSet && createPortal(
             (() => {
               const mob = typeof window !== 'undefined' && window.innerWidth < 600
-              const surf = dark ? '#16161e' : '#ffffff'
-              const bg   = dark ? '#0d0d14' : '#f2f2f7'
-              const sec  = dark ? '#1c1c26' : '#e8e8f0'
-              const row  = dark ? '#0d0d14' : '#ffffff'
-              const rowH = dark ? '#1a1a24' : '#f6f6fd'
-              const mRow = dark ? '#0c1a10' : '#f0fdf5'
-              const mRowH= dark ? '#122018' : '#e5f9ec'
-              const mSec = dark ? '#0a160d' : '#ebfaf0'
-              const mBdr = dark ? '#1c3822' : '#b8e8c5'
-              const grn  = '#22c55e'
+              const bg  = dark ? '#111' : '#f5f5f5'
+              const card= dark ? '#1e1e1e' : '#fff'
+              const grn = '#22c55e'
+              const mBg = dark ? '#0d1f12' : '#f0fdf4'
+              const mBd = dark ? '#1a3a22' : '#bbf7d0'
+              const mTx = dark ? '#4ade80' : '#15803d'
 
               const ER = ({ e, hi }: { e: SetEntryRow; hi: boolean }) => {
                 const saving = setPickerSaving === e.id
-                const base = hi ? mRow : row
-                const hover = hi ? mRowH : rowH
                 return (
                   <div
                     onClick={() => !saving && confirmEntry(e)}
-                    style={{ display: 'grid', gridTemplateColumns: '52px 48px 1fr', alignItems: 'center', minHeight: 62, padding: '8px 16px 8px 0', borderBottom: `1px solid ${borderColor}`, background: base, borderLeft: `4px solid ${hi ? grn : 'transparent'}`, cursor: saving ? 'default' : 'pointer', opacity: saving ? 0.4 : 1 }}
-                    onMouseEnter={ev => { (ev.currentTarget as HTMLElement).style.background = hover }}
-                    onMouseLeave={ev => { (ev.currentTarget as HTMLElement).style.background = base }}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '10px 16px',
+                      borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`,
+                      background: hi ? (dark ? '#0d2018' : '#f0fdf4') : 'transparent',
+                      borderLeft: `3px solid ${hi ? grn : 'transparent'}`,
+                      cursor: saving ? 'default' : 'pointer',
+                      opacity: saving ? 0.5 : 1,
+                      transition: 'background .12s',
+                    }}
+                    onMouseEnter={ev => { if (!saving) (ev.currentTarget as HTMLElement).style.background = hi ? (dark ? '#122818' : '#dcfce7') : (dark ? '#222' : '#fafafa') }}
+                    onMouseLeave={ev => { (ev.currentTarget as HTMLElement).style.background = hi ? (dark ? '#0d2018' : '#f0fdf4') : 'transparent' }}
                   >
-                    <span style={{ fontSize: 12, fontWeight: 800, textAlign: 'right', paddingRight: 12, color: hi ? grn : (dark ? '#3a3a50' : '#ccc'), fontVariantNumeric: 'tabular-nums' }}>
+                    <span style={{ width: 36, textAlign: 'right', fontSize: 13, fontWeight: 700, color: dark ? '#555' : '#ccc', flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
                       {e.card_number || '—'}
                     </span>
-                    <div style={{ width: 38, height: 54, flexShrink: 0 }}>
-                      {e.image_url
-                        ? <img src={e.image_url} alt="" style={{ width: 38, height: 54, objectFit: 'cover', borderRadius: 5, display: 'block', boxShadow: '0 2px 8px rgba(0,0,0,.25)' }} />
-                        : <div style={{ width: 38, height: 54, background: dark ? '#252530' : '#e8e8f2', borderRadius: 5 }} />
-                      }
-                    </div>
-                    <div style={{ minWidth: 0, paddingLeft: 12 }}>
-                      <div style={{ fontSize: 14, fontWeight: hi ? 700 : 500, color: hi ? (dark ? '#e8f5e8' : '#0a2a14') : (dark ? '#888' : '#555'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {e.image_url
+                      ? <img src={e.image_url} alt="" style={{ width: 34, height: 48, objectFit: 'cover', borderRadius: 5, flexShrink: 0, boxShadow: '0 2px 6px rgba(0,0,0,.2)' }} />
+                      : <div style={{ width: 34, height: 48, borderRadius: 5, background: dark ? '#2a2a2a' : '#eee', flexShrink: 0 }} />
+                    }
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 14, fontWeight: hi ? 700 : 500, color: hi ? (dark ? '#86efac' : '#15803d') : (dark ? '#ddd' : '#111'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {e.player_name}
-                        {e.is_rc && <span style={{ marginLeft: 6, fontSize: 9, fontWeight: 900, background: '#f97316', color: 'white', borderRadius: 3, padding: '1px 5px' }}>RC</span>}
+                        {e.is_rc && <span style={{ marginLeft: 6, fontSize: 9, fontWeight: 900, background: '#f97316', color: 'white', borderRadius: 3, padding: '1px 4px' }}>RC</span>}
                       </div>
-                      <div style={{ fontSize: 12, marginTop: 3 }}>
-                        {e.variation
-                          ? <span style={{ color: accent, fontWeight: 700 }}>{e.variation}</span>
-                          : <span style={{ color: dark ? '#383850' : '#d0d0e0' }}>Base</span>
-                        }
+                      <div style={{ fontSize: 12, marginTop: 2, color: e.variation ? accent : (dark ? '#444' : '#ccc'), fontWeight: e.variation ? 700 : 400 }}>
+                        {e.variation || 'Base'}
                       </div>
                     </div>
+                    {hi && <span style={{ fontSize: 18, flexShrink: 0 }}>✓</span>}
                   </div>
                 )
               }
@@ -1285,69 +1291,58 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               return (
                 <div style={{ position: 'fixed', inset: 0, zIndex: 99999999, display: 'flex', flexDirection: 'column', background: bg, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
 
-                  {/* ── HEADER ── */}
-                  <div style={{ background: surf, borderBottom: `1px solid ${borderColor}`, flexShrink: 0, boxShadow: dark ? '0 2px 12px rgba(0,0,0,.4)' : '0 2px 12px rgba(0,0,0,.06)' }}>
+                  {/* ── Nav ── */}
+                  <div style={{ background: card, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#e8e8e8'}`, padding: '0 16px', height: 52, display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+                    <button onClick={() => setSetPickerStep('search')}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: accent, fontSize: 14, fontWeight: 700, padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+                      ← Changer
+                    </button>
+                    <span style={{ flex: 1, fontSize: 15, fontWeight: 800, color: dark ? '#eee' : '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textAlign: 'center' }}>
+                      {setPickerSelectedSet.name}
+                    </span>
+                    <button onClick={() => setSetPickerOpen(false)}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: dark ? '#666' : '#aaa', fontSize: 22, lineHeight: 1, padding: 0 }}>
+                      ×
+                    </button>
+                  </div>
 
-                    {/* Ligne 1 : infos set + boutons */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px 0' }}>
-
-                      {/* Carte 3D (desktop seulement) */}
-                      {!mob && popup.f && (
-                        <div style={{ width: 68, height: 96, perspective: '600px', flexShrink: 0, marginBottom: -8 }}>
-                          <div style={{ width: '100%', height: '100%', transform: 'rotateY(-18deg) rotateX(8deg)', background: dark ? '#252532' : '#dddde8', boxShadow: dark ? '6px 10px 30px rgba(0,0,0,.7)' : '4px 7px 22px rgba(0,0,0,.22)' }}>
-                            <img src={popup.f} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 5 }} />
+                  {/* ── Info carte + set ── */}
+                  <div style={{ background: card, margin: '12px 12px 0', borderRadius: 16, boxShadow: dark ? '0 4px 20px rgba(0,0,0,.4)' : '0 4px 20px rgba(0,0,0,.08)', flexShrink: 0, overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', gap: 14, padding: '16px 16px 12px' }}>
+                      {popup.f && (
+                        <div style={{ width: mob ? 52 : 68, height: mob ? 73 : 96, flexShrink: 0, perspective: '500px' }}>
+                          <div style={{ width: '100%', height: '100%', transform: 'rotateY(-12deg) rotateX(6deg)', boxShadow: dark ? '5px 8px 24px rgba(0,0,0,.7)' : '4px 6px 18px rgba(0,0,0,.25)' }}>
+                            <img src={popup.f} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />
                           </div>
                         </div>
                       )}
-
-                      {/* Nom du set */}
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: mob ? 15 : 19, fontWeight: 900, color: dark ? '#f0f0f8' : '#0a0a14', letterSpacing: '-.3px', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {setPickerSelectedSet.name}
+                        <div style={{ fontSize: 12, fontWeight: 700, color: dark ? '#888' : '#aaa', textTransform: 'uppercase' as const, letterSpacing: '0.5px', marginBottom: 4 }}>
+                          Placer dans ce set
                         </div>
-                        <div style={{ fontSize: 11, color: metaColor, marginTop: 3, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
-                          {[setPickerSelectedSet.year, setPickerSelectedSet.brand].filter(Boolean).join(' · ')}
+                        <div style={{ fontSize: mob ? 16 : 19, fontWeight: 900, color: dark ? '#f0f0f0' : '#0a0a0a', lineHeight: 1.2, marginBottom: 6 }}>
+                          {popup.n}
+                          {popup.v && <span style={{ fontSize: 13, fontWeight: 600, color: accent, marginLeft: 8 }}>{popup.v}</span>}
+                        </div>
+                        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
+                          {setPickerSelectedSet.year && (
+                            <span style={{ fontSize: 12, color: dark ? '#888' : '#888', fontWeight: 600 }}>{setPickerSelectedSet.year}</span>
+                          )}
+                          {setPickerSelectedSet.brand && (
+                            <span style={{ fontSize: 12, color: accent, fontWeight: 700, background: dark ? accent + '22' : accent + '15', borderRadius: 6, padding: '1px 7px' }}>{setPickerSelectedSet.brand}</span>
+                          )}
                           {setPickerSelectedSet.total_cards > 0 && (
-                            <span style={{ background: dark ? '#28283c' : '#eeeef8', color: dark ? '#8888cc' : '#7070cc', borderRadius: 5, padding: '1px 7px', fontWeight: 700 }}>
-                              {setPickerSelectedSet.total_cards.toLocaleString()}
-                            </span>
+                            <span style={{ fontSize: 12, color: dark ? '#555' : '#bbb', fontWeight: 600 }}>{setPickerSelectedSet.total_cards.toLocaleString()} cartes</span>
                           )}
                         </div>
                       </div>
-
-                      {/* Boutons */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-                        <button onClick={() => setSetPickerStep('search')} style={{ background: dark ? '#28283c' : '#f0f0f8', border: 'none', borderRadius: 8, cursor: 'pointer', color: accent, fontSize: 12, fontWeight: 800, padding: '8px 14px', whiteSpace: 'nowrap' }}>
-                          ← Changer
-                        </button>
-                        <button onClick={() => setSetPickerOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 24, lineHeight: 1, padding: '4px 2px', display: 'flex', alignItems: 'center' }}>
-                          ✕
-                        </button>
-                      </div>
                     </div>
 
-                    {/* Ligne 2 : bannière "placer" + carte mobile */}
-                    <div style={{ padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
-                      {mob && popup.f && (
-                        <div style={{ width: 38, height: 54, perspective: '400px', flexShrink: 0 }}>
-                          <div style={{ width: '100%', height: '100%', transform: 'rotateY(-14deg) rotateX(5deg)', background: dark ? '#252532' : '#dddde8', boxShadow: dark ? '3px 5px 16px rgba(0,0,0,.6)' : '3px 5px 14px rgba(0,0,0,.2)' }}>
-                            <img src={popup.f} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 4 }} />
-                          </div>
-                        </div>
-                      )}
-                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: dark ? accent + '14' : accent + '0d', border: `1.5px solid ${accent}30`, borderRadius: 10, flexWrap: 'wrap', minWidth: 0 }}>
-                        <span style={{ fontSize: 10, fontWeight: 900, background: accent, color: 'white', borderRadius: 5, padding: '2px 8px', flexShrink: 0, letterSpacing: '.4px' }}>PLACER</span>
-                        <span style={{ fontSize: 13, fontWeight: 700, color: dark ? '#e8e8f8' : '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: mob ? '140px' : '300px' }}>{popup.n}</span>
-                        {popup.v && <span style={{ fontSize: 12, color: accent, fontWeight: 700, flexShrink: 0 }}>{popup.v}</span>}
-                        <span style={{ fontSize: 11, color: metaColor, marginLeft: 'auto', flexShrink: 0 }}>↓ sélectionne</span>
-                      </div>
-                    </div>
-
-                    {/* Ligne 3 : recherche */}
-                    <div style={{ padding: '0 16px 14px', position: 'relative' }}>
-                      <span style={{ position: 'absolute', left: 28, top: '50%', transform: 'translateY(-50%)', fontSize: 15, color: dark ? '#444' : '#bbb', pointerEvents: 'none' }}>🔍</span>
+                    {/* Barre de recherche */}
+                    <div style={{ padding: '0 12px 12px', position: 'relative' }}>
+                      <span style={{ position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)', fontSize: 16, color: dark ? '#555' : '#bbb', pointerEvents: 'none' }}>🔍</span>
                       <input type="text" autoFocus
-                        placeholder="Joueur, numéro de carte…"
+                        placeholder="Chercher joueur, numéro…"
                         value={setPickerEntrySearch}
                         onChange={ev => {
                           const v = ev.target.value
@@ -1361,33 +1356,31 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                             setSetPickerEntryLoading(false)
                           }
                         }}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '12px 14px 12px 42px', borderRadius: 12, border: `1.5px solid ${borderColor}`, fontSize: 15, background: dark ? '#1c1c28' : '#f5f5fb', color: dark ? '#eee' : '#111', outline: 'none', WebkitAppearance: 'none' as const }}
+                        style={{ width: '100%', boxSizing: 'border-box' as const, padding: '11px 14px 11px 40px', borderRadius: 10, border: `1.5px solid ${dark ? '#333' : '#e0e0e0'}`, fontSize: 14, background: dark ? '#2a2a2a' : '#f5f5f5', color: dark ? '#eee' : '#111', outline: 'none', WebkitAppearance: 'none' as const }}
                       />
                     </div>
                   </div>
 
-                  {/* ── En-tête colonnes ── */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '52px 48px 1fr', padding: '7px 16px 7px 0', background: sec, fontSize: 10, fontWeight: 900, textTransform: 'uppercase' as const, color: dark ? '#444' : '#aaa', letterSpacing: '.8px', flexShrink: 0, borderBottom: `1px solid ${borderColor}` }}>
-                    <span style={{ textAlign: 'right', paddingRight: 12 }}>#</span>
-                    <span />
-                    <span style={{ paddingLeft: 12 }}>Joueur · Variation</span>
-                  </div>
+                  {/* ── Error ── */}
+                  {setPickerError && (
+                    <div style={{ margin: '10px 12px 0', padding: '10px 14px', background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 10, fontSize: 13, color: '#dc2626', fontWeight: 700 }}>
+                      ⚠️ {setPickerError}
+                    </div>
+                  )}
 
                   {/* ── Liste ── */}
-                  <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' as const }}>
-                    {setPickerError && (
-                      <div style={{ margin: '12px 16px', padding: '10px 14px', background: '#ef444420', border: '1px solid #ef444440', borderRadius: 10, fontSize: 13, color: '#ef4444', fontWeight: 700 }}>
-                        ⚠️ {setPickerError}
-                      </div>
-                    )}
+                  <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' as const, paddingTop: 12 }}>
                     {setPickerLoading ? (
-                      <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor }}>Chargement…</div>
+                      <div style={{ textAlign: 'center', padding: '60px 0', color: dark ? '#555' : '#aaa' }}>Chargement…</div>
                     ) : setPickerEntryLoading ? (
-                      <div style={{ textAlign: 'center', padding: '60px 0', color: metaColor }}>Recherche…</div>
+                      <div style={{ textAlign: 'center', padding: '60px 0', color: dark ? '#555' : '#aaa' }}>Recherche…</div>
                     ) : isSearching ? (
-                      setPickerEntries.length === 0
-                        ? <div style={{ textAlign: 'center', padding: '60px 20px', color: metaColor }}>Aucun résultat pour &ldquo;{setPickerEntrySearch}&rdquo;</div>
-                        : <>{setPickerEntries.map(e => <ER key={e.id} e={e} hi={matchIds.has(e.id)} />)}</>
+                      <div style={{ margin: '0 12px', background: card, borderRadius: 12, overflow: 'hidden', boxShadow: dark ? '0 2px 8px rgba(0,0,0,.3)' : '0 2px 8px rgba(0,0,0,.05)', border: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}>
+                        {setPickerEntries.length === 0
+                          ? <div style={{ textAlign: 'center', padding: '40px 20px', color: dark ? '#555' : '#aaa', fontSize: 14 }}>Aucun résultat pour &ldquo;{setPickerEntrySearch}&rdquo;</div>
+                          : setPickerEntries.map(e => <ER key={e.id} e={e} hi={matchIds.has(e.id)} />)
+                        }
+                      </div>
                     ) : (() => {
                         const byVar = new Map<string, SetEntryRow[]>()
                         for (const e of setPickerEntries) {
@@ -1400,45 +1393,47 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                         })
                         const varList = setPickerVariations.length > 0 ? setPickerVariations : [...byVar.keys()]
                         return (
-                          <>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '0 12px 20px' }}>
+                            {/* Correspondances joueur */}
                             {setPickerEntryMatches.length > 0 && (
-                              <>
-                                <div style={{ padding: '10px 16px', background: mSec, borderBottom: `1px solid ${mBdr}`, display: 'flex', alignItems: 'center', gap: 8 }}>
-                                  <span style={{ fontSize: 14 }}>🎯</span>
-                                  <span style={{ fontSize: 12, fontWeight: 800, color: grn }}>Correspondances pour &ldquo;{popup.n}&rdquo;</span>
-                                  <span style={{ marginLeft: 'auto', background: grn, color: 'white', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 800 }}>{setPickerEntryMatches.length}</span>
+                              <div style={{ background: mBg, border: `1px solid ${mBd}`, borderRadius: 12, overflow: 'hidden' }}>
+                                <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: `1px solid ${mBd}` }}>
+                                  <span style={{ fontSize: 14 }}>✦</span>
+                                  <span style={{ fontSize: 13, fontWeight: 800, color: mTx, flex: 1 }}>Correspondances · {popup.n}</span>
+                                  <span style={{ background: grn, color: 'white', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 800 }}>{setPickerEntryMatches.length}</span>
                                 </div>
                                 {setPickerEntryMatches.map(e => <ER key={e.id} e={e} hi={true} />)}
-                              </>
+                              </div>
                             )}
+
+                            {/* Sections par variation */}
                             {varList.map(varName => {
                               const varEntries = byVar.get(varName) || []
                               if (varEntries.length === 0) return null
                               const open = setPickerOpenVars.has(varName)
                               const isBase = varName === 'Base'
                               return (
-                                <div key={varName}>
-                                  <div
-                                    onClick={() => toggleVar(varName)}
-                                    style={{ padding: '10px 16px', background: isBase ? sec : (dark ? '#1a1a2e' : '#f0f0ff'), borderBottom: `1px solid ${borderColor}`, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', userSelect: 'none' as const }}
-                                  >
-                                    <span style={{ fontSize: 11, color: dark ? '#555' : '#ccc', display: 'inline-block', transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform .15s' }}>▶</span>
-                                    <span style={{ fontSize: 13, fontWeight: 800, color: isBase ? (dark ? '#ccc' : '#444') : accent, flex: 1 }}>{varName}</span>
-                                    <span style={{ fontSize: 11, background: isBase ? (dark ? '#28283c' : '#e8e8f8') : (dark ? '#1e2040' : '#e0e0ff'), color: isBase ? (dark ? '#8888bb' : '#7070bb') : accent, borderRadius: 20, padding: '2px 9px', fontWeight: 700 }}>{varEntries.length}</span>
+                                <div key={varName} style={{ background: card, borderRadius: 12, overflow: 'hidden', boxShadow: dark ? '0 2px 8px rgba(0,0,0,.3)' : '0 2px 8px rgba(0,0,0,.05)', border: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}>
+                                  <div onClick={() => toggleVar(varName)}
+                                    style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 16px', cursor: 'pointer', userSelect: 'none' as const }}>
+                                    <span style={{ fontSize: 14, fontWeight: 800, color: isBase ? (dark ? '#eee' : '#111') : accent, flex: 1 }}>{varName}</span>
+                                    <span style={{ fontSize: 12, color: dark ? '#555' : '#aaa' }}>{varEntries.length} cartes</span>
+                                    <span style={{ fontSize: 12, color: dark ? '#444' : '#ccc', transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform .15s', display: 'inline-block' }}>▼</span>
                                   </div>
                                   {open && varEntries.map(e => <ER key={e.id} e={e} hi={false} />)}
                                 </div>
                               )
                             })}
+
                             {setPickerEntries.length === 0 && setPickerEntryMatches.length === 0 && (
-                              <div style={{ textAlign: 'center', padding: '60px 20px', color: metaColor }}>Aucune carte chargée</div>
+                              <div style={{ textAlign: 'center', padding: '60px 20px', color: dark ? '#555' : '#aaa' }}>Aucune carte chargée</div>
                             )}
                             {setPickerSelectedSet.total_cards > setPickerEntries.length + setPickerEntryMatches.length && (
-                              <div style={{ textAlign: 'center', padding: '12px 16px', color: dark ? '#444' : '#bbb', fontSize: 12, borderTop: `1px solid ${borderColor}` }}>
-                                {setPickerEntries.length + setPickerEntryMatches.length} / {setPickerSelectedSet.total_cards.toLocaleString()} cartes — utilisez la recherche pour affiner
+                              <div style={{ textAlign: 'center', padding: '12px', color: dark ? '#555' : '#bbb', fontSize: 12 }}>
+                                {setPickerEntries.length + setPickerEntryMatches.length} / {setPickerSelectedSet.total_cards.toLocaleString()} — recherche pour affiner
                               </div>
                             )}
-                          </>
+                          </div>
                         )
                       })()}
                   </div>
