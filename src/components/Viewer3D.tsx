@@ -314,7 +314,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     const { data } = await supabase.from('card_set_entries')
       .select('id, card_number, player_name, variation, is_rc, image_url')
       .eq('set_id', setId)
-      .or(`player_name.ilike.%${q.trim()}%,card_number.ilike.%${q.trim()}%`)
+      .or(`player_name.ilike.%${q.trim()}%,card_number.ilike.%${q.trim()}%,variation.ilike.%${q.trim()}%`)
       .order('card_number').limit(100)
     setSetPickerEntries(data || [])
     setSetPickerEntryLoading(false)
