@@ -113,8 +113,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [setPickerEntrySearch, setSetPickerEntrySearch] = useState('')
   const [setPickerLoading, setSetPickerLoading] = useState(false)
   const [setPickerSaving, setSetPickerSaving] = useState<number | null>(null)
+  const [setPickerSuggestions, setSetPickerSuggestions] = useState<{ id: number; name: string; year: number | null; brand: string | null; sport: string }[]>([])
+  const [setPickerEntryMatches, setSetPickerEntryMatches] = useState<SetEntryRow[]>([])
+  const [setPickerEntryLoading, setSetPickerEntryLoading] = useState(false)
   const [setPickerError, setSetPickerError] = useState<string | null>(null)
   const setPickerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const setPickerEntryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (!isOwner || !userId) { setSetPlacement(null); return }
@@ -166,16 +170,31 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
   }, [popup.id_manuelle, popup.f, isOwner, userId])
 
-  const openPicker = () => {
+  const openPicker = async () => {
     setSetPickerOpen(true)
     setSetPickerStep('search')
     setSetPickerSearch('')
     setSetPickerYear(popup.y ? popup.y.slice(0, 4) : '')
     setSetPickerResults([])
+    setSetPickerSuggestions([])
     setSetPickerSelectedSet(null)
     setSetPickerEntries([])
+    setSetPickerEntryMatches([])
     setSetPickerEntrySearch('')
     setSetPickerError(null)
+
+    // Suggestions auto basées sur brand + collection + année de la carte
+    const yearNum = popup.y ? parseInt(popup.y.slice(0, 4)) : null
+    const collName = popup.s?.trim()  // nom de la collection (ex: "Mosaic", "Select")
+    const brandName = popup.br?.trim()
+    if (yearNum || collName || brandName) {
+      let q = supabase.from('card_sets').select('id, name, year, brand, sport').limit(8)
+      if (yearNum) q = q.or(`year.eq.${yearNum},year.eq.${yearNum - 1}`)
+      if (collName && collName.length >= 3) q = q.ilike('name', `%${collName}%`)
+      else if (brandName && brandName.length >= 2) q = q.ilike('brand', `%${brandName}%`)
+      const { data } = await q.order('year', { ascending: false }).order('name')
+      setSetPickerSuggestions(data || [])
+    }
   }
 
   const searchSets = async (q: string, year: string) => {
@@ -191,33 +210,38 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     setSetPickerSelectedSet(s)
     setSetPickerStep('entries')
     setSetPickerLoading(true)
+    setSetPickerEntries([])
+    setSetPickerEntryMatches([])
     setSetPickerEntrySearch('')
     setSetPickerError(null)
 
-    // Chercher les entrées pour ce joueur dans le set
-    let rows: SetEntryRow[] = []
+    // Correspondances joueur (haut de liste)
+    let matches: SetEntryRow[] = []
     const { data: exact } = await supabase.from('card_set_entries')
       .select('id, card_number, player_name, variation, is_rc, image_url')
-      .eq('set_id', s.id).eq('player_name', popup.n)
-      .order('card_number').limit(100)
+      .eq('set_id', s.id).eq('player_name', popup.n).order('card_number').limit(50)
     if (exact?.length) {
-      rows = exact
+      matches = exact
     } else {
       const { data: fuzzy } = await supabase.from('card_set_entries')
         .select('id, card_number, player_name, variation, is_rc, image_url')
-        .eq('set_id', s.id).ilike('player_name', `%${popup.n}%`)
-        .order('card_number').limit(50)
-      rows = fuzzy || []
+        .eq('set_id', s.id).ilike('player_name', `%${popup.n}%`).order('card_number').limit(30)
+      matches = fuzzy || []
     }
-    // Fallback : toutes les entrées (pour que l'utilisateur puisse chercher)
-    if (!rows.length) {
-      const { data: all } = await supabase.from('card_set_entries')
-        .select('id, card_number, player_name, variation, is_rc, image_url')
-        .eq('set_id', s.id).order('card_number').limit(300)
-      rows = all || []
-    }
-    setSetPickerEntries(rows)
+    setSetPickerEntryMatches(matches)
     setSetPickerLoading(false)
+  }
+
+  const searchEntries = async (q: string, setId: number) => {
+    if (!q.trim() || q.trim().length < 2) { setSetPickerEntries([]); setSetPickerEntryLoading(false); return }
+    setSetPickerEntryLoading(true)
+    const { data } = await supabase.from('card_set_entries')
+      .select('id, card_number, player_name, variation, is_rc, image_url')
+      .eq('set_id', setId)
+      .or(`player_name.ilike.%${q.trim()}%,card_number.ilike.%${q.trim()}%`)
+      .order('card_number').limit(100)
+    setSetPickerEntries(data || [])
+    setSetPickerEntryLoading(false)
   }
 
   const confirmEntry = async (entry: SetEntryRow) => {
@@ -1079,12 +1103,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               )}
 
               {setPickerOpen && (
-                <div style={{ marginTop: 8, background: dark ? '#252525' : '#f8f8f8', borderRadius: 10, padding: '10px 12px' }}>
+                <div style={{ marginTop: 8, background: dark ? '#1e1e1e' : '#f4f4f4', borderRadius: 12, border: `1px solid ${borderColor}`, overflow: 'hidden' }}>
 
                   {/* ── Étape 1 : recherche du set ── */}
                   {setPickerStep === 'search' && (
                     <>
-                      <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
+                      {/* Barre de recherche */}
+                      <div style={{ display: 'flex', gap: 6, padding: '10px 10px 8px', borderBottom: `1px solid ${borderColor}` }}>
                         <input type="text" placeholder="Année"
                           value={setPickerYear}
                           onChange={e => {
@@ -1092,7 +1117,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                             if (setPickerTimerRef.current) clearTimeout(setPickerTimerRef.current)
                             setPickerTimerRef.current = setTimeout(() => searchSets(setPickerSearch, e.target.value), 300)
                           }}
-                          style={{ width: 56, padding: '5px 7px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor }}
+                          style={{ width: 54, padding: '5px 7px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor }}
                         />
                         <input type="text" placeholder="Nom du set…"
                           value={setPickerSearch} autoFocus
@@ -1104,23 +1129,52 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                           style={{ flex: 1, padding: '5px 7px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor }}
                         />
                         <button onClick={() => setSetPickerOpen(false)}
-                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 14, lineHeight: 1 }}>✕</button>
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 14, lineHeight: 1, padding: '0 2px' }}>✕</button>
                       </div>
-                      {setPickerResults.length === 0 ? (
-                        <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '6px 0' }}>
-                          {setPickerSearch.length < 2 && setPickerYear.length < 4 ? 'Tape le nom ou l\'année…' : 'Aucun résultat'}
-                        </div>
-                      ) : (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 2, maxHeight: 150, overflowY: 'auto' }}>
-                          {setPickerResults.map(s => (
+
+                      {/* Suggestions (avant toute saisie) */}
+                      {setPickerSearch.length < 2 && setPickerYear.length < 4 && setPickerSuggestions.length > 0 && (
+                        <div>
+                          <div style={{ fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', letterSpacing: '0.5px', padding: '8px 10px 4px' }}>
+                            Suggestions
+                          </div>
+                          {setPickerSuggestions.map(s => (
                             <button key={s.id} onClick={() => selectSet(s)}
-                              style={{ textAlign: 'left', padding: '7px 9px', borderRadius: 6, border: 'none', background: dark ? '#333' : 'white', cursor: 'pointer', fontSize: 11, color: dark ? '#eee' : '#111', display: 'flex', alignItems: 'center', gap: 6 }}>
+                              style={{ width: '100%', textAlign: 'left', padding: '7px 10px', border: 'none', background: 'none', cursor: 'pointer', fontSize: 11, color: dark ? '#eee' : '#111', display: 'flex', alignItems: 'center', gap: 6, borderBottom: `1px solid ${borderColor}` }}>
                               <span style={{ flex: 1, fontWeight: 700 }}>{s.name}</span>
-                              {s.year && <span style={{ color: metaColor, flexShrink: 0 }}>{s.year}</span>}
+                              {s.year && <span style={{ color: metaColor, flexShrink: 0, fontSize: 10 }}>{s.year}</span>}
                               {s.brand && <span style={{ color: accent, fontSize: 10, flexShrink: 0 }}>{s.brand}</span>}
-                              <span style={{ color: metaColor, fontSize: 11, flexShrink: 0 }}>›</span>
+                              <span style={{ color: metaColor, fontSize: 13, flexShrink: 0 }}>›</span>
                             </button>
                           ))}
+                          <div style={{ fontSize: 10, color: metaColor, padding: '6px 10px', textAlign: 'center' }}>
+                            ↑ tape pour chercher tous les sets
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Résultats de recherche */}
+                      {(setPickerSearch.length >= 2 || setPickerYear.length >= 4) && (
+                        setPickerResults.length === 0 ? (
+                          <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '12px 0' }}>Aucun résultat</div>
+                        ) : (
+                          <div style={{ maxHeight: 180, overflowY: 'auto' }}>
+                            {setPickerResults.map(s => (
+                              <button key={s.id} onClick={() => selectSet(s)}
+                                style={{ width: '100%', textAlign: 'left', padding: '7px 10px', border: 'none', background: 'none', cursor: 'pointer', fontSize: 11, color: dark ? '#eee' : '#111', display: 'flex', alignItems: 'center', gap: 6, borderBottom: `1px solid ${borderColor}` }}>
+                                <span style={{ flex: 1, fontWeight: 700 }}>{s.name}</span>
+                                {s.year && <span style={{ color: metaColor, flexShrink: 0, fontSize: 10 }}>{s.year}</span>}
+                                {s.brand && <span style={{ color: accent, fontSize: 10, flexShrink: 0 }}>{s.brand}</span>}
+                                <span style={{ color: metaColor, fontSize: 13, flexShrink: 0 }}>›</span>
+                              </button>
+                            ))}
+                          </div>
+                        )
+                      )}
+
+                      {setPickerSearch.length < 2 && setPickerYear.length < 4 && setPickerSuggestions.length === 0 && (
+                        <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '12px 0' }}>
+                          Tape le nom ou l&apos;année du set…
                         </div>
                       )}
                     </>
@@ -1129,70 +1183,106 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   {/* ── Étape 2 : choisir l'entrée dans le set ── */}
                   {setPickerStep === 'entries' && setPickerSelectedSet && (
                     <>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                      {/* Header set sélectionné */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 10px', borderBottom: `1px solid ${borderColor}`, background: dark ? '#252525' : 'white' }}>
                         <button onClick={() => setSetPickerStep('search')}
-                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: accent, fontSize: 11, fontWeight: 700, padding: 0 }}>
-                          ← Changer
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: accent, fontSize: 11, fontWeight: 700, padding: 0, flexShrink: 0 }}>
+                          ←
                         </button>
                         <span style={{ fontSize: 11, fontWeight: 800, color: textColor, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                           {setPickerSelectedSet.name}
                           {setPickerSelectedSet.year && <span style={{ fontWeight: 400, color: metaColor, marginLeft: 4 }}>({setPickerSelectedSet.year})</span>}
                         </span>
                         <button onClick={() => setSetPickerOpen(false)}
-                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 14, lineHeight: 1 }}>✕</button>
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: metaColor, fontSize: 14, lineHeight: 1, padding: '0 2px', flexShrink: 0 }}>✕</button>
                       </div>
 
-                      {/* Recherche dans les entrées */}
-                      <input type="text" placeholder={`Rechercher dans le set…`}
-                        value={setPickerEntrySearch}
-                        onChange={e => setSetPickerEntrySearch(e.target.value)}
-                        autoFocus
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '5px 8px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor, marginBottom: 6 }}
-                      />
+                      {/* Recherche dans les entrées du set */}
+                      <div style={{ padding: '8px 10px', borderBottom: `1px solid ${borderColor}` }}>
+                        <input type="text" placeholder="Rechercher joueur ou #…"
+                          value={setPickerEntrySearch} autoFocus
+                          onChange={e => {
+                            const v = e.target.value
+                            setSetPickerEntrySearch(v)
+                            if (setPickerEntryTimerRef.current) clearTimeout(setPickerEntryTimerRef.current)
+                            if (v.trim().length >= 2) {
+                              setSetPickerEntryLoading(true)
+                              setPickerEntryTimerRef.current = setTimeout(() => searchEntries(v, setPickerSelectedSet!.id), 350)
+                            } else {
+                              setSetPickerEntries([])
+                              setSetPickerEntryLoading(false)
+                            }
+                          }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '5px 8px', borderRadius: 6, border: `1px solid ${borderColor}`, fontSize: 11, background: dark ? '#2a2a2a' : 'white', color: textColor }}
+                        />
+                      </div>
 
                       {setPickerError && (
-                        <div style={{ fontSize: 10, color: '#e74c3c', marginBottom: 4, fontWeight: 700 }}>{setPickerError}</div>
+                        <div style={{ fontSize: 10, color: '#e74c3c', padding: '4px 10px', fontWeight: 700 }}>{setPickerError}</div>
                       )}
 
-                      {setPickerLoading ? (
-                        <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '10px 0' }}>Chargement…</div>
-                      ) : (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 1, maxHeight: 220, overflowY: 'auto' }}>
-                          {setPickerEntries
-                            .filter(e => !setPickerEntrySearch || e.player_name.toLowerCase().includes(setPickerEntrySearch.toLowerCase()) || (e.card_number || '').includes(setPickerEntrySearch))
-                            .map(entry => {
-                              const isMatch = entry.player_name.toLowerCase() === popup.n.toLowerCase()
-                              const isSaving = setPickerSaving === entry.id
-                              return (
-                                <button key={entry.id} disabled={isSaving}
-                                  onClick={() => confirmEntry(entry)}
-                                  style={{
-                                    display: 'grid', gridTemplateColumns: '30px 30px 1fr', gap: 6, alignItems: 'center',
-                                    padding: '5px 8px', borderRadius: 6, border: isMatch ? `1.5px solid ${accent}` : 'none',
-                                    background: isMatch ? (dark ? accent + '22' : accent + '11') : (dark ? '#333' : 'white'),
-                                    cursor: isSaving ? 'default' : 'pointer', opacity: isSaving ? 0.5 : 1,
-                                    textAlign: 'left',
-                                  }}>
-                                  <span style={{ fontSize: 10, color: metaColor, fontWeight: 700 }}>#{entry.card_number || '—'}</span>
-                                  {entry.image_url
-                                    ? <img src={entry.image_url} alt="" style={{ width: 28, height: 39, objectFit: 'cover', borderRadius: 3, display: 'block' }} />
-                                    : <div style={{ width: 28, height: 39, background: dark ? '#444' : '#eee', borderRadius: 3, border: `1px dashed ${borderColor}` }} />
-                                  }
-                                  <div>
-                                    <div style={{ fontSize: 11, fontWeight: isMatch ? 800 : 400, color: isMatch ? (dark ? '#eee' : '#111') : (dark ? '#ccc' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                      {entry.player_name}
-                                      {entry.is_rc && <span style={{ marginLeft: 4, fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 3, padding: '1px 4px' }}>RC</span>}
+                      <div style={{ maxHeight: 260, overflowY: 'auto' }}>
+                        {setPickerLoading ? (
+                          <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '16px 0' }}>Chargement…</div>
+                        ) : (() => {
+                          // Quand une recherche est active : montrer les résultats de search
+                          // Sinon : montrer les correspondances du joueur
+                          const showSearch = setPickerEntrySearch.trim().length >= 2
+                          const list = showSearch ? setPickerEntries : setPickerEntryMatches
+                          const header = showSearch ? null : (
+                            setPickerEntryMatches.length > 0
+                              ? <div style={{ fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', letterSpacing: '0.5px', padding: '6px 10px 2px' }}>
+                                  {popup.n} · {setPickerEntryMatches.length} carte{setPickerEntryMatches.length > 1 ? 's' : ''}
+                                </div>
+                              : <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '10px 0 4px' }}>
+                                  {popup.n} introuvable — cherche manuellement ↑
+                                </div>
+                          )
+
+                          if (showSearch && setPickerEntryLoading) {
+                            return <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '16px 0' }}>Recherche…</div>
+                          }
+
+                          return (
+                            <>
+                              {header}
+                              {list.map(entry => {
+                                const isSaving = setPickerSaving === entry.id
+                                return (
+                                  <button key={entry.id} disabled={isSaving}
+                                    onClick={() => confirmEntry(entry)}
+                                    style={{
+                                      width: '100%', display: 'grid', gridTemplateColumns: '32px 30px 1fr', gap: 6, alignItems: 'center',
+                                      padding: '6px 10px', border: 'none', borderBottom: `1px solid ${borderColor}`,
+                                      background: isSaving ? (dark ? '#2a2a2a' : '#f9f9f9') : (dark ? '#1e1e1e' : 'white'),
+                                      cursor: isSaving ? 'default' : 'pointer', opacity: isSaving ? 0.5 : 1,
+                                      textAlign: 'left',
+                                    }}>
+                                    <span style={{ fontSize: 10, color: metaColor, fontWeight: 700 }}>#{entry.card_number || '—'}</span>
+                                    {entry.image_url
+                                      ? <img src={entry.image_url} alt="" style={{ width: 28, height: 39, objectFit: 'cover', borderRadius: 3, display: 'block' }} />
+                                      : <div style={{ width: 28, height: 39, background: dark ? '#333' : '#eee', borderRadius: 3, border: `1px dashed ${borderColor}` }} />
+                                    }
+                                    <div style={{ overflow: 'hidden' }}>
+                                      <div style={{ fontSize: 11, fontWeight: 600, color: dark ? '#ddd' : '#222', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {entry.player_name}
+                                        {entry.is_rc && <span style={{ marginLeft: 4, fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 3, padding: '1px 4px' }}>RC</span>}
+                                      </div>
+                                      {entry.variation
+                                        ? <div style={{ fontSize: 10, color: accent, marginTop: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 600 }}>{entry.variation}</div>
+                                        : <div style={{ fontSize: 10, color: metaColor, marginTop: 1 }}>Base</div>
+                                      }
                                     </div>
-                                    {entry.variation && <div style={{ fontSize: 10, color: metaColor, marginTop: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.variation}</div>}
-                                  </div>
-                                </button>
-                              )
-                            })}
-                          {setPickerEntries.filter(e => !setPickerEntrySearch || e.player_name.toLowerCase().includes(setPickerEntrySearch.toLowerCase()) || (e.card_number || '').includes(setPickerEntrySearch)).length === 0 && (
-                            <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '10px 0' }}>Aucun résultat</div>
-                          )}
-                        </div>
-                      )}
+                                  </button>
+                                )
+                              })}
+                              {list.length === 0 && showSearch && (
+                                <div style={{ fontSize: 11, color: metaColor, textAlign: 'center', padding: '12px 0' }}>Aucun résultat</div>
+                              )}
+                            </>
+                          )
+                        })()}
+                      </div>
                     </>
                   )}
                 </div>
