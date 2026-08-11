@@ -629,7 +629,7 @@ function SectionTitle({ children }: { children: string }) {
 
 // ── Section Derniers inscrits ─────────────────────────────────────────────
 
-type RecentUser = { user_id: string; display_name: string; slug: string | null; email: string; created_at: string; cards_count: number }
+type RecentUser = { user_id: string; display_name: string; slug: string | null; email: string; created_at: string; cards_count: number; country: string | null }
 
 function RecentUsersSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   const [users, setUsers]   = useState<RecentUser[]>([])
@@ -662,6 +662,11 @@ function RecentUsersSection({ token, isMobile }: { token: string; isMobile: bool
     fontSize: 12, whiteSpace: 'nowrap',
   })
 
+  function countryFlag(code: string | null) {
+    if (!code) return null
+    return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65))
+  }
+
   if (loading) return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 20, color: '#94a3b8', fontSize: 13 }}>
       Chargement…
@@ -676,6 +681,7 @@ function RecentUsersSection({ token, isMobile }: { token: string; isMobile: bool
             <tr style={{ background: ACCENT }}>
               <th style={{ ...colS(), color: '#fff', fontWeight: 600 }}>Utilisateur</th>
               {!isMobile && <th style={{ ...colS(), color: '#d1d5db', fontWeight: 500, fontSize: 11 }}>Email</th>}
+              <th style={{ ...colS(true), color: '#fff', fontWeight: 600 }}>🌍</th>
               <th style={{ ...colS(true), color: '#fff', fontWeight: 600 }}>Cartes</th>
               <th style={{ ...colS(true), color: '#fff', fontWeight: 600 }}>Inscription</th>
             </tr>
@@ -696,6 +702,9 @@ function RecentUsersSection({ token, isMobile }: { token: string; isMobile: bool
                     {u.email}
                   </td>
                 )}
+                <td style={{ ...colS(true), fontSize: 16 }} title={u.country ?? undefined}>
+                  {countryFlag(u.country) ?? <span style={{ color: '#e2e8f0' }}>—</span>}
+                </td>
                 <td style={{ ...colS(true), fontWeight: 700, color: u.cards_count > 0 ? '#059669' : '#cbd5e1' }}>
                   {u.cards_count > 0 ? fmt(u.cards_count) : '—'}
                 </td>
@@ -706,7 +715,7 @@ function RecentUsersSection({ token, isMobile }: { token: string; isMobile: bool
             ))}
             {!loading && users.length === 0 && (
               <tr>
-                <td colSpan={isMobile ? 3 : 4} style={{ ...colS(), color: '#94a3b8', textAlign: 'center', padding: '24px 0' }}>
+                <td colSpan={isMobile ? 4 : 5} style={{ ...colS(), color: '#94a3b8', textAlign: 'center', padding: '24px 0' }}>
                   Aucune donnée
                 </td>
               </tr>
