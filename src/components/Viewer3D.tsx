@@ -103,6 +103,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   }, [popup.f, currentUserId, isOwner])
 
   // ── Setlist placement ──────────────────────────────────────────────────────
+  const placementCacheKey = (uid: string) =>
+    `memo_sp_${uid}_${popup.id_manuelle ?? popup.f ?? popup.n ?? ''}`
+
   const [setPlacement, setSetPlacement] = useState<SetPlacementData | null | 'loading'>('loading')
   const [setPickerOpen, setSetPickerOpen] = useState(false)
   const [setPickerStep, setSetPickerStep] = useState<'search' | 'entries'>('search')
@@ -126,8 +129,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   useEffect(() => {
     let cancelled = false
     if (!isOwner || !userId) { setSetPlacement(null); return () => { cancelled = true } }
-    setSetPlacement('loading')
     setSetPickerOpen(false)
+
+    // Cache localStorage immédiat — évite tout lookup async fragile
+    try {
+      const cached = localStorage.getItem(placementCacheKey(userId))
+      if (cached) {
+        const parsed = JSON.parse(cached) as SetPlacementData
+        setSetPlacement(parsed)
+        return () => { cancelled = true }
+      }
+    } catch {}
+
+    setSetPlacement('loading')
 
     const lookupViaCompletion = async () => {
       const { data: entries } = await supabase
@@ -306,13 +320,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
 
     const s = setPickerSelectedSet!
-    setSetPlacement({ entry_id: entry.id, set_id: s.id, set_name: s.name, set_year: s.year, set_brand: s.brand, set_sport: s.sport })
+    const placement: SetPlacementData = { entry_id: entry.id, set_id: s.id, set_name: s.name, set_year: s.year, set_brand: s.brand, set_sport: s.sport }
+    try { localStorage.setItem(placementCacheKey(userId), JSON.stringify(placement)) } catch {}
+    setSetPlacement(placement)
     setSetPickerOpen(false)
     setSetPickerSaving(null)
   }
 
   const removeSetEntry = async () => {
     if (!userId || setPlacement === 'loading' || !setPlacement) return
+    try { localStorage.removeItem(placementCacheKey(userId)) } catch {}
     if (popup.id_manuelle) {
       await supabase.from('cartes_manuelles').update({ set_entry_id: null }).eq('id', popup.id_manuelle)
     }
