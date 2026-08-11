@@ -230,13 +230,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       const { data } = await q.order('total_cards', { ascending: false })
       const seenS = new Set<string>()
       const dedupedS = (data || []).filter(s => {
-        const key = `${s.year}_${s.name.trim().toLowerCase()}`
+        const key = normSetKey(s)
         if (seenS.has(key)) return false
         seenS.add(key)
         return true
       })
       setSetPickerSuggestions(dedupedS)
     }
+  }
+
+  const normSetKey = (s: { name: string; year: number | null }) => {
+    const base = s.name.toLowerCase()
+      .replace(/^\d{4}-\d{2,4}\s+/, '')
+      .replace(/^\d{4}\s+/, '')
+      .replace(/\s+/g, ' ').trim()
+    return `${s.year}_${base}`
   }
 
   const searchSets = async (q: string, year: string) => {
@@ -247,7 +255,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     const { data } = await qry.order('total_cards', { ascending: false })
     const seen = new Set<string>()
     const deduped = (data || []).filter(s => {
-      const key = `${s.year}_${s.name.trim().toLowerCase()}`
+      const key = normSetKey(s)
       if (seen.has(key)) return false
       seen.add(key)
       return true
