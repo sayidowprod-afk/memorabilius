@@ -511,6 +511,24 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (!collectionTags.includes(tag)) setCollectionTags(prev => [...prev, tag].sort())
   }
 
+  // Retire les cartes sélectionnées d'une collection spécifique
+  const removeSelectedFromCollection = async (tag: string) => {
+    if (!currentUser || !tag) return
+    const keys: string[] = []
+    for (const id of selectedCards) {
+      const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+      if (card) keys.push(card.f)
+    }
+    if (keys.length === 0) return
+    await supabase.from('card_collections').delete().eq('user_id', currentUser).eq('collection', tag).in('card_key', keys)
+    setCards(prev => prev.map(c => {
+      const id = c.isManuelle ? c.id_manuelle : c.f
+      if (!id || !selectedCards.has(id)) return c
+      const cols = (c.collections || []).filter(col => col !== tag)
+      return { ...c, collections: cols, collection_tag: cols[0] || '' }
+    }))
+  }
+
   // Retire les cartes sélectionnées de TOUTES leurs collections
   const removeSelectedFromAllCollections = async () => {
     if (!currentUser) return
@@ -1958,24 +1976,51 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               >✕</button>
               </>
             ) : (
-              <select
-                value=""
-                onChange={async (e) => {
-                  const tag = e.target.value
-                  if (!tag) return
-                  if (tag === '__new__') { setShowBulkNewTag(true); return }
-                  if (tag === '__none__') { await removeSelectedFromAllCollections(); return }
-                  await addSelectedToCollection(tag)
-                }}
-                style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
-              >
-                <option value="" style={{ color: '#333' }}>🏷 Ajouter à une collection…</option>
-                <option value="__new__" style={{ color: '#003DA6', fontWeight: 900 }}>✚ Créer une nouvelle…</option>
-                <option value="__none__" style={{ color: '#333' }}>— Retirer de toutes —</option>
-                {collectionTags.map(tag => (
-                  <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
-                ))}
-              </select>
+              <>
+                <select
+                  value=""
+                  onChange={async (e) => {
+                    const tag = e.target.value
+                    if (!tag) return
+                    if (tag === '__new__') { setShowBulkNewTag(true); return }
+                    await addSelectedToCollection(tag)
+                  }}
+                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
+                >
+                  <option value="" style={{ color: '#333' }}>🏷 Ajouter à…</option>
+                  <option value="__new__" style={{ color: '#003DA6', fontWeight: 900 }}>✚ Créer une nouvelle…</option>
+                  {collectionTags.map(tag => (
+                    <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
+                  ))}
+                </select>
+                {(() => {
+                  const selCollections = [...new Set(
+                    [...selectedCards].flatMap(id => {
+                      const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+                      return card?.collections || []
+                    })
+                  )]
+                  if (selCollections.length === 0) return null
+                  return (
+                    <select
+                      value=""
+                      onChange={async (e) => {
+                        const tag = e.target.value
+                        if (!tag) return
+                        if (tag === '__all__') { await removeSelectedFromAllCollections(); return }
+                        await removeSelectedFromCollection(tag)
+                      }}
+                      style={{ background: 'rgba(239,68,68,0.25)', border: '1px solid rgba(239,68,68,0.5)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
+                    >
+                      <option value="" style={{ color: '#333' }}>🗑 Retirer de…</option>
+                      {selCollections.map(tag => (
+                        <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
+                      ))}
+                      <option value="__all__" style={{ color: '#b91c1c', fontWeight: 900 }}>— Toutes les collections —</option>
+                    </select>
+                  )
+                })()}
+              </>
             )}
             <button
               onClick={startBulkEdit}
