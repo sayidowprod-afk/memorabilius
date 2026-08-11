@@ -627,6 +627,100 @@ function SectionTitle({ children }: { children: string }) {
   )
 }
 
+// ── Section Derniers inscrits ─────────────────────────────────────────────
+
+type RecentUser = { user_id: string; display_name: string; slug: string | null; email: string; created_at: string; cards_count: number }
+
+function RecentUsersSection({ token, isMobile }: { token: string; isMobile: boolean }) {
+  const [users, setUsers]   = useState<RecentUser[]>([])
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch('/api/admin/recent-users', { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.json())
+      .then(({ users: u }) => setUsers(u ?? []))
+      .catch(() => {})
+      .finally(() => setLoading(false))
+  }, [token])
+
+  const now = Date.now()
+  function relTime(iso: string) {
+    const diff = now - new Date(iso).getTime()
+    const m = Math.floor(diff / 60000)
+    if (m < 60) return `il y a ${m} min`
+    const h = Math.floor(m / 60)
+    if (h < 24) return `il y a ${h} h`
+    const d = Math.floor(h / 24)
+    if (d < 7) return `il y a ${d} j`
+    return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+  }
+
+  const colS = (right = false): CSSProperties => ({
+    padding: isMobile ? '8px 10px' : '9px 16px',
+    textAlign: right ? 'right' : 'left',
+    fontSize: 12, whiteSpace: 'nowrap',
+  })
+
+  if (loading) return (
+    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 20, color: '#94a3b8', fontSize: 13 }}>
+      Chargement…
+    </div>
+  )
+
+  return (
+    <div style={{ overflowX: 'auto' }}>
+      <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden', minWidth: 500 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ background: ACCENT }}>
+              <th style={{ ...colS(), color: '#fff', fontWeight: 600 }}>Utilisateur</th>
+              {!isMobile && <th style={{ ...colS(), color: '#d1d5db', fontWeight: 500, fontSize: 11 }}>Email</th>}
+              <th style={{ ...colS(true), color: '#fff', fontWeight: 600 }}>Cartes</th>
+              <th style={{ ...colS(true), color: '#fff', fontWeight: 600 }}>Inscription</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((u, i) => (
+              <tr key={u.user_id} style={{ background: i % 2 === 0 ? '#fff' : '#f8fafc', borderBottom: '1px solid #f1f5f9' }}>
+                <td style={colS()}>
+                  <div style={{ fontWeight: 600, color: '#334155' }}>
+                    {u.slug
+                      ? <a href={`/galerie/${u.slug}`} target="_blank" rel="noreferrer" style={{ color: ACCENT, textDecoration: 'none' }}>{u.display_name || u.slug}</a>
+                      : <span>{u.display_name || '—'}</span>}
+                  </div>
+                  {u.slug && <div style={{ fontSize: 10, color: '#94a3b8' }}>@{u.slug}</div>}
+                </td>
+                {!isMobile && (
+                  <td style={{ ...colS(), color: '#64748b', maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {u.email}
+                  </td>
+                )}
+                <td style={{ ...colS(true), fontWeight: 700, color: u.cards_count > 0 ? '#059669' : '#cbd5e1' }}>
+                  {u.cards_count > 0 ? fmt(u.cards_count) : '—'}
+                </td>
+                <td style={{ ...colS(true), color: '#64748b' }}>
+                  {relTime(u.created_at)}
+                </td>
+              </tr>
+            ))}
+            {!loading && users.length === 0 && (
+              <tr>
+                <td colSpan={isMobile ? 3 : 4} style={{ ...colS(), color: '#94a3b8', textAlign: 'center', padding: '24px 0' }}>
+                  Aucune donnée
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+        <div style={{ padding: '6px 16px', fontSize: 10, color: '#94a3b8', borderTop: '1px solid #f1f5f9' }}>
+          25 derniers inscrits · triés par date d&apos;inscription décroissante
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Section Géographie ────────────────────────────────────────────────────
 
 // [lon, lat]
@@ -812,6 +906,7 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
               onHover={h => { setGeoHov(h); if (h) setGeoUserHov(null) }}
               geoUsers={geoUsers}
               onUserHover={u => { setGeoUserHov(u ? { name: u.name, slug: u.slug } : null); if (u) setGeoHov(null) }}
+              period={period}
             />
             {geoHov && (
               <div style={{
@@ -838,14 +933,6 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
                 <span style={{ color: '#fca5a5', fontSize: 11 }}>@{geoUserHov.slug}</span>
               </div>
             )}
-            <div style={{
-              position: 'absolute', bottom: 8, right: 8,
-              background: 'rgba(255,255,255,0.88)', borderRadius: 6, padding: '3px 10px',
-              fontSize: 10, color: '#64748b', display: 'flex', alignItems: 'center', gap: 6,
-            }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(0,61,166,0.4)', border: '1.5px solid rgba(0,40,140,0.65)', flexShrink: 0 }} />
-              Comptes utilisateurs — taille proportionnelle au volume
-            </div>
           </div>
 
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
@@ -1599,6 +1686,12 @@ export default function AdminStats() {
               <div style={{ fontWeight: 700, fontSize: 15, color: ACCENT }}>{fmt(u.cards)}</div>
             </div>
           ))}
+        </div>
+
+        {/* Derniers inscrits */}
+        <SectionTitle>Derniers inscrits</SectionTitle>
+        <div style={{ marginBottom: isMobile ? 20 : 32 }}>
+          {sessionToken && <RecentUsersSection token={sessionToken} isMobile={isMobile} />}
         </div>
 
       </div>
