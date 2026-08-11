@@ -23,17 +23,27 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const { data } = await admin
+  const { data: ucData } = await admin
     .from('user_countries')
-    .select('lat, lon, user_id, profiles(display_name, slug)')
+    .select('lat, lon, user_id')
     .not('lat', 'is', null)
     .not('lon', 'is', null)
 
-  const locations = (data ?? []).map((r: any) => ({
+  if (!ucData?.length) return NextResponse.json({ locations: [] })
+
+  const userIds = ucData.map(r => r.user_id)
+  const { data: profileData } = await admin
+    .from('profiles')
+    .select('id, display_name, slug')
+    .in('id', userIds)
+
+  const profileMap = new Map((profileData ?? []).map(p => [p.id, p]))
+
+  const locations = ucData.map((r: any) => ({
     lat: r.lat as number,
     lon: r.lon as number,
-    name: r.profiles?.display_name || 'Utilisateur',
-    slug: r.profiles?.slug || r.user_id,
+    name: profileMap.get(r.user_id)?.display_name || 'Utilisateur',
+    slug: profileMap.get(r.user_id)?.slug || r.user_id,
   }))
 
   return NextResponse.json({ locations })
