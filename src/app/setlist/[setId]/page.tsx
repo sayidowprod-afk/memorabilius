@@ -95,10 +95,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
     if (userId) {
       // Charger les cartes galerie (Supabase + CSV) pour le matching
-      type GalleryCard = { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null }
+      type GalleryCard = { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null; set_entry_id?: number | null }
       const { data: gc } = await supabase
         .from('cartes_manuelles')
-        .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto')
+        .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto, set_entry_id')
         .eq('user_id', userId)
       let galleryCards: GalleryCard[] = gc || []
 

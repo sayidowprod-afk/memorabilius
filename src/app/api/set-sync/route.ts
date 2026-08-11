@@ -17,6 +17,7 @@ interface GalleryCard {
   collection_tag?: string
   variation?: string
   image_recto?: string
+  set_entry_id?: number | null  // lien manuel explicite → jamais auto-matché ailleurs
 }
 
 const BRAND_PARENT: Record<string, string> = {
@@ -143,6 +144,9 @@ export async function POST(req: NextRequest) {
       if (completedEntryIds.has(e.id)) continue
 
       const matched = galleryCards.find(card => {
+        // Carte liée manuellement à une entrée précise → n'auto-matcher que sur cette entrée
+        if (card.set_entry_id != null && card.set_entry_id !== e.id) return false
+
         if (norm(card.nom) !== norm(e.player_name)) return false
 
         const cardYear = (card.annee || '').trim()
