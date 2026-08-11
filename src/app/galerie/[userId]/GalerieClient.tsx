@@ -2288,6 +2288,30 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             return 'added'
           } : undefined}
           initialAddState={addedCards.has(popup.f) ? 'added' : 'idle'}
+          likeData={cardLikes.get(popup.f) || { count: 0, liked: false }}
+          onLike={currentUser ? async () => {
+            const likeInfo = cardLikes.get(popup.f) || { count: 0, liked: false }
+            const isLiked = likeInfo.liked
+            setCardLikes(prev => {
+              const m = new Map(prev)
+              m.set(popup.f, { count: likeInfo.count + (isLiked ? -1 : 1), liked: !isLiked })
+              return m
+            })
+            if (isLiked) {
+              await supabase.from('card_likes').delete().eq('card_key', popup.f).eq('gallery_user_id', userId).eq('liker_user_id', currentUser)
+            } else {
+              await supabase.from('card_likes').upsert({ card_key: popup.f, gallery_user_id: userId, liker_user_id: currentUser }, { onConflict: 'card_key,gallery_user_id,liker_user_id' })
+              if (currentUser !== userId) {
+                const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
+                const likerName = liker?.display_name || 'Quelqu\'un'
+                await supabase.from('notifications').insert({ user_id: userId, type: 'like', message: `${likerName} a aimé votre carte`, lien: `/galerie/${userId}?card=${encodeURIComponent(popup.f)}`, lu: false })
+                const { data: { session } } = await supabase.auth.getSession()
+                if (session?.access_token) {
+                  fetch('/api/like-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` }, body: JSON.stringify({ toUserId: userId, likerName }) }).catch(() => {})
+                }
+              }
+            }
+          } : undefined}
           allCollectionTags={collectionTags}
           onCollectionsChange={(card, next) => {
             // Les écritures DB sont faites par CollectionMultiSelect ; on met à jour l'état local

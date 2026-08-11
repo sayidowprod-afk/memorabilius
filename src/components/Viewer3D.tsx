@@ -12,6 +12,7 @@ import CollectionMultiSelect from '@/components/CollectionMultiSelect'
 import BookletViewer from '@/components/BookletViewer'
 import ShareButton from '@/components/ShareButton'
 import { getFormat } from '@/lib/cardFormats'
+import { supabase } from '@/lib/supabase'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -40,7 +41,7 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -59,6 +60,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   onProposeTrade?: () => void
   cardValue?: number
   onValueSave?: (val: number | null) => void
+  likeData?: { count: number; liked: boolean }
+  onLike?: () => void
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
@@ -72,6 +75,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [tagSaving, setTagSaving] = useState(false)
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
   useEffect(() => { setValeurInput(cardValue != null ? String(cardValue) : '') }, [popup.f, cardValue])
+
+  const [inWishlist, setInWishlist] = useState(false)
+  const [wishlistLoading, setWishlistLoading] = useState(false)
+  useEffect(() => {
+    if (!currentUserId || isOwner) return
+    setInWishlist(false)
+    supabase.from('wishlist')
+      .select('id')
+      .eq('user_id', currentUserId)
+      .eq('nom', popup.n)
+      .eq('annee', popup.y || '')
+      .eq('marque', popup.br || '')
+      .maybeSingle()
+      .then(({ data }) => setInWishlist(!!data))
+  }, [popup.f, currentUserId, isOwner])
 
   const saveTag = async () => {
     if (!onCollectionTagChange) return
@@ -305,8 +323,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 359px !important; height: 588px !important; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
-          .viewer-zone { flex: 0 0 56% !important; width: 100% !important; min-height: 0; }
-          .viewer-info { flex: 1 !important; width: 100% !important; min-height: 0; padding: 10px 14px !important; justify-content: flex-start !important; }
+          .viewer-zone { flex: 0 0 66.67% !important; width: 100% !important; min-height: 0; }
+          .viewer-info { flex: 0 0 33.33% !important; width: 100% !important; min-height: 0; padding: 10px 14px !important; justify-content: flex-start !important; overflow-y: auto !important; }
           .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
           .viewer-card { width: min(220px, 54vw) !important; height: min(308px, 75.6vw) !important; }
           .viewer-card--horizontal { width: min(280px, 76vw) !important; height: min(200px, 54.3vw) !important; }
@@ -952,6 +970,73 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 }}
               >
                 {addState === 'loading' ? '...' : addState === 'added' ? (lang === 'fr' ? '✓ Ajoutée à ta galerie !' : '✓ Added to your gallery!') : addState === 'duplicate' ? (lang === 'fr' ? 'Déjà dans ta galerie' : 'Already in your gallery') : (lang === 'fr' ? '+ J\'ai cette carte' : '+ I have this card')}
+              </button>
+            </div>
+          )}
+
+          {/* Wishlist — visiteur connecté seulement */}
+          {!isOwner && currentUserId && (
+            <div style={{ marginTop: 10 }}>
+              <button
+                disabled={wishlistLoading}
+                onClick={async () => {
+                  setWishlistLoading(true)
+                  if (inWishlist) {
+                    await supabase.from('wishlist').delete()
+                      .eq('user_id', currentUserId)
+                      .eq('nom', popup.n)
+                      .eq('annee', popup.y || '')
+                      .eq('marque', popup.br || '')
+                    setInWishlist(false)
+                  } else {
+                    await supabase.from('wishlist').insert({
+                      user_id: currentUserId,
+                      nom: popup.n,
+                      annee: popup.y || '',
+                      marque: popup.br || '',
+                      collection: popup.s || '',
+                      variation: popup.v || null,
+                      num: popup.num || null,
+                      rc: popup.rc || false,
+                      auto: popup.auto || false,
+                      patch: popup.patch || false,
+                    })
+                    setInWishlist(true)
+                  }
+                  setWishlistLoading(false)
+                }}
+                style={{
+                  width: '100%', borderRadius: 10, padding: '11px',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14, transition: '0.2s',
+                  border: `2px solid ${inWishlist ? '#f59e0b' : (dark ? '#444' : '#cbd5e1')}`,
+                  background: inWishlist ? (dark ? '#292210' : '#fffbeb') : 'transparent',
+                  color: inWishlist ? '#f59e0b' : (dark ? '#888' : '#64748b'),
+                }}
+              >
+                {inWishlist ? '⭐ Sur ma wishlist' : '☆ Ajouter à ma wishlist'}
+              </button>
+            </div>
+          )}
+
+          {/* Like — tous visiteurs connectés */}
+          {likeData && onLike && currentUserId && (
+            <div style={{ marginTop: 10 }}>
+              <button
+                onClick={onLike}
+                style={{
+                  width: '100%', borderRadius: 10, padding: '11px',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14, transition: '0.2s',
+                  border: `2px solid ${likeData.liked ? '#e53935' : (dark ? '#444' : '#cbd5e1')}`,
+                  background: likeData.liked ? (dark ? '#290a0a' : '#fff0f0') : 'transparent',
+                  color: likeData.liked ? '#e53935' : (dark ? '#888' : '#64748b'),
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                }}
+              >
+                <span style={{ fontSize: 16, transition: '0.15s', transform: likeData.liked ? 'scale(1.2)' : 'scale(1)', display: 'inline-block' }}>
+                  {likeData.liked ? '❤️' : '🤍'}
+                </span>
+                {likeData.liked ? 'J\'aime' : 'J\'aime'}
+                {likeData.count > 0 && <span style={{ fontSize: 12, fontWeight: 700 }}>({likeData.count})</span>}
               </button>
             </div>
           )}

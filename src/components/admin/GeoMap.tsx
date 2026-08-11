@@ -8,6 +8,7 @@ interface Props {
   geoCntrs: GeoEntry[]
   centroids: Record<string, [number, number]>
   onHover: (entry: GeoEntry | null) => void
+  geoUsers?: { lat: number; lon: number }[]
 }
 
 type Region = { label: string; scale: number; center: [number, number] }
@@ -21,7 +22,7 @@ const REGIONS: Region[] = [
   { label: '🌊 Océanie',   scale: 430,  center: [140, -25] },
 ]
 
-export default function GeoMap({ geoCntrs, centroids, onHover }: Props) {
+export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers }: Props) {
   const [view, setView] = useState<Region>(REGIONS[0])
   const [zoom, setZoom] = useState(1)
 
@@ -105,6 +106,11 @@ export default function GeoMap({ geoCntrs, centroids, onHover }: Props) {
             </Marker>
           )
         })}
+        {geoUsers?.map((u, i) => (
+          <Marker key={`u-${i}`} coordinates={[u.lon, u.lat]}>
+            <circle r={4} fill="rgba(239,68,68,0.75)" stroke="rgba(185,28,28,0.9)" strokeWidth={1} />
+          </Marker>
+        ))}
       </ComposableMap>
     </div>
   )

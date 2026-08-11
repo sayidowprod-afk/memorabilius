@@ -712,6 +712,7 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   const [geoCntrs, setGeoCntrs] = useState<{ code: string; visitors: number }[]>([])
   const [geoLoad, setGeoLoad]   = useState(false)
   const [geoHov, setGeoHov]     = useState<{ code: string; visitors: number } | null>(null)
+  const [geoUsers, setGeoUsers] = useState<{ lat: number; lon: number }[]>([])
   // drilldown
   const [expanded, setExpanded]         = useState<string | null>(null)
   const [userList, setUserList]         = useState<GeoUser[]>([])
@@ -739,6 +740,10 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
       .then(({ countries }) => setGeoCntrs(countries ?? []))
       .catch(() => {})
       .finally(() => setGeoLoad(false))
+    fetch('/api/admin/geo-locations', { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.json())
+      .then(({ locations }) => setGeoUsers(locations ?? []))
+      .catch(() => {})
   }, [token, period])
 
   function toggleCountry(code: string) {
@@ -800,7 +805,7 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
       {geoCntrs.length > 0 && (
         <>
           <div style={{ position: 'relative', marginBottom: 20, borderRadius: 8, overflow: 'hidden' }}>
-            <GeoMap geoCntrs={geoCntrs} centroids={GEO_CENTROIDS} onHover={setGeoHov} />
+            <GeoMap geoCntrs={geoCntrs} centroids={GEO_CENTROIDS} onHover={setGeoHov} geoUsers={geoUsers} />
             {geoHov && (
               <div style={{
                 position: 'absolute', top: 10, left: 10, pointerEvents: 'none',

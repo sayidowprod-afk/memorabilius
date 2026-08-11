@@ -20,8 +20,12 @@ export async function POST(req: NextRequest) {
     if (token && country !== 'XX') {
       const { data: { user } } = await admin.auth.getUser(token)
       if (user?.id) {
+        const latRaw = req.headers.get('x-vercel-ip-latitude')
+        const lonRaw = req.headers.get('x-vercel-ip-longitude')
+        const lat = latRaw ? parseFloat(latRaw) : null
+        const lon = lonRaw ? parseFloat(lonRaw) : null
         await admin.from('user_countries').upsert(
-          { user_id: user.id, country, updated_at: new Date().toISOString() },
+          { user_id: user.id, country, lat, lon, updated_at: new Date().toISOString() },
           { onConflict: 'user_id' }
         )
       }
