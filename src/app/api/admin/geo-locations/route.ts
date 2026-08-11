@@ -25,10 +25,16 @@ export async function GET(req: NextRequest) {
 
   const { data } = await admin
     .from('user_countries')
-    .select('lat, lon')
+    .select('lat, lon, user_id, profiles(display_name, slug)')
     .not('lat', 'is', null)
     .not('lon', 'is', null)
 
-  const locations = (data ?? []) as { lat: number; lon: number }[]
+  const locations = (data ?? []).map((r: any) => ({
+    lat: r.lat as number,
+    lon: r.lon as number,
+    name: r.profiles?.display_name || 'Utilisateur',
+    slug: r.profiles?.slug || r.user_id,
+  }))
+
   return NextResponse.json({ locations })
 }

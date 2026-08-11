@@ -711,8 +711,9 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   const [period, setPeriod]     = useState<GeoPeriod>('live')
   const [geoCntrs, setGeoCntrs] = useState<{ code: string; visitors: number }[]>([])
   const [geoLoad, setGeoLoad]   = useState(false)
-  const [geoHov, setGeoHov]     = useState<{ code: string; visitors: number } | null>(null)
-  const [geoUsers, setGeoUsers] = useState<{ lat: number; lon: number }[]>([])
+  const [geoHov, setGeoHov]         = useState<{ code: string; visitors: number } | null>(null)
+  const [geoUsers, setGeoUsers]     = useState<{ lat: number; lon: number; name: string; slug: string }[]>([])
+  const [geoUserHov, setGeoUserHov] = useState<{ name: string; slug: string } | null>(null)
   // drilldown
   const [expanded, setExpanded]         = useState<string | null>(null)
   const [userList, setUserList]         = useState<GeoUser[]>([])
@@ -805,7 +806,13 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
       {geoCntrs.length > 0 && (
         <>
           <div style={{ position: 'relative', marginBottom: 20, borderRadius: 8, overflow: 'hidden' }}>
-            <GeoMap geoCntrs={geoCntrs} centroids={GEO_CENTROIDS} onHover={setGeoHov} geoUsers={geoUsers} />
+            <GeoMap
+              geoCntrs={geoCntrs}
+              centroids={GEO_CENTROIDS}
+              onHover={h => { setGeoHov(h); if (h) setGeoUserHov(null) }}
+              geoUsers={geoUsers}
+              onUserHover={u => { setGeoUserHov(u ? { name: u.name, slug: u.slug } : null); if (u) setGeoHov(null) }}
+            />
             {geoHov && (
               <div style={{
                 position: 'absolute', top: 10, left: 10, pointerEvents: 'none',
@@ -817,6 +824,18 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
                 <span style={{ fontWeight: 600 }}>{GEO_NAMES[geoHov.code] ?? geoHov.code}</span>
                 <span style={{ color: '#93c5fd', marginLeft: 4, fontWeight: 700 }}>{fmt(geoHov.visitors)}</span>
                 <span style={{ color: '#64748b', fontSize: 11 }}>comptes</span>
+              </div>
+            )}
+            {geoUserHov && (
+              <div style={{
+                position: 'absolute', top: 10, left: 10, pointerEvents: 'none',
+                background: '#7f1d1d', color: '#fff', padding: '8px 14px',
+                borderRadius: 8, fontSize: 13, boxShadow: '0 4px 16px rgba(0,0,0,.3)',
+                display: 'flex', alignItems: 'center', gap: 8,
+              }}>
+                <span style={{ fontSize: 15 }}>📍</span>
+                <span style={{ fontWeight: 700 }}>{geoUserHov.name}</span>
+                <span style={{ color: '#fca5a5', fontSize: 11 }}>@{geoUserHov.slug}</span>
               </div>
             )}
             <div style={{

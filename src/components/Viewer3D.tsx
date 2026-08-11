@@ -323,12 +323,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 359px !important; height: 588px !important; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
-          .viewer-zone { flex: 0 0 66.67% !important; width: 100% !important; min-height: 0; }
-          .viewer-info { flex: 0 0 33.33% !important; width: 100% !important; min-height: 0; padding: 10px 14px !important; justify-content: flex-start !important; overflow-y: auto !important; }
+          .viewer-zone { flex: 0 0 78% !important; width: 100% !important; min-height: 0; }
+          .viewer-info { flex: 0 0 22% !important; width: 100% !important; min-height: 0; padding: 8px 14px !important; justify-content: flex-start !important; overflow-y: auto !important; }
           .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
-          .viewer-card { width: min(220px, 54vw) !important; height: min(308px, 75.6vw) !important; }
-          .viewer-card--horizontal { width: min(280px, 76vw) !important; height: min(200px, 54.3vw) !important; }
-          .viewer-card--slab { width: min(188px, 46vw) !important; height: min(308px, 75.6vw) !important; }
+          .viewer-card { width: min(300px, 72vw) !important; height: min(420px, 100.8vw) !important; }
+          .viewer-card--horizontal { width: min(360px, 86vw) !important; height: min(257px, 61.4vw) !important; }
+          .viewer-card--slab { width: min(256px, 61vw) !important; height: min(420px, 100.8vw) !important; }
           .viewer-hint { display: none !important; }
         }
       `}</style>
@@ -951,93 +951,69 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             </div>
           )}
 
-          {/* Ajouter à ma galerie — visiteur connecté seulement */}
-          {!isOwner && onAddToMyGallery && (
-            <div style={{ marginTop: 10 }}>
-              <button
-                disabled={addState === 'loading' || addState === 'added' || addState === 'duplicate'}
-                onClick={async () => {
-                  setAddState('loading')
-                  const result = await onAddToMyGallery()
-                  setAddState(result)
-                }}
-                style={{
-                  width: '100%', border: 'none', borderRadius: 10, padding: '12px',
-                  fontWeight: 800, cursor: addState === 'idle' ? 'pointer' : 'default', fontSize: 14,
-                  background: addState === 'added' ? '#2e7d32' : addState === 'duplicate' ? (dark ? '#2a2a2a' : '#f0f0f0') : '#003DA6',
-                  color: addState === 'duplicate' ? (dark ? '#aaa' : '#666') : 'white',
-                  transition: '0.2s',
-                }}
-              >
-                {addState === 'loading' ? '...' : addState === 'added' ? (lang === 'fr' ? '✓ Ajoutée à ta galerie !' : '✓ Added to your gallery!') : addState === 'duplicate' ? (lang === 'fr' ? 'Déjà dans ta galerie' : 'Already in your gallery') : (lang === 'fr' ? '+ J\'ai cette carte' : '+ I have this card')}
-              </button>
-            </div>
-          )}
-
-          {/* Wishlist — visiteur connecté seulement */}
-          {!isOwner && currentUserId && (
-            <div style={{ marginTop: 10 }}>
-              <button
-                disabled={wishlistLoading}
-                onClick={async () => {
-                  setWishlistLoading(true)
-                  if (inWishlist) {
-                    await supabase.from('wishlist').delete()
-                      .eq('user_id', currentUserId)
-                      .eq('nom', popup.n)
-                      .eq('annee', popup.y || '')
-                      .eq('marque', popup.br || '')
-                    setInWishlist(false)
-                  } else {
-                    await supabase.from('wishlist').insert({
-                      user_id: currentUserId,
-                      nom: popup.n,
-                      annee: popup.y || '',
-                      marque: popup.br || '',
-                      collection: popup.s || '',
-                      variation: popup.v || null,
-                      num: popup.num || null,
-                      rc: popup.rc || false,
-                      auto: popup.auto || false,
-                      patch: popup.patch || false,
-                    })
-                    setInWishlist(true)
-                  }
-                  setWishlistLoading(false)
-                }}
-                style={{
-                  width: '100%', borderRadius: 10, padding: '11px',
-                  fontWeight: 800, cursor: 'pointer', fontSize: 14, transition: '0.2s',
-                  border: `2px solid ${inWishlist ? '#f59e0b' : (dark ? '#444' : '#cbd5e1')}`,
-                  background: inWishlist ? (dark ? '#292210' : '#fffbeb') : 'transparent',
-                  color: inWishlist ? '#f59e0b' : (dark ? '#888' : '#64748b'),
-                }}
-              >
-                {inWishlist ? '⭐ Sur ma wishlist' : '☆ Ajouter à ma wishlist'}
-              </button>
-            </div>
-          )}
-
-          {/* Like — tous visiteurs connectés */}
-          {likeData && onLike && currentUserId && (
-            <div style={{ marginTop: 10 }}>
-              <button
-                onClick={onLike}
-                style={{
-                  width: '100%', borderRadius: 10, padding: '11px',
-                  fontWeight: 800, cursor: 'pointer', fontSize: 14, transition: '0.2s',
-                  border: `2px solid ${likeData.liked ? '#e53935' : (dark ? '#444' : '#cbd5e1')}`,
-                  background: likeData.liked ? (dark ? '#290a0a' : '#fff0f0') : 'transparent',
-                  color: likeData.liked ? '#e53935' : (dark ? '#888' : '#64748b'),
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                }}
-              >
-                <span style={{ fontSize: 16, transition: '0.15s', transform: likeData.liked ? 'scale(1.2)' : 'scale(1)', display: 'inline-block' }}>
-                  {likeData.liked ? '❤️' : '🤍'}
-                </span>
-                {likeData.liked ? 'J\'aime' : 'J\'aime'}
-                {likeData.count > 0 && <span style={{ fontSize: 12, fontWeight: 700 }}>({likeData.count})</span>}
-              </button>
+          {/* J'ai cette carte + Wishlist + Like — visiteur connecté, sur une ligne */}
+          {!isOwner && (onAddToMyGallery || currentUserId || (likeData && onLike)) && (
+            <div style={{ marginTop: 10, display: 'flex', gap: 6 }}>
+              {onAddToMyGallery && (
+                <button
+                  disabled={addState === 'loading' || addState === 'added' || addState === 'duplicate'}
+                  onClick={async () => { setAddState('loading'); const result = await onAddToMyGallery(); setAddState(result) }}
+                  style={{
+                    flex: 1, border: 'none', borderRadius: 10, padding: '9px 6px',
+                    fontWeight: 800, cursor: addState === 'idle' ? 'pointer' : 'default', fontSize: 12,
+                    background: addState === 'added' ? '#2e7d32' : addState === 'duplicate' ? (dark ? '#2a2a2a' : '#f0f0f0') : '#003DA6',
+                    color: addState === 'duplicate' ? (dark ? '#aaa' : '#666') : 'white',
+                    transition: '0.2s', textAlign: 'center', lineHeight: 1.3,
+                  }}
+                >
+                  {addState === 'loading' ? '...' : addState === 'added' ? '✓ Ajoutée' : addState === 'duplicate' ? 'Déjà là' : lang === 'fr' ? '+ J\'ai cette carte' : '+ I have it'}
+                </button>
+              )}
+              {currentUserId && (
+                <button
+                  disabled={wishlistLoading}
+                  onClick={async () => {
+                    setWishlistLoading(true)
+                    if (inWishlist) {
+                      await supabase.from('wishlist').delete().eq('user_id', currentUserId).eq('nom', popup.n).eq('annee', popup.y || '').eq('marque', popup.br || '')
+                      setInWishlist(false)
+                    } else {
+                      await supabase.from('wishlist').insert({ user_id: currentUserId, nom: popup.n, annee: popup.y || '', marque: popup.br || '', collection: popup.s || '', variation: popup.v || null, num: popup.num || null, rc: popup.rc || false, auto: popup.auto || false, patch: popup.patch || false })
+                      setInWishlist(true)
+                    }
+                    setWishlistLoading(false)
+                  }}
+                  style={{
+                    flex: 1, borderRadius: 10, padding: '9px 6px',
+                    fontWeight: 800, cursor: 'pointer', fontSize: 12, transition: '0.2s',
+                    border: `2px solid ${inWishlist ? '#f59e0b' : (dark ? '#444' : '#cbd5e1')}`,
+                    background: inWishlist ? (dark ? '#292210' : '#fffbeb') : 'transparent',
+                    color: inWishlist ? '#f59e0b' : (dark ? '#888' : '#64748b'),
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {inWishlist ? '⭐ Wishlist' : '☆ Wishlist'}
+                </button>
+              )}
+              {likeData && onLike && currentUserId && (
+                <button
+                  onClick={onLike}
+                  style={{
+                    flex: 1, borderRadius: 10, padding: '9px 6px',
+                    fontWeight: 800, cursor: 'pointer', fontSize: 12, transition: '0.2s',
+                    border: `2px solid ${likeData.liked ? '#e53935' : (dark ? '#444' : '#cbd5e1')}`,
+                    background: likeData.liked ? (dark ? '#290a0a' : '#fff0f0') : 'transparent',
+                    color: likeData.liked ? '#e53935' : (dark ? '#888' : '#64748b'),
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
+                  }}
+                >
+                  <span style={{ fontSize: 14, transition: '0.15s', transform: likeData.liked ? 'scale(1.2)' : 'scale(1)', display: 'inline-block' }}>
+                    {likeData.liked ? '❤️' : '🤍'}
+                  </span>
+                  J'aime
+                  {likeData.count > 0 && <span style={{ fontSize: 11 }}>({likeData.count})</span>}
+                </button>
+              )}
             </div>
           )}
 
