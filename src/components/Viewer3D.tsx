@@ -136,8 +136,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     try {
       const cached = localStorage.getItem(placementCacheKey(userId))
       if (cached) {
-        const parsed = JSON.parse(cached) as SetPlacementData
-        setSetPlacement(parsed)
+        const parsed = JSON.parse(cached)
+        // Marqueur négatif : l'utilisateur a explicitement retiré cette carte
+        if (parsed?.removed) { setSetPlacement(null); return () => { cancelled = true } }
+        setSetPlacement(parsed as SetPlacementData)
         return () => { cancelled = true }
       }
     } catch {}
@@ -300,6 +302,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       setSetPickerOpenVars(new Set([matches[0]?.variation ?? 'Base']))
       setSetPickerEntryMatches(matches)
       setSetPickerEntries([])
+      // Si aucun match auto, lancer directement la recherche par nom
+      if (!matches.length && popup.n) {
+        setSetPickerEntrySearch(popup.n)
+        setSetPickerLoading(false)
+        setSetPickerEntryLoading(true)
+        searchEntries(popup.n, s.id)
+        return
+      }
     } else {
       const { data: allData } = await supabase.from('card_set_entries')
         .select('id, card_number, player_name, variation, is_rc, image_url')
@@ -329,8 +339,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     for (const token of tokens) {
       qry = qry.or(`player_name.ilike.%${token}%,card_number.ilike.%${token}%,variation.ilike.%${token}%`)
     }
-    const { data } = await qry.order('card_number').limit(100)
-    setSetPickerEntries(data || [])
+    const { data } = await qry.order('card_number').limit(200)
+    // Si multi-token ne trouve rien, fallback : juste le dernier token (nom de famille)
+    if (!data?.length && tokens.length > 1) {
+      const lastName = tokens[tokens.length - 1]
+      const { data: fallback } = await supabase.from('card_set_entries')
+        .select('id, card_number, player_name, variation, is_rc, image_url')
+        .eq('set_id', setId)
+        .or(`player_name.ilike.%${lastName}%,variation.ilike.%${lastName}%`)
+        .order('card_number').limit(200)
+      setSetPickerEntries(fallback || [])
+    } else {
+      setSetPickerEntries(data || [])
+    }
     setSetPickerEntryLoading(false)
   }
 
@@ -365,11 +386,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const removeSetEntry = async () => {
     if (!userId || setPlacement === 'loading' || !setPlacement) return
-    try { localStorage.removeItem(placementCacheKey(userId)) } catch {}
+    const entryId = setPlacement.entry_id
     if (popup.id_manuelle) {
       await supabase.from('cartes_manuelles').update({ set_entry_id: null }).eq('id', popup.id_manuelle)
     }
-    await supabase.from('user_set_completion').delete().eq('user_id', userId).eq('entry_id', setPlacement.entry_id)
+    const { error } = await supabase.from('user_set_completion').delete().eq('user_id', userId).eq('entry_id', entryId)
+    if (error) { console.warn('[setlist] remove error:', error.message); return }
+    // Marqueur négatif : court-circuite tout lookup DB sur F5 ou re-sync
+    try { localStorage.setItem(placementCacheKey(userId), JSON.stringify({ removed: true })) } catch {}
     setSetPlacement(null)
   }
 
