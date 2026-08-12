@@ -30,6 +30,7 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'rc_100',  threshold: 100,  label: '100'   },
       { id: 'rc_250',  threshold: 250,  label: '250'   },
       { id: 'rc_500',  threshold: 500,  label: '500'   },
+      { id: 'rc_750',  threshold: 750,  label: '750'   },
       { id: 'rc_1000', threshold: 1000, label: '1 000' },
     ],
   },
@@ -39,6 +40,7 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'patch_100',  threshold: 100,  label: '100'   },
       { id: 'patch_250',  threshold: 250,  label: '250'   },
       { id: 'patch_500',  threshold: 500,  label: '500'   },
+      { id: 'patch_750',  threshold: 750,  label: '750'   },
       { id: 'patch_1000', threshold: 1000, label: '1 000' },
     ],
   },
@@ -48,15 +50,18 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'num_100',  threshold: 100,  label: '100'   },
       { id: 'num_250',  threshold: 250,  label: '250'   },
       { id: 'num_500',  threshold: 500,  label: '500'   },
+      { id: 'num_750',  threshold: 750,  label: '750'   },
       { id: 'num_1000', threshold: 1000, label: '1 000' },
     ],
   },
   {
     id: 'mois', emoji: '🏆', label: 'Collectionneur du mois', statKey: 'mois_count', unit: 'fois champion',
     tiers: [
-      { id: 'mois_1', threshold: 1, label: '1×' },
-      { id: 'mois_3', threshold: 3, label: '3×' },
-      { id: 'mois_6', threshold: 6, label: '6×' },
+      { id: 'mois_1',  threshold: 1,  label: '1×'  },
+      { id: 'mois_3',  threshold: 3,  label: '3×'  },
+      { id: 'mois_6',  threshold: 6,  label: '6×'  },
+      { id: 'mois_10', threshold: 10, label: '10×' },
+      { id: 'mois_20', threshold: 20, label: '20×' },
     ],
   },
   {
@@ -71,11 +76,9 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
     id: 'teams', emoji: '🤝', label: 'Communauté', statKey: 'teams_count', unit: 'équipe(s)',
     tiers: [
       { id: 'teams_1', threshold: 1, label: '1' },
-      { id: 'teams_3', threshold: 3, label: '3' },
-      { id: 'teams_5', threshold: 5, label: '5' },
     ],
   },
 ]
 
-// 5+4+4+4+3+3+3 = 26
+// 5+5+5+5+5+3+1 = 29
 export const TOTAL_BADGES = BADGE_CATEGORIES.reduce((s, c) => s + c.tiers.length, 0)
