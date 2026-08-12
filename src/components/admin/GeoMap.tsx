@@ -49,7 +49,7 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
 
   useEffect(() => { setCenterOffset([0, 0]) }, [view])
 
-  // Wheel zoom with passive:false so we can preventDefault (stops page scroll)
+  // Wheel zoom — passive:false pour preventDefault (empêche le scroll page)
   useEffect(() => {
     const el = mapWrapRef.current
     if (!el) return
@@ -61,6 +61,70 @@ export default function GeoMap({ geoCntrs, centroids, onHover, geoUsers, onUserH
     el.addEventListener('wheel', handler, { passive: false })
     return () => el.removeEventListener('wheel', handler)
   }, [])
+
+  // Touch events — passive:false pour preventDefault (empêche le scroll page)
+  const lastTouchPos  = useRef<[number, number]>([0, 0])
+  const lastPinchDist = useRef<number | null>(null)
+  useEffect(() => {
+    const el = mapWrapRef.current
+    if (!el) return
+
+    function dist(t: TouchList) {
+      const dx = t[0].clientX - t[1].clientX
+      const dy = t[0].clientY - t[1].clientY
+      return Math.sqrt(dx * dx + dy * dy)
+    }
+
+    function onTouchStart(e: TouchEvent) {
+      e.preventDefault()
+      hasMoved.current = false
+      if (e.touches.length === 1) {
+        lastTouchPos.current = [e.touches[0].clientX, e.touches[0].clientY]
+        lastPinchDist.current = null
+        setIsPanning(true)
+      } else if (e.touches.length === 2) {
+        lastPinchDist.current = dist(e.touches)
+        setIsPanning(false)
+      }
+    }
+
+    function onTouchMove(e: TouchEvent) {
+      e.preventDefault()
+      if (e.touches.length === 2 && lastPinchDist.current !== null) {
+        // Pinch-to-zoom
+        const d = dist(e.touches)
+        const ratio = d / lastPinchDist.current
+        lastPinchDist.current = d
+        setZoom(z => Math.max(0.4, Math.min(20, z * ratio)))
+      } else if (e.touches.length === 1) {
+        // Drag
+        const dx = e.touches[0].clientX - lastTouchPos.current[0]
+        const dy = e.touches[0].clientY - lastTouchPos.current[1]
+        if (!hasMoved.current && Math.abs(dx) + Math.abs(dy) > 3) hasMoved.current = true
+        lastTouchPos.current = [e.touches[0].clientX, e.touches[0].clientY]
+        setZoom(z => { // read current scale inside setter to avoid stale closure
+          setCenterOffset(prev => {
+            const factor = 60 / (view.scale * z)
+            return [prev[0] - dx * factor, prev[1] + dy * factor]
+          })
+          return z
+        })
+      }
+    }
+
+    function onTouchEnd() { setIsPanning(false); lastPinchDist.current = null }
+
+    el.addEventListener('touchstart',  onTouchStart, { passive: false })
+    el.addEventListener('touchmove',   onTouchMove,  { passive: false })
+    el.addEventListener('touchend',    onTouchEnd,   { passive: false })
+    el.addEventListener('touchcancel', onTouchEnd,   { passive: false })
+    return () => {
+      el.removeEventListener('touchstart',  onTouchStart)
+      el.removeEventListener('touchmove',   onTouchMove)
+      el.removeEventListener('touchend',    onTouchEnd)
+      el.removeEventListener('touchcancel', onTouchEnd)
+    }
+  }, [view.scale])
 
   function changeView(r: Region) { setView(r); setZoom(1); setCenterOffset([0, 0]) }
 
