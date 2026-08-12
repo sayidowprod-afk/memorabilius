@@ -60,6 +60,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   other: {
+    'google': 'notranslate',
     'privacy-policy': 'https://www.memorabilius.fr/confidentialite',
   },
 }
