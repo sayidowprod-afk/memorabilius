@@ -611,7 +611,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       fetch('/api/card-added', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
-        body: JSON.stringify({ userId: uid }),
+        body: JSON.stringify({ userId: uid, rc: form.rc, auto: form.auto, patch: form.patch, num: !!form.num }),
       }).catch(() => {})
       fetch('/api/wishlist-notify', {
         method: 'PUT',

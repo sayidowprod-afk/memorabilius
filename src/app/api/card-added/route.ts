@@ -8,7 +8,7 @@ const supabase = createClient(
 
 // POST : incrémente lors d'un ajout manuel
 // DELETE : décrémente lors d'une suppression (uniquement si la carte a été ajoutée ce mois-ci)
-// Maintient monthly_additions + stats_total en sync temps réel, sans attendre la prochaine synchro CSV.
+// Maintient monthly_additions + stats_total + stats_rc/auto/patch/num en sync temps réel.
 
 async function verifyOwner(req: NextRequest, userId: string) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
@@ -19,7 +19,7 @@ async function verifyOwner(req: NextRequest, userId: string) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId } = await req.json()
+    const { userId, rc = false, auto = false, patch = false, num = false } = await req.json()
     if (!userId) return NextResponse.json({ error: 'Missing userId' }, { status: 400 })
     if (!(await verifyOwner(req, userId))) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
@@ -34,7 +34,14 @@ export async function POST(req: NextRequest) {
       { onConflict: 'user_id,month' }
     )
 
-    await supabase.rpc('increment_stats', { p_user_id: userId, p_delta: 1 })
+    await supabase.rpc('increment_stats', {
+      p_user_id: userId,
+      p_delta:   1,
+      p_rc:      rc    ? 1 : 0,
+      p_auto:    auto  ? 1 : 0,
+      p_patch:   patch ? 1 : 0,
+      p_num:     num   ? 1 : 0,
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
@@ -53,7 +60,7 @@ export async function DELETE(req: NextRequest) {
 
     // Fetch card info + monthly count in parallel (independent queries)
     const [{ data: card }, { data: ma }] = await Promise.all([
-      supabase.from('cartes_manuelles').select('created_at')
+      supabase.from('cartes_manuelles').select('created_at, rc, auto, patch, num')
         .eq('id', cardId).eq('user_id', userId).single(),
       supabase.from('monthly_additions').select('count')
         .eq('user_id', userId).eq('month', month).maybeSingle(),
@@ -67,8 +74,15 @@ export async function DELETE(req: NextRequest) {
       )
     }
 
-    // Toujours décrémenter stats_total (la carte existe, elle sera supprimée)
-    await supabase.rpc('increment_stats', { p_user_id: userId, p_delta: -1 })
+    // Décrémente stats_total + sous-stats de la carte supprimée
+    await supabase.rpc('increment_stats', {
+      p_user_id: userId,
+      p_delta:   -1,
+      p_rc:      card?.rc    ? -1 : 0,
+      p_auto:    card?.auto  ? -1 : 0,
+      p_patch:   card?.patch ? -1 : 0,
+      p_num:     (card?.num && card.num !== '') ? -1 : 0,
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {

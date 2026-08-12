@@ -8,12 +8,16 @@ export const metadata: Metadata = {
 
 export default function ConfidentialitePage() {
   return (
-    <LegalShell title="Politique de confidentialité" updated="23 juin 2026">
+    <LegalShell title="Politique de confidentialité" updated="12 août 2026">
       <p>
         La présente politique explique comment <strong>Memorabilius</strong>{' '}
         (<a href="https://www.memorabilius.fr">https://www.memorabilius.fr</a>) collecte, utilise et
         protège les données personnelles de ses utilisateurs, conformément au Règlement Général sur la
         Protection des Données (RGPD – UE 2016/679) et à la loi « Informatique et Libertés ».
+      </p>
+      <p>
+        Cette politique s'applique au <strong>site web</strong> et à l'<strong>application mobile Android</strong>{' '}
+        « Memorabilius – Card Collector » disponible sur Google Play.
       </p>
 
       <h2>1. Responsable du traitement</h2>
@@ -32,6 +36,7 @@ export default function ConfidentialitePage() {
           <tr><td><strong>Compte &amp; identification</strong></td><td>Adresse email, nom d'affichage (pseudo), mot de passe (stocké chiffré), avatar</td><td>Fournies par l'utilisateur à l'inscription</td></tr>
           <tr><td><strong>Profil</strong></td><td>Description, liens publics, préférences de langue, lien vers un fichier CSV de collection (facultatif)</td><td>Fournies par l'utilisateur</td></tr>
           <tr><td><strong>Contenu de collection</strong></td><td>Images de cartes (recto/verso), informations des cartes (joueur, année, marque, set, variation, numérotation…), classement dans des collections/setlists</td><td>Ajoutées par l'utilisateur</td></tr>
+          <tr><td><strong>Caméra (app mobile)</strong></td><td>Flux caméra utilisé uniquement en temps réel pour scanner les cartes. Aucune image n'est enregistrée sans action explicite de l'utilisateur.</td><td>Accès accordé par l'utilisateur à la demande</td></tr>
           <tr><td><strong>Échanges &amp; communications</strong></td><td>Messages entre utilisateurs, annonces d'échange (trades), participations aux événements</td><td>Générées par l'utilisateur</td></tr>
           <tr><td><strong>Données techniques</strong></td><td>Données de connexion, cookies de session, journaux techniques nécessaires au fonctionnement et à la sécurité</td><td>Collectées automatiquement</td></tr>
         </tbody>
