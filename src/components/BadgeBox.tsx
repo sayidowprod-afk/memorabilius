@@ -213,7 +213,7 @@ export default function BadgeBox({ userId }: { userId: string }) {
         if (rows?.[0]) setData(rows[0] as BadgeData)
         setLoading(false)
         // Persistance en arrière-plan (fire-and-forget, non bloquant)
-        supabase.rpc('compute_user_badges', { p_user_id: userId }).catch(() => {})
+        supabase.rpc('compute_user_badges', { p_user_id: userId }).then(() => {}, () => {})
       })
   }, [userId])
 
