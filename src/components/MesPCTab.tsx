@@ -543,8 +543,8 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
               if (pc.type === 'player') {
                 if (s?.loading) { statLine = '…'; sub = 'Calcul en cours' }
                 else if (s && s.total > 0) {
-                  pct = (s.owned / s.total) * 100; done = s.owned === s.total
-                  statLine = `${s.owned} / ${s.total}`
+                  pct = (count / s.total) * 100; done = count >= s.total
+                  statLine = `${count} / ${s.total}`
                   sub = `${Math.round(pct)}% complété`
                 } else if (s) { statLine = '—'; sub = 'Non répertorié' }
               } else if (pc.type === 'team') {
