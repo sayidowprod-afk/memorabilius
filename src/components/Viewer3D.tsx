@@ -32,6 +32,7 @@ interface Card {
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
+  lien_vinted?: string; lien_ebay?: string;
 }
 
 // Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
@@ -1546,6 +1547,26 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               }}>
                 ✏️ {lang === 'fr' ? 'Modifier' : 'Edit'}
               </Link>
+            )}
+            {popup.lien_vinted && (
+              <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
+                background: '#009B77', color: 'white',
+                border: 'none', borderRadius: 10, padding: '12px 14px',
+                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
+                display: 'flex', alignItems: 'center', gap: 6,
+              }}>
+                🛍️ Vinted
+              </a>
+            )}
+            {popup.lien_ebay && (
+              <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
+                background: '#E53238', color: 'white',
+                border: 'none', borderRadius: 10, padding: '12px 14px',
+                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
+                display: 'flex', alignItems: 'center', gap: 6,
+              }}>
+                🛒 eBay
+              </a>
             )}
             {!popup.booklet && (
               <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{

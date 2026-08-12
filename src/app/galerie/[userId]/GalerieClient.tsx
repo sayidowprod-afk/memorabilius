@@ -286,6 +286,7 @@ interface Card {
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   isManuelle?: boolean; disponible_vente?: boolean; beckett_designation?: string; item_type?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
+  lien_vinted?: string; lien_ebay?: string;
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
 }
 
@@ -594,6 +595,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         created_at: m.created_at || '', position: m.position ?? 9999,
         collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
+        lien_vinted: m.lien_vinted || '', lien_ebay: m.lien_ebay || '',
       })
 
       const applyAndShow = (manuelles: any[], ccMap: Map<string, string[]>) => {

@@ -188,6 +188,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
     item_type: 'card' as string,
+    lien_vinted: '', lien_ebay: '',
   })
 
   type Side = 'recto' | 'verso' | 'il' | 'ir'
@@ -564,6 +565,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
       image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
       verso_is_horizontal: null, item_type: 'card',
+      lien_vinted: '', lien_ebay: '',
     })
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
@@ -585,6 +587,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       image_interieur_droite: form.image_interieur_droite || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
+      lien_vinted: form.lien_vinted || null,
+      lien_ebay: form.lien_ebay || null,
       item_type: form.item_type || 'card',
     }).select('id').single()
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
@@ -899,6 +903,22 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               {lang === 'fr' ? '🏷️ Disponible à la vente / trade' : '🏷️ Available for sale / trade'}
             </span>
           </label>
+          {form.disponible_vente && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px', borderRadius: 10, background: '#f0f4ff', border: '2px solid #003DA6' }}>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', color: '#009B77', display: 'block', marginBottom: 4 }}>🛍️ Lien Vinted (facultatif)</label>
+                <input type="url" value={form.lien_vinted} onChange={e => setForm({ ...form, lien_vinted: e.target.value })}
+                  placeholder="https://www.vinted.fr/items/..."
+                  style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: '1.5px solid #cce0d4', fontSize: 13, outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', color: '#E53238', display: 'block', marginBottom: 4 }}>🛒 Lien eBay (facultatif)</label>
+                <input type="url" value={form.lien_ebay} onChange={e => setForm({ ...form, lien_ebay: e.target.value })}
+                  placeholder="https://www.ebay.fr/itm/..."
+                  style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: '1.5px solid #f5c6c7', fontSize: 13, outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+            </div>
+          )}
 
           {form.item_type === 'card' && (
           <div>

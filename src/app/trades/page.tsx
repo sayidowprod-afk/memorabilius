@@ -553,6 +553,22 @@ export default function Trades() {
                   <SocialBadges profile={popup.profiles} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 'auto' }}>
+                  {popup.lien_vinted && (
+                    <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
+                      background: '#009B77', color: 'white', padding: '12px',
+                      borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
+                    }}>
+                      🛍️ Voir sur Vinted
+                    </a>
+                  )}
+                  {popup.lien_ebay && (
+                    <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
+                      background: '#E53238', color: 'white', padding: '12px',
+                      borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
+                    }}>
+                      🛒 Voir sur eBay
+                    </a>
+                  )}
                   {userId && userId !== popup.user_id && (
                     <Link href={`/messages?to=${popup.profiles?.id}&trade=${popup.id}`} onClick={() => setPopup(null)} style={{
                       background: '#003DA6', color: 'white', padding: '12px',
