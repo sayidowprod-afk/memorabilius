@@ -1587,7 +1587,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     borderRadius: 10, padding: '11px 14px',
                     textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <img src="/vinted.svg" alt="Vinted" style={{ height: 22, display: 'block', width: 'auto' }} />
+                    <img src="/vinted.png" alt="Vinted" style={{ height: 22, display: 'block', width: 'auto' }} />
                   </a>
                 )}
                 {popup.lien_ebay && (
