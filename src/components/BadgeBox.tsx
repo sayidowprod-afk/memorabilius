@@ -28,14 +28,25 @@ const CAT_CLIP: Record<string, string> = {
   teams:  'polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)',
 }
 
-const TIER_NAMES = ['Bronze', 'Argent', 'Or', 'Saphir', 'Diamant']
+// 8 niveaux : Bois → Pierre → Fer → Bronze → Argent → Or → Saphir → Diamant
+// La couleur est choisie proportionnellement selon la position dans les paliers de la catégorie
+const TIER_NAMES = ['Bois', 'Pierre', 'Fer', 'Bronze', 'Argent', 'Or', 'Saphir', 'Diamant']
 const TIER = [
+  { face: 'linear-gradient(145deg,#5c3a18 0%,#9a6028 40%,#c07838 55%,#7a4820 100%)', bottom: '#3a2010', glow: '#9a6028', border: '#c0783888' },
+  { face: 'linear-gradient(145deg,#484848 0%,#888888 40%,#aaaaaa 55%,#686868 100%)', bottom: '#242424', glow: '#909090', border: '#aaaaaa88' },
+  { face: 'linear-gradient(145deg,#283858 0%,#4878a8 40%,#70a0c8 55%,#405878 100%)', bottom: '#182038', glow: '#6080a8', border: '#70a0c888' },
   { face: 'linear-gradient(145deg,#a06818 0%,#e8a828 40%,#f8c840 55%,#b07820 100%)', bottom: '#6a4010', glow: '#d49020', border: '#f8c84088' },
   { face: 'linear-gradient(145deg,#585858 0%,#b8b8b8 40%,#e8e8e8 55%,#787878 100%)', bottom: '#282828', glow: '#c8c8c8', border: '#e8e8e888' },
   { face: 'linear-gradient(145deg,#887000 0%,#d8a000 40%,#f8e018 55%,#a86800 100%)', bottom: '#584000', glow: '#e8c000', border: '#f8e01888' },
   { face: 'linear-gradient(145deg,#004888 0%,#0888d8 40%,#50c0f8 55%,#005898 100%)', bottom: '#002858', glow: '#30a8f8', border: '#50c0f888' },
   { face: 'linear-gradient(145deg,#580088 0%,#a818e0 25%,#e838f8 50%,#7820c8 75%,#580088 100%)', bottom: '#300058', glow: '#d838f8', border: '#e838f888', holo: true },
 ]
+
+// Distribution proportionnelle : tier 0 → Bois, tier max → Diamant, quelle que soit la catégorie
+function tierColorIdx(tierIdx: number, totalTiers: number): number {
+  if (totalTiers <= 1) return TIER.length - 1
+  return Math.round((tierIdx / (totalTiers - 1)) * (TIER.length - 1))
+}
 
 function fmtN(n: number) { return n >= 1000 ? `${(n/1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n) }
 
@@ -103,23 +114,23 @@ function BadgeTooltip({ t }: { t: TooltipInfo }) {
 }
 
 // ── Badge 3D individuel ────────────────────────────────────────────────────
-function Badge3D({ catId, catLabel, tierIdx, tierLabel, unit, isEarned, emoji, statVal, threshold, setTooltip }: {
-  catId: string; catLabel: string; tierIdx: number; tierLabel: string
+function Badge3D({ catId, catLabel, tierIdx, totalTiers, tierLabel, unit, isEarned, emoji, statVal, threshold, setTooltip }: {
+  catId: string; catLabel: string; tierIdx: number; totalTiers: number; tierLabel: string
   unit: string; isEarned: boolean; emoji: string
   statVal: number; threshold: number
   setTooltip: (t: TooltipInfo | null) => void
 }) {
   const clip = CAT_CLIP[catId] ?? 'circle(46%)'
-  const pal  = TIER[Math.min(tierIdx, TIER.length - 1)]
+  const pal  = TIER[tierColorIdx(tierIdx, totalTiers)]
 
   const showTooltip = (e: React.MouseEvent) => {
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
     setTooltip({
       x: rect.left + rect.width / 2,
       y: rect.top,
-      above: rect.top > 180,
+      above: rect.top > 200,
       catLabel, catEmoji: emoji,
-      tierLabel, unit, tierIdx,
+      tierLabel, unit, tierIdx: tierColorIdx(tierIdx, totalTiers),
       isEarned, statVal, threshold,
     })
   }
@@ -267,6 +278,7 @@ export default function BadgeBox({ userId }: { userId: string }) {
                         catId={cat.id}
                         catLabel={cat.label}
                         tierIdx={tierIdx}
+                        totalTiers={cat.tiers.length}
                         tierLabel={tier.label}
                         unit={cat.unit}
                         isEarned={earned.has(tier.id)}

@@ -27,6 +27,9 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
   {
     id: 'rc', emoji: '⭐', label: 'Rookie Cards', statKey: 'stat_rc', unit: 'RC',
     tiers: [
+      { id: 'rc_25',   threshold: 25,   label: '25'    },
+      { id: 'rc_50',   threshold: 50,   label: '50'    },
+      { id: 'rc_75',   threshold: 75,   label: '75'    },
       { id: 'rc_100',  threshold: 100,  label: '100'   },
       { id: 'rc_250',  threshold: 250,  label: '250'   },
       { id: 'rc_500',  threshold: 500,  label: '500'   },
@@ -37,6 +40,9 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
   {
     id: 'patch', emoji: '🩹', label: 'Patches', statKey: 'stat_patch', unit: 'patches',
     tiers: [
+      { id: 'patch_25',   threshold: 25,   label: '25'    },
+      { id: 'patch_50',   threshold: 50,   label: '50'    },
+      { id: 'patch_75',   threshold: 75,   label: '75'    },
       { id: 'patch_100',  threshold: 100,  label: '100'   },
       { id: 'patch_250',  threshold: 250,  label: '250'   },
       { id: 'patch_500',  threshold: 500,  label: '500'   },
@@ -47,6 +53,9 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
   {
     id: 'num', emoji: '🔢', label: 'Numérotées', statKey: 'stat_num', unit: 'numérotées',
     tiers: [
+      { id: 'num_25',   threshold: 25,   label: '25'    },
+      { id: 'num_50',   threshold: 50,   label: '50'    },
+      { id: 'num_75',   threshold: 75,   label: '75'    },
       { id: 'num_100',  threshold: 100,  label: '100'   },
       { id: 'num_250',  threshold: 250,  label: '250'   },
       { id: 'num_500',  threshold: 500,  label: '500'   },
