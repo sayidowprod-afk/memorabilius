@@ -553,21 +553,37 @@ export default function Trades() {
                   <SocialBadges profile={popup.profiles} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 'auto' }}>
-                  {popup.lien_vinted && (
-                    <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
-                      background: '#009B77', color: 'white', padding: '12px',
-                      borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
-                    }}>
-                      🛍️ Voir sur Vinted
-                    </a>
-                  )}
-                  {popup.lien_ebay && (
-                    <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
-                      background: '#E53238', color: 'white', padding: '12px',
-                      borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
-                    }}>
-                      🛒 Voir sur eBay
-                    </a>
+                  {(popup.lien_vinted || popup.lien_ebay) && (
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      {popup.lien_vinted && (
+                        <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
+                          flex: 1, background: '#00B07D', color: 'white', padding: '12px',
+                          borderRadius: 10, fontWeight: 700, fontSize: 14, textDecoration: 'none',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                        }}>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M2 6L12 20L22 6" stroke="white" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          Vinted
+                        </a>
+                      )}
+                      {popup.lien_ebay && (
+                        <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
+                          flex: 1, background: 'white', border: '2px solid #e0e0e0', padding: '12px',
+                          borderRadius: 10, textDecoration: 'none',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}>
+                          <svg height="18" viewBox="0 0 68 26" fill="none">
+                            <text y="22" fontFamily="'Arial Black',Arial,sans-serif" fontWeight="900" fontSize="26">
+                              <tspan fill="#E53238">e</tspan>
+                              <tspan dx="-1" fill="#0064D2">b</tspan>
+                              <tspan dx="-1" fill="#F5AF02">a</tspan>
+                              <tspan dx="-1" fill="#86B817">y</tspan>
+                            </text>
+                          </svg>
+                        </a>
+                      )}
+                    </div>
                   )}
                   {userId && userId !== popup.user_id && (
                     <Link href={`/messages?to=${popup.profiles?.id}&trade=${popup.id}`} onClick={() => setPopup(null)} style={{

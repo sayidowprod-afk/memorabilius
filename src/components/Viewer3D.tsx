@@ -1537,65 +1537,79 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           )}
 
           {/* Boutons actions */}
-          <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {isOwner && popup.id_manuelle && userId && (
-              <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} style={{
-                background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
-                border: 'none', borderRadius: 10, padding: '12px 14px',
-                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
-                display: 'flex', alignItems: 'center', gap: 6,
-              }}>
-                ✏️ {lang === 'fr' ? 'Modifier' : 'Edit'}
-              </Link>
-            )}
-            {popup.lien_vinted && (
-              <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
-                background: '#009B77', color: 'white',
-                border: 'none', borderRadius: 10, padding: '12px 14px',
-                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
-                display: 'flex', alignItems: 'center', gap: 6,
-              }}>
-                🛍️ Vinted
-              </a>
-            )}
-            {popup.lien_ebay && (
-              <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
-                background: '#E53238', color: 'white',
-                border: 'none', borderRadius: 10, padding: '12px 14px',
-                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
-                display: 'flex', alignItems: 'center', gap: 6,
-              }}>
-                🛒 eBay
-              </a>
-            )}
-            {!popup.booklet && (
-              <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{
-                background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
-                border: 'none', borderRadius: 10, padding: '12px 14px',
-                fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                transition: '0.2s',
-              }}>
-                🔄 {lang === 'fr' ? 'Rotation 90°' : 'Rotate 90°'}
-              </button>
-            )}
-            <button onClick={() => setShowVideo(true)} style={{
-              flex: 1, background: '#0d0d1f', color: 'white', border: 'none',
-              borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
-            }}>
-              🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export as video'}
-            </button>
-            {userId && (
-              <ShareButton
-                url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
-                title={popup.n}
-                subtitle={[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}
-                buttonStyle={{
-                  background: dark ? '#2a2a2a' : '#f0f0f0',
-                  color: dark ? '#eee' : '#333',
+          <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {isOwner && popup.id_manuelle && userId && (
+                <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} style={{
+                  background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
+                  border: 'none', borderRadius: 10, padding: '12px 14px',
+                  fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
+                  display: 'flex', alignItems: 'center', gap: 6,
+                }}>
+                  ✏️ {lang === 'fr' ? 'Modifier' : 'Edit'}
+                </Link>
+              )}
+              {!popup.booklet && (
+                <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{
+                  background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
                   border: 'none', borderRadius: 10, padding: '12px 14px',
                   fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                }}
-              />
+                  transition: '0.2s',
+                }}>
+                  🔄 {lang === 'fr' ? 'Rotation 90°' : 'Rotate 90°'}
+                </button>
+              )}
+              <button onClick={() => setShowVideo(true)} style={{
+                flex: 1, background: '#0d0d1f', color: 'white', border: 'none',
+                borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
+              }}>
+                🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export as video'}
+              </button>
+              {userId && (
+                <ShareButton
+                  url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
+                  title={popup.n}
+                  subtitle={[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}
+                  buttonStyle={{
+                    background: dark ? '#2a2a2a' : '#f0f0f0',
+                    color: dark ? '#eee' : '#333',
+                    border: 'none', borderRadius: 10, padding: '12px 14px',
+                    fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                  }}
+                />
+              )}
+            </div>
+            {(popup.lien_vinted || popup.lien_ebay) && (
+              <div style={{ display: 'flex', gap: 8 }}>
+                {popup.lien_vinted && (
+                  <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
+                    flex: 1, background: '#00B07D', color: 'white', border: 'none',
+                    borderRadius: 10, padding: '11px 14px', fontWeight: 800, fontSize: 14,
+                    textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                  }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M2 6L12 20L22 6" stroke="white" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    Vinted
+                  </a>
+                )}
+                {popup.lien_ebay && (
+                  <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
+                    flex: 1, background: dark ? '#1a1a1a' : 'white',
+                    border: `2px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 10, padding: '11px 14px',
+                    textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <svg height="20" viewBox="0 0 68 26" fill="none">
+                      <text y="22" fontFamily="'Arial Black',Arial,sans-serif" fontWeight="900" fontSize="26">
+                        <tspan fill="#E53238">e</tspan>
+                        <tspan dx="-1" fill="#0064D2">b</tspan>
+                        <tspan dx="-1" fill="#F5AF02">a</tspan>
+                        <tspan dx="-1" fill="#86B817">y</tspan>
+                      </text>
+                    </svg>
+                  </a>
+                )}
+              </div>
             )}
           </div>
 
