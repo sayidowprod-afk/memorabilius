@@ -561,7 +561,7 @@ export default function Trades() {
                           borderRadius: 10, textDecoration: 'none',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}>
-                          <img src="/vinted.png" alt="Vinted" style={{ height: 22, display: 'block', width: 'auto' }} />
+                          <img src="/vinted.png" alt="Vinted" style={{ height: 22, display: 'block', width: 'auto', background: 'transparent' }} />
                         </a>
                       )}
                       {popup.lien_ebay && (
