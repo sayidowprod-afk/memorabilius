@@ -557,14 +557,11 @@ export default function Trades() {
                     <div style={{ display: 'flex', gap: 8 }}>
                       {popup.lien_vinted && (
                         <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
-                          flex: 1, background: '#00B07D', color: 'white', padding: '12px',
-                          borderRadius: 10, fontWeight: 700, fontSize: 14, textDecoration: 'none',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                          flex: 1, background: '#00B07D', padding: '12px',
+                          borderRadius: 10, textDecoration: 'none',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}>
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M2 6L12 20L22 6" stroke="white" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                          Vinted
+                          <img src="/vinted.svg" alt="Vinted" style={{ height: 22 }} />
                         </a>
                       )}
                       {popup.lien_ebay && (

@@ -1583,28 +1583,26 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               <div style={{ display: 'flex', gap: 8 }}>
                 {popup.lien_vinted && (
                   <a href={popup.lien_vinted} target="_blank" rel="noopener noreferrer" style={{
-                    flex: 1, background: '#00B07D', color: 'white', border: 'none',
-                    borderRadius: 10, padding: '11px 14px', fontWeight: 800, fontSize: 14,
-                    textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    flex: 1, background: '#00B07D', border: 'none',
+                    borderRadius: 10, padding: '11px 14px',
+                    textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path d="M2 6L12 20L22 6" stroke="white" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    Vinted
+                    <img src="/vinted.svg" alt="Vinted" style={{ height: 22 }} />
                   </a>
                 )}
                 {popup.lien_ebay && (
                   <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
-                    flex: 1, background: dark ? '#1a1a1a' : 'white',
-                    border: `2px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 10, padding: '11px 14px',
+                    flex: 1, background: dark ? '#1e1e1e' : 'white',
+                    border: `2px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 10, padding: '11px 14px',
                     textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <svg height="20" viewBox="0 0 68 26" fill="none">
-                      <text y="22" fontFamily="'Arial Black',Arial,sans-serif" fontWeight="900" fontSize="26">
+                    {/* Logo eBay multicolore officiel */}
+                    <svg height="22" viewBox="0 0 82 30" fill="none">
+                      <text y="24" fontFamily="'Arial Black',Arial,sans-serif" fontWeight="900" fontSize="28">
                         <tspan fill="#E53238">e</tspan>
-                        <tspan dx="-1" fill="#0064D2">b</tspan>
-                        <tspan dx="-1" fill="#F5AF02">a</tspan>
-                        <tspan dx="-1" fill="#86B817">y</tspan>
+                        <tspan dx="-2" fill="#0064D2">b</tspan>
+                        <tspan dx="-2" fill="#F5AF02">a</tspan>
+                        <tspan dx="-2" fill="#86B817">y</tspan>
                       </text>
                     </svg>
                   </a>
