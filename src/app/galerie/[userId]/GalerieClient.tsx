@@ -27,7 +27,8 @@ import { CSS } from '@dnd-kit/utilities'
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import { getSpeciality, getTeamById } from '@/lib/sportsTeams'
+import { getTeamById } from '@/lib/sportsTeams'
+import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
 
@@ -349,7 +350,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
   const [qrDownloading, setQrDownloading] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [activeTab, setActiveTab] = useState<'collection' | 'objectifs' | 'comments' | 'library' | 'likes'>(() => {
+  const [activeTab, setActiveTab] = useState<'collection' | 'objectifs' | 'comments' | 'library' | 'likes' | 'badges'>(() => {
     const t = searchParams.get('tab')
     if (t === 'wishlist' || t === 'pc') return 'objectifs'
     return (t as any) || 'collection'
@@ -363,7 +364,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [shareCopied, setShareCopied] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
-  const [monthlyBadges, setMonthlyBadges] = useState<string[]>([])
+  // monthlyBadges retired — remplacé par BadgeBox
   const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
   const [grailSearch, setGrailSearch] = useState('')
@@ -406,9 +407,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         if (profileData) { setProfile(profileData); loadCSV(profileData.lien_csv ?? null, tagsMap, profileData.gallery_order || []) }
         else setLoaded(true)
-        supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
-          if (data) setMonthlyBadges(data.map((b: any) => b.mois))
-        })
+        // badges chargés dans BadgeBox à la demande
         supabase.from('collection_tab_settings').select('tag, color, position, parent').eq('user_id', resolvedId).then(({ data }) => {
           if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position, parent: r.parent ?? null }])))
         })
@@ -1260,33 +1259,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
                 <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || 'Collectionneur'}</h1>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
-                {monthlyBadges.length > 0 && (
-                  <span className="sticker-badge" data-label={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 26 }}>🏆</span>
-                )}
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
-
-                {(() => {
-                  const teams: string[] = Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []
-                  const stats = profile ? { total: profile.stats_total || 0, rc: profile.stats_rc || 0, auto: profile.stats_auto || 0, patch: profile.stats_patch || 0, num: profile.stats_num || 0 } : undefined
-                  const spec = getSpeciality(stats)
-                  return (<>
-                    {teams.map(id => {
-                      const team = getTeamById(id)
-                      return (
-                        <span key={id} className="sticker-team" data-label={team?.name ?? id}>
-                          <TeamBadge teamId={id} size={28} />
-                        </span>
-                      )
-                    })}
-                    {spec.map((s, i) => (
-                      <span key={i} className="sticker-badge" data-label={s.label.replace(/^\S+\s*/, '')} style={{ fontSize: 26 }}>
-                        {s.label.match(/^\S+/)?.[0] ?? '⭐'}
-                      </span>
-                    ))}
-                  </>)
-                })()}
+                {(Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []).map((id: string) => {
+                  const team = getTeamById(id)
+                  return (
+                    <span key={id} className="sticker-team" data-label={team?.name ?? id}>
+                      <TeamBadge teamId={id} size={28} />
+                    </span>
+                  )
+                })}
               </div>
 
               {profile?.bio && (
@@ -1584,7 +1567,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
         <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          {(['collection', 'library', 'objectifs', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
+          {(['collection', 'library', 'objectifs', 'badges', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab as any)} style={{
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
@@ -1593,10 +1576,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'badges' ? '🏅 Badges' : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')}
             </button>
           ))}
         </div>
+
+        {activeTab === 'badges' && (
+          <div style={{ paddingBottom: 32 }}>
+            <BadgeBox userId={profile?.id || userId} />
+          </div>
+        )}
 
         {activeTab === 'objectifs' && (
           <div>

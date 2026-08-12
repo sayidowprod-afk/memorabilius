@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import { SPORTS_TEAMS, getSpeciality, getTeamById } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS, getTeamById } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
 
 interface Stats { total: number; rc: number; auto: number; num: number; patch: number }
@@ -319,27 +319,16 @@ function AnnuaireContent() {
                       <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0 }}>
                         <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
-                        {(() => {
-                          const teams = c.favorite_teams || []
-                          const spec = getSpeciality(c.stats)
-                          return (
-                            <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>
-                              {teams.slice(0, 3).map(id => (
-                                <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 18 }}>
-                                  <TeamBadge teamId={id} size={18} />
-                                </span>
-                              ))}
-                              {spec.map((s, i) => (
-                                <span key={i} className="sticker-badge-sm" data-label={s.label.replace(/^\S+\s*/, '')} style={{ fontSize: 18 }}>
-                                  {s.label.match(/^\S+/)?.[0] ?? '⭐'}
-                                </span>
-                              ))}
-                              {c.is_donor && (
-                                <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 18 }}>☕</span>
-                              )}
-                            </div>
-                          )
-                        })()}
+                        <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>
+                          {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
+                            <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 18 }}>
+                              <TeamBadge teamId={id} size={18} />
+                            </span>
+                          ))}
+                          {c.is_donor && (
+                            <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 18 }}>☕</span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </td>
