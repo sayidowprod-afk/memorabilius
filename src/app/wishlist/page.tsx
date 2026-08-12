@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -18,15 +19,19 @@ export default function WishlistPage() {
   const [userId, setUserId] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [removingId, setRemovingId] = useState<string | null>(null)
   const router = useRouter()
-  const { lang } = useLang()
+  const { t, lang } = useLang()
+  const { dark } = useTheme()
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      const data = { user: session.user }
       setUserId(data.user.id)
       supabase.from('wishlist').select('*').eq('user_id', data.user.id).order('created_at', { ascending: false })
-        .then(({ data: d }) => setItems(d || []))
+        .then(({ data: d }) => { setItems(d || []); setLoading(false) })
     })
   }, [])
 
@@ -43,6 +48,7 @@ export default function WishlistPage() {
   const remove = async (id: string) => {
     await supabase.from('wishlist').delete().eq('id', id)
     setItems(prev => prev.filter(i => i.id !== id))
+    setRemovingId(null)
   }
 
   const tags = (item: WishItem) => [
@@ -56,53 +62,53 @@ export default function WishlistPage() {
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '30px 16px', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <div>
-          <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>Ma Wishlist</h1>
-          <p style={{ color: '#999', fontSize: 13, margin: '4px 0 0' }}>Cartes que vous recherchez</p>
+          <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('wishlist_title')}</h1>
+          <p style={{ color: '#999', fontSize: 13, margin: '4px 0 0' }}>{t('wishlist_sub')}</p>
         </div>
         <button onClick={() => setShowForm(!showForm)} style={{
           background: '#003DA6', color: 'white', border: 'none', borderRadius: 10,
           padding: '10px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer',
         }}>
-          {showForm ? '✕ Annuler' : '+ Ajouter une carte'}
+          {showForm ? t('wishlist_cancel_add') : t('wishlist_add')}
         </button>
       </div>
 
       {/* Formulaire */}
       {showForm && (
-        <div style={{ background: 'white', borderRadius: 14, padding: 20, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #eee' }}>
-          <h3 style={{ fontWeight: 800, margin: '0 0 16px', fontSize: 15 }}>Nouvelle carte recherchée</h3>
+        <form onSubmit={e => { e.preventDefault(); save() }} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: 20, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
+          <h3 style={{ fontWeight: 800, margin: '0 0 16px', fontSize: 15 }}>{t('wishlist_new_wanted')}</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Joueur *</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
               <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Année</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
               <input value={form.annee} onChange={e => setForm(p => ({ ...p, annee: e.target.value }))} placeholder="2024-25" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Marque</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_brand')}</label>
               <input value={form.marque} onChange={e => setForm(p => ({ ...p, marque: e.target.value }))} placeholder="Panini" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Collection</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_collection_label')}</label>
               <input value={form.collection} onChange={e => setForm(p => ({ ...p, collection: e.target.value }))} placeholder="National Treasures" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Variation</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_variation_label')}</label>
               <input value={form.variation} onChange={e => setForm(p => ({ ...p, variation: e.target.value }))} placeholder="Holo" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Numérotation</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_num_label')}</label>
               <input value={form.num} onChange={e => setForm(p => ({ ...p, num: e.target.value }))} placeholder="/99" />
             </div>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Notes</label>
-              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder="Budget max, état souhaité..." />
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
+              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={lang === 'fr' ? 'Budget max, état souhaité...' : 'Max budget, desired condition...'} />
             </div>
             <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {(['rc', 'auto', 'patch'] as const).map(k => (
-                <button key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
+                <button type="button" key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
                   padding: '6px 14px', border: 'none', borderRadius: 6, cursor: 'pointer',
                   fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
                   background: form[k] ? (k === 'rc' ? '#e67e22' : k === 'auto' ? '#2e7d32' : '#1976d2') : '#f0f0f0',
@@ -111,30 +117,38 @@ export default function WishlistPage() {
               ))}
             </div>
           </div>
-          <button onClick={save} disabled={saving || !form.nom.trim()} style={{
+          <button type="submit" disabled={saving || !form.nom.trim()} style={{
             marginTop: 16, width: '100%', background: form.nom.trim() ? '#003DA6' : '#ccc',
             color: 'white', border: 'none', borderRadius: 10, padding: '12px',
             fontWeight: 800, fontSize: 14, cursor: form.nom.trim() ? 'pointer' : 'default',
           }}>
-            {saving ? 'Enregistrement...' : 'Ajouter à ma wishlist'}
+            {saving ? t('wishlist_saving') : t('wishlist_submit')}
           </button>
-        </div>
+        </form>
       )}
 
       {/* Liste */}
-      {items.length === 0 && !showForm && (
+      {loading && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[1, 2, 3].map(i => (
+            <div key={i} style={{ background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 12, height: 72, animation: 'wl-pulse 1.4s ease infinite alternate' }} />
+          ))}
+          <style>{`@keyframes wl-pulse { from { opacity: 1 } to { opacity: 0.5 } }`}</style>
+        </div>
+      )}
+      {!loading && items.length === 0 && !showForm && (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🎯</div>
-          <p style={{ fontWeight: 700, fontSize: 16 }}>Aucune carte dans votre wishlist</p>
-          <p style={{ fontSize: 13, marginTop: 4 }}>Ajoutez les cartes que vous recherchez</p>
+          <p style={{ fontWeight: 700, fontSize: 16 }}>{t('wishlist_empty_title')}</p>
+          <p style={{ fontSize: 13, marginTop: 4 }}>{t('wishlist_empty_sub')}</p>
         </div>
       )}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {items.map(item => (
           <div key={item.id} style={{
-            background: 'white', borderRadius: 12, padding: '14px 18px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0',
+            background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: '14px 18px',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`,
             display: 'flex', alignItems: 'center', gap: 12,
           }}>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -149,10 +163,17 @@ export default function WishlistPage() {
               </div>
               {item.notes && <div style={{ fontSize: 11, color: '#888', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}
             </div>
-            <button onClick={() => remove(item.id)} style={{
-              background: 'none', border: '1px solid #eee', borderRadius: 8,
-              padding: '6px 10px', cursor: 'pointer', color: '#e74c3c', fontSize: 13, flexShrink: 0,
-            }}>✕</button>
+            {removingId === item.id ? (
+              <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                <button onClick={() => remove(item.id)} aria-label="Confirmer la suppression" style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>Oui</button>
+                <button onClick={() => setRemovingId(null)} aria-label="Annuler" style={{ background: 'none', border: '1px solid #eee', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 12 }}>Non</button>
+              </div>
+            ) : (
+              <button onClick={() => setRemovingId(item.id)} aria-label={`Retirer ${item.nom} de la wishlist`} style={{
+                background: 'none', border: '1px solid #eee', borderRadius: 8,
+                padding: '6px 10px', cursor: 'pointer', color: '#e74c3c', fontSize: 13, flexShrink: 0,
+              }}>✕</button>
+            )}
           </div>
         ))}
       </div>

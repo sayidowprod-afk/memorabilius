@@ -1,0 +1,31 @@
+{
+  "year": 1999,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4286,
+        "name": "1999 Collector's Edge Triumph"
+      },
+      "unique": [
+        {
+          "card_number": "172",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Millennium Collection Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Collector's Edge"
+    }
+  ]
+}

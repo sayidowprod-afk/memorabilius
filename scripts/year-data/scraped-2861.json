@@ -1,0 +1,4822 @@
+{
+  "year": 1999,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2861,
+        "name": "1999-00 Ultra"
+      },
+      "unique": [
+        {
+          "card_number": "23",
+          "player_name": "Isaiah Rider",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dion Glover",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Cal Bowdler",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "23G",
+          "player_name": "Isaiah Rider",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84G",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133G",
+          "player_name": "Dion Glover",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137G",
+          "player_name": "Cal Bowdler",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142G",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23M",
+          "player_name": "Isaiah Rider",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84M",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133M",
+          "player_name": "Dion Glover",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137M",
+          "player_name": "Cal Bowdler",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142M",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23P",
+          "player_name": "Isaiah Rider",
+          "team": "Atlanta Hawks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84P",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133P",
+          "player_name": "Dion Glover",
+          "team": "Atlanta Hawks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137P",
+          "player_name": "Cal Bowdler",
+          "team": "Atlanta Hawks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142P",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Vitaly Potapenko",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Danny Fortson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21G",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25G",
+          "player_name": "Vitaly Potapenko",
+          "team": "Boston Celtics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76G",
+          "player_name": "Danny Fortson",
+          "team": "Boston Celtics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115G",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120G",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21M",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25M",
+          "player_name": "Vitaly Potapenko",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76M",
+          "player_name": "Danny Fortson",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115M",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120M",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21P",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25P",
+          "player_name": "Vitaly Potapenko",
+          "team": "Boston Celtics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76P",
+          "player_name": "Danny Fortson",
+          "team": "Boston Celtics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115P",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120P",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Elden Campbell",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8G",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11G",
+          "player_name": "Elden Campbell",
+          "team": "Charlotte Hornets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56G",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111G",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150G",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8M",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11M",
+          "player_name": "Elden Campbell",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56M",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111M",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150M",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8P",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11P",
+          "player_name": "Elden Campbell",
+          "team": "Charlotte Hornets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56P",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111P",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150P",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dickey Simpkins",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Kornel David",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Elton Brand",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Ron Artest",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29G",
+          "player_name": "Dickey Simpkins",
+          "team": "Chicago Bulls",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98G",
+          "player_name": "Kornel David",
+          "team": "Chicago Bulls",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109G",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127G",
+          "player_name": "Elton Brand",
+          "team": "Chicago Bulls",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146G",
+          "player_name": "Ron Artest",
+          "team": "Chicago Bulls",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29M",
+          "player_name": "Dickey Simpkins",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98M",
+          "player_name": "Kornel David",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109M",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127M",
+          "player_name": "Elton Brand",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146M",
+          "player_name": "Ron Artest",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29P",
+          "player_name": "Dickey Simpkins",
+          "team": "Chicago Bulls",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98P",
+          "player_name": "Kornel David",
+          "team": "Chicago Bulls",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109P",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127P",
+          "player_name": "Elton Brand",
+          "team": "Chicago Bulls",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146P",
+          "player_name": "Ron Artest",
+          "team": "Chicago Bulls",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Trajan Langdon",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61G",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85G",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99G",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131G",
+          "player_name": "Trajan Langdon",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149G",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61M",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85M",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99M",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131M",
+          "player_name": "Trajan Langdon",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149M",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61P",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85P",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99P",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131P",
+          "player_name": "Trajan Langdon",
+          "team": "Cleveland Cavaliers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149P",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Gary Trent",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Cedric Ceballos",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28G",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42G",
+          "player_name": "Gary Trent",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53G",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59G",
+          "player_name": "Cedric Ceballos",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83G",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28M",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42M",
+          "player_name": "Gary Trent",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53M",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59M",
+          "player_name": "Cedric Ceballos",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83M",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28P",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42P",
+          "player_name": "Gary Trent",
+          "team": "Dallas Mavericks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53P",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59P",
+          "player_name": "Cedric Ceballos",
+          "team": "Dallas Mavericks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83P",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Ron Mercer",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Nick Van Exel",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19G",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60G",
+          "player_name": "Ron Mercer",
+          "team": "Denver Nuggets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67G",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74G",
+          "player_name": "Nick Van Exel",
+          "team": "Denver Nuggets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134G",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19M",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60M",
+          "player_name": "Ron Mercer",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67M",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74M",
+          "player_name": "Nick Van Exel",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134M",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19P",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60P",
+          "player_name": "Ron Mercer",
+          "team": "Denver Nuggets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67P",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74P",
+          "player_name": "Nick Van Exel",
+          "team": "Denver Nuggets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134P",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Christian Laettner",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Bison Dele",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30G",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38G",
+          "player_name": "Christian Laettner",
+          "team": "Detroit Pistons",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78G",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81G",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92G",
+          "player_name": "Bison Dele",
+          "team": "Detroit Pistons",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30M",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38M",
+          "player_name": "Christian Laettner",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78M",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81M",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92M",
+          "player_name": "Bison Dele",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30P",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38P",
+          "player_name": "Christian Laettner",
+          "team": "Detroit Pistons",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78P",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81P",
+          "player_name": "Lindsey Hunter",
+          "team": "Detroit Pistons",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92P",
+          "player_name": "Bison Dele",
+          "team": "Detroit Pistons",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mookie Blaylock",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Erick Dampier",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12G",
+          "player_name": "Mookie Blaylock",
+          "team": "Golden State Warriors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22G",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71G",
+          "player_name": "Erick Dampier",
+          "team": "Golden State Warriors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94G",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116G",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12M",
+          "player_name": "Mookie Blaylock",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22M",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71M",
+          "player_name": "Erick Dampier",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94M",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116M",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12P",
+          "player_name": "Mookie Blaylock",
+          "team": "Golden State Warriors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22P",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71P",
+          "player_name": "Erick Dampier",
+          "team": "Golden State Warriors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94P",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116P",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107G",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114G",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126G",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147G",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107M",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114M",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126M",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147M",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107P",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114P",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126P",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147P",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Mark Jackson",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Jonathan Bender",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14G",
+          "player_name": "Mark Jackson",
+          "team": "Indiana Pacers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34G",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54G",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57G",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140G",
+          "player_name": "Jonathan Bender",
+          "team": "Indiana Pacers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14M",
+          "player_name": "Mark Jackson",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34M",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54M",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57M",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140M",
+          "player_name": "Jonathan Bender",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14P",
+          "player_name": "Mark Jackson",
+          "team": "Indiana Pacers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34P",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54P",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57P",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140P",
+          "player_name": "Jonathan Bender",
+          "team": "Indiana Pacers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tyrone Nesby",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Piatkowski",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Derek Anderson",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7G",
+          "player_name": "Tyrone Nesby",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35G",
+          "player_name": "Eric Piatkowski",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41G",
+          "player_name": "Derek Anderson",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58G",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103G",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135G",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7M",
+          "player_name": "Tyrone Nesby",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35M",
+          "player_name": "Eric Piatkowski",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41M",
+          "player_name": "Derek Anderson",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58M",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103M",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135M",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7P",
+          "player_name": "Tyrone Nesby",
+          "team": "Los Angeles Clippers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35P",
+          "player_name": "Eric Piatkowski",
+          "team": "Los Angeles Clippers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41P",
+          "player_name": "Derek Anderson",
+          "team": "Los Angeles Clippers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58P",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103P",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135P",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tyronn Lue",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Devean George",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40G",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50G",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82G",
+          "player_name": "Tyronn Lue",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95G",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148G",
+          "player_name": "Devean George",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40M",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50M",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82M",
+          "player_name": "Tyronn Lue",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95M",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148M",
+          "player_name": "Devean George",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40P",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50P",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82P",
+          "player_name": "Tyronn Lue",
+          "team": "Los Angeles Lakers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95P",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148P",
+          "player_name": "Devean George",
+          "team": "Los Angeles Lakers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jamal Mashburn",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Tim James",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15G",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44G",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52G",
+          "player_name": "Jamal Mashburn",
+          "team": "Miami Heat",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105G",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141G",
+          "player_name": "Tim James",
+          "team": "Miami Heat",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15M",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44M",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52M",
+          "player_name": "Jamal Mashburn",
+          "team": "Miami Heat",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105M",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141M",
+          "player_name": "Tim James",
+          "team": "Miami Heat",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15P",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44P",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52P",
+          "player_name": "Jamal Mashburn",
+          "team": "Miami Heat",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105P",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141P",
+          "player_name": "Tim James",
+          "team": "Miami Heat",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Galen Young",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3G",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79G",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93G",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101G",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145G",
+          "player_name": "Galen Young",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3M",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79M",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93M",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101M",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145M",
+          "player_name": "Galen Young",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3P",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79P",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93P",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101P",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145P",
+          "player_name": "Galen Young",
+          "team": "Milwaukee Bucks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Bobby Jackson",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "William Avery",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "47G",
+          "player_name": "Bobby Jackson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68G",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100G",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108G",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128G",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144G",
+          "player_name": "William Avery",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47M",
+          "player_name": "Bobby Jackson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68M",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100M",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108M",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128M",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144M",
+          "player_name": "William Avery",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47P",
+          "player_name": "Bobby Jackson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68P",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100P",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108P",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128P",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144P",
+          "player_name": "William Avery",
+          "team": "Minnesota Timberwolves",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9G",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16G",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33G",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64G",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110G",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9M",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16M",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33M",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64M",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110M",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9P",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16P",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33P",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64P",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110P",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17G",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26G",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37G",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39G",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45G",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17M",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26M",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37M",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39M",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45M",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17P",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26P",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37P",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39P",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45P",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pat Garrity",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Corey Maggette",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5G",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24G",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Orlando Magic",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86G",
+          "player_name": "Pat Garrity",
+          "team": "Orlando Magic",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89G",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123G",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132G",
+          "player_name": "Corey Maggette",
+          "team": "Orlando Magic",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5M",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24M",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86M",
+          "player_name": "Pat Garrity",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89M",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123M",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132M",
+          "player_name": "Corey Maggette",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5P",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24P",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Orlando Magic",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86P",
+          "player_name": "Pat Garrity",
+          "team": "Orlando Magic",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89P",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123P",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132P",
+          "player_name": "Corey Maggette",
+          "team": "Orlando Magic",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Matt Geiger",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Theo Ratliff",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jumaine Jones",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18G",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20G",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31G",
+          "player_name": "Matt Geiger",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66G",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106G",
+          "player_name": "Theo Ratliff",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139G",
+          "player_name": "Jumaine Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18M",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20M",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31M",
+          "player_name": "Matt Geiger",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66M",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106M",
+          "player_name": "Theo Ratliff",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139M",
+          "player_name": "Jumaine Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18P",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20P",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31P",
+          "player_name": "Matt Geiger",
+          "team": "Philadelphia 76ers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66P",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106P",
+          "player_name": "Theo Ratliff",
+          "team": "Philadelphia 76ers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139P",
+          "player_name": "Jumaine Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Clifford Robinson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36G",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51G",
+          "player_name": "Clifford Robinson",
+          "team": "Phoenix Suns",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112G",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117G",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130G",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36M",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51M",
+          "player_name": "Clifford Robinson",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112M",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117M",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130M",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36P",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51P",
+          "player_name": "Clifford Robinson",
+          "team": "Phoenix Suns",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112P",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117P",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130P",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Detlef Schrempf",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Scottie Pippen",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Arvydas Sabonis",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brian Grant",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Steve Smith",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63G",
+          "player_name": "Detlef Schrempf",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70G",
+          "player_name": "Scottie Pippen",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72G",
+          "player_name": "Arvydas Sabonis",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73G",
+          "player_name": "Brian Grant",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87G",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91G",
+          "player_name": "Steve Smith",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118G",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63M",
+          "player_name": "Detlef Schrempf",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70M",
+          "player_name": "Scottie Pippen",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72M",
+          "player_name": "Arvydas Sabonis",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73M",
+          "player_name": "Brian Grant",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87M",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91M",
+          "player_name": "Steve Smith",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118M",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63P",
+          "player_name": "Detlef Schrempf",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70P",
+          "player_name": "Scottie Pippen",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72P",
+          "player_name": "Arvydas Sabonis",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73P",
+          "player_name": "Brian Grant",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87P",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91P",
+          "player_name": "Steve Smith",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118P",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Corliss Williamson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Nick Anderson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4G",
+          "player_name": "Corliss Williamson",
+          "team": "Sacramento Kings",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10G",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65G",
+          "player_name": "Nick Anderson",
+          "team": "Sacramento Kings",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96G",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124G",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4M",
+          "player_name": "Corliss Williamson",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10M",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65M",
+          "player_name": "Nick Anderson",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96M",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124M",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4P",
+          "player_name": "Corliss Williamson",
+          "team": "Sacramento Kings",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10P",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65P",
+          "player_name": "Nick Anderson",
+          "team": "Sacramento Kings",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96P",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124P",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Mario Elie",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Avery Johnson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49G",
+          "player_name": "Mario Elie",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77G",
+          "player_name": "Avery Johnson",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80G",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121G",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125G",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49M",
+          "player_name": "Mario Elie",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77M",
+          "player_name": "Avery Johnson",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80M",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121M",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125M",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49P",
+          "player_name": "Mario Elie",
+          "team": "San Antonio Spurs",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77P",
+          "player_name": "Avery Johnson",
+          "team": "San Antonio Spurs",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80P",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121P",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125P",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Vladimir Stepania",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13G",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43G",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62G",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97G",
+          "player_name": "Vladimir Stepania",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104G",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13M",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43M",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62M",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97M",
+          "player_name": "Vladimir Stepania",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104M",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13P",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43P",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62P",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97P",
+          "player_name": "Vladimir Stepania",
+          "team": "Seattle SuperSonics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104P",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charles Oakley",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Doug Christie",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Alek Radojevic",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1G",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6G",
+          "player_name": "Charles Oakley",
+          "team": "Toronto Raptors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55G",
+          "player_name": "Doug Christie",
+          "team": "Toronto Raptors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119G",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136G",
+          "player_name": "Aleksandar Radojevic",
+          "team": "Toronto Raptors",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1M",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6M",
+          "player_name": "Charles Oakley",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55M",
+          "player_name": "Doug Christie",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119M",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136M",
+          "player_name": "Aleksandar Radojevic",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1P",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6P",
+          "player_name": "Charles Oakley",
+          "team": "Toronto Raptors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55P",
+          "player_name": "Doug Christie",
+          "team": "Toronto Raptors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119P",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136P",
+          "player_name": "Aleksandar Radojevic",
+          "team": "Toronto Raptors",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Scott Padgett",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Quincy Lewis",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32G",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48G",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75G",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138G",
+          "player_name": "Scott Padgett",
+          "team": "Utah Jazz",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143G",
+          "player_name": "Quincy Lewis",
+          "team": "Utah Jazz",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32M",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48M",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75M",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138M",
+          "player_name": "Scott Padgett",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143M",
+          "player_name": "Quincy Lewis",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32P",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48P",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75P",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138P",
+          "player_name": "Scott Padgett",
+          "team": "Utah Jazz",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143P",
+          "player_name": "Quincy Lewis",
+          "team": "Utah Jazz",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Michael Dickerson",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69G",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88G",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90G",
+          "player_name": "Michael Dickerson",
+          "team": "Vancouver Grizzlies",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102G",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122G",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69M",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88M",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90M",
+          "player_name": "Michael Dickerson",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102M",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122M",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69P",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88P",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90P",
+          "player_name": "Michael Dickerson",
+          "team": "Vancouver Grizzlies",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102P",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122P",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Randell Jackson",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2G",
+          "player_name": "Randell Jackson",
+          "team": "Washington Wizards",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27G",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46G",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113G",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129G",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "Gold Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2M",
+          "player_name": "Randell Jackson",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27M",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46M",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113M",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129M",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2P",
+          "player_name": "Randell Jackson",
+          "team": "Washington Wizards",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27P",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46P",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113P",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129P",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "Platinum Medallion",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

@@ -1,0 +1,2743 @@
+{
+  "year": 2004,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4653,
+        "name": "2004 Fleer Greats of the Game"
+      },
+      "unique": [
+        {
+          "card_number": "75",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-MJ",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Alan Ameche",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Alan Ameche",
+          "team": "Baltimore Colts",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "James Lofton",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "J.P. Losman",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TT",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TT",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TT2",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TT",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TT",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "James Lofton",
+          "team": "Buffalo Bills",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "J.P. Losman",
+          "team": "Buffalo Bills",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-KC",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dick Butkus",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Sid Luckman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Bronko Nagurski",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Ditka",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BN",
+          "player_name": "Bronko Nagurski",
+          "team": "Chicago Bears",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RG",
+          "player_name": "Red Grange",
+          "team": "Chicago Bears",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-WP",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GT-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WP",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WP",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WP",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WP",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-MD",
+          "player_name": "Mike Ditka",
+          "team": "Chicago Bears",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-MS",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dick Butkus",
+          "team": "Chicago Bears",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Sid Luckman",
+          "team": "Chicago Bears",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Bronko Nagurski",
+          "team": "Chicago Bears",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Chris Perry",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Chris Perry",
+          "team": "Cincinnati Bengals",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Paul Warfield",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ozzie Newsome",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kellen Winslow, Jr.",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-JB",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-OG",
+          "player_name": "Otto Graham",
+          "team": "Cleveland Browns",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JB",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-ON",
+          "player_name": "Ozzie Newsome",
+          "team": "Cleveland Browns",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PW",
+          "player_name": "Paul Warfield",
+          "team": "Cleveland Browns",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Paul Warfield",
+          "team": "Cleveland Browns",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ozzie Newsome",
+          "team": "Cleveland Browns",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jay Novacek",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bob Hayes",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Drew Pearson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tony Hill",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Drew Henson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-MF",
+          "player_name": "Mel Renfro",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-MI",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TD",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-MF",
+          "player_name": "Mel Renfro",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-MI",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TD",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-MF",
+          "player_name": "Mel Renfro",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-MI",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-TD",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BL",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DPE",
+          "player_name": "Drew Pearson",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DPE2",
+          "player_name": "Drew Pearson",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JN",
+          "player_name": "Jay Novacek",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-TH",
+          "player_name": "Tony Hill",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jay Novacek",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bob Hayes",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Drew Pearson",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tony Hill",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Drew Henson",
+          "team": "Dallas Cowboys",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Darius Watts",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-SS",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-SS",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Darius Watts",
+          "team": "Denver Broncos",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Kevin Jones",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BL",
+          "player_name": "Bobby Layne",
+          "team": "Detroit Lions",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-DL",
+          "player_name": "Dick Lane",
+          "team": "Detroit Lions",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GT-BS1",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BS1",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BS2",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BS2",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RW2",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Kevin Jones",
+          "team": "Detroit Lions",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Max McGee",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jim Taylor",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ray Nitschke",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-RN",
+          "player_name": "Ray Nitschke",
+          "team": "Green Bay Packers",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-VL",
+          "player_name": "Vince Lombardi",
+          "team": "Green Bay Packers",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GT-BS2",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BS2",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BS1",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BS1",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JT",
+          "player_name": "Jim Taylor",
+          "team": "Green Bay Packers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Max McGee",
+          "team": "Green Bay Packers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jim Taylor",
+          "team": "Green Bay Packers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ray Nitschke",
+          "team": "Green Bay Packers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Dan Pastorini",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WM",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WM",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-WM",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DPA",
+          "player_name": "Dan Pastorini",
+          "team": "Houston Oilers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WMN",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Dan Pastorini",
+          "team": "Houston Oilers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Reggie Williams",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Reggie Williams",
+          "team": "Jacksonville Jaguars",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Marcus Allen",
+          "team": "Los Angeles Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ronnie Lott",
+          "team": "Los Angeles Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Los Angeles Raiders",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Marcus Allen",
+          "team": "Los Angeles Raiders",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Elroy \"Crazy Legs\" Hirsch",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Charles White",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-ED",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-CW",
+          "player_name": "Charles White",
+          "team": "Los Angeles Rams",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DJ",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-ED",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Elroy Hirsch",
+          "team": "Los Angeles Rams",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Charles White",
+          "team": "Los Angeles Rams",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-DM2",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FT",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FT",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FT",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-CC",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-FT",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "George Rogers",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "George Rogers",
+          "team": "New Orleans Saints",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Y.A. Tittle",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Sam Huff",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SH",
+          "player_name": "Sam Huff",
+          "team": "New York Giants",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Sam Huff",
+          "team": "New York Giants",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DMY",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JNA",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jim Otto",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "George Blanda",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Dave Casper",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FB",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FB",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FB",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DC2",
+          "player_name": "Dave Casper",
+          "team": "Oakland Raiders",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-GB",
+          "player_name": "George Blanda",
+          "team": "Oakland Raiders",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JO",
+          "player_name": "Jim Otto",
+          "team": "Oakland Raiders",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-KS",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ken Stabler",
+          "team": "Oakland Raiders",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jim Otto",
+          "team": "Oakland Raiders",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "George Blanda",
+          "team": "Oakland Raiders",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Dave Casper",
+          "team": "Oakland Raiders",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Chuck Bednarik",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Steve Van Buren",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Wilbert Montgomery",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Quick",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Harold Carmichael",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-CB",
+          "player_name": "Chuck Bednarik",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-HC",
+          "player_name": "Harold Carmichael",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-MQ",
+          "player_name": "Mike Quick",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SV",
+          "player_name": "Steve Van Buren",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WMY",
+          "player_name": "Wilbert Montgomery",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Chuck Bednarik",
+          "team": "Philadelphia Eagles",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Steve Van Buren",
+          "team": "Philadelphia Eagles",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Wilbert Montgomery",
+          "team": "Philadelphia Eagles",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Quick",
+          "team": "Philadelphia Eagles",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Harold Carmichael",
+          "team": "Philadelphia Eagles",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Joe Greene",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JL",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JL",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JL",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JL",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JG",
+          "player_name": "Joe Greene",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JLA",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Joe Greene",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Dan Fouts",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DF",
+          "player_name": "Dan Fouts",
+          "team": "San Diego Chargers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-KWS",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-KWS2",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Dan Fouts",
+          "team": "San Diego Chargers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dwight Clark",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rashaun Woods",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RL",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RL",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-RL",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GT-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Glory of Their Time Game Used Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DCL",
+          "player_name": "Dwight Clark",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RC",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Border Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RL",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-YT",
+          "player_name": "Y.A. Tittle",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Y.A. Tittle",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dwight Clark",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rashaun Woods",
+          "team": "San Francisco 49ers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-MC",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Sammy Baugh",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Art Monk",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "John Riggins",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Charley Taylor",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-SB",
+          "player_name": "Sammy Baugh",
+          "team": "Washington Redskins",
+          "variation": "Etched in Time Cut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-CT",
+          "player_name": "Charley Taylor",
+          "team": "Washington Redskins",
+          "variation": "Gold Border Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Sammy Baugh",
+          "team": "Washington Redskins",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Charley Taylor",
+          "team": "Washington Redskins",
+          "variation": "Green/Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

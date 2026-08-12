@@ -1,0 +1,94 @@
+{
+  "year": 1997,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 6653,
+        "name": "1997 SPx"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "ProMotion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "ProMotion Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "ProMotion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "ProMotion Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "ProMotion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "ProMotion Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Shawn Kemp",
+          "team": "Seattle SuperSonics",
+          "variation": "ProMotion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Shawn Kemp",
+          "team": "Seattle SuperSonics",
+          "variation": "ProMotion Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Damon Stoudamire",
+          "team": "Toronto Raptors",
+          "variation": "ProMotion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Damon Stoudamire",
+          "team": "Toronto Raptors",
+          "variation": "ProMotion Autographs",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

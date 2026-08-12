@@ -1,0 +1,39 @@
+{
+  "year": 1995,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3642,
+        "name": "1995 Zenith"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Promos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Promos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Promos",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

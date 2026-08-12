@@ -1,0 +1,879 @@
+{
+  "year": 1992,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 33477,
+        "name": "1992 Action Packed All-Madden Team"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Deion Sanders",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andre Rison",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Mike Kenn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3G",
+          "player_name": "Deion Sanders",
+          "team": "Atlanta Falcons",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22G",
+          "player_name": "Andre Rison",
+          "team": "Atlanta Falcons",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34G",
+          "player_name": "Mike Kenn",
+          "team": "Atlanta Falcons",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17G",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Nate Newton",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Charles Haley",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Erik Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Daryl Johnston",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1G",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7G",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14G",
+          "player_name": "Nate Newton",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21G",
+          "player_name": "Charles Haley",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27G",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35G",
+          "player_name": "Erik Williams",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54G",
+          "player_name": "Daryl Johnston",
+          "team": "Dallas Cowboys",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Dennis Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50G",
+          "player_name": "Dennis Smith",
+          "team": "Denver Broncos",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jerry Ball",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mel Gray",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5G",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26G",
+          "player_name": "Jerry Ball",
+          "team": "Detroit Lions",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44G",
+          "player_name": "Mel Gray",
+          "team": "Detroit Lions",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Bubba McDowell",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Bruce Matthews",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Haywood Jeffires",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Ray Childress",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12G",
+          "player_name": "Bubba McDowell",
+          "team": "Houston Oilers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19G",
+          "player_name": "Bruce Matthews",
+          "team": "Houston Oilers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28G",
+          "player_name": "Haywood Jeffires",
+          "team": "Houston Oilers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49G",
+          "player_name": "Ray Childress",
+          "team": "Houston Oilers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Derrick Thomas",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kevin Ross",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Neil Smith",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6G",
+          "player_name": "Derrick Thomas",
+          "team": "Kansas City Chiefs",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29G",
+          "player_name": "Kevin Ross",
+          "team": "Kansas City Chiefs",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36G",
+          "player_name": "Neil Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Sean Gilbert",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52G",
+          "player_name": "Sean Gilbert",
+          "team": "Los Angeles Rams",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jack Del Rio",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Doleman",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Henry Thomas",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Randall McDaniel",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Al Noga",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Todd Scott",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Audray McMillian",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9G",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13G",
+          "player_name": "Jack Del Rio",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30G",
+          "player_name": "Chris Doleman",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33G",
+          "player_name": "Henry Thomas",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39G",
+          "player_name": "Randall McDaniel",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41G",
+          "player_name": "Al Noga",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46G",
+          "player_name": "Todd Scott",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48G",
+          "player_name": "Audray McMillian",
+          "team": "Minnesota Vikings",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Rickey Jackson",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pat Swilling",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11G",
+          "player_name": "Rickey Jackson",
+          "team": "New Orleans Saints",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20G",
+          "player_name": "Pat Swilling",
+          "team": "New Orleans Saints",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John Elliott",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15G",
+          "player_name": "John Elliott",
+          "team": "New York Giants",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18G",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Reggie White",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eric Allen",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Fred Barnett",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Seth Joyner",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Vai Sikahema",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Keith Byars",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Mark McMillian",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2G",
+          "player_name": "Reggie White",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8G",
+          "player_name": "Eric Allen",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16G",
+          "player_name": "Fred Barnett",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23G",
+          "player_name": "Seth Joyner",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31G",
+          "player_name": "Vai Sikahema",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45G",
+          "player_name": "Keith Byars",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51G",
+          "player_name": "Mark McMillian",
+          "team": "Philadelphia Eagles",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ricky Watters",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Steve Wallace",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Tom Rathman",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Harris Barton",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Brent Jones",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Pierce Holt",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10G",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24G",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32G",
+          "player_name": "Ricky Watters",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38G",
+          "player_name": "Steve Wallace",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42G",
+          "player_name": "Tom Rathman",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43G",
+          "player_name": "Harris Barton",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47G",
+          "player_name": "Brent Jones",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53G",
+          "player_name": "Pierce Holt",
+          "team": "San Francisco 49ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Wilber Marshall",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Gary Clark",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Mark Schlereth",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Kurt Gouveia",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4G",
+          "player_name": "Wilber Marshall",
+          "team": "Washington Redskins",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25G",
+          "player_name": "Gary Clark",
+          "team": "Washington Redskins",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37G",
+          "player_name": "Mark Schlereth",
+          "team": "Washington Redskins",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40G",
+          "player_name": "Kurt Gouveia",
+          "team": "Washington Redskins",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

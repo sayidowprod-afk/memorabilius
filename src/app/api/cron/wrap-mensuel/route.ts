@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { signWrapUrl } from '@/lib/wrapSign'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,6 +13,10 @@ function getResend() { return new Resend(process.env.RESEND_API_KEY!) }
 
 function monthName(date: Date) {
   return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+}
+
+function escHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 }
 
 function buildEmail(opts: {
@@ -27,9 +32,13 @@ function buildEmail(opts: {
   totalCards: number
   highlights: { player: string; year: string; brand: string; type: string }[]
   galerieUrl: string
+  cardImages: string[]
+  squareUrl: string
+  storyUrl: string
 }) {
-  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl } = opts
+  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages, squareUrl, storyUrl } = opts
 
+  const safeName = escHtml(name)
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t === 'Num' ? '🔢 Numérotée' : t
 
@@ -58,6 +67,15 @@ function buildEmail(opts: {
   .rank-medal { font-size: 42px; line-height: 1; }
   .rank-text { font-size: 15px; color: #555; }
   .rank-text strong { color: #121212; font-size: 18px; }
+  .cards-grid { margin-bottom: 28px; }
+  .cards-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .card-thumb { flex: 1; border-radius: 8px; overflow: hidden; background: #0d1a30; }
+  .card-thumb img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: contain; display: block; }
+  .dl-section { background: #f0f4ff; border: 1.5px solid #c7d6f5; border-radius: 14px; padding: 20px 24px; margin-bottom: 28px; text-align: center; }
+  .dl-title { font-size: 13px; font-weight: 800; text-transform: uppercase; color: #003DA6; letter-spacing: 1px; margin-bottom: 14px; }
+  .dl-buttons { display: flex; gap: 10px; justify-content: center; }
+  .dl-btn { display: inline-block; background: #003DA6; color: white; font-size: 13px; font-weight: 800; padding: 11px 22px; border-radius: 50px; text-decoration: none; }
+  .dl-btn.secondary { background: white; color: #003DA6; border: 2px solid #003DA6; }
   .highlights { border-radius: 14px; overflow: hidden; border: 1.5px solid #eee; margin-bottom: 28px; }
   .highlight-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #f5f5f5; }
   .highlight-row:last-child { border-bottom: none; }
@@ -88,7 +106,17 @@ function buildEmail(opts: {
     <div class="header-sub">Voilà ce qui s'est passé dans ta collection</div>
   </div>
   <div class="body">
-    <p class="greeting">Hey <strong>${name}</strong> 👋<br>
+    ${cardImages.length > 0 ? (() => {
+      const cols = cardImages.length <= 4 ? 2 : cardImages.length <= 9 ? 3 : 4
+      const rows: string[][] = []
+      for (let i = 0; i < cardImages.length; i += cols) rows.push(cardImages.slice(i, i + cols))
+      return `<div class="section-title">🃏 Tes cartes du mois (${cardImages.length})</div>
+    <div class="cards-grid">
+      ${rows.map(row => `<div class="cards-row">${row.map(src => `<div class="card-thumb"><img src="${src}" /></div>`).join('')}</div>`).join('')}
+    </div>`
+    })() : ''}
+
+    <p class="greeting">Hey <strong>${safeName}</strong> 👋<br>
     ${newCards > 0
       ? `En ${month}, tu as ajouté <strong>${newCards} carte${newCards > 1 ? 's' : ''}</strong> à ta collection. Voici ton bilan complet.`
       : `Pas de nouvelles cartes en ${month}, mais ta collection continue de valoir le détour !`
@@ -133,10 +161,17 @@ function buildEmail(opts: {
       ${highlights.map(h => `
       <div class="highlight-row">
         <div class="hi-type">${typeLabel(h.type)}</div>
-        <div class="hi-info"><strong>${h.player}</strong> · ${h.year} ${h.brand}</div>
+        <div class="hi-info"><strong>${escHtml(h.player)}</strong> · ${escHtml(h.year)} ${escHtml(h.brand)}</div>
       </div>`).join('')}
     </div>` : ''}
 
+    <div class="dl-section">
+      <div class="dl-title">📸 Télécharger ton Wrap</div>
+      <div class="dl-buttons">
+        <a href="${squareUrl}" class="dl-btn">⬜ Carré 1080×1080</a>
+        <a href="${storyUrl}" class="dl-btn secondary">📱 Story 1080×1920</a>
+      </div>
+    </div>
     <div class="cta">
       <a href="${galerieUrl}">Voir ma galerie →</a>
     </div>
@@ -162,9 +197,16 @@ export async function GET(req: NextRequest) {
   const monthEnd = new Date(now.getFullYear(), now.getMonth(), 1)
   const monthLabel = monthName(monthStart)
 
-  // Get all active users (with email via auth.users)
-  const { data: authUsers } = await supabase.auth.admin.listUsers({ perPage: 1000 })
-  if (!authUsers) return NextResponse.json({ error: 'No users' }, { status: 500 })
+  // Get all active users with pagination (auth.admin.listUsers returns max 1000/page)
+  const allUsers: any[] = []
+  for (let page = 1; ; page++) {
+    const { data } = await supabase.auth.admin.listUsers({ perPage: 1000, page })
+    if (!data || data.users.length === 0) break
+    allUsers.push(...data.users)
+    if (data.users.length < 1000) break
+  }
+  const authUsers = { users: allUsers }
+  if (allUsers.length === 0) return NextResponse.json({ error: 'No users' }, { status: 500 })
 
   // Get all profiles
   const { data: profiles } = await supabase
@@ -183,54 +225,57 @@ export async function GET(req: NextRequest) {
   const testEmail = req.nextUrl.searchParams.get('email')
   const testMode = req.nextUrl.searchParams.get('test') === 'true'
 
-  let sent = 0
+  const sent = { count: 0 }
   const errors: string[] = []
 
-  for (const authUser of authUsers.users) {
-    if (!authUser.email) continue
-    if (testMode && authUser.email !== testEmail) continue
+  const wrapYear = monthStart.getFullYear()
+  const wrapMonth = monthStart.getMonth() + 1
 
-    const profile = profiles.find(p => p.id === authUser.id)
-    if (!profile) continue
-    if (profile.wrap_opt_out) continue
+  const processUser = async (authUser: any) => {
+    if (!authUser.email) return
+    const profile = profiles.find((p: any) => p.id === authUser.id)
+    if (!profile || profile.wrap_opt_out) return
 
     const name = profile.display_name || authUser.email.split('@')[0]
-    const rank = ranked.findIndex(p => p.id === authUser.id) + 1
+    const rank = ranked.findIndex((p: any) => p.id === authUser.id) + 1
 
-    // Cards added this month
     const { data: newCardsData } = await supabase
       .from('cartes_manuelles')
-      .select('player_name, year, brand, is_rc, is_auto, is_patch, is_numbered')
+      .select('nom, annee, marque, rc, auto, patch, num, image_recto')
       .eq('user_id', authUser.id)
       .gte('created_at', monthStart.toISOString())
       .lt('created_at', monthEnd.toISOString())
 
     const newCards = newCardsData?.length || 0
-    const rcCount = newCardsData?.filter(c => c.is_rc).length || 0
-    const autoCount = newCardsData?.filter(c => c.is_auto).length || 0
-    const patchCount = newCardsData?.filter(c => c.is_patch).length || 0
-    const numCount = newCardsData?.filter(c => c.is_numbered).length || 0
+    const rcCount = newCardsData?.filter((c: any) => c.rc).length || 0
+    const autoCount = newCardsData?.filter((c: any) => c.auto).length || 0
+    const patchCount = newCardsData?.filter((c: any) => c.patch).length || 0
+    const numCount = newCardsData?.filter((c: any) => c.num).length || 0
 
-    // Highlights: RC first, then auto, then patch, then num (max 5)
     const highlights = [
-      ...(newCardsData?.filter(c => c.is_rc).slice(0, 2).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'RC' })) || []),
-      ...(newCardsData?.filter(c => c.is_auto && !c.is_rc).slice(0, 2).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'Auto' })) || []),
-      ...(newCardsData?.filter(c => c.is_patch && !c.is_rc && !c.is_auto).slice(0, 1).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'Patch' })) || []),
+      ...(newCardsData?.filter((c: any) => c.rc).slice(0, 2).map((c: any) => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'RC' })) || []),
+      ...(newCardsData?.filter((c: any) => c.auto && !c.rc).slice(0, 2).map((c: any) => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Auto' })) || []),
+      ...(newCardsData?.filter((c: any) => c.patch && !c.rc && !c.auto).slice(0, 1).map((c: any) => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
     ].slice(0, 5)
 
+    const withImg = (newCardsData || []).filter((c: any) => c.image_recto)
+    const cardImages = [
+      ...withImg.filter((c: any) => c.rc),
+      ...withImg.filter((c: any) => c.auto && !c.rc),
+      ...withImg.filter((c: any) => c.patch && !c.rc && !c.auto),
+      ...withImg.filter((c: any) => !c.rc && !c.auto && !c.patch),
+    ].map((c: any) => c.image_recto as string)
+
+    const makeWrapUrl = (fmt: string) => {
+      const sig = signWrapUrl(authUser.id, wrapYear, wrapMonth, fmt)
+      return `${baseUrl}/api/wrap-image-public?uid=${authUser.id}&amp;y=${wrapYear}&amp;m=${wrapMonth}&amp;format=${fmt}&amp;sig=${sig}`
+    }
+
     const html = buildEmail({
-      name,
-      month: monthLabel,
-      newCards,
-      rcCount,
-      autoCount,
-      patchCount,
-      numCount,
-      rank,
-      totalCollectors,
-      totalCards: profile.stats_total || 0,
-      highlights,
+      name, month: monthLabel, newCards, rcCount, autoCount, patchCount, numCount,
+      rank, totalCollectors, totalCards: profile.stats_total || 0, highlights,
       galerieUrl: `${baseUrl}/galerie/${authUser.id}`,
+      cardImages, squareUrl: makeWrapUrl('square'), storyUrl: makeWrapUrl('story'),
     })
 
     try {
@@ -240,14 +285,22 @@ export async function GET(req: NextRequest) {
         subject: `Ton Wrap ${monthLabel} 🏀 — Memorabilius`,
         html,
       })
-      sent++
+      sent.count++
     } catch (e: any) {
       errors.push(`${authUser.email}: ${e.message}`)
     }
-
-    // Avoid rate limiting
-    await new Promise(r => setTimeout(r, 100))
   }
 
-  return NextResponse.json({ sent, errors, month: monthLabel })
+  // Filtrer les users éligibles, puis traiter par batches de 10
+  const eligible = testMode
+    ? authUsers.users.filter((u: any) => u.email === testEmail)
+    : authUsers.users.filter((u: any) => u.email)
+
+  const BATCH = 10
+  for (let i = 0; i < eligible.length; i += BATCH) {
+    await Promise.all(eligible.slice(i, i + BATCH).map(processUser))
+    if (i + BATCH < eligible.length) await new Promise(r => setTimeout(r, 1000))
+  }
+
+  return NextResponse.json({ sent: sent.count, errors, month: monthLabel })
 }

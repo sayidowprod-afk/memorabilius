@@ -25,9 +25,10 @@ export async function POST(req: NextRequest) {
 
     if (!payload) return NextResponse.json({ error: 'Invalid body' }, { status: 400 })
 
-    // Vérifier le token Ko-fi
+    // Vérifier le token Ko-fi (fail closed : sans token configuré, on refuse tout —
+    // sinon n'importe qui peut POST un faux don et se marquer comme donateur)
     const expectedToken = process.env.KOFI_WEBHOOK_TOKEN
-    if (expectedToken && payload.verification_token !== expectedToken) {
+    if (!expectedToken || payload.verification_token !== expectedToken) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 

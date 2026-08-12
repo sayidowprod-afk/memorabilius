@@ -1,0 +1,3951 @@
+{
+  "year": 2009,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 9625,
+        "name": "2009 SP Threads"
+      },
+      "unique": [
+        {
+          "card_number": "4",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Steve Breaston",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Cody Brown",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Greg Toler",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Rashad Johnson",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Arizona Cardinals",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RO",
+          "player_name": "Dominique Rodgers-Cromartie",
+          "team": "Arizona Cardinals",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-SB",
+          "player_name": "Steve Breaston",
+          "team": "Arizona Cardinals",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "John Abraham",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Roddy White",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tony Gonzalez",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Christopher Owens",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Lawrence Sidbury",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "William Middleton",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AC",
+          "player_name": "Alge Crumpler",
+          "team": "Atlanta Falcons",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-HD",
+          "player_name": "Harry Douglas",
+          "team": "Atlanta Falcons",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Willis McGahee",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Cedric Peerman",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Jason Phillips",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Lardarius Webb",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Paul Kruger",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-ER",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JF",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-JF",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LE",
+          "player_name": "Le'Ron McClain",
+          "team": "Baltimore Ravens",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Terrell Owens",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Andy Levitre",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Eric Wood",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Jairus Byrd",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Nic Harris",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-HJ",
+          "player_name": "James Hardy",
+          "team": "Buffalo Bills",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LY",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TE",
+          "player_name": "Trent Edwards",
+          "team": "Buffalo Bills",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TO",
+          "player_name": "Terrell Owens",
+          "team": "Buffalo Bills",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Corvey Irvin",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Mike Goodson",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Sherrod Martin",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JS",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-DC",
+          "player_name": "Dan Connor",
+          "team": "Carolina Panthers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JD",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JS",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jay Cutler",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Lance Briggs",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Henry Melton",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Jarron Gilbert",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Marcus Freeman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JI",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JI",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-JI",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JI",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-MM",
+          "player_name": "Marcus Monk",
+          "team": "Chicago Bears",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chad Ochocinco",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Laveranues Coles",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Bernard Scott",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Jonathan Luigs",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Morgan Trent",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JO",
+          "player_name": "Chad Ochocinco",
+          "team": "Cincinnati Bengals",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brady Quinn",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "D'Qwell Jackson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jamal Lewis",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "David Veikune",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Kaluka Maiava",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brian Robiskie",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MM",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brian Robiskie",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-MM",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brian Robiskie",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MM",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brian Robiskie",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MM",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BQ",
+          "player_name": "Brady Quinn",
+          "team": "Cleveland Browns",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JA",
+          "player_name": "Jamal Lewis",
+          "team": "Cleveland Browns",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-DJ",
+          "player_name": "D'Qwell Jackson",
+          "team": "Cleveland Browns",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "DeMarcus Ware",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "DeAngelo Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Jason Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Michael Hamlin",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Robert Brewster",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SM",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SM",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-SM",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SM",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-FJ",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-AS",
+          "player_name": "Anthony Spencer",
+          "team": "Dallas Cowboys",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-BE",
+          "player_name": "Martellus Bennett",
+          "team": "Dallas Cowboys",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-MJ",
+          "player_name": "Mike Jenkins",
+          "team": "Dallas Cowboys",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Champ Bailey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Eddie Royal",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Darcel McBath",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Richard Quinn",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Robert Ayers",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Tom Brandstater",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RE",
+          "player_name": "Eddie Royal",
+          "team": "Denver Broncos",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-DW",
+          "player_name": "Darius Walker",
+          "team": "Denver Broncos",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-ER",
+          "player_name": "Eddie Royal",
+          "team": "Denver Broncos",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RT",
+          "player_name": "Ryan Torain",
+          "team": "Denver Broncos",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-SY",
+          "player_name": "Selvin Young",
+          "team": "Denver Broncos",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Calvin Johnson",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Aaron Brown",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "DeAndre Levy",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Louis Delmas",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BP",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DW",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-ST",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BP",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-BU",
+          "player_name": "Deon Butler",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-DW",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-ST",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-BP",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DW",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-ST",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BP",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DW",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-ST",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-CJ",
+          "player_name": "Calvin Johnson",
+          "team": "Detroit Lions",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-KS",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-SI",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-ES",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Ryan Grant",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Jamon Meredith",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "T.J. Lang",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AH",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-CW",
+          "player_name": "Charles Woodson",
+          "team": "Green Bay Packers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-NE",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-BB",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JJ",
+          "player_name": "James Jones",
+          "team": "Green Bay Packers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JN",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Antoine Caldwell",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Connor Barwin",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "James Casey",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AJ",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-ST",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-SS",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bob Sanders",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Austin Collie",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Curtis Painter",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Fili Moala",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Jerraud Powers",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Terrance Taylor",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DB",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DB",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-DB",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DB",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AG",
+          "player_name": "Anthony Gonzalez",
+          "team": "Indianapolis Colts",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-HA",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-BR",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-TA",
+          "player_name": "Terrance Taylor",
+          "team": "Indianapolis Colts",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Derek Cox",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Eben Britton",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Mike Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Terrance Knighton",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MT",
+          "player_name": "Mike Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MT",
+          "player_name": "Mike Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-MT",
+          "player_name": "Mike Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MT",
+          "player_name": "Mike Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DG",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-FR",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MJ",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Derrick Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Alex Magee",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Donald Washington",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-TJ",
+          "player_name": "Tyson Jackson",
+          "team": "Kansas City Chiefs",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-TJ",
+          "player_name": "Tyson Jackson",
+          "team": "Kansas City Chiefs",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-TJ",
+          "player_name": "Tyson Jackson",
+          "team": "Kansas City Chiefs",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-TJ",
+          "player_name": "Tyson Jackson",
+          "team": "Kansas City Chiefs",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BO",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-CH",
+          "player_name": "Jamaal Charles",
+          "team": "Kansas City Chiefs",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-DB",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-TT",
+          "player_name": "Tyler Thigpen",
+          "team": "Kansas City Chiefs",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chad Pennington",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Joey Porter",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brian Hartline",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PT",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PW",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PT",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-PW",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-PT",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PW",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PT",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PW",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-HC",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JL",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RO",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-QM",
+          "player_name": "Quentin Moses",
+          "team": "Miami Dolphins",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bernard Berrian",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jared Allen",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Asher Allen",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Jasper Brinkley",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Phil Loadholt",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JB",
+          "player_name": "John David Booty",
+          "team": "Minnesota Vikings",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TJ",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jerod Mayo",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Randy Moss",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Wes Welker",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Darius Butler",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Patrick Chung",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Ron Brace",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Sebastian Vollmer",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Tyrone Mckenzie",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MO",
+          "player_name": "Randy Moss",
+          "team": "New England Patriots",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MV",
+          "player_name": "Mike Vrabel",
+          "team": "New England Patriots",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-WW",
+          "player_name": "Wes Welker",
+          "team": "New England Patriots",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-MY",
+          "player_name": "Jerod Mayo",
+          "team": "New England Patriots",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jeremy Shockey",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Chip Vaughn",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Stanley Arnoux",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Justin Tuck",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Travis Beckum",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "William Beatty",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AB",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BO",
+          "player_name": "Rhett Bomar",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-HN",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RB",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AB",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-BO",
+          "player_name": "Rhett Bomar",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-HN",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-RB",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-AB",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BO",
+          "player_name": "Rhett Bomar",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-HN",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RB",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AB",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BO",
+          "player_name": "Rhett Bomar",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-HN",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RB",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MM",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-PI",
+          "player_name": "Antonio Pierce",
+          "team": "New York Giants",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerricho Cotchery",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Thomas Jones",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SG",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-SG",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SG",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SG",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-CS",
+          "player_name": "Chansi Stuckey",
+          "team": "New York Jets",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-DR",
+          "player_name": "Darrelle Revis",
+          "team": "New York Jets",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-MS",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-VG",
+          "player_name": "Vernon Gholston",
+          "team": "New York Jets",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "JaMarcus Russell",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Matt Shaughnessy",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Mike Mitchell",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DH",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DH",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-DH",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DH",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DM",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-HU",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JR",
+          "player_name": "JaMarcus Russell",
+          "team": "Oakland Raiders",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Brandon Gibson",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Cornelius Ingram",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Fenuki Tupou",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Victor Harris",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JM",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JM",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-JM",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JM",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BD",
+          "player_name": "Brian Dawkins",
+          "team": "Philadelphia Eagles",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DJ",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DO",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-BC",
+          "player_name": "Brent Celek",
+          "team": "Philadelphia Eagles",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JM",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "James Harrison",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Willie Parker",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Evander Hood",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Keenan Lewis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Kraig Urbik",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MW",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MW",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-MW",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MW",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-HW",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JH",
+          "player_name": "Jack Ham",
+          "team": "Pittsburgh Steelers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LS",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RM",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-WP",
+          "player_name": "Willie Parker",
+          "team": "Pittsburgh Steelers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-BA",
+          "player_name": "Dallas Baker",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-HM",
+          "player_name": "Heath Miller",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LS",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RE",
+          "player_name": "Mike Reilly",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RM",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Darren Sproles",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Stephen Cooper",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Gartrell Johnson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Brandon Hughes",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Larry English",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Louis Vasquez",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-VJ",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-EW",
+          "player_name": "Eric Weddle",
+          "team": "San Diego Chargers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LN",
+          "player_name": "Legedu Naanee",
+          "team": "San Diego Chargers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-VJ",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Patrick Willis",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Bear Pascoe",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Scott McKillop",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GC",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-ND",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GC",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-ND",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-GC",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-ND",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GC",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-ND",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AS",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-PW",
+          "player_name": "Patrick Willis",
+          "team": "San Francisco 49ers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-MC",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lofa Tatupu",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "T.J. Houshmandzadeh",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Deon Butler",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Max Unger",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Mike Teel",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AC",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BU",
+          "player_name": "Deon Butler",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AC",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-AC",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BU",
+          "player_name": "Deon Butler",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AC",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BU",
+          "player_name": "Deon Butler",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MH",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-SL",
+          "player_name": "Steve Largent",
+          "team": "Seattle Seahawks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-DM",
+          "player_name": "Devin Moore",
+          "team": "Seattle Seahawks",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Bradley Fletcher",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Brooks Foster",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Dorell Scott",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JS",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JS",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JS",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MA",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-BU",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-CL",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Antonio Bryant",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Kellen Winslow",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Kyle Moore",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Roy Miller",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JF",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JF",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-JF",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JF",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DK",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-KW",
+          "player_name": "Kellen Winslow",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Gerald McRath",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Jared Cook",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Ryan Mouton",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Sen'Derrick Marks",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JR",
+          "player_name": "Javon Ringer",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KB",
+          "player_name": "Kenny Britt",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Dual Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JR",
+          "player_name": "Javon Ringer",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-KB",
+          "player_name": "Kenny Britt",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Dual Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RT-JR",
+          "player_name": "Javon Ringer",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KB",
+          "player_name": "Kenny Britt",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JR",
+          "player_name": "Javon Ringer",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KB",
+          "player_name": "Kenny Britt",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Threads Triple Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-CJ",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Cody Glenn",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Kevin Barnes",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JC",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-PO",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-LL",
+          "player_name": "LaRon Landry",
+          "team": "Washington Redskins",
+          "variation": "Stitch in Time Autographs",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "SP"
+    }
+  ]
+}

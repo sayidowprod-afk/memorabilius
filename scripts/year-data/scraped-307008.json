@@ -1,0 +1,6063 @@
+{
+  "year": 2022,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 307008,
+        "name": "2022 Topps Clearly Authentic"
+      },
+      "unique": [
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JM",
+          "player_name": "Jake McCarthy",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SBE",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Connor Seabold",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CW",
+          "player_name": "Connor Wong",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JD",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GD",
+          "player_name": "Greg Deichmann",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-GS",
+          "player_name": "Gavin Sheets",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Jake Burger",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-IND",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-TST",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AL",
+          "player_name": "Alejo Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HG",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MCK",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Guardians",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SBI",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SBI",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SBI",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SBI",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SBI",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Guardians",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CWE",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RV",
+          "player_name": "Ryan Vilade",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-BAD",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-ST",
+          "player_name": "Spencer Torkelson",
+          "team": "Detroit Tigers",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KT",
+          "player_name": "Kyle Tucker",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Chas McCormick",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JME",
+          "player_name": "Jake Meyers",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JH",
+          "player_name": "Jon Heasley",
+          "team": "Kansas City Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jackson Kowar",
+          "team": "Kansas City Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BW",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RD",
+          "player_name": "Reid Detmers",
+          "team": "Los Angeles Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BM",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BM",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BM",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BM",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BM",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AJ",
+          "player_name": "Andre Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BCR",
+          "player_name": "Bryan De La Cruz",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AAS",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AK",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CT",
+          "player_name": "Curtis Terry",
+          "team": "Minnesota Twins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BB",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BB",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BB",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BB",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-BB",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-LG",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HC",
+          "player_name": "Hans Crouse",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MV",
+          "player_name": "Matt Vierling",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-STOT",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Orange",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Purple",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HP",
+          "player_name": "Hoy Park",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OC",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RC",
+          "player_name": "Roansy Contreras",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RCA",
+          "player_name": "Rodolfo Castro",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CA",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HR",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-GIL",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JR",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JRO",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JRO",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JRO",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JRO",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JRO",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JL",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AM",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AM",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AM",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AM",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-AM",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-WF",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-AGA",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "A.J. Alexy",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-MAN",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-OL",
+          "player_name": "Otto Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-GS",
+          "player_name": "George Springer",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JB",
+          "player_name": "Jose Berrios",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-GS",
+          "player_name": "George Springer",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JB",
+          "player_name": "Jose Berrios",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-GS",
+          "player_name": "George Springer",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JB",
+          "player_name": "Jose Berrios",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-GS",
+          "player_name": "George Springer",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JB",
+          "player_name": "Jose Berrios",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-GS",
+          "player_name": "George Springer",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JB",
+          "player_name": "Jose Berrios",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GNA-RUI",
+          "player_name": "Keibert Ruiz",
+          "team": "Washington Nationals",
+          "variation": "Generation Now Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Josiah Gray",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RA",
+          "player_name": "Riley Adams",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Topps Tek Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Topps Tek Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Topps Tek Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Topps Tek Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEK-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Topps Tek Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

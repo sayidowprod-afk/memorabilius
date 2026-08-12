@@ -46,7 +46,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   background: var(--bg) !important;
   color: var(--text) !important;
   transition: background 0.2s, color 0.2s;
@@ -65,57 +65,98 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
 }
 
+/* NOTE : React sérialise les styles inline SANS espace après ":" ni "," (ex.
+   "color:#999;font-size:13px", "background:rgba(0,0,0,0.05)") — pas comme du CSS
+   écrit à la main. Chaque règle ci-dessous liste donc la forme réelle produite par
+   le navigateur (sans espace) ET la forme "avec espace" par sécurité multi-navigateurs.
+   Un sélecteur qui ne matche jamais rend toute la règle silencieusement inopérante :
+   c'est ce qui causait le mauvais contraste de nombreux textes en mode sombre. */
+
 /* Backgrounds blancs → sombre */
-[data-theme="dark"] div[style*="background: white"],
 [data-theme="dark"] div[style*="background:white"],
-[data-theme="dark"] div[style*="background: #fff"],
+[data-theme="dark"] div[style*="background: white"],
 [data-theme="dark"] div[style*="background:#fff"],
+[data-theme="dark"] div[style*="background: #fff"],
+[data-theme="dark"] div[style*="background:#ffffff"],
 [data-theme="dark"] div[style*="background: #ffffff"],
+[data-theme="dark"] div[style*="background:rgb(255,255,255)"],
 [data-theme="dark"] div[style*="background: rgb(255, 255, 255)"],
+[data-theme="dark"] div[style*="background-color:white"],
 [data-theme="dark"] div[style*="background-color: white"],
+[data-theme="dark"] div[style*="background-color:#fff"],
 [data-theme="dark"] div[style*="background-color: #fff"] { background: var(--bg2) !important; }
 
 /* Backgrounds gris clairs */
+[data-theme="dark"] div[style*="background:#f8f9fa"],
 [data-theme="dark"] div[style*="background: #f8f9fa"],
+[data-theme="dark"] div[style*="background:#f8f8f8"],
 [data-theme="dark"] div[style*="background: #f8f8f8"],
+[data-theme="dark"] div[style*="background:#f5f5f5"],
 [data-theme="dark"] div[style*="background: #f5f5f5"],
+[data-theme="dark"] div[style*="background:#fdfdfd"],
 [data-theme="dark"] div[style*="background: #fdfdfd"],
+[data-theme="dark"] div[style*="background:#f0f0f0"],
 [data-theme="dark"] div[style*="background: #f0f0f0"],
+[data-theme="dark"] div[style*="background:rgb(248"],
 [data-theme="dark"] div[style*="background: rgb(248"],
+[data-theme="dark"] div[style*="background:rgb(245"],
 [data-theme="dark"] div[style*="background: rgb(245"] { background: var(--bg3) !important; }
 
 /* Gradient hero */
+[data-theme="dark"] div[style*="linear-gradient(135deg,#f8f9fa"],
 [data-theme="dark"] div[style*="linear-gradient(135deg, #f8f9fa"],
+[data-theme="dark"] section[style*="linear-gradient(135deg,#f8f9fa"],
 [data-theme="dark"] section[style*="linear-gradient(135deg, #f8f9fa"] {
   background: linear-gradient(135deg, #1a1a1a 0%, #222 100%) !important;
 }
 
 /* Textes sombres */
+[data-theme="dark"] *[style*="color:#121212"],
 [data-theme="dark"] *[style*="color: #121212"],
+[data-theme="dark"] *[style*="color:rgb(18,18,18)"],
 [data-theme="dark"] *[style*="color: rgb(18, 18, 18)"] { color: var(--text) !important; }
 
+[data-theme="dark"] *[style*="color:#444"],
 [data-theme="dark"] *[style*="color: #444"],
+[data-theme="dark"] *[style*="color:#333"],
 [data-theme="dark"] *[style*="color: #333"],
+[data-theme="dark"] *[style*="color:#555"],
 [data-theme="dark"] *[style*="color: #555"] { color: var(--text2) !important; }
 
+[data-theme="dark"] *[style*="color:#666"],
 [data-theme="dark"] *[style*="color: #666"],
+[data-theme="dark"] *[style*="color:#777"],
 [data-theme="dark"] *[style*="color: #777"],
+[data-theme="dark"] *[style*="color:#888"],
 [data-theme="dark"] *[style*="color: #888"],
+[data-theme="dark"] *[style*="color:#999"],
 [data-theme="dark"] *[style*="color: #999"] { color: var(--text3) !important; }
 
+[data-theme="dark"] *[style*="color:#bbb"],
 [data-theme="dark"] *[style*="color: #bbb"],
-[data-theme="dark"] *[style*="color: #ccc"] { color: #555 !important; }
+[data-theme="dark"] *[style*="color:#ccc"],
+[data-theme="dark"] *[style*="color: #ccc"] { color: #999 !important; }
 
 /* Bordures */
+[data-theme="dark"] *[style*="border:1px solid #eee"],
 [data-theme="dark"] *[style*="border: 1px solid #eee"],
+[data-theme="dark"] *[style*="border:2px solid #eee"],
 [data-theme="dark"] *[style*="border: 2px solid #eee"],
+[data-theme="dark"] *[style*="border:1px solid #f0f0f0"],
 [data-theme="dark"] *[style*="border: 1px solid #f0f0f0"],
+[data-theme="dark"] *[style*="border:1px solid #ddd"],
 [data-theme="dark"] *[style*="border: 1px solid #ddd"],
+[data-theme="dark"] *[style*="border-bottom:1px solid #eee"],
 [data-theme="dark"] *[style*="border-bottom: 1px solid #eee"],
+[data-theme="dark"] *[style*="border-bottom:1px solid #f0f0f0"],
 [data-theme="dark"] *[style*="border-bottom: 1px solid #f0f0f0"],
+[data-theme="dark"] *[style*="border-bottom:1px solid #f5f5f5"],
 [data-theme="dark"] *[style*="border-bottom: 1px solid #f5f5f5"],
+[data-theme="dark"] *[style*="border-bottom:2px solid #f0f0f0"],
 [data-theme="dark"] *[style*="border-bottom: 2px solid #f0f0f0"],
+[data-theme="dark"] *[style*="border-top:1px solid #eee"],
 [data-theme="dark"] *[style*="border-top: 1px solid #eee"],
+[data-theme="dark"] *[style*="border-left:4px solid #003DA6"],
 [data-theme="dark"] *[style*="border-left: 4px solid #003DA6"] { border-color: var(--border) !important; }
 
 /* Tableaux */
@@ -130,7 +171,7 @@ input, select, textarea {
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   outline: none;
   transition: 0.2s;
   width: 100%;
@@ -149,24 +190,28 @@ nav {
 }
 
 /* Popups et modals */
+[data-theme="dark"] div[style*="position:fixed"][style*="background:#fff"],
 [data-theme="dark"] div[style*="position: fixed"][style*="background: #fff"],
+[data-theme="dark"] div[style*="position:fixed"][style*="background:white"],
 [data-theme="dark"] div[style*="position: fixed"][style*="background: white"] {
   background: var(--bg2) !important;
 }
+[data-theme="dark"] div[style*="position:fixed"][style*="background:rgba(0,0,0"],
 [data-theme="dark"] div[style*="position: fixed"][style*="background: rgba(0,0,0"] {
   background: rgba(0,0,0,0.8) !important;
 }
 
 /* Badges couleurs — garder leurs couleurs */
-[data-theme="dark"] span[style*="background: #fff3e0"] { background: #3d2800 !important; }
-[data-theme="dark"] span[style*="background: #e8f5e9"] { background: #0a2e10 !important; }
-[data-theme="dark"] span[style*="background: #e3f2fd"] { background: #0a1e35 !important; }
-[data-theme="dark"] span[style*="background: #f5f5f5"] { background: var(--bg3) !important; color: var(--text2) !important; }
-[data-theme="dark"] span[style*="background: #fce4ec"] { background: #3d0010 !important; }
-[data-theme="dark"] span[style*="background: #eef0ff"] { background: #1a1a3d !important; }
-[data-theme="dark"] span[style*="background: #f0f0f0"] { background: var(--bg3) !important; color: var(--text2) !important; }
+[data-theme="dark"] span[style*="background:#fff3e0"], [data-theme="dark"] span[style*="background: #fff3e0"] { background: #3d2800 !important; }
+[data-theme="dark"] span[style*="background:#e8f5e9"], [data-theme="dark"] span[style*="background: #e8f5e9"] { background: #0a2e10 !important; }
+[data-theme="dark"] span[style*="background:#e3f2fd"], [data-theme="dark"] span[style*="background: #e3f2fd"] { background: #0a1e35 !important; }
+[data-theme="dark"] span[style*="background:#f5f5f5"], [data-theme="dark"] span[style*="background: #f5f5f5"] { background: var(--bg3) !important; color: var(--text2) !important; }
+[data-theme="dark"] span[style*="background:#fce4ec"], [data-theme="dark"] span[style*="background: #fce4ec"] { background: #3d0010 !important; }
+[data-theme="dark"] span[style*="background:#eef0ff"], [data-theme="dark"] span[style*="background: #eef0ff"] { background: #1a1a3d !important; }
+[data-theme="dark"] span[style*="background:#f0f0f0"], [data-theme="dark"] span[style*="background: #f0f0f0"] { background: var(--bg3) !important; color: var(--text2) !important; }
 
 /* Cards galerie */
+[data-theme="dark"] div[style*="background:white"][style*="cursor:pointer"],
 [data-theme="dark"] div[style*="background: white"][style*="cursor: pointer"] { background: var(--bg2) !important; }
 
 /* Boutons */
@@ -200,6 +245,84 @@ nav {
   color: var(--text);
 }
 .section-title::after { content: ""; flex: 1; height: 2px; background: var(--border); }
+
+/* ===== DARK MODE — ÉLÉMENTS NON-DIV (button, a, input, select) ===== */
+/* La cause racine : les overrides ci-dessus ne ciblent que div/span.
+   button, a, input, select avec background inline passaient au travers. */
+
+/* Backgrounds blancs sur button / a */
+[data-theme="dark"] button[style*="background:white"],
+[data-theme="dark"] button[style*="background: white"],
+[data-theme="dark"] button[style*="background:#fff"],
+[data-theme="dark"] button[style*="background: #fff"],
+[data-theme="dark"] a[style*="background:white"],
+[data-theme="dark"] a[style*="background: white"],
+[data-theme="dark"] a[style*="background:#fff"],
+[data-theme="dark"] a[style*="background: #fff"] { background: var(--bg2) !important; color: var(--text) !important; }
+
+/* Backgrounds gris clairs sur button / a */
+[data-theme="dark"] button[style*="background:#f0f0f0"],
+[data-theme="dark"] button[style*="background: #f0f0f0"],
+[data-theme="dark"] button[style*="background:#f8f8f8"],
+[data-theme="dark"] button[style*="background: #f8f8f8"],
+[data-theme="dark"] button[style*="background:#e8e8e8"],
+[data-theme="dark"] button[style*="background: #e8e8e8"],
+[data-theme="dark"] button[style*="background:#f0f4ff"],
+[data-theme="dark"] button[style*="background: #f0f4ff"],
+[data-theme="dark"] button[style*="background:#f5f5f5"],
+[data-theme="dark"] button[style*="background: #f5f5f5"],
+[data-theme="dark"] a[style*="background:#f0f0f0"],
+[data-theme="dark"] a[style*="background: #f0f0f0"],
+[data-theme="dark"] a[style*="background:#f8f8f8"],
+[data-theme="dark"] a[style*="background: #f8f8f8"],
+[data-theme="dark"] a[style*="background:#e8e8e8"],
+[data-theme="dark"] a[style*="background: #e8e8e8"] { background: var(--bg3) !important; color: var(--text) !important; }
+
+/* input / select avec background inline (l'inline override le global CSS) */
+[data-theme="dark"] input[style*="background:white"],
+[data-theme="dark"] input[style*="background: white"],
+[data-theme="dark"] input[style*="background:#fff"],
+[data-theme="dark"] input[style*="background: #fff"],
+[data-theme="dark"] select[style*="background:white"],
+[data-theme="dark"] select[style*="background: white"],
+[data-theme="dark"] select[style*="background:#fff"],
+[data-theme="dark"] select[style*="background: #fff"],
+[data-theme="dark"] select[style*="background:#f0f4ff"],
+[data-theme="dark"] select[style*="background: #f0f4ff"] { background: var(--input-bg) !important; color: var(--text) !important; }
+
+/* Couleurs div manquantes dans les règles précédentes */
+[data-theme="dark"] div[style*="background:#fffbf0"],
+[data-theme="dark"] div[style*="background: #fffbf0"],
+[data-theme="dark"] div[style*="background:#fdf6ef"],
+[data-theme="dark"] div[style*="background: #fdf6ef"],
+[data-theme="dark"] div[style*="background:#ddd"],
+[data-theme="dark"] div[style*="background: #ddd"],
+[data-theme="dark"] div[style*="background:#e8e8e8"],
+[data-theme="dark"] div[style*="background: #e8e8e8"],
+[data-theme="dark"] div[style*="background:#f0f4ff"],
+[data-theme="dark"] div[style*="background: #f0f4ff"],
+[data-theme="dark"] div[style*="background:#fff8f0"],
+[data-theme="dark"] div[style*="background: #fff8f0"],
+[data-theme="dark"] div[style*="background:#f0f6ff"],
+[data-theme="dark"] div[style*="background: #f0f6ff"],
+[data-theme="dark"] div[style*="background:#e8f0fe"],
+[data-theme="dark"] div[style*="background: #e8f0fe"],
+[data-theme="dark"] div[style*="background:#e8eeff"],
+[data-theme="dark"] div[style*="background: #e8eeff"] { background: var(--bg3) !important; }
+
+/* Bleu foncé (#003DA6) illisible sur fond sombre → bleu clair */
+[data-theme="dark"] *[style*="color:#003DA6"]:not(button.btn-primary):not([style*="background:#003DA6"]),
+[data-theme="dark"] *[style*="color: #003DA6"]:not(button.btn-primary):not([style*="background:#003DA6"]) { color: #5b8def !important; }
+
+/* Shimmer skeleton */
+[data-theme="dark"] div[style*="linear-gradient(90deg, #f0f0f0"],
+[data-theme="dark"] div[style*="linear-gradient(90deg,#f0f0f0"] {
+  background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%) !important;
+}
+
+/* Spinner border */
+[data-theme="dark"] *[style*="3px solid #eee"],
+[data-theme="dark"] *[style*="3px solid #f0f0f0"] { border-color: var(--border) !important; }
 
 /* ===== RESPONSIVE MOBILE ===== */
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * Scraper TCDB Hockey — Toutes saisons 2026→1960, Major Releases uniquement
  *
@@ -79,11 +79,51 @@ function saveCheckpoint(cp) {
   fs.writeFileSync(CHECKPOINT, JSON.stringify(cp, null, 2))
 }
 
+let _solverrOk = null
+async function solverrGet(url) {
+  if (_solverrOk === false) return null
+  return new Promise(resolve => {
+    const payload = JSON.stringify({ cmd: 'request.get', url, maxTimeout: 60000 })
+    const req = require('http').request(
+      { hostname: 'localhost', port: 8191, path: '/v1', method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) } },
+      res => {
+        let body = ''
+        res.on('data', d => body += d)
+        res.on('end', () => {
+          _solverrOk = true
+          try {
+            const d = JSON.parse(body)
+            if (d.status === 'ok' && d.solution) return resolve(d.solution)
+          } catch {}
+          resolve(null)
+        })
+      }
+    )
+    req.on('error', () => { _solverrOk = false; resolve(null) })
+    req.setTimeout(65000, () => { req.destroy(); resolve(null) })
+    req.write(payload); req.end()
+  })
+}
 async function waitCF(page, url) {
+  const sol = await solverrGet(url)
+  if (sol) {
+    for (const c of (sol.cookies || [])) {
+      await page.setCookie({ name: c.name, value: c.value, domain: c.domain || '.tcdb.com', path: c.path || '/', expires: typeof c.expiry === 'number' ? c.expiry : -1 }).catch(() => {})
+    }
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
+    const t = await page.title().catch(() => '')
+    const tl = t.toLowerCase()
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return
+    console.log(`  ⚠️  Encore bloqué — chargement HTML FlareSolverr (${sol.response?.length || 0} chars)`)
+    if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return }
+  }
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
-  for (let i = 0; i < 15; i++) {
-    const t = await page.title()
-    if (!t.includes('instant') && !t.includes('moment')) break
+  for (let i = 0; i < 150; i++) {
+    const t = await page.title().catch(() => '')
+    const tl = t.toLowerCase()
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) break
+    if (i === 0) console.log('\n⚠️  CAPTCHA dans la fenêtre Chrome — résous-le manuellement (5 min max)...')
     await sleep(2000)
   }
 }
@@ -217,10 +257,8 @@ async function fetchTeamCards(page, sid, teamId, teamName) {
 }
 
 function importYear(jsonFile) {
-  const result = spawnSync('powershell', [
-    '-NoProfile', '-NonInteractive', '-Command',
-    `Start-Process -Wait -NoNewWindow -FilePath node -ArgumentList '${IMPORT_SCRIPT}','${jsonFile}'`
-  ], { stdio: 'inherit' })
+  console.log()
+  const result = spawnSync('node', [IMPORT_SCRIPT, jsonFile], { stdio: 'inherit' })
   return result.status === 0
 }
 
@@ -265,7 +303,7 @@ async function main() {
   const openBrowser = async () => {
     if (browser) { try { await browser.close() } catch {} }
     await sleep(3000)
-    browser = await puppeteerExtra.launch({ executablePath: findChrome(), headless: false, defaultViewport: null, args: ['--no-sandbox','--window-size=1280,900'] })
+    browser = await puppeteerExtra.launch({ executablePath: findChrome(), headless: false, defaultViewport: null, userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Google\\Chrome\\User Data'), args: ['--no-sandbox','--window-size=1280,900','--disable-blink-features=AutomationControlled', '--profile-directory=Default'] })
     const page = await browser.newPage()
     await waitCF(page, TCDB); await sleep(rand(2000,4000)); console.log('✓ Browser OK'); return page
   }

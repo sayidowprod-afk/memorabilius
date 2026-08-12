@@ -18,13 +18,15 @@ export default function CollectionTagSelect({ userId, value, onChange, style }: 
 
   useEffect(() => {
     const load = async () => {
-      const [{ data: manuelles }, { data: csvTags }] = await Promise.all([
+      const [{ data: manuelles }, { data: csvTags }, { data: colls }] = await Promise.all([
         supabase.from('cartes_manuelles').select('collection_tag').eq('user_id', userId).not('collection_tag', 'is', null),
         supabase.from('carte_tags').select('collection_tag').eq('user_id', userId),
+        supabase.from('card_collections').select('collection').eq('user_id', userId),
       ])
       const all = [
         ...((manuelles || []).map((r: any) => r.collection_tag)),
         ...((csvTags || []).map((r: any) => r.collection_tag)),
+        ...((colls || []).map((r: any) => r.collection)),
       ].filter(Boolean)
       setTags([...new Set(all)].sort())
     }

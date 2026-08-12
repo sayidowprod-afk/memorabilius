@@ -1,0 +1,3503 @@
+{
+  "year": 2022,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 283144,
+        "name": "2022 Topps Archives Signature Series Active Player Edition"
+      },
+      "unique": [
+        {
+          "card_number": "BD-16",
+          "player_name": "Jazz Chisholm",
+          "team": "Arizona Diamondbacks",
+          "variation": "Jazz Chisholm",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "317",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LL-17",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-35",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OD-199",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Starling Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "U-228",
+          "player_name": "Starling Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Cristian Pache",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "149",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "239",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-47",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-97",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-120",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-156",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-183",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-185",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-120",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-156",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-183",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-185",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-47",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-97",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPR-27",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Ian Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Kevin Gausman",
+          "team": "Atlanta Braves",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "139",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "213",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "245",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "388",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "414",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "657",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Mike Soroka",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "196",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "218",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "267",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "343",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "345",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-39",
+          "player_name": "Kevin Gausman",
+          "team": "Baltimore Orioles",
+          "variation": "Kevin Gausman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "143",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-36",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-41",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-75",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-88",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-167",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-199",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-167",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRY-RM",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TOP-83",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Alex Verdugo",
+          "team": "Boston Red Sox",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Verdugo",
+          "team": "Boston Red Sox",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "214",
+          "player_name": "Alex Verdugo",
+          "team": "Boston Red Sox",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "236",
+          "player_name": "Alex Verdugo",
+          "team": "Boston Red Sox",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "285",
+          "player_name": "Alex Verdugo",
+          "team": "Boston Red Sox",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "U-33",
+          "player_name": "Alex Verdugo",
+          "team": "Boston Red Sox",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "148",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "184",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "216",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "253",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-160",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ITW-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "S-56",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Rafael Devers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "David Bote",
+          "team": "Chicago Cubs",
+          "variation": "David Bote",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "David Bote",
+          "team": "Chicago Cubs",
+          "variation": "David Bote",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "311",
+          "player_name": "David Bote",
+          "team": "Chicago Cubs",
+          "variation": "David Bote",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "347",
+          "player_name": "David Bote",
+          "team": "Chicago Cubs",
+          "variation": "David Bote",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "183",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": "Lucas Giolito",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "143",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-188",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BFE-150",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-150",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Luis Robert",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Marcus Semien",
+          "team": "Chicago White Sox",
+          "variation": "Marcus Semien",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "197",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-63",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-101",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-173",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-63",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-101",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Nick Madrigal",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "138",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "148",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "154",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "186",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "252",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "302",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSI-TA",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RC-15",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "S-139",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-47",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "183",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "188",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "229",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "312",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "473",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "627",
+          "player_name": "Eugenio Suarez",
+          "team": "Cincinnati Reds",
+          "variation": "Eugenio Suarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "132",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "146",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "148",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "157",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "210",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "281",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "313",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "380",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "388",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "517",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CTP-25",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-JW",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HMW-82",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-20",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-25",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "Jesse Winker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-166",
+          "player_name": "Taylor Trammell",
+          "team": "Cincinnati Reds",
+          "variation": "Taylor Trammell",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BDC-166",
+          "player_name": "Taylor Trammell",
+          "team": "Cincinnati Reds",
+          "variation": "Taylor Trammell",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BP-24",
+          "player_name": "Taylor Trammell",
+          "team": "Cincinnati Reds",
+          "variation": "Taylor Trammell",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-56",
+          "player_name": "Cristian Javier",
+          "team": "Houston Astros",
+          "variation": "Cristian Javier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Joe Musgrove",
+          "team": "Houston Astros",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Joe Musgrove",
+          "team": "Houston Astros",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Joe Musgrove",
+          "team": "Houston Astros",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "333",
+          "player_name": "Joe Musgrove",
+          "team": "Houston Astros",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "Michael Brantley",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "300",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Yordan Alvarez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "125",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OD-32",
+          "player_name": "Adalberto Mondesi",
+          "team": "Kansas City Royals",
+          "variation": "Adalberto Mondesi",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Shohei Ohtani",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Shohei Ohtani",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "459",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "540",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "671",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DD-24",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-10",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TH-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Alex Verdugo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "119",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "143",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "235",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "347",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "355",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-80",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSR-87",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTP-20",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTP-66",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ROYF-DM",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-19",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dustin May",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-143",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Keibert Ruiz",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PP-13",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Keibert Ruiz",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Walker Buehler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Will Smith",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "191",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "272",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "287",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "387",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "388",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-18",
+          "player_name": "J.T. Realmuto",
+          "team": "Miami Marlins",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "216",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Christian Yelich",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "240",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "559",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "Josh Hader",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "119",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "138",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "149",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "172",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "199",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "282",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "300",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "313",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "322",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "323",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "378",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "405",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "438",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "475",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLM-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OD-43",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OD-162",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SCO-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-57",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRC-57",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Max Kepler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "228",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "152",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "371",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "236",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Zack Wheeler",
+          "team": "New York Mets",
+          "variation": "Zack Wheeler",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "287",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FO-11",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLM-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PP-19",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RC-29",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TH-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-60",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "U-264",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "148",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "185",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "211",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "221",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "265",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "303",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "544",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PP-18",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Luis Severino",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "186",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "Luke Voit",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Jesus Luzardo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "474",
+          "player_name": "Mark Canha",
+          "team": "Oakland Athletics",
+          "variation": "Mark Canha",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "220",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "535",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSRB-JR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "J.T. Realmuto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PP-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Philadelphia Phillies",
+          "variation": "Sixto Sanchez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-10",
+          "player_name": "Austin Meadows",
+          "team": "Pittsburgh Pirates",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-19",
+          "player_name": "Austin Meadows",
+          "team": "Pittsburgh Pirates",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bryan Reynolds",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "383",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bryan Reynolds",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "101",
+          "player_name": "Joe Musgrove",
+          "team": "Pittsburgh Pirates",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Joe Musgrove",
+          "team": "Pittsburgh Pirates",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "344",
+          "player_name": "Joe Musgrove",
+          "team": "Pittsburgh Pirates",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "429",
+          "player_name": "Joe Musgrove",
+          "team": "Pittsburgh Pirates",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "672",
+          "player_name": "Joe Musgrove",
+          "team": "Pittsburgh Pirates",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-67",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-71",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-50",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BHP-67",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-67",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-71",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-198",
+          "player_name": "Kevin Newman",
+          "team": "Pittsburgh Pirates",
+          "variation": "Kevin Newman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "172",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "186",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "189",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "258",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "345",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "366",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSI-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTP-16",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-23",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-30",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-61",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "411",
+          "player_name": "Joe Musgrove",
+          "team": "San Diego Padres",
+          "variation": "Joe Musgrove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-130",
+          "player_name": "Taylor Trammell",
+          "team": "San Diego Padres",
+          "variation": "Taylor Trammell",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BP-130",
+          "player_name": "Taylor Trammell",
+          "team": "San Diego Padres",
+          "variation": "Taylor Trammell",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OD-19",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Brandon Belt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Yastrzemski",
+          "team": "San Francisco Giants",
+          "variation": "Mike Yastrzemski",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Mike Yastrzemski",
+          "team": "San Francisco Giants",
+          "variation": "Mike Yastrzemski",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "Mike Yastrzemski",
+          "team": "San Francisco Giants",
+          "variation": "Mike Yastrzemski",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "101",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "249",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-154",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSI-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PP-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Kyle Lewis",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-132",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Taylor Trammell",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Jack Flaherty",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Jack Flaherty",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Jack Flaherty",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Kolten Wong",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Kolten Wong",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Kolten Wong",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "162",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Kolten Wong",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Paul Dejong",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Paul Goldschmidt",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "130",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "185",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "192",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "564",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NAP-22",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-84",
+          "player_name": "Austin Meadows",
+          "team": "Tampa Bay Rays",
+          "variation": "Austin Meadows",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "334",
+          "player_name": "Brandon Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Brandon Lowe",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "574",
+          "player_name": "Brandon Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Brandon Lowe",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "600",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Randy Arozarena",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "167",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "305",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "538",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "629",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCR-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Tampa Bay Rays",
+          "variation": "Tyler Glasnow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-149",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Alek Manoah",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-111",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Bo Bichette",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Marcus Stroman",
+          "team": "Toronto Blue Jays",
+          "variation": "Marcus Stroman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "108",
+          "player_name": "Marcus Stroman",
+          "team": "Toronto Blue Jays",
+          "variation": "Marcus Stroman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Nate Pearson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-124",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Nate Pearson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-119",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Nate Pearson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-118",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Nate Pearson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-99",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Nate Pearson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-124",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Nate Pearson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "152",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Teoscar Hernandez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "212",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Teoscar Hernandez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "299",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Teoscar Hernandez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "398",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Teoscar Hernandez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "564",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Teoscar Hernandez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "644",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Teoscar Hernandez",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -21,13 +21,25 @@ export async function POST(req: NextRequest) {
   const isAdmin = callerMember?.role === 'admin'
   if (!isChef && !isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
+  // La candidature doit réellement correspondre à cette team/cet utilisateur et être
+  // encore en attente — sinon un chef pourrait ajouter n'importe quel userId comme
+  // membre, ou manipuler la candidature d'une autre team en réutilisant son id.
+  const { data: candidature } = await supabase.from('team_candidatures')
+    .select('id, team_id, user_id, statut').eq('id', candidatureId).single()
+  if (!candidature || candidature.team_id !== teamId || candidature.user_id !== userId || candidature.statut !== 'en_attente') {
+    return NextResponse.json({ error: 'Candidature invalide' }, { status: 400 })
+  }
+
   if (action === 'accept') {
-    // L'ajout au team_members doit réussir AVANT de marquer la candidature comme acceptée,
-    // sinon on se retrouve avec une candidature "acceptée" mais personne n'est membre.
-    const { error: memberError } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
-    // 23505 = violation de contrainte unique → déjà membre, on continue (idempotent)
-    if (memberError && memberError.code !== '23505') {
-      return NextResponse.json({ error: memberError.message }, { status: 500 })
+    // Vérifier d'abord si l'utilisateur est déjà membre de cette team (idempotent)
+    const { data: alreadyMember } = await supabase.from('team_members')
+      .select('user_id').eq('team_id', teamId).eq('user_id', userId).single()
+
+    if (!alreadyMember) {
+      const { error: memberError } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
+      if (memberError) {
+        return NextResponse.json({ error: memberError.message }, { status: 500 })
+      }
     }
 
     const { error: candError } = await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)

@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -37,10 +38,10 @@ export default function Evenements() {
 
   useEffect(() => {
     loadEvents()
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) return
-      setUserId(data.user.id)
-      const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', data.user.id).single()
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) return
+      setUserId(session.user.id)
+      const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', session.user.id).single()
       if (p?.is_admin) setIsAdmin(true)
     })
   }, [])
@@ -84,7 +85,7 @@ export default function Evenements() {
     const path = `evenements/${Date.now()}_${file.name.replace(/[^a-z0-9.]/gi, '_')}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
     setUploadingImg(false)
-    if (error) { alert('Erreur upload image : ' + error.message); return null }
+    if (error) { toast.error('Erreur upload image : ' + error.message); return null }
     return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
   }
 
@@ -160,7 +161,7 @@ export default function Evenements() {
           <>
             <h2 style={{ color: sub, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_past')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, opacity: 0.6 }}>
-              {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => {}} userId={null} formatDate={formatDate} />)}
+              {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={null} userId={null} formatDate={formatDate} />)}
             </div>
           </>
         )}

@@ -1,0 +1,5415 @@
+{
+  "year": 2003,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4606,
+        "name": "2003 Fleer Showcase"
+      },
+      "unique": [
+        {
+          "card_number": "60",
+          "player_name": "Marcel Shipp",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marcel Shipp",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marcel Shipp",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marcel Shipp",
+          "team": "Arizona Cardinals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brian Finneran",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brian Finneran",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brian Finneran",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brian Finneran",
+          "team": "Atlanta Falcons",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Musa Smith",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-TH",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Musa Smith",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Musa Smith",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Musa Smith",
+          "team": "Baltimore Ravens",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-EM",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-EM",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-EM",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Peerless Price",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Bobby Wade",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Bobby Wade",
+          "team": "Chicago Bears",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Bobby Wade",
+          "team": "Chicago Bears",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Bobby Wade",
+          "team": "Chicago Bears",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kelley Washington",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kelley Washington",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kelley Washington",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kelley Washington",
+          "team": "Cincinnati Bengals",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Terence Newman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Terence Newman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Terence Newman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Terence Newman",
+          "team": "Dallas Cowboys",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "James Stewart",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Artose Pinner",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Avon Cobourne",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "James Stewart",
+          "team": "Detroit Lions",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Artose Pinner",
+          "team": "Detroit Lions",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Avon Cobourne",
+          "team": "Detroit Lions",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "James Stewart",
+          "team": "Detroit Lions",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Artose Pinner",
+          "team": "Detroit Lions",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Avon Cobourne",
+          "team": "Detroit Lions",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "James Stewart",
+          "team": "Detroit Lions",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Artose Pinner",
+          "team": "Detroit Lions",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Avon Cobourne",
+          "team": "Detroit Lions",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dave Ragone",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dave Ragone",
+          "team": "Houston Texans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dave Ragone",
+          "team": "Houston Texans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dave Ragone",
+          "team": "Houston Texans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DC2",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DC2",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DC2",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Doss",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Doss",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Doss",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Doss",
+          "team": "Indianapolis Colts",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Hugh Douglas",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Hugh Douglas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Hugh Douglas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Hugh Douglas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jason Taylor",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jason Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jason Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jason Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Onterrio Smith",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Onterrio Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Onterrio Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Onterrio Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kliff Kingsbury",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kliff Kingsbury",
+          "team": "New England Patriots",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kliff Kingsbury",
+          "team": "New England Patriots",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kliff Kingsbury",
+          "team": "New England Patriots",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donté Stallworth",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Kareem Kelly",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-DM",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Kareem Kelly",
+          "team": "New Orleans Saints",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Kareem Kelly",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Kareem Kelly",
+          "team": "New Orleans Saints",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "William Joseph",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "William Joseph",
+          "team": "New York Giants",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "William Joseph",
+          "team": "New York Giants",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "William Joseph",
+          "team": "New York Giants",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Curtis Conway",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "DeWayne Robertson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-CP2",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Curtis Conway",
+          "team": "New York Jets",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "DeWayne Robertson",
+          "team": "New York Jets",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Curtis Conway",
+          "team": "New York Jets",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "DeWayne Robertson",
+          "team": "New York Jets",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Curtis Conway",
+          "team": "New York Jets",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "DeWayne Robertson",
+          "team": "New York Jets",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charlie Garner",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Doug Gabriel",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Teyo Johnson",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charlie Garner",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Doug Gabriel",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Teyo Johnson",
+          "team": "Oakland Raiders",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charlie Garner",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Doug Gabriel",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Teyo Johnson",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charlie Garner",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Doug Gabriel",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Teyo Johnson",
+          "team": "Oakland Raiders",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Billy McMullen",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AV-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Avant Card Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Billy McMullen",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Billy McMullen",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Billy McMullen",
+          "team": "Philadelphia Eagles",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brian St. Pierre",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-PB",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-AR",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brian St. Pierre",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brian St. Pierre",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brian St. Pierre",
+          "team": "Pittsburgh Steelers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AR",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AR",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Andrew Pinnock",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-DB",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Andrew Pinnock",
+          "team": "San Diego Chargers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Andrew Pinnock",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Andrew Pinnock",
+          "team": "San Diego Chargers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tai Streets",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-JG",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-JG",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-TO",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tai Streets",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tai Streets",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tai Streets",
+          "team": "San Francisco 49ers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-KR",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-KR",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-KR",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jimmy Kennedy",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Hot Hands Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jimmy Kennedy",
+          "team": "St. Louis Rams",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jimmy Kennedy",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jimmy Kennedy",
+          "team": "St. Louis Rams",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Simeon Rice",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Chris Simms",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-WS",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-WS",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Simeon Rice",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Chris Simms",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Simeon Rice",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Chris Simms",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Simeon Rice",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Chris Simms",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Derrick Mason",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Gesser",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Football's Best Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FB-JK",
+          "player_name": "Jevon Kearse",
+          "team": "Tennessee Titans",
+          "variation": "Football's Best Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Derrick Mason",
+          "team": "Tennessee Titans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Gesser",
+          "team": "Tennessee Titans",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Derrick Mason",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Gesser",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Derrick Mason",
+          "team": "Tennessee Titans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Gesser",
+          "team": "Tennessee Titans",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Sweet Stitches Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Sweet Stitches Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Sweet Stitches Jerseys Patches Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Taylor Jacobs",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Brad Banks",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Taylor Jacobs",
+          "team": "Washington Redskins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Brad Banks",
+          "team": "Washington Redskins",
+          "variation": "Legacy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Taylor Jacobs",
+          "team": "Washington Redskins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Brad Banks",
+          "team": "Washington Redskins",
+          "variation": "Legacy Non-Numbered Aftermarket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Taylor Jacobs",
+          "team": "Washington Redskins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Brad Banks",
+          "team": "Washington Redskins",
+          "variation": "Masterpieces",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

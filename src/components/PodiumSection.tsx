@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface PodiumEntry {
   userId: string
@@ -8,90 +9,148 @@ interface PodiumEntry {
   count: number
 }
 
-export default function PodiumSection({ entries }: { entries: PodiumEntry[] }) {
-  if (entries.length === 0) return null
+interface Props {
+  month: PodiumEntry[]
+  week: PodiumEntry[]
+  day: PodiumEntry[]
+}
 
-  const now = new Date()
-  const monthLabel = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+const medals = ['🥇', '🥈', '🥉']
+const colors = ['#f39c12', '#95a5a6', '#cd7f32']
 
-  const medals = ['🥇', '🥈', '🥉']
-  const colors = ['#f39c12', '#95a5a6', '#cd7f32']
-  const bgs = ['#fffbf0', '#f5f5f5', '#fdf6ef']
-
-  // Podium order: 2nd, 1st, 3rd
-  const podiumOrder = entries.length >= 3
-    ? [entries[1], entries[0], entries[2]]
-    : entries.length === 2
-    ? [entries[1], entries[0]]
-    : [entries[0]]
-
-  const heights = entries.length >= 3 ? [80, 110, 60] : entries.length === 2 ? [80, 110] : [110]
-  const realIdxMap = entries.length >= 3 ? [1, 0, 2] : entries.length === 2 ? [1, 0] : [0]
-
+function PodiumColumn({ entries }: { entries: PodiumEntry[] }) {
   return (
-    <section style={{ marginBottom: 60 }}>
-      <h2 style={{ fontWeight: 900, fontSize: 20, marginBottom: 4, color: '#121212' }}>
-        🏆 Podium du mois
-      </h2>
-      <p style={{ fontSize: 12, color: '#999', marginBottom: 24, fontWeight: 600 }}>
-        Concours uploads — {monthLabel}
-      </p>
-
-      {/* Mobile: liste */}
-      <div style={{ display: 'flex', gap: 12, alignItems: 'flex-end', justifyContent: 'center', flexWrap: 'wrap' }}>
-        {podiumOrder.map((entry, i) => {
-          const realIdx = realIdxMap[i]
-          const h = heights[i]
-          return (
-            <Link key={entry.userId} href={`/galerie/${entry.userId}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              {/* Avatar */}
-              <div style={{ position: 'relative' }}>
-                {entry.avatarUrl ? (
-                  <img src={entry.avatarUrl} alt={entry.displayName}
-                    style={{ width: realIdx === 0 ? 72 : 56, height: realIdx === 0 ? 72 : 56, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${colors[realIdx]}` }} />
-                ) : (
-                  <div style={{ width: realIdx === 0 ? 72 : 56, height: realIdx === 0 ? 72 : 56, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 900, fontSize: realIdx === 0 ? 24 : 18, border: `3px solid ${colors[realIdx]}` }}>
-                    {entry.displayName.charAt(0).toUpperCase()}
-                  </div>
-                )}
-                <span style={{ position: 'absolute', bottom: -4, right: -4, fontSize: 16 }}>{medals[realIdx]}</span>
-              </div>
-
-              {/* Nom + count */}
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontWeight: 800, fontSize: 13, color: '#121212', margin: 0, maxWidth: 90, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.displayName}</p>
-                <p style={{ fontSize: 11, color: colors[realIdx], fontWeight: 900, margin: '2px 0 0' }}>+{entry.count} cartes</p>
-              </div>
-
-              {/* Barre podium */}
-              <div style={{ width: 80, height: h, background: bgs[realIdx], border: `2px solid ${colors[realIdx]}33`, borderRadius: '8px 8px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: realIdx === 0 ? 22 : 18, fontWeight: 900, color: colors[realIdx] }}>{realIdx + 1}</span>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
-
-      {/* Reste du classement si >3 */}
-      {entries.length > 3 && (
-        <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 400, margin: '16px auto 0' }}>
-          {entries.slice(3).map((entry, i) => (
-            <Link key={entry.userId} href={`/galerie/${entry.userId}`}
-              style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 14px', background: '#f8f8f8', borderRadius: 8, textDecoration: 'none' }}>
-              <span style={{ fontWeight: 900, fontSize: 13, color: '#bbb', width: 20 }}>{i + 4}</span>
+    <div className="podium-col">
+      {entries.length === 0 ? (
+        <p className="podium-empty">Aucune carte</p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {entries.map((entry, i) => (
+            <Link key={entry.userId} href={`/galerie/${entry.userId}`} className="podium-row">
+              <span className={`podium-rank ${i < 3 ? 'podium-rank-medal' : ''}`}>
+                {i < 3 ? medals[i] : i + 1}
+              </span>
               {entry.avatarUrl ? (
-                <img src={entry.avatarUrl} alt={entry.displayName} style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} />
+                <img src={entry.avatarUrl} alt={entry.displayName} className="podium-avatar" />
               ) : (
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#ddd', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 12, color: '#666' }}>
+                <div className="podium-avatar podium-avatar-placeholder" style={{ color: i < 3 ? colors[i] : undefined }}>
                   {entry.displayName.charAt(0).toUpperCase()}
                 </div>
               )}
-              <span style={{ fontWeight: 700, fontSize: 13, color: '#121212', flex: 1 }}>{entry.displayName}</span>
-              <span style={{ fontSize: 12, color: '#999', fontWeight: 700 }}>+{entry.count}</span>
+              <span className="podium-name">{entry.displayName}</span>
+              <span className="podium-count" style={{ color: i < 3 ? colors[i] : undefined }}>
+                +{entry.count}
+              </span>
             </Link>
           ))}
         </div>
       )}
+    </div>
+  )
+}
+
+type Tab = 'day' | 'week' | 'month'
+
+export default function PodiumSection({ month, week, day }: Props) {
+  const [tab, setTab] = useState<Tab>('day')
+
+  if (month.length === 0 && week.length === 0 && day.length === 0) return null
+
+  const now = new Date()
+  const monthLabel = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+  const dayLabel = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
+  const dowDiff = now.getDay() === 0 ? 6 : now.getDay() - 1
+  const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dowDiff)
+  const weekLabel = `lun. ${monday.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })} — auj.`
+
+  const tabs: { key: Tab; label: string; subtitle: string; entries: PodiumEntry[] }[] = [
+    { key: 'day',   label: "Aujourd'hui",    subtitle: dayLabel,   entries: day },
+    { key: 'week',  label: 'Cette semaine',  subtitle: weekLabel,  entries: week },
+    { key: 'month', label: 'Ce mois',        subtitle: monthLabel, entries: month },
+  ]
+
+  const active = tabs.find(t => t.key === tab)!
+
+  return (
+    <section style={{ marginBottom: 60 }}>
+      <style>{`
+        .podium-col {
+          background: var(--podium-bg, #fafafa);
+          border: 1px solid var(--border, #eee);
+          border-radius: 12px;
+          padding: 14px 12px;
+          min-width: 0;
+          flex: 1 1 0;
+        }
+        [data-theme="dark"] .podium-col,
+        @media (prefers-color-scheme: dark) { .podium-col }
+        [data-theme="dark"] .podium-col { background: #111; border-color: #222; }
+
+        .podium-empty { font-size: 12px; color: #999; text-align: center; padding: 12px 0; font-weight: 600; }
+        .podium-row { display: flex; align-items: center; gap: 7px; text-decoration: none; }
+        .podium-rank { font-size: 11px; width: 20px; text-align: center; flex-shrink: 0; font-weight: 900; color: #bbb; }
+        .podium-rank-medal { font-size: 15px; color: unset; }
+        .podium-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .podium-avatar-placeholder { background: #eee; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        [data-theme="dark"] .podium-avatar-placeholder { background: #2a2a2a; }
+        .podium-name { flex: 1; font-size: 12px; font-weight: 700; color: #121212; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        [data-theme="dark"] .podium-name { color: #e0e0e0; }
+        .podium-count { font-size: 11px; font-weight: 900; color: #bbb; flex-shrink: 0; }
+
+        /* Desktop: 3 colonnes */
+        .podium-desktop { display: flex; gap: 10; align-items: stretch; }
+        .podium-desktop .podium-col-header { display: block; }
+        .podium-col-header-title { font-weight: 900; font-size: 13px; color: #121212; margin: 0 0 2px; }
+        [data-theme="dark"] .podium-col-header-title { color: #fff; }
+        .podium-col-header-sub { font-size: 11px; color: #999; font-weight: 600; margin: 0 0 10px; }
+
+        /* Tabs mobile */
+        .podium-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+        .podium-tab {
+          flex: 1; padding: 8px 4px; border-radius: 10px; border: 1px solid var(--border, #eee);
+          background: none; cursor: pointer; font-size: 12px; font-weight: 700;
+          color: #888; transition: all .15s;
+        }
+        .podium-tab.active { background: #003DA6; color: #fff; border-color: #003DA6; }
+        [data-theme="dark"] .podium-tab { border-color: #333; color: #aaa; }
+        [data-theme="dark"] .podium-tab.active { background: #003DA6; color: #fff; }
+        .podium-tab-sub { font-size: 10px; font-weight: 500; opacity: .75; display: block; margin-top: 2px; }
+
+        @media (min-width: 640px) {
+          .podium-mobile { display: none !important; }
+          .podium-desktop { display: flex !important; }
+        }
+        @media (max-width: 639px) {
+          .podium-mobile { display: block !important; }
+          .podium-desktop { display: none !important; }
+        }
+      `}</style>
+
+      <h2 style={{ fontWeight: 900, fontSize: 20, marginBottom: 16 }}>🏆 Podium</h2>
+
+      {/* Mobile : tabs */}
+      <div className="podium-mobile">
+        <div className="podium-tabs">
+          {tabs.map(t => (
+            <button key={t.key} className={`podium-tab${tab === t.key ? ' active' : ''}`} onClick={() => setTab(t.key)}>
+              {t.label}
+              <span className="podium-tab-sub">{t.subtitle}</span>
+            </button>
+          ))}
+        </div>
+        <PodiumColumn entries={active.entries} />
+      </div>
+
+      {/* Desktop : 3 colonnes */}
+      <div className="podium-desktop" style={{ display: 'flex', gap: 10, alignItems: 'stretch' }}>
+        {tabs.map(t => (
+          <div key={t.key} style={{ flex: '1 1 0', minWidth: 0 }}>
+            <p className="podium-col-header-title">{t.label}</p>
+            <p className="podium-col-header-sub">{t.subtitle}</p>
+            <PodiumColumn entries={t.entries} />
+          </div>
+        ))}
+      </div>
     </section>
   )
 }

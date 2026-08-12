@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /connexion
+Disallow: /sinscrire
+Disallow: /galerie/*/ajouter
+Disallow: /galerie/*/editer/
+Disallow: /galerie/*/expo
+
+Sitemap: https://www.memorabilius.fr/sitemap.xml

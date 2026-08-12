@@ -13,16 +13,25 @@ interface Card {
   num: string; collector: string; userId: string; isHorizontal: boolean
 }
 
+interface FeaturedGallery {
+  id: string; display_name: string; avatar_url: string | null
+  stats_total: number; topCards: string[]
+}
+
 async function fetchPepites(): Promise<Card[]> {
-  const [{ data: manuelles }, { data: profiles }] = await Promise.all([
-    supabase
-      .from('cartes_manuelles')
-      .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id, is_horizontal')
-      .not('image_recto', 'is', null)
-      .order('created_at', { ascending: false })
-      .limit(200),
-    supabase.from('profiles').select('id, display_name'),
-  ])
+  const { data: manuelles } = await supabase
+    .from('cartes_manuelles')
+    .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id, is_horizontal')
+    .not('image_recto', 'is', null)
+    .order('created_at', { ascending: false })
+    .limit(200)
+
+  if (!manuelles?.length) return []
+
+  // Scope profiles to only the user_ids present in the 200 cards — évite de charger tous les profils
+  const userIds = [...new Set(manuelles.map(m => m.user_id))]
+  const { data: profiles } = await supabase
+    .from('profiles').select('id, display_name').in('id', userIds)
 
   const profileMap = new Map((profiles || []).map(p => [p.id, p.display_name]))
 
@@ -71,6 +80,33 @@ async function fetchPepites(): Promise<Card[]> {
   return result
 }
 
+async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {
+  const { data: profiles } = await supabase
+    .from('profiles')
+    .select('id, display_name, avatar_url, stats_total')
+    .not('display_name', 'is', null)
+    .neq('display_name', '')
+    .gt('stats_total', 0)
+    .order('stats_total', { ascending: false })
+    .limit(3)
+
+  if (!profiles || profiles.length === 0) return []
+
+  const withCards = await Promise.all(profiles.map(async p => {
+    const { data } = await supabase
+      .from('cartes_manuelles')
+      .select('image_recto')
+      .eq('user_id', p.id)
+      .not('image_recto', 'is', null)
+      .eq('is_horizontal', false)
+      .limit(3)
+    const topCards = (data || []).map((r: any) => r.image_recto).filter(Boolean)
+    return { ...p, topCards }
+  }))
+
+  return withCards.filter(g => g.topCards.length > 0)
+}
+
 async function fetchPodium() {
   const now = new Date()
   const month = now.toISOString().slice(0, 7)
@@ -90,34 +126,14 @@ async function fetchPodium() {
     }
   } catch {}
 
-  // Source 2 : cartes_manuelles pour les users absents de monthly_additions
-  // (cards ajoutées avant le déploiement du système temps-réel, ou sans synchro)
-  // On pagine par 1000 pour éviter la troncature sur les grosses collections
-  let manualPage = 0
-  const manualCounts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
-  while (true) {
-    const { data: manual } = await supabase
-      .from('cartes_manuelles')
-      .select('user_id, profiles(display_name, avatar_url)')
-      .gte('created_at', startOfMonth)
-      .range(manualPage * 1000, manualPage * 1000 + 999)
-    if (!manual || manual.length === 0) break
-    for (const row of manual as any[]) {
-      if (!row.profiles?.display_name) continue
-      const e = manualCounts.get(row.user_id)
-      if (!e) manualCounts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
-      else e.count++
-    }
-    if (manual.length < 1000) break
-    manualPage++
-  }
-
-  // Fusionner : monthly_additions est prioritaire (inclut CSV + manuelles syncées).
-  // Pour les users non encore dans monthly_additions ce mois, utiliser cartes_manuelles.
-  for (const [uid, v] of manualCounts) {
-    const existing = counts.get(uid)
-    if (!existing) counts.set(uid, v)
-    else if (v.count > existing.count) existing.count = v.count
+  // Source 2 : cartes_manuelles agrégées côté DB en une seule requête (remplace la boucle while paginée)
+  const { data: fallback } = await supabase
+    .rpc('get_monthly_card_counts', { p_start: startOfMonth })
+  for (const row of (fallback || []) as any[]) {
+    if (!row.display_name) continue
+    const existing = counts.get(row.user_id)
+    if (!existing) counts.set(row.user_id, { displayName: row.display_name, avatarUrl: row.avatar_url || null, count: Number(row.count) })
+    else if (Number(row.count) > existing.count) existing.count = Number(row.count)
   }
 
   return [...counts.entries()]
@@ -126,27 +142,89 @@ async function fetchPodium() {
     .slice(0, 10)
 }
 
+async function fetchPodiumPeriod(pStart: string) {
+  const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
+  let offset = 0
+  const PAGE = 1000
+  while (true) {
+    const { data } = await supabase
+      .from('cartes_manuelles')
+      .select('user_id, profiles(display_name, avatar_url)')
+      .gte('created_at', pStart)
+      .range(offset, offset + PAGE - 1)
+    if (!data?.length) break
+    for (const row of data as any[]) {
+      if (!row.profiles?.display_name) continue
+      const existing = counts.get(row.user_id)
+      if (existing) existing.count++
+      else counts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
+    }
+    if (data.length < PAGE) break
+    offset += PAGE
+  }
+  return [...counts.entries()]
+    .map(([userId, v]) => ({ userId, ...v }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10)
+}
+
+async function fetchPodiumDay() {
+  // dernières 24h (évite les problèmes de timezone)
+  const start = new Date(Date.now() - 24 * 3600 * 1000).toISOString()
+  return fetchPodiumPeriod(start)
+}
+
+async function fetchPodiumWeek() {
+  const start = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString()
+  return fetchPodiumPeriod(start)
+}
+
 export default async function Home() {
   const [
     { count },
     { data: statsData },
+    { count: bindersCount },
+    { count: tradeCount },
     cards,
     podium,
+    podiumDay,
+    podiumWeek,
+    featuredGalleries,
   ] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
     supabase.from('profiles').select('stats_total').gt('stats_total', 0),
+    supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
+    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
     fetchPepites(),
     fetchPodium(),
+    fetchPodiumDay(),
+    fetchPodiumWeek(),
+    fetchFeaturedGalleries(),
   ])
 
   const total = count ?? 0
   const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
+  const totalBinders = bindersCount ?? 0
+  const totalTrade = tradeCount ?? 0
+
+  const navJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'SiteNavigationElement', position: 1, name: 'Annuaire des collectionneurs', url: 'https://www.memorabilius.fr/annuaire' },
+      { '@type': 'SiteNavigationElement', position: 2, name: 'Recherche de cartes', url: 'https://www.memorabilius.fr/recherche' },
+      { '@type': 'SiteNavigationElement', position: 3, name: 'Scanner de prix', url: 'https://www.memorabilius.fr/scanner' },
+      { '@type': 'SiteNavigationElement', position: 4, name: 'Équipes de collectionneurs', url: 'https://www.memorabilius.fr/teams' },
+      { '@type': 'SiteNavigationElement', position: 5, name: 'Échanges', url: 'https://www.memorabilius.fr/echanges' },
+    ],
+  }
 
   return (
     <div>
-      <HomeHero total={total} totalCartes={totalCartes} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }} />
+      <HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />
       <PepitesSection cards={cards} />
-      <PodiumSection entries={podium} />
+      <PodiumSection month={podium} week={podiumWeek} day={podiumDay} />
       <PWAInstall />
     </div>
   )

@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, use } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -32,12 +33,12 @@ export default function EditerTeam({ params }: { params: Promise<{ teamId: strin
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (file.size > 2 * 1024 * 1024) { alert('Image trop lourde (max 2 Mo)'); return }
+    if (file.size > 2 * 1024 * 1024) { toast.error('Image trop lourde (max 2 Mo)'); return }
     setUploading(true)
     const ext = file.name.split('.').pop()
     const path = `teams/${teamId}/avatar.${ext}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { alert('Erreur upload : ' + error.message); setUploading(false); return }
+    if (error) { toast.error('Erreur upload : ' + error.message); setUploading(false); return }
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     const url = data.publicUrl + '?t=' + Date.now()
     await supabase.from('teams').update({ avatar_url: url }).eq('id', parseInt(teamId))

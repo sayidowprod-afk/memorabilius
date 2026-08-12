@@ -4,16 +4,18 @@ import LegalShell from '@/components/LegalShell'
 export const metadata: Metadata = {
   title: "Conditions Générales d'Utilisation",
   description: "Conditions Générales d'Utilisation (CGU) du site Memorabilius.",
+  robots: { index: false, follow: false },
 }
 
 export default function CGUPage() {
   return (
-    <LegalShell title="Conditions Générales d'Utilisation (CGU)" updated="23 juin 2026">
+    <LegalShell title="Conditions Générales d'Utilisation (CGU)" updated="12 août 2026">
       <h2>1. Objet</h2>
       <p>
         Les présentes Conditions Générales d'Utilisation (« CGU ») régissent l'accès et l'utilisation du
-        site <strong>Memorabilius</strong> (<a href="https://www.memorabilius.fr">https://www.memorabilius.fr</a>,
-        ci-après « le Service »), édité par Killian BAJONI (ci-après « l'Éditeur »).
+        site <strong>Memorabilius</strong> (<a href="https://www.memorabilius.fr">https://www.memorabilius.fr</a>)
+        et de l'application mobile Android « Memorabilius – Card Collector » (ci-après collectivement « le Service »),
+        édités par Killian BAJONI (ci-après « l'Éditeur »).
       </p>
       <p>
         Memorabilius est une plateforme communautaire permettant aux collectionneurs de{' '}

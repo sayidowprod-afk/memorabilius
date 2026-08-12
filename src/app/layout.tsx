@@ -1,19 +1,16 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/NavBar'
 import Footer from '@/components/Footer'
+import ChatBubble from '@/components/ChatBubble'
+import Toaster from '@/components/Toaster'
+import OnboardingTooltip from '@/components/OnboardingTooltip'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'optional',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-})
+import TrackView from '@/components/TrackView'
+import InstallBanner from '@/components/InstallBanner'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -62,12 +59,16 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  other: {
+    'google': 'notranslate',
+    'privacy-policy': 'https://www.memorabilius.fr/confidentialite',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
         {process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' && (
@@ -82,10 +83,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
             <Footer />
+            <ChatBubble />
+            <Toaster />
+            <OnboardingTooltip />
+            <InstallBanner />
           </LangProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
+        <TrackView />
       </body>
     </html>
   )

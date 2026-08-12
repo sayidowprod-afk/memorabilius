@@ -1,12 +1,7 @@
-const CACHE_NAME = 'memorabilius-v1'
-const STATIC_ASSETS = [
-  '/',
-  '/annuaire',
-  '/trades',
-  '/teams',
-  '/manifest.json',
-  '/favicon.ico',
-]
+const CACHE_NAME = 'memorabilius-v4'
+
+// Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
+const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -38,29 +33,25 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close()
+  const url = event.notification.data?.url || '/'
   event.waitUntil(
-    clients.matchAll({ type: 'window' }).then(list => {
-      for (const client of list) {
-        if (client.url && 'focus' in client) { client.focus(); return }
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+      if (list.length > 0) {
+        const client = list[0]
+        client.focus()
+        if ('navigate' in client) return client.navigate(url)
+        return
       }
-      return clients.openWindow(event.notification.data?.url || '/')
+      return clients.openWindow(url)
     })
   )
 })
 
+// Fetch : uniquement fallback offline pour les navigations de page
+// On ne met RIEN en cache dynamiquement pour éviter les pages obsolètes après déploiement
 self.addEventListener('fetch', (event) => {
-  // Ne pas intercepter les requêtes API et Supabase
-  if (event.request.url.includes('/api/') || 
-      event.request.url.includes('supabase') ||
-      event.request.method !== 'GET') return
-
+  if (event.request.mode !== 'navigate') return
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        const clone = response.clone()
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone))
-        return response
-      })
-      .catch(() => caches.match(event.request))
+    fetch(event.request).catch(() => caches.match('/offline.html'))
   )
 })

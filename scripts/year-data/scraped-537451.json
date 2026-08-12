@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 537451,
+        "name": "2025 Topps Archives Signature Series Active Player Edition"
+      },
+      "unique": [
+        {
+          "card_number": "MLM-MO",
+          "player_name": "Matt Olson",
+          "team": "Atlanta Braves",
+          "variation": "Matt Olson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Michael Harris II",
+          "team": "Atlanta Braves",
+          "variation": "Michael Harris II",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-86",
+          "player_name": "Michael Harris II",
+          "team": "Atlanta Braves",
+          "variation": "Michael Harris II",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "296",
+          "player_name": "Spencer Strider",
+          "team": "Atlanta Braves",
+          "variation": "Spencer Strider",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Ryan Mountcastle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Tanner Houck",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Guardians",
+          "variation": "Shane Bieber",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOTD-12",
+          "player_name": "Colt Keith",
+          "team": "Detroit Tigers",
+          "variation": "Colt Keith",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "162",
+          "player_name": "Gio Urshela",
+          "team": "Los Angeles Angels",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "698",
+          "player_name": "Gio Urshela",
+          "team": "Los Angeles Angels",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "200",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mike Trout",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-18",
+          "player_name": "Zach Neto",
+          "team": "Los Angeles Angels",
+          "variation": "Zach Neto",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "112",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Dodgers",
+          "variation": "Shohei Ohtani",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Christian Yelich",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-122",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Brent Rooker",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Byron Buxton",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMLB-12",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Byron Buxton",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Gio Urshela",
+          "team": "Minnesota Twins",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gio Urshela",
+          "team": "Minnesota Twins",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "635",
+          "player_name": "Gio Urshela",
+          "team": "Minnesota Twins",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Andres Gimenez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "163",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "191",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "220",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "284",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "562",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCR-GU",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSRA-GU",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-99",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRC-99",
+          "player_name": "Gio Urshela",
+          "team": "New York Yankees",
+          "variation": "Gio Urshela",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Bobby Miller",
+          "team": "Oakland Athletics",
+          "variation": "Bobby Miller",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bryan Reynolds",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bryan Reynolds",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "617",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Bryan Reynolds",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GN-60",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bryan Reynolds",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BTP-42",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "229",
+          "player_name": "Paul Skenes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Paul Skenes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "282",
+          "player_name": "Paul Skenes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Paul Skenes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-29",
+          "player_name": "Paul Skenes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Paul Skenes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-125",
+          "player_name": "Paul Skenes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Paul Skenes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BDC-14",
+          "player_name": "Paul Skenes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Paul Skenes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CSMLB-64",
+          "player_name": "Paul Skenes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Paul Skenes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMLB-81",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "Brandon Crawford",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "461",
+          "player_name": "Harrison Bader",
+          "team": "St. Louis Cardinals",
+          "variation": "Harrison Bader",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Shane McClanahan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "236",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Shane McClanahan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "244",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Shane McClanahan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "408",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Shane McClanahan",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -21,6 +21,12 @@ export const CARD_FORMATS: CardFormatDef[] = [
   { id: 'tobacco',    label: 'Tobacco',     icon: '🚬', cropRatio: 1.4375/2.625, displayRatio: '1.4375/2.625', isSlab: false },
 ]
 
+// Formats proposés dans le sélecteur d'ajout/édition (on garde CARD_FORMATS complet
+// pour l'affichage des cartes existantes en mini/oversized/carré/panorama).
+export const SELECTABLE_FORMATS: CardFormatDef[] = CARD_FORMATS.filter(
+  f => !['mini', 'oversized', 'square', 'panorama'].includes(f.id)
+)
+
 export function getFormat(id: string | null | undefined): CardFormatDef {
   return CARD_FORMATS.find(f => f.id === id) ?? CARD_FORMATS[0]
 }

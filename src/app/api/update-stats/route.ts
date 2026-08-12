@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,42 +11,47 @@ export async function POST(req: NextRequest) {
   try {
     const { userId, csvUrl } = await req.json()
     if (!userId) return NextResponse.json({ error: 'Missing params' }, { status: 400 })
+
+    const token = req.headers.get('authorization')?.replace('Bearer ', '')
+    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const { data: { user } } = await supabase.auth.getUser(token)
+    if (!user || user.id !== userId) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
     if (csvUrl && !csvUrl.startsWith('https://docs.google.com/spreadsheets/')) {
       return NextResponse.json({ error: 'Invalid CSV URL' }, { status: 400 })
     }
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    // CSV et cartes manuelles sont indépendants → en parallèle
-    const [csvText, manuellesRes] = await Promise.all([
-      csvUrl
-        ? fetch(csvUrl, { cache: 'no-store' }).then(r => r.ok ? r.text() : null).catch(() => null)
-        : Promise.resolve(null),
-      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId),
+    // CSV en parallèle avec la première page de cartes manuelles
+    const [csvText, firstPage] = await Promise.all([
+      csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
+      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).range(0, 999),
     ])
 
     if (csvText) {
-      const lines = csvText.split(/\r?\n/).slice(4)
-      lines.forEach(line => {
-        const c = line.split(',')
-        if (!c[0] || !c[0].includes('http')) return
-        stats.total++
-        if (c[10]?.toLowerCase().includes('oui')) stats.rc++
-        if (c[9]?.toLowerCase().includes('oui')) stats.auto++
-        if (c[11]?.toLowerCase().includes('oui')) stats.patch++
-        if (c[8]?.trim()) stats.num++
-      })
+      const csvStats = parseCardStats(csvText)
+      stats.total += csvStats.total
+      stats.rc += csvStats.rc
+      stats.auto += csvStats.auto
+      stats.num += csvStats.num
+      stats.patch += csvStats.patch
     }
 
-    if (manuellesRes.data) {
-      manuellesRes.data.forEach((m: any) => {
-        stats.total++
-        if (m.rc) stats.rc++
-        if (m.auto) stats.auto++
-        if (m.patch) stats.patch++
-        if (m.num) stats.num++
-      })
+    const manuelles: any[] = [...(firstPage.data || [])]
+    for (let page = 1; manuelles.length === page * 1000; page++) {
+      const { data } = await supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).range(page * 1000, page * 1000 + 999)
+      if (!data || data.length === 0) break
+      manuelles.push(...data)
     }
+
+    manuelles.forEach((m: any) => {
+      stats.total++
+      if (m.rc) stats.rc++
+      if (m.auto) stats.auto++
+      if (m.patch) stats.patch++
+      if (m.num) stats.num++
+    })
 
     // Le compteur mensuel (monthly_additions) n'est PAS mis à jour ici.
     // Un CSV n'a pas de date d'ajout par ligne : comparer le total actuel à
