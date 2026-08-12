@@ -501,7 +501,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       if (card) rows.push({ user_id: currentUser, card_key: card.f, collection: tag })
     }
     if (rows.length === 0) return
-    await supabase.from('card_collections').upsert(rows, { onConflict: 'user_id,card_key,collection' })
+    const { error } = await supabase.from('card_collections').upsert(rows, { onConflict: 'user_id,card_key,collection', ignoreDuplicates: true })
+    if (error) { toast.error('Erreur lors de l\'ajout à la collection : ' + error.message); return }
     setCards(prev => prev.map(c => {
       const id = c.isManuelle ? c.id_manuelle : c.f
       if (!id || !selectedCards.has(id)) return c
@@ -1327,15 +1328,27 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
               <div className="galerie-actions" style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
 
-                {/* Bouton Terminé — visible uniquement en mode édition */}
+                {/* Boutons mode édition */}
                 {isOwner && editMode && (
-                  <button
-                    onClick={() => { setEditMode(false); setSelectedCards(new Set()) }}
-                    className="btn-ajouter"
-                    style={{ background: '#e74c3c', color: '#fff', border: 'none', borderRadius: 10, padding: '12px 28px', fontWeight: 800, fontSize: 15, cursor: 'pointer', textAlign: 'center', whiteSpace: 'nowrap' }}
-                  >
-                    ✓ Terminé
-                  </button>
+                  <>
+                    <button
+                      onClick={() => {
+                        const allIds = new Set(filtered.map(getCardId))
+                        const allSelected = filtered.every(c => selectedCards.has(getCardId(c)))
+                        setSelectedCards(allSelected ? new Set() : allIds)
+                      }}
+                      style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 10, padding: '12px 18px', fontWeight: 800, fontSize: 15, cursor: 'pointer', whiteSpace: 'nowrap' }}
+                    >
+                      {filtered.length > 0 && filtered.every(c => selectedCards.has(getCardId(c))) ? '☐ Désélectionner' : '☑ Tout sélectionner'}
+                    </button>
+                    <button
+                      onClick={() => { setEditMode(false); setSelectedCards(new Set()) }}
+                      className="btn-ajouter"
+                      style={{ background: '#e74c3c', color: '#fff', border: 'none', borderRadius: 10, padding: '12px 28px', fontWeight: 800, fontSize: 15, cursor: 'pointer', textAlign: 'center', whiteSpace: 'nowrap' }}
+                    >
+                      ✓ Terminé
+                    </button>
+                  </>
                 )}
 
                 {/* Bouton "..." — actions secondaires */}
