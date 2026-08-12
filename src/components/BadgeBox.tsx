@@ -208,11 +208,12 @@ export default function BadgeBox({ userId }: { userId: string }) {
   useEffect(() => {
     if (!userId) return
     setLoading(true)
-    supabase.rpc('compute_user_badges', { p_user_id: userId })
-      .then(() => supabase.rpc('get_user_badge_data', { p_user_id: userId }))
+    supabase.rpc('get_user_badge_data', { p_user_id: userId })
       .then(({ data: rows }) => {
         if (rows?.[0]) setData(rows[0] as BadgeData)
         setLoading(false)
+        // Persistance en arrière-plan (fire-and-forget, non bloquant)
+        supabase.rpc('compute_user_badges', { p_user_id: userId }).catch(() => {})
       })
   }, [userId])
 
@@ -223,11 +224,19 @@ export default function BadgeBox({ userId }: { userId: string }) {
   )
   if (!data) return null
 
-  const earned = new Set(data.earned_badges || [])
   const statMap: Record<string, number> = {
     cartes: data.stat_total, rc: data.stat_rc, patch: data.stat_patch,
     num: data.stat_num, mois: data.mois_count,
     views: Number(data.views_count), teams: data.teams_count,
+  }
+
+  // Calcul local des badges gagnés depuis les stats — ne dépend plus de compute_user_badges
+  const earned = new Set<string>()
+  for (const cat of BADGE_CATEGORIES) {
+    const statVal = statMap[cat.id] ?? 0
+    for (const tier of cat.tiers) {
+      if (statVal >= tier.threshold) earned.add(tier.id)
+    }
   }
 
   return (

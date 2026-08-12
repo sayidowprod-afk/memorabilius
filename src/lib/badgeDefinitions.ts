@@ -18,9 +18,13 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
     id: 'cartes', emoji: '🃏', label: 'Collection', statKey: 'stat_total', unit: 'cartes',
     tiers: [
       { id: 'cartes_100',  threshold: 100,  label: '100'   },
+      { id: 'cartes_250',  threshold: 250,  label: '250'   },
       { id: 'cartes_500',  threshold: 500,  label: '500'   },
+      { id: 'cartes_750',  threshold: 750,  label: '750'   },
       { id: 'cartes_1000', threshold: 1000, label: '1 000' },
+      { id: 'cartes_1500', threshold: 1500, label: '1 500' },
       { id: 'cartes_2000', threshold: 2000, label: '2 000' },
+      { id: 'cartes_2500', threshold: 2500, label: '2 500' },
       { id: 'cartes_5000', threshold: 5000, label: '5 000' },
     ],
   },
@@ -89,5 +93,5 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
   },
 ]
 
-// 5+5+5+5+5+3+1 = 29
+// 9+8+8+8+5+3+1 = 42
 export const TOTAL_BADGES = BADGE_CATEGORIES.reduce((s, c) => s + c.tiers.length, 0)
