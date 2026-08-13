@@ -320,18 +320,14 @@ async function main() {
   console.log(`   ${remaining.length} années à scraper\n`)
   let browser = null
   let totalSets = 0
+  const { openBrowser: launchBrowser, killChrome } = require('./browser-helper')
   const openBrowser = async () => {
-    if (browser) { try { await browser.close() } catch {} }
-    await sleep(3000)
-    browser = await puppeteerExtra.launch({
-      executablePath: findChrome(), headless: false, defaultViewport: null,
-      userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape'),
-      args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled'],
-    })
-    const page = await browser.newPage()
+    const result = await launchBrowser()
+    browser = result.browser
+    const page = result.page
     await waitCF(page, TCDB)
     await sleep(rand(2000, 4000))
-    console.log('✓ Browser OK')
+    console.log('✓ Browser OK (webdriver=false)')
     return page
   }
   let page = await openBrowser()
@@ -380,7 +376,7 @@ async function main() {
       }
     }
     console.log(`\n\n🏁 TERMINÉ — ${cp.doneYears.length} années scrapées`)
-  } finally { try { await browser.close() } catch {} }
+  } finally { killChrome() }
 }
 
 main().catch(e => { console.error('Fatal:', e.message); process.exit(1) })

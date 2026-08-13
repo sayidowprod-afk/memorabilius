@@ -10,9 +10,7 @@
  */
 require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
 
-const puppeteerExtra = require('puppeteer-extra')
-const StealthPlugin  = require('puppeteer-extra-plugin-stealth')
-puppeteerExtra.use(StealthPlugin())
+const { openBrowser: launchBrowser, killChrome } = require('./browser-helper')
 const fs   = require('fs')
 const path = require('path')
 const { spawnSync } = require('child_process')
@@ -331,20 +329,13 @@ async function main() {
   let totalSets = 0
 
   const openBrowser = async () => {
-    if (browser) { try { await browser.close() } catch {} }
-    await sleep(3000)
-    browser = await puppeteerExtra.launch({
-      executablePath: findChrome(),
-      headless: false,
-      defaultViewport: null,
-      userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape'),
-      args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled'],
-    })
+    const result = await launchBrowser()
+    browser = result.browser
+    const page = result.page
     browserOpenedAt = totalSets
-    const page = await browser.newPage()
     await waitCF(page, TCDB)
     await sleep(rand(2000, 4000))
-    console.log('✓ Browser OK')
+    console.log('✓ Browser OK (webdriver=false)')
     return page
   }
 
@@ -437,7 +428,7 @@ async function main() {
       pending.forEach(f => console.log(`   node scripts/import-tcdb.js scripts/year-data/${f}`))
     }
   } finally {
-    try { await browser.close() } catch {}
+    killChrome()
   }
 }
 
