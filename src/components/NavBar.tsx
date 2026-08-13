@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import type { User } from '@supabase/supabase-js'
@@ -14,7 +15,7 @@ const LANGS = [
 ]
 
 export default function Navbar() {
-  const [user, setUser] = useState<User | null | undefined>(undefined)
+  const { user } = useAuth()
   const [isAdmin, setIsAdmin] = useState(false)
   const [notifs, setNotifs] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -47,27 +48,24 @@ export default function Navbar() {
     return () => { document.removeEventListener('mousedown', close); document.removeEventListener('keydown', close) }
   }, [])
 
+  // Handle PASSWORD_RECOVERY redirect
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data }) => {
-      setUser(data.user ?? null)
-      if (data.user) {
-        loadNotifs(data.user.id)
-        updateLastSeen(data.user.id)
-        const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', data.user.id).single()
-        setIsAdmin(p?.is_admin ?? false)
-      }
-    })
-    const { data: listener } = supabase.auth.onAuthStateChange((e, session) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((e) => {
       if (e === 'PASSWORD_RECOVERY' && pathname !== '/reset-password') {
         router.replace('/reset-password')
-        return
       }
-      setUser(session?.user ?? null)
-      if (session?.user) loadNotifs(session.user.id)
-      else setNotifs(0)
     })
     return () => listener.subscription.unsubscribe()
-  }, [])
+  }, [pathname, router])
+
+  // Load admin status and notifs when user becomes known
+  useEffect(() => {
+    if (!user) { setNotifs(0); setIsAdmin(false); return }
+    loadNotifs(user.id)
+    updateLastSeen(user.id)
+    supabase.from('profiles').select('is_admin').eq('id', user.id).single()
+      .then(({ data: p }) => setIsAdmin(p?.is_admin ?? false))
+  }, [user?.id])
 
   useEffect(() => {
     if (user) { loadNotifs(user.id); updateLastSeen(user.id) }
