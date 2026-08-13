@@ -19,13 +19,14 @@ interface FeaturedGallery {
 }
 
 async function fetchPepites(): Promise<Card[]> {
-  const { data: manuelles } = await supabase
+  const { data: manuelles, error } = await supabase
     .from('cartes_manuelles')
     .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id, is_horizontal')
     .not('image_recto', 'is', null)
     .order('created_at', { ascending: false })
     .limit(200)
 
+  if (error) console.error('[fetchPepites] Supabase error:', error.message)
   if (!manuelles?.length) return []
 
   // Scope profiles to only the user_ids present in the 200 cards — évite de charger tous les profils

@@ -27,6 +27,7 @@ import { CSS } from '@dnd-kit/utilities'
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import { useAuth } from '@/lib/AuthContext'
 import { getTeamById } from '@/lib/sportsTeams'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
@@ -377,12 +378,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [actionMenuOpen, setActionMenuOpen] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
 
+  const { user: authUser } = useAuth()
   const isOwner = currentUser === userId
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const cardParam = searchParams.get('card')
 
   useEffect(() => { setMounted(true) }, [])
+
+  // Sync currentUser avec l'état auth global (AuthProvider) — sans appel réseau
+  useEffect(() => {
+    setCurrentUser(authUser?.id || null)
+  }, [authUser])
 
   useEffect(() => {
     const init = async () => {
@@ -395,14 +402,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           else { setLoaded(true); return }
         }
 
-        // Session + tags + profil en parallèle — getSession mutualisé pour éviter un 2e appel plus bas
-        const [{ data: { session } }, { data: tagsData }, { data: profileData }] = await Promise.all([
-          supabase.auth.getSession(),
+        // Tags + profil en parallèle — pas de getSession() qui peut bloquer/pendre
+        const [{ data: tagsData }, { data: profileData }] = await Promise.all([
           supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId),
           supabase.from('profiles').select('*').eq('id', resolvedId).single(),
         ])
-        const uid = session?.user?.id || null
-        setCurrentUser(uid)
         const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
         setCsvTags(tagsMap)
 
@@ -415,14 +419,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
           if (data) setGrailCards(data)
         })
-        // Charger les likes — uid déjà connu, pas de 2e getSession
         supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId).limit(2000)
           .then(({ data: likesData }) => {
             if (!likesData) return
+            // authUser?.id peut être null si l'auth n'est pas encore résolue — liked sera recalculé à la prochaine visite
+            const myId = authUser?.id || null
             const map = new Map<string, { count: number; liked: boolean }>()
             for (const l of likesData) {
               const prev = map.get(l.card_key) || { count: 0, liked: false }
-              map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === uid })
+              map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === myId })
             }
             setCardLikes(map)
           })
