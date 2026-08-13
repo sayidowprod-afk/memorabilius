@@ -177,7 +177,7 @@ async function fetchTeams(page, sid, year) {
         const m = href.match(/\/team\/(\d+)\/(.+)/)
         if (!m || seen.has(m[1])) return
         seen.add(m[1])
-        results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')) })
+        results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
       })
       return results.filter(t => nhlSet.has(t.teamName))
     }, [...NHL_TEAMS])
@@ -194,15 +194,14 @@ async function fetchTeams(page, sid, year) {
       const m = href.match(/\/team\/(\d+)\/(.+)/)
       if (!m || seen.has(m[1])) return
       seen.add(m[1])
-      results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')) })
+      results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
     })
     return results.filter(t => nhlSet.has(t.teamName))
   }, [...NHL_TEAMS])
 }
 
-async function fetchTeamCards(page, sid, teamId, teamName) {
-  const encoded = encodeURIComponent(teamName)
-  await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${encoded}`)
+async function fetchTeamCards(page, sid, teamId, teamSlug) {
+  await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${teamSlug}`)
   await sleep(rand(250, 600))
   return await page.evaluate(() => {
     const cards = []
@@ -268,12 +267,12 @@ async function scrapeSet(page, set, year, cp) {
   console.log(`  📂 ${teams.length} équipes`)
   const allCards = []
   for (let ti = 0; ti < teams.length; ti++) {
-    const { teamId, teamName } = teams[ti]
+    const { teamId, teamName, teamSlug } = teams[ti]
     process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
     let ok = false
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
-        const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamName)
+        const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamSlug || encodeURIComponent(teamName))
         allCards.push(...cards); console.log(cards.length); ok = true; break
       } catch (e) {
         if (attempt < 3) { const w = rand(3000,6000)*attempt; process.stdout.write(`❌ retry... `); await sleep(w) }
