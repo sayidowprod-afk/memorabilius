@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB Tennis — Major Releases uniquement
  * Usage: node scripts/scrape-all-years-tennis.js [--from=2020] [--to=2000] [--dry-run]

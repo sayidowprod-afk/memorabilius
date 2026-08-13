@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB NBA — Toutes saisons 2025→1969, Major Releases uniquement
  * Checkpoint, délais aléatoires anti-détection, import via nouveau process

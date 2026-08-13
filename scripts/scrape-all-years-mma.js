@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB MMA — Major Releases uniquement
  * Usage: node scripts/scrape-all-years-mma.js [--from=2020] [--to=2000] [--dry-run]

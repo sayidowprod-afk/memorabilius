@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB Hockey — Toutes saisons 2026→1960, Major Releases uniquement
  *

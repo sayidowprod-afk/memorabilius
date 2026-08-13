@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB NFL — Toutes saisons 2024→1980, Major Releases uniquement
  * Checkpoint, délais aléatoires anti-détection, import via nouveau process

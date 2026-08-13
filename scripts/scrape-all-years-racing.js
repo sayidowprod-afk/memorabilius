@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB Racing — Major Releases uniquement
  * Usage: node scripts/scrape-all-years-racing.js [--from=2020] [--to=2000] [--dry-run]

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB Baseball — Toutes saisons 2026→1948, Major Releases uniquement
  *
