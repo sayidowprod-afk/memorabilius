@@ -328,7 +328,9 @@ async function main() {
   const cp = loadCheckpoint()
   console.log(`⚽ Scraper Soccer International — ${FROM} → ${TO}`)
   console.log(`   Section International | Checkpoint: ${cp.doneYears.length} années déjà faites\n`)
+  const ASC = process.argv.includes('--asc')
   const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
+  if (ASC) years.reverse()
   const remaining = years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
   let browser = null; let totalSets = 0

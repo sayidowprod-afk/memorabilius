@@ -259,7 +259,9 @@ async function main() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR)
   const cp = loadCheckpoint()
   console.log(`🥊 Scraper MMA Major Releases — ${FROM} → ${TO}\n   Checkpoint: ${cp.doneYears.length} années faites\n`)
+  const ASC = process.argv.includes('--asc')
   const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
+  if (ASC) years.reverse()
   const remaining = years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
 

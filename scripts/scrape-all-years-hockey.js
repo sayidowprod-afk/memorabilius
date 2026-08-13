@@ -296,7 +296,9 @@ async function main() {
   const cp = loadCheckpoint()
   console.log(`🏒 Scraper Hockey — saisons ${FROM}-${String(FROM+1).slice(2)} → ${TO}-${String(TO+1).slice(2)}`)
   console.log(`   Major Releases uniquement | Checkpoint: ${cp.doneYears.length} années déjà faites\n`)
+  const ASC = process.argv.includes('--asc')
   const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
+  if (ASC) years.reverse()
   const remaining = years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
   let browser = null; let totalSets = 0
