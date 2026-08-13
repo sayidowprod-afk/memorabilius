@@ -6,10 +6,10 @@
  * Stratégie CF: lance Chrome SANS --enable-automation → navigator.webdriver=false → CF ne détecte pas le bot
  */
 require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
-const puppeteerExtra = require('puppeteer-extra')  // puppeteer-extra supporte aussi connect()
+const { openBrowser: launchBrowser, killChrome } = require('./browser-helper')
 const fs             = require('fs')
 const path           = require('path')
-const { spawnSync, spawn } = require('child_process')
+const { spawnSync }  = require('child_process')
 
 const TCDB          = 'https://www.tcdb.com'
 const SPORT_SLUG    = 'MMA'
@@ -17,7 +17,6 @@ const SPORT_NAME    = 'mma'
 const CHECKPOINT    = path.join(__dirname, `checkpoint-all-${SPORT_NAME}.json`)
 const DATA_DIR      = path.join(__dirname, 'year-data')
 const IMPORT_SCRIPT = path.join(__dirname, 'import-tcdb.js')
-const DEBUG_PORT    = 9222
 
 const args = Object.fromEntries(
   process.argv.slice(2).filter(a => a.startsWith('--')).map(a => {
@@ -27,6 +26,7 @@ const args = Object.fromEntries(
 const FROM    = args.from ? parseInt(args.from) : 2026
 const TO      = args.to   ? parseInt(args.to)   : 2000
 const DRY_RUN = !!args['dry-run']
+const SLOT    = args.slot ? parseInt(args.slot) : 1
 
 const rand       = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const sleep      = ms => new Promise(r => setTimeout(r, ms))
@@ -34,14 +34,6 @@ const delayTeam  = () => sleep(rand(300, 700))
 const delaySet   = () => sleep(rand(1500, 3500))
 const BREAK_EVERY = 60
 const delayBreak = () => { const ms = rand(20000, 40000); console.log(`\n☕ Pause ${Math.round(ms/1000)}s...\n`); return sleep(ms) }
-
-function findChrome() {
-  for (const p of [
-    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-    process.env.LOCALAPPDATA + '\\Google\\Chrome\\Application\\chrome.exe',
-  ]) { try { if (fs.existsSync(p)) return p } catch {} }
-}
 function loadCheckpoint() { try { return JSON.parse(fs.readFileSync(CHECKPOINT, 'utf8')) } catch { return { doneYears: [], doneTcdbIds: [] } } }
 function saveCheckpoint(cp) { fs.writeFileSync(CHECKPOINT, JSON.stringify(cp, null, 2)) }
 
@@ -272,37 +264,12 @@ async function main() {
   console.log(`   ${remaining.length} années à scraper\n`)
 
   let browser = null
-  let chromeProcess = null
   let totalSets = 0
 
   const openBrowser = async () => {
-    if (browser) { try { await browser.disconnect() } catch {} }
-    if (chromeProcess) { try { chromeProcess.kill() } catch {}; await sleep(3000) }
-
-    const chromePath = findChrome()
-    const userDataDir = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape')
-
-    // Lance Chrome SANS --enable-automation → navigator.webdriver reste false → CF ne détecte pas le bot
-    chromeProcess = spawn(chromePath, [
-      `--remote-debugging-port=${DEBUG_PORT}`,
-      `--user-data-dir=${userDataDir}`,
-      '--no-first-run',
-      '--no-default-browser-check',
-      '--disable-default-apps',
-      '--window-size=1280,900',
-      'about:blank'
-    ], { detached: false, stdio: 'ignore' })
-
-    await sleep(3000)
-
-    browser = await puppeteerExtra.connect({
-      browserURL: `http://localhost:${DEBUG_PORT}`,
-      defaultViewport: null
-    })
-
-    const pages = await browser.pages()
-    const page = pages[0] || await browser.newPage()
-
+    const result = await launchBrowser(SLOT)
+    browser = result.browser
+    const page = result.page
     console.log('🌐 Ouverture TCDB (navigator.webdriver=false)...')
     await page.goto(TCDB, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {})
     const ok = await waitCF(page)
@@ -343,8 +310,7 @@ async function main() {
     }
     console.log(`\n\n🏁 TERMINÉ — ${cp.doneYears.length} années scrapées`)
   } finally {
-    try { await browser.disconnect() } catch {}
-    try { chromeProcess.kill() } catch {}
+    killChrome(SLOT)
   }
 }
 
