@@ -111,7 +111,7 @@ async function fetchSets(page, year) {
       const href = el.getAttribute('href') || ''; const m = href.match(/sid\/(\d+)/)
       if (!m || seen.has(m[1])) continue
       const name = el.textContent?.trim(); if (!name || name.length < 3) continue
-      seen.add(m[1]); results.push({ tcdb_id: parseInt(m[1]), name })
+      seen.add(m[1]); results.push({ tcdb_id: parseInt(m[1]), name, href: el.getAttribute('href') || '' })
     }
     return results
   })
@@ -177,10 +177,70 @@ function importYear(jsonFile) {
   return spawnSync('node', [IMPORT_SCRIPT, jsonFile], { stdio: 'inherit' }).status === 0
 }
 
+async function parseCardsFromPage(page) {
+  return await page.evaluate(() => {
+    const cards = []; let currentVariation = null; let inInserts = false
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+      acceptNode(node) {
+        const tag = node.tagName
+        if (['SCRIPT','STYLE','NAV','HEADER','FOOTER'].includes(tag)) return NodeFilter.FILTER_REJECT
+        if (['H3','H2','STRONG','TR'].includes(tag)) return NodeFilter.FILTER_ACCEPT
+        return NodeFilter.FILTER_SKIP
+      }
+    })
+    while (walker.nextNode()) {
+      const el = walker.currentNode; const tag = el.tagName; const text = el.textContent?.trim() || ''
+      if (tag === 'H3' || tag === 'H2') {
+        if (/^base cards?$/i.test(text)) { currentVariation = null; inInserts = false }
+        else if (/^inserts and related/i.test(text)) { inInserts = true; currentVariation = null }
+        continue
+      }
+      if (tag === 'STRONG' && inInserts) { if (text && text.length < 100 && !/^\d+\s*record/i.test(text)) currentVariation = text; continue }
+      if (tag === 'TR') {
+        const tds = Array.from(el.querySelectorAll('td')); if (tds.length < 2) continue
+        let cardNum = null, playerName = null, team = null
+        for (const td of tds) {
+          const rawText = td.textContent?.trim() || ''; const linkText = td.querySelector('a')?.textContent?.trim() || null
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText)
+          if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
+          const isName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
+          if (!playerName && isName) { playerName = linkText; continue }
+          if (playerName && !team && isName) team = linkText
+        }
+        if (!cardNum || !playerName) continue
+        const rowText = el.textContent || ''
+        cards.push({ card_number: cardNum, player_name: playerName, team: team||null, variation: currentVariation||null, is_rc: /\bRC\b/.test(rowText), is_auto: /\bAU\b/.test(rowText) })
+      }
+    }
+    return cards
+  })
+}
+
 async function scrapeSet(page, set, cp) {
   if (cp.doneTcdbIds.includes(set.tcdb_id)) { console.log(`  ⏭️  déjà fait`); return null }
+  // Essai 1: page directe (href de ViewAll) — sports sans équipes
+  if (set.href) {
+    const setUrl = set.href.startsWith('http') ? set.href : `${TCDB}${set.href.startsWith('/') ? '' : '/'}${set.href}`
+    await waitCF(page, setUrl)
+    await sleep(rand(500, 1000))
+    const directCards = await parseCardsFromPage(page)
+    if (directCards.length) {
+      const seen = new Set()
+      const unique = directCards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
+      console.log(`  📊 ${unique.length} cartes (page directe)`)
+      return { set, unique, brand: null }
+    }
+    console.log(`  ℹ️  0 cartes sur page directe — essai via équipes...`)
+  }
   const teams = await fetchTeams(page, set.tcdb_id)
-  if (!teams.length) { console.log(`  ⚠️  0 entrées — ignoré`); return null }
+  if (!teams.length) {
+    const cards = await parseCardsFromPage(page)
+    if (!cards.length) { console.log(`  ⚠️  0 cartes`); return null }
+    const seen = new Set()
+    const unique = cards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
+    console.log(`  📊 ${unique.length} cartes uniques (sans équipes)`)
+    return { set, unique, brand: null }
+  }
   console.log(`  📂 ${teams.length} entrées`)
   const allCards = []
   for (let ti = 0; ti < teams.length; ti++) {
