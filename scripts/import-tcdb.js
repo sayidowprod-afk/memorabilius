@@ -76,7 +76,9 @@ async function main() {
       console.log(`\r  ✅ ${unique.length} cartes insérées (id: ${setData.id})`)
       ok++
     } catch (e) {
-      console.log(`\n  ❌ ${e.response?.data || e.message}`)
+      const detail = e.response?.data
+      const msg = typeof detail === 'object' ? JSON.stringify(detail) : (detail || e.message)
+      console.log(`\n  ❌ ${msg}`)
       err++
     }
   }

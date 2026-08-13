@@ -2,13 +2,14 @@
 const nextConfig = {
   serverExternalPackages: ['web-push'],
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: '*.supabase.co' },
-      { protocol: 'https', hostname: 'a.espncdn.com' },
-      { protocol: 'https', hostname: '*.googleusercontent.com' },
-      { protocol: 'https', hostname: 'placehold.co' },
-    ]
-  },
+  remotePatterns: [
+    { protocol: 'https', hostname: '*.supabase.co' },
+    { protocol: 'https', hostname: 'a.espncdn.com' },
+    { protocol: 'https', hostname: '*.googleusercontent.com' },
+    { protocol: 'https', hostname: 'placehold.co' },
+  ],
+  minimumCacheTTL: 86400,
+},
   async headers() {
     return [
       {
