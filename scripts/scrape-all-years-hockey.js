@@ -179,7 +179,8 @@ async function fetchTeams(page, sid, year) {
         seen.add(m[1])
         results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
       })
-      return results.filter(t => nhlSet.has(t.teamName))
+      const nhlFiltered = results.filter(t => nhlSet.has(t.teamName))
+      return nhlFiltered.length > 0 ? nhlFiltered : results
     }, [...NHL_TEAMS])
     if (teams.length > 0) return teams
   }
@@ -196,7 +197,8 @@ async function fetchTeams(page, sid, year) {
       seen.add(m[1])
       results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
     })
-    return results.filter(t => nhlSet.has(t.teamName))
+    const nhlFiltered = results.filter(t => nhlSet.has(t.teamName))
+    return nhlFiltered.length > 0 ? nhlFiltered : results
   }, [...NHL_TEAMS])
 }
 

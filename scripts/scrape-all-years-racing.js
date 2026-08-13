@@ -126,15 +126,14 @@ async function fetchTeams(page, sid) {
     document.querySelectorAll('a[href*="/team/"]').forEach(a => {
       const href = a.getAttribute('href') || ''; const m = href.match(/\/team\/(\d+)\/(.+)/)
       if (!m || seen.has(m[1])) return; seen.add(m[1])
-      results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g,' ')) })
+      results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g,' ')), teamSlug: m[2] })
     })
     return results
   })
 }
 
-async function fetchTeamCards(page, sid, teamId, teamName) {
-  const encoded = encodeURIComponent(teamName)
-  await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${encoded}`)
+async function fetchTeamCards(page, sid, teamId, teamSlug) {
+  await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${teamSlug}`)
   await sleep(rand(250, 600))
   return await page.evaluate(() => {
     const cards = []; let currentVariation = null; let inInserts = false
@@ -219,7 +218,29 @@ async function parseCardsFromPage(page) {
 
 async function scrapeSet(page, set, cp) {
   if (cp.doneTcdbIds.includes(set.tcdb_id)) { console.log(`  ⏭️  déjà fait`); return null }
-  // Essai 1: page directe (href de ViewAll) — sports sans équipes
+  // Essai 1 : ViewTeams (pilotes/athlètes = "équipes" sur TCDB) — checklist complète
+  const teams = await fetchTeams(page, set.tcdb_id)
+  if (teams.length) {
+    console.log(`  📂 ${teams.length} entrées`)
+    const allCards = []
+    for (let ti = 0; ti < teams.length; ti++) {
+      const { teamId, teamName, teamSlug } = teams[ti]
+      process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
+      let ok = false
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try { const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamSlug || encodeURIComponent(teamName)); allCards.push(...cards); console.log(cards.length); ok = true; break }
+        catch (e) { if (attempt < 3) { process.stdout.write(`❌ retry... `); await sleep(rand(3000,6000)*attempt) } else console.log(`❌ abandon: ${e.message}`) }
+      }
+      if (ok) await delayTeam()
+    }
+    if (allCards.length) {
+      const seen = new Set()
+      const unique = allCards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
+      console.log(`  📊 ${unique.length} cartes uniques`)
+      return { set, unique, brand: null }
+    }
+  }
+  // Essai 2 : page directe du set
   if (set.href) {
     const setUrl = set.href.startsWith('http') ? set.href : `${TCDB}${set.href.startsWith('/') ? '' : '/'}${set.href}`
     await waitCF(page, setUrl)
@@ -231,32 +252,12 @@ async function scrapeSet(page, set, cp) {
       console.log(`  📊 ${unique.length} cartes (page directe)`)
       return { set, unique, brand: null }
     }
-    console.log(`  ℹ️  0 cartes sur page directe — essai via équipes...`)
   }
-  const teams = await fetchTeams(page, set.tcdb_id)
-  if (!teams.length) {
-    const cards = await parseCardsFromPage(page)
-    if (!cards.length) { console.log(`  ⚠️  0 cartes`); return null }
-    const seen = new Set()
-    const unique = cards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
-    console.log(`  📊 ${unique.length} cartes uniques (sans équipes)`)
-    return { set, unique, brand: null }
-  }
-  console.log(`  📂 ${teams.length} entrées`)
-  const allCards = []
-  for (let ti = 0; ti < teams.length; ti++) {
-    const { teamId, teamName } = teams[ti]
-    process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
-    let ok = false
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      try { const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamName); allCards.push(...cards); console.log(cards.length); ok = true; break }
-      catch (e) { if (attempt < 3) { process.stdout.write(`❌ retry... `); await sleep(rand(3000,6000)*attempt) } else console.log(`❌ abandon: ${e.message}`) }
-    }
-    if (ok) await delayTeam()
-  }
-  if (!allCards.length) { console.log(`  ⚠️  0 cartes`); return null }
+  // Essai 3 : parser la page déjà chargée
+  const cards = await parseCardsFromPage(page)
+  if (!cards.length) { console.log(`  ⚠️  0 cartes`); return null }
   const seen = new Set()
-  const unique = allCards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
+  const unique = cards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
   console.log(`  📊 ${unique.length} cartes uniques`)
   return { set, unique, brand: null }
 }
