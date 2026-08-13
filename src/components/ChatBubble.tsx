@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useIsNative } from '@/lib/useIsNative'
 
 const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
@@ -18,6 +19,9 @@ const STATUS_COLOR: Record<string, string> = { pending: '#7a5500', accepted: '#1
 
 export default function ChatBubble() {
   const { dark } = useTheme()
+  const isNative = useIsNative()
+  // Sur l'app native, la bottom bar (64px + safe-area) prend la place du bas d'écran.
+  const navOffset = isNative ? 'calc(64px + env(safe-area-inset-bottom))' : '0px'
   const [userId, setUserId] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
   const [unread, setUnread] = useState(0)
@@ -220,7 +224,7 @@ export default function ChatBubble() {
       <button
         onClick={toggleOpen}
         style={{
-          position: 'fixed', bottom: 24, right: 24, zIndex: 9500,
+          position: 'fixed', bottom: `calc(24px + ${navOffset})`, right: 24, zIndex: 9500,
           height: 52, borderRadius: !open && unread > 0 ? 26 : '50%',
           width: !open && unread > 0 ? 'auto' : 52,
           padding: !open && unread > 0 ? '0 18px' : '0',
@@ -238,8 +242,8 @@ export default function ChatBubble() {
       {/* Panneau */}
       {open && (
         <div style={{
-          position: 'fixed', bottom: 88, right: 16, zIndex: 9500,
-          width: 'min(320px, calc(100vw - 32px))', height: 440, maxHeight: 'calc(100vh - 120px)',
+          position: 'fixed', bottom: `calc(88px + ${navOffset})`, right: 16, zIndex: 9500,
+          width: 'min(320px, calc(100vw - 32px))', height: 440, maxHeight: `calc(100vh - 120px - ${navOffset})`,
           background: bg, borderRadius: 16, boxShadow: '0 8px 40px rgba(0,0,0,0.3)',
           border: `1px solid ${border}`, display: 'flex', flexDirection: 'column', overflow: 'hidden',
         }}>

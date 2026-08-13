@@ -1,8 +1,13 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "fr.memorabilius.twa",
-        "sha256_cert_fingerprints": ["89:4A:01:D9:FF:34:57:ED:ED:6D:67:BD:C1:7B:12:71:3A:41:65:A5:C3:67:23:65:8D:9A:03:1B:31:B2:15:9A"]
-      }
-    }]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "fr.memorabilius.app",
+      "sha256_cert_fingerprints": [
+        "01:E1:32:A6:49:13:B1:74:56:63:1B:D7:79:FB:8E:74:29:0A:54:C6:FE:17:DC:27:16:EB:01:AC:A0:D3:89:04",
+        "E8:3E:DD:9E:46:81:D0:ED:20:AA:90:25:19:17:78:84:8E:C8:D5:2D:B8:1E:13:7A:71:CF:9B:BA:C6:A4:78:C2"
+      ]
+    }
+  }
+]

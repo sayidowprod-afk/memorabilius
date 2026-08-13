@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import QRCode from 'qrcode'
 import { useLang } from '@/lib/LangContext'
+import { useIsNative } from '@/lib/useIsNative'
 
 interface Props {
   url: string
@@ -32,8 +33,20 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
   const [copied, setCopied] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { t } = useLang()
+  const isNative = useIsNative()
 
   const fullUrl = `https://www.memorabilius.fr${url}`
+
+  const openShare = async () => {
+    if (isNative) {
+      try {
+        const { Share } = await import('@capacitor/share')
+        await Share.share({ title, text: subtitle, url: fullUrl, dialogTitle: t('gallery_share') })
+        return
+      } catch {}
+    }
+    setShowModal(true)
+  }
 
   useEffect(() => {
     if (!showModal) return
@@ -142,7 +155,7 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} style={buttonStyle ?? {
+      <button onClick={openShare} style={buttonStyle ?? {
         background: 'none', border: '1px solid #ddd', borderRadius: 8,
         padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer',
         fontSize: compact ? 16 : 13, fontWeight: 700,

@@ -649,7 +649,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         onMouseEnter={() => setCloseHover(true)}
         onMouseLeave={() => setCloseHover(false)}
         style={{
-          position: 'absolute', top: 10, right: 10, cursor: 'pointer', zIndex: 10001,
+          position: 'absolute', top: 'calc(10px + env(safe-area-inset-top))', right: 10, cursor: 'pointer', zIndex: 10001,
           background: closeHover ? '#003DA6' : (dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)'),
           color: closeHover ? 'white' : textColor,
           border: closeHover ? '1px solid #003DA6' : `1px solid ${borderColor}`,
@@ -1377,7 +1377,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 <div style={{ position: 'fixed', inset: 0, zIndex: 99999999, display: 'flex', flexDirection: 'column', background: bg, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
 
                   {/* ── Nav ── */}
-                  <div style={{ background: card, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#e8e8e8'}`, padding: '0 16px', height: 52, display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+                  <div style={{ background: card, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#e8e8e8'}`, padding: '0 16px', height: 52, paddingTop: 'env(safe-area-inset-top)', boxSizing: 'content-box', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
                     <button onClick={() => setSetPickerStep('search')}
                       style={{ background: 'none', border: 'none', cursor: 'pointer', color: accent, fontSize: 14, fontWeight: 700, padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
                       ← Changer

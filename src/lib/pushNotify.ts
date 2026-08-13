@@ -5,10 +5,65 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+let fcmApp: import('firebase-admin/app').App | null | undefined
+
+// undefined = pas encore tenté, null = tenté et échoué (clé absente/invalide) — évite de retenter à chaque appel.
+async function getFcmApp() {
+  if (fcmApp !== undefined) return fcmApp
+  const key = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
+  if (!key) { fcmApp = null; return null }
+  try {
+    const { initializeApp, cert, getApps } = await import('firebase-admin/app')
+    const existing = getApps()[0]
+    fcmApp = existing || initializeApp({ credential: cert(JSON.parse(key)) })
+  } catch (err) {
+    console.error('[fcm] Clé de compte de service invalide:', err)
+    fcmApp = null
+  }
+  return fcmApp
+}
+
+async function sendFcmToUser(userId: string, payload: { title: string; body: string; url?: string }) {
+  const app = await getFcmApp()
+  if (!app) return
+
+  const { data: tokens } = await supabaseAdmin
+    .from('fcm_tokens')
+    .select('token')
+    .eq('user_id', userId)
+
+  if (!tokens?.length) return
+
+  const { getMessaging } = await import('firebase-admin/messaging')
+  const messaging = getMessaging(app)
+
+  const results = await Promise.allSettled(
+    tokens.map(t => messaging.send({
+      token: t.token,
+      notification: { title: payload.title, body: payload.body },
+      data: payload.url ? { url: payload.url } : undefined,
+      android: { priority: 'high' as const },
+    }))
+  )
+
+  const invalid = tokens
+    .filter((_, i) => {
+      const r = results[i]
+      return r.status === 'rejected' && /registration-token-not-registered|invalid-argument/.test(String(r.reason?.errorInfo?.code || r.reason))
+    })
+    .map(t => t.token)
+
+  if (invalid.length) {
+    await supabaseAdmin.from('fcm_tokens').delete().eq('user_id', userId).in('token', invalid)
+  }
+}
+
 export async function sendPushToUser(
   userId: string,
   payload: { title: string; body: string; url?: string }
 ) {
+  await sendFcmToUser(userId, payload)
+
   const { data: subs } = await supabaseAdmin
     .from('push_subscriptions')
     .select('endpoint, p256dh, auth')

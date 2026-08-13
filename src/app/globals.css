@@ -54,6 +54,8 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
+body.native-bottom-nav { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+
 /* ===== DARK MODE FORCÉ SUR TOUS LES ÉLÉMENTS ===== */
 [data-theme="dark"] div,
 [data-theme="dark"] section,
@@ -401,6 +403,44 @@ img {
 }
 
 .kofi-btn:hover { opacity: 0.85; }
+
+/* ===== APP NATIVE — retire les tics "navigateur", ajoute le feedback tactile ===== */
+body.native-app {
+  -webkit-tap-highlight-color: transparent;
+}
+body.native-app * {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+body.native-app input,
+body.native-app textarea,
+body.native-app [contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+/* opacity uniquement — un transform ici deviendrait le containing block de
+   tout descendant position:fixed (modales plein ecran type Viewer3D) et le
+   ferait s'afficher hors-viewport au lieu de plein ecran. */
+body.native-app button:active,
+body.native-app a:active,
+body.native-app [role="button"]:active {
+  opacity: 0.6;
+}
+body.native-app button,
+body.native-app a,
+body.native-app [role="button"] {
+  transition: opacity 0.08s ease;
+}
+
+/* .page-transition (PageTransition.tsx) est toujours main > *:first-child,
+   donc visé par la règle "contain: layout style" plus bas (perf LCP).
+   `contain: layout` fait aussi office de containing block pour les
+   descendants position:fixed (ex: Viewer3D) — meme piège qu'un transform.
+   On neutralise ici avec un sélecteur plus spécifique. */
+main > .page-transition:first-child {
+  contain: none;
+}
 
 /* ===== NAV CLS FIX ===== */
 /* Ces règles doivent être dans globals.css (pas dans un <style> React)

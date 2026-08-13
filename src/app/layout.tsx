@@ -12,12 +12,20 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import TrackView from '@/components/TrackView'
 import InstallBanner from '@/components/InstallBanner'
+import WebOnly from '@/components/WebOnly'
+import MobileTopBar from '@/components/MobileTopBar'
+import MobileBottomNav from '@/components/MobileBottomNav'
+import NativeInit from '@/components/NativeInit'
+import PageTransition from '@/components/PageTransition'
+import PullToRefresh from '@/components/PullToRefresh'
+import PushInit from '@/components/PushInit'
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
   themeColor: '#003DA6',
+  viewportFit: 'cover',
 }
 
 export const metadata: Metadata = {
@@ -75,15 +83,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
         <ThemeProvider>
           <LangProvider>
-            <Navbar />
+            <NativeInit />
+            <PushInit />
+            <PullToRefresh />
+            <WebOnly><Navbar /></WebOnly>
+            <MobileTopBar />
             <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
-              {children}
+              <PageTransition>{children}</PageTransition>
             </main>
-            <Footer />
+            <WebOnly><Footer /></WebOnly>
             <ChatBubble />
             <Toaster />
             <OnboardingTooltip />
-            <InstallBanner />
+            <WebOnly><InstallBanner /></WebOnly>
+            <MobileBottomNav />
           </LangProvider>
         </ThemeProvider>
         </AuthProvider>

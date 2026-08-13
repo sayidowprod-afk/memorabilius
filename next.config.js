@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   serverExternalPackages: ['web-push'],
+  // Permet à l'app Capacitor (chargée depuis l'IP réseau) de se connecter au HMR en dev.
+  // Sans ça Next.js bloque le websocket _next/webpack-hmr et le JS crashe côté client.
+  allowedDevOrigins: ['192.168.1.189'],
   images: {
   remotePatterns: [
     { protocol: 'https', hostname: '*.supabase.co' },

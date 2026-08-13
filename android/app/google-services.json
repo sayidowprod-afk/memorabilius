@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "416185673455",
+    "project_id": "memorabilius-73233",
+    "storage_bucket": "memorabilius-73233.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416185673455:android:53efc2a31db75eaf5b1d1a",
+        "android_client_info": {
+          "package_name": "fr.memorabilius.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN3mqcr5CXt0JRvAcuzZlx357DAXxEpDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
