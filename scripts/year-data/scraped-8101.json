@@ -1,0 +1,3815 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8101,
+        "name": "2003 Fleer Patchworks"
+      },
+      "unique": [
+        {
+          "card_number": "8",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Francisco Rodriguez",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-DI",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Diamond Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PW-DE2",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-LA",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-LA",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-NP",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-NP",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-NP",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Francisco Rodriguez",
+          "team": "Anaheim Angels",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Junior Spivey",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tim Olson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "MG-PW",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CS-PW",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MG-PW",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CS-PW",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MG-PW",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-CS2",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-NP",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-NP",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-NP",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Junior Spivey",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tim Olson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Adam LaRoche",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AJ-PW",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-PW",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AJ-PW",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-PW",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KW-PW",
+          "player_name": "Kerry Wood",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AJ-PW",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-PW",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KW-PW",
+          "player_name": "Kerry Wood",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-AJ2",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-GM2",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-LA",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-LA",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-NP",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-NP",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-NP",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-NP",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-NP",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-NP",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-NP",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-NP",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GM-NP",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Adam LaRoche",
+          "team": "Atlanta Braves",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rodrigo Lopez",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rodrigo Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Shea Hillenbrand",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-NP",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-NP",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-NP",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-NP",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-NP",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-NP",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-NP",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-NP",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-NG2",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-PM2",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-NG2",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-PM2",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-NP",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Shea Hillenbrand",
+          "team": "Boston Red Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Matt Bruback",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Nic Jackson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-DI",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Diamond Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KW-PW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-HC2",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-KW2",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NP",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NP",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NP",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-SS2",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NP",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-PPF1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KW-PPF1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RC-PPF1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Matt Bruback",
+          "team": "Chicago Cubs",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Nic Jackson",
+          "team": "Chicago Cubs",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-PW",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-PW",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-PW",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-FT2",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MO-LA",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PK-LA",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MO-LA",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PK-LA",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-NP",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-NP",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-NP",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-NP",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FT-NP",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-AK2",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AD-LA",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AD-LA",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-AD2",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-AD2",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-NG",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-NG",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-PPF1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Ellis Burks",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Jhonny Peralta",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Cliff Lee",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OV-NP",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Ellis Burks",
+          "team": "Cleveland Indians",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Jhonny Peralta",
+          "team": "Cleveland Indians",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Cliff Lee",
+          "team": "Cleveland Indians",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-TH2",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-LA",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-LA",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-LW2",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LW-NG",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LW-NG",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Bobby Higginson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Nook Logan",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Bobby Higginson",
+          "team": "Detroit Tigers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Nook Logan",
+          "team": "Detroit Tigers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-PW",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-PW",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-PW",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-JB2",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-PW",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RO-PW",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-PW",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RO-PW",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-PW",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RO-PW",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-LB2",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-RO2",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-NP",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-NP",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-NP",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-JB2",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-CB2",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-JB2",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-NG",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-NG",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Joe Randa",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Alejandro Machado",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-CB2",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-LA",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-LA",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Joe Randa",
+          "team": "Kansas City Royals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Alejandro Machado",
+          "team": "Kansas City Royals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AB-PW",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AB-PW",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AB-PW",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-AB2",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-PL2",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KB-LA",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-LA",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KB-LA",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-LA",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-NP",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-NP",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-NP",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-NP",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-PPF1",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "David Pember",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dave Pember",
+          "team": "Milwaukee Brewers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Michael Cuddyer",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Michael Cuddyer",
+          "team": "Minnesota Twins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brad Wilkerson",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Terrmel Sledge",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-PW",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-PW",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-PW",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-TA2",
+          "player_name": "Tony Armas Jr.",
+          "team": "Montreal Expos",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-NP",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-NP",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-NP",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-NP",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-VG2",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-NP",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Brad Wilkerson",
+          "team": "Montreal Expos",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Terrmel Sledge",
+          "team": "Montreal Expos",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-PW",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-PW",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-PW",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-RA2",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-LA",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-LA",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-NP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-NP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-NP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-NP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-MP2",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-NP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-NG",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-NG",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-PPF1",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-PPF1",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-DI",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Diamond Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BW-PW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-PW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-PW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-LA",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-LA",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-LA",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-LA",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NG",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-NG",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-NG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RC-NG",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Jersey",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NG",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-NG",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-NG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RC-NG",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Numbers Game Patch",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-PPF1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KW-PPF1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-PPF1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-PPF1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RC-PPF1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Joe Valentine",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-PW",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-PW",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-PW",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-EC2",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-MM2",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BZ-NP",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BZ-NP",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BZ-NP",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-BZ2",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-TH2",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-TH2",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BZ-NP",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MT-NG",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MT-NG",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Joe Valentine",
+          "team": "Oakland Athletics",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-DI",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Diamond Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BA-PW",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BA-PW",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BA-PW",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-BA2",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-JT2",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-LA",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-LA",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-NP",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-NP",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-PB2",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-NP",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EH-PPF1",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-PPF1",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Aramis Ramirez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-KB2",
+          "player_name": "Kris Benson",
+          "team": "Pittsburgh Pirates",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Aramis Ramirez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Shane Victorino",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Shane Victorino",
+          "team": "San Diego Padres",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Lance Niekro",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-PPF1",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Lance Niekro",
+          "team": "San Francisco Giants",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Freddy Garcia",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KS-PW",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KS-PW",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KS-PW",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-KS2",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Freddy Garcia",
+          "team": "Seattle Mariners",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Morris",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-SR2",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JD-LA",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JD-LA",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EH-PPF1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-PPF1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Morris",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Ben Grieve",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Pete LaForest",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Hector Luna",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-RB2",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-RB2",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Ben Grieve",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Pete LaForest",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Hector Luna",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Travis Hughes",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-PW",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-PW",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-PW",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-AR2",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NP",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-NP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Commemorative Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NP",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-NP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Jersey Trim",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NP",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-NP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Nameplate Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NP",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-NP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Number Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-RP2",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NPT-JG2",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Patch Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NP",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-NP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "National Patchtime Team Name Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NG",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Numbers Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-NG",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Numbers Game Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KW-PPF1",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RC-PPF1",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-PPF1",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Francisco Rosario",
+          "team": "Texas Rangers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Travis Hughes",
+          "team": "Texas Rangers",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Francisco Rosario",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CD-PW",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Game-Worn Patch Level 1 Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CD-PW",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Game-Worn Patch Level 2 Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CD-PW",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Game-Worn Patch Level 3 Multi",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PW-CD2",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Game-Worn Patch Quality Control Replacements",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LA",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": "Licensed Apparel Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LA",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": "Licensed Apparel Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EH-PPF1",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-PPF1",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-PPF1",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Patch Present Future Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Rubies",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

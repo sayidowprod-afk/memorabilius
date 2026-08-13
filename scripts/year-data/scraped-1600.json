@@ -1,0 +1,311 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1600,
+        "name": "2003 Bowman Draft Picks & Prospects"
+      },
+      "unique": [
+        {
+          "card_number": "FF-JSM",
+          "player_name": "Jeff Mathis",
+          "team": "Anaheim Angels",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-NH",
+          "player_name": "Nathan Haynes",
+          "team": "Anaheim Angels",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-EG",
+          "player_name": "Edgar Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-AL",
+          "player_name": "Adam LaRoche",
+          "team": "Atlanta Braves",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-AM",
+          "player_name": "Andy Marte",
+          "team": "Atlanta Braves",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-FP",
+          "player_name": "Felix Pie",
+          "team": "Chicago Cubs",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-BH",
+          "player_name": "Brendan Harris",
+          "team": "Chicago Cubs",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-GS",
+          "player_name": "Grady Sizemore",
+          "team": "Cleveland Indians",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-TH",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-RR",
+          "player_name": "Rene Reyes",
+          "team": "Colorado Rockies",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SOF-AT",
+          "player_name": "Andres Torres",
+          "team": "Detroit Tigers",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SOF-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-FG",
+          "player_name": "Franklin Gutierrez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-JT",
+          "player_name": "Joe Thurston",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-JH",
+          "player_name": "Justin Huber",
+          "team": "New York Mets",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-RRR",
+          "player_name": "Royce Ring",
+          "team": "New York Mets",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-RC",
+          "player_name": "Robinson Cano",
+          "team": "New York Yankees",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-RH",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-GF",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-RJH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-BM",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CU",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-JB",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-KG",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SOF-CS",
+          "player_name": "Cory Stewart",
+          "team": "San Diego Padres",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-DT",
+          "player_name": "Dennis Tankersley",
+          "team": "San Diego Padres",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PP-CS",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-CN",
+          "player_name": "Chris Narveson",
+          "team": "St. Louis Cardinals",
+          "variation": "Fabric of the Future Futures Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Prospect Premiums Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SOF-JA",
+          "player_name": "Jason Arnold",
+          "team": "Toronto Blue Jays",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

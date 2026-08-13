@@ -1,0 +1,535 @@
+{
+  "year": 2002,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1577,
+        "name": "2002 Topps Traded & Rookies"
+      },
+      "unique": [
+        {
+          "card_number": "TA-JDA",
+          "player_name": "Jeff DaVanon",
+          "team": "Anaheim Angels",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-BF",
+          "player_name": "Brad Fullmer",
+          "team": "Anaheim Angels",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-VC",
+          "player_name": "Vinny Castilla",
+          "team": "Atlanta Braves",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-CS",
+          "player_name": "Chris Smith",
+          "team": "Baltimore Orioles",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AM",
+          "player_name": "Andy Morales",
+          "team": "Boston Red Sox",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MC",
+          "player_name": "Matt Cooper",
+          "team": "Boston Red Sox",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tony Blanco",
+          "team": "Boston Red Sox",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DTRR-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Boston Red Sox",
+          "variation": "Tools of the Trade Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-HB",
+          "player_name": "Rickey Henderson",
+          "team": "Boston Red Sox",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-JDB",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-TC",
+          "player_name": "Tony Clark",
+          "team": "Boston Red Sox",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-AC",
+          "player_name": "Antoine Cameron",
+          "team": "Chicago Cubs",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MO",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DTRR-MA",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Tools of the Trade Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-MA",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-CM",
+          "player_name": "Corwin Malone",
+          "team": "Chicago White Sox",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-MLB",
+          "player_name": "Matt Lawton",
+          "team": "Cleveland Indians",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Forrest Johnson",
+          "team": "Detroit Tigers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-CP",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-TR",
+          "player_name": "Tim Raines",
+          "team": "Florida Marlins",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-CK",
+          "player_name": "Chuck Knoblauch",
+          "team": "Kansas City Royals",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-MT",
+          "player_name": "Michael Tucker",
+          "team": "Kansas City Royals",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-VD",
+          "player_name": "Victor Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DTRR-CP",
+          "player_name": "Chan Ho Park",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tools of the Trade Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-BJ",
+          "player_name": "Brian Jordan",
+          "team": "Los Angeles Dodgers",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-EY",
+          "player_name": "Eric Young",
+          "team": "Milwaukee Brewers",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jake Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JW",
+          "player_name": "Justin Wayne",
+          "team": "Montreal Expos",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-AG",
+          "player_name": "Andres Galarraga",
+          "team": "Montreal Expos",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-AB",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-JBU",
+          "player_name": "Jeromy Burnitz",
+          "team": "New York Mets",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-MVB",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-MVJ",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BC",
+          "player_name": "Brandon Claussen",
+          "team": "New York Yankees",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MT",
+          "player_name": "Marcus Thames",
+          "team": "New York Yankees",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-JV",
+          "player_name": "John Vander Wal",
+          "team": "New York Yankees",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-RV",
+          "player_name": "Robin Ventura",
+          "team": "New York Yankees",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-RW",
+          "player_name": "Rondell White",
+          "team": "New York Yankees",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Juan Pena",
+          "team": "Oakland Athletics",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-DJ",
+          "player_name": "David Justice",
+          "team": "Oakland Athletics",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-CU",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-PP",
+          "player_name": "Placido Polanco",
+          "team": "Philadelphia Phillies",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DT",
+          "player_name": "Dennis Tankersley",
+          "team": "San Diego Padres",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Boof Bonser",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RH",
+          "player_name": "Ryan Hannaman",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RM",
+          "player_name": "Ramon Moreta",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TL",
+          "player_name": "Todd Linden",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-DB",
+          "player_name": "David Bell",
+          "team": "San Francisco Giants",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-KL",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-RS",
+          "player_name": "Reggie Sanders",
+          "team": "San Francisco Giants",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-TS",
+          "player_name": "Tsuyoshi Shinjo",
+          "team": "San Francisco Giants",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-JS",
+          "player_name": "Juan Silvestre",
+          "team": "Seattle Mariners",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TTRR-JCI",
+          "player_name": "Jeff Cirillo",
+          "team": "Seattle Mariners",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-SI",
+          "player_name": "Ruben Sierra",
+          "team": "Seattle Mariners",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HOF-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Hall of Fame Relic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-TM",
+          "player_name": "Tino Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-CE",
+          "player_name": "Carl Everett",
+          "team": "Texas Rangers",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-JG",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TTRR-JP",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "Tools of the Trade Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

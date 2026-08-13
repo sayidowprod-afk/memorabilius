@@ -1,0 +1,223 @@
+{
+  "year": 2017,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 162099,
+        "name": "2017 Topps Chrome Update"
+      },
+      "unique": [
+        {
+          "card_number": "TARC-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-11",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-18",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-15",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-19",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-13",
+          "player_name": "Joe Morgan",
+          "team": "Houston Astros",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-17",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-JM",
+          "player_name": "Joe Morgan",
+          "team": "Houston Astros",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-RCA",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-10",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-12",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-14",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-MM",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-20",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-16",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps All-Rookie Cup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TARC-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TARC-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Topps All-Rookie Cup Autographs",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

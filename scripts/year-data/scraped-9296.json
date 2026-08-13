@@ -1,0 +1,4871 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 9296,
+        "name": "2003 Playoff Piece of the Game"
+      },
+      "unique": [
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-97",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-27",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-27",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-27",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-27",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-27",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-27",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-64",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-76",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-24",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-35",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-36",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-24",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-35",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-36",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-24",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-35",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-36",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-24",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-35",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-36",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-24",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-35",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-36",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-13",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-24",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-25",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-35",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-36",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-49",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-83",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-61",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-70",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-71",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-72",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-61",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-70",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-71",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-72",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-61",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-70",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-71",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-72",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-61",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-70",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-71",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-72",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-61",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-71",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-72",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-23",
+          "player_name": "Casey Fossum",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-61",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-70",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-71",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-72",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-74",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-39",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-80",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-39",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-80",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-39",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-80",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-39",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-80",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-39",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-80",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-86",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-87",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-88",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-89",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-86",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-86",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-87",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-88",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-89",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-86",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-87",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-88",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-89",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-86",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-87",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-88",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-89",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-88",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-89",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-55",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-63",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-86",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-87",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-88",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-89",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-22",
+          "player_name": "Carlos Lee",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-60",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-22",
+          "player_name": "Carlos Lee",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-60",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-22",
+          "player_name": "Carlos Lee",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-60",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-22",
+          "player_name": "Carlos Lee",
+          "team": "Chicago White Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-60",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-60",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-22",
+          "player_name": "Carlos Lee",
+          "team": "Chicago White Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-32",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-60",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-15",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-15",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-15",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-15",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-15",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-14",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-15",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-21",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-54",
+          "player_name": "Kenny Lofton",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-21",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-54",
+          "player_name": "Kenny Lofton",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-54",
+          "player_name": "Kenny Lofton",
+          "team": "Cleveland Indians",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-21",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-54",
+          "player_name": "Kenny Lofton",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-21",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-54",
+          "player_name": "Kenny Lofton",
+          "team": "Cleveland Indians",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-21",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-21",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-47",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-54",
+          "player_name": "Kenny Lofton",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-59",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-94",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-59",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-94",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-59",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-94",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-59",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-94",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-59",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-94",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-59",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-94",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-85",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-41",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-41",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-41",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-41",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-41",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-46",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-57",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-58",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-84",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-20",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-53",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-20",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-20",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-53",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-20",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-53",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-20",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-53",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-20",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-53",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-98",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-38",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-52",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-56",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-38",
+          "player_name": "Hideo Nomo White",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-38",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-52",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-56",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-38",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-52",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-56",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-38",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-52",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-56",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-56",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-38",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-52",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-56",
+          "player_name": "Kevin Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-73",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-92",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-44",
+          "player_name": "J.C. Romero",
+          "team": "Minnesota Twins",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-96",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-19",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-100",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-34",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-67",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-34",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-67",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-34",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-67",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-34",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-67",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-34",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-67",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-34",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-67",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-68",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-69",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-79",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-10",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-11",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-28",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-37",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-43",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-45",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-50",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-66",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens Gray",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-10",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-11",
+          "player_name": "Alfonso Soriano White",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-28",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-37",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-43",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-45",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-50",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-66",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-10",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-11",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-28",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-37",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-43",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-45",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-50",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-66",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-10",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-11",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-28",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-37",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-43",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-45",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-50",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-66",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-10",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-45",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-50",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-66",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-10",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-11",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-17",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-28",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-37",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-43",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-45",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-50",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-66",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-81",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-16",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-42",
+          "player_name": "Jason Giambi",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-65",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-93",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-16",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-42",
+          "player_name": "Jason Giambi",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-65",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-93",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-16",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-42",
+          "player_name": "Jason Giambi",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-65",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-93",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-16",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-42",
+          "player_name": "Jason Giambi",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-65",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-93",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-16",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-65",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-93",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-16",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-42",
+          "player_name": "Jason Giambi",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-62",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-65",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-78",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-93",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-12",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-48",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-12",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-12",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-48",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-12",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-48",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-12",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-48",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-48",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-12",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-48",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-18",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-18",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-18",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-18",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-18",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-18",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-95",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-95",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-95",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-95",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-95",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-95",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-40",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-40",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-40",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-40",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-29",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-40",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-33",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-51",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-51",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-51",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-41",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-51",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-51",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Prime Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-51",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-75",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-31",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-99",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-31",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "POG-31",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-99",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Bronze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-31",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-99",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-31",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-99",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-99",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-31",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-91",
+          "player_name": "Frank Catalanotto",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POG-99",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Playoff"
+    }
+  ]
+}

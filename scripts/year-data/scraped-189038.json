@@ -1,0 +1,735 @@
+{
+  "year": 2018,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 189038,
+        "name": "2018 Topps Chrome Update"
+      },
+      "unique": [
+        {
+          "card_number": "IA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Blue Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Blue Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KMA",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Blue Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Gold Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Gold Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Green Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Printing Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs Red Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KM",
+          "player_name": "Kyle Martin",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Blue Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Blue Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Blue Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Gold Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Green Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Red Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs Red Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JM",
+          "player_name": "Juan Minaya",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TD",
+          "player_name": "Tyler Danish",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AIA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-MM",
+          "player_name": "Manny Machado",
+          "team": "Los Angeles Dodgers",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-MM",
+          "player_name": "Manny Machado",
+          "team": "Los Angeles Dodgers",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Blue Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Blue Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Gold Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Green Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Printing Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs Red Wave Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-TT",
+          "player_name": "Travis Taijeron",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-GS",
+          "player_name": "Gary Sanchez",
+          "team": "New York Yankees",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IA-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AIA-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "An International Affair Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IA-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "An International Affair",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACBU-FR",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ACBU-FR",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ACBU-FR",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ACBU-FR",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ACBU-FR",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ACBU-FR",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

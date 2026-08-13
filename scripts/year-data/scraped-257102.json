@@ -1,0 +1,3871 @@
+{
+  "year": 2020,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 257102,
+        "name": "2020 Bowman Heritage"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eduardo Escobar",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Ketel Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eduardo Escobar",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-27",
+          "player_name": "Kristian Robinson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-59",
+          "player_name": "Glenallen Hill Jr.",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-75",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-98",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-27",
+          "player_name": "Kristian Robinson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-59",
+          "player_name": "Glenallen Hill Jr.",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-75",
+          "player_name": "Seth Beer",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-98",
+          "player_name": "Alek Thomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-21",
+          "player_name": "Shea Langeliers",
+          "team": "Atlanta Braves",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-97",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-115",
+          "player_name": "Jasseel De La Cruz",
+          "team": "Atlanta Braves",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-21",
+          "player_name": "Shea Langeliers",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-97",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-115",
+          "player_name": "Jasseel De La Cruz",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "John Means",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hanser Alberto",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "John Means",
+          "team": "Baltimore Orioles",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hanser Alberto",
+          "team": "Baltimore Orioles",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-22",
+          "player_name": "Grayson Rodriguez",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-36",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-90",
+          "player_name": "Adam Hall",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-134",
+          "player_name": "Gunnar Henderson",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-150",
+          "player_name": "Adley Rutschman",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-22",
+          "player_name": "Grayson Rodriguez",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-36",
+          "player_name": "Ryan Mountcastle",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-90",
+          "player_name": "Adam Hall",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-134",
+          "player_name": "Gunnar Henderson",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-150",
+          "player_name": "Adley Rutschman",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-18",
+          "player_name": "Triston Casas",
+          "team": "Boston Red Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-64",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-86",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-128",
+          "player_name": "Bryan Mata",
+          "team": "Boston Red Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-144",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-18",
+          "player_name": "Triston Casas",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-64",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-86",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-128",
+          "player_name": "Bryan Mata",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-144",
+          "player_name": "Jarren Duran",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-49",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-110",
+          "player_name": "Aramis Ademan",
+          "team": "Chicago Cubs",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-136",
+          "player_name": "Miguel Amaya",
+          "team": "Chicago Cubs",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-141",
+          "player_name": "Brennen Davis",
+          "team": "Chicago Cubs",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-49",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-110",
+          "player_name": "Aramis Ademan",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-136",
+          "player_name": "Miguel Amaya",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-141",
+          "player_name": "Brennen Davis",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Nomar Mazara",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Nomar Mazara",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-13",
+          "player_name": "Blake Rutherford",
+          "team": "Chicago White Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-26",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-92",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-101",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-13",
+          "player_name": "Blake Rutherford",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-26",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-92",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-101",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Robel Garcia",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Robel Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-39",
+          "player_name": "Nick Lodolo",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-41",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-47",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-73",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-39",
+          "player_name": "Nick Lodolo",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-41",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-47",
+          "player_name": "Hunter Greene",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-73",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Yu Chang",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Yu Chang",
+          "team": "Cleveland Indians",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-40",
+          "player_name": "Tyler Freeman",
+          "team": "Cleveland Indians",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-44",
+          "player_name": "Ethan Hankins",
+          "team": "Cleveland Indians",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-76",
+          "player_name": "Joey Cantillo",
+          "team": "Cleveland Indians",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-95",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-109",
+          "player_name": "Oscar Gonzalez",
+          "team": "Cleveland Indians",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-40",
+          "player_name": "Tyler Freeman",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-44",
+          "player_name": "Ethan Hankins",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-76",
+          "player_name": "Joey Cantillo",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-95",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-109",
+          "player_name": "Oscar Gonzalez",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-87",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-121",
+          "player_name": "Grant Lavigne",
+          "team": "Colorado Rockies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-137",
+          "player_name": "Ryan Rolison",
+          "team": "Colorado Rockies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-87",
+          "player_name": "Colton Welker",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-121",
+          "player_name": "Grant Lavigne",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-137",
+          "player_name": "Ryan Rolison",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Travis Demeritte",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Matthew Boyd",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Travis Demeritte",
+          "team": "Detroit Tigers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Matthew Boyd",
+          "team": "Detroit Tigers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-14",
+          "player_name": "Ulrich Bojarski",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-45",
+          "player_name": "Daz Cameron",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-50",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-63",
+          "player_name": "Franklin Perez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-99",
+          "player_name": "Matt Manning",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-108",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-120",
+          "player_name": "Isaac Paredes",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-122",
+          "player_name": "Riley Greene",
+          "team": "Detroit Tigers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-14",
+          "player_name": "Ulrich Bojarski",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-45",
+          "player_name": "Daz Cameron",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-50",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-63",
+          "player_name": "Franklin Perez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-99",
+          "player_name": "Matt Manning",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-108",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-120",
+          "player_name": "Isaac Paredes",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-122",
+          "player_name": "Riley Greene",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-56",
+          "player_name": "Cristian Javier",
+          "team": "Houston Astros",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-61",
+          "player_name": "Jeremy Pena",
+          "team": "Houston Astros",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-70",
+          "player_name": "Forrest Whitley",
+          "team": "Houston Astros",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-82",
+          "player_name": "Freudis Nova",
+          "team": "Houston Astros",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-56",
+          "player_name": "Cristian Javier",
+          "team": "Houston Astros",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-61",
+          "player_name": "Jeremy Pena",
+          "team": "Houston Astros",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-70",
+          "player_name": "Forrest Whitley",
+          "team": "Houston Astros",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-82",
+          "player_name": "Freudis Nova",
+          "team": "Houston Astros",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-25",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-42",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-54",
+          "player_name": "Brady McConnell",
+          "team": "Kansas City Royals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-84",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-25",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-42",
+          "player_name": "Brady Singer",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-54",
+          "player_name": "Brady McConnell",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-84",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-15",
+          "player_name": "Jordyn Adams",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-100",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-15",
+          "player_name": "Jordyn Adams",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-100",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Tony Gonsolin",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Cody Bellinger",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Brusdar Graterol",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Tony Gonsolin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Cody Bellinger",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Brusdar Graterol",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-48",
+          "player_name": "Josiah Gray",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-131",
+          "player_name": "Miguel Vargas",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-143",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-48",
+          "player_name": "Josiah Gray",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-131",
+          "player_name": "Miguel Vargas",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-143",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jose Urena",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jose Urena",
+          "team": "Miami Marlins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-11",
+          "player_name": "Jesus Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-72",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-79",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-96",
+          "player_name": "Jerar Encarnacion",
+          "team": "Miami Marlins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-116",
+          "player_name": "JJ Bleday",
+          "team": "Miami Marlins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-11",
+          "player_name": "Jesus Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-72",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-79",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-96",
+          "player_name": "Jerar Encarnacion",
+          "team": "Miami Marlins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-116",
+          "player_name": "JJ Bleday",
+          "team": "Miami Marlins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Lorenzo Cain",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Dan Vogelbach",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Lorenzo Cain",
+          "team": "Milwaukee Brewers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Dan Vogelbach",
+          "team": "Milwaukee Brewers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-34",
+          "player_name": "Zack Brown",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-35",
+          "player_name": "Brice Turang",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-57",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-81",
+          "player_name": "Tristen Lutz",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-140",
+          "player_name": "Nick Bennett",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-34",
+          "player_name": "Zack Brown",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-35",
+          "player_name": "Brice Turang",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-57",
+          "player_name": "Aaron Ashby",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-81",
+          "player_name": "Tristen Lutz",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-140",
+          "player_name": "Nick Bennett",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jose Berrios",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Eddie Rosario",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jose Berrios",
+          "team": "Minnesota Twins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Eddie Rosario",
+          "team": "Minnesota Twins",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-78",
+          "player_name": "Chris Vallimont",
+          "team": "Minnesota Twins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-80",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-93",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-118",
+          "player_name": "Keoni Cavaco",
+          "team": "Minnesota Twins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-123",
+          "player_name": "Jordan Balazovic",
+          "team": "Minnesota Twins",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-78",
+          "player_name": "Chris Vallimont",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-80",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-93",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-118",
+          "player_name": "Keoni Cavaco",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-123",
+          "player_name": "Jordan Balazovic",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-28",
+          "player_name": "Ronny Mauricio",
+          "team": "New York Mets",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-37",
+          "player_name": "Wilfred Astudillo",
+          "team": "New York Mets",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-142",
+          "player_name": "Brett Baty",
+          "team": "New York Mets",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-28",
+          "player_name": "Ronny Mauricio",
+          "team": "New York Mets",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-37",
+          "player_name": "Wilfred Astudillo",
+          "team": "New York Mets",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-142",
+          "player_name": "Brett Baty",
+          "team": "New York Mets",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-31",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-51",
+          "player_name": "Everson Pereira",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-53",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-69",
+          "player_name": "Canaan Smith",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-85",
+          "player_name": "Antonio Cabello",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-125",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-132",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-139",
+          "player_name": "Anthony Volpe",
+          "team": "New York Yankees",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-31",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-51",
+          "player_name": "Everson Pereira",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-53",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-69",
+          "player_name": "Canaan Smith",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-85",
+          "player_name": "Antonio Cabello",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-125",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-132",
+          "player_name": "Luis Gil",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-139",
+          "player_name": "Anthony Volpe",
+          "team": "New York Yankees",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ramon Laureano",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "A.J. Puk",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Sheldon Neuse",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ramon Laureano",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "A.J. Puk",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Sheldon Neuse",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-16",
+          "player_name": "Austin Beck",
+          "team": "Oakland Athletics",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-38",
+          "player_name": "Gus Varland",
+          "team": "Oakland Athletics",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-88",
+          "player_name": "Logan Davidson",
+          "team": "Oakland Athletics",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-105",
+          "player_name": "Nick Allen",
+          "team": "Oakland Athletics",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-145",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-16",
+          "player_name": "Austin Beck",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-38",
+          "player_name": "Gus Varland",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-88",
+          "player_name": "Logan Davidson",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-105",
+          "player_name": "Nick Allen",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-145",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-29",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-55",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-65",
+          "player_name": "Damon Jones",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-68",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-126",
+          "player_name": "Luis Garcia",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-29",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-55",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-65",
+          "player_name": "Damon Jones",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-68",
+          "player_name": "Bryson Stott",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-126",
+          "player_name": "Luis Garcia",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Kevin Newman",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Kevin Newman",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-43",
+          "player_name": "Cal Mitchell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-67",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-111",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-146",
+          "player_name": "Travis Swaggerty",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-43",
+          "player_name": "Cal Mitchell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-67",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-111",
+          "player_name": "Oneil Cruz",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-146",
+          "player_name": "Travis Swaggerty",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Michel Baez",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Austin Nola",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Adrian Morejon",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Michel Baez",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Austin Nola",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Francisco Mejia",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Adrian Morejon",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-62",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-74",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-102",
+          "player_name": "Owen Miller",
+          "team": "San Diego Padres",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-130",
+          "player_name": "Taylor Trammell",
+          "team": "San Diego Padres",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-133",
+          "player_name": "Grant Little",
+          "team": "San Diego Padres",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-138",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-62",
+          "player_name": "CJ Abrams",
+          "team": "San Diego Padres",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-74",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-102",
+          "player_name": "Owen Miller",
+          "team": "San Diego Padres",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-130",
+          "player_name": "Taylor Trammell",
+          "team": "San Diego Padres",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-133",
+          "player_name": "Grant Little",
+          "team": "San Diego Padres",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-138",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Yastrzemski",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Yastrzemski",
+          "team": "San Francisco Giants",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-103",
+          "player_name": "Marco Luciano",
+          "team": "San Francisco Giants",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-112",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-129",
+          "player_name": "Hunter Bishop",
+          "team": "San Francisco Giants",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-147",
+          "player_name": "Will Wilson",
+          "team": "San Francisco Giants",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-148",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-103",
+          "player_name": "Marco Luciano",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-112",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-129",
+          "player_name": "Hunter Bishop",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-147",
+          "player_name": "Will Wilson",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-148",
+          "player_name": "Heliot Ramos",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Yusei Kikuchi",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Andres Muñoz",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Yusei Kikuchi",
+          "team": "Seattle Mariners",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Andres Muñoz",
+          "team": "Seattle Mariners",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-19",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-58",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-77",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-94",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-19",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-58",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-77",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-94",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-32",
+          "player_name": "Elehuris Montero",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-60",
+          "player_name": "Alvaro Seijas",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-66",
+          "player_name": "Nolan Gorman",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-89",
+          "player_name": "Matthew Liberatore",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-106",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-32",
+          "player_name": "Elehuris Montero",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-60",
+          "player_name": "Alvaro Seijas",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-66",
+          "player_name": "Nolan Gorman",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-89",
+          "player_name": "Matthew Liberatore",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-106",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Willy Adames",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Willy Adames",
+          "team": "Tampa Bay Rays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-10",
+          "player_name": "Xavier Edwards",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-12",
+          "player_name": "Ronaldo Hernandez",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-17",
+          "player_name": "Niko Hulsizer",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-20",
+          "player_name": "Shane Baz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-23",
+          "player_name": "Ruben Cardenas",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-30",
+          "player_name": "Jhon Diaz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-117",
+          "player_name": "Joe Ryan",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-10",
+          "player_name": "Xavier Edwards",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-12",
+          "player_name": "Ronaldo Hernandez",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-17",
+          "player_name": "Niko Hulsizer",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-20",
+          "player_name": "Shane Baz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-23",
+          "player_name": "Ruben Cardenas",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-30",
+          "player_name": "Jhon Diaz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-117",
+          "player_name": "Joe Ryan",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Willie Calhoun",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Willie Calhoun",
+          "team": "Texas Rangers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-33",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-46",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-52",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-107",
+          "player_name": "Cole Winn",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-113",
+          "player_name": "Josh Jung",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-119",
+          "player_name": "Hans Crouse",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-127",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-33",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-46",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-52",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-107",
+          "player_name": "Cole Winn",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-113",
+          "player_name": "Josh Jung",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-119",
+          "player_name": "Hans Crouse",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-127",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Cavan Biggio",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Cavan Biggio",
+          "team": "Toronto Blue Jays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-104",
+          "player_name": "Jordan Groshans",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-124",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-135",
+          "player_name": "Eric Pardinho",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-149",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-104",
+          "player_name": "Jordan Groshans",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-124",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-135",
+          "player_name": "Eric Pardinho",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-149",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Starlin Castro",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Starlin Castro",
+          "team": "Washington Nationals",
+          "variation": "Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-24",
+          "player_name": "Mason Denaburg",
+          "team": "Washington Nationals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-71",
+          "player_name": "Drew Mendoza",
+          "team": "Washington Nationals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-83",
+          "player_name": "Tim Cate",
+          "team": "Washington Nationals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-91",
+          "player_name": "Jackson Rutledge",
+          "team": "Washington Nationals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-114",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Prospects",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-24",
+          "player_name": "Mason Denaburg",
+          "team": "Washington Nationals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-71",
+          "player_name": "Drew Mendoza",
+          "team": "Washington Nationals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-83",
+          "player_name": "Tim Cate",
+          "team": "Washington Nationals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-91",
+          "player_name": "Jackson Rutledge",
+          "team": "Washington Nationals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BHP-114",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Prospects Black & White",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

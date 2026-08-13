@@ -1,0 +1,231 @@
+{
+  "year": 2006,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1906,
+        "name": "2006 Bowman Draft Picks & Prospects"
+      },
+      "unique": [
+        {
+          "card_number": "HOC-RU",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-MO",
+          "player_name": "Micah Owings",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-BJ",
+          "player_name": "Beau Jones",
+          "team": "Atlanta Braves",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-BS",
+          "player_name": "Brandon Snyder",
+          "team": "Baltimore Orioles",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-CR",
+          "player_name": "Clayton Richard",
+          "team": "Chicago White Sox",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JB",
+          "player_name": "Jay Bruce",
+          "team": "Cincinnati Reds",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-CDR",
+          "player_name": "Chaz Roe",
+          "team": "Colorado Rockies",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-CI",
+          "player_name": "Chris Iannetta",
+          "team": "Colorado Rockies",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JM",
+          "player_name": "Jacob Marceaux",
+          "team": "Florida Marlins",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-KC",
+          "player_name": "Koby Clemens",
+          "team": "Houston Astros",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-AG",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-HS",
+          "player_name": "Henry Sanchez",
+          "team": "Minnesota Twins",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HOC-RU",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Head of the Class Dual Autograph SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-CTI",
+          "player_name": "Craig Italiano",
+          "team": "Oakland Athletics",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-TB",
+          "player_name": "Travis Buck",
+          "team": "Oakland Athletics",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-MC",
+          "player_name": "Mike Costanzo",
+          "team": "Philadelphia Phillies",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-CRA",
+          "player_name": "Cesar Ramos",
+          "team": "San Diego Padres",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JC",
+          "player_name": "Jeff Clement",
+          "team": "Seattle Mariners",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-DJ",
+          "player_name": "Daryl Jones",
+          "team": "St. Louis Cardinals",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-MM",
+          "player_name": "Mark McCormick",
+          "team": "St. Louis Cardinals",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-WT",
+          "player_name": "Wade Townsend",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

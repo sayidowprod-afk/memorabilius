@@ -1,0 +1,1447 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1893,
+        "name": "2005 Upper Deck MVP"
+      },
+      "unique": [
+        {
+          "card_number": "GU-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-11",
+          "player_name": "Eddie Mathews",
+          "team": "Atlanta Braves",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-30",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-12",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-17",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-TE",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-39",
+          "player_name": "Warren Spahn",
+          "team": "Boston Braves",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BU-29",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-13",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-CZ",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-23",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AR",
+          "player_name": "Aaron Rowand",
+          "team": "Chicago White Sox",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-19",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-20",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-38",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-TH",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-GA",
+          "player_name": "Garrett Atkins",
+          "team": "Colorado Rockies",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Magglio Ordonez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-26",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dallas McPherson",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Finley",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Derek Lowe",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-35",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-15",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BU-25",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Kazuo Matsui",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-37",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-PI",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RE",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-18",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-31",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-42",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-RJ",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Bobby Crosby",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-10",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-36",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-BC",
+          "player_name": "Bobby Crosby",
+          "team": "Oakland Athletics",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RH",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-16",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-24",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-33",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-34",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-GF",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Oliver Perez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-32",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-41",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-OP",
+          "player_name": "Oliver Perez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-14",
+          "player_name": "Gaylord Perry",
+          "team": "San Diego Padres",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-SB",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-GR",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JP",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Moises Alou",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-21",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-27",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-40",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JR",
+          "player_name": "Jeremy Reed",
+          "team": "Seattle Mariners",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-22",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BU-28",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Batter Up!",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AH",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

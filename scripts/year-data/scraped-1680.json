@@ -1,0 +1,1959 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1680,
+        "name": "2003 Upper Deck Yankees Signature Series"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Al Downing",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Gettel",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Art Ditmar",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Bill Virdon",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Billy Martin",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bob Cerv",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bob Turley",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Bobby Cox",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Bobby Shantz",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bud Metheny",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Charlie Hayes",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Charlie Silvera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Chambliss",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Danny Cater",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dave Kingman",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dave Righetti",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "David Cone",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dick Tidrow",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Doc Medich",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dock Ellis",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Don Gullett",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dwight Gooden",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eddie Robinson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Felipe Alou",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Fred Sanford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Fred Stanley",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gene Michael",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hank Bauer",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Hector Lopez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Horace Clarke",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jake Gibbs",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jerry Coleman",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jerry Lumpe",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jim Kaat",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jim Mason",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jimmy Key",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "John Montefusco",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Johnny Blanchard",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Johnny Callison",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Lew Burdette",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Johnny Kucks",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Balboni",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Ken Singleton",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Lee Mazzilli",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Lou Piniella",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Tiant",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Marius Russo",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Mel Stottlemyre",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mike Pagliarulo",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mike Torrez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Miller Huggins",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Norm Siebern",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Phil Niekro",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ralph Branca",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Ralph Houk",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Ralph Terry",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Randy Gumpert",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ron Blomberg",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Ruben Amaro",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ryne Duren",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Sam McDowell",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Sparky Lyle",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tom Sturdivant",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Tom Tresh",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tommy Byrne",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tommy Henrich",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tommy John",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Virgil Trucks",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Wade Boggs",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Willie Randolph",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-BM",
+          "player_name": "Billy Martin",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-BR",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-CS",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-JD",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-LG",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MH",
+          "player_name": "Miller Huggins",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-RM",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-TL",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-TM",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Monumental Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-AA",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-BA",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-BP",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-BT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-CK",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-DC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-DR",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-DS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-FB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-GB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-GM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-GR",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-JK",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-LG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-LM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MK",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-ML",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MR",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-NT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-RB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-RC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-ST",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-TK",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-TM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Pinstripe Excellence",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-AD",
+          "player_name": "Al Downing",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-AG",
+          "player_name": "Al Gettel",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-BD",
+          "player_name": "Brian Doyle",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-BL",
+          "player_name": "Johnny Blanchard",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-BS",
+          "player_name": "Bobby Shantz",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-BT",
+          "player_name": "Bob Turley",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-BV",
+          "player_name": "Bill Virdon",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CA1",
+          "player_name": "Johnny Callison",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CA2",
+          "player_name": "Brian Cashman",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CC",
+          "player_name": "Chris Chambliss",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CE",
+          "player_name": "Bob Cerv",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CH",
+          "player_name": "Charlie Hayes",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CO",
+          "player_name": "David Cone",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CS",
+          "player_name": "Charlie Silvera",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-CX",
+          "player_name": "Bobby Cox",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DC",
+          "player_name": "Danny Cater",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DE",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DG",
+          "player_name": "Don Gullett",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DI",
+          "player_name": "Art Ditmar",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DK",
+          "player_name": "Dave Kingman",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DM",
+          "player_name": "Doc Medich",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DR",
+          "player_name": "Dave Righetti",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DT",
+          "player_name": "Dick Tidrow",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DW",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-DZ",
+          "player_name": "Don Zimmer",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-EL",
+          "player_name": "Dock Ellis",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-ER",
+          "player_name": "Eddie Robinson",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-FA",
+          "player_name": "Felipe Alou",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-FS",
+          "player_name": "Fred Sanford",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-GM",
+          "player_name": "Gene Michael",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-GO",
+          "player_name": "Dwight Gooden",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-HB",
+          "player_name": "Hank Bauer",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-HC",
+          "player_name": "Horace Clarke",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-HL",
+          "player_name": "Hector Lopez",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-HR",
+          "player_name": "Hal Reniff",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JA",
+          "player_name": "Jason Alexander",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JC",
+          "player_name": "Jerry Coleman",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JG1",
+          "player_name": "Jake Gibbs",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JG2",
+          "player_name": "John Goodman",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JK",
+          "player_name": "Jim Kaat",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JL",
+          "player_name": "Jerry Lumpe",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JM",
+          "player_name": "Jim Mason",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JT",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-JW",
+          "player_name": "Jim Wynn",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-KE",
+          "player_name": "Jimmy Key",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-KS",
+          "player_name": "Ken Singleton",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-KU",
+          "player_name": "Johnny Kucks",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-LB",
+          "player_name": "Lew Burdette",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-LM",
+          "player_name": "Lee Mazzilli",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-LP",
+          "player_name": "Lou Piniella",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-LT",
+          "player_name": "Luis Tiant",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-MA",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-MO",
+          "player_name": "John Montefusco",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-MP",
+          "player_name": "Mike Pagliarulo",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-MR",
+          "player_name": "Marius Russo",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-MS",
+          "player_name": "Mel Stottlemyre",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-MT",
+          "player_name": "Mike Torrez",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-NS",
+          "player_name": "Norm Siebern",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-PN",
+          "player_name": "Phil Niekro",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RA",
+          "player_name": "Ruben Amaro",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RB",
+          "player_name": "Ron Blomberg",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RB2",
+          "player_name": "Ralph Branca",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RD",
+          "player_name": "Ryne Duren",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RG",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RG2",
+          "player_name": "Randy Gumpert",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RH",
+          "player_name": "Ralph Houk",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-RT",
+          "player_name": "Ralph Terry",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-SB",
+          "player_name": "Steve Balboni",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-SL",
+          "player_name": "Sparky Lyle",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-SM",
+          "player_name": "Sam McDowell",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-ST",
+          "player_name": "Fred Stanley",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TB",
+          "player_name": "Tommy Byrne",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TC",
+          "player_name": "Tom Carroll",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TH",
+          "player_name": "Tommy Henrich",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TJ",
+          "player_name": "Tommy John",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TK",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TS",
+          "player_name": "Tom Sturdivant",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-TT",
+          "player_name": "Tom Tresh",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-VT",
+          "player_name": "Virgil Trucks",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-WB",
+          "player_name": "Wade Boggs",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-WR",
+          "player_name": "Willie Randolph",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PN-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Pride of New York",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-ALB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-AOM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-BSB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-DFB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-DRC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-EMG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-FKB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-GCK",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-GRJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-HMC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-HRB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-JKL",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-KCC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-KGT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-KJB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-MTT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-OBK",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-PTV",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-RBC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-RKD",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-RRC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-RSB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-SSB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-STE",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-TCO",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-TLN",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-TMT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-WHM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-WMG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YF-WPC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Yankees Forever",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

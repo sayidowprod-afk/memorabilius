@@ -1,0 +1,2471 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1622,
+        "name": "2003 Fleer Hot Prospects"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-TH",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-LB",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TG",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-SG",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TG",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-SG",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-SG",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-FR",
+          "player_name": "Francisco Rodriguez",
+          "team": "Anaheim Angels",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-FR",
+          "player_name": "Francisco Rodriguez",
+          "team": "Anaheim Angels",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Tim Olson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-LO",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-LO",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LO-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-GM",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-LO",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-LO",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LO-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-GM",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chris Waters",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "Mike Hessman",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-BA",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-DJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-GM",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-GM",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BA",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-DJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-GM",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RJ-GM",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Daniel Cabrera",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-SG",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-PK",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-NG",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-MT",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-NG",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-MT",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Todd Wellemeyer",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MT",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-HC",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MPR",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-LO",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-JB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-SS",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-HC",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MPR",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-LO",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-JB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-SS",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-CZ",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-CZ",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Josh Stewart",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "NG-PK",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Josh Hall",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AK-SB",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jason Jennings",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-THE",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-THE",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Bobby Higginson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Nook Logan",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "A.J. Burnett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BZ-JB",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JB",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-GM",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-JB",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JB",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JB-GM",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-JB",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-LB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-AD",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-LB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LB-AD",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-AD",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Ian Ferguson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Alejandro Machado",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Fred McGriff",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-SG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-SG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-SG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-SG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-SG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AR-TH",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-THU",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-LB",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-VG",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-THU",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-AD",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-VG",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Terrmel Sledge",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-VG",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-SG",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-VG",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "114",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-MPI",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-CJ",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-DJ",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MPI",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-CJ",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-DJ",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-DJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-MT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-NG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JT-JG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-DJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CJ-DJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-MT",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-NG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JT-JG",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-DJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jermaine Dye",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BZ-JB",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MTJ",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-MT",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-MT",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-MT",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MTJ",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-MT",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DJ-MT",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-MT",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-JD",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-PB",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JT-JG",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PB",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-PB",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JT-JG",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PB",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-BM",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-BM",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shane Victorino",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Cory Stewart",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AK-SB",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-XN",
+          "player_name": "Xavier Nady",
+          "team": "San Diego Padres",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-XN",
+          "player_name": "Xavier Nady",
+          "team": "San Diego Padres",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jesse Foppert",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KW",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PB-JD",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Brian Stokes",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Pete LaForest",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "107",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-AH",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-AH",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-TH",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Class Of Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MTX",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MT-AR",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-AD",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MTX",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AR-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MT-AR",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-AD",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RP-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "MLB Red Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Francisco Rosario",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "MLB Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "MLB Red Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "PlayerGraphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "PlayerGraphs Red Hot",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

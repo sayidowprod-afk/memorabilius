@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Scraper TCDB Soccer — Section International uniquement
  *

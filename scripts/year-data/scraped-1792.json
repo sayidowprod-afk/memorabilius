@@ -1,0 +1,159 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1792,
+        "name": "2005 Bowman Draft Picks & Prospects"
+      },
+      "unique": [
+        {
+          "card_number": "SOF-DM",
+          "player_name": "David Murphy",
+          "team": "Boston Red Sox",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-AG",
+          "player_name": "Angel Guzman",
+          "team": "Chicago Cubs",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-DL",
+          "player_name": "Donald Lucy",
+          "team": "Chicago White Sox",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-TL",
+          "player_name": "Tyler Lumsden",
+          "team": "Chicago White Sox",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-HB",
+          "player_name": "Homer Bailey",
+          "team": "Cincinnati Reds",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JH",
+          "player_name": "Justin Hoyman",
+          "team": "Cleveland Indians",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JS",
+          "player_name": "Jeremy Sowers",
+          "team": "Cleveland Indians",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JF",
+          "player_name": "Jeff Frazier",
+          "team": "Detroit Tigers",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JJ",
+          "player_name": "Justin Jones",
+          "team": "Minnesota Twins",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-JP",
+          "player_name": "Jonathan Poterson",
+          "team": "New York Yankees",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-RR",
+          "player_name": "Richie Robnett",
+          "team": "Oakland Athletics",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-GG",
+          "player_name": "Greg Golson",
+          "team": "Philadelphia Phillies",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94A",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Alex Rodriguez Throwbacks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95A",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Alex Rodriguez Throwbacks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96A",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Alex Rodriguez Throwbacks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97A",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Alex Rodriguez Throwbacks Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SOF-DP",
+          "player_name": "David Purcey",
+          "team": "Toronto Blue Jays",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SOF-BB",
+          "player_name": "Bill Bray",
+          "team": "Washington Nationals",
+          "variation": "Signs of the Future",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

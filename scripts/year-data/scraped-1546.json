@@ -1,0 +1,1671 @@
+{
+  "year": 2002,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1546,
+        "name": "2002 Fleer Greats of the Game"
+      },
+      "unique": [
+        {
+          "card_number": "80",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cal Ripken, Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BR1",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CR1",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EM1",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EM2",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EW1",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GB2",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GB3",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JR2",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RM1",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-SA1",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Warren Spahn",
+          "team": "Boston Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Tris Speaker",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BD1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CF1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CY1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CY2",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DM2",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EM1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GB1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JB1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JF2",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JR1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JR2",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RJ1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RJ2",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-TP1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-WB1",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-WB2",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Don Drysdale",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Preacher Roe",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Hack Wilson",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BG1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DS1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DS2",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DS3",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EM1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GH1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RK1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-YB1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-YB2",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RC1",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JM1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RS1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-NF1",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RC1",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CF1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CY2",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-ES1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EW1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JB1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JB2",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-SA1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-TK1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-TP1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-WM1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-NF1",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RC1",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mickey Cochrane",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Sparky Anderson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-NR1",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-SC1",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CR1",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EM2",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GB1",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GB2",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GB3",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-WB2",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ron Cey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DS3",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-EM1",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DM3",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DW1",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DW2",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-PM1",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-PM2",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RY1",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DM1",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-KP1",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Bill Terry",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Johnny Mize",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rich Gossage",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Hank Bauer",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bill Dickey",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jim \"Catfish\" Hunter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BD1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BR1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BR2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-CY1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DM1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DM2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DM3",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DW1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DW2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-GH1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JF1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JF2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JR1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-KP1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-PM1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-PM2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RJ1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RJ2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RM1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RY1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-WB1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-YB1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-YB2",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RC1",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BR2",
+          "player_name": "Philadelphia Athletics",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JF1",
+          "player_name": "Philadelphia Athletics",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-SC1",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DS2",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RK1",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Bobby Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JB2",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JM1",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RS1",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-WM1",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Satchel Paige",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-BG1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DS1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-ES1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-NR1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-TK1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dueling Duos Game Used Single",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Harmon Killebrew",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Frank Howard",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

@@ -1,0 +1,3519 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1675,
+        "name": "2003 Upper Deck Sweet Spot"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-TR",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-AU",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-AU",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-AU",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-AU",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-AU",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-AU",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TR-AU",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-AU",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "216",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Andrew Good",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Tim Olson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Chris Capuano",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-AU",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-AU",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LO-AU",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BW-AU",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-AU",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LO-AU",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BW-AU",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-AU",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LO-AU",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BW-AU",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-AU",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LO-AU",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "198",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Chris Capuano",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Beginnings Game Used 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Chris Waters",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "GS-AU",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GS-AU",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GS-AU",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GS-AU",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Rodrigo Lopez",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jason Johnson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "251",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CR-AU",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CR-AU",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CR-AU",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CR-AU",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Byung-Hyun Kim",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Derek Lowe",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Jason Shiell",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Kevin Tolar",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Ryan Cameron",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "231",
+          "player_name": "Mike Nicolas",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "NG-AU",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NG-AU",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NG-AU",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TW-AU",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NG-AU",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RC-AU",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "Signatures Red Ink",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Joe Borowski",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Felix Sanchez",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Todd Wellemeyer",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Bobby Hill",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Matt Bruback",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "232",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-AU",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MP-AU",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AU",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MP-AU",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AU",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MP-AU",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AU",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "232",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "David Sanders",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Arnie Munoz",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "David Sanders",
+          "team": "Chicago White Sox",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Arnie Munoz",
+          "team": "Chicago White Sox",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ryan Wagner",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Josh Hall",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AD-AU",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AK-AU",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGJ-AU",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGS-AU",
+          "player_name": "Ken Griffey Sr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AD-AU",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AK-AU",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGJ-AU",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGS-AU",
+          "player_name": "Ken Griffey Sr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AD-AU",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AK-AU",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGJ-AU",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGS-AU",
+          "player_name": "Ken Griffey Sr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AD-AU",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AK-AU",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGJ-AU",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KGS-AU",
+          "player_name": "Ken Griffey Sr.",
+          "team": "Cincinnati Reds",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "C.C. Sabathia",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jason Davis",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Jeremy Guthrie",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Rafael Betancourt",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Fernando Cabrera",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Jhonny Peralta",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BP-AU",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HA-AU",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-AU",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HA-AU",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-AU",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HA-AU",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-AU",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HA-AU",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "199",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Fernando Cabrera",
+          "team": "Cleveland Indians",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jay Payton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Chin-Hui Tsao",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Garrett Atkins",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TH-AU",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TH-AU",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TH-AU",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TH-AU",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Eric Munson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Jorge Cordova",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Eric Munson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Nook Logan",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Nate Robertson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Wilfredo Ledezma",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Nate Robertson",
+          "team": "Detroit Tigers",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Wilfredo Ledezma",
+          "team": "Detroit Tigers",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Alex Gonzalez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Tommy Phelps",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DW-AU",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DW-AU",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DW-AU",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DW-AU",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "205",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Nate Bland",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Colin Porter",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Tommy Whiteman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RO-AU",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RO-AU",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RO-AU",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RO-AU",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Brent Mayne",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Mike MacDougal",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "D.J. Carrasco",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Ian Ferguson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Kyle Snyder",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Jason Gilfillan",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Alejandro Machado",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Alejandro Machado",
+          "team": "Kansas City Royals",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Alejandro Machado",
+          "team": "Kansas City Royals",
+          "variation": "Sweet Beginnings Game Used 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Dave Roberts",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Rickey Henderson",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Rick Roberts",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Joe Thurston",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "210",
+          "player_name": "Andrew Brown",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "215",
+          "player_name": "Alfredo Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "KI-AU",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KI-AU",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KI-AU",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "KI-AU",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Pedro Liriano",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RW-AU",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Joe Mays",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Corey Koskie",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "A.J. Pierzynski",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Brent Hoard",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Jon Pridie",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Mike Ryan",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Willie Eyre",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "Beau Kemp",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Willie Eyre",
+          "team": "Minnesota Twins",
+          "variation": "Sweet Beginnings Game Used 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Terrmel Sledge",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "222",
+          "player_name": "Luis Ayala",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "289",
+          "player_name": "Fernando Tatis",
+          "team": "Montreal Expos",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VG-AU",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VG-AU",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VG-AU",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VG-AU",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "222",
+          "player_name": "Luis Ayala",
+          "team": "Montreal Expos",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jae Weong Seo",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Jaime Cerda",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Jason Anderson",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Heath Bell",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Jeremy Griffiths",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Phil Seibel",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GL-AU",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JR-AU",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GL-AU",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JR-AU",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GL-AU",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JR-AU",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GL-AU",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JR-AU",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "195",
+          "player_name": "Heath Bell",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Jeremy Griffiths",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Phil Seibel",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Phil Seibel",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings Game Used 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Heath Bell",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings Game Used 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Jeremy Griffiths",
+          "team": "New York Mets",
+          "variation": "Sweet Beginnings Game Used 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Ventura",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Michel Hernandez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Signatures Barrel",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DH-AU",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AU",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JC-AU",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JG-AU",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RC-AU",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DH-AU",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AU",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JC-AU",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JG-AU",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RC-AU",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DH-AU",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AU",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JC-AU",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JG-AU",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-AU",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RC-AU",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue Ink",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DH-AU",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AU",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JC-AU",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JG-AU",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "191",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Michel Hernandez",
+          "team": "New York Yankees",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Sweet Beginnings Game Used 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Sweet Beginnings Game Used 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Erubiel Durazo",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Shane Bazzell",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Mike Neu",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "227",
+          "player_name": "Joe Valentine",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Shane Bazzell",
+          "team": "Oakland Athletics",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Mike Neu",
+          "team": "Oakland Athletics",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Shane Bazzell",
+          "team": "Oakland Athletics",
+          "variation": "Sweet Beginnings Game Used 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "218",
+          "player_name": "Jeremy Wedel",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-PB",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JT-AU",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PB-AU",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JT-AU",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PB-AU",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JT-AU",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PB-AU",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JT-AU",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PB-AU",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Reggie Sanders",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jose Hernandez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Jose Castillo",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Carlos Rivera",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Matt Bruback",
+          "team": "Pittsburgh Pirates",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Matt Bruback",
+          "team": "Pittsburgh Pirates",
+          "variation": "Sweet Beginnings Game Used 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Bernie Castro",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Cory Stewart",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Brandon Villafuerte",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Roger Deago",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "212",
+          "player_name": "Miguel Ojeda",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Instant Win Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TG-AU",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TG-AU",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TG-AU",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "212",
+          "player_name": "Miguel Ojeda",
+          "team": "San Diego Padres",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Jose Cruz Jr.",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Andres Galarraga",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Jesse Foppert",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JW-AU",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JW-AU",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JW-AU",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "JW-AU",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Mike Cameron",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Rett Johnson",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Bobby Madritsch",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "214",
+          "player_name": "Aaron Looper",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "IS-AU",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IS-AU",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IS-AU",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "203",
+          "player_name": "Bobby Madritsch",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Bobby Madritsch",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Beginnings Game Used 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Matt Morris",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tino Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Kevin Ohme",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Dan Haren",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-AU",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-AU",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-AU",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-AU",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jared Sandberg",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Brian Stokes",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Kevin Mench",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Gerald Laird",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Signatures Barrel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HB-AU",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MT-AU",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NR-AU",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Signatures Black Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HB-AU",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MT-AU",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NR-AU",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Signatures Black Ink Holo-Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HB-AU",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MT-AU",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NR-AU",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Signatures Blue Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HB-AU",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MT-AU",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NR-AU",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Signatures Red Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Francisco Rosario",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "226",
+          "player_name": "Aquilino Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Diegomar Markwell",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "226",
+          "player_name": "Aquilino Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Diegomar Markwell",
+          "team": "Toronto Blue Jays",
+          "variation": "Sweet Beginnings 75",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

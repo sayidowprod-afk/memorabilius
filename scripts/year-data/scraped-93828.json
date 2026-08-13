@@ -1,0 +1,5007 @@
+{
+  "year": 2014,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 93828,
+        "name": "2014 Panini Golden Age"
+      },
+      "unique": [
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SP-98",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Curt Gowdy",
+          "team": "Boston Red Sox",
+          "variation": "Historic Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Moe Berg",
+          "team": "Boston Red Sox",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Moe Berg",
+          "team": "Boston Red Sox",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Oversized Box Toppers 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Oversized Box Toppers Memorabilia 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Oversized Box Toppers 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Oversized Box Toppers Memorabilia 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tommy Lasorda",
+          "team": "Brooklyn Dodgers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Headlines",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Gabby Hartnett",
+          "team": "Chicago Cubs",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Hack Wilson",
+          "team": "Chicago Cubs",
+          "variation": "Box Bottom Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Historic Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Dave Kingman",
+          "team": "Chicago Cubs",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Eddie Waitkus",
+          "team": "Chicago Cubs",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Cavarretta",
+          "team": "Chicago Cubs",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Joe Jackson",
+          "team": "Chicago White Sox",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kid Gleason",
+          "team": "Chicago White Sox",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Vada Pinson",
+          "team": "Cincinnati Reds",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Pete Rose",
+          "team": "Cincinnati Reds",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Box Bottom Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gaylord Perry",
+          "team": "Cleveland Indians",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Goose Goslin",
+          "team": "Detroit Tigers",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Fan Craze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Willie Horton",
+          "team": "Detroit Tigers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Oversized Box Toppers 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Oversized Box Toppers Memorabilia 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Fan Craze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "New York Giants",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Giants",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "New York Giants",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "New York Giants",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "New York Giants",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Ed Kranepool",
+          "team": "New York Mets",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Fan Craze",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Gil McDougald",
+          "team": "New York Yankees",
+          "variation": "Historic Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Enos Slaughter",
+          "team": "New York Yankees",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mark Koenig",
+          "team": "New York Yankees",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Oscar Gamble",
+          "team": "New York Yankees",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Charles O. Finley",
+          "team": "Oakland Athletics",
+          "variation": "Historic Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Philadelphia Athletics",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Philadelphia Athletics",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Rube Waddell",
+          "team": "Philadelphia Athletics",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddie Plank",
+          "team": "Philadelphia Athletics",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Frank Baker",
+          "team": "Philadelphia Athletics",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Connie Mack",
+          "team": "Philadelphia Athletics",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rabbit Maranville",
+          "team": "Pittsburgh Pirates",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harvey Haddix",
+          "team": "Pittsburgh Pirates",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Oversized Box Toppers 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Oversized Box Toppers Memorabilia 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dave Kingman",
+          "team": "San Francisco Giants",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Gaedel",
+          "team": "St. Louis Browns",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Joe Medwick",
+          "team": "St. Louis Cardinals",
+          "variation": "1913 National Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Museum Age Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Joe Medwick",
+          "team": "St. Louis Cardinals",
+          "variation": "Oversized Box Toppers 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Joe Medwick",
+          "team": "St. Louis Cardinals",
+          "variation": "Oversized Box Toppers Memorabilia 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Star Stamps",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Bill Burns",
+          "team": "Washington Senators",
+          "variation": "First Fifty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "Washington Senators",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Croft's Swiss Milk Cocoa",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "Washington Senators",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Hindu Brown Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "Washington Senators",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Hindu Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ed Delahanty",
+          "team": "Washington Senators",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Mono Brand Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Mono Brand Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Panini Logo Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "Mini Smith's Mello Mint",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Sleepy Bill Burns",
+          "team": "Washington Senators",
+          "variation": "White",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Panini"
+    }
+  ]
+}

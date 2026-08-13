@@ -1,0 +1,5343 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 6650,
+        "name": "2005 SkyBox Autographics"
+      },
+      "unique": [
+        {
+          "card_number": "JG-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-SH",
+          "player_name": "Scott Hairston",
+          "team": "Arizona Diamondbacks",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SH",
+          "player_name": "Scott Hairston",
+          "team": "Arizona Diamondbacks",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-SH",
+          "player_name": "Scott Hairston",
+          "team": "Arizona Diamondbacks",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SH",
+          "player_name": "Scott Hairston",
+          "team": "Arizona Diamondbacks",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SH",
+          "player_name": "Scott Hairston",
+          "team": "Arizona Diamondbacks",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TRG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-VAM",
+          "player_name": "Val Majewski",
+          "team": "Baltimore Orioles",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VAM",
+          "player_name": "Val Majewski",
+          "team": "Baltimore Orioles",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VMJ",
+          "player_name": "Val Majewski",
+          "team": "Baltimore Orioles",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Fergie Jenkins",
+          "team": "Boston Red Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Fergie Jenkins",
+          "team": "Boston Red Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-THA",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-THA",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-THA",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-THA",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-THA",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-LG",
+          "player_name": "Luis A. Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Carlos Guillen",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Carlos Guillen",
+          "team": "Detroit Tigers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Detroit Tigers",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Carlos Guillen",
+          "team": "Detroit Tigers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JBE",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JBE",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JOB",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MGC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Charlton Jimerson",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Charlton Jimerson",
+          "team": "Houston Astros",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Master Collection Booklets",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Charlton Jimerson",
+          "team": "Houston Astros",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-AE",
+          "player_name": "Adam Everett",
+          "team": "Houston Astros",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AG-BL",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Ruben Gotay",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Andres Blanco",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Ruben Gotay",
+          "team": "Kansas City Royals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Andres Blanco",
+          "team": "Kansas City Royals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Ruben Gotay",
+          "team": "Kansas City Royals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Andres Blanco",
+          "team": "Kansas City Royals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Pee Wee Reese",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Pee Wee Reese",
+          "team": "Los Angeles Dodgers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Pee Wee Reese",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Dave Krynzel",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-RW",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-RW",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-RW",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-RW",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-RW",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-RW",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Dave Krynzel",
+          "team": "Milwaukee Brewers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Dave Krynzel",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JD",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-JK",
+          "player_name": "Jason Kubel",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AG-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jeff Keppinger",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jeff Keppinger",
+          "team": "New York Mets",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TOG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TOG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-TOG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jeff Keppinger",
+          "team": "New York Mets",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MCA",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-JO",
+          "player_name": "John Olerud",
+          "team": "New York Yankees",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-VMJ",
+          "player_name": "Val Majewski",
+          "team": "Oakland Athletics",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VMJ",
+          "player_name": "Val Majewski",
+          "team": "Oakland Athletics",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-VMJ",
+          "player_name": "Val Majewski",
+          "team": "Oakland Athletics",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MB",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MB",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MB",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SB",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SB",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SB",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SB",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SB",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-SB",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-BG",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-BG",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-BG",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-TRH",
+          "player_name": "Trevor Hoffman",
+          "team": "San Diego Padres",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-AS",
+          "player_name": "Alfredo Simon",
+          "team": "San Francisco Giants",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AS",
+          "player_name": "Alfredo Simon",
+          "team": "San Francisco Giants",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-AS",
+          "player_name": "Alfredo Simon",
+          "team": "San Francisco Giants",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AS",
+          "player_name": "Alfredo Simon",
+          "team": "San Francisco Giants",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AS",
+          "player_name": "Alfredo Simon",
+          "team": "San Francisco Giants",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-AS",
+          "player_name": "Alfredo Simon",
+          "team": "San Francisco Giants",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-DE",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jeff Niemann",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FSA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DY",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DY",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Platinum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DY",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Platinum Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FSA-DY",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Signs Autograph Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jeff Niemann",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jeff Niemann",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AG-EP",
+          "player_name": "Eduardo Perez",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AG-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Jerseygraphics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Jerseygraphics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JG-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Jerseygraphics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Master Collection Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Master Collection One of a Kind Booklets",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Jersey Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Patch Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Patch Masterpiece Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signatures Game Patch Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AG-OH",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "Signatures Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Signatures Game Jersey Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Signatures Game Jersey Gold Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGJ-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Signatures Game Jersey Silver Embossed",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jose Vidro",
+          "team": "Washington Senators",
+          "variation": "Insignia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jose Vidro",
+          "team": "Washington Senators",
+          "variation": "Royal Insignia",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

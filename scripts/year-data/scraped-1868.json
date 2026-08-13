@@ -1,0 +1,1567 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1868,
+        "name": "2005 Topps Updates & Highlights"
+      },
+      "unique": [
+        {
+          "card_number": "ASP-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JSM",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JSM",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-TH",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-BR",
+          "player_name": "Brian Roberts",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MM",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-BR",
+          "player_name": "Brian Roberts",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MM",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-BR",
+          "player_name": "Brian Roberts",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-CJS",
+          "player_name": "C.J. Smith",
+          "team": "Baltimore Orioles",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-CJS",
+          "player_name": "C.J. Smith",
+          "team": "Baltimore Orioles",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MCL",
+          "player_name": "Matt Clement",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MCL",
+          "player_name": "Matt Clement",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HF-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Hall of Fame Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HFD-BS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Hall of Fame Dual Bat Relic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-JA",
+          "player_name": "Jim Abbott",
+          "team": "California Angels",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-ARA",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DL",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-ARA",
+          "player_name": "Aramis Ramirez",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-DL",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HF-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Hall of Fame Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HFD-BS",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Hall of Fame Dual Bat Relic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-DL",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-DL",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JG",
+          "player_name": "Jon Garland",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JG",
+          "player_name": "Jon Garland",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-SP",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Chicago White Sox",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-FL",
+          "player_name": "Felipe Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-FL",
+          "player_name": "Felipe Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-JP",
+          "player_name": "Jake Postlewait",
+          "team": "Colorado Rockies",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-JP",
+          "player_name": "Jake Postlewait",
+          "team": "Colorado Rockies",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-LW",
+          "player_name": "Lou Whitaker",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-MF",
+          "player_name": "Mark Fidrych",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-HS",
+          "player_name": "Humberto Sanchez",
+          "team": "Detroit Tigers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-HS",
+          "player_name": "Humberto Sanchez",
+          "team": "Detroit Tigers",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-JV",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-LC",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-LC",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-BL",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-ME",
+          "player_name": "Morgan Ensberg",
+          "team": "Houston Astros",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-BL",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-ME",
+          "player_name": "Morgan Ensberg",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-MA",
+          "player_name": "Matt Albers",
+          "team": "Houston Astros",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-MA",
+          "player_name": "Matt Albers",
+          "team": "Houston Astros",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-BC",
+          "player_name": "Bartolo Colon",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-BC",
+          "player_name": "Bartolo Colon",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JK",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JK",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CL",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-CL",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-CL",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Milwaukee Brewers",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JN",
+          "player_name": "Joe Nathan",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JN",
+          "player_name": "Joe Nathan",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-GP",
+          "player_name": "Glen Perkins",
+          "team": "Minnesota Twins",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-GP",
+          "player_name": "Glen Perkins",
+          "team": "Minnesota Twins",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "New York Mets",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "New York Mets",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MRI",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MRI",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-TW",
+          "player_name": "Tony Womack",
+          "team": "New York Yankees",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-TW",
+          "player_name": "Tony Womack",
+          "team": "New York Yankees",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-TH",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-BA",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-BW",
+          "player_name": "Billy Wagner",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-BA",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-BW",
+          "player_name": "Billy Wagner",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-BA",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-BS",
+          "player_name": "Benito Santiago",
+          "team": "Pittsburgh Pirates",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-BS",
+          "player_name": "Benito Santiago",
+          "team": "Pittsburgh Pirates",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-JP",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JP",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-DW",
+          "player_name": "Dave Winfield",
+          "team": "San Diego Padres",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-GK",
+          "player_name": "George Kottaras",
+          "team": "San Diego Padres",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-TC",
+          "player_name": "Travis Chick",
+          "team": "San Diego Padres",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-GK",
+          "player_name": "George Kottaras",
+          "team": "San Diego Padres",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-TC",
+          "player_name": "Travis Chick",
+          "team": "San Diego Padres",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-MA",
+          "player_name": "Moises Alou",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MA",
+          "player_name": "Moises Alou",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-BB",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-HR",
+          "player_name": "Harold Reynolds",
+          "team": "Seattle Mariners",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-BL",
+          "player_name": "Bobby Livingston",
+          "team": "Seattle Mariners",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-RS",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-BL",
+          "player_name": "Bobby Livingston",
+          "team": "Seattle Mariners",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-RS",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CC",
+          "player_name": "Chris Carpenter",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DE",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JI",
+          "player_name": "Jason Isringhausen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-CC",
+          "player_name": "Chris Carpenter",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-DE",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-JI",
+          "player_name": "Jason Isringhausen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSR-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Sacks Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MCR-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Midsummer Covers Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-MM",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-MM",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "Signature Moves Red Foil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-KR",
+          "player_name": "Kenny Rogers",
+          "team": "Texas Rangers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-KR",
+          "player_name": "Kenny Rogers",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DDR-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Derby Digs Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CCO",
+          "player_name": "Chad Cordero",
+          "team": "Washington Nationals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-LH",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-CCO",
+          "player_name": "Chad Cordero",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASR-LH",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-BS",
+          "player_name": "Brian Schneider",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-BW",
+          "player_name": "Brad Wilkerson",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-CG",
+          "player_name": "Cristian Guzman",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-JG",
+          "player_name": "Jose Guillen",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-JV",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-LH",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-NJ",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-TEAM",
+          "player_name": "Washington Nationals",
+          "team": null,
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-TS",
+          "player_name": "Terrmel Sledge",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-VC",
+          "player_name": "Vinny Castilla",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-BS",
+          "player_name": "Brian Schneider",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-BW",
+          "player_name": "Brad Wilkerson",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-CG",
+          "player_name": "Cristian Guzman",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-JG",
+          "player_name": "Jose Guillen",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-JV",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-LH",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-NJ",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-TEAM",
+          "player_name": "Washington Nationals",
+          "team": null,
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-TS",
+          "player_name": "Terrmel Sledge",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NIR-VC",
+          "player_name": "Vinny Castilla",
+          "team": "Washington Nationals",
+          "variation": "Washington Nationals Inaugural Lineup Ball Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

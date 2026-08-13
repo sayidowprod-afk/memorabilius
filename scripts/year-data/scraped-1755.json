@@ -1,0 +1,5423 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1755,
+        "name": "2004 Topps Retired Signature Edition"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Orlando Cepeda",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BB",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JP",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bill Buckner",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Reggie Jackson",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Mickey Rivers",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BGR",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BGR",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BGR",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BGR",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BGR",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BGR",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs Refractors",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Bobby Grich",
+          "team": "California Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Reggie Jackson",
+          "team": "California Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Mickey Rivers",
+          "team": "California Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RON",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSN",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSN",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSN",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSN",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RSN",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JM",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jack McDowell",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CG",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CG",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CG",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CG",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CG",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-CG",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Cesar Geronimo",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Buddy Bell",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Lou Whitaker",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Norm Cash",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jack Morris",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-KG",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-KG",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-KG",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-KG",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-KG",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-KG",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Lou Whitaker",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Norm Cash",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jack Morris",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Scott",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Scott",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Hal McRae",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-AH",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AH",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AH",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AH",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AH",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AH",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Hal McRae",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Al Hrabosky",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dave Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Gary Gaetti",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TO",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TO",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TO",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TO",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TO",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TB",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TO",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tom Brunansky",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Kent Hrbek",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Gary Gaetti",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tim Raines",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tim Raines",
+          "team": "Montreal Expos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dave Kingman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RS",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RS",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RS",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RS",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RS",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RS",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dave Kingman",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ron Swoboda",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BD",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BD",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BD",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BD",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BD",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BD",
+          "player_name": "Bucky Dent",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Dave Stewart",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Dave Stewart",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Lenny Dykstra",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Garry Maddox",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Dick Allen",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Tim McCarver",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Lenny Dykstra",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ferguson Jenkins",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Garry Maddox",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Dick Allen",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Tim McCarver",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-AO",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BM",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JC",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RFA",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AO",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BM",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JC",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RFA",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AO",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BM",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JC",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RFA",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AO",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BM",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JC",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RFA",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AO",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BM",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JC",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RFA",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-AO",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BM",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JC",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RFA",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Roy Face",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Al Oliver",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "John Candelaria",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Bill Madlock",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Steve Garvey",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Dave Winfield",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-GG",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GG",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GG",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GG",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GG",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-GG",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Steve Garvey",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Goose Gossage",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Dave Winfield",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-VB",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-VB",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-VB",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-VB",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-VB",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-VB",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Vida Blue",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Keith Hernandez",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Andy Van Slyke",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Keith Hernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Andy Van Slyke",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TA-DST",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JK",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TF",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DST",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JK",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TF",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DST",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JK",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TF",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DST",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JK",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TF",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DST",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JK",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TF",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-DST",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-JK",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TA-TF",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jimmy Key",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Tony Fernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

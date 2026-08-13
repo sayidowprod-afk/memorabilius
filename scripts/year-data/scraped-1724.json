@@ -1,0 +1,5263 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1724,
+        "name": "2004 SP Legendary Cuts"
+      },
+      "unique": [
+        {
+          "card_number": "19",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-MU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-MU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-RMBM",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-PA",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-PA",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Johnny Sain",
+          "team": "Boston Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Johnny Sain",
+          "team": "Boston Braves",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jimmie Foxx",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Mike Greenwell",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-FL",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-FCBM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-MPGB",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-SMMW",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-FL",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-FL",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jimmie Foxx",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-DFW",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-YBR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-DN",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-SN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-SMMW",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-DN",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-SN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-PO",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-PR",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-RC",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-PO",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-PR",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-RC",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-DN",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-SCR",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-SRC",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-SRD",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-SRR",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-SN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-JR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-PR",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-RC",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-JR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-PR",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-RC",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mark Grace",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-SA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-MBKM",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-SA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mark Grace",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-DGS",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-WBS",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-DGS",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-SA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-NF",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-NF",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-NF",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-NF",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-MO",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-FCBM",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-AN",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DC",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-AN",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DC",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DC",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FR",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SA",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DC",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FR",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-MBP",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-BPG",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-CBP",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Lopez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Larry Doby",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Lou Boudreau",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Lou Boudreau",
+          "team": "Cleveland Indians",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Denny McLain",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hal Newhouser",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mickey Lolich",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-GK",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-MC",
+          "player_name": "Denny McLain",
+          "team": "Detroit Tigers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-ML",
+          "player_name": "Mickey Lolich",
+          "team": "Detroit Tigers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-ML",
+          "player_name": "Mickey Lolich",
+          "team": "Detroit Tigers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-GK",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-MC",
+          "player_name": "Denny McLain",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-MC",
+          "player_name": "Denny McLain",
+          "team": "Detroit Tigers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mickey Lolich",
+          "team": "Detroit Tigers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SA",
+          "player_name": "Sparky Anderson",
+          "team": "Detroit Tigers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-GK",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-HG",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-HG",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-RMBM",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bill Russell",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Johnny Roseboro",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Reggie Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Tommy Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JP",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-SRCS",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JP",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JP",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-JP",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bill Russell",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dusty Baker",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Johnny Roseboro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Reggie Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Tommy Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-BSG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-JP",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HP-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-MBKM",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-MA",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-MA",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ED",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ED",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-RMBM",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-MYF",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HQJ-MBKM",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-MPGB",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-MI",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-HW",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-HW",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-MI",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-HW",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-HW",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-MI",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-ST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-ST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-HW",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-HW",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-MPGB",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MG-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-JM",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-JM",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joe Torre",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-RS",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HP-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-SMMW",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LS-RS",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LSW-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MH-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-OZ",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "St. Louis Cardinals",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STJ-SSM",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Significant Trips Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STP-MBG",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Significant Trips Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-RS",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HP-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Historic Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HQJ-SRCS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Historic Quads Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Legendary Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LSW-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Legendary Swatches 15",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MH-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Marked for the Hall",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Ultimate Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "US-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Ultimate Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Ultimate Swatches 10",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Time Autos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GG-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Game Graphs Memorabilia 25",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Historic Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Historic Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LS-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Legendary Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MG-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Marks of Greatness",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Significant Fact Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Significant Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JC",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Significant Swatches 25",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Rick Ferrell",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "SP"
+    }
+  ]
+}

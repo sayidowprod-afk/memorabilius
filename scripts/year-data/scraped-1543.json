@@ -1,0 +1,2887 @@
+{
+  "year": 2002,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1543,
+        "name": "2002 Flair"
+      },
+      "unique": [
+        {
+          "card_number": "18",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Wilson Betemit",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Derrick Lewis",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tim Spooneybarger",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Horacio Ramirez",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Steve Torrealba",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Wilson Betemit",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Derrick Lewis",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tim Spooneybarger",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Horacio Ramirez",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Steve Torrealba",
+          "team": "Atlanta Braves",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Chris Richard",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Chris Richard",
+          "team": "Baltimore Orioles",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Tony Clark",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Tony Clark",
+          "team": "Boston Red Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Jon Lieber",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Jon Lieber",
+          "team": "Chicago Cubs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Willie Harris",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Willie Harris",
+          "team": "Chicago White Sox",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Juan Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Juan Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "David Espinosa",
+          "team": "Cincinnati Reds",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dane Sardinha",
+          "team": "Cincinnati Reds",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "C.C. Sabathia",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "CC Sabathia",
+          "team": "Cleveland Indians",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Brandon Inge",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Andres Torres",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Adam Pettyjohn",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Brandon Inge",
+          "team": "Detroit Tigers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Andres Torres",
+          "team": "Detroit Tigers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Adam Pettyjohn",
+          "team": "Detroit Tigers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Cliff Floyd",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Ramon Castro",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Cliff Floyd",
+          "team": "Florida Marlins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Ramon Castro",
+          "team": "Florida Marlins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Morgan Ensberg",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Morgan Ensberg",
+          "team": "Houston Astros",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Quinn",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Ken Harvey",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Quinn",
+          "team": "Kansas City Royals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Ken Harvey",
+          "team": "Kansas City Royals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ron Cey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Matt Childers",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Bill Hall",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Matt Childers",
+          "team": "Milwaukee Brewers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Bill Hall",
+          "team": "Milwaukee Brewers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Joe Mays",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Doug Mientkiewicz",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Joe Mays",
+          "team": "Minnesota Twins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Doug Mientkiewicz",
+          "team": "Minnesota Twins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Ron Calloway",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Ron Calloway",
+          "team": "Montreal Expos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Zach Day",
+          "team": "Montreal Expos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Edgardo Alfonzo",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Jeromy Burnitz",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Adam Walker",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Edgardo Alfonzo",
+          "team": "New York Mets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Jeromy Burnitz",
+          "team": "New York Mets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Adam Walker",
+          "team": "New York Mets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Orlando Hernandez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Juan Rivera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Orlando Hernandez",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Juan Rivera",
+          "team": "New York Yankees",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Brandon Duckworth",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Nick Punto",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Brandon Duckworth",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Nick Punto",
+          "team": "Philadelphia Phillies",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Jimenez",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Jeremy Owens",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Eric Cyr",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Jimenez",
+          "team": "San Diego Padres",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Jeremy Owens",
+          "team": "San Diego Padres",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Eric Cyr",
+          "team": "San Diego Padres",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jeff Kent",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Tsuyoshi Shinjo",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Carlos Valderrama",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jeff Kent",
+          "team": "San Francisco Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Tsuyoshi Shinjo",
+          "team": "San Francisco Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Carlos Valderrama",
+          "team": "San Francisco Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Rafael Soriano",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Rafael Soriano",
+          "team": "Seattle Mariners",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Freddy Garcia",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Freddy Garcia",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Freddy Garcia",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Morris",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tino Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jeremy Lambert",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "So Taguchi",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Morris",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tino Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jeremy Lambert",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "So Taguchi",
+          "team": "St. Louis Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "So Taguchi",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Toby Hall",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ben Grieve",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Dewon Brazelton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Matt White",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Joe Kennedy",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Toby Hall",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ben Grieve",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Dewon Brazelton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Matt White",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Joe Kennedy",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dewon Brazelton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Travis Hafner",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Travis Hafner",
+          "team": "Texas Rangers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Bat Autograph Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Sweet Swatch Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Raul Mondesi",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Felipe Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Raul Mondesi",
+          "team": "Toronto Blue Jays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Felipe Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

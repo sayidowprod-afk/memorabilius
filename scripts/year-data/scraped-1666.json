@@ -1,0 +1,2527 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1666,
+        "name": "2003 UD Authentics"
+      },
+      "unique": [
+        {
+          "card_number": "32",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Troy Percival",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TR",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TR",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Lyle Overbay",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Shea Hillenbrand",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Chris Capuano",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Chris Capuano",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Mike Hampton",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Bobby Hill",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Matt Bruback",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Matt Bruback",
+          "team": "Chicago Cubs",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Brandon Larson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Josh Hall",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Josh Hall",
+          "team": "Cincinnati Reds",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "CC Sabathia",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Fernando Cabrera",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jhonny Peralta",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Fernando Cabrera",
+          "team": "Cleveland Indians",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jhonny Peralta",
+          "team": "Cleveland Indians",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Nook Logan",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Nook Logan",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JO",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JO",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JK",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JK",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Ken Harvey",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Runelvys Hernandez",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Joe Thurston",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HM",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HM",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Doug Mientkiewicz",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joe Mays",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Willie Eyre",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Willie Eyre",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Luis Ayala",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Luis Ayala",
+          "team": "Montreal Expos",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Cliff Floyd",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Jeremy Griffiths",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Phil Seibel",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Jeremy Griffiths",
+          "team": "New York Mets",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Phil Seibel",
+          "team": "New York Mets",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TM",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Andy Pettitte",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jose Contreras",
+          "team": "New York Yankees",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-BW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CS",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-MU",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RC1",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-BW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CS",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-MU",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RC1",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DW",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-LG",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RM",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DW",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-LG",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RM",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jermaine Dye",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Shane Bazzell",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Shane Bazzell",
+          "team": "Oakland Athletics",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DE",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-DE",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TC",
+          "player_name": "Ty Cobb",
+          "team": "Philadelphia Athletics",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TC",
+          "player_name": "Ty Cobb",
+          "team": "Philadelphia Athletics",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Jeremy Wedel",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Jeremy Wedel",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HW",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MW",
+          "player_name": "Maury Wills",
+          "team": "Pittsburgh Pirates",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-HW",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-MW",
+          "player_name": "Maury Wills",
+          "team": "Pittsburgh Pirates",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Miguel Ojeda",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Miguel Ojeda",
+          "team": "San Diego Padres",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-OS",
+          "player_name": "Ozzie Smith",
+          "team": "San Diego Padres",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jose Cruz Jr.",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Bobby Madritsch",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Bobby Madritsch",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Matt Morris",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JD",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-JD",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Threads of Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Threads of Time Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Diegomar Markwell",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Diegomar Markwell",
+          "team": "Toronto Blue Jays",
+          "variation": "Rookie Hype Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-TB",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Quality",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-EH",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Quality Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

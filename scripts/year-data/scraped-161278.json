@@ -1,0 +1,1775 @@
+{
+  "year": 2002,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 161278,
+        "name": "2002 Upper Deck Rookie Update"
+      },
+      "unique": [
+        {
+          "card_number": "206",
+          "player_name": "Barry Wesson",
+          "team": "Anaheim Angels",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Erubiel Durazo",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Junior Spivey",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "571",
+          "player_name": "Erubiel Durazo",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-CS",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "603",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-TG",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Geronimo Gil",
+          "team": "Baltimore Orioles",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Travis Driskill",
+          "team": "Baltimore Orioles",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "241",
+          "player_name": "Travis Driskill",
+          "team": "Baltimore Orioles",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "572",
+          "player_name": "Geronimo Gil",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "617",
+          "player_name": "Travis Driskill",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "618",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Star Tributes Signatures Copper",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "237",
+          "player_name": "Andy Shibilo",
+          "team": "Boston Red Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "242",
+          "player_name": "Jorge De La Rosa",
+          "team": "Boston Red Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "Anastacio Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "245",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "573",
+          "player_name": "Shea Hillenbrand",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "574",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "611",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Mike Mahoney",
+          "team": "Chicago Cubs",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "575",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "601",
+          "player_name": "Mike Mahoney",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-MPR",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Star Tributes Signatures Copper",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Star Tributes Signatures Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "576",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Brandon Larson",
+          "team": "Cincinnati Reds",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Aaron Boone",
+          "team": "Cincinnati Reds",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Shawn Estes",
+          "team": "Cincinnati Reds",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Russell Branyan",
+          "team": "Cincinnati Reds",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "577",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "578",
+          "player_name": "Ryan Dempster",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "579",
+          "player_name": "Brandon Larson",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Star Tributes Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "204",
+          "player_name": "Brian Tallet",
+          "team": "Cleveland Indians",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Cliff Lee",
+          "team": "Cleveland Indians",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "244",
+          "player_name": "Earl Snyder",
+          "team": "Cleveland Indians",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "591",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "602",
+          "player_name": "Jason Davis",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "604",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "619",
+          "player_name": "Earl Snyder",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "620",
+          "player_name": "Carl Sadler",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "621",
+          "player_name": "Jason Beverlin",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Jay Payton",
+          "team": "Colorado Rockies",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "222",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "223",
+          "player_name": "Cam Esslinger",
+          "team": "Colorado Rockies",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Andres Torres",
+          "team": "Detroit Tigers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Andy Van Hekken",
+          "team": "Detroit Tigers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "Eric Munson",
+          "team": "Detroit Tigers",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "248",
+          "player_name": "Franklyn German",
+          "team": "Detroit Tigers",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "586",
+          "player_name": "Eric Munson",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "622",
+          "player_name": "Terry Pearson",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "623",
+          "player_name": "Eric Eckenstahler",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Juan Encarnacion",
+          "team": "Florida Marlins",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "580",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "581",
+          "player_name": "Juan Encarnacion",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JB",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Jason Lane",
+          "team": "Houston Astros",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "605",
+          "player_name": "Jeriome Robertson",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Aaron Guiel",
+          "team": "Kansas City Royals",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "Shawn Sedlacek",
+          "team": "Kansas City Royals",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Jeremy Hill",
+          "team": "Kansas City Royals",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Aaron Guiel",
+          "team": "Kansas City Royals",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "Miguel Asencio",
+          "team": "Kansas City Royals",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "247",
+          "player_name": "Juan Brito",
+          "team": "Kansas City Royals",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "624",
+          "player_name": "Shawn Sedlacek",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "625",
+          "player_name": "Aaron Guiel",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "626",
+          "player_name": "Ryan Bukvich",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Jose Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Danny Mota",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "212",
+          "player_name": "David Ross",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Jose Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "226",
+          "player_name": "David Ross",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "582",
+          "player_name": "Chin-Feng Chen",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "583",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "606",
+          "player_name": "Jose Diaz",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "608",
+          "player_name": "Danny Mota",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "609",
+          "player_name": "David Ross",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Alex Sanchez",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "214",
+          "player_name": "Shane Nance",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "227",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "228",
+          "player_name": "Brian Mallette",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "610",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Endy Chavez",
+          "team": "Montreal Expos",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "210",
+          "player_name": "Jorge Nunez",
+          "team": "Montreal Expos",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "218",
+          "player_name": "Jamey Carroll",
+          "team": "Montreal Expos",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Jorge Nunez",
+          "team": "Montreal Expos",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "239",
+          "player_name": "Ron Chiavacci",
+          "team": "Montreal Expos",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "584",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "607",
+          "player_name": "Jorge Nunez",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Adam Walker",
+          "team": "New York Mets",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "231",
+          "player_name": "Satoru Komiyama",
+          "team": "New York Mets",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "232",
+          "player_name": "Tyler Yates",
+          "team": "New York Mets",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Robin Ventura",
+          "team": "New York Yankees",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "Jeff Weaver",
+          "team": "New York Yankees",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "585",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "587",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JD",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Star Tributes",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Star Tributes Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Star Tributes Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "191",
+          "player_name": "Ted Lilly",
+          "team": "Oakland Athletics",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "588",
+          "player_name": "Ted Lilly",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "589",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Vicente Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "210",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Jeremy Giambi",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "212",
+          "player_name": "Vicente Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "233",
+          "player_name": "Pete Zamora",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "590",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Josh Fogg",
+          "team": "Pittsburgh Pirates",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "234",
+          "player_name": "Mike Gonzalez",
+          "team": "Pittsburgh Pirates",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "215",
+          "player_name": "Wil Nieves",
+          "team": "San Diego Padres",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "217",
+          "player_name": "Alex Pelaez",
+          "team": "San Diego Padres",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "J.J. Trujillo",
+          "team": "San Diego Padres",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Kevin Pickford",
+          "team": "San Diego Padres",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Clay Condrey",
+          "team": "San Diego Padres",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "214",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "235",
+          "player_name": "Oliver Perez",
+          "team": "San Diego Padres",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "236",
+          "player_name": "Julius Matos",
+          "team": "San Diego Padres",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "612",
+          "player_name": "Julius Matos",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "613",
+          "player_name": "Wil Nieves",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "215",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "240",
+          "player_name": "Deivis Santos",
+          "team": "San Francisco Giants",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "592",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-TS",
+          "player_name": "Tsuyoshi Shinjo",
+          "team": "San Francisco Giants",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "222",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "249",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "627",
+          "player_name": "Julio Mateo",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "628",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KS",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Jose Rodriguez",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "238",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "593",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "594",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "615",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "616",
+          "player_name": "Mike Coolbaugh",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-MM",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Tributes Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Tributes Signatures Copper",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Star Tributes Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "226",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "217",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "595",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "629",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "218",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "596",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "597",
+          "player_name": "Kevin Mench",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "614",
+          "player_name": "Ben Kozlowski",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Star Tributes Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Star Tributes Signatures Copper",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Star Tributes Signatures Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "200",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "227",
+          "player_name": "Ken Huckaby",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Corey Thurman",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Kevin Cash",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SP Authentic Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "Felipe Lopez",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SPx Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Ken Huckaby",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 SPx Update",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "598",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "599",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "600",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "630",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Diamond Connection Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Star Tributes",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

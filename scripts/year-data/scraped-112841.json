@@ -1,0 +1,5007 @@
+{
+  "year": 2015,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 112841,
+        "name": "2015 Topps Heritage '51"
+      },
+      "unique": [
+        {
+          "card_number": "9",
+          "player_name": "Jake Lamb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Archie Bradley",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jake Lamb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Archie Bradley",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jake Lamb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Archie Bradley",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jake Lamb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Archie Bradley",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jake Lamb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Archie Bradley",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jake Lamb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Archie Bradley",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Pablo Sandoval",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Eduardo Rodriguez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Pablo Sandoval",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Eduardo Rodriguez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Pablo Sandoval",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Eduardo Rodriguez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Pablo Sandoval",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Eduardo Rodriguez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Pablo Sandoval",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Eduardo Rodriguez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Pablo Sandoval",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Eduardo Rodriguez",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jorge Soler",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jorge Soler",
+          "team": "Chicago Cubs",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jorge Soler",
+          "team": "Chicago Cubs",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jorge Soler",
+          "team": "Chicago Cubs",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jorge Soler",
+          "team": "Chicago Cubs",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jorge Soler",
+          "team": "Chicago Cubs",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jeff Samardzija",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jeff Samardzija",
+          "team": "Chicago White Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jeff Samardzija",
+          "team": "Chicago White Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jeff Samardzija",
+          "team": "Chicago White Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jeff Samardzija",
+          "team": "Chicago White Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jeff Samardzija",
+          "team": "Chicago White Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brandon Finnegan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brandon Finnegan",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brandon Finnegan",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brandon Finnegan",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brandon Finnegan",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brandon Finnegan",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Daniel Norris",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Daniel Norris",
+          "team": "Detroit Tigers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Daniel Norris",
+          "team": "Detroit Tigers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Daniel Norris",
+          "team": "Detroit Tigers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Daniel Norris",
+          "team": "Detroit Tigers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Daniel Norris",
+          "team": "Detroit Tigers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Cueto",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Cueto",
+          "team": "Kansas City Royals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Cueto",
+          "team": "Kansas City Royals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Cueto",
+          "team": "Kansas City Royals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Cueto",
+          "team": "Kansas City Royals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Cueto",
+          "team": "Kansas City Royals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Christian Yelich",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Christian Yelich",
+          "team": "Miami Marlins",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Christian Yelich",
+          "team": "Miami Marlins",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Christian Yelich",
+          "team": "Miami Marlins",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Christian Yelich",
+          "team": "Miami Marlins",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Christian Yelich",
+          "team": "Miami Marlins",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lucas Duda",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lucas Duda",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lucas Duda",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lucas Duda",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lucas Duda",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Lucas Duda",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Michael Pineda",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jacoby Ellsbury",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Michael Pineda",
+          "team": "New York Yankees",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jacoby Ellsbury",
+          "team": "New York Yankees",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Michael Pineda",
+          "team": "New York Yankees",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jacoby Ellsbury",
+          "team": "New York Yankees",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Michael Pineda",
+          "team": "New York Yankees",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jacoby Ellsbury",
+          "team": "New York Yankees",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Michael Pineda",
+          "team": "New York Yankees",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jacoby Ellsbury",
+          "team": "New York Yankees",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Michael Pineda",
+          "team": "New York Yankees",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jacoby Ellsbury",
+          "team": "New York Yankees",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Craig Kimbrel",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Kemp",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Craig Kimbrel",
+          "team": "San Diego Padres",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Kemp",
+          "team": "San Diego Padres",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Craig Kimbrel",
+          "team": "San Diego Padres",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Kemp",
+          "team": "San Diego Padres",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Craig Kimbrel",
+          "team": "San Diego Padres",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Kemp",
+          "team": "San Diego Padres",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Craig Kimbrel",
+          "team": "San Diego Padres",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Kemp",
+          "team": "San Diego Padres",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Craig Kimbrel",
+          "team": "San Diego Padres",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Matt Kemp",
+          "team": "San Diego Padres",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Taijuan Walker",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Taijuan Walker",
+          "team": "Seattle Mariners",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Taijuan Walker",
+          "team": "Seattle Mariners",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Taijuan Walker",
+          "team": "Seattle Mariners",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Taijuan Walker",
+          "team": "Seattle Mariners",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Taijuan Walker",
+          "team": "Seattle Mariners",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Heyward",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Heyward",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Heyward",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Heyward",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Heyward",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Heyward",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steven Souza Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steven Souza Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steven Souza Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steven Souza Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steven Souza Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steven Souza Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Price",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devon Travis",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Tulowitzki",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Aaron Sanchez",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Price",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devon Travis",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Tulowitzki",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Aaron Sanchez",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Price",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devon Travis",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Tulowitzki",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Aaron Sanchez",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Price",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devon Travis",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Tulowitzki",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Aaron Sanchez",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Price",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devon Travis",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Tulowitzki",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Aaron Sanchez",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Price",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devon Travis",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Troy Tulowitzki",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Aaron Sanchez",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ian Desmond",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ian Desmond",
+          "team": "Washington Nationals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": "Mini Black Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ian Desmond",
+          "team": "Washington Nationals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": "Mini Blue Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ian Desmond",
+          "team": "Washington Nationals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": "Mini Gold Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ian Desmond",
+          "team": "Washington Nationals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": "Mini Green Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ian Desmond",
+          "team": "Washington Nationals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": "Mini Red Back",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

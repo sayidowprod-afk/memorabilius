@@ -1,0 +1,4431 @@
+{
+  "year": 2020,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 256735,
+        "name": "2020 Topps Holiday"
+      },
+      "unique": [
+        {
+          "card_number": "HWA-ZG",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ZG",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ZG",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-AI",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AI",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AI",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-AN",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JJ",
+          "player_name": "Jackie Bradley Jr.",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MC",
+          "player_name": "Michael Chavis",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AN",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JJ",
+          "player_name": "Jackie Bradley Jr.",
+          "team": "Boston Red Sox",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MC",
+          "player_name": "Michael Chavis",
+          "team": "Boston Red Sox",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AN",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JJ",
+          "player_name": "Jackie Bradley Jr.",
+          "team": "Boston Red Sox",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MC",
+          "player_name": "Michael Chavis",
+          "team": "Boston Red Sox",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-AL",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AL",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AL",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-APU",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RG",
+          "player_name": "Robel Garcia",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-APU",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RG",
+          "player_name": "Robel Garcia",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-APU",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RG",
+          "player_name": "Robel Garcia",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BZ",
+          "player_name": "Ben Zobrist",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-IH",
+          "player_name": "Ian Happ",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JY",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BZ",
+          "player_name": "Ben Zobrist",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-IH",
+          "player_name": "Ian Happ",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JY",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BZ",
+          "player_name": "Ben Zobrist",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-IH",
+          "player_name": "Ian Happ",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JY",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-AA",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MM",
+          "player_name": "Mike Moustakas",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-TB",
+          "player_name": "Trevor Bauer",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AA",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MM",
+          "player_name": "Mike Moustakas",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-TB",
+          "player_name": "Trevor Bauer",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AA",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MM",
+          "player_name": "Mike Moustakas",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-TB",
+          "player_name": "Trevor Bauer",
+          "team": "Cincinnati Reds",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-NS",
+          "player_name": "Nick Senzel",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SA",
+          "player_name": "Shogo Akiyama",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-NS",
+          "player_name": "Nick Senzel",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SA",
+          "player_name": "Shogo Akiyama",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-NS",
+          "player_name": "Nick Senzel",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SA",
+          "player_name": "Shogo Akiyama",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-AA",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JVM",
+          "player_name": "Josh VanMeter",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LC",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-NS",
+          "player_name": "Nick Senzel",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AA",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JVM",
+          "player_name": "Josh VanMeter",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LC",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-NS",
+          "player_name": "Nick Senzel",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AA",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JVM",
+          "player_name": "Josh VanMeter",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LC",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-NS",
+          "player_name": "Nick Senzel",
+          "team": "Cincinnati Reds",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AHA",
+          "player_name": "Oscar Mercado",
+          "team": "Cleveland Indians",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AHA",
+          "player_name": "Oscar Mercado",
+          "team": "Cleveland Indians",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AHA",
+          "player_name": "Oscar Mercado",
+          "team": "Cleveland Indians",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-YD",
+          "player_name": "Yonathan Daza",
+          "team": "Colorado Rockies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-YD",
+          "player_name": "Yonathan Daza",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-YD",
+          "player_name": "Yonathan Daza",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MB",
+          "player_name": "Matthew Boyd",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MF",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MI",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MB",
+          "player_name": "Matthew Boyd",
+          "team": "Detroit Tigers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MF",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MI",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MB",
+          "player_name": "Matthew Boyd",
+          "team": "Detroit Tigers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MF",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MI",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YG",
+          "player_name": "Yuli Gurriel",
+          "team": "Houston Astros",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YG",
+          "player_name": "Yuli Gurriel",
+          "team": "Houston Astros",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YG",
+          "player_name": "Yuli Gurriel",
+          "team": "Houston Astros",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HWA-ER",
+          "player_name": "Ryan McBroom",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-WM",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ER",
+          "player_name": "Ryan McBroom",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-WM",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-ER",
+          "player_name": "Ryan McBroom",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-WM",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AR",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AR",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AR",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-AN",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-AN",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-AN",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-AN",
+          "player_name": "Anthony Rendon",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-CB",
+          "player_name": "Cody Bellinger",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-DM",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-CB",
+          "player_name": "Cody Bellinger",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-DM",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-CB",
+          "player_name": "Cody Bellinger",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-DM",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MB",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MB",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MB",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-MB",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-ID",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-ID",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-ID",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHO-KH",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-JE",
+          "player_name": "Jose Berrios",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RD",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-JE",
+          "player_name": "Jose Berrios",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RD",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-JE",
+          "player_name": "Jose Berrios",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RD",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RD",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RD",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RD",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JC",
+          "player_name": "Jake Cave",
+          "team": "Minnesota Twins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MN",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RO",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JC",
+          "player_name": "Jake Cave",
+          "team": "Minnesota Twins",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MN",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RO",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JC",
+          "player_name": "Jake Cave",
+          "team": "Minnesota Twins",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MN",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RO",
+          "player_name": "Randy Dobnak",
+          "team": "Minnesota Twins",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-JM",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-JM",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-JM",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-JM",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-JM",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-JM",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CF",
+          "player_name": "Clint Frazier",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GA",
+          "player_name": "Gary Sanchez",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JP",
+          "player_name": "James Paxton",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MK",
+          "player_name": "Mike King",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CF",
+          "player_name": "Clint Frazier",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GA",
+          "player_name": "Gary Sanchez",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JP",
+          "player_name": "James Paxton",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MK",
+          "player_name": "Mike King",
+          "team": "New York Yankees",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CF",
+          "player_name": "Clint Frazier",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GA",
+          "player_name": "Gary Sanchez",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JP",
+          "player_name": "James Paxton",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MK",
+          "player_name": "Mike King",
+          "team": "New York Yankees",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HWA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MA",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MA",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MA",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-AH",
+          "player_name": "Adam Haseley",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AH",
+          "player_name": "Adam Haseley",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-AH",
+          "player_name": "Adam Haseley",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CT",
+          "player_name": "Cole Tucker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JE",
+          "player_name": "Josh Bell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CT",
+          "player_name": "Cole Tucker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JE",
+          "player_name": "Josh Bell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-CT",
+          "player_name": "Cole Tucker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JE",
+          "player_name": "Josh Bell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-EH",
+          "player_name": "Eric Hosmer",
+          "team": "San Diego Padres",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-EH",
+          "player_name": "Eric Hosmer",
+          "team": "San Diego Padres",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-EH",
+          "player_name": "Eric Hosmer",
+          "team": "San Diego Padres",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-JL",
+          "player_name": "Joey Lucchesi",
+          "team": "San Diego Padres",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JL",
+          "player_name": "Joey Lucchesi",
+          "team": "San Diego Padres",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JL",
+          "player_name": "Joey Lucchesi",
+          "team": "San Diego Padres",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-HP",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-HP",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-HP",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-KW",
+          "player_name": "Kean Wong",
+          "team": "San Francisco Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-KW",
+          "player_name": "Kean Wong",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-KW",
+          "player_name": "Kean Wong",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-BBE",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JSM",
+          "player_name": "Jeff Samardzija",
+          "team": "San Francisco Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BBE",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JSM",
+          "player_name": "Jeff Samardzija",
+          "team": "San Francisco Giants",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BBE",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JSM",
+          "player_name": "Jeff Samardzija",
+          "team": "San Francisco Giants",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HWA-MK",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MK",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-MK",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-MH",
+          "player_name": "Mitch Haniger",
+          "team": "Seattle Mariners",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MH",
+          "player_name": "Mitch Haniger",
+          "team": "Seattle Mariners",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MH",
+          "player_name": "Mitch Haniger",
+          "team": "Seattle Mariners",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HWA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BS",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BS",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BS",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MBR",
+          "player_name": "Mike Brosseau",
+          "team": "Tampa Bay Rays",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MBR",
+          "player_name": "Mike Brosseau",
+          "team": "Tampa Bay Rays",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-MBR",
+          "player_name": "Mike Brosseau",
+          "team": "Tampa Bay Rays",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HWA-EA",
+          "player_name": "Elvis Andrus",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-EA",
+          "player_name": "Elvis Andrus",
+          "team": "Texas Rangers",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-EA",
+          "player_name": "Elvis Andrus",
+          "team": "Texas Rangers",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHR-JG",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JG",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-JG",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SY",
+          "player_name": "Shun Yamaguchi",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SY",
+          "player_name": "Shun Yamaguchi",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-SY",
+          "player_name": "Shun Yamaguchi",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-DJ",
+          "player_name": "Danny Jansen",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RT",
+          "player_name": "Rowdy Tellez",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-DJ",
+          "player_name": "Danny Jansen",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RT",
+          "player_name": "Rowdy Tellez",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-DJ",
+          "player_name": "Danny Jansen",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-RT",
+          "player_name": "Rowdy Tellez",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHAR-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "Autograph Relics Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHAR-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "Autograph Relics Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "Autographs Metallic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HWA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "Autographs Metallic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Holiday Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WHHR-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Holiday Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Holiday Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHHR-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Holiday Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHO-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Oversized Die Cut Ornaments Box Toppers (Round)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-TT",
+          "player_name": "Trea Turner",
+          "team": "Washington Nationals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-TT",
+          "player_name": "Trea Turner",
+          "team": "Washington Nationals",
+          "variation": "Relics Gold Metallic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHR-TT",
+          "player_name": "Trea Turner",
+          "team": "Washington Nationals",
+          "variation": "Relics Metallic",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -1,0 +1,1487 @@
+{
+  "year": 2014,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 101780,
+        "name": "2014 Topps Chrome Update"
+      },
+      "unique": [
+        {
+          "card_number": "MB-26",
+          "player_name": "Bronson Arroyo",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-27",
+          "player_name": "Mark Trumbo",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-29",
+          "player_name": "Chase Anderson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-26",
+          "player_name": "Bronson Arroyo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-27",
+          "player_name": "Mark Trumbo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-29",
+          "player_name": "Chase Anderson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-26",
+          "player_name": "Bronson Arroyo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-27",
+          "player_name": "Mark Trumbo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-29",
+          "player_name": "Chase Anderson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-14",
+          "player_name": "Tommy La Stella",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-CKI",
+          "player_name": "Craig Kimbrel",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-14",
+          "player_name": "Tommy La Stella",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-14",
+          "player_name": "Tommy La Stella",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-10",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-11",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-31",
+          "player_name": "Delmon Young",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCAR-NC",
+          "player_name": "Nelson Cruz",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-31",
+          "player_name": "Delmon Young",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-31",
+          "player_name": "Delmon Young",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-20",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "US-20",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-46",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-KU",
+          "player_name": "Koji Uehara",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-20",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-46",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-20",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-46",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-12",
+          "player_name": "Daniel Webb",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-16",
+          "player_name": "Adrian Nieto",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-39",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-41",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-JA",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCR-JA",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-12",
+          "player_name": "Daniel Webb",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-16",
+          "player_name": "Adrian Nieto",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-39",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-41",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-12",
+          "player_name": "Daniel Webb",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-16",
+          "player_name": "Adrian Nieto",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-39",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-41",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-32",
+          "player_name": "Jason Giambi",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-32",
+          "player_name": "Jason Giambi",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-32",
+          "player_name": "Jason Giambi",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCR-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-17",
+          "player_name": "Robbie Ray",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-33",
+          "player_name": "Rajai Davis",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-37",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-17",
+          "player_name": "Robbie Ray",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-33",
+          "player_name": "Rajai Davis",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-37",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-17",
+          "player_name": "Robbie Ray",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-33",
+          "player_name": "Rajai Davis",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-37",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-15",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-44",
+          "player_name": "Jon Singleton",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-50",
+          "player_name": "Jon Singleton",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-15",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-44",
+          "player_name": "Jon Singleton",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-50",
+          "player_name": "Jon Singleton",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-15",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-44",
+          "player_name": "Jon Singleton",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-50",
+          "player_name": "Jon Singleton",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-28",
+          "player_name": "Raul Ibanez",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-28",
+          "player_name": "Raul Ibanez",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-28",
+          "player_name": "Raul Ibanez",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-14",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-34",
+          "player_name": "C.J. Cron",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-38",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-52",
+          "player_name": "Cam Bedrosian",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-34",
+          "player_name": "C.J. Cron",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-38",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-52",
+          "player_name": "Cam Bedrosian",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-34",
+          "player_name": "C.J. Cron",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-38",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-52",
+          "player_name": "Cam Bedrosian",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-30",
+          "player_name": "Erisbel Arruebarrena",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-CKL",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-YP",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-30",
+          "player_name": "Erisbel Arruebarrena",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-30",
+          "player_name": "Erisbel Arruebarrena",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-18",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-47",
+          "player_name": "Andrew Heaney",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-51",
+          "player_name": "Andrew Heaney",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-GS",
+          "player_name": "Giancarlo Stanton",
+          "team": "Miami Marlins",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-47",
+          "player_name": "Andrew Heaney",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-51",
+          "player_name": "Andrew Heaney",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-47",
+          "player_name": "Andrew Heaney",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-51",
+          "player_name": "Andrew Heaney",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-19",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-JL",
+          "player_name": "Jonathan Lucroy",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-GP",
+          "player_name": "Glen Perkins",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MB-18",
+          "player_name": "Rafael Montero",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-19",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-54",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-18",
+          "player_name": "Rafael Montero",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-19",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-54",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-18",
+          "player_name": "Rafael Montero",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-19",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-54",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-13",
+          "player_name": "Mookie Wilson",
+          "team": "New York Mets",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-36",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-43",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-55",
+          "player_name": "Brandon McCarthy",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-36",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-43",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-55",
+          "player_name": "Brandon McCarthy",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-36",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-43",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-55",
+          "player_name": "Brandon McCarthy",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-16",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-35",
+          "player_name": "Drew Pomeranz",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-BM",
+          "player_name": "Brandon Moss",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCAR-JD",
+          "player_name": "Josh Donaldson",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-JD",
+          "player_name": "Josh Donaldson",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-35",
+          "player_name": "Drew Pomeranz",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-35",
+          "player_name": "Drew Pomeranz",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-12",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-CU",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-15",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-25",
+          "player_name": "Tony Sanchez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-45",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-48",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-JH",
+          "player_name": "Josh Harrison",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCR-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-25",
+          "player_name": "Tony Sanchez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-45",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-48",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-25",
+          "player_name": "Tony Sanchez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-45",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-48",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WSC-17",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "World Series Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-10",
+          "player_name": "Yangervis Solarte",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-10",
+          "player_name": "Yangervis Solarte",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-10",
+          "player_name": "Yangervis Solarte",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-13",
+          "player_name": "Stefen Romero",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-21",
+          "player_name": "James Jones",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-KS",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCR-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-RC",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-13",
+          "player_name": "Stefen Romero",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-21",
+          "player_name": "James Jones",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-13",
+          "player_name": "Stefen Romero",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-21",
+          "player_name": "James Jones",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-22",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-42",
+          "player_name": "Oscar Taveras",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-49",
+          "player_name": "Oscar Taveras",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCAR-MC",
+          "player_name": "Matt Carpenter",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Chrome Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASCR-AW",
+          "player_name": "Adam Wainwright",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-22",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-42",
+          "player_name": "Oscar Taveras",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-49",
+          "player_name": "Oscar Taveras",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-22",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-42",
+          "player_name": "Oscar Taveras",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-49",
+          "player_name": "Oscar Taveras",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-11",
+          "player_name": "Michael Choice",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-23",
+          "player_name": "Rougned Odor",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-24",
+          "player_name": "Nick Tepesch",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-40",
+          "player_name": "Yu Darvish",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-YD",
+          "player_name": "Yu Darvish",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-11",
+          "player_name": "Michael Choice",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-23",
+          "player_name": "Rougned Odor",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-24",
+          "player_name": "Nick Tepesch",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-40",
+          "player_name": "Yu Darvish",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-11",
+          "player_name": "Michael Choice",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-23",
+          "player_name": "Rougned Odor",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-24",
+          "player_name": "Nick Tepesch",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-40",
+          "player_name": "Yu Darvish",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-53",
+          "player_name": "Marcus Stroman",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASCR-JB",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Chrome Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-53",
+          "player_name": "Marcus Stroman",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MB-53",
+          "player_name": "Marcus Stroman",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

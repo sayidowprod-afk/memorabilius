@@ -1,0 +1,1463 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1651,
+        "name": "2003 Topps Gallery Hall of Fame"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Joe Cronin",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jimmie Foxx",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AMA-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Accent Mark Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AMA-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Accent Mark Autographs Artist's Proofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Joe Cronin",
+          "team": "Boston Red Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jimmie Foxx",
+          "team": "Boston Red Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-JR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Joe Tinker",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Joe Tinker",
+          "team": "Chicago Cubs",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Eddie Collins",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Eddie Collins",
+          "team": "Chicago White Sox",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Edd Roush",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Edd Roush",
+          "team": "Cincinnati Reds",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Nap Lajoie",
+          "team": "Cleveland Indians",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Sam Crawford",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Harry Heilmann",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ernie Harwell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Heinie Manush",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sparky Anderson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Sam Crawford",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Harry Heilmann",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ernie Harwell",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Heinie Manush",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sparky Anderson",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-HG",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-TC",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tom Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tom Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tommy Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-TL",
+          "player_name": "Tommy Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AMA-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Accent Mark Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AMA-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Accent Mark Autographs Artist's Proofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "George Kelly",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Fred Lindstrom",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "John McGraw",
+          "team": "New York Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "George Kelly",
+          "team": "New York Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Fred Lindstrom",
+          "team": "New York Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-WMA",
+          "player_name": "Willie Mays",
+          "team": "New York Giants",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AMA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Accent Mark Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AMA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Accent Mark Autographs Artist's Proofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-BR",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-LG",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-CH",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chuck Klein",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AMA-RR",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Accent Mark Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AMA-RR",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Accent Mark Autographs Artist's Proofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chuck Klein",
+          "team": "Philadelphia Phillies",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-WM",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-WMC",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jim Bottomley",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AMA-RS",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Accent Mark Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AMA-RS",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Accent Mark Autographs Artist's Proofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jim Bottomley",
+          "team": "St. Louis Cardinals",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CC-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Currency Connection Coin Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PN-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Paint by Number Patch Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Bucky Harris",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Bucky Harris",
+          "team": "Washington Senators",
+          "variation": "Artist's Proofs",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

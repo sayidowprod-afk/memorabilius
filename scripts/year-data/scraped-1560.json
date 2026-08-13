@@ -1,0 +1,1199 @@
+{
+  "year": 2002,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1560,
+        "name": "2002 SP Legendary Cuts"
+      },
+      "unique": [
+        {
+          "card_number": "13",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-CRI",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Joe Cronin",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Carl Erskine",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dazzy Vance",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Don Drysdale",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JAR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-PWE",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-DSN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-JAR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-PWE",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Don Baylor",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DBA",
+          "player_name": "Don Baylor",
+          "team": "California Angels",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-DBA",
+          "player_name": "Don Baylor",
+          "team": "California Angels",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ferguson Jenkins",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AND",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-AND",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-RSA",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Luke Appling",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Minnie Minoso",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-NFO",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Edd Roush",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-GFO",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-GFO",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Earl Averill",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lou Boudreau",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Sam McDowell",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-EWY",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RCO",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-EWY",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-RCO",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Charlie Gehringer",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Harvey Kuenn",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-HGR",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-GKE",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-HGR",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-SGA",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Joe Adcock",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RYO",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-RYO",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alvin Dark",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Carl Hubbell",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-ADA",
+          "player_name": "Alvin Dark",
+          "team": "New York Giants",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-ADA",
+          "player_name": "Alvin Dark",
+          "team": "New York Giants",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NRY",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-NRY",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-TSE",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Elston Howard",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Frankie Crosetti",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lefty Gomez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Waite Hoyt",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BRU",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MMA",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RMA",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TLA",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TMU",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-BRU",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-MMA",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-RMA",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-TLA",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-TMU",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-YBE",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Mickey Cochrane",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LGR",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-LGR",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DPA",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-WST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-DPA",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-RKI",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-WST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TGW",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-TGW",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bobby Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BBO",
+          "player_name": "Bobby Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-BBO",
+          "player_name": "Bobby Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-GPE",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Satchel Paige",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Harvey Haddix",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Johnny Mize",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Terry Moore",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JMI",
+          "player_name": "Johnny Mize",
+          "team": "St. Louis Cardinals",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MMC",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Bat Barrel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "B-JMI",
+          "player_name": "Johnny Mize",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Bat",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "SP"
+    }
+  ]
+}

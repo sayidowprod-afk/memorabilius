@@ -1,0 +1,551 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1661,
+        "name": "2003 Topps Traded & Rookies"
+      },
+      "unique": [
+        {
+          "card_number": "FP-TAH",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-WB",
+          "player_name": "Wilson Betemit",
+          "team": "Atlanta Braves",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-RF",
+          "player_name": "Robert Fick",
+          "team": "Atlanta Braves",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RF",
+          "player_name": "Robert Fick",
+          "team": "Atlanta Braves",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DTT-KM",
+          "player_name": "Kevin Millwood",
+          "team": "Atlanta Braves",
+          "variation": "Transactions Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DHF-CM",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Hall of Fame Dual Relic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HF-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Hall of Fame Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-JJC",
+          "player_name": "Jack Cust",
+          "team": "Baltimore Orioles",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JG",
+          "player_name": "Jeremy Giambi",
+          "team": "Boston Red Sox",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KM",
+          "player_name": "Kevin Millar",
+          "team": "Boston Red Sox",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-FP",
+          "player_name": "Felix Pie",
+          "team": "Chicago Cubs",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-EK",
+          "player_name": "Eric Karros",
+          "team": "Chicago Cubs",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-KL",
+          "player_name": "Kenny Lofton",
+          "team": "Chicago Cubs",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-BC",
+          "player_name": "Bartolo Colon",
+          "team": "Chicago White Sox",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMA-JB",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-FL",
+          "player_name": "Felipe Lopez",
+          "team": "Cincinnati Reds",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-BP",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-TH",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DTT-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Transactions Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-PW",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-JS",
+          "player_name": "Jason Stokes",
+          "team": "Florida Marlins",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-JP",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DTT-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Transactions Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JK",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-CC",
+          "player_name": "Chin-Feng Chen",
+          "team": "Los Angeles Dodgers",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-JT",
+          "player_name": "Joe Thurston",
+          "team": "Los Angeles Dodgers",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-JL",
+          "player_name": "James Loney",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-FM",
+          "player_name": "Fred McGriff",
+          "team": "Los Angeles Dodgers",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-MR",
+          "player_name": "Michael Restovich",
+          "team": "Minnesota Twins",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DHF-CM",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "Hall of Fame Dual Relic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HF-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Hall of Fame Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-CF",
+          "player_name": "Cliff Floyd",
+          "team": "New York Mets",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMA-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-CF",
+          "player_name": "Cliff Floyd",
+          "team": "New York Mets",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-SH",
+          "player_name": "Tsuyoshi Shinjo",
+          "team": "New York Mets",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-EA",
+          "player_name": "Erick Almonte",
+          "team": "New York Yankees",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RS",
+          "player_name": "Ruben Sierra",
+          "team": "New York Yankees",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-TZ",
+          "player_name": "Todd Zeile",
+          "team": "New York Yankees",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-ED",
+          "player_name": "Erubiel Durazo",
+          "team": "Oakland Athletics",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-MB",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-DB",
+          "player_name": "David Bell",
+          "team": "Philadelphia Phillies",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMA-ER",
+          "player_name": "Elizardo Ramirez",
+          "team": "Philadelphia Phillies",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-DB",
+          "player_name": "David Bell",
+          "team": "Philadelphia Phillies",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-WY",
+          "player_name": "Walter Young",
+          "team": "Pittsburgh Pirates",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMA-KG",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RW",
+          "player_name": "Rondell White",
+          "team": "San Diego Padres",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-JC",
+          "player_name": "Jose Cruz Jr.",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMA-JF",
+          "player_name": "Jesse Foppert",
+          "team": "San Francisco Giants",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-AG",
+          "player_name": "Andres Galarraga",
+          "team": "San Francisco Giants",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-EA",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-JC",
+          "player_name": "Jose Cruz Jr.",
+          "team": "San Francisco Giants",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TT-RD",
+          "player_name": "Ray Durham",
+          "team": "San Francisco Giants",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-CS",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-WPB",
+          "player_name": "Willie Bloomquist",
+          "team": "Seattle Mariners",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-CDC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMA-JG",
+          "player_name": "Joey Gomes",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-RO",
+          "player_name": "Rey Ordonez",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FP-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Future Phenoms Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SMA-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Signature Moves Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TT-SS",
+          "player_name": "Shane Spencer",
+          "team": "Texas Rangers",
+          "variation": "Transactions Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

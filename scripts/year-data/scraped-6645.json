@@ -1,0 +1,3951 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 6645,
+        "name": "2005 Fleer Platinum"
+      },
+      "unique": [
+        {
+          "card_number": "23",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SG",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SG",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Johnny Estrada",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Kelly Johnson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Luis Hernandez",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Johnny Estrada",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Kelly Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Luis Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Johnny Estrada",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Kelly Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Luis Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Melvin Mora",
+          "team": "Baltimore Orioles",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Ronny Cedeno",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Ronny Cedeno",
+          "team": "Chicago Cubs",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Ronny Cedeno",
+          "team": "Chicago Cubs",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Freddy Garcia",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Bobby Jenks",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Freddy Garcia",
+          "team": "Chicago White Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Bobby Jenks",
+          "team": "Chicago White Sox",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Freddy Garcia",
+          "team": "Chicago White Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Bobby Jenks",
+          "team": "Chicago White Sox",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jody Gerut",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DE-TH2",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-TH2",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-TF",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jody Gerut",
+          "team": "Cleveland Indians",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jody Gerut",
+          "team": "Cleveland Indians",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Matt Holliday",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Jeff Baker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Matt Holliday",
+          "team": "Colorado Rockies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Jeff Baker",
+          "team": "Colorado Rockies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Matt Holliday",
+          "team": "Colorado Rockies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Jeff Baker",
+          "team": "Colorado Rockies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Guillen",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DE-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Guillen",
+          "team": "Detroit Tigers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Guillen",
+          "team": "Detroit Tigers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Andy Pettitte",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Andy Pettitte",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Brad Lidge",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Andy Pettitte",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Angel Berroa",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Angel Berroa",
+          "team": "Kansas City Royals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Angel Berroa",
+          "team": "Kansas City Royals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DE-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-BR",
+          "player_name": "Brad Radke",
+          "team": "Minnesota Twins",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-BR",
+          "player_name": "Brad Radke",
+          "team": "Minnesota Twins",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Victor Diaz",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DE-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Victor Diaz",
+          "team": "New York Mets",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Victor Diaz",
+          "team": "New York Mets",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-KM",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-KM",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RJ",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RJ",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-RJ",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-RJ",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-RJ",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Billy Wagner",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DE-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Billy Wagner",
+          "team": "Philadelphia Phillies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Billy Wagner",
+          "team": "Philadelphia Phillies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-MB",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-MB",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jack Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jack Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jack Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Trevor Hoffman",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Trevor Hoffman",
+          "team": "San Diego Padres",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Trevor Hoffman",
+          "team": "San Diego Padres",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Omar Vizquel",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DE-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Decade of Excellence Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Decade of Excellence Jersey Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DE-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Decade of Excellence Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Nameplates Patch Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NP-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Nameplates Patch Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Autograph Die Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jose Guillen",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jose Guillen",
+          "team": "Washington Nationals",
+          "variation": "Extreme",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jose Guillen",
+          "team": "Washington Nationals",
+          "variation": "Finish",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

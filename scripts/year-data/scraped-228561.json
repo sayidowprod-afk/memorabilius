@@ -1,0 +1,5951 @@
+{
+  "year": 2020,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 228561,
+        "name": "2020 Topps Clearly Authentic"
+      },
+      "unique": [
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AY",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JRO",
+          "player_name": "Josh Rojas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-FM",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RAJ",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-FM",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RAJ",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MS",
+          "player_name": "Mike Soroka",
+          "team": "Atlanta Braves",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-HH",
+          "player_name": "Hunter Harvey",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JK",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JK",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AT",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AT",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KH",
+          "player_name": "Kyle Hendricks",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RYNO",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WCO",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AA",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NH",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-EJ",
+          "player_name": "Eloy Jimenez",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TAN",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-DC",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LR",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-ZC",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JO",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JO",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AAQ",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AC",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BB",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LA",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SH",
+          "player_name": "Sam Hilliard",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JR",
+          "player_name": "Jake Rogers",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AT",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JUR",
+          "player_name": "Jose Urquidy",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-YA",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JSO",
+          "player_name": "Jorge Soler",
+          "team": "Kansas City Royals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MT",
+          "player_name": "Matt Thaiss",
+          "team": "Los Angeles Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMU",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WSM",
+          "player_name": "Will Smith",
+          "team": "Los Angeles Dodgers",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-GL",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JY",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-KHI",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MK",
+          "player_name": "Max Kepler",
+          "team": "Minnesota Twins",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AP",
+          "player_name": "Andy Pettitte",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-AP",
+          "player_name": "Andy Pettitte",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-LV",
+          "player_name": "Luke Voit",
+          "team": "New York Yankees",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MM",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-MM",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-ECK",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JCA",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JL",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SB",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-SM",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JTR",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-FTJ",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-FTJ",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-TG",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WI",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-WI",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TLI",
+          "player_name": "Tim Lincecum",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JDA",
+          "player_name": "Jaylin Davis",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-LW",
+          "player_name": "Logan Webb",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-MD",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-KGJ",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JD",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JFR",
+          "player_name": "Jake Fraley",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-KL",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JF",
+          "player_name": "Jack Flaherty",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-OSM",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-TE",
+          "player_name": "Tommy Edman",
+          "team": "St. Louis Cardinals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-JF",
+          "player_name": "Junior Fernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-RA",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BM",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-NS",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "1953 Reimagined Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-BB",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "1953 Reimagined Autographs Sepia",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Decades' Best Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Decades' Best Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Decades' Best Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Decades' Best Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Decades' Best Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DBA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Decades' Best Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-AK",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCA-BO",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-PC",
+          "player_name": "Patrick Corbin",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TBA-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "1985 Topps Baseball Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

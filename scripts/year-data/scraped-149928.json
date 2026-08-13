@@ -1,0 +1,3823 @@
+{
+  "year": 2017,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 149928,
+        "name": "2017 Topps Clearly Authentic"
+      },
+      "unique": [
+        {
+          "card_number": "CAAU-DSW",
+          "player_name": "Dansby Swanson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DSW",
+          "player_name": "Dansby Swanson",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DSW",
+          "player_name": "Dansby Swanson",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DSW",
+          "player_name": "Dansby Swanson",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DSW",
+          "player_name": "Dansby Swanson",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJO",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TM",
+          "player_name": "Trey Mancini",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJO",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TM",
+          "player_name": "Trey Mancini",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJO",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TM",
+          "player_name": "Trey Mancini",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJO",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TM",
+          "player_name": "Trey Mancini",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJO",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TM",
+          "player_name": "Trey Mancini",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ANB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ANB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ANB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ANB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ANB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Brooklyn Dodgers",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Brooklyn Dodgers",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-NRY",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-NRY",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARU",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARU",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-AR",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-AR",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARU",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARU",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARU",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CF",
+          "player_name": "Carson Fulmer",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RL",
+          "player_name": "Reynaldo Lopez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CF",
+          "player_name": "Carson Fulmer",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RL",
+          "player_name": "Reynaldo Lopez",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CF",
+          "player_name": "Carson Fulmer",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RL",
+          "player_name": "Reynaldo Lopez",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CF",
+          "player_name": "Carson Fulmer",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RL",
+          "player_name": "Reynaldo Lopez",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CF",
+          "player_name": "Carson Fulmer",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RL",
+          "player_name": "Reynaldo Lopez",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YM",
+          "player_name": "Yoan Moncada",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-FR",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-FR",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CKL",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TN",
+          "player_name": "Tyler Naquin",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CKL",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TN",
+          "player_name": "Tyler Naquin",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CKL",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TN",
+          "player_name": "Tyler Naquin",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CKL",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TN",
+          "player_name": "Tyler Naquin",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CKL",
+          "player_name": "Corey Kluber",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TN",
+          "player_name": "Tyler Naquin",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DD",
+          "player_name": "David Dahl",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JH",
+          "player_name": "Jeff Hoffman",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RT",
+          "player_name": "Raimel Tapia",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DD",
+          "player_name": "David Dahl",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JH",
+          "player_name": "Jeff Hoffman",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RT",
+          "player_name": "Raimel Tapia",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DD",
+          "player_name": "David Dahl",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JH",
+          "player_name": "Jeff Hoffman",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RT",
+          "player_name": "Raimel Tapia",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DD",
+          "player_name": "David Dahl",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JH",
+          "player_name": "Jeff Hoffman",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RT",
+          "player_name": "Raimel Tapia",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DD",
+          "player_name": "David Dahl",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JH",
+          "player_name": "Jeff Hoffman",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RT",
+          "player_name": "Raimel Tapia",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TS",
+          "player_name": "Trevor Story",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JJ",
+          "player_name": "JaCoby Jones",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MFU",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JJ",
+          "player_name": "JaCoby Jones",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MFU",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-AKA",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-AKA",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JJ",
+          "player_name": "JaCoby Jones",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MFU",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JJ",
+          "player_name": "JaCoby Jones",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MFU",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JJ",
+          "player_name": "JaCoby Jones",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MFU",
+          "player_name": "Michael Fulmer",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ABR",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ALB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JAL",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TH",
+          "player_name": "Teoscar Hernandez",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YG",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YGU",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ABR",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ALB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JAL",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TH",
+          "player_name": "Teoscar Hernandez",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YG",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YGU",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ABR",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ALB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JAL",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TH",
+          "player_name": "Teoscar Hernandez",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YG",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YGU",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ABR",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ALB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JAL",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TH",
+          "player_name": "Teoscar Hernandez",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YG",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YGU",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ABR",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ALB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JAL",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TH",
+          "player_name": "Teoscar Hernandez",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YG",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-YGU",
+          "player_name": "Yulieski Gurriel",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DDU",
+          "player_name": "Danny Duffy",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DDU",
+          "player_name": "Danny Duffy",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-BJA",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-BJA",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DDU",
+          "player_name": "Danny Duffy",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DDU",
+          "player_name": "Danny Duffy",
+          "team": "Kansas City Royals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DDU",
+          "player_name": "Danny Duffy",
+          "team": "Kansas City Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HD",
+          "player_name": "Hunter Dozier",
+          "team": "Kansas City Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AT",
+          "player_name": "Andrew Toles",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CSE",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JD",
+          "player_name": "Jose De Leon",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AT",
+          "player_name": "Andrew Toles",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CSE",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JD",
+          "player_name": "Jose De Leon",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AT",
+          "player_name": "Andrew Toles",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CSE",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JD",
+          "player_name": "Jose De Leon",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AT",
+          "player_name": "Andrew Toles",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CSE",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JD",
+          "player_name": "Jose De Leon",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AT",
+          "player_name": "Andrew Toles",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-CSE",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JD",
+          "player_name": "Jose De Leon",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-HA",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-HA",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-AG",
+          "player_name": "Andres Galarraga",
+          "team": "Montreal Expos",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RJO",
+          "player_name": "Randy Johnson",
+          "team": "Montreal Expos",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-AG",
+          "player_name": "Andres Galarraga",
+          "team": "Montreal Expos",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RJO",
+          "player_name": "Randy Johnson",
+          "team": "Montreal Expos",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RGS",
+          "player_name": "Robert Gsellman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SL",
+          "player_name": "Seth Lugo",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SMA",
+          "player_name": "Steven Matz",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RGS",
+          "player_name": "Robert Gsellman",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SL",
+          "player_name": "Seth Lugo",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SMA",
+          "player_name": "Steven Matz",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JD",
+          "player_name": "Jacob DeGrom",
+          "team": "New York Mets",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JD",
+          "player_name": "Jacob DeGrom",
+          "team": "New York Mets",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RGS",
+          "player_name": "Robert Gsellman",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SL",
+          "player_name": "Seth Lugo",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SMA",
+          "player_name": "Steven Matz",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RGS",
+          "player_name": "Robert Gsellman",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SL",
+          "player_name": "Seth Lugo",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SMA",
+          "player_name": "Steven Matz",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RGS",
+          "player_name": "Robert Gsellman",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SL",
+          "player_name": "Seth Lugo",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-SMA",
+          "player_name": "Steven Matz",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TA",
+          "player_name": "Tyler Austin",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TA",
+          "player_name": "Tyler Austin",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TA",
+          "player_name": "Tyler Austin",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TA",
+          "player_name": "Tyler Austin",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TA",
+          "player_name": "Tyler Austin",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JC",
+          "player_name": "Jharel Cotton",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RH",
+          "player_name": "Ryon Healy",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JC",
+          "player_name": "Jharel Cotton",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RH",
+          "player_name": "Ryon Healy",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RH",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-MMC",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RH",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "Oakland Athletics",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JC",
+          "player_name": "Jharel Cotton",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RH",
+          "player_name": "Ryon Healy",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JC",
+          "player_name": "Jharel Cotton",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RH",
+          "player_name": "Ryon Healy",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JC",
+          "player_name": "Jharel Cotton",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RH",
+          "player_name": "Ryon Healy",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JA",
+          "player_name": "Jorge Alfaro",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JT",
+          "player_name": "Jake Thompson",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MF",
+          "player_name": "Maikel Franco",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RQ",
+          "player_name": "Roman Quinn",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JA",
+          "player_name": "Jorge Alfaro",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JT",
+          "player_name": "Jake Thompson",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MF",
+          "player_name": "Maikel Franco",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RQ",
+          "player_name": "Roman Quinn",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JA",
+          "player_name": "Jorge Alfaro",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JT",
+          "player_name": "Jake Thompson",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MF",
+          "player_name": "Maikel Franco",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RQ",
+          "player_name": "Roman Quinn",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JA",
+          "player_name": "Jorge Alfaro",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JT",
+          "player_name": "Jake Thompson",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MF",
+          "player_name": "Maikel Franco",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RQ",
+          "player_name": "Roman Quinn",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JA",
+          "player_name": "Jorge Alfaro",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JT",
+          "player_name": "Jake Thompson",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MF",
+          "player_name": "Maikel Franco",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RQ",
+          "player_name": "Roman Quinn",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JTA",
+          "player_name": "Jameson Taillon",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TGL",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JTA",
+          "player_name": "Jameson Taillon",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TGL",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JTA",
+          "player_name": "Jameson Taillon",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TGL",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JTA",
+          "player_name": "Jameson Taillon",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TGL",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JTA",
+          "player_name": "Jameson Taillon",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TG",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TGL",
+          "player_name": "Tyler Glasnow",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HR",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HRE",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MMA",
+          "player_name": "Manny Margot",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HR",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HRE",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MMA",
+          "player_name": "Manny Margot",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HR",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HRE",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MMA",
+          "player_name": "Manny Margot",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HR",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HRE",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MMA",
+          "player_name": "Manny Margot",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HR",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-HRE",
+          "player_name": "Hunter Renfroe",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-MMA",
+          "player_name": "Manny Margot",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JP",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TB",
+          "player_name": "Ty Blach",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JP",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TB",
+          "player_name": "Ty Blach",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JP",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TB",
+          "player_name": "Ty Blach",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JP",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TB",
+          "player_name": "Ty Blach",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-JP",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-TB",
+          "player_name": "Ty Blach",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DV",
+          "player_name": "Dan Vogelbach",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KSE",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DV",
+          "player_name": "Dan Vogelbach",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KSE",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-OV",
+          "player_name": "Omar Vizquel",
+          "team": "Seattle Mariners",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-OV",
+          "player_name": "Omar Vizquel",
+          "team": "Seattle Mariners",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DV",
+          "player_name": "Dan Vogelbach",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KSE",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DV",
+          "player_name": "Dan Vogelbach",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KSE",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-DV",
+          "player_name": "Dan Vogelbach",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-KSE",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AD",
+          "player_name": "Aledmys Diaz",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AR",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARE",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LW",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LWE",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RG",
+          "player_name": "Randal Grichuk",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AD",
+          "player_name": "Aledmys Diaz",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AR",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARE",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LW",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LWE",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RG",
+          "player_name": "Randal Grichuk",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Clearly Authentic Reprint Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CARAU-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Clearly Authentic Reprint Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AD",
+          "player_name": "Aledmys Diaz",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AR",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARE",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LW",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LWE",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RG",
+          "player_name": "Randal Grichuk",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AD",
+          "player_name": "Aledmys Diaz",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AR",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARE",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LW",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LWE",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RG",
+          "player_name": "Randal Grichuk",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AD",
+          "player_name": "Aledmys Diaz",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-AR",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-ARE",
+          "player_name": "Alex Reyes",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LW",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-LWE",
+          "player_name": "Luke Weaver",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-RG",
+          "player_name": "Randal Grichuk",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAAU-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

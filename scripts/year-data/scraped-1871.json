@@ -1,0 +1,2815 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1871,
+        "name": "2005 Upper Deck All-Star Classics"
+      },
+      "unique": [
+        {
+          "card_number": "ASB-19",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-SG",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-SG",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-15",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-13",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-17",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-10",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-RF",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-RF",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-13",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-18",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-15",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-JL",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-JL",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-16",
+          "player_name": "Roberto Alomar",
+          "team": "Baltimore Orioles",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-13",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-17",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Edgar Renteria",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-12",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-18",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Edgar Renteria",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-12",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-ER",
+          "player_name": "Edgar Renteria",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-KF",
+          "player_name": "Keith Foulke",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-WE",
+          "player_name": "David Wells",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-ER",
+          "player_name": "Edgar Renteria",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-KF",
+          "player_name": "Keith Foulke",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-WE",
+          "player_name": "David Wells",
+          "team": "Boston Red Sox",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-15",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-17",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-15",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-16",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tadahito Iguchi",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Tadahito Iguchi",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-15",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-17",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-12",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-14",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-19",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Sean Casey",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-10",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-19",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-11",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Grady Sizemore",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jake Westbrook",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Grady Sizemore",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jake Westbrook",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-CC",
+          "player_name": "CC Sabathia",
+          "team": "Cleveland Indians",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-CC",
+          "player_name": "CC Sabathia",
+          "team": "Cleveland Indians",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-18",
+          "player_name": "Sandy Alomar Jr.",
+          "team": "Cleveland Indians",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jeff Francis",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jeff Francis",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-11",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-19",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-12",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-PL",
+          "player_name": "Paul Lo Duca",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-PL",
+          "player_name": "Paul Lo Duca",
+          "team": "Florida Marlins",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-11",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-CI",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-CI",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-16",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Dallas McPherson",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Dallas McPherson",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-14",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-20",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Edwin Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Edwin Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-10",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-19",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-JK",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-JK",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-14",
+          "player_name": "Mike Piazza",
+          "team": "Los Angeles Dodgers",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Jose Capellan",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Jose Capellan",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-17",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-TI",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-TI",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-14",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-17",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-10",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-16",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-13",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-12",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-15",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-13",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-10",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-18",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-10",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Oliver Perez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Oliver Perez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-ML",
+          "player_name": "Matt Lawton",
+          "team": "Pittsburgh Pirates",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-ML",
+          "player_name": "Matt Lawton",
+          "team": "Pittsburgh Pirates",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-18",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-20",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-RK",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-RK",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-MA",
+          "player_name": "Moises Alou",
+          "team": "San Francisco Giants",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-OM",
+          "player_name": "Omar Vizquel",
+          "team": "San Francisco Giants",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-SC",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-MA",
+          "player_name": "Moises Alou",
+          "team": "San Francisco Giants",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-OM",
+          "player_name": "Omar Vizquel",
+          "team": "San Francisco Giants",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-SC",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-11",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-20",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jeremy Reed",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-14",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-16",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jeremy Reed",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-20",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-16",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSC-20",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Midsummer Classics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-13",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-11",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-14",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MSP-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Midsummer Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MS-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Midsummer Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PAS-18",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Perennial All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASB-20",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Box Scores",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-11",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASM-19",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Matchups",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MVP-12",
+          "player_name": "Julio Franco",
+          "team": "Texas Rangers",
+          "variation": "MVP's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Alex Rios",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Alex Rios",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

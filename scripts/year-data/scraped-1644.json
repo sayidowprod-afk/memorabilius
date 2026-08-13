@@ -1,0 +1,6671 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1644,
+        "name": "2003 Topps All-Time Fan Favorites"
+      },
+      "unique": [
+        {
+          "card_number": "19",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Terry Pendleton",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Bob Horner",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BH",
+          "player_name": "Bob Horner",
+          "team": "Atlanta Braves",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TP",
+          "player_name": "Terry Pendleton",
+          "team": "Atlanta Braves",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Terry Pendleton",
+          "team": "Atlanta Braves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Bob Horner",
+          "team": "Atlanta Braves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-BH",
+          "player_name": "Bob Horner",
+          "team": "Atlanta Braves",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Vintage Embossed Buybacks 1988",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Paul Blair",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BP",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DDE",
+          "player_name": "Doug DeCinces",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-PB",
+          "player_name": "Paul Blair",
+          "team": "Baltimore Orioles",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Paul Blair",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "John Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "398",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "560",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "241",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "243",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "521",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "381",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "504",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "410",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "451",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1971",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "327",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1971",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "700",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1971",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "325",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1973",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "334",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1974",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "460",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1974",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "625",
+          "player_name": "Boog Powell",
+          "team": "Baltimore Orioles",
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BL",
+          "player_name": "Bill Lee",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DEV",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-FL",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JRI",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Don Zimmer",
+          "team": "Boston Red Sox",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jim Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-FL",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-JRI",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "350",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1985",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "314",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1988",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "388",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1988",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1989",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "399",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1989",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "375",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Vintage Embossed Buybacks 1990",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-DN",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Don Zimmer",
+          "team": "Brooklyn Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Don Zimmer",
+          "team": "Brooklyn Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Don Zimmer",
+          "team": "Brooklyn Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1953",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1953",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1954",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1954",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1954",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1955",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1955",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Sandy Koufax",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "260",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "277",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Vintage Embossed Buybacks 1957",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bob Grich",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jim Abbott",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BGR",
+          "player_name": "Bob Grich",
+          "team": "California Angels",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JA",
+          "player_name": "Jim Abbott",
+          "team": "California Angels",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bob Grich",
+          "team": "California Angels",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jim Abbott",
+          "team": "California Angels",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-WJ",
+          "player_name": "Wally Joyner",
+          "team": "California Angels",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Bill Buckner",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bill Madlock",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Lee Smith",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-ADA",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BBU",
+          "player_name": "Bill Buckner",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BMA",
+          "player_name": "Bill Madlock",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BSU",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-LDU",
+          "player_name": "Leon Durham",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-LS",
+          "player_name": "Lee Smith",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RSA",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Don Zimmer",
+          "team": "Chicago Cubs",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Bill Buckner",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bill Madlock",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Lee Smith",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-ADA",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "235",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "420",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "630",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "334",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1974",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Steve Lyons",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Harold Baines",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-HBA",
+          "player_name": "Harold Baines",
+          "team": "Chicago White Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RKI",
+          "player_name": "Ron Kittle",
+          "team": "Chicago White Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SL",
+          "player_name": "Steve Lyons",
+          "team": "Chicago White Sox",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Steve Lyons",
+          "team": "Chicago White Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Harold Baines",
+          "team": "Chicago White Sox",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-HBA",
+          "player_name": "Harold Baines",
+          "team": "Chicago White Sox",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Minnie Minoso",
+          "team": "Chicago White Sox",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "380",
+          "player_name": "Minnie Minoso",
+          "team": "Chicago White Sox",
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "631",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Ken Griffey",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Chris Sabo",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-CS",
+          "player_name": "Chris Sabo",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DC",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-ED",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KG",
+          "player_name": "Ken Griffey",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RD",
+          "player_name": "Rob Dibble",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SA",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TPE",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Don Zimmer",
+          "team": "Cincinnati Reds",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Sparky Anderson",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Eric Davis",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Ken Griffey",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Chris Sabo",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Dave Concepcion",
+          "team": "Cincinnati Reds",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-CS",
+          "player_name": "Chris Sabo",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-GF",
+          "player_name": "George Foster",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": "Vintage Embossed Buybacks 1954",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": "Vintage Embossed Buybacks 1955",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "675",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Vintage Embossed Buybacks 1985",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Cory Snyder",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Brook Jacoby",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BJA",
+          "player_name": "Brook Jacoby",
+          "team": "Cleveland Indians",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-CN",
+          "player_name": "Cory Snyder",
+          "team": "Cleveland Indians",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Cory Snyder",
+          "team": "Cleveland Indians",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Brook Jacoby",
+          "team": "Cleveland Indians",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "380",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Lance Parrish",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Ernie Harwell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Mark Fidrych",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-CLE",
+          "player_name": "Chet Lemon",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DE",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-EH",
+          "player_name": "Ernie Harwell",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KGI",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-LP",
+          "player_name": "Lance Parrish",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MF",
+          "player_name": "Mark Fidrych",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WHE",
+          "player_name": "Willie Hernandez",
+          "team": "Detroit Tigers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Darrell Evans",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Lance Parrish",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Ernie Harwell",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Mark Fidrych",
+          "team": "Detroit Tigers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-KGI",
+          "player_name": "Kirk Gibson",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-LP",
+          "player_name": "Lance Parrish",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-NC",
+          "player_name": "Norm Cash",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-WHE",
+          "player_name": "Willie Hernandez",
+          "team": "Detroit Tigers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "304",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Bob Watson",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "J.R. Richard",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jose Cruz",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BW",
+          "player_name": "Bob Watson",
+          "team": "Houston Astros",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JCR",
+          "player_name": "Jose Cruz",
+          "team": "Houston Astros",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JR",
+          "player_name": "J.R. Richard",
+          "team": "Houston Astros",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Bob Watson",
+          "team": "Houston Astros",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "J.R. Richard",
+          "team": "Houston Astros",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jose Cruz",
+          "team": "Houston Astros",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-JCR",
+          "player_name": "Jose Cruz",
+          "team": "Houston Astros",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "321",
+          "player_name": "Rusty Staub",
+          "team": "Houston Astros",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "485",
+          "player_name": "Nellie Fox",
+          "team": "Houston Astros",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Don Larsen",
+          "team": "Kansas City Athletics",
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Bret Saberhagen",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Steve Balboni",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Willie Wilson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BBI",
+          "player_name": "Buddy Biancalana",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BSA",
+          "player_name": "Bret Saberhagen",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GBR",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KS",
+          "player_name": "Kevin Seitzer",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SB",
+          "player_name": "Steve Balboni",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WWC",
+          "player_name": "Willie Wilson",
+          "team": "Kansas City Royals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Bret Saberhagen",
+          "team": "Kansas City Royals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Steve Balboni",
+          "team": "Kansas City Royals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Willie Wilson",
+          "team": "Kansas City Royals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-GBR",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "631",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "507",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1993",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Steve Sax",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tom Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Ron Cey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-DSN",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DSU",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RCE",
+          "player_name": "Ron Cey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SS",
+          "player_name": "Steve Sax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SY",
+          "player_name": "Steve Yeager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TJ",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TL",
+          "player_name": "Tom Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Steve Sax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tommy Lasorda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Ron Cey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "436",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "495",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "425",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1960",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "280",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "412",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Walt Alston",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "580",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "300",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "387",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "468",
+          "player_name": "Johnny Podres",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "341",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1971",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "264",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "686",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1973",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "615",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1973",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "451",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1974",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "416",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "400",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1978",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "350",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1978",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "375",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1978",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1979",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "255",
+          "player_name": "Tommy John",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1979",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "290",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1980",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1981",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "530",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1981",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "610",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Vintage Embossed Buybacks 1983",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "507",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1993",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "351",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ed Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Joe Torre",
+          "team": "Milwaukee Braves",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Joe Torre",
+          "team": "Milwaukee Braves",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "500",
+          "player_name": "Ed Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Cecil Cooper",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-CC",
+          "player_name": "Cecil Cooper",
+          "team": "Milwaukee Brewers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RYO",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Cecil Cooper",
+          "team": "Milwaukee Brewers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BB",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RCA",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Bert Blyleven",
+          "team": "Minnesota Twins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-RCA",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jim Kaat",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "340",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "450",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "241",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "243",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1967",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "427",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "600",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "510",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "290",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1971",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "400",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1973",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1974",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "325",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Tony Oliva",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "450",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "611",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1988",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1988",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "391",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1988",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "650",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1989",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "700",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Vintage Embossed Buybacks 1990",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tim Wallach",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeff Reardon",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-JRE",
+          "player_name": "Jeff Reardon",
+          "team": "Montreal Expos",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TW",
+          "player_name": "Tim Wallach",
+          "team": "Montreal Expos",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tim Wallach",
+          "team": "Montreal Expos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeff Reardon",
+          "team": "Montreal Expos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "708",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Bobby Thomson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BT",
+          "player_name": "Bobby Thomson",
+          "team": "New York Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MI",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Bobby Thomson",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jerry Koosman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Howard Johnson",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-HJ",
+          "player_name": "Howard Johnson",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JK",
+          "player_name": "Jerry Koosman",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RDA",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RY",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TMC",
+          "player_name": "Tug McGraw",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TSE",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jerry Koosman",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Howard Johnson",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-RDA",
+          "player_name": "Ron Darling",
+          "team": "New York Mets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-TMC",
+          "player_name": "Tug McGraw",
+          "team": "New York Mets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Gil Hodges",
+          "team": "New York Mets",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Casey Stengel",
+          "team": "New York Mets",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "703",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "708",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Joe Pepitone",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rich Gossage",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Johnny Sain",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Hank Bauer",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BS",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DL",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DON",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-HB",
+          "player_name": "Hank Bauer",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JPE",
+          "player_name": "Joe Pepitone",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MP",
+          "player_name": "Mike Pagliarulo",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MR",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RG",
+          "player_name": "Rich Gossage",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RGU",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Joe Pepitone",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Mickey Rivers",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rich Gossage",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Johnny Sain",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Hank Bauer",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-BR",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-DON",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1953",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1954",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1954",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1955",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "332",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1956",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1957",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "240",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "477",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "Don Larsen",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "237",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "554",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "370",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1960",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "405",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1960",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "553",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1960",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "402",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "490",
+          "player_name": "Bobby Richardson",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1972",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "460",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1979",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1981",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "365",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1981",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "500",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "606",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "397",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Vintage Embossed Buybacks 1989",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bert Campaneris",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Walt Weiss",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BC",
+          "player_name": "Bert Campaneris",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-CL",
+          "player_name": "Carney Lansford",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JOS",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JRU",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TA",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-VB",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WW",
+          "player_name": "Walt Weiss",
+          "team": "Oakland Athletics",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bert Campaneris",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Tony Armas",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Walt Weiss",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-DEC",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-JOS",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-JRU",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "309",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Lenny Dykstra",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-DD",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JB",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JKR",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-LD",
+          "player_name": "Lenny Dykstra",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RR",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Darren Daulton",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Lenny Dykstra",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-GL",
+          "player_name": "Greg Luzinski",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-LD",
+          "player_name": "Lenny Dykstra",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "460",
+          "player_name": "Richie Allen",
+          "team": "Philadelphia Phillies",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "615",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1973",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1982",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "703",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "708",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bob Friend",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Vern Law",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kent Tekulve",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-BFR",
+          "player_name": "Bob Friend",
+          "team": "Pittsburgh Pirates",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BMZ",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KT",
+          "player_name": "Kent Tekulve",
+          "team": "Pittsburgh Pirates",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bob Friend",
+          "team": "Pittsburgh Pirates",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Vern Law",
+          "team": "Pittsburgh Pirates",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kent Tekulve",
+          "team": "Pittsburgh Pirates",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-BFR",
+          "player_name": "Bob Friend",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-WS",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Garry Templeton",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-GT",
+          "player_name": "Garry Templeton",
+          "team": "San Diego Padres",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Don Zimmer",
+          "team": "San Diego Padres",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Garry Templeton",
+          "team": "San Diego Padres",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "615",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1973",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jack Clark",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-CSP",
+          "player_name": "Chris Speier",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JC",
+          "player_name": "Jack Clark",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JMA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JMO",
+          "player_name": "John Montefusco",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-KM",
+          "player_name": "Kevin Mitchell",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WM",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WMC",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jack Clark",
+          "team": "San Francisco Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-KM",
+          "player_name": "Kevin Mitchell",
+          "team": "San Francisco Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "436",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1960",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Don Larsen",
+          "team": "San Francisco Giants",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1966",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1968",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "572",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1969",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Vintage Embossed Buybacks 1985",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Harold Reynolds",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Alvin Davis",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Mario Mendoza",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-AD",
+          "player_name": "Alvin Davis",
+          "team": "Seattle Mariners",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-HR",
+          "player_name": "Harold Reynolds",
+          "team": "Seattle Mariners",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MM",
+          "player_name": "Mario Mendoza",
+          "team": "Seattle Mariners",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Harold Reynolds",
+          "team": "Seattle Mariners",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Alvin Davis",
+          "team": "Seattle Mariners",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Mario Mendoza",
+          "team": "Seattle Mariners",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-HR",
+          "player_name": "Harold Reynolds",
+          "team": "Seattle Mariners",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Whitey Herzog",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tim McCarver",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Vince Coleman",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-MCG",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-RS",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TH",
+          "player_name": "Tom Herr",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-TM",
+          "player_name": "Tim McCarver",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-VC",
+          "player_name": "Vince Coleman",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-WH",
+          "player_name": "Whitey Herzog",
+          "team": "St. Louis Cardinals",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Whitey Herzog",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tim McCarver",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Vince Coleman",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-CF",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-MCG",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFR-VC",
+          "player_name": "Vince Coleman",
+          "team": "St. Louis Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "476",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1958",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1959",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "290",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1961",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "317",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1963",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1964",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "415",
+          "player_name": "Curt Flood",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1970",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "236",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1974",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "309",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1975",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1984",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Whitey Herzog",
+          "team": "St. Louis Cardinals",
+          "variation": "Vintage Embossed Buybacks 1987",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Gaylord Perry",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Buddy Bell",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-AO",
+          "player_name": "Al Oliver",
+          "team": "Texas Rangers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-BBE",
+          "player_name": "Buddy Bell",
+          "team": "Texas Rangers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GP",
+          "player_name": "Gaylord Perry",
+          "team": "Texas Rangers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Gaylord Perry",
+          "team": "Texas Rangers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Buddy Bell",
+          "team": "Texas Rangers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1976",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Gaylord Perry",
+          "team": "Texas Rangers",
+          "variation": "Vintage Embossed Buybacks 1977",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "George Bell",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FFA-DS",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-GB",
+          "player_name": "George Bell",
+          "team": "Toronto Blue Jays",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFA-JCA",
+          "player_name": "Joe Carter",
+          "team": "Toronto Blue Jays",
+          "variation": "Archives Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "George Bell",
+          "team": "Toronto Blue Jays",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dave Stieb",
+          "team": "Toronto Blue Jays",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Don Zimmer",
+          "team": "Washington Senators",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Don Zimmer",
+          "team": "Washington Senators",
+          "variation": "Don Zimmer AutoProofs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Washington Senators",
+          "team": null,
+          "variation": "Vintage Embossed Buybacks 1962",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Gil Hodges",
+          "team": "Washington Senators",
+          "variation": "Vintage Embossed Buybacks 1965",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

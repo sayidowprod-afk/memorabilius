@@ -1,0 +1,1999 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1738,
+        "name": "2004 Topps Clubhouse Collection"
+      },
+      "unique": [
+        {
+          "card_number": "ASBSA-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics Autographs Base",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASODA-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics Autographs On-Deck Circle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASBB-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-DE",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-ARI",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CS",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-CS",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBSA-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Autographs Base",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASODA-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Autographs On-Deck Circle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASBB-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-JL",
+          "player_name": "Javy Lopez",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-RF",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-JL",
+          "player_name": "Javy Lopez",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-RF",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-JL",
+          "player_name": "Javy Lopez",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-RF",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-DM",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-BRO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-FR",
+          "player_name": "Frank Robinson",
+          "team": "California Angels",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "California Angels",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-ADA",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-CHC",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-ADA",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-CHW",
+          "player_name": "Magglio Ordonez / Frank Thomas / Carlos Lee",
+          "team": "Chicago White Sox",
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-JBE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-CIN",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-TS",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-CLE",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Double Play Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-OV",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-PW",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-PW",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-PW",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-COL",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-THE",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-ML",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-ML",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-LC",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-ML",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-JBE",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-BP",
+          "player_name": "Brad Penny",
+          "team": "Florida Marlins",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-JB",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-JPI",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-HOU",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-RS",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-RS",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-RS",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-THU",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-THU",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-JV",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-CE",
+          "player_name": "Carl Everett",
+          "team": "Montreal Expos",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-NYM",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Double Play Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBSA-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Autographs Base",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASODA-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Autographs On-Deck Circle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASBB-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-RC",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-NYY",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Double Play Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-BW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-NYY",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-BR",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-LG",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-MM",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-MTE",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RH",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RJA",
+          "player_name": "Reggie Jackson",
+          "team": "Oakland Athletics",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-BZ",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-MM",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-TH",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-PHI",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Double Play Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-BA",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-PHI",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-SR",
+          "player_name": "Scott Rolen",
+          "team": "Philadelphia Phillies",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-BM",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-SDP",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Double Play Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-WM",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-JK",
+          "player_name": "Jeff Kent",
+          "team": "San Francisco Giants",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-WM",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-SEA",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-KS",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-ER",
+          "player_name": "Edgar Renteria",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-STL",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-LBR",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-AH",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-WB",
+          "player_name": "Wade Boggs",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBSA-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics Autographs Base",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASODA-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics Autographs On-Deck Circle",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASBB-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FR-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Frozen Ropes Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-TEX",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBB-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Appeal Relics Ball",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASBS-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Appeal Relics Base",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASOD-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Appeal Relics On-Deck Circle",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HL-TOR",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Heart of the Lineup Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Patch Place Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "POP-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Power Pieces Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

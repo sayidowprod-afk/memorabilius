@@ -1,0 +1,6215 @@
+{
+  "year": 2015,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 112840,
+        "name": "2015 Topps Update"
+      },
+      "unique": [
+        {
+          "card_number": "ASJP-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "STIT-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-YT",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-YT",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-YT",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-YT",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "QS-YT",
+          "player_name": "Yasmany Tomas",
+          "team": "Arizona Diamondbacks",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-DP",
+          "player_name": "David Peralta",
+          "team": "Arizona Diamondbacks",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "H-84",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "Arizona Diamondbacks",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "R-13",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rarities",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rarities Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SM",
+          "player_name": "Shelby Miller",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SM",
+          "player_name": "Shelby Miller",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SM",
+          "player_name": "Shelby Miller",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "QS-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "QS-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "H-76",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-85",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-AS",
+          "player_name": "Andrelton Simmons",
+          "team": "Atlanta Braves",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-AWO",
+          "player_name": "Alex Wood",
+          "team": "Atlanta Braves",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WW-14",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Whatever Works",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-MMA",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-ZB",
+          "player_name": "Zach Britton",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DO",
+          "player_name": "Darren O'Day",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MMA",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-ZB",
+          "player_name": "Zach Britton",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASD-MJ",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DO",
+          "player_name": "Darren O'Day",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MMA",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-ZB",
+          "player_name": "Zach Britton",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DO",
+          "player_name": "Darren O'Day",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MMA",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-ZB",
+          "player_name": "Zach Britton",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-MJB",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-12",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Etched in History Commemorative Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-12",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Etched in History Commemorative Relics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-12",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Etched in History Commemorative Relics Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-70",
+          "player_name": "Hoyt Wilhelm",
+          "team": "Baltimore Orioles",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-10",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-11",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-CD",
+          "player_name": "Chris Davis",
+          "team": "Baltimore Orioles",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MMA",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Rarities Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-17",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WW-10",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Whatever Works",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-63",
+          "player_name": "Babe Ruth",
+          "team": "Boston Braves",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-BHO",
+          "player_name": "Brock Holt",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BHO",
+          "player_name": "Brock Holt",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-BH",
+          "player_name": "Brock Holt",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "STIT-BHO",
+          "player_name": "Brock Holt",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BHO",
+          "player_name": "Brock Holt",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RC",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RC",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RC",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RC",
+          "player_name": "Rusney Castillo",
+          "team": "Boston Red Sox",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-BH",
+          "player_name": "Brock Holt",
+          "team": "Boston Red Sox",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-BS",
+          "player_name": "Blake Swihart",
+          "team": "Boston Red Sox",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-MB",
+          "player_name": "Matt Barnes",
+          "team": "Boston Red Sox",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-CB",
+          "player_name": "Clay Buchholz",
+          "team": "Boston Red Sox",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-JE",
+          "player_name": "Jacoby Ellsbury",
+          "team": "Boston Red Sox",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-10",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-10",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-10",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Etched in History Commemorative Relics Platinum Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHR-10",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRM-20",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-25",
+          "player_name": "Jacoby Ellsbury",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-10",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-JE",
+          "player_name": "Jacoby Ellsbury",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-10",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-66",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-86",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-DPE",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MN",
+          "player_name": "Mike Napoli",
+          "team": "Boston Red Sox",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-12",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-15",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RSA-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RSA-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SCS-RF",
+          "player_name": "Rick Ferrell",
+          "team": "Boston Red Sox",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMB-10",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Tape Measure Blasts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMB-14",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Tape Measure Blasts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "327",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "371",
+          "player_name": "Koji Uehara",
+          "team": "Boston Red Sox",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "389",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "458",
+          "player_name": "Junichi Tazawa",
+          "team": "Boston Red Sox",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "500",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "626",
+          "player_name": "Hanley Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WW-11",
+          "player_name": "Mike Napoli",
+          "team": "Boston Red Sox",
+          "variation": "Whatever Works",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WW-13",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Whatever Works",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WWA-MN",
+          "player_name": "Mike Napoli",
+          "team": "Boston Red Sox",
+          "variation": "Whatever Works Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-22",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-13",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-22",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-22",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-83",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-16",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASD-RB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JL",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JL",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JL",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JL",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-JBZ",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-23",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-30",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-16",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-19",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-30",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-23",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-30",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-23",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-30",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-14",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-ARU",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JB",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-SC",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-12",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Pride and Perseverance",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "R-15",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Rarities",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-AR",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Starlin Castro",
+          "team": "Chicago Cubs",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "401",
+          "player_name": "Chris Coghlan",
+          "team": "Chicago Cubs",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "406",
+          "player_name": "Jon Lester",
+          "team": "Chicago Cubs",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "412",
+          "player_name": "Hector Rondon",
+          "team": "Chicago Cubs",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "616",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-KGS",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-HS",
+          "player_name": "Hector Santiago",
+          "team": "Chicago White Sox",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-MSE",
+          "player_name": "Marcus Semien",
+          "team": "Chicago White Sox",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-CSA",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-14",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-JA",
+          "player_name": "Jose Abreu",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SCS-AL",
+          "player_name": "Al Lopez",
+          "team": "Chicago White Sox",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-TF",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-TF",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-TF",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-FC",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-TF",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-TF",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-17",
+          "player_name": "Devin Mesoraco",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-18",
+          "player_name": "Paul O'Neill",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-DM",
+          "player_name": "Devin Mesoraco",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRAR-PO",
+          "player_name": "Paul O'Neill",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRM-12",
+          "player_name": "Paul O'Neill",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-17",
+          "player_name": "Devin Mesoraco",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-18",
+          "player_name": "Paul O'Neill",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-DM",
+          "player_name": "Devin Mesoraco",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-PO",
+          "player_name": "Paul O'Neill",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-17",
+          "player_name": "Devin Mesoraco",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-18",
+          "player_name": "Paul O'Neill",
+          "team": "Cincinnati Reds",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-19",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-TF",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-BH",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-DM",
+          "player_name": "Devin Mesoraco",
+          "team": "Cincinnati Reds",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JC",
+          "player_name": "Johnny Cueto",
+          "team": "Cincinnati Reds",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JVO",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Todd Frazier",
+          "team": "Cincinnati Reds",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "266",
+          "player_name": "Brandon Phillips",
+          "team": "Cincinnati Reds",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "301",
+          "player_name": "Zack Cozart",
+          "team": "Cincinnati Reds",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "333",
+          "player_name": "Billy Hamilton",
+          "team": "Cincinnati Reds",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "STIT-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-TH",
+          "player_name": "T.J. House",
+          "team": "Cleveland Indians",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-ZW",
+          "player_name": "Zach Walters",
+          "team": "Cleveland Indians",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHR-19",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-BP",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHR-19",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-BP",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-19",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-65",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-68",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-CSN",
+          "player_name": "Carlos Santana",
+          "team": "Cleveland Indians",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JK",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-LC",
+          "player_name": "Lonnie Chisenhall",
+          "team": "Cleveland Indians",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "R-11",
+          "player_name": "Asdrubal Cabrera",
+          "team": "Cleveland Indians",
+          "variation": "Rarities",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-LB",
+          "player_name": "Lou Boudreau",
+          "team": "Cleveland Indians",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Michael Bourn",
+          "team": "Cleveland Indians",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Jason Kipnis",
+          "team": "Cleveland Indians",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "348",
+          "player_name": "Carlos Santana",
+          "team": "Cleveland Indians",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "599",
+          "player_name": "Michael Brantley",
+          "team": "Cleveland Indians",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "STIT-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "H-88",
+          "player_name": "Ubaldo Jimenez",
+          "team": "Colorado Rockies",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-UJ",
+          "player_name": "Ubaldo Jimenez",
+          "team": "Colorado Rockies",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-CG",
+          "player_name": "Carlos Gonzalez",
+          "team": "Colorado Rockies",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-TT",
+          "player_name": "Troy Tulowitzki",
+          "team": "Colorado Rockies",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TMBA-AG",
+          "player_name": "Andres Galarraga",
+          "team": "Colorado Rockies",
+          "variation": "Tape Measure Blasts Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DP",
+          "player_name": "David Price",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-DP",
+          "player_name": "David Price",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASTAR-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "STIT-DP",
+          "player_name": "David Price",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DP",
+          "player_name": "David Price",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-KGS",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-DT",
+          "player_name": "Devon Travis",
+          "team": "Detroit Tigers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-KL",
+          "player_name": "Kyle Lobstein",
+          "team": "Detroit Tigers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-87",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-DPR",
+          "player_name": "David Price",
+          "team": "Detroit Tigers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-IK",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JVE",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-VM",
+          "player_name": "Victor Martinez",
+          "team": "Detroit Tigers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-HN",
+          "player_name": "Hal Newhouser",
+          "team": "Detroit Tigers",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Ian Kinsler",
+          "team": "Detroit Tigers",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Jose Iglesias",
+          "team": "Detroit Tigers",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "515",
+          "player_name": "Victor Martinez",
+          "team": "Detroit Tigers",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "518",
+          "player_name": "Rajai Davis",
+          "team": "Detroit Tigers",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "654",
+          "player_name": "Alfredo Simon",
+          "team": "Detroit Tigers",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WW-12",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Whatever Works",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-21",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-HR",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRM-21",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-21",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-HR",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-21",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-24",
+          "player_name": "Livan Hernandez",
+          "team": "Florida Marlins",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-HR",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RSA-LH",
+          "player_name": "Livan Hernandez",
+          "team": "Florida Marlins",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASJP-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "STIT-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-KGS",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "QS-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRAR-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRR-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-23",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-13",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "318",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "477",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "525",
+          "player_name": "Luke Gregerson",
+          "team": "Houston Astros",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "620",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WWA-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Whatever Works Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-KH",
+          "player_name": "Kelvin Herrera",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-LC",
+          "player_name": "Lorenzo Cain",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-MMO",
+          "player_name": "Mike Moustakas",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-WD",
+          "player_name": "Wade Davis",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-KH",
+          "player_name": "Kelvin Herrera",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-LC",
+          "player_name": "Lorenzo Cain",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-WD",
+          "player_name": "Wade Davis",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASTAR-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-CG",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-KH",
+          "player_name": "Kelvin Herrera",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-LC",
+          "player_name": "Lorenzo Cain",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-WD",
+          "player_name": "Wade Davis",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-KH",
+          "player_name": "Kelvin Herrera",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-LC",
+          "player_name": "Lorenzo Cain",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-WD",
+          "player_name": "Wade Davis",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-DPH",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-PCG",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-AG",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-20",
+          "player_name": "Lorenzo Cain",
+          "team": "Kansas City Royals",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-21",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-AE",
+          "player_name": "Alcides Escobar",
+          "team": "Kansas City Royals",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-AGR",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-YV",
+          "player_name": "Yordano Ventura",
+          "team": "Kansas City Royals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMBA-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Tape Measure Blasts Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Yordano Ventura",
+          "team": "Kansas City Royals",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "456",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WW-15",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Whatever Works",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WWA-AG",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Whatever Works Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASJP-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-PT",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-KC",
+          "player_name": "Kole Calhoun",
+          "team": "Los Angeles Angels",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRR-KC",
+          "player_name": "Kole Calhoun",
+          "team": "Los Angeles Angels",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JWE",
+          "player_name": "Jered Weaver",
+          "team": "Los Angeles Angels",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "300",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "326",
+          "player_name": "C.J. Wilson",
+          "team": "Los Angeles Angels",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-AGN",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JPD",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-YG",
+          "player_name": "Yasmani Grandal",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AGN",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPD",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-YG",
+          "player_name": "Yasmani Grandal",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-JPD",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-GP",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASD-HS",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AGN",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPD",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-YG",
+          "player_name": "Yasmani Grandal",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AGN",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPD",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-YG",
+          "player_name": "Yasmani Grandal",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-BSG",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-GGP",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-HMU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-DG",
+          "player_name": "Dee Gordon",
+          "team": "Los Angeles Dodgers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-JPE",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-23",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-71",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-80",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-90",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLB-12",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-15",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-AGO",
+          "player_name": "Adrian Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-HR",
+          "player_name": "Hyun-Jin Ryu",
+          "team": "Los Angeles Dodgers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JP",
+          "player_name": "Joc Pederson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-YP",
+          "player_name": "Yasiel Puig",
+          "team": "Los Angeles Dodgers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Los Angeles Dodgers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rarities Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-10",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-JF",
+          "player_name": "Jose Fernandez",
+          "team": "Miami Marlins",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-JF",
+          "player_name": "Jose Fernandez",
+          "team": "Miami Marlins",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "H-69",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-JR",
+          "player_name": "Jason Rogers",
+          "team": "Milwaukee Brewers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-LS",
+          "player_name": "Luis Sardinas",
+          "team": "Milwaukee Brewers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-WP",
+          "player_name": "Wily Peralta",
+          "team": "Milwaukee Brewers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-CG",
+          "player_name": "Carlos Gomez",
+          "team": "Milwaukee Brewers",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-13",
+          "player_name": "Jonathan Lucroy",
+          "team": "Milwaukee Brewers",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-27",
+          "player_name": "Jonathan Lucroy",
+          "team": "Milwaukee Brewers",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-13",
+          "player_name": "Jonathan Lucroy",
+          "team": "Milwaukee Brewers",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-13",
+          "player_name": "Jonathan Lucroy",
+          "team": "Milwaukee Brewers",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-81",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-JS",
+          "player_name": "Jean Segura",
+          "team": "Milwaukee Brewers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-GP",
+          "player_name": "Glen Perkins",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-GP",
+          "player_name": "Glen Perkins",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-GP",
+          "player_name": "Glen Perkins",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-BB",
+          "player_name": "Byron Buxton",
+          "team": "Minnesota Twins",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-JGR",
+          "player_name": "J.R. Graham",
+          "team": "Minnesota Twins",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-26",
+          "player_name": "Kennys Vargas",
+          "team": "Minnesota Twins",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-26",
+          "player_name": "Kennys Vargas",
+          "team": "Minnesota Twins",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-26",
+          "player_name": "Kennys Vargas",
+          "team": "Minnesota Twins",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-74",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-KV",
+          "player_name": "Kennys Vargas",
+          "team": "Minnesota Twins",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "R-10",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Rarities",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Rarities Autographs",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-16",
+          "player_name": "Willie Mays",
+          "team": "New York Giants",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-15",
+          "player_name": "Willie Mays",
+          "team": "New York Giants",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-16",
+          "player_name": "Willie Mays",
+          "team": "New York Giants",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-16",
+          "player_name": "Willie Mays",
+          "team": "New York Giants",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JDE",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-BSG",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "QS-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-EC",
+          "player_name": "Eric Campbell",
+          "team": "New York Mets",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-KP",
+          "player_name": "Kevin Plawecki",
+          "team": "New York Mets",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-SM",
+          "player_name": "Steven Matz",
+          "team": "New York Mets",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-MH",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-11",
+          "player_name": "Carlos Gomez",
+          "team": "New York Mets",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-22",
+          "player_name": "Carlos Gomez",
+          "team": "New York Mets",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-11",
+          "player_name": "Carlos Gomez",
+          "team": "New York Mets",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-11",
+          "player_name": "Carlos Gomez",
+          "team": "New York Mets",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-72",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-73",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-75",
+          "player_name": "Willie Mays",
+          "team": "New York Mets",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-79",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-11",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-20",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RSA-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RSA-MH",
+          "player_name": "Matt Harvey",
+          "team": "New York Mets",
+          "variation": "Rookie Sensations Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASJP-BG",
+          "player_name": "Brett Gardner",
+          "team": "New York Yankees",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "New York Yankees",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BG",
+          "player_name": "Brett Gardner",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BG",
+          "player_name": "Brett Gardner",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BG",
+          "player_name": "Brett Gardner",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-DB",
+          "player_name": "Dellin Betances",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-BW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-JP",
+          "player_name": "Jose Pirela",
+          "team": "New York Yankees",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-SG",
+          "player_name": "Shane Greene",
+          "team": "New York Yankees",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-SH",
+          "player_name": "Slade Heathcott",
+          "team": "New York Yankees",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-MTE",
+          "player_name": "Mark Teixeira",
+          "team": "New York Yankees",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-RC",
+          "player_name": "Robinson Cano",
+          "team": "New York Yankees",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-11",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Etched in History Commemorative Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-14",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Etched in History Commemorative Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-11",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Etched in History Commemorative Relics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-14",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Etched in History Commemorative Relics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-11",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Etched in History Commemorative Relics Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-14",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Etched in History Commemorative Relics Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-61",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-62",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-64",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-77",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "R-12",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Rarities",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Rarities Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-18",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-JD",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-RM",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WWA-MT",
+          "player_name": "Mark Teixeira",
+          "team": "New York Yankees",
+          "variation": "Whatever Works Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-SV",
+          "player_name": "Stephen Vogt",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SV",
+          "player_name": "Stephen Vogt",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SV",
+          "player_name": "Stephen Vogt",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-SV",
+          "player_name": "Stephen Vogt",
+          "team": "Oakland Athletics",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-AR",
+          "player_name": "Addison Russell",
+          "team": "Oakland Athletics",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLB-16",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-10",
+          "player_name": "Sam Fuld",
+          "team": "Oakland Athletics",
+          "variation": "Pride and Perseverance",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-25",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-CH",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMB-11",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Tape Measure Blasts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMBA-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Tape Measure Blasts Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-24",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-18",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-24",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-24",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-CH",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-RH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMBA-RH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Tape Measure Blasts Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AB",
+          "player_name": "A.J. Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MME",
+          "player_name": "Mark Melancon",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-MC",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AB",
+          "player_name": "A.J. Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MME",
+          "player_name": "Mark Melancon",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AB",
+          "player_name": "A.J. Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MME",
+          "player_name": "Mark Melancon",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-HMU",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-MBC",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-14",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-14",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-26",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-14",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-14",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-13",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Pittsburgh Pirates",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-AM",
+          "player_name": "Andrew McCutchen",
+          "team": "Pittsburgh Pirates",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Pittsburgh Pirates",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-GP",
+          "player_name": "Gregory Polanco",
+          "team": "Pittsburgh Pirates",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MME",
+          "player_name": "Mark Melancon",
+          "team": "Pittsburgh Pirates",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-PA",
+          "player_name": "Pedro Alvarez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SCS-WS",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Strata Cut Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMB-12",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Tape Measure Blasts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JU",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JU",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JU",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JU",
+          "player_name": "Justin Upton",
+          "team": "San Diego Padres",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-TR",
+          "player_name": "Tyson Ross",
+          "team": "San Diego Padres",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JPA",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-MB",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-JPA",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPA",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MB",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-PB",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPA",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MB",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPA",
+          "player_name": "Joe Panik",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-MB",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-BSG",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-PBC",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "QS-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-AS",
+          "player_name": "Andrew Susac",
+          "team": "San Francisco Giants",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-MB",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRM-11",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-BB",
+          "player_name": "Brandon Belt",
+          "team": "San Francisco Giants",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-BC",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-HP",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-23",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-NC",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-NC",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-NC",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-NC",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "QS-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Birth Year Quarter and Stamp Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-KS",
+          "player_name": "Kyle Seager",
+          "team": "Seattle Mariners",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-12",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-15",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-28",
+          "player_name": "Mike Zunino",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-29",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-MZ",
+          "player_name": "Mike Zunino",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRM-10",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-17",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-29",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-12",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-15",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-28",
+          "player_name": "Mike Zunino",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-29",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-MZ",
+          "player_name": "Mike Zunino",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-12",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-15",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-28",
+          "player_name": "Mike Zunino",
+          "team": "Seattle Mariners",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-29",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-82",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLB-22",
+          "player_name": "Nelson Cruz",
+          "team": "Seattle Mariners",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MZ",
+          "player_name": "Mike Zunino",
+          "team": "Seattle Mariners",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-RC",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Own The Name",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "R-14",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Rarities",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "325",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "450",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-CM",
+          "player_name": "Carlos Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JPE",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJPA-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Jumbo Patches Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CM",
+          "player_name": "Carlos Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPE",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASTAR-JPR",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Autographed Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASD-HP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CM",
+          "player_name": "Carlos Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPE",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CM",
+          "player_name": "Carlos Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JPE",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-RMW",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-CM",
+          "player_name": "Carlos Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHJR-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-15",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in History Commemorative Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-15",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in History Commemorative Relics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-15",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in History Commemorative Relics Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EIH-15",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in History Commemorative Relics Platinum Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHR-27",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-27",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-27",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-67",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-78",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "H-89",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Highlight of the Year",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HYA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Highlight of the Year Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-JP",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "MLB All-Star Game Access Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-AWA",
+          "player_name": "Adam Wainwright",
+          "team": "St. Louis Cardinals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-KW",
+          "player_name": "Kolten Wong",
+          "team": "St. Louis Cardinals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MA",
+          "player_name": "Matt Adams",
+          "team": "St. Louis Cardinals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MH",
+          "player_name": "Matt Holliday",
+          "team": "St. Louis Cardinals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MW",
+          "player_name": "Michael Wacha",
+          "team": "St. Louis Cardinals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-21",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMB-13",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Tape Measure Blasts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TMBA-MMC",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Tape Measure Blasts Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "286",
+          "player_name": "Trevor Rosenthal",
+          "team": "St. Louis Cardinals",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "311",
+          "player_name": "Jhonny Peralta",
+          "team": "St. Louis Cardinals",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "336",
+          "player_name": "Matt Carpenter",
+          "team": "St. Louis Cardinals",
+          "variation": "Throwback Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-BB",
+          "player_name": "Brad Boxberger",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-CA",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BB",
+          "player_name": "Brad Boxberger",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CA",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BB",
+          "player_name": "Brad Boxberger",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CA",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BB",
+          "player_name": "Brad Boxberger",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-CA",
+          "player_name": "Chris Archer",
+          "team": "Tampa Bay Rays",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-ACL",
+          "player_name": "Alex Colome",
+          "team": "Tampa Bay Rays",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-MAN",
+          "player_name": "Matt Andriese",
+          "team": "Tampa Bay Rays",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTN-AC",
+          "player_name": "Alex Cobb",
+          "team": "Tampa Bay Rays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JO",
+          "player_name": "Jake Odorizzi",
+          "team": "Tampa Bay Rays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-MMO",
+          "player_name": "Matt Moore",
+          "team": "Tampa Bay Rays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-PF",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-PF",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-PF",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-PF",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-JGA",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CHA-SP",
+          "player_name": "Spencer Patton",
+          "team": "Texas Rangers",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHR-25",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRAR-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "First Home Run Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FHRM-28",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-25",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRR-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "First Home Run Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-25",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-17",
+          "player_name": "Prince Fielder",
+          "team": "Texas Rangers",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-EA",
+          "player_name": "Elvis Andrus",
+          "team": "Texas Rangers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JH",
+          "player_name": "Josh Hamilton",
+          "team": "Texas Rangers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-YD",
+          "player_name": "Yu Darvish",
+          "team": "Texas Rangers",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-19",
+          "player_name": "Neftali Feliz",
+          "team": "Texas Rangers",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-JDO",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-RM",
+          "player_name": "Russell Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JDO",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-RM",
+          "player_name": "Russell Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JDO",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-RM",
+          "player_name": "Russell Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-JDO",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-RM",
+          "player_name": "Russell Martin",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Birth Year Coin and Stamp Dime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Birth Year Coin and Stamp Nickel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Birth Year Coin and Stamp Penny",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BY-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Birth Year Coin and Stamp Quarter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHJR-JBA",
+          "player_name": "Jose Bautista",
+          "team": "Toronto Blue Jays",
+          "variation": "Career High Jumbo Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-20",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "First Home Run",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHRM-24",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "First Home Run Commemorative Medallions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-20",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "First Home Run Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FHR-20",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "First Home Run Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-24",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-DN",
+          "player_name": "Daniel Norris",
+          "team": "Toronto Blue Jays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-DPO",
+          "player_name": "Dalton Pompey",
+          "team": "Toronto Blue Jays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JR",
+          "player_name": "Jose Reyes",
+          "team": "Toronto Blue Jays",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASJP-BHA",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "All-Star Jumbo Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BHA",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASD-HS",
+          "player_name": "Washington Nationals",
+          "team": null,
+          "variation": "All-Star Stitches Duals",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BHA",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STIT-BHA",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches Platinum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AST-HMU",
+          "player_name": "Washington Nationals",
+          "team": null,
+          "variation": "All-Star Stitches Triples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CHA-AJC",
+          "player_name": "A.J. Cole",
+          "team": "Washington Nationals",
+          "variation": "Career High Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLB-18",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-25",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "MLB All-Star Game Access",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-ARE",
+          "player_name": "Anthony Rendon",
+          "team": "Washington Nationals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-JZ",
+          "player_name": "Jordan Zimmermann",
+          "team": "Washington Nationals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-RZ",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OTN-SS",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "Own The Name",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RS-22",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Rookie Sensations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WWA-MS",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Whatever Works Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-11",
+          "player_name": "William Hoy",
+          "team": "Washington Senators",
+          "variation": "Pride and Perseverance",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

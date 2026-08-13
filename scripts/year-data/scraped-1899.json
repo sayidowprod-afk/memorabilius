@@ -1,0 +1,4479 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1899,
+        "name": "2005 Upper Deck Sweet Spot Classic"
+      },
+      "unique": [
+        {
+          "card_number": "16",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-MU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-PN",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-YM",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Phil Niekro",
+          "team": "Atlanta Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CR1",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-ED",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-CR1",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-ED",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-FR",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RO",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RO1",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-BF",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RB",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RM",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RR",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RI",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-10",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-15",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-22",
+          "player_name": "Luis Aparicio",
+          "team": "Boston Red Sox",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-36",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RI",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-DY",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CP",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DD",
+          "player_name": "Don Drysdale",
+          "team": "Brooklyn Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-JR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RE",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-SN",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-14",
+          "player_name": "Don Drysdale",
+          "team": "Brooklyn Dodgers",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-23",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-32",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-42",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-JR",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-PO",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RE",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-SK",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SM",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SN",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-NR2",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-GR",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MG",
+          "player_name": "Mark Grace",
+          "team": "Chicago Cubs",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-17",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-46",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-BS",
+          "player_name": "Bruce Sutter",
+          "team": "Chicago Cubs",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-FJ",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-BR",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-GC",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Fergie Jenkins",
+          "team": "Chicago Cubs",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-37",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-46",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-CF1",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-AR",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-FC",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-BE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-TS",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-27",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-29",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-BE",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-JM",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-TS",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-BR",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-JT",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MB",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MM",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Rosen",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Larry Doby",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Rosen",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Larry Doby",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CO",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-EW",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-SP",
+          "player_name": "Satchel Paige",
+          "team": "Cleveland Indians",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-18",
+          "player_name": "Lou Boudreau",
+          "team": "Cleveland Indians",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-31",
+          "player_name": "Larry Doby",
+          "team": "Cleveland Indians",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-43",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-FR",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RC",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Rosen",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Larry Doby",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-TC",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-16",
+          "player_name": "Detroit Tigers",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DS1",
+          "player_name": "Don Sutton",
+          "team": "Houston Astros",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-JM1",
+          "player_name": "Joe Morgan",
+          "team": "Houston Astros",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-24",
+          "player_name": "Joe Morgan",
+          "team": "Houston Astros",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DS1",
+          "player_name": "Don Sutton",
+          "team": "Houston Astros",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-GB1",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-GB1",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-BS",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SB",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-ED1",
+          "player_name": "Eddie Murray",
+          "team": "Los Angeles Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DS",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-ED1",
+          "player_name": "Eddie Murray",
+          "team": "Los Angeles Dodgers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Don Sutton",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RY1",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-MY",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-YM",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CA",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-PM1",
+          "player_name": "Paul Molitor",
+          "team": "Minnesota Twins",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-KP",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-KS",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-PT",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-FC",
+          "player_name": "Montreal Expos",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Johnny Mize",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Christy Mathewson",
+          "team": "New York Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Johnny Mize",
+          "team": "New York Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DC",
+          "player_name": "David Cone",
+          "team": "New York Mets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-38",
+          "player_name": "Richie Ashburn",
+          "team": "New York Mets",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DC",
+          "player_name": "David Cone",
+          "team": "New York Mets",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-GC1",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-TS1",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-MH",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SR",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Catfish Hunter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Catfish Hunter",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-BR",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-CH",
+          "player_name": "Catfish Hunter",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DM1",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DW",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-JD",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-LG",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RG",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-TM",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-13",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-16",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-25",
+          "player_name": "Enos Slaughter",
+          "team": "New York Yankees",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-26",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-27",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-32",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-34",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-35",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-36",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-41",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-45",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-47",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-48",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-49",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-50",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DM1",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DW",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-MM",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-RG",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-WB1",
+          "player_name": "Wade Boggs",
+          "team": "New York Yankees",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-AR",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-FB",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MC",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MH",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Catfish Hunter",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-JD",
+          "player_name": "Joe DiMaggio",
+          "team": "Oakland Athletics",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-EF",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mickey Cochrane",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mickey Cochrane",
+          "team": "Philadelphia Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Lefty Grove",
+          "team": "Philadelphia Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mickey Cochrane",
+          "team": "Philadelphia Athletics",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-JB",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MS1",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RR",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-40",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-44",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-MS1",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-BS",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-CR",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-CS",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-KS",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-NS",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jim Bunning",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MW1",
+          "player_name": "Maury Wills",
+          "team": "Pittsburgh Pirates",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-RC",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Materials",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-ST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-11",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-39",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-MW1",
+          "player_name": "Maury Wills",
+          "team": "Pittsburgh Pirates",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-ST",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-MM",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MR",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SK",
+          "player_name": "Pittsburgh Pirates",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-DW1",
+          "player_name": "Dave Winfield",
+          "team": "San Diego Padres",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-DW1",
+          "player_name": "Dave Winfield",
+          "team": "San Diego Padres",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-TG1",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-PT",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RG",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-MA",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-WI",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-30",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-GP",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-WI",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-CM",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-GC",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-GM",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MC",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gaylord Perry",
+          "team": "San Francisco Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Satchel Paige",
+          "team": "St. Louis Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Satchel Paige",
+          "team": "St. Louis Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-19",
+          "player_name": "St. Louis Browns",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Browns",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Satchel Paige",
+          "team": "St. Louis Browns",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Johnny Mize",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-SD",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-21",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-35",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-40",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-SD",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-GM",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-GR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MG",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-MS",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-RS",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SB",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-SM",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Red Schoendienst",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-NR1",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CM-WC1",
+          "player_name": "Will Clark",
+          "team": "Texas Rangers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-NR1",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DU-FR",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DU-NS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Signatures Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Frank Howard",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Frank Howard",
+          "team": "Washington Senators",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-12",
+          "player_name": "Washington Senators",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-19",
+          "player_name": "Washington Senators",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-20",
+          "player_name": "Gil Hodges",
+          "team": "Washington Senators",
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-33",
+          "player_name": "Washington Senators",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-43",
+          "player_name": "Washington Senators",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WCC-47",
+          "player_name": "Washington Senators",
+          "team": null,
+          "variation": "Oversized Wingfield Classics Collection 5x7",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CP-FH",
+          "player_name": "Frank Howard",
+          "team": "Washington Senators",
+          "variation": "Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Frank Howard",
+          "team": "Washington Senators",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": "Silver",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

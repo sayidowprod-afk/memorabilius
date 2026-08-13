@@ -1,0 +1,2959 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1890,
+        "name": "2005 Upper Deck ESPN"
+      },
+      "unique": [
+        {
+          "card_number": "INK-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Anaheim Angels",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AW-10",
+          "player_name": "Jim Edmonds",
+          "team": "Anaheim Angels",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-10",
+          "player_name": "Jim Edmonds",
+          "team": "Anaheim Angels",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Shawn Green",
+          "team": "Arizona Diamondbacks",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-10",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-10",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-TG",
+          "player_name": "Troy Glaus",
+          "team": "Arizona Diamondbacks",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-18",
+          "player_name": "Andres Galarraga",
+          "team": "Atlanta Braves",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-18",
+          "player_name": "Andres Galarraga",
+          "team": "Atlanta Braves",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-TH",
+          "player_name": "Tim Hudson",
+          "team": "Atlanta Braves",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WG-17",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-17",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-20",
+          "player_name": "Cy Young",
+          "team": "Boston Braves",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-20",
+          "player_name": "Cy Young",
+          "team": "Boston Braves",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-17",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-17",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-13",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "SportsCentury",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-13",
+          "player_name": "Cy Young",
+          "team": "Boston Red Sox",
+          "variation": "SportsCentury 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-11",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-11",
+          "player_name": "Jackie Robinson",
+          "team": "Brooklyn Dodgers",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AW-16",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-16",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-DL",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-11",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-19",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-11",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-19",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Scott Podsednik",
+          "team": "Chicago White Sox",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GU-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-15",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-15",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-10",
+          "player_name": "Satchel Paige",
+          "team": "Cleveland Indians",
+          "variation": "SportsCentury",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-10",
+          "player_name": "Satchel Paige",
+          "team": "Cleveland Indians",
+          "variation": "SportsCentury 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-13",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-13",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-12",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-12",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-22",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-22",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-15",
+          "player_name": "Ty Cobb",
+          "team": "Philadelphia Athletics",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-13",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-13",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Delgado",
+          "team": "Florida Marlins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-AL",
+          "player_name": "Al Leiter",
+          "team": "Florida Marlins",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "INK-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "INK-PL",
+          "player_name": "Paul Lo Duca",
+          "team": "Florida Marlins",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-16",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-16",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-13",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-13",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-BI",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Steve Finley",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Steve Finley",
+          "team": "Los Angeles Angels",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-BC",
+          "player_name": "Bartolo Colon",
+          "team": "Los Angeles Angels",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-GA",
+          "player_name": "Garret Anderson",
+          "team": "Los Angeles Angels",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-21",
+          "player_name": "Steve Finley",
+          "team": "Los Angeles Angels",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-25",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-21",
+          "player_name": "Steve Finley",
+          "team": "Los Angeles Angels",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-25",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Brad Penny",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Brad Penny",
+          "team": "Los Angeles Dodgers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-JW",
+          "player_name": "Jayson Werth",
+          "team": "Los Angeles Dodgers",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-19",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-19",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-EG",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JD",
+          "player_name": "J.D. Drew",
+          "team": "Los Angeles Dodgers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JK",
+          "player_name": "Jeff Kent",
+          "team": "Los Angeles Dodgers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-LO",
+          "player_name": "Derek Lowe",
+          "team": "Los Angeles Dodgers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MW",
+          "player_name": "Maury Wills",
+          "team": "Los Angeles Dodgers",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GU-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-11",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-11",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-SA",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-23",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-23",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MI",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "INK-MV",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-15",
+          "player_name": "Kazuo Matsui",
+          "team": "New York Mets",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-15",
+          "player_name": "Kazuo Matsui",
+          "team": "New York Mets",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Carl Pavano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Kevin Brown",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Carl Pavano",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Kevin Brown",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-JE",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "INK-JO",
+          "player_name": "John Olerud",
+          "team": "New York Yankees",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MC-12",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-17",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-12",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-17",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-15",
+          "player_name": "David Wells",
+          "team": "New York Yankees",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-19",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-20",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-15",
+          "player_name": "David Wells",
+          "team": "New York Yankees",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-19",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-20",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-GG",
+          "player_name": "Rich Gossage",
+          "team": "New York Yankees",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-SL",
+          "player_name": "Sparky Lyle",
+          "team": "New York Yankees",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-10",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-12",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-14",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-16",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-10",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-12",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-14",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-16",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-18",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-18",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jason Kendall",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jason Kendall",
+          "team": "Oakland Athletics",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-DJ",
+          "player_name": "David Justice",
+          "team": "Oakland Athletics",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "INK-KE",
+          "player_name": "Jason Kendall",
+          "team": "Oakland Athletics",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "INK-RH",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GU-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-10",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-10",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-15",
+          "player_name": "Ty Cobb",
+          "team": "Philadelphia Athletics",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-21",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-21",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Oliver Perez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Craig Wilson",
+          "team": "Pittsburgh Pirates",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Oliver Perez",
+          "team": "Pittsburgh Pirates",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-12",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "SportsCentury",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-14",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "SportsCentury",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-12",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "SportsCentury 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-14",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "SportsCentury 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-JP",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AW-11",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-11",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-12",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-12",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-19",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-19",
+          "player_name": "George Sisler",
+          "team": "St. Louis Browns",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-14",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-20",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "ESPN The Magazine Covers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-14",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-20",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "ESPN The Magazine Covers 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MM",
+          "player_name": "Mark Mulder",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-11",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCentury",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-15",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCentury",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-11",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCentury 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-15",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "SportsCentury 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-18",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-18",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-14",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-16",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-20",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-14",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-16",
+          "player_name": "Larry Walker",
+          "team": "St. Louis Cardinals",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-20",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GU-AH",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "SportsCentury Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-AR",
+          "player_name": "Alex Rios",
+          "team": "Toronto Blue Jays",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AW-14",
+          "player_name": "Roger Clemens",
+          "team": "Toronto Blue Jays",
+          "variation": "ESPY Award Winners",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-14",
+          "player_name": "Roger Clemens",
+          "team": "Toronto Blue Jays",
+          "variation": "ESPY Award Winners 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GU-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "SportsCenter Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-24",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Web Gems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WG-24",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Web Gems 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Livan Hernandez",
+          "team": "Washington Nationals",
+          "variation": "25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "INK-JV",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": "ESPN Ink",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BH-17",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": "This Day in Baseball History",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BH-17",
+          "player_name": "Walter Johnson",
+          "team": "Washington Senators",
+          "variation": "This Day in Baseball History 25th Anniversary",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

@@ -1,0 +1,4007 @@
+{
+  "year": 2003,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1641,
+        "name": "2003 Stadium Club"
+      },
+      "unique": [
+        {
+          "card_number": "16",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-BF",
+          "player_name": "Brad Fullmer",
+          "team": "Anaheim Angels",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Junior Spivey",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-MG",
+          "player_name": "Mark Grace",
+          "team": "Arizona Diamondbacks",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-MW",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Junior Spivey",
+          "team": "Arizona Diamondbacks",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Junior Spivey",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-BK",
+          "player_name": "Byung-Hyun Kim",
+          "team": "Arizona Diamondbacks",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Wilson Betemit",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Adam LaRoche",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Andy Marte",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "MLB Match-Up Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "MLB Match-Up Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Wilson Betemit",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Adam LaRoche",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Andy Marte",
+          "team": "Atlanta Braves",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Wilson Betemit",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Adam LaRoche",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Andy Marte",
+          "team": "Atlanta Braves",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ed Rogers",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ed Rogers",
+          "team": "Baltimore Orioles",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ed Rogers",
+          "team": "Baltimore Orioles",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shea Hillenbrand",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CF",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rickey Henderson",
+          "team": "Boston Red Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TC",
+          "player_name": "Tony Clark",
+          "team": "Boston Red Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shea Hillenbrand",
+          "team": "Boston Red Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shea Hillenbrand",
+          "team": "Boston Red Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CP",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-MA",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-LW",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "MLB Match-Up Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Robert Fick",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Robert Fick",
+          "team": "Detroit Tigers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Robert Fick",
+          "team": "Detroit Tigers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Preston Wilson",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jason Stokes",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-AB",
+          "player_name": "A.J. Burnett",
+          "team": "Florida Marlins",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-PW",
+          "player_name": "Preston Wilson",
+          "team": "Florida Marlins",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Preston Wilson",
+          "team": "Florida Marlins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jason Stokes",
+          "team": "Florida Marlins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Luis Castillo",
+          "team": "Florida Marlins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Preston Wilson",
+          "team": "Florida Marlins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jason Stokes",
+          "team": "Florida Marlins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Raul Ibanez",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Raul Ibanez",
+          "team": "Kansas City Royals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Raul Ibanez",
+          "team": "Kansas City Royals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Brian Jordan",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Franklin Gutierrez",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Sean Pierce",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CS-MI",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Co-Signers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LD-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Brian Jordan",
+          "team": "Los Angeles Dodgers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Franklin Gutierrez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Sean Pierce",
+          "team": "Los Angeles Dodgers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Brian Jordan",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Paul Lo Duca",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Franklin Gutierrez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Sean Pierce",
+          "team": "Los Angeles Dodgers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-KI",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CS-AM",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Co-Signers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jose Hernandez",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Manuel Ramirez",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Daryl Clark",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jose Hernandez",
+          "team": "Milwaukee Brewers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Manuel Ramirez",
+          "team": "Milwaukee Brewers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Daryl Clark",
+          "team": "Milwaukee Brewers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Richie Sexson",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jose Hernandez",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Manuel Ramirez",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Daryl Clark",
+          "team": "Milwaukee Brewers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "A.J. Pierzynski",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-EM",
+          "player_name": "Eric Milton",
+          "team": "Minnesota Twins",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "A.J. Pierzynski",
+          "team": "Minnesota Twins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "A.J. Pierzynski",
+          "team": "Minnesota Twins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Cristian Guzman",
+          "team": "Minnesota Twins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Javier Vazquez",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Orlando Cabrera",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Javier Vazquez",
+          "team": "Montreal Expos",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Orlando Cabrera",
+          "team": "Montreal Expos",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Javier Vazquez",
+          "team": "Montreal Expos",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Orlando Cabrera",
+          "team": "Montreal Expos",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CS-AM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Co-Signers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Wayne Lydon",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Matt Peterson",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JNB",
+          "player_name": "Jeromy Burnitz",
+          "team": "New York Mets",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-MV",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Wayne Lydon",
+          "team": "New York Mets",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Matt Peterson",
+          "team": "New York Mets",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mo Vaughn",
+          "team": "New York Mets",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Wayne Lydon",
+          "team": "New York Mets",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Matt Peterson",
+          "team": "New York Mets",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Nick Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Juan Camacho",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RV",
+          "player_name": "Robin Ventura",
+          "team": "New York Yankees",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-BW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Nick Johnson",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Juan Camacho",
+          "team": "New York Yankees",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Nick Johnson",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Roger Clemens",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Drew Henson",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Juan Camacho",
+          "team": "New York Yankees",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TL",
+          "player_name": "Terrence Long",
+          "team": "Oakland Athletics",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Vicente Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Il Kim",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-PB",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TRL",
+          "player_name": "Travis Lee",
+          "team": "Philadelphia Phillies",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Vicente Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Il Kim",
+          "team": "Philadelphia Phillies",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Vicente Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jimmy Rollins",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Il Kim",
+          "team": "Philadelphia Phillies",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Aramis Ramirez",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Walter Young",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-ANR",
+          "player_name": "Aramis Ramirez",
+          "team": "Pittsburgh Pirates",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Aramis Ramirez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Walter Young",
+          "team": "Pittsburgh Pirates",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Aramis Ramirez",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Walter Young",
+          "team": "Pittsburgh Pirates",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RK",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-SB",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jeff Kent",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RA",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-WM",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CS-MI",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Co-Signers",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jeff Kent",
+          "team": "San Francisco Giants",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Rich Aurilia",
+          "team": "San Francisco Giants",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jeff Kent",
+          "team": "San Francisco Giants",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-TS",
+          "player_name": "Tsuyoshi Shinjo",
+          "team": "San Francisco Giants",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Cameron",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JO",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-BB",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "MLB Match-Up Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Cameron",
+          "team": "Seattle Mariners",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Mike Cameron",
+          "team": "Seattle Mariners",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-KS",
+          "player_name": "Kazuhiro Sasaki",
+          "team": "Seattle Mariners",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Fernando Vina",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Chris Duncan",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JDD",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TM",
+          "player_name": "Tino Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-TM",
+          "player_name": "Tino Martinez",
+          "team": "St. Louis Cardinals",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLB-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "MLB Match-Up Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Fernando Vina",
+          "team": "St. Louis Cardinals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Chris Duncan",
+          "team": "St. Louis Cardinals",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Fernando Vina",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Chris Duncan",
+          "team": "St. Louis Cardinals",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Randy Winn",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JH",
+          "player_name": "Josh Hamilton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TJH",
+          "player_name": "Toby Hall",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Randy Winn",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Randy Winn",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Born in the USA Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-JG",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LD-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "License to Drive Bat Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WS-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "World Stage Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "Photographer's Proof",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shannon Stewart",
+          "team": "Toronto Blue Jays",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "Royal Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Stadium Slices Barrel Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Stadium Slices Handle Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Stadium Slices Trademark Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Stadium Club"
+    }
+  ]
+}

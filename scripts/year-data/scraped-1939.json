@@ -1,0 +1,1855 @@
+{
+  "year": 2006,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1939,
+        "name": "2006 Topps Updates & Highlights"
+      },
+      "unique": [
+        {
+          "card_number": "ASP-BW",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BW",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-31",
+          "player_name": "Enrique Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-43",
+          "player_name": "Stephen Drew",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-45",
+          "player_name": "Carlos Quentin",
+          "team": "Arizona Diamondbacks",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-BM",
+          "player_name": "Brian McCann",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-ER",
+          "player_name": "Edgar Renteria",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BM",
+          "player_name": "Brian McCann",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-ER",
+          "player_name": "Edgar Renteria",
+          "team": "Atlanta Braves",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-MM",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-39",
+          "player_name": "Scott Thorman",
+          "team": "Atlanta Braves",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-MP",
+          "player_name": "Martin Prado",
+          "team": "Atlanta Braves",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DA-ST",
+          "player_name": "Scott Thorman",
+          "team": "Atlanta Braves",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-TG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-AL",
+          "player_name": "Adam Loewen",
+          "team": "Baltimore Orioles",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TER-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JP",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-ML",
+          "player_name": "Mark Loretta",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JP",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-ML",
+          "player_name": "Mark Loretta",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-RO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-34",
+          "player_name": "David Pauley",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-37",
+          "player_name": "Jon Lester",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-JL",
+          "player_name": "Jon Lester",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TER-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CZ",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CZ",
+          "player_name": "Carlos Zambrano",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-22",
+          "player_name": "Sean Marshall",
+          "team": "Chicago Cubs",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-AJP",
+          "player_name": "A.J. Pierzynski",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-BJ",
+          "player_name": "Bobby Jenks",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JC",
+          "player_name": "Jose Contreras",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JD",
+          "player_name": "Jermaine Dye",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JT",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJP",
+          "player_name": "A.J. Pierzynski",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BJ",
+          "player_name": "Bobby Jenks",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Contreras",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JD",
+          "player_name": "Jermaine Dye",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MB",
+          "player_name": "Mark Buehrle",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-HT",
+          "player_name": "Chicago White Sox",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-JD",
+          "player_name": "Jermaine Dye",
+          "team": "Chicago White Sox",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-PK",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-15",
+          "player_name": "Boone Logan",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-BA",
+          "player_name": "Bronson Arroyo",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BA",
+          "player_name": "Bronson Arroyo",
+          "team": "Cincinnati Reds",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-BP",
+          "player_name": "Brandon Phillips",
+          "team": "Cincinnati Reds",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-GS",
+          "player_name": "Grady Sizemore",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Grady Sizemore",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-WS",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-FC",
+          "player_name": "Fausto Carmona",
+          "team": "Cleveland Indians",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DA-JS",
+          "player_name": "Jeremy Sowers",
+          "team": "Cleveland Indians",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-BF",
+          "player_name": "Brian Fuentes",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MH",
+          "player_name": "Matt Holliday",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BF",
+          "player_name": "Brian Fuentes",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MH",
+          "player_name": "Matt Holliday",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-KR",
+          "player_name": "Kenny Rogers",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KR",
+          "player_name": "Kenny Rogers",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-20",
+          "player_name": "Jordan Tata",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-36",
+          "player_name": "Zach Miner",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DU",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DU",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-CJ",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-14",
+          "player_name": "Reggie Abercrombie",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-17",
+          "player_name": "Ricky Nolasco",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-26",
+          "player_name": "Yusmeiro Petit",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-40",
+          "player_name": "Anibal Sanchez",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-RA",
+          "player_name": "Reggie Abercrombie",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DA-RN",
+          "player_name": "Ricky Nolasco",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DA-YP",
+          "player_name": "Yusmeiro Petit",
+          "team": "Florida Marlins",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RO",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-LB",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-13",
+          "player_name": "Fernando Nieve",
+          "team": "Houston Astros",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-21",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-MA",
+          "player_name": "Matt Albers",
+          "team": "Houston Astros",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-AH",
+          "player_name": "Aubrey Huff",
+          "team": "Houston Astros",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-MAR",
+          "player_name": "Mark Redman",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MAR",
+          "player_name": "Mark Redman",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-TG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-27",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-29",
+          "player_name": "Jered Weaver",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-44",
+          "player_name": "Joe Saunders",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-MN",
+          "player_name": "Mike Napoli",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-BP",
+          "player_name": "Brad Penny",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BP",
+          "player_name": "Brad Penny",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-12",
+          "player_name": "James Loney",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-25",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-30",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-38",
+          "player_name": "Chad Billingsley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-JL",
+          "player_name": "Julio Lugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASP-CFC",
+          "player_name": "Chris Capuano",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CL",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DT",
+          "player_name": "Derrick Turnbow",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CFC",
+          "player_name": "Chris Capuano",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CL",
+          "player_name": "Carlos Lee",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DT",
+          "player_name": "Derrick Turnbow",
+          "team": "Milwaukee Brewers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-35",
+          "player_name": "Zach Jackson",
+          "team": "Milwaukee Brewers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-HS",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-MM",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-18",
+          "player_name": "Willie Eyre",
+          "team": "Minnesota Twins",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TER-JM",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-PL",
+          "player_name": "Paul Lo Duca",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-TMG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PL",
+          "player_name": "Paul Lo Duca",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TMG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-PW",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-16",
+          "player_name": "Brian Bannister",
+          "team": "New York Mets",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-28",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-32",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TER-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TER-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MR",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-RC",
+          "player_name": "Robinson Cano",
+          "team": "New York Yankees",
+          "variation": "All-Star Patches",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MR",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RC",
+          "player_name": "Robinson Cano",
+          "team": "New York Yankees",
+          "variation": "All-Star Stitches",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-RH",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-RO",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-MR",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-42",
+          "player_name": "T.J. Beam",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-CW",
+          "player_name": "Craig Wilson",
+          "team": "New York Yankees",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-JD",
+          "player_name": "Johnny Damon",
+          "team": "New York Yankees",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TER-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CU",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-RJH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-TG",
+          "player_name": "Tom Gordon",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CU",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RJH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TG",
+          "player_name": "Tom Gordon",
+          "team": "Philadelphia Phillies",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-HT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-RH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-CU",
+          "player_name": "Chase Utley",
+          "team": "Philadelphia Phillies",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-19",
+          "player_name": "Fabio Castro",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TER-RH",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-FS",
+          "player_name": "Freddy Sanchez",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FS",
+          "player_name": "Freddy Sanchez",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-TH",
+          "player_name": "Trevor Hoffman",
+          "team": "San Diego Padres",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TH",
+          "player_name": "Trevor Hoffman",
+          "team": "San Diego Padres",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-RH",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-41",
+          "player_name": "Mike Thompson",
+          "team": "San Diego Padres",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JDS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JDS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-JL",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JL",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-SS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-BL",
+          "player_name": "Bobby Livingston",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DA-EF",
+          "player_name": "Emiliano Fruto",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TER-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-CC",
+          "player_name": "Chris Carpenter",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-DE",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CC",
+          "player_name": "Chris Carpenter",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-PW",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TER-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-10",
+          "player_name": "Jason Childers",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-11",
+          "player_name": "Ruddy Lugo",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-33",
+          "player_name": "Jamie Shields",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-GM",
+          "player_name": "Gary Matthews",
+          "team": "Texas Rangers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GM",
+          "player_name": "Gary Matthews Jr.",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-23",
+          "player_name": "John Rheinecker",
+          "team": "Texas Rangers",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DA-IK",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-BW",
+          "player_name": "Brad Wilkerson",
+          "team": "Texas Rangers",
+          "variation": "Signature Moves",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TER-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Touch 'Em All Base Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-BR",
+          "player_name": "B.J. Ryan",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-TEG",
+          "player_name": "Troy Glaus",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BR",
+          "player_name": "B.J. Ryan",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TEG",
+          "player_name": "Troy Glaus",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-HS",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-WS",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DD-TG",
+          "player_name": "Troy Glaus",
+          "team": "Toronto Blue Jays",
+          "variation": "Derby Digs Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-BR",
+          "player_name": "B.J. Ryan",
+          "team": "Toronto Blue Jays",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RD-24",
+          "player_name": "Casey Janssen",
+          "team": "Toronto Blue Jays",
+          "variation": "Rookie Debut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASP-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DAS-SS",
+          "player_name": "Washington Nationals",
+          "team": null,
+          "variation": "All-Star Stitches Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MC-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Midsummer Covers Baseball Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

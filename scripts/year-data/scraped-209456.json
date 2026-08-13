@@ -1,0 +1,4279 @@
+{
+  "year": 2019,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 209456,
+        "name": "2019 Topps Dynasty"
+      },
+      "unique": [
+        {
+          "card_number": "DAP-RJ1",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RJ1",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RJ1",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FM1",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FM2",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RAJ",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FM1",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RAJ",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR",
+          "player_name": "Austin Riley",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FM1",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FM2",
+          "player_name": "Fred McGriff",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RAJ",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JA",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JA",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-AG",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-AG",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-AG",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-CRJ",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-CRJ",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CRJ",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA3",
+          "player_name": "Roberto Alomar",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CRJ",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA3",
+          "player_name": "Roberto Alomar",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CRJ",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA3",
+          "player_name": "Roberto Alomar",
+          "team": "Baltimore Orioles",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-DW",
+          "player_name": "Dick Williams",
+          "team": "Baltimore Orioles",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EW",
+          "player_name": "Earl Weaver",
+          "team": "Baltimore Orioles",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABG-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Batting Glove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABGJ-AO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Batting Glove Jumbo Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB3",
+          "player_name": "Adrian Beltre",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Michael Chavis",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB3",
+          "player_name": "Adrian Beltre",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Michael Chavis",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB3",
+          "player_name": "Adrian Beltre",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Michael Chavis",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BD",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JC",
+          "player_name": "Joe Cronin",
+          "team": "Boston Red Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-LG",
+          "player_name": "Lefty Grove",
+          "team": "Boston Red Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-SJ",
+          "player_name": "Smoky Joe Wood",
+          "team": "Boston Red Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-TS",
+          "player_name": "Tris Speaker",
+          "team": "Boston Red Sox",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-ABE",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-ABE",
+          "player_name": "Andrew Benintendi",
+          "team": "Boston Red Sox",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-CS",
+          "player_name": "Chris Sale",
+          "team": "Boston Red Sox",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BG",
+          "player_name": "Burleigh Grimes",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-CF",
+          "player_name": "Carl Furillo",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-DS",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-GH",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-PW",
+          "player_name": "Pee Wee Reese",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RB",
+          "player_name": "Red Barber",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-ZW",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KA",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KA",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KA",
+          "player_name": "Brooklyn Dodgers",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RC1",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RC1",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-RO",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-RO",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-RO",
+          "player_name": "California Angels",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-AD1",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-AD1",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WC",
+          "player_name": "Willson Contreras",
+          "team": "Chicago Cubs",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BH",
+          "player_name": "Billy Herman",
+          "team": "Chicago Cubs",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-MP",
+          "player_name": "Milt Pappas",
+          "team": "Chicago Cubs",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RS",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RB",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FTJ",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA2",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FTJ",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA2",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FTJ",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA2",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-AL",
+          "player_name": "Al Lopez",
+          "team": "Chicago White Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BV",
+          "player_name": "Bill Veeck",
+          "team": "Chicago White Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-HW",
+          "player_name": "Hoyt Wilhelm",
+          "team": "Chicago White Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-LA",
+          "player_name": "Luke Appling",
+          "team": "Chicago White Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-TL",
+          "player_name": "Ted Lyons",
+          "team": "Chicago White Sox",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KGJ2",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KGJ2",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KGJ2",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA3",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA2",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA6",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JR7",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TB",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA1",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA2",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA3",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA4",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA5",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TBA6",
+          "player_name": "Trevor Bauer",
+          "team": "Cleveland Indians",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BF",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EA",
+          "player_name": "Earl Averill",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EW",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-LD",
+          "player_name": "Larry Doby",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-LB",
+          "player_name": "Lou Boudreau",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-SP",
+          "player_name": "Satchel Paige",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-SC",
+          "player_name": "Stan Coveleski",
+          "team": "Cleveland Indians",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-JR",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BR",
+          "player_name": "Brendan Rodgers",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BR",
+          "player_name": "Brendan Rodgers",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BR",
+          "player_name": "Brendan Rodgers",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-CG",
+          "player_name": "Charlie Gehringer",
+          "team": "Detroit Tigers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EH",
+          "player_name": "Ernie Harwell",
+          "team": "Detroit Tigers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-GK",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-HN",
+          "player_name": "Hal Newhouser",
+          "team": "Detroit Tigers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-HG",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JB",
+          "player_name": "Jim Bunning",
+          "team": "Detroit Tigers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-TC",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-IR2",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-IR2",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-IR2",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-NR3",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-NR3",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GS",
+          "player_name": "George Springer",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GC",
+          "player_name": "Gerrit Cole",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JN",
+          "player_name": "Joe Niekro",
+          "team": "Houston Astros",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KR",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KR",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KR",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABG-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Batting Glove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABG-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Batting Glove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABGJ-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Batting Glove Jumbo Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABGJ-AT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Batting Glove Jumbo Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AP",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GT",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TO",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GT",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TO",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-RO",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-RO",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-RO",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB2",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH2",
+          "player_name": "Rickey Henderson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB2",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH2",
+          "player_name": "Rickey Henderson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB2",
+          "player_name": "Adrian Beltre",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH2",
+          "player_name": "Rickey Henderson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-WA",
+          "player_name": "Walter Alston",
+          "team": "Los Angeles Dodgers",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KR",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KR",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KR",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EM",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KA",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KA",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-KA",
+          "player_name": "Milwaukee Braves",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KH",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY1",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY2",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY3",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KH",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY1",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY2",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY3",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KH",
+          "player_name": "Keston Hiura",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY1",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY2",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RY3",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RC2",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RC2",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-AD2",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-AD2",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-AD",
+          "player_name": "Alvin Dark",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BT",
+          "player_name": "Bill Terry",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BT",
+          "player_name": "Bobby Thomson",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-CH",
+          "player_name": "Carl Hubbell",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-DB",
+          "player_name": "Dave Bancroft",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-GK",
+          "player_name": "George \"High Pockets\" Kelly",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-LD",
+          "player_name": "Leo Durocher",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-MI",
+          "player_name": "Monte Irvin",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RM",
+          "player_name": "Rube Marquard",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-TJ",
+          "player_name": "Travis Jackson",
+          "team": "New York Giants",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-MO",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-NR1",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-NR1",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JDG",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PM1",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA1",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH3",
+          "player_name": "Rickey Henderson",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JDG",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PM1",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH3",
+          "player_name": "Rickey Henderson",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA1",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JDG",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PM1",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PA",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH3",
+          "player_name": "Rickey Henderson",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA1",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-TG",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-GC",
+          "player_name": "Gary Carter",
+          "team": "New York Mets",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-TM",
+          "player_name": "Tug McGraw",
+          "team": "New York Mets",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABG-ARO",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Autographed Batting Glove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABG-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Autographed Batting Glove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABGJ-ARO",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Autographed Batting Glove Jumbo Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABGJ-AJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Autographed Batting Glove Jumbo Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RJ1",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RJ1",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AP",
+          "player_name": "Andy Pettitte",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR1",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CS",
+          "player_name": "CC Sabathia",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MR",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR1",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AP",
+          "player_name": "Andy Pettitte",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CS",
+          "player_name": "CC Sabathia",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MR",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR1",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AP",
+          "player_name": "Andy Pettitte",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CS",
+          "player_name": "CC Sabathia",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MR",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MT",
+          "player_name": "Masahiro Tanaka",
+          "team": "New York Yankees",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BD",
+          "player_name": "Bill Dickey",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-BM",
+          "player_name": "Bobby Murcer",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-CS",
+          "player_name": "Casey Stengel",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-CH",
+          "player_name": "Catfish Hunter",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EC",
+          "player_name": "Earle Combs",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-FC",
+          "player_name": "Frank Crosetti",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JD",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JM",
+          "player_name": "Joe McCarthy",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-LG",
+          "player_name": "Lefty Gomez",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RR",
+          "player_name": "Red Ruffing",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-WH",
+          "player_name": "Waite Hoyt",
+          "team": "New York Yankees",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JJ",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-RM",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-TM",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-MI",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-MI",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-MI",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RJ2",
+          "player_name": "Reggie Jackson",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RJ2",
+          "player_name": "Reggie Jackson",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MM1",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH4",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MM1",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH4",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MM1",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MC",
+          "player_name": "Matt Chapman",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH4",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PM2",
+          "player_name": "Pedro Martinez",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PM2",
+          "player_name": "Pedro Martinez",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BH",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PM2",
+          "player_name": "Pedro Martinez",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-EF",
+          "player_name": "Elmer Flick",
+          "team": "Philadelphia Phillies",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RA",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RR",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-RH",
+          "player_name": "Rhys Hoskins",
+          "team": "Philadelphia Phillies",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-MC",
+          "player_name": "Max Carey",
+          "team": "Pittsburgh Pirates",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RK",
+          "player_name": "Ralph Kiner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-WS",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-HW",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-RC",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-OS2",
+          "player_name": "Ozzie Smith",
+          "team": "San Diego Padres",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-OS2",
+          "player_name": "Ozzie Smith",
+          "team": "San Diego Padres",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CP",
+          "player_name": "Chris Paddack",
+          "team": "San Diego Padres",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FTJ",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CP",
+          "player_name": "Chris Paddack",
+          "team": "San Diego Padres",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FTJ",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CP",
+          "player_name": "Chris Paddack",
+          "team": "San Diego Padres",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-FTJ",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "On This Day Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "OTD-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "On This Day Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR2",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KGJ1",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH1",
+          "player_name": "Rickey Henderson",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RJ2",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-YK",
+          "player_name": "Yusei Kikuchi",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR2",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KGJ1",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RJ2",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH1",
+          "player_name": "Rickey Henderson",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-YK",
+          "player_name": "Yusei Kikuchi",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR2",
+          "player_name": "Alex Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-KGJ1",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RJ2",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RH1",
+          "player_name": "Rickey Henderson",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-YK",
+          "player_name": "Yusei Kikuchi",
+          "team": "Seattle Mariners",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GT",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GT",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-AG",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-MI",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Legendary Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-AG",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-MI",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Legendary Dual Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-AG",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LDA-MI",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Legendary Dual Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-RF",
+          "player_name": "Rick Ferrell",
+          "team": "St. Louis Browns",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-OS1",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-OS1",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MM2",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MM2",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG1",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG2",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG3",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG4",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG5",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG6",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG7",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG8",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-MM2",
+          "player_name": "Mark McGwire",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG1",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG2",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG3",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG4",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG5",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG6",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG7",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-PG8",
+          "player_name": "Paul Goldschmidt",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-DD",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-ES",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-FF",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JH",
+          "player_name": "Jesse Haines",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JM",
+          "player_name": "Joe Medwick",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-JM",
+          "player_name": "Johnny Mize",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GM",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dual Autographed Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-GM",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dual Autographed Patch Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-RH",
+          "player_name": "Rogers Hornsby",
+          "team": "St. Louis Cardinals",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DRCS-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Dual Relic Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WB",
+          "player_name": "Wade Boggs",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WB",
+          "player_name": "Wade Boggs",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-WB",
+          "player_name": "Wade Boggs",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BS",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BS",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-BS",
+          "player_name": "Blake Snell",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABG-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Autographed Batting Glove",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABGJ-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Autographed Batting Glove Jumbo Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-NR2",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Autographed Dual Relic",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-NR2",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB1",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR3",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-IR1",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB1",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR3",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-IR1",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AB1",
+          "player_name": "Adrian Beltre",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-AR3",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-IR1",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RC",
+          "player_name": "Roger Clemens",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Dual Relic",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "ADR-RC",
+          "player_name": "Roger Clemens",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Dual Relic Gold",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA4",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA6",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-VGJ",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA4",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-VGJ2",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-RA4",
+          "player_name": "Roberto Alomar",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-VGJ3",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CK",
+          "player_name": "Carter Kieboom",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CK",
+          "player_name": "Carter Kieboom",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-CK",
+          "player_name": "Carter Kieboom",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DAP-VR",
+          "player_name": "Victor Robles",
+          "team": "Washington Nationals",
+          "variation": "Autographed Patches Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CS-SR",
+          "player_name": "Sam Rice",
+          "team": "Washington Senators",
+          "variation": "Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

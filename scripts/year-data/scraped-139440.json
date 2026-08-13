@@ -1,0 +1,287 @@
+{
+  "year": 2016,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 139440,
+        "name": "2016 Topps Chrome Update"
+      },
+      "unique": [
+        {
+          "card_number": "ASARC-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-MMA",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-MB",
+          "player_name": "Mookie Betts",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-XB",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASARC-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-AR",
+          "player_name": "Addison Russell",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-ARI",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-JA",
+          "player_name": "Jake Arrieta",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-EH",
+          "player_name": "Eric Hosmer",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-CS",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-NS",
+          "player_name": "Noah Syndergaard",
+          "team": "New York Mets",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-MBU",
+          "player_name": "Madison Bumgarner",
+          "team": "San Francisco Giants",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-RC",
+          "player_name": "Robinson Cano",
+          "team": "Seattle Mariners",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-JD",
+          "player_name": "Josh Donaldson",
+          "team": "Toronto Blue Jays",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASARC-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches Autograph Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASRC-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-MS",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASRC-SS",
+          "player_name": "Stephen Strasburg",
+          "team": "Washington Nationals",
+          "variation": "All-Star Stitches Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

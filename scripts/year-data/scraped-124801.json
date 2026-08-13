@@ -1,0 +1,2519 @@
+{
+  "year": 2016,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 124801,
+        "name": "2016 Topps The Mint"
+      },
+      "unique": [
+        {
+          "card_number": "FA-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APO",
+          "player_name": "A.J. Pollock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-JS",
+          "player_name": "Jean Segura",
+          "team": "Arizona Diamondbacks",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-RJO",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RJO",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RJO",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-HA",
+          "player_name": "Hank Aaron",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JS",
+          "player_name": "John Smoltz",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Golden Engraving Variation Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FA-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MM",
+          "player_name": "Manny Machado",
+          "team": "Baltimore Orioles",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Golden Engraving Variation Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Iconic Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Iconic Jersey Relics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Iconic Jersey Relics Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Baltimore Orioles",
+          "variation": "Iconic Jersey Relics Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-HOW",
+          "player_name": "Henry Owens",
+          "team": "Boston Red Sox",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-HOW",
+          "player_name": "Henry Owens",
+          "team": "Boston Red Sox",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-HOW",
+          "player_name": "Henry Owens",
+          "team": "Boston Red Sox",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-HOW",
+          "player_name": "Henry Owens",
+          "team": "Boston Red Sox",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-DP",
+          "player_name": "Dustin Pedroia",
+          "team": "Boston Red Sox",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IJR-DVO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Iconic Jersey Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-DVO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Iconic Jersey Relics Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-DVO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Iconic Jersey Relics Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "IJR-DVO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Iconic Jersey Relics Purple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KS",
+          "player_name": "Kyle Schwarber",
+          "team": "Chicago Cubs",
+          "variation": "Arrivals Variation Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JH",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JH",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JH",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-AR",
+          "player_name": "Anthony Rizzo",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JH",
+          "player_name": "Jason Heyward",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Franchise Variation Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CS",
+          "player_name": "Chris Sale",
+          "team": "Chicago White Sox",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-MC",
+          "player_name": "Melky Cabrera",
+          "team": "Chicago White Sox",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-JV",
+          "player_name": "Joey Votto",
+          "team": "Cincinnati Reds",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-ZC",
+          "player_name": "Zack Cozart",
+          "team": "Cincinnati Reds",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Cleveland Indians",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Cleveland Indians",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RA",
+          "player_name": "Roberto Alomar",
+          "team": "Cleveland Indians",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JG",
+          "player_name": "Jon Gray",
+          "team": "Colorado Rockies",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JG",
+          "player_name": "Jon Gray",
+          "team": "Colorado Rockies",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JG",
+          "player_name": "Jon Gray",
+          "team": "Colorado Rockies",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JG",
+          "player_name": "Jon Gray",
+          "team": "Colorado Rockies",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "Colorado Rockies",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-DL",
+          "player_name": "DJ LeMahieu",
+          "team": "Colorado Rockies",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "APA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Detroit Tigers",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-JU",
+          "player_name": "Justin Upton",
+          "team": "Detroit Tigers",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-MCA",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DK",
+          "player_name": "Dallas Keuchel",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Franchise Variation Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-CB",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Golden Engraving Variation Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-MM",
+          "player_name": "Mike Moustakas",
+          "team": "Kansas City Royals",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-SP",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "APA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-APU",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-MTR",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Franchise Variation Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-CS",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-CS",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-CS",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-CS",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-JU",
+          "player_name": "Julio Urias",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-KM",
+          "player_name": "Kenta Maeda",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-CS",
+          "player_name": "Corey Seager",
+          "team": "Los Angeles Dodgers",
+          "variation": "Arrivals Variation Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-AEL",
+          "player_name": "A.J. Ellis",
+          "team": "Los Angeles Dodgers",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-CU",
+          "player_name": "Chase Utley",
+          "team": "Los Angeles Dodgers",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-SK",
+          "player_name": "Sandy Koufax",
+          "team": "Los Angeles Dodgers",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-JL",
+          "player_name": "Jonathan Lucroy",
+          "team": "Milwaukee Brewers",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-RB",
+          "player_name": "Ryan Braun",
+          "team": "Milwaukee Brewers",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-BP",
+          "player_name": "Byung-Ho Park",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-BP",
+          "player_name": "Byung-Ho Park",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-BP",
+          "player_name": "Byung-Ho Park",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-BP",
+          "player_name": "Byung-Ho Park",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-MS",
+          "player_name": "Miguel Sano",
+          "team": "Minnesota Twins",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RC",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-AD",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-AD",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-AD",
+          "player_name": "Andre Dawson",
+          "team": "Montreal Expos",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-JD",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-YC",
+          "player_name": "Yoenis Cespedes",
+          "team": "New York Mets",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Arrivals Variation Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-AM",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-AM",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-AM",
+          "player_name": "Andrew Miller",
+          "team": "New York Yankees",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-LS",
+          "player_name": "Luis Severino",
+          "team": "New York Yankees",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RJA",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RJA",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RJA",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-JR",
+          "player_name": "Josh Reddick",
+          "team": "Oakland Athletics",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-DE",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-DE",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-DE",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-AN",
+          "player_name": "Aaron Nola",
+          "team": "Philadelphia Phillies",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-SM",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-SM",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-SM",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-SM",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-SM",
+          "player_name": "Starling Marte",
+          "team": "Pittsburgh Pirates",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "APA-JS",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-JS",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-JS",
+          "player_name": "James Shields",
+          "team": "San Diego Padres",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-HP",
+          "player_name": "Hunter Pence",
+          "team": "San Francisco Giants",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-OC",
+          "player_name": "Orlando Cepeda",
+          "team": "San Francisco Giants",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-SP",
+          "player_name": "Stephen Piscotty",
+          "team": "St. Louis Cardinals",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-SP",
+          "player_name": "Stephen Piscotty",
+          "team": "St. Louis Cardinals",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-SP",
+          "player_name": "Stephen Piscotty",
+          "team": "St. Louis Cardinals",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-SP",
+          "player_name": "Stephen Piscotty",
+          "team": "St. Louis Cardinals",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GEA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Authenticated Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Authenticated Patch Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "APA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Authenticated Patch Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EL",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Rays",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CH",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CH",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CH",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-CH",
+          "player_name": "Cole Hamels",
+          "team": "Texas Rangers",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Golden Engraving Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Golden Engraving Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GEA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Golden Engraving Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-EE",
+          "player_name": "Edwin Encarnacion",
+          "team": "Toronto Blue Jays",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Washington Nationals",
+          "variation": "Arrivals Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Washington Nationals",
+          "variation": "Arrivals Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Washington Nationals",
+          "variation": "Arrivals Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AA-LG",
+          "player_name": "Lucas Giolito",
+          "team": "Washington Nationals",
+          "variation": "Arrivals Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Franchise Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Franchise Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Franchise Autographs Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FA-BH",
+          "player_name": "Bryce Harper",
+          "team": "Washington Nationals",
+          "variation": "Franchise Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FBGBR-DM",
+          "player_name": "Daniel Murphy",
+          "team": "Washington Nationals",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FBGBR-JW",
+          "player_name": "Jayson Werth",
+          "team": "Washington Nationals",
+          "variation": "Franklin Batting Glove Books",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

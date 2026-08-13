@@ -1,0 +1,5911 @@
+{
+  "year": 2005,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 6640,
+        "name": "2005 Flair"
+      },
+      "unique": [
+        {
+          "card_number": "66",
+          "player_name": "Josh Kroeger",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Josh Kroeger",
+          "team": "Arizona Diamondbacks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Josh Kroeger",
+          "team": "Arizona Diamondbacks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Hernandez",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Kelly Johnson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CJ",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Kelly Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Luis Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Kelly Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Cal Ripken, Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CGR-JL",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-JL",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Cuts and Glory Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-SG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Sammy Sosa",
+          "team": "Baltimore Orioles",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-OR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-OR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-OR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CS",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MR",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RJ",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DO",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-JV",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ronny Cedeno",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-KW",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-GM",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ronny Cedeno",
+          "team": "Chicago Cubs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Greg Maddux",
+          "team": "Chicago Cubs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ronny Cedeno",
+          "team": "Chicago Cubs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CGR-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Cuts and Glory Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-DK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AD",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AK",
+          "player_name": "Cincinnati Reds",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Edwin Encarnacion",
+          "team": "Cincinnati Reds",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TH",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TH",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-VM",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jeff Baker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ubaldo Jimenez",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jeff Francis",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jeff Baker",
+          "team": "Colorado Rockies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ubaldo Jimenez",
+          "team": "Colorado Rockies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jeff Francis",
+          "team": "Colorado Rockies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jeff Baker",
+          "team": "Colorado Rockies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ubaldo Jimenez",
+          "team": "Colorado Rockies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jeff Francis",
+          "team": "Colorado Rockies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-JV2",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Ryan Raburn",
+          "team": "Detroit Tigers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MC",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-CM",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Charlton Jimerson",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JB",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-RC",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Charlton Jimerson",
+          "team": "Houston Astros",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Charlton Jimerson",
+          "team": "Houston Astros",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Significant Signings Blue",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Andres Blanco",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Andres Blanco",
+          "team": "Kansas City Royals",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Andres Blanco",
+          "team": "Kansas City Royals",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-ZG",
+          "player_name": "Zack Greinke",
+          "team": "Kansas City Royals",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Bobby Jenks",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SS",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VG",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Bobby Jenks",
+          "team": "Los Angeles Angels",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Bobby Jenks",
+          "team": "Los Angeles Angels",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CK",
+          "player_name": "Casey Kotchman",
+          "team": "Los Angeles Angels",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-NU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-NU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-NU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Dioner Navarro",
+          "team": "Los Angeles Dodgers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CGR-HA",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-HA",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Cuts and Glory Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-HA",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Cuts and Glory Patch Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGRD-HA",
+          "player_name": "Hank Aaron",
+          "team": "Milwaukee Braves",
+          "variation": "Cuts and Glory Patch-Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CGR-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Cuts and Glory Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CGR-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Patch",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Patch Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGRD-JS",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Patch-Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGRD-SS",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Cuts and Glory Patch-Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "J.D. Durbin",
+          "team": "Minnesota Twins",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LF",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JM",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LF",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Victor Diaz",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-CB",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PM",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LM-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Victor Diaz",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kaz Matsui",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Victor Diaz",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Beltran",
+          "team": "New York Mets",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-GS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-GS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-GS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-GS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-GS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-GS",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HM",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Randy Johnson",
+          "team": "New York Yankees",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Dan Meyer",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Dan Meyer",
+          "team": "Oakland Athletics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Dan Meyer",
+          "team": "Oakland Athletics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BC",
+          "player_name": "Bobby Crosby",
+          "team": "Oakland Athletics",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BC",
+          "player_name": "Bobby Crosby",
+          "team": "Oakland Athletics",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP2",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-JT",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MP",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GF",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GF",
+          "player_name": "Gavin Floyd",
+          "team": "Philadelphia Phillies",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SC",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Sean Burnett",
+          "team": "Pittsburgh Pirates",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JB",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Richie Sexson",
+          "team": "Seattle Mariners",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jose Lopez",
+          "team": "Seattle Mariners",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jeremy Reed",
+          "team": "Seattle Mariners",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AB",
+          "player_name": "Adrian Beltre",
+          "team": "Seattle Mariners",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jeremy Reed",
+          "team": "Seattle Mariners",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-PR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-SR",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Dynasty Cornerstones Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LM-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CGR-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-JP",
+          "player_name": "Josh Phelps",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Cuts and Glory Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-CC",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Cuts and Glory Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CGR-JP",
+          "player_name": "Josh Phelps",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Cuts and Glory Logo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-NU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-NU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-NU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BU",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HN",
+          "player_name": "Tampa Bay Devil Rays",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LM-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Letterman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BU",
+          "player_name": "B.J. Upton",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SK",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-BS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Dual Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Blue Foil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Jersey Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Patch MLB Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-AS",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-HB",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-MT",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DC-VM",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Diamond Cuts Super Patch Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Significant Signings Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Significant Signings Die Cut Silver",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Russ Adams",
+          "team": "Toronto Blue Jays",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jose Vidro",
+          "team": "Washington Nationals",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

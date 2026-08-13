@@ -1,0 +1,2759 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1689,
+        "name": "2004 Bowman's Best"
+      },
+      "unique": [
+        {
+          "card_number": "BB-EA",
+          "player_name": "Erick Aybar",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-ES",
+          "player_name": "Ervin Santana",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NG",
+          "player_name": "Nick Gorneault",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RB",
+          "player_name": "Ryan Budde",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-WM",
+          "player_name": "Warner Madrigal",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DPA-SV",
+          "player_name": "Anaheim Angels",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-EA",
+          "player_name": "Erick Aybar",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-ES",
+          "player_name": "Ervin Santana",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NG",
+          "player_name": "Nick Gorneault",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RB",
+          "player_name": "Ryan Budde",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-WM",
+          "player_name": "Warner Madrigal",
+          "team": "Anaheim Angels",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-EA",
+          "player_name": "Erick Aybar",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-ES",
+          "player_name": "Ervin Santana",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NG",
+          "player_name": "Nick Gorneault",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RB",
+          "player_name": "Ryan Budde",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-WM",
+          "player_name": "Warner Madrigal",
+          "team": "Anaheim Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BEM",
+          "player_name": "Brandon Medders",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CJ",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CMA",
+          "player_name": "Craig Ansman",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DDN",
+          "player_name": "Dustin Nippert",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MG",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RS",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DPA-HJ",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-MN",
+          "player_name": "Arizona Diamondbacks",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BEM",
+          "player_name": "Brandon Medders",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CJ",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CMA",
+          "player_name": "Craig Ansman",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DDN",
+          "player_name": "Dustin Nippert",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MG",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RS",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BEM",
+          "player_name": "Brandon Medders",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CJ",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CMA",
+          "player_name": "Craig Ansman",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DDN",
+          "player_name": "Dustin Nippert",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MG",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RS",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AL",
+          "player_name": "Anthony Lerew",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BP",
+          "player_name": "Brayan Pena",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LWJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AL",
+          "player_name": "Anthony Lerew",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BP",
+          "player_name": "Brayan Pena",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LWJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AL",
+          "player_name": "Anthony Lerew",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BP",
+          "player_name": "Brayan Pena",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LWJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DC",
+          "player_name": "Dave Crouthers",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DL",
+          "player_name": "Donald Levinski",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JLO",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DPA-CC",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DC",
+          "player_name": "Dave Crouthers",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DL",
+          "player_name": "Donald Levinski",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JLO",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DC",
+          "player_name": "Dave Crouthers",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DL",
+          "player_name": "Donald Levinski",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JLO",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CMS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CZ",
+          "player_name": "Charlie Zink",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DM",
+          "player_name": "David Murphy",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JC",
+          "player_name": "Juan Cedeno",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MAR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CMS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CZ",
+          "player_name": "Charlie Zink",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DM",
+          "player_name": "David Murphy",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JC",
+          "player_name": "Juan Cedeno",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MAR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NAG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CMS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CZ",
+          "player_name": "Charlie Zink",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DM",
+          "player_name": "David Murphy",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JC",
+          "player_name": "Juan Cedeno",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MAR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPA-CBA",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Triple Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AG",
+          "player_name": "Adam Greenberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BB",
+          "player_name": "Bobby Brownlie",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JJC",
+          "player_name": "Jon Connolly",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JSZ",
+          "player_name": "Jason Szuminski",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MDC",
+          "player_name": "Matt Creighton",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MWP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NAG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RN",
+          "player_name": "Ricky Nolasco",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DPA-CC",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-EN",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AG",
+          "player_name": "Adam Greenberg",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BB",
+          "player_name": "Bobby Brownlie",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JJC",
+          "player_name": "Jon Connolly",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JSZ",
+          "player_name": "Jason Szuminski",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MDC",
+          "player_name": "Matt Creighton",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MWP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RN",
+          "player_name": "Ricky Nolasco",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AG",
+          "player_name": "Adam Greenberg",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BB",
+          "player_name": "Bobby Brownlie",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JJC",
+          "player_name": "Jon Connolly",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JSZ",
+          "player_name": "Jason Szuminski",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MDC",
+          "player_name": "Matt Creighton",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MWP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NAG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RN",
+          "player_name": "Ricky Nolasco",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPA-CBA",
+          "player_name": "Chicago Cubs",
+          "team": null,
+          "variation": "Triple Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-ST",
+          "player_name": "Shingo Takatsu",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-ST",
+          "player_name": "Shingo Takatsu",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-ST",
+          "player_name": "Shingo Takatsu",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BMS",
+          "player_name": "Brad Snyder",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KK",
+          "player_name": "Kevin Kouzmanoff",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KT",
+          "player_name": "Kazuhito Tadano",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TRM",
+          "player_name": "Tom Mastny",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-QS",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-UK",
+          "player_name": "Cleveland Indians",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BMS",
+          "player_name": "Brad Snyder",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KK",
+          "player_name": "Kevin Kouzmanoff",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KT",
+          "player_name": "Kazuhito Tadano",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TRM",
+          "player_name": "Tom Mastny",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BMS",
+          "player_name": "Brad Snyder",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KK",
+          "player_name": "Kevin Kouzmanoff",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KT",
+          "player_name": "Kazuhito Tadano",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TRM",
+          "player_name": "Tom Mastny",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JS",
+          "player_name": "Jeff Salazar",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-TLH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DPA-SK",
+          "player_name": "Colorado Rockies",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JS",
+          "player_name": "Jeff Salazar",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-TLH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JS",
+          "player_name": "Jeff Salazar",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-TLH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DK",
+          "player_name": "Donald Kelly",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-KRK",
+          "player_name": "Kody Kirkland",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-KS",
+          "player_name": "Kyle Sleeth",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DK",
+          "player_name": "Donald Kelly",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-KRK",
+          "player_name": "Kody Kirkland",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-KS",
+          "player_name": "Kyle Sleeth",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DK",
+          "player_name": "Donald Kelly",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-KRK",
+          "player_name": "Kody Kirkland",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-KS",
+          "player_name": "Kyle Sleeth",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LK",
+          "player_name": "Logan Kensing",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MTC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NU",
+          "player_name": "Nic Ungs",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-UK",
+          "player_name": "Florida Marlins",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LK",
+          "player_name": "Logan Kensing",
+          "team": "Florida Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MTC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NU",
+          "player_name": "Nic Ungs",
+          "team": "Florida Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LK",
+          "player_name": "Logan Kensing",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MTC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-NU",
+          "player_name": "Nic Ungs",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CB",
+          "player_name": "Carlos Beltran",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JH",
+          "player_name": "Jason Hirsh",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TS",
+          "player_name": "Todd Self",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CB",
+          "player_name": "Carlos Beltran",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JH",
+          "player_name": "Jason Hirsh",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TS",
+          "player_name": "Todd Self",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CB",
+          "player_name": "Carlos Beltran",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JH",
+          "player_name": "Jason Hirsh",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-RC",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TS",
+          "player_name": "Todd Self",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CLH",
+          "player_name": "Chin-Lung Hu",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CLH",
+          "player_name": "Chin-Lung Hu",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-CLH",
+          "player_name": "Chin-Lung Hu",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LO",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LO",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LO",
+          "player_name": "Lyle Overbay",
+          "team": "Milwaukee Brewers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LTH",
+          "player_name": "Luke Hughes",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LTH",
+          "player_name": "Luke Hughes",
+          "team": "Minnesota Twins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-LTH",
+          "player_name": "Luke Hughes",
+          "team": "Minnesota Twins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JAV",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JL",
+          "player_name": "Josh Labandeira",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KC",
+          "player_name": "Kory Casto",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-SH",
+          "player_name": "Shawn Hill",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JAV",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JL",
+          "player_name": "Josh Labandeira",
+          "team": "Montreal Expos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KC",
+          "player_name": "Kory Casto",
+          "team": "Montreal Expos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-SH",
+          "player_name": "Shawn Hill",
+          "team": "Montreal Expos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JAV",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JL",
+          "player_name": "Josh Labandeira",
+          "team": "Montreal Expos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KC",
+          "player_name": "Kory Casto",
+          "team": "Montreal Expos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-SH",
+          "player_name": "Shawn Hill",
+          "team": "Montreal Expos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KM",
+          "player_name": "Kazuo Matsui",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LM",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MJP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TD",
+          "player_name": "Tyler Davidson",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-MH",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KM",
+          "player_name": "Kazuo Matsui",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LM",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MJP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TD",
+          "player_name": "Tyler Davidson",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-KM",
+          "player_name": "Kazuo Matsui",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-LM",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MJP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TD",
+          "player_name": "Tyler Davidson",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AER",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DN",
+          "player_name": "Dioner Navarro",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-EH",
+          "player_name": "Estee Harris",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-HM",
+          "player_name": "Hector Made",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JGG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RG",
+          "player_name": "Rudy Guillen",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-RR",
+          "player_name": "Ramon Ramirez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-MH",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AER",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DN",
+          "player_name": "Dioner Navarro",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-EH",
+          "player_name": "Estee Harris",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-HM",
+          "player_name": "Hector Made",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JGG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RG",
+          "player_name": "Rudy Guillen",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-RR",
+          "player_name": "Ramon Ramirez",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AER",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DN",
+          "player_name": "Dioner Navarro",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-EH",
+          "player_name": "Estee Harris",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-HM",
+          "player_name": "Hector Made",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JGG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RG",
+          "player_name": "Rudy Guillen",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-RR",
+          "player_name": "Ramon Ramirez",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BS",
+          "player_name": "Brad Sullivan",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DS",
+          "player_name": "Don Sutton",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-OQ",
+          "player_name": "Omar Quintanilla",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-QS",
+          "player_name": "Oakland Athletics",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BS",
+          "player_name": "Brad Sullivan",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DS",
+          "player_name": "Don Sutton",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-OQ",
+          "player_name": "Omar Quintanilla",
+          "team": "Oakland Athletics",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-BS",
+          "player_name": "Brad Sullivan",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DS",
+          "player_name": "Don Sutton",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-OQ",
+          "player_name": "Omar Quintanilla",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DG",
+          "player_name": "Danny Gonzalez",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RT",
+          "player_name": "Rob Tejeda",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-TJ",
+          "player_name": "Terry Jones",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DG",
+          "player_name": "Danny Gonzalez",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RT",
+          "player_name": "Rob Tejeda",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-TJ",
+          "player_name": "Terry Jones",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-DG",
+          "player_name": "Danny Gonzalez",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-RT",
+          "player_name": "Rob Tejeda",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-TJ",
+          "player_name": "Terry Jones",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-PM",
+          "player_name": "Paul Maholm",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-WS",
+          "player_name": "Wardell Starling",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-ZD",
+          "player_name": "Zach Duke",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-PM",
+          "player_name": "Paul Maholm",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-WS",
+          "player_name": "Wardell Starling",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-ZD",
+          "player_name": "Zach Duke",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-PM",
+          "player_name": "Paul Maholm",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-WS",
+          "player_name": "Wardell Starling",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-ZD",
+          "player_name": "Zach Duke",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BG",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JK",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-PMM",
+          "player_name": "Paul McAnulty",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TJS",
+          "player_name": "Tim Stauffer",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-SC",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-SK",
+          "player_name": "San Diego Padres",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BG",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JK",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-PMM",
+          "player_name": "Paul McAnulty",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TJS",
+          "player_name": "Tim Stauffer",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AO",
+          "player_name": "Akinori Otsuka",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-BG",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JK",
+          "player_name": "Jon Knott",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-PMM",
+          "player_name": "Paul McAnulty",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TJS",
+          "player_name": "Tim Stauffer",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DA",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JDS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JE",
+          "player_name": "Jesse English",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MV",
+          "player_name": "Merkin Valdez",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-EN",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-SV",
+          "player_name": "San Francisco Giants",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DA",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JDS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JE",
+          "player_name": "Jesse English",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MV",
+          "player_name": "Merkin Valdez",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-DA",
+          "player_name": "David Aardsma",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JDS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JE",
+          "player_name": "Jesse English",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MV",
+          "player_name": "Merkin Valdez",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TB",
+          "player_name": "Travis Blackley",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TB",
+          "player_name": "Travis Blackley",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-FH",
+          "player_name": "Felix Hernandez",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TB",
+          "player_name": "Travis Blackley",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TOH",
+          "player_name": "Travis Hanson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-HJ",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TOH",
+          "player_name": "Travis Hanson",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-TOH",
+          "player_name": "Travis Hanson",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-JRG",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JRG",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JRG",
+          "player_name": "Joey Gathright",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JA",
+          "player_name": "Joaquin Arias",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JA",
+          "player_name": "Joaquin Arias",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-JA",
+          "player_name": "Joaquin Arias",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-MY",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPA-CBA",
+          "player_name": "Texas Rangers",
+          "team": null,
+          "variation": "Triple Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-VC",
+          "player_name": "Vito Chiaravalloti",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DPA-SC",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Double Play Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-VC",
+          "player_name": "Vito Chiaravalloti",
+          "team": "Toronto Blue Jays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BB-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BB-VC",
+          "player_name": "Vito Chiaravalloti",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

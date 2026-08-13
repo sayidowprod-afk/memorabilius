@@ -1,0 +1,527 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 72629,
+        "name": "2004 UD Rivals"
+      },
+      "unique": [
+        {
+          "card_number": "2",
+          "player_name": "Bobby Doerr",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Babe Ruth",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-14",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-16",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-18",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-19",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-20",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PG-14",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-16",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-18",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-19",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-20",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WI-15",
+          "player_name": "Pee Wee Reese",
+          "team": "Los Angeles Dodgers",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PG-15",
+          "player_name": "Pee Wee Reese",
+          "team": "Los Angeles Dodgers",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-10",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-11",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-12",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-13",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WI-17",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "What If",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PG-10",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-11",
+          "player_name": "Joe DiMaggio",
+          "team": "New York Yankees",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-12",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-13",
+          "player_name": "Mickey Mantle",
+          "team": "New York Yankees",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PG-17",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "What If Peter Gammons Auto Cards",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

@@ -1,0 +1,3455 @@
+{
+  "year": 2018,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 188485,
+        "name": "2018 Topps Archives Snapshots"
+      },
+      "unique": [
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Anaheim Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MF",
+          "player_name": "Max Fried",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MF",
+          "player_name": "Max Fried",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MF",
+          "player_name": "Max Fried",
+          "team": "Atlanta Braves",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MF",
+          "player_name": "Max Fried",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MF",
+          "player_name": "Max Fried",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-OA",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RAC",
+          "player_name": "Ronald Acuna Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Chance Sisco",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TL",
+          "player_name": "Tzu-Wei Lin",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NR",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KB",
+          "player_name": "Kris Bryant",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TM",
+          "player_name": "Tyler Mahle",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FM",
+          "player_name": "Francisco Mejia",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GA",
+          "player_name": "Greg Allen",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FM",
+          "player_name": "Francisco Mejia",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GA",
+          "player_name": "Greg Allen",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FM",
+          "player_name": "Francisco Mejia",
+          "team": "Cleveland Indians",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GA",
+          "player_name": "Greg Allen",
+          "team": "Cleveland Indians",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FM",
+          "player_name": "Francisco Mejia",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GA",
+          "player_name": "Greg Allen",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FL",
+          "player_name": "Francisco Lindor",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FM",
+          "player_name": "Francisco Mejia",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GA",
+          "player_name": "Greg Allen",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Charlie Blackmon",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RM",
+          "player_name": "Ryan McMahon",
+          "team": "Colorado Rockies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DE",
+          "player_name": "David Eckstein",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AV",
+          "player_name": "Alex Verdugo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CH",
+          "player_name": "Charlie Hough",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CK",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-WB",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SA",
+          "player_name": "Sandy Alcantara",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BD",
+          "player_name": "Brian Dozier",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Amed Rosario",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FV",
+          "player_name": "Frank Viola",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Giancarlo Stanton",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JTO",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Giancarlo Stanton",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JTO",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Giancarlo Stanton",
+          "team": "New York Yankees",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JTO",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Giancarlo Stanton",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JTO",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJU",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DG",
+          "player_name": "Didi Gregorius",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Giancarlo Stanton",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GT",
+          "player_name": "Gleyber Torres",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jim Bouton",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JTO",
+          "player_name": "Joe Torre",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KD",
+          "player_name": "Khris Davis",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PD",
+          "player_name": "Paul DeJong",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RA",
+          "player_name": "Rick Ankiel",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TP",
+          "player_name": "Tommy Pham",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JO",
+          "player_name": "John Olerud",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Autographs - Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Black and White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Andrew Stevenson",
+          "team": "Washington Nationals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RR",
+          "player_name": "Raudy Read",
+          "team": "Washington Nationals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -1,0 +1,4071 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8166,
+        "name": "2004 Fleer Showcase"
+      },
+      "unique": [
+        {
+          "card_number": "12",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Tim Salmon",
+          "team": "Anaheim Angels",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Rich Fischer",
+          "team": "Anaheim Angels",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Oscar Villarreal",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Robby Hammock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-BW",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Javy Lopez",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Mike Hessman",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Javy Lopez",
+          "team": "Atlanta Braves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Mike Hessman",
+          "team": "Atlanta Braves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Javy Lopez",
+          "team": "Atlanta Braves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Mike Hessman",
+          "team": "Atlanta Braves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tony Batista",
+          "team": "Baltimore Orioles",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-MT",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Felix Sanchez",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Felix Sanchez",
+          "team": "Chicago Cubs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Felix Sanchez",
+          "team": "Chicago Cubs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP2",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MPR",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MPR",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MPR",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP2",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CPA",
+          "player_name": "Corey Patterson",
+          "team": "Chicago Cubs",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Esteban Loaiza",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Josh Stewart",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Esteban Loaiza",
+          "team": "Chicago White Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Josh Stewart",
+          "team": "Chicago White Sox",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Roberto Alomar",
+          "team": "Chicago White Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Esteban Loaiza",
+          "team": "Chicago White Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Josh Stewart",
+          "team": "Chicago White Sox",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryan Wagner",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryan Wagner",
+          "team": "Cincinnati Reds",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ken Griffey, Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryan Wagner",
+          "team": "Cincinnati Reds",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-RW",
+          "player_name": "Ryan Wagner",
+          "team": "Cincinnati Reds",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Milton Bradley",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeremy Guthrie",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Milton Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeremy Guthrie",
+          "team": "Cleveland Indians",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Milton Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeremy Guthrie",
+          "team": "Cleveland Indians",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Francisco Cruceta",
+          "team": "Cleveland Indians",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Craig Monroe",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Wilfredo Ledezma",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Craig Monroe",
+          "team": "Detroit Tigers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Wilfredo Ledezma",
+          "team": "Detroit Tigers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Craig Monroe",
+          "team": "Detroit Tigers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Wilfredo Ledezma",
+          "team": "Detroit Tigers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CPE",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-WL",
+          "player_name": "Wilfredo Ledezma",
+          "team": "Detroit Tigers",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Juan Pierre",
+          "team": "Florida Marlins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-JW",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-ML",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Craig Biggio",
+          "team": "Houston Astros",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-TB",
+          "player_name": "Taylor Buchholz",
+          "team": "Houston Astros",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Angel Berroa",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "David DeJesus",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Angel Berroa",
+          "team": "Kansas City Royals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "David DeJesus",
+          "team": "Kansas City Royals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Angel Berroa",
+          "team": "Kansas City Royals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "David DeJesus",
+          "team": "Kansas City Royals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Edwin Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Edwin Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Edwin Jackson",
+          "team": "Los Angeles Dodgers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Scott Podsednik",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Scott Podsednik",
+          "team": "Milwaukee Brewers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Scott Podsednik",
+          "team": "Milwaukee Brewers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-RWE",
+          "player_name": "Rickie Weeks",
+          "team": "Milwaukee Brewers",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Shannon Stewart",
+          "team": "Minnesota Twins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-MR",
+          "player_name": "Michael Ryan",
+          "team": "Minnesota Twins",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Danny Garcia",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Danny Garcia",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tom Glavine",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Jeff Duncan",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Prentice Redman",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Danny Garcia",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Craig Brazell",
+          "team": "New York Mets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Michel Hernandez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Michel Hernandez",
+          "team": "New York Yankees",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Michel Hernandez",
+          "team": "New York Yankees",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CW",
+          "player_name": "Chien-Ming Wang",
+          "team": "New York Yankees",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-BZ",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mike Lieberthal",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mike Lieberthal",
+          "team": "Philadelphia Phillies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mike Lieberthal",
+          "team": "Philadelphia Phillies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Pat Burrell",
+          "team": "Philadelphia Phillies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Reggie Sanders",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kip Wells",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Reggie Sanders",
+          "team": "Pittsburgh Pirates",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kip Wells",
+          "team": "Pittsburgh Pirates",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Reggie Sanders",
+          "team": "Pittsburgh Pirates",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kip Wells",
+          "team": "Pittsburgh Pirates",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Khalil Greene",
+          "team": "San Diego Padres",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Edgardo Alfonzo",
+          "team": "San Francisco Giants",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jamie Moyer",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jamie Moyer",
+          "team": "Seattle Mariners",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jamie Moyer",
+          "team": "Seattle Mariners",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.D. Drew",
+          "team": "St. Louis Cardinals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10L",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Pujols Legacy Collection Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-BH",
+          "player_name": "Bo Hart",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-JG",
+          "player_name": "John Gall",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Chad Gaudin",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Brian Stokes",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Matt Diaz",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Chad Gaudin",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Brian Stokes",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Matt Diaz",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Chad Gaudin",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Brian Stokes",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Matt Diaz",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-RB",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-DY",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Laynce Nix",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Ramon Nivar",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HG-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Hot Gloves Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Laynce Nix",
+          "team": "Texas Rangers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Ramon Nivar",
+          "team": "Texas Rangers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Laynce Nix",
+          "team": "Texas Rangers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Ramon Nivar",
+          "team": "Texas Rangers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Showcase Grace Game-Worn",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Showcase Grace Game-Worn Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Showcase Grace Game-Worn Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Showcase Grace Game-Worn Reward",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Showcase Grace Game-Worn Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Sweet Sigs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Guillermo Quiroz",
+          "team": "Toronto Blue Jays",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

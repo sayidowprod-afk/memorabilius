@@ -1,0 +1,5135 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1713,
+        "name": "2004 Fleer Greats of the Game"
+      },
+      "unique": [
+        {
+          "card_number": "124",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DMU",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DS",
+          "player_name": "Deion Sanders",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "Dale Murphy",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Paul Blair",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Cal Ripken, Jr.",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Rick Dempsey",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-FR2",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JP",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PB",
+          "player_name": "Paul Blair",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RD",
+          "player_name": "Rick Dempsey",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Paul Blair",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Rick Dempsey",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-BR",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-CR",
+          "player_name": "Cal Ripken Jr.",
+          "team": "Baltimore Orioles",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-EM",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Johnny Sain",
+          "team": "Boston Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bernie Carbo",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Bing Miller",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Pesky",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Jimmy Piersall",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BC",
+          "player_name": "Bernie Carbo",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DD",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DE2",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-FL",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JIP",
+          "player_name": "Jimmy Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JOP",
+          "player_name": "Johnny Pesky",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-LT",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Dwight Evans",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Fred Lynn",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Luis Tiant",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bernie Carbo",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Bing Miller",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Johnny Pesky",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Jimmy Piersall",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-JC",
+          "player_name": "Joe Cronin",
+          "team": "Boston Red Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-PR",
+          "player_name": "Pete Runnels",
+          "team": "Boston Red Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RF",
+          "player_name": "Rick Ferrell",
+          "team": "Boston Red Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-TCN",
+          "player_name": "Tony Conigliaro",
+          "team": "Boston Red Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-TW1",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-TW2",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6F",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7F",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8F",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9F",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10F",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11F",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DD",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DD",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DD",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DD",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CF",
+          "player_name": "Carlton Fisk",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DD",
+          "player_name": "Dom DiMaggio",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-JR",
+          "player_name": "Jim Rice",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TW",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-WB",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-CY",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Preacher Roe",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Babe Herman",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DN",
+          "player_name": "Don Newcombe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DS1",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JP2",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PRO",
+          "player_name": "Preacher Roe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Johnny Podres",
+          "team": "Brooklyn Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Preacher Roe",
+          "team": "Brooklyn Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Babe Herman",
+          "team": "Brooklyn Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BGR",
+          "player_name": "Burleigh Grimes",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-BH",
+          "player_name": "Babe Herman",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-DC",
+          "player_name": "Dolph Camilli",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-GIL",
+          "player_name": "Gil Hodges",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-LOD",
+          "player_name": "Lefty O'Doul",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RC",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-ZW",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3F",
+          "player_name": "Zack Wheat",
+          "team": "Brooklyn Dodgers",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5F",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Frank Tanana",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Reggie Jackson",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-FT",
+          "player_name": "Frank Tanana",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-NR2",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RC",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RJ2",
+          "player_name": "Reggie Jackson",
+          "team": "California Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rod Carew",
+          "team": "California Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Frank Tanana",
+          "team": "California Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Nolan Ryan",
+          "team": "California Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dave Kingman",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Rick Sutcliffe",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-AD",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DK",
+          "player_name": "Dave Kingman",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RST2",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dave Kingman",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Andre Dawson",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Rick Sutcliffe",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-GH",
+          "player_name": "Gabby Hartnett",
+          "team": "Chicago Cubs",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12F",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13F",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14F",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15F",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16F",
+          "player_name": "Gabby Hartnett",
+          "team": "Chicago Cubs",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17F",
+          "player_name": "Hack Wilson",
+          "team": "Chicago Cubs",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RYS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RST",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RST",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RYS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RST",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BW",
+          "player_name": "Billy Williams",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-EB",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RS",
+          "player_name": "Ryne Sandberg",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RST",
+          "player_name": "Ron Santo",
+          "team": "Chicago Cubs",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Hoyt Wilhelm",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-CAF",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-LA",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Luis Aparicio",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-HWI",
+          "player_name": "Hoyt Wilhelm",
+          "team": "Chicago White Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-LA",
+          "player_name": "Luke Appling",
+          "team": "Chicago White Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-NF",
+          "player_name": "Nellie Fox",
+          "team": "Chicago White Sox",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-CF1",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-CF2",
+          "player_name": "Carlton Fisk",
+          "team": "Chicago White Sox",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-FR",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-TP",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-TS2",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Tony Perez",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Frank Robinson",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tom Seaver",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-CR",
+          "player_name": "Chico Ruiz",
+          "team": "Cincinnati Reds",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-ER",
+          "player_name": "Edd Roush",
+          "team": "Cincinnati Reds",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-JB",
+          "player_name": "Johnny Bench",
+          "team": "Cincinnati Reds",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-TK",
+          "player_name": "Ted Kluszewski",
+          "team": "Cincinnati Reds",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Al Rosen",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Charboneau",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Eddie Murray",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-AR",
+          "player_name": "Al Rosen",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JC",
+          "player_name": "Joe Charboneau",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Al Rosen",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Charboneau",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Eddie Murray",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BL",
+          "player_name": "Bob Lemon",
+          "team": "Cleveland Indians",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-EAV",
+          "player_name": "Earl Averill",
+          "team": "Cleveland Indians",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-EW",
+          "player_name": "Early Wynn",
+          "team": "Cleveland Indians",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-GB",
+          "player_name": "George H. Burns",
+          "team": "Cleveland Indians",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-RC",
+          "player_name": "Rocky Colavito",
+          "team": "Cleveland Indians",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mickey Cochrane",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Charlie Gehringer",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bill Freehan",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jack Morris",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Mark Fidrych",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-AT",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-BF",
+          "player_name": "Bill Freehan",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DM",
+          "player_name": "Denny McLain",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-GK",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JM2",
+          "player_name": "Jack Morris",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RC2",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ty Cobb",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mickey Cochrane",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Charlie Gehringer",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Alan Trammell",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rocky Colavito",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "George Kell",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bill Freehan",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jack Morris",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Mark Fidrych",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-CG",
+          "player_name": "Charlie Gehringer",
+          "team": "Detroit Tigers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-HG",
+          "player_name": "Hank Greenberg",
+          "team": "Detroit Tigers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-HK",
+          "player_name": "Harvey Kuenn",
+          "team": "Detroit Tigers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-MCO",
+          "player_name": "Mickey Cochrane",
+          "team": "Detroit Tigers",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-AK",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-NR",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-NR2",
+          "player_name": "Nolan Ryan",
+          "team": "Houston Astros",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DC",
+          "player_name": "David Cone",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bo Jackson",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-GB",
+          "player_name": "George Brett",
+          "team": "Kansas City Royals",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jeff Torborg",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DL",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DS2",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DZ",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JT",
+          "player_name": "Jeff Torborg",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Davey Lopes",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jeff Torborg",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Don Zimmer",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Duke Snider",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1F",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2F",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4F",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-FV",
+          "player_name": "Fernando Valenzuela",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OH",
+          "player_name": "Orel Hershiser",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SG",
+          "player_name": "Steve Garvey",
+          "team": "Los Angeles Dodgers",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-DD",
+          "player_name": "Don Drysdale",
+          "team": "Los Angeles Dodgers",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Johnny Sain",
+          "team": "Milwaukee Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-WS",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Gorman Thomas",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-GT",
+          "player_name": "Gorman Thomas",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RY",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Gorman Thomas",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-PM",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RC2",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-HK",
+          "player_name": "Harmon Killebrew",
+          "team": "Minnesota Twins",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-KP",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Rusty Staub",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-GC",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RST",
+          "player_name": "Rusty Staub",
+          "team": "Montreal Expos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Rusty Staub",
+          "team": "Montreal Expos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Gary Carter",
+          "team": "Montreal Expos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carl Hubbell",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Bill Terry",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carl Hubbell",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Bill Terry",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Hoyt Wilhelm",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Don Newcombe",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BT",
+          "player_name": "Bill Terry",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-CH",
+          "player_name": "Carl Hubbell",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-EA",
+          "player_name": "Ethan Allen",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-FL",
+          "player_name": "Freddie Lindstrom",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-GK",
+          "player_name": "George Kelly",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-JT",
+          "player_name": "Jim Thorpe",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-MO",
+          "player_name": "Mel Ott",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-SM",
+          "player_name": "Sal Maglie",
+          "team": "New York Giants",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Jerry Koosman",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JK",
+          "player_name": "Jerry Koosman",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RK",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-TS1",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Jerry Koosman",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18F",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19F",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20F",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21F",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22F",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23F",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RK",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RK",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RK",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RK",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DG",
+          "player_name": "Dwight Gooden",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-DS",
+          "player_name": "Darryl Strawberry",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-KH",
+          "player_name": "Keith Hernandez",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-NR",
+          "player_name": "Nolan Ryan",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-RK",
+          "player_name": "Ray Knight",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-TS",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bill Dickey",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Moose Skowron",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Pepitone",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-GN",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JPE",
+          "player_name": "Joe Pepitone",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-MS2",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RG",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RJ1",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-TK",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WF",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Lou Gehrig",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Babe Ruth",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bill Dickey",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Graig Nettles",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ron Guidry",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tony Lazzeri",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Pepitone",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Tony Kubek",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BD",
+          "player_name": "Bill Dickey",
+          "team": "New York Yankees",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-BG",
+          "player_name": "Bob Grim",
+          "team": "New York Yankees",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-EC",
+          "player_name": "Earle Combs",
+          "team": "New York Yankees",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RR",
+          "player_name": "Red Ruffing",
+          "team": "New York Yankees",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-TM",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-MS",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-TM",
+          "player_name": "Thurman Munson",
+          "team": "New York Yankees",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-BS",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-LG",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-WB",
+          "player_name": "Wade Boggs",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YC-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YCA-BS",
+          "player_name": "Bill Skowron",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YCA-DM",
+          "player_name": "Don Mattingly",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YCA-LG",
+          "player_name": "Roger Maris",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YCA-PO",
+          "player_name": "Paul O'Neill",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YCA-PR",
+          "player_name": "Phil Rizzuto",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YCA-RJ",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YCA-WB",
+          "player_name": "Wade Boggs",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YCA-YB",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Yankees Clippings Autograph",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-DE",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JC",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-JR2",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RF",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-VB",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Vida Blue",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Dennis Eckersley",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Joe Rudi",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Rollie Fingers",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-CAT",
+          "player_name": "Catfish Hunter",
+          "team": "Oakland Athletics",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-JC1",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-JC2",
+          "player_name": "Jose Canseco",
+          "team": "Oakland Athletics",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Bobby Shantz",
+          "team": "Philadelphia Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BS",
+          "player_name": "Bobby Shantz",
+          "team": "Philadelphia Athletics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Bobby Shantz",
+          "team": "Philadelphia Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-JF",
+          "player_name": "Jimmie Foxx",
+          "team": "Philadelphia Athletics",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-TC",
+          "player_name": "Ty Cobb",
+          "team": "Philadelphia Athletics",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Chris Short",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-JKR",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-MS",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-RR",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SC1",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Chris Short",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "John Kruk",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Robin Roberts",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-CS",
+          "player_name": "Chris Short",
+          "team": "Philadelphia Phillies",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RA",
+          "player_name": "Richie Ashburn",
+          "team": "Philadelphia Phillies",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GOT-MS2",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BM",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-DP",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Dave Parker",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Bill Mazeroski",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-HW",
+          "player_name": "Honus Wagner",
+          "team": "Pittsburgh Pirates",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-MC",
+          "player_name": "Max Carey",
+          "team": "Pittsburgh Pirates",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-PT",
+          "player_name": "Pie Traynor",
+          "team": "Pittsburgh Pirates",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RCL",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-WS",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-TG",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-DW",
+          "player_name": "Dave Winfield",
+          "team": "San Diego Padres",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-TG1",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-TG2",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-JM",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WC",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Will Clark",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-WM",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Jim Bouton",
+          "team": "Seattle Pilots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-JBO",
+          "player_name": "Jim Bouton",
+          "team": "Seattle Pilots",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "115",
+          "player_name": "Jim Bouton",
+          "team": "Seattle Pilots",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Pepper Martin",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tim McCarver",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Roger Maris",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Keith Hernandez",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-KH",
+          "player_name": "Keith Hernandez",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-MM",
+          "player_name": "Marty Marion",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SC2",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-TM",
+          "player_name": "Tim McCarver",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GBA-WM",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Pepper Martin",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tim McCarver",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie McGee",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Enos Slaughter",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Roger Maris",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-DD",
+          "player_name": "Dizzy Dean",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-JM",
+          "player_name": "Joe Medwick",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-WC",
+          "player_name": "Walker Cooper",
+          "team": "St. Louis Cardinals",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24F",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25F",
+          "player_name": "Pepper Martin",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26F",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27F",
+          "player_name": "Frankie Frisch",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28F",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29F",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Jersey Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Logo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-BG",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-OS",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SC",
+          "player_name": "Steve Carlton",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "F-SM",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Forever Game Patch Number",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-LB",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GOT-NR1",
+          "player_name": "Nolan Ryan",
+          "team": "Texas Rangers",
+          "variation": "Glory of Their Time Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Paul Molitor",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GBA-PM2",
+          "player_name": "Paul Molitor",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Paul Molitor",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Cecil Travis",
+          "team": "Washington Senators",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Cecil Travis",
+          "team": "Washington Senators",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-BUD",
+          "player_name": "Buddy Myer",
+          "team": "Washington Senators",
+          "variation": "Etched in Time Cuts",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

@@ -1,0 +1,3295 @@
+{
+  "year": 2002,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 81913,
+        "name": "2002 Upper Deck Rookie Debut"
+      },
+      "unique": [
+        {
+          "card_number": "131",
+          "player_name": "Barry Wesson",
+          "team": "Anaheim Angels",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Barry Wesson",
+          "team": "Anaheim Angels",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "551",
+          "player_name": "John Lackey",
+          "team": "Anaheim Angels",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "552",
+          "player_name": "Francisco Rodriguez",
+          "team": "Anaheim Angels",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Jose Valverde",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Jose Valverde",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Curt Schilling",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Jose Valverde",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Jose Valverde",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "606",
+          "player_name": "Jose Valverde",
+          "team": "Arizona Diamondbacks",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MW",
+          "player_name": "Matt Williams",
+          "team": "Arizona Diamondbacks",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Kevin Gryboski",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Kevin Gryboski",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Joey Dawley",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Joey Dawley",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "607",
+          "player_name": "John Ennis",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "608",
+          "player_name": "Trey Hodges",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "609",
+          "player_name": "Kevin Gryboski",
+          "team": "Atlanta Braves",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-GS",
+          "player_name": "Gary Sheffield",
+          "team": "Atlanta Braves",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Geronimo Gil",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Geronimo Gil",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Travis Driskill",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Travis Driskill",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "610",
+          "player_name": "Travis Driskill",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "611",
+          "player_name": "Howie Clark",
+          "team": "Baltimore Orioles",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Derek Lowe",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Josh Hancock",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Derek Lowe",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Josh Hancock",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Derek Lowe",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Jorge de la Rosa",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Jorge de la Rosa",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "553",
+          "player_name": "Cliff Floyd",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "554",
+          "player_name": "Derek Lowe",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "612",
+          "player_name": "Freddy Sanchez",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "613",
+          "player_name": "Josh Hancock",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "614",
+          "player_name": "Jorge de la Rosa",
+          "team": "Boston Red Sox",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Francis Beltran",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Mike Mahoney",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Francis Beltran",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Mike Mahoney",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "555",
+          "player_name": "Mark Bellhorn",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "556",
+          "player_name": "Matt Clement",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "557",
+          "player_name": "Hee Seop Choi",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "615",
+          "player_name": "Mike Mahoney",
+          "team": "Chicago Cubs",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-FM",
+          "player_name": "Fred McGriff",
+          "team": "Chicago Cubs",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MA",
+          "player_name": "Moises Alou",
+          "team": "Chicago Cubs",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "558",
+          "player_name": "Joe Borchard",
+          "team": "Chicago White Sox",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "559",
+          "player_name": "Ryan Dempster",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "560",
+          "player_name": "Russell Branyan",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "561",
+          "player_name": "Brandon Larson",
+          "team": "Cincinnati Reds",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BL",
+          "player_name": "Barry Larkin",
+          "team": "Cincinnati Reds",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Brian Tallet",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Jason Davis",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Carl Sadler",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Jason Beverlin",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Brian Tallet",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Jason Davis",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Carl Sadler",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Jason Beverlin",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Earl Snyder",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Cliff Lee",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Earl Snyder",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Cliff Lee",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "562",
+          "player_name": "Coco Crisp",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "563",
+          "player_name": "Karim Garcia",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "564",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "616",
+          "player_name": "Jason Davis",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "617",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "618",
+          "player_name": "Jason Beverlin",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "619",
+          "player_name": "Carl Sadler",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "620",
+          "player_name": "Earl Snyder",
+          "team": "Cleveland Indians",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JT",
+          "player_name": "Jim Thome",
+          "team": "Cleveland Indians",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-OV",
+          "player_name": "Omar Vizquel",
+          "team": "Cleveland Indians",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Jay Payton",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "565",
+          "player_name": "Jay Payton",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "566",
+          "player_name": "Gabe Kapler",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "621",
+          "player_name": "Aaron Cook",
+          "team": "Colorado Rockies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Andy Van Hekken",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Eric Eckenstahler",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Tim Kalita",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Franklyn German",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Andy Van Hekken",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Eric Eckenstahler",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Tim Kalita",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Franklyn German",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Andy Van Hekken",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Andres Torres",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Franklyn German",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Franklyn German",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "567",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "568",
+          "player_name": "George Lombard",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "569",
+          "player_name": "Andy Van Hekken",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "570",
+          "player_name": "Andres Torres",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "622",
+          "player_name": "Eric Eckenstahler",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "623",
+          "player_name": "Franklyn German",
+          "team": "Detroit Tigers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Juan Encarnacion",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Hansel Izquierdo",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Juan Encarnacion",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Hansel Izquierdo",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "571",
+          "player_name": "Justin Wayne",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "572",
+          "player_name": "Juan Encarnacion",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "573",
+          "player_name": "Abraham Nunez",
+          "team": "Florida Marlins",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Brandon Puffer",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Rodrigo Rosario",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Jeriome Robertson",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Brandon Puffer",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Rodrigo Rosario",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Jeriome Robertson",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Brandon Puffer",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Jeriome Robertson",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Brandon Puffer",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Jeriome Robertson",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "574",
+          "player_name": "Pete Munro",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "575",
+          "player_name": "Jason Lane",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "624",
+          "player_name": "Kirk Saarloos",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "625",
+          "player_name": "Rodrigo Rosario",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "626",
+          "player_name": "Jeriome Robertson",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "627",
+          "player_name": "Brandon Puffer",
+          "team": "Houston Astros",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Jeremy Hill",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Wes Obermueller",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Aaron Guiel",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Jeremy Hill",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Wes Obermueller",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Aaron Guiel",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Miguel Asencio",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Shawn Sedlacek",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Miguel Asencio",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Shawn Sedlacek",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "628",
+          "player_name": "Miguel Asencio",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "629",
+          "player_name": "Aaron Guiel",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "630",
+          "player_name": "Ryan Bukvich",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "631",
+          "player_name": "Jeremy Hill",
+          "team": "Kansas City Royals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "David Ross",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "David Ross",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "576",
+          "player_name": "Dave Roberts",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "577",
+          "player_name": "Eric Gagne",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "632",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Luis Martinez",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Shane Nance",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Luis Martinez",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Shane Nance",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Ben Diggins",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Shane Nance",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Shane Nance",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "578",
+          "player_name": "Alex Sanchez",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "579",
+          "player_name": "Jim Rushford",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "580",
+          "player_name": "Ben Diggins",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "633",
+          "player_name": "Jayson Durocher",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "634",
+          "player_name": "Shane Nance",
+          "team": "Milwaukee Brewers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "581",
+          "player_name": "Eddie Guardado",
+          "team": "Minnesota Twins",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-DM",
+          "player_name": "Doug Mientkiewicz",
+          "team": "Minnesota Twins",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Eric Good",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Jamey Carroll",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Eric Good",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Jamey Carroll",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Jamey Carroll",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Jamey Carroll",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "582",
+          "player_name": "Bartolo Colon",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "583",
+          "player_name": "Endy Chavez",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "635",
+          "player_name": "Eric Good",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "636",
+          "player_name": "Jamey Carroll",
+          "team": "Montreal Expos",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-TA",
+          "player_name": "Fernando Tatis",
+          "team": "Montreal Expos",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Jaime Cerda",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Satoru Komiyama",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Adam Walker",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Jaime Cerda",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Satoru Komiyama",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Adam Walker",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "637",
+          "player_name": "Jaime Cerda",
+          "team": "New York Mets",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-EA",
+          "player_name": "Edgardo Alfonzo",
+          "team": "New York Mets",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-RA",
+          "player_name": "Roberto Alomar",
+          "team": "New York Mets",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Nate Field",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Nate Field",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "584",
+          "player_name": "Raul Mondesi",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "585",
+          "player_name": "Jeff Weaver",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "586",
+          "player_name": "Marcus Thames",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "638",
+          "player_name": "Nate Field",
+          "team": "New York Yankees",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BW",
+          "player_name": "Bernie Williams",
+          "team": "New York Yankees",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Cody McKay",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Jose Flores",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Cody McKay",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Jose Flores",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Miguel Tejada",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "587",
+          "player_name": "Ted Lilly",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "588",
+          "player_name": "Ray Durham",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "589",
+          "player_name": "Jeremy Giambi",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "639",
+          "player_name": "Cody McKay",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "640",
+          "player_name": "Jose Flores",
+          "team": "Oakland Athletics",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Eric Junge",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Jorge Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Eric Junge",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Jorge Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Marlon Byrd",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "590",
+          "player_name": "Vicente Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "591",
+          "player_name": "Brett Myers",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "641",
+          "player_name": "Jorge Padilla",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "642",
+          "player_name": "Anderson Machado",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "643",
+          "player_name": "Eric Junge",
+          "team": "Philadelphia Phillies",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BA",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "592",
+          "player_name": "Josh Fogg",
+          "team": "Pittsburgh Pirates",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "593",
+          "player_name": "Tony Alvarez",
+          "team": "Pittsburgh Pirates",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BG",
+          "player_name": "Brian Giles",
+          "team": "Pittsburgh Pirates",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JK",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Oliver Perez",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Julius Matos",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Wil Nieves",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Clay Condrey",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Oliver Perez",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Julius Matos",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Wil Nieves",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Clay Condrey",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Oliver Perez",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Wil Nieves",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Clay Condrey",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Oliver Perez",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Wil Nieves",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Clay Condrey",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "594",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "595",
+          "player_name": "Dennis Tankersley",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "596",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "644",
+          "player_name": "Oliver Perez",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "645",
+          "player_name": "Julius Matos",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "646",
+          "player_name": "Ben Howard",
+          "team": "San Diego Padres",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "597",
+          "player_name": "Kenny Lofton",
+          "team": "San Francisco Giants",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "647",
+          "player_name": "Julio Mateo",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "648",
+          "player_name": "Matt Thornton",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "649",
+          "player_name": "Chris Snelling",
+          "team": "Seattle Mariners",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-EM",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JO",
+          "player_name": "John Olerud",
+          "team": "Seattle Mariners",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Mike Crudale",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "So Taguchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Jose Rodriguez",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Mike Crudale",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "So Taguchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Jose Rodriguez",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Mike Crudale",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Mike Crudale",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "598",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "599",
+          "player_name": "Chuck Finley",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "650",
+          "player_name": "Jason Simontacchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "651",
+          "player_name": "So Taguchi",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "652",
+          "player_name": "Mike Crudale",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "653",
+          "player_name": "Mike Coolbaugh",
+          "team": "St. Louis Cardinals",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Jorge Sosa",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Felix Escalona",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Jorge Sosa",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Felix Escalona",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Felix Escalona",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Felix Escalona",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "600",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "654",
+          "player_name": "Felix Escalona",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "655",
+          "player_name": "Jorge Sosa",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "656",
+          "player_name": "Lance Carter",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Travis Hughes",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Reynaldo Garcia",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Travis Hughes",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Reynaldo Garcia",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "601",
+          "player_name": "Kevin Mench",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "602",
+          "player_name": "Juan Gonzalez",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "657",
+          "player_name": "Reynaldo Garcia",
+          "team": "Texas Rangers",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-CE",
+          "player_name": "Carl Everett",
+          "team": "Texas Rangers",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Mike Smith",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Corey Thurman",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Ken Huckaby",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Reed Johnson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Kevin Cash",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Mike Smith",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Corey Thurman",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Ken Huckaby",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Reed Johnson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Kevin Cash",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Honor Roll Update Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Jayson Werth",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Orlando Hudson",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Kevin Cash",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Kevin Cash",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Ovation Update World Premiere Standing Ovation (Gold)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "603",
+          "player_name": "Jayson Werth",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "604",
+          "player_name": "Eric Hinske",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "605",
+          "player_name": "Josh Phelps",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "658",
+          "player_name": "Kevin Cash",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "659",
+          "player_name": "Ken Huckaby",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "660",
+          "player_name": "Scott Wiggins",
+          "team": "Toronto Blue Jays",
+          "variation": "2002 Upper Deck Victory Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JC",
+          "player_name": "Jose Cruz Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Solid Contact",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

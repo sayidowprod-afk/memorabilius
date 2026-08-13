@@ -1,0 +1,6239 @@
+{
+  "year": 2006,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 1908,
+        "name": "2006 Bowman Originals"
+      },
+      "unique": [
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Justin Upton",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "A.J. Shappi",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Garrabrants",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Justin Upton",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "A.J. Shappi",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Garrabrants",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Justin Upton",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "A.J. Shappi",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Garrabrants",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Justin Upton",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "A.J. Shappi",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Garrabrants",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mock",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Justin Upton",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "A.J. Shappi",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Garrabrants",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Conor Jackson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Scott Thorman",
+          "team": "Atlanta Braves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "423",
+          "player_name": "Jason Marquis",
+          "team": "Atlanta Braves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elvis Andrus",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Cody Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Diory Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Max Ramirez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elvis Andrus",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Cody Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Diory Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Max Ramirez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elvis Andrus",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Cody Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Diory Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Max Ramirez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elvis Andrus",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Cody Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Diory Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Max Ramirez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elvis Andrus",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Cody Johnson",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Diory Hernandez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Max Ramirez",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "255",
+          "player_name": "Brandon Snyder",
+          "team": "Baltimore Orioles",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Radhames Liz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Radhames Liz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Radhames Liz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Radhames Liz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Radhames Liz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Nick Markakis",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Andrew Pinckney",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Andrew Pinckney",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Andrew Pinckney",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Andrew Pinckney",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Andrew Pinckney",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jonathan Papelbon",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "234",
+          "player_name": "Ricky Nolasco",
+          "team": "Chicago Cubs",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Reed",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Reed",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Reed",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Reed",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mark Reed",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Derrek Lee",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Lance Broadway",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Lance Broadway",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Lance Broadway",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Lance Broadway",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Lance Broadway",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Paul Konerko",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jim Thome",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "353",
+          "player_name": "Wily Mo Pena",
+          "team": "Cincinnati Reds",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Dickerson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "B.J. Szymanski",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Dickerson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "B.J. Szymanski",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Dickerson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "B.J. Szymanski",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Dickerson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "B.J. Szymanski",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Dickerson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "B.J. Szymanski",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Aubrey",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Aubrey",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Aubrey",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Aubrey",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Aubrey",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Victor Martinez",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "167",
+          "player_name": "Garrett Atkins",
+          "team": "Colorado Rockies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "176",
+          "player_name": "Clint Barmes",
+          "team": "Colorado Rockies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dexter Fowler",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Iannetta",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Corey Wimberly",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dexter Fowler",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Iannetta",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Corey Wimberly",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dexter Fowler",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Iannetta",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Corey Wimberly",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dexter Fowler",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Iannetta",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Corey Wimberly",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dexter Fowler",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Iannetta",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Corey Wimberly",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cameron Maybin",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Juan Francia",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Wilkin Ramirez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brent Dlugach",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dallas Trahern",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Michael Hollimon",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jeffrey Frazier",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cameron Maybin",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Juan Francia",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Wilkin Ramirez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brent Dlugach",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dallas Trahern",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Michael Hollimon",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jeffrey Frazier",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cameron Maybin",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Juan Francia",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Wilkin Ramirez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brent Dlugach",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dallas Trahern",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Michael Hollimon",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jeffrey Frazier",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cameron Maybin",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Juan Francia",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Wilkin Ramirez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brent Dlugach",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dallas Trahern",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Michael Hollimon",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jeffrey Frazier",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cameron Maybin",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Juan Francia",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Wilkin Ramirez",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brent Dlugach",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dallas Trahern",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Michael Hollimon",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jeffrey Frazier",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ivan Rodriguez",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Justin Verlander",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Adrian Gonzalez",
+          "team": "Florida Marlins",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Brad McCann",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jose Campusano",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Brad McCann",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jose Campusano",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Brad McCann",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jose Campusano",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Brad McCann",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jose Campusano",
+          "team": "Florida Marlins",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Brad McCann",
+          "team": "Florida Marlins",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jose Campusano",
+          "team": "Florida Marlins",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Hermida",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dan Uggla",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hanley Ramirez",
+          "team": "Florida Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Billy Wagner",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Morgan Ensberg",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Billy Wagner",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Wagner",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "121",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "139",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "236",
+          "player_name": "Morgan Ensberg",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "336",
+          "player_name": "Billy Wagner",
+          "team": "Houston Astros",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Koby Clemens",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jimmy Barthmaier",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark McLemore",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Hunter Pence",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Koby Clemens",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jimmy Barthmaier",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark McLemore",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Hunter Pence",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Koby Clemens",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jimmy Barthmaier",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark McLemore",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Hunter Pence",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Koby Clemens",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jimmy Barthmaier",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark McLemore",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Hunter Pence",
+          "team": "Houston Astros",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Koby Clemens",
+          "team": "Houston Astros",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jimmy Barthmaier",
+          "team": "Houston Astros",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mark McLemore",
+          "team": "Houston Astros",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Hunter Pence",
+          "team": "Houston Astros",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Alex Gordon",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Ervin Santana",
+          "team": "Los Angeles Angels",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nick Adenhart",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Trumbo",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Marek",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Michael Collins",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nick Adenhart",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Trumbo",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Marek",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Michael Collins",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nick Adenhart",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Trumbo",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Marek",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Michael Collins",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nick Adenhart",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Trumbo",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Marek",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Michael Collins",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Nick Adenhart",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Trumbo",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Marek",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Michael Collins",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Vladimir Guerrero",
+          "team": "Los Angeles Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kendry Morales",
+          "team": "Los Angeles Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Andy LaRoche",
+          "team": "Los Angeles Dodgers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nomar Garciaparra",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Matt Kemp",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Willy Aybar",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Russell Martin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Mat Gamel",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yovani Gallardo",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Mat Gamel",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yovani Gallardo",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Mat Gamel",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yovani Gallardo",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Mat Gamel",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yovani Gallardo",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Mat Gamel",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yovani Gallardo",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Prince Fielder",
+          "team": "Milwaukee Brewers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Justin Morneau",
+          "team": "Minnesota Twins",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "218",
+          "player_name": "Francisco Liriano",
+          "team": "Minnesota Twins",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Tolbert",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Tolbert",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Tolbert",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Tolbert",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Tolbert",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joe Mauer",
+          "team": "Minnesota Twins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "258",
+          "player_name": "Brandon Phillips",
+          "team": "Montreal Expos",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "301",
+          "player_name": "Brandon Phillips",
+          "team": "Montreal Expos",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "338",
+          "player_name": "Brandon Phillips",
+          "team": "Montreal Expos",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "363",
+          "player_name": "Jason Bay",
+          "team": "Montreal Expos",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "440",
+          "player_name": "Jason Bay",
+          "team": "Montreal Expos",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "381",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Wright",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pedro Martinez",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carlos Delgado",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Lastings Milledge",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Alay Soler",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jose Tabata",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Omir Santos",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jose Tabata",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Omir Santos",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jose Tabata",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Omir Santos",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jose Tabata",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Omir Santos",
+          "team": "New York Yankees",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jose Tabata",
+          "team": "New York Yankees",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Omir Santos",
+          "team": "New York Yankees",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Melky Cabrera",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Nick Swisher",
+          "team": "Oakland Athletics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kevin Gregg",
+          "team": "Oakland Athletics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Dan Johnson",
+          "team": "Oakland Athletics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "Dan Johnson",
+          "team": "Oakland Athletics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jared Lansford",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jared Lansford",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jared Lansford",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jared Lansford",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jared Lansford",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Carlos Silva",
+          "team": "Philadelphia Phillies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Jaramillo",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Jaramillo",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Jaramillo",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Jaramillo",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Jaramillo",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ryan Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Cole Hamels",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "John Van Benschoten",
+          "team": "Pittsburgh Pirates",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Bay",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "426",
+          "player_name": "Xavier Nady",
+          "team": "San Diego Padres",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "433",
+          "player_name": "Jake Peavy",
+          "team": "San Diego Padres",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Will Venable",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Baker",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Will Venable",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Baker",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Will Venable",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Baker",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Will Venable",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Baker",
+          "team": "San Diego Padres",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Will Venable",
+          "team": "San Diego Padres",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Baker",
+          "team": "San Diego Padres",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Barfield",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jerome Williams",
+          "team": "San Francisco Giants",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Matt Cain",
+          "team": "San Francisco Giants",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Francisco Liriano",
+          "team": "San Francisco Giants",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "377",
+          "player_name": "Joe Nathan",
+          "team": "San Francisco Giants",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Copeland",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Copeland",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Copeland",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Copeland",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Copeland",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Bonds",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Asdrubal Cabrera",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Asdrubal Cabrera",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Asdrubal Cabrera",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Asdrubal Cabrera",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Asdrubal Cabrera",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kenji Johjima",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Scott Kazmir",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Shawn Riggans",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shaun Cumberland",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Shawn Riggans",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shaun Cumberland",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Shawn Riggans",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shaun Cumberland",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Shawn Riggans",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shaun Cumberland",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Evan Longoria",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Shawn Riggans",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Shaun Cumberland",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carl Crawford",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Mike Lamb",
+          "team": "Texas Rangers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "210",
+          "player_name": "Jason Botts",
+          "team": "Texas Rangers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "355",
+          "player_name": "Francisco Cordero",
+          "team": "Texas Rangers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "356",
+          "player_name": "Jason Botts",
+          "team": "Texas Rangers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "376",
+          "player_name": "Mike Lamb",
+          "team": "Texas Rangers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Steve Murphy",
+          "team": "Texas Rangers",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Steve Murphy",
+          "team": "Texas Rangers",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Steve Murphy",
+          "team": "Texas Rangers",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Steve Murphy",
+          "team": "Texas Rangers",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Steve Murphy",
+          "team": "Texas Rangers",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Young",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carlos Lee",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ian Kinsler",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dustin Majewski",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Patterson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ryan Klosterman",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dustin Majewski",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Patterson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ryan Klosterman",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dustin Majewski",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Patterson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ryan Klosterman",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dustin Majewski",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Patterson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ryan Klosterman",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dustin Majewski",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Ryan Patterson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ryan Klosterman",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Framed Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Alfonso Soriano",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Nick Johnson",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Ryan Zimmerman",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

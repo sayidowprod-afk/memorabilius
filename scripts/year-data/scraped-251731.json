@@ -1,0 +1,2423 @@
+{
+  "year": 2020,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 251731,
+        "name": "2020 Bowman Chrome X"
+      },
+      "unique": [
+        {
+          "card_number": "66",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-181",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-222",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-181",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-222",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-181",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-222",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Alex Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-201",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-219",
+          "player_name": "Braden Shewmake",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-201",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-219",
+          "player_name": "Braden Shewmake",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-201",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-219",
+          "player_name": "Braden Shewmake",
+          "team": "Atlanta Braves",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-170",
+          "player_name": "Yusniel Diaz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-238",
+          "player_name": "D.L. Hall",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-170",
+          "player_name": "Yusniel Diaz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-238",
+          "player_name": "D.L. Hall",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-170",
+          "player_name": "Yusniel Diaz",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-238",
+          "player_name": "D.L. Hall",
+          "team": "Baltimore Orioles",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-161",
+          "player_name": "Noah Song",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-208",
+          "player_name": "Triston Casas",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-227",
+          "player_name": "Jeter Downs",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-161",
+          "player_name": "Noah Song",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-208",
+          "player_name": "Triston Casas",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-227",
+          "player_name": "Jeter Downs",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-161",
+          "player_name": "Noah Song",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-208",
+          "player_name": "Triston Casas",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-227",
+          "player_name": "Jeter Downs",
+          "team": "Boston Red Sox",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-231",
+          "player_name": "Ryan Jensen",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-231",
+          "player_name": "Ryan Jensen",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-231",
+          "player_name": "Ryan Jensen",
+          "team": "Chicago Cubs",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Hoerner",
+          "team": "Chicago Cubs",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Adbert Alzolay",
+          "team": "Chicago Cubs",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-232",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-232",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-232",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Zack Collins",
+          "team": "Chicago White Sox",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Dylan Cease",
+          "team": "Chicago White Sox",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Shogo Akiyama",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Shogo Akiyama",
+          "team": "Cincinnati Reds",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-228",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-228",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-228",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Shogo Akiyama",
+          "team": "Cincinnati Reds",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Aristides Aquino",
+          "team": "Cincinnati Reds",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yu Chang",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yu Chang",
+          "team": "Cleveland Indians",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-157",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-179",
+          "player_name": "Shane McCarthy",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-189",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-157",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-179",
+          "player_name": "Shane McCarthy",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-189",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-157",
+          "player_name": "Nolan Jones",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-179",
+          "player_name": "Shane McCarthy",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-189",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Logan Allen",
+          "team": "Cleveland Indians",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Aaron Civale",
+          "team": "Cleveland Indians",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Bobby Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yu Chang",
+          "team": "Cleveland Indians",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-225",
+          "player_name": "Michael Toglia",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-225",
+          "player_name": "Michael Toglia",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-225",
+          "player_name": "Michael Toglia",
+          "team": "Colorado Rockies",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-224",
+          "player_name": "Isaac Paredes",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-229",
+          "player_name": "Matt Manning",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-250",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-224",
+          "player_name": "Isaac Paredes",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-229",
+          "player_name": "Matt Manning",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-250",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-224",
+          "player_name": "Isaac Paredes",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-229",
+          "player_name": "Matt Manning",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-250",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-192",
+          "player_name": "Forrest Whitley",
+          "team": "Houston Astros",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-193",
+          "player_name": "Korey Lee",
+          "team": "Houston Astros",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-192",
+          "player_name": "Forrest Whitley",
+          "team": "Houston Astros",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-193",
+          "player_name": "Korey Lee",
+          "team": "Houston Astros",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-192",
+          "player_name": "Forrest Whitley",
+          "team": "Houston Astros",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-193",
+          "player_name": "Korey Lee",
+          "team": "Houston Astros",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Abraham Toro",
+          "team": "Houston Astros",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-160",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-160",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-160",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-166",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-166",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-166",
+          "player_name": "Brandon Marsh",
+          "team": "Los Angeles Angels",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brusdar Graterol",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Tony Gonsolin",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brusdar Graterol",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Tony Gonsolin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-152",
+          "player_name": "Michael Busch",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-210",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-152",
+          "player_name": "Michael Busch",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-210",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-152",
+          "player_name": "Michael Busch",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-210",
+          "player_name": "Keibert Ruiz",
+          "team": "Los Angeles Dodgers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brusdar Graterol",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Tony Gonsolin",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Gavin Lux",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Dustin May",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-172",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-172",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-172",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jordan Yamamoto",
+          "team": "Miami Marlins",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Isan Diaz",
+          "team": "Miami Marlins",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-168",
+          "player_name": "Brice Turang",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-168",
+          "player_name": "Brice Turang",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-168",
+          "player_name": "Brice Turang",
+          "team": "Milwaukee Brewers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-151",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-180",
+          "player_name": "Keoni Cavaco",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-195",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-249",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-151",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-180",
+          "player_name": "Keoni Cavaco",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-195",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-249",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-151",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-180",
+          "player_name": "Keoni Cavaco",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-195",
+          "player_name": "Royce Lewis",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-249",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-154",
+          "player_name": "Mark Vientos",
+          "team": "New York Mets",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-186",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-198",
+          "player_name": "Francisco Alvarez",
+          "team": "New York Mets",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-247",
+          "player_name": "Brett Baty",
+          "team": "New York Mets",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-154",
+          "player_name": "Mark Vientos",
+          "team": "New York Mets",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-186",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-198",
+          "player_name": "Francisco Alvarez",
+          "team": "New York Mets",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-247",
+          "player_name": "Brett Baty",
+          "team": "New York Mets",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-154",
+          "player_name": "Mark Vientos",
+          "team": "New York Mets",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-186",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-198",
+          "player_name": "Francisco Alvarez",
+          "team": "New York Mets",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-247",
+          "player_name": "Brett Baty",
+          "team": "New York Mets",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-214",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-216",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-243",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-214",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-216",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-243",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-214",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-216",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-243",
+          "player_name": "Jasson Dominguez",
+          "team": "New York Yankees",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Sheldon Neuse",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "A.J. Puk",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Sheldon Neuse",
+          "team": "Oakland Athletics",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "A.J. Puk",
+          "team": "Oakland Athletics",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-173",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-173",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-173",
+          "player_name": "Robert Puason",
+          "team": "Oakland Athletics",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Sheldon Neuse",
+          "team": "Oakland Athletics",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "A.J. Puk",
+          "team": "Oakland Athletics",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jesus Luzardo",
+          "team": "Oakland Athletics",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Seth Brown",
+          "team": "Oakland Athletics",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Sean Murphy",
+          "team": "Oakland Athletics",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-167",
+          "player_name": "Mickey Moniak",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-167",
+          "player_name": "Mickey Moniak",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-167",
+          "player_name": "Mickey Moniak",
+          "team": "Philadelphia Phillies",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-197",
+          "player_name": "Quinn Priester",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-220",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-197",
+          "player_name": "Quinn Priester",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-220",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-197",
+          "player_name": "Quinn Priester",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-220",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andres Muñoz",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Adrian Morejon",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Michel Baez",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andres Muñoz",
+          "team": "San Diego Padres",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Adrian Morejon",
+          "team": "San Diego Padres",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Michel Baez",
+          "team": "San Diego Padres",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-184",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-218",
+          "player_name": "Luis Campusano",
+          "team": "San Diego Padres",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-235",
+          "player_name": "Luis Patino",
+          "team": "San Diego Padres",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-184",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-218",
+          "player_name": "Luis Campusano",
+          "team": "San Diego Padres",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-235",
+          "player_name": "Luis Patino",
+          "team": "San Diego Padres",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-184",
+          "player_name": "MacKenzie Gore",
+          "team": "San Diego Padres",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-218",
+          "player_name": "Luis Campusano",
+          "team": "San Diego Padres",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-235",
+          "player_name": "Luis Patino",
+          "team": "San Diego Padres",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andres Muñoz",
+          "team": "San Diego Padres",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Adrian Morejon",
+          "team": "San Diego Padres",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Michel Baez",
+          "team": "San Diego Padres",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Trent Grisham",
+          "team": "San Diego Padres",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-213",
+          "player_name": "Marco Luciano",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-242",
+          "player_name": "Seth Corry",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-213",
+          "player_name": "Marco Luciano",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-242",
+          "player_name": "Seth Corry",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-213",
+          "player_name": "Marco Luciano",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-242",
+          "player_name": "Seth Corry",
+          "team": "San Francisco Giants",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mauricio Dubon",
+          "team": "San Francisco Giants",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-175",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-212",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-175",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-212",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-175",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-212",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Justin Dunn",
+          "team": "Seattle Mariners",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-162",
+          "player_name": "Nolan Gorman",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-209",
+          "player_name": "Matthew Liberatore",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-236",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-162",
+          "player_name": "Nolan Gorman",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-209",
+          "player_name": "Matthew Liberatore",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-236",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-162",
+          "player_name": "Nolan Gorman",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-209",
+          "player_name": "Matthew Liberatore",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-236",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Yoshi Tsutsugo",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Yoshi Tsutsugo",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-163",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-221",
+          "player_name": "Shane Baz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-241",
+          "player_name": "Vidal Brujan",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-163",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-221",
+          "player_name": "Shane Baz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-241",
+          "player_name": "Vidal Brujan",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-163",
+          "player_name": "Wander Franco",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-221",
+          "player_name": "Shane Baz",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-241",
+          "player_name": "Vidal Brujan",
+          "team": "Tampa Bay Rays",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Yoshi Tsutsugo",
+          "team": "Tampa Bay Rays",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Brendan McKay",
+          "team": "Tampa Bay Rays",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-159",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-188",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-237",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-159",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-188",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-237",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-159",
+          "player_name": "Bayron Lora",
+          "team": "Texas Rangers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-188",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-237",
+          "player_name": "Sam Huff",
+          "team": "Texas Rangers",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nick Solak",
+          "team": "Texas Rangers",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-190",
+          "player_name": "Simeon Woods Richardson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-190",
+          "player_name": "Simeon Woods Richardson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-190",
+          "player_name": "Simeon Woods Richardson",
+          "team": "Toronto Blue Jays",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Anthony Kay",
+          "team": "Toronto Blue Jays",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-230",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-239",
+          "player_name": "Jackson Rutledge",
+          "team": "Washington Nationals",
+          "variation": "Prospects Gold X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-230",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-239",
+          "player_name": "Jackson Rutledge",
+          "team": "Washington Nationals",
+          "variation": "Prospects Green X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-230",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BCP-239",
+          "player_name": "Jackson Rutledge",
+          "team": "Washington Nationals",
+          "variation": "Prospects Red X-Fractor",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

@@ -1,0 +1,4015 @@
+{
+  "year": 2004,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8173,
+        "name": "2004 Upper Deck Diamond Collection All-Star Lineup"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Bartolo Colon",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jake Woods",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Tim Bittner",
+          "team": "Anaheim Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DL-GL",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BC",
+          "player_name": "Bartolo Colon",
+          "team": "Anaheim Angels",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GA",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TG",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Bartolo Colon",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jake Woods",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Tim Bittner",
+          "team": "Anaheim Angels",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-VG",
+          "player_name": "Vladimir Guerrero",
+          "team": "Anaheim Angels",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Garret Anderson",
+          "team": "Anaheim Angels",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Darin Erstad",
+          "team": "Anaheim Angels",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Troy Glaus",
+          "team": "Anaheim Angels",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Bartolo Colon",
+          "team": "Anaheim Angels",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jake Woods",
+          "team": "Anaheim Angels",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Tim Bittner",
+          "team": "Anaheim Angels",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Brandon Medders",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Arizona Diamondbacks",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-KA",
+          "player_name": "Matt Kata",
+          "team": "Arizona Diamondbacks",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RJ",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RS",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Brandon Medders",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brandon Webb",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Randy Johnson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Richie Sexson",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Brandon Medders",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Mike Gosling",
+          "team": "Arizona Diamondbacks",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-GM",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AJ",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CJ",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MG",
+          "player_name": "Marcus Giles",
+          "team": "Atlanta Braves",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RF",
+          "player_name": "Rafael Furcal",
+          "team": "Atlanta Braves",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andruw Jones",
+          "team": "Atlanta Braves",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sidney Ponson",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Dave Crouthers",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JL",
+          "player_name": "Javy Lopez",
+          "team": "Baltimore Orioles",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RP",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TE",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sidney Ponson",
+          "team": "Baltimore Orioles",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Dave Crouthers",
+          "team": "Baltimore Orioles",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jay Gibbons",
+          "team": "Baltimore Orioles",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Miguel Tejada",
+          "team": "Baltimore Orioles",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sidney Ponson",
+          "team": "Baltimore Orioles",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rafael Palmeiro",
+          "team": "Baltimore Orioles",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Dave Crouthers",
+          "team": "Baltimore Orioles",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jamie Brown",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Jerome Gamble",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CS",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JD",
+          "player_name": "Johnny Damon",
+          "team": "Boston Red Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JV",
+          "player_name": "Jason Varitek",
+          "team": "Boston Red Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MR",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PM",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jamie Brown",
+          "team": "Boston Red Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Jerome Gamble",
+          "team": "Boston Red Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-NG",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Curt Schilling",
+          "team": "Boston Red Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Nomar Garciaparra",
+          "team": "Boston Red Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Manny Ramirez",
+          "team": "Boston Red Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Pedro Martinez",
+          "team": "Boston Red Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jamie Brown",
+          "team": "Boston Red Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Jerome Gamble",
+          "team": "Boston Red Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DL-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-JL",
+          "player_name": "Jon Leicester",
+          "team": "Chicago Cubs",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-TW",
+          "player_name": "Todd Wellemeyer",
+          "team": "Chicago Cubs",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KW",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MP",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-SS",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Mark Prior",
+          "team": "Chicago Cubs",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kerry Wood",
+          "team": "Chicago Cubs",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Sammy Sosa",
+          "team": "Chicago Cubs",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Ryan Meaux",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-DS",
+          "player_name": "David Sanders",
+          "team": "Chicago White Sox",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-FT",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MO",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Ryan Meaux",
+          "team": "Chicago White Sox",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Magglio Ordonez",
+          "team": "Chicago White Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Ryan Meaux",
+          "team": "Chicago White Sox",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DL-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AD",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AK",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-KG",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Adam Dunn",
+          "team": "Cincinnati Reds",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Austin Kearns",
+          "team": "Cincinnati Reds",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Cincinnati Reds",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Milton Bradley",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jody Gerut",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-BA",
+          "player_name": "Josh Bard",
+          "team": "Cleveland Indians",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-GU",
+          "player_name": "Jeremy Guthrie",
+          "team": "Cleveland Indians",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-TH",
+          "player_name": "Travis Hafner",
+          "team": "Cleveland Indians",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Milton Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jody Gerut",
+          "team": "Cleveland Indians",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Brandon Phillips",
+          "team": "Cleveland Indians",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Milton Bradley",
+          "team": "Cleveland Indians",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jody Gerut",
+          "team": "Cleveland Indians",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Hampson",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Justin Huisman",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Scott Dohmann",
+          "team": "Colorado Rockies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-JJ",
+          "player_name": "Jason Jennings",
+          "team": "Colorado Rockies",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PW",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TH",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Hampson",
+          "team": "Colorado Rockies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Justin Huisman",
+          "team": "Colorado Rockies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Scott Dohmann",
+          "team": "Colorado Rockies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Todd Helton",
+          "team": "Colorado Rockies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Larry Walker",
+          "team": "Colorado Rockies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Preston Wilson",
+          "team": "Colorado Rockies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Justin Hampson",
+          "team": "Colorado Rockies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Justin Huisman",
+          "team": "Colorado Rockies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Scott Dohmann",
+          "team": "Colorado Rockies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Rondell White",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Don Kelly",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Mike Bumatay",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-BO",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Rondell White",
+          "team": "Detroit Tigers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Don Kelly",
+          "team": "Detroit Tigers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Mike Bumatay",
+          "team": "Detroit Tigers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jeremy Bonderman",
+          "team": "Detroit Tigers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Carlos Pena",
+          "team": "Detroit Tigers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dmitri Young",
+          "team": "Detroit Tigers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Rondell White",
+          "team": "Detroit Tigers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Don Kelly",
+          "team": "Detroit Tigers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Mike Bumatay",
+          "team": "Detroit Tigers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Chris Aguila",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Lincoln Holdzkom",
+          "team": "Florida Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DL-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-JB",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-WI",
+          "player_name": "Josh Willingham",
+          "team": "Florida Marlins",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BE",
+          "player_name": "Josh Beckett",
+          "team": "Florida Marlins",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DW",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-IR",
+          "player_name": "Ivan Rodriguez",
+          "team": "Florida Marlins",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-ML",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Chris Aguila",
+          "team": "Florida Marlins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Lincoln Holdzkom",
+          "team": "Florida Marlins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dontrelle Willis",
+          "team": "Florida Marlins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Miguel Cabrera",
+          "team": "Florida Marlins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Lowell",
+          "team": "Florida Marlins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Chris Aguila",
+          "team": "Florida Marlins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Lincoln Holdzkom",
+          "team": "Florida Marlins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-BA",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JB",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JK",
+          "player_name": "Jeff Kent",
+          "team": "Houston Astros",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jeff Bagwell",
+          "team": "Houston Astros",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Roy Oswalt",
+          "team": "Houston Astros",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lance Berkman",
+          "team": "Houston Astros",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Roger Clemens",
+          "team": "Houston Astros",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CB",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MS",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Carlos Beltran",
+          "team": "Kansas City Royals",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Sweeney",
+          "team": "Kansas City Royals",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jason Frasor",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-HN",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-IS",
+          "player_name": "Kazuhisa Ishii",
+          "team": "Los Angeles Dodgers",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-RR",
+          "player_name": "Rick Roberts",
+          "team": "Los Angeles Dodgers",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jason Frasor",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-SG",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Hideo Nomo",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Shawn Green",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jason Frasor",
+          "team": "Los Angeles Dodgers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Dennis Sarfate",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tim Bausher",
+          "team": "Milwaukee Brewers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-BS",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Dennis Sarfate",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tim Bausher",
+          "team": "Milwaukee Brewers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ben Sheets",
+          "team": "Milwaukee Brewers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Geoff Jenkins",
+          "team": "Milwaukee Brewers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Dennis Sarfate",
+          "team": "Milwaukee Brewers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tim Bausher",
+          "team": "Milwaukee Brewers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Colby Miller",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-EM",
+          "player_name": "Eric Milton",
+          "team": "Minnesota Twins",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-LF",
+          "player_name": "Lew Ford",
+          "team": "Minnesota Twins",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-WE",
+          "player_name": "Willie Eyre",
+          "team": "Minnesota Twins",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JJ",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-TH",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Colby Miller",
+          "team": "Minnesota Twins",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jacque Jones",
+          "team": "Minnesota Twins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Johan Santana",
+          "team": "Minnesota Twins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Torii Hunter",
+          "team": "Minnesota Twins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Colby Miller",
+          "team": "Minnesota Twins",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tony Batista",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Josh Labandeira",
+          "team": "Montreal Expos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-OC",
+          "player_name": "Orlando Cabrera",
+          "team": "Montreal Expos",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-VI",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tony Batista",
+          "team": "Montreal Expos",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Josh Labandeira",
+          "team": "Montreal Expos",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tony Batista",
+          "team": "Montreal Expos",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jose Vidro",
+          "team": "Montreal Expos",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Josh Labandeira",
+          "team": "Montreal Expos",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Cliff Floyd",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DL-PI",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-AH",
+          "player_name": "Aaron Heilman",
+          "team": "New York Mets",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-JR",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-MC",
+          "player_name": "Mike Cameron",
+          "team": "New York Mets",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-PS",
+          "player_name": "Phil Seibel",
+          "team": "New York Mets",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-PI",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Cliff Floyd",
+          "team": "New York Mets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-MP",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Cliff Floyd",
+          "team": "New York Mets",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jose Reyes",
+          "team": "New York Mets",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Kevin Brown",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Javier Vazquez",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Sean Henn",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DL-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JP",
+          "player_name": "Jorge Posada",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MU",
+          "player_name": "Mike Mussina",
+          "team": "New York Yankees",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Kevin Brown",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Javier Vazquez",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Sean Henn",
+          "team": "New York Yankees",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-DJ",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-GS",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-HM",
+          "player_name": "Hideki Matsui",
+          "team": "New York Yankees",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-JG",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Gary Sheffield",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Kevin Brown",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Javier Vazquez",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jason Giambi",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Alfonso Soriano",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Sean Henn",
+          "team": "New York Yankees",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Frank Brooks",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Mike Rouse",
+          "team": "Oakland Athletics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-BZ",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RH",
+          "player_name": "Rich Harden",
+          "team": "Oakland Athletics",
+          "variation": "Class of 2004 Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FG-MK",
+          "player_name": "Mark Kotsay",
+          "team": "Oakland Athletics",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BZ",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-EC",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-HU",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MM",
+          "player_name": "Mark Mulder",
+          "team": "Oakland Athletics",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Frank Brooks",
+          "team": "Oakland Athletics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Mike Rouse",
+          "team": "Oakland Athletics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Eric Chavez",
+          "team": "Oakland Athletics",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Barry Zito",
+          "team": "Oakland Athletics",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Tim Hudson",
+          "team": "Oakland Athletics",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Frank Brooks",
+          "team": "Oakland Athletics",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Mike Rouse",
+          "team": "Oakland Athletics",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kevin Millwood",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BA",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JT",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kevin Millwood",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Abreu",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jim Thome",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kevin Millwood",
+          "team": "Philadelphia Phillies",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ian Snell",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Mike Johnston",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ian Snell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Mike Johnston",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jason Kendall",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ian Snell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Mike Johnston",
+          "team": "Pittsburgh Pirates",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-AE",
+          "player_name": "Adam Eaton",
+          "team": "San Diego Padres",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-SB",
+          "player_name": "Sean Burroughs",
+          "team": "San Diego Padres",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Phil Nevin",
+          "team": "San Diego Padres",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ryan Klesko",
+          "team": "San Diego Padres",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Brian Giles",
+          "team": "San Diego Padres",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "A.J. Pierzynski",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JS",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "A.J. Pierzynski",
+          "team": "San Francisco Giants",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "A.J. Pierzynski",
+          "team": "San Francisco Giants",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jason Schmidt",
+          "team": "San Francisco Giants",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Greg Dobbs",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Justin Leone",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-BO",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-IS",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Greg Dobbs",
+          "team": "Seattle Mariners",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Justin Leone",
+          "team": "Seattle Mariners",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-IS",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Edgar Martinez",
+          "team": "Seattle Mariners",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ichiro Suzuki",
+          "team": "Seattle Mariners",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bret Boone",
+          "team": "Seattle Mariners",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Greg Dobbs",
+          "team": "Seattle Mariners",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Justin Leone",
+          "team": "Seattle Mariners",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Reggie Sanders",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-ER",
+          "player_name": "Edgar Renteria",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-JE",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-SR",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Reggie Sanders",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-AP",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Reggie Sanders",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Albert Pujols",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Scott Rolen",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jim Edmonds",
+          "team": "St. Louis Cardinals",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Alec Zumwalt",
+          "team": "Tampa Bay Devil Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Alec Zumwalt",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aubrey Huff",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Delmon Young",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Rocco Baldelli",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Alec Zumwalt",
+          "team": "Tampa Bay Devil Rays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Nick Regilio",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DL-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Dean's List Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-AS",
+          "player_name": "Alfonso Soriano",
+          "team": "Texas Rangers",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-HB",
+          "player_name": "Hank Blalock",
+          "team": "Texas Rangers",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-MT",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rafael Palmeiro",
+          "team": "Texas Rangers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Nick Regilio",
+          "team": "Texas Rangers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-AR",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Alex Rodriguez",
+          "team": "Texas Rangers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Mark Teixeira",
+          "team": "Texas Rangers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Nick Regilio",
+          "team": "Texas Rangers",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jesse Harper",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FG-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Future Gems Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-RH",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-VW",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Game Cards",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jesse Harper",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PS-CD",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Premium Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Carlos Delgado",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Vernon Wells",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Roy Halladay",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jesse Harper",
+          "team": "Toronto Blue Jays",
+          "variation": "Silver Honors",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}
