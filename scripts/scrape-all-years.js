@@ -29,6 +29,7 @@ const args = Object.fromEntries(
 const FROM    = args.from  ? parseInt(args.from)  : 2025  // année TCDB (2025 = saison 2025-26)
 const TO      = args.to    ? parseInt(args.to)    : 1969
 const DRY_RUN = !!args['dry-run']
+const SLOT    = args.slot ? parseInt(args.slot) : 1
 
 // Délais aléatoires humains (optimisés — ~3x plus rapide, toujours variable)
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
@@ -329,7 +330,7 @@ async function main() {
   let totalSets = 0
 
   const openBrowser = async () => {
-    const result = await launchBrowser()
+    const result = await launchBrowser(SLOT)
     browser = result.browser
     const page = result.page
     browserOpenedAt = totalSets
@@ -428,7 +429,7 @@ async function main() {
       pending.forEach(f => console.log(`   node scripts/import-tcdb.js scripts/year-data/${f}`))
     }
   } finally {
-    killChrome()
+    killChrome(SLOT)
   }
 }
 

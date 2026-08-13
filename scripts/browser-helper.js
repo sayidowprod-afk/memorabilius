@@ -7,33 +7,43 @@ const path    = require('path')
 const { spawn } = require('child_process')
 const puppeteer = require('puppeteer-extra')
 
-const DEBUG_PORT  = 9223
-const PROFILE_DIR = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape')
+const LOCAL = process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local'
+
+// slot 1 = port 9223 + Chrome-Scrape (défaut)
+// slot 2 = port 9224 + Chrome-Scrape-2 (parallelisme)
+function slotConfig(slot = 1) {
+  return {
+    port: 9222 + slot,
+    profileDir: path.join(LOCAL, slot === 1 ? 'Chrome-Scrape' : `Chrome-Scrape-${slot}`),
+  }
+}
 
 function findChrome() {
   for (const p of [
     'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-    (process.env.LOCALAPPDATA || '') + '\\Google\\Chrome\\Application\\chrome.exe',
+    LOCAL + '\\Google\\Chrome\\Application\\chrome.exe',
   ]) { try { if (fs.existsSync(p)) return p } catch {} }
 }
 
-let chromeProcess = null
+const chromeProcesses = {}
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
-async function openBrowser() {
-  if (chromeProcess) {
-    try { chromeProcess.kill() } catch {}
+async function openBrowser(slot = 1) {
+  const { port, profileDir } = slotConfig(slot)
+
+  if (chromeProcesses[slot]) {
+    try { chromeProcesses[slot].kill() } catch {}
     await sleep(2000)
   }
 
   const chromePath = findChrome()
   if (!chromePath) throw new Error('Chrome introuvable')
 
-  chromeProcess = spawn(chromePath, [
-    `--remote-debugging-port=${DEBUG_PORT}`,
-    `--user-data-dir=${PROFILE_DIR}`,
+  chromeProcesses[slot] = spawn(chromePath, [
+    `--remote-debugging-port=${port}`,
+    `--user-data-dir=${profileDir}`,
     '--no-first-run',
     '--no-default-browser-check',
     '--disable-default-apps',
@@ -44,7 +54,7 @@ async function openBrowser() {
   await sleep(3000)
 
   const browser = await puppeteer.connect({
-    browserURL: `http://localhost:${DEBUG_PORT}`,
+    browserURL: `http://localhost:${port}`,
     defaultViewport: null,
   })
 
@@ -54,8 +64,9 @@ async function openBrowser() {
   return { browser, page }
 }
 
-function killChrome() {
-  if (chromeProcess) { try { chromeProcess.kill() } catch {} chromeProcess = null }
+function killChrome(slot = 1) {
+  const proc = chromeProcesses[slot]
+  if (proc) { try { proc.kill() } catch {} delete chromeProcesses[slot] }
 }
 
-module.exports = { openBrowser, killChrome }
+module.exports = { openBrowser, killChrome, slotConfig }

@@ -30,6 +30,7 @@ const args = Object.fromEntries(
 const FROM    = args.from  ? parseInt(args.from)  : 2026
 const TO      = args.to    ? parseInt(args.to)    : 1948
 const DRY_RUN = !!args['dry-run']
+const SLOT    = args.slot ? parseInt(args.slot) : 1
 
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const sleep   = ms => new Promise(r => setTimeout(r, ms))
@@ -322,7 +323,7 @@ async function main() {
   let totalSets = 0
   const { openBrowser: launchBrowser, killChrome } = require('./browser-helper')
   const openBrowser = async () => {
-    const result = await launchBrowser()
+    const result = await launchBrowser(SLOT)
     browser = result.browser
     const page = result.page
     await waitCF(page, TCDB)
@@ -376,7 +377,7 @@ async function main() {
       }
     }
     console.log(`\n\n🏁 TERMINÉ — ${cp.doneYears.length} années scrapées`)
-  } finally { killChrome() }
+  } finally { killChrome(SLOT) }
 }
 
 main().catch(e => { console.error('Fatal:', e.message); process.exit(1) })
