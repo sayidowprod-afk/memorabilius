@@ -51,13 +51,33 @@ if (fs.existsSync(localState)) {
   fs.copyFileSync(localState, path.join(DST_ROOT, 'Local State'))
 }
 
-// Vérifie que le fichier Cookies est là
-const cookies = path.join(DST, 'Cookies')
+// Copie aussi le dossier Network (Chrome 118+ stocke les cookies ici)
+const srcNetwork = path.join(SRC, 'Network')
+const dstNetwork = path.join(DST, 'Network')
+if (fs.existsSync(srcNetwork)) {
+  try {
+    execSync(
+      `robocopy "${srcNetwork}" "${dstNetwork}" /E /COPYALL /R:0 /W:0 /NFL /NDL /NJH /NJS /NC /NS`,
+      { stdio: 'pipe' }
+    )
+  } catch (e) { if (e.status > 7) console.warn('⚠️  robocopy Network: erreurs partielles') }
+}
+
+// Vérifie Cookies (ancien emplacement ou nouveau)
+const cookiesOld = path.join(DST, 'Cookies')
+const cookiesNew = path.join(DST, 'Network', 'Cookies')
+const cookies = fs.existsSync(cookiesNew) ? cookiesNew : cookiesOld
 if (fs.existsSync(cookies)) {
   const size = fs.statSync(cookies).size
-  console.log(`✅ Profil copié (Cookies: ${Math.round(size/1024)} KB)`)
+  console.log(`✅ Profil copié (Cookies: ${Math.round(size/1024)} KB — ${cookies})`)
   console.log('   Le scraper utilisera Chrome-Scrape — Chrome peut rester ouvert.')
 } else {
-  console.warn('⚠️  Cookies non copiés (Chrome probablement ouvert et verrouille ce fichier)')
-  console.warn('   Ferme Chrome, relance ce script, puis Chrome peut rester ouvert pour les prochains scrapes.')
+  console.warn('⚠️  Cookies non copiés. Essai copie directe...')
+  // Copie directe en fallback
+  for (const p of [path.join(SRC,'Network','Cookies'), path.join(SRC,'Cookies')]) {
+    if (!fs.existsSync(p)) continue
+    const d = path.dirname(p.replace(SRC, DST))
+    fs.mkdirSync(d, { recursive: true })
+    try { fs.copyFileSync(p, p.replace(SRC, DST)); console.log('✅ Copie directe OK:', p) } catch(e) { console.warn('❌', e.message) }
+  }
 }
