@@ -138,6 +138,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [sorting, setSorting] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [showOwnerMenu, setShowOwnerMenu] = useState(false)
+  const [ownerMenuUp, setOwnerMenuUp] = useState(false)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -1698,14 +1699,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               </button>
               {isOwner && (
                 <div style={{ position: 'relative' }}>
-                  <button onClick={() => setShowOwnerMenu(v => !v)}
+                  <button onClick={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setOwnerMenuUp(r.bottom > window.innerHeight * 0.55); setShowOwnerMenu(v => !v) }}
                     style={{ background: showOwnerMenu ? '#f0f0f0' : 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 12px', cursor: 'pointer', fontSize: 16, color: '#555', lineHeight: 1, fontWeight: 900 }}>
                     ···
                   </button>
                   {showOwnerMenu && (
                     <>
                       <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
-                      <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 300, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
+                      <div style={{ position: 'absolute', ...(ownerMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, zIndex: 300, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
                         <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: dark ? '#666' : '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Trier les cartes</div>
                         {sorting ? (
                           <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>⏳ Tri en cours…</div>

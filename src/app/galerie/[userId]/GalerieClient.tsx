@@ -376,6 +376,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [showStats, setShowStats] = useState(false)
   const [actionMenuOpen, setActionMenuOpen] = useState(false)
+  const [actionMenuUp, setActionMenuUp] = useState(false)
+  const [colorPickerUp, setColorPickerUp] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const { user: authUser } = useAuth()
@@ -1113,7 +1115,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             )}
             {isOwner && (
               <span
-                onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
+                onClick={(e) => { e.stopPropagation(); const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setColorPickerUp(r.bottom > window.innerHeight * 0.55); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
                 title="Modifier cette collection"
                 style={{
                   width: 16, height: 16, borderRadius: '50%', flexShrink: 0,
@@ -1127,7 +1129,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             )}
           </button>
           {colorPickerTag === tag && (
-            <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', right: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 'min(220px, calc(100vw - 24px))' }}>
+            <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', ...(colorPickerUp ? { bottom: '110%' } : { top: '110%' }), right: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 'min(220px, calc(100vw - 24px))' }}>
               <input
                 value={renameValue}
                 onChange={e => setRenameValue(e.target.value)}
@@ -1360,7 +1362,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 {!editMode && (
                   <div className="btn-menu" style={{ position: 'relative' }}>
                     <button
-                      onClick={() => setActionMenuOpen(v => !v)}
+                      onClick={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setActionMenuUp(r.bottom > window.innerHeight * 0.55); setActionMenuOpen(v => !v) }}
                       style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
                     >
                       ···
@@ -1369,7 +1371,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       <>
                         {/* Overlay invisible pour fermer */}
                         <div onClick={() => setActionMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 99 }} />
-                        <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, background: dark ? '#1e1e1e' : '#fff', borderRadius: 12, boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,0,0,0.15)', border: dark ? '1px solid #333' : 'none', padding: 6, zIndex: 100, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <div style={{ position: 'absolute', ...(actionMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, background: dark ? '#1e1e1e' : '#fff', borderRadius: 12, boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,0,0,0.15)', border: dark ? '1px solid #333' : 'none', padding: 6, zIndex: 100, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
                           {isOwner && (
                             <button onClick={() => { setEditMode(m => !m); setSelectedCards(new Set()); setActionMenuOpen(false) }}
                               style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
