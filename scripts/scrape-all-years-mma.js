@@ -280,13 +280,12 @@ async function main() {
     if (chromeProcess) { try { chromeProcess.kill() } catch {}; await sleep(3000) }
 
     const chromePath = findChrome()
-    const userDataDir = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Google\\Chrome\\User Data')
+    const userDataDir = path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape')
 
     // Lance Chrome SANS --enable-automation → navigator.webdriver reste false → CF ne détecte pas le bot
     chromeProcess = spawn(chromePath, [
       `--remote-debugging-port=${DEBUG_PORT}`,
       `--user-data-dir=${userDataDir}`,
-      '--profile-directory=Default',
       '--no-first-run',
       '--no-default-browser-check',
       '--disable-default-apps',

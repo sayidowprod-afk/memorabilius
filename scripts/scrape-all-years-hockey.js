@@ -303,7 +303,7 @@ async function main() {
   const openBrowser = async () => {
     if (browser) { try { await browser.close() } catch {} }
     await sleep(3000)
-    browser = await puppeteerExtra.launch({ executablePath: findChrome(), headless: false, defaultViewport: null, userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Google\\Chrome\\User Data'), args: ['--no-sandbox','--window-size=1280,900','--disable-blink-features=AutomationControlled', '--profile-directory=Default'] })
+    browser = await puppeteerExtra.launch({ executablePath: findChrome(), headless: false, defaultViewport: null, userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape'), args: ['--no-sandbox','--window-size=1280,900','--disable-blink-features=AutomationControlled'] })
     const page = await browser.newPage()
     await waitCF(page, TCDB); await sleep(rand(2000,4000)); console.log('✓ Browser OK'); return page
   }

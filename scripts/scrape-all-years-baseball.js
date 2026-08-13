@@ -325,8 +325,8 @@ async function main() {
     await sleep(3000)
     browser = await puppeteerExtra.launch({
       executablePath: findChrome(), headless: false, defaultViewport: null,
-      userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Google\\Chrome\\User Data'),
-      args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled', '--profile-directory=Default'],
+      userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'Chrome-Scrape'),
+      args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled'],
     })
     const page = await browser.newPage()
     await waitCF(page, TCDB)
