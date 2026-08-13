@@ -87,6 +87,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [tagSaving, setTagSaving] = useState(false)
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
   useEffect(() => { setValeurInput(cardValue != null ? String(cardValue) : '') }, [popup.f, cardValue])
+  useEffect(() => { setInfoExpanded(false) }, [popup.f])
 
   const [inWishlist, setInWishlist] = useState(false)
   const [wishlistLoading, setWishlistLoading] = useState(false)
@@ -431,6 +432,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const isSlabFmt = cardFmt.isSlab
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const [closeHover, setCloseHover] = useState(false)
+  const [infoExpanded, setInfoExpanded] = useState(false)
   const { lang } = useLang()
 
   const isMemo = popup.item_type === 'memorabilia'
@@ -632,16 +634,27 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-card { width: 560px; height: 784px; }
         .viewer-card--horizontal { width: min(784px, 54vw) !important; height: min(560px, 38.6vw) !important; }
         .viewer-card--slab { width: 478px !important; height: 784px !important; }
+        .viewer-info-handle { display: none; }
         @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 359px !important; height: 588px !important; } }
         @media (max-width: 600px) {
-          .viewer-layout { flex-direction: column; }
-          .viewer-zone { flex: 0 0 78% !important; width: 100% !important; min-height: 0; }
-          .viewer-info { flex: 0 0 22% !important; width: 100% !important; min-height: 0; padding: 8px 14px !important; justify-content: flex-start !important; overflow-y: auto !important; }
-          .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
+          .viewer-layout { flex-direction: column; transition: none; }
+          .viewer-zone { flex: 0 0 78%; width: 100% !important; min-height: 0; }
+          .viewer-info { flex: 0 0 22%; width: 100% !important; min-height: 0; padding: 18px 14px 8px !important; justify-content: flex-start !important; overflow-y: auto !important; position: relative; }
+          .viewer-info h2 { font-size: 1.15rem !important; margin: 2px 0 !important; }
+          .viewer-info label { font-size: 10.5px !important; }
+          .viewer-info-value { font-size: 13.5px !important; }
           .viewer-card { width: min(300px, 72vw) !important; height: min(420px, 100.8vw) !important; }
           .viewer-card--horizontal { width: min(360px, 86vw) !important; height: min(257px, 61.4vw) !important; }
           .viewer-card--slab { width: min(256px, 61vw) !important; height: min(420px, 100.8vw) !important; }
           .viewer-hint { display: none !important; }
+          .viewer-layout--info-expanded .viewer-zone { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 0% !important; opacity: 0; pointer-events: none; }
+          .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + env(safe-area-inset-top)) !important; }
+          .viewer-info-handle {
+            position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+            width: 44px; height: 22px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; background: none; border: none; padding: 0; z-index: 2;
+          }
+          .viewer-layout--info-expanded .viewer-info-handle { top: calc(4px + env(safe-area-inset-top)) !important; }
         }
       `}</style>
       <button
@@ -663,7 +676,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         {closeHover ? 'Fermer cette Carte' : '×'}
       </button>
 
-      <div className="viewer-layout">
+      <div className={`viewer-layout${infoExpanded ? ' viewer-layout--info-expanded' : ''}`}>
         {popup.booklet ? (
           <div className="viewer-zone" style={{ padding: 0, display: 'flex', flexDirection: 'column' }}>
             <BookletViewer
@@ -1123,6 +1136,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         )}
 
         <div className="viewer-info">
+          <button className="viewer-info-handle" onClick={() => setInfoExpanded(v => !v)} aria-label={infoExpanded ? 'Réduire les infos' : 'Agrandir les infos'}>
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none" style={{ transform: infoExpanded ? 'none' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
+              <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
           <div style={{ color: accent, fontWeight: 900, fontSize: 10, textTransform: 'uppercase', marginBottom: 2 }}>{popup.t}</div>
           <Link href={`/joueur/${playerSlug(popup.n)}`} style={{ textDecoration: 'none', color: 'inherit' }}
             onMouseEnter={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'underline')}
@@ -1147,25 +1165,25 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             ].map(([l, v]) => (
               <div key={l}>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>{l}</label>
-                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{v}</span>
+                <span className="viewer-info-value" style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{v}</span>
               </div>
             ))}
             {isMemo && popup.v?.trim() && (
               <div>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>Variation</label>
-                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.v}</span>
+                <span className="viewer-info-value" style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.v}</span>
               </div>
             )}
             {isMemo && popup.cert_number?.trim() && (
               <div>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>✍️ Signé par</label>
-                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.cert_number}</span>
+                <span className="viewer-info-value" style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.cert_number}</span>
               </div>
             )}
             {isMemo && popup.card_number?.trim() && (
               <div>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>🏷️ Patch</label>
-                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.card_number}</span>
+                <span className="viewer-info-value" style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.card_number}</span>
               </div>
             )}
           </div>

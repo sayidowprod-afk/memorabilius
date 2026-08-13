@@ -4,4 +4,10 @@
     <string name="title_activity_main">Memorabilius</string>
     <string name="package_name">fr.memorabilius.app</string>
     <string name="custom_url_scheme">fr.memorabilius.app</string>
+    <string name="shortcut_galerie_short">Ma galerie</string>
+    <string name="shortcut_galerie_long">Ouvrir ma galerie</string>
+    <string name="shortcut_scanner_short">Scanner</string>
+    <string name="shortcut_scanner_long">Scanner une carte</string>
+    <string name="shortcut_recherche_short">Recherche</string>
+    <string name="shortcut_recherche_long">Rechercher une carte</string>
 </resources>

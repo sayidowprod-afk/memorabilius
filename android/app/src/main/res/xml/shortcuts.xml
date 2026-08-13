@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="ma_galerie"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_galerie_short"
+        android:shortcutLongLabel="@string/shortcut_galerie_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="fr.memorabilius.app"
+            android:targetClass="fr.memorabilius.app.MainActivity"
+            android:data="https://www.memorabilius.fr/moi" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="scanner"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_scanner_short"
+        android:shortcutLongLabel="@string/shortcut_scanner_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="fr.memorabilius.app"
+            android:targetClass="fr.memorabilius.app.MainActivity"
+            android:data="https://www.memorabilius.fr/scanner" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="recherche"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_recherche_short"
+        android:shortcutLongLabel="@string/shortcut_recherche_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="fr.memorabilius.app"
+            android:targetClass="fr.memorabilius.app.MainActivity"
+            android:data="https://www.memorabilius.fr/recherche" />
+    </shortcut>
+</shortcuts>

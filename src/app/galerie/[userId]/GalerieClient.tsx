@@ -8,6 +8,8 @@ import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import { hapticTap } from '@/lib/haptics'
+import { useIsNative } from '@/lib/useIsNative'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -206,17 +208,47 @@ const TEAM_THEMES: { label: string; value: string; sport: string }[] = [
   { label: 'Commanders', value: 'linear-gradient(135deg,#5A1414,#FFB612)', sport: 'NFL' },
 ]
 
-function SortableCard({ id, disabled, children, className, style, onClick }: {
+function SortableCard({ id, disabled, children, className, style, onClick, onLongPress }: {
   id: string; disabled: boolean; children: React.ReactNode
-  className?: string; style?: React.CSSProperties; onClick?: () => void
+  className?: string; style?: React.CSSProperties; onClick?: () => void; onLongPress?: () => void
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled })
+  const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const suppressClick = useRef(false)
+  const touchStart = useRef({ x: 0, y: 0 })
+
+  const clearLongPress = () => {
+    if (longPressTimer.current) { clearTimeout(longPressTimer.current); longPressTimer.current = null }
+  }
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!onLongPress) return
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+    suppressClick.current = false
+    longPressTimer.current = setTimeout(() => {
+      suppressClick.current = true
+      onLongPress()
+    }, 500)
+  }
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!longPressTimer.current) return
+    const dx = Math.abs(e.touches[0].clientX - touchStart.current.x)
+    const dy = Math.abs(e.touches[0].clientY - touchStart.current.y)
+    if (dx > 10 || dy > 10) clearLongPress()
+  }
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (suppressClick.current) { e.stopPropagation(); e.preventDefault(); suppressClick.current = false }
+  }
+
   return (
     <div
       ref={setNodeRef}
       className={className}
       style={{ ...style, transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 999 : undefined }}
       onClick={onClick}
+      onClickCapture={handleClickCapture}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={clearLongPress}
       {...attributes}
     >
       {!disabled && (
@@ -385,6 +417,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const isOwner = currentUser === userId
   const { t, lang } = useLang()
   const { dark } = useTheme()
+  const isNative = useIsNative()
   const cardParam = searchParams.get('card')
 
   useEffect(() => { setMounted(true) }, [])
@@ -933,6 +966,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       if (next.has(cardId)) next.delete(cardId); else next.add(cardId)
       return next
     })
+  }
+
+  const shareCardNative = async (d: Card) => {
+    if (!isNative) return
+    hapticTap()
+    try {
+      const { Share } = await import('@capacitor/share')
+      await Share.share({
+        title: d.n,
+        url: `https://www.memorabilius.fr/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
+      })
+    } catch {}
   }
 
   const onDragEnd = (event: DragEndEvent) => {
@@ -2086,6 +2131,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
               className="card-item"
+              onLongPress={!editMode && !qrMode ? () => shareCardNative(d) : undefined}
               onClick={() => {
                 if (qrMode) { toggleQrCard(d); return }
                 if (editMode && isOwner) { toggleCardSelection(getCardId(d)); return }
