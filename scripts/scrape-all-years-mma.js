@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * Scraper TCDB MMA — Major Releases uniquement
  * Usage: node scripts/scrape-all-years-mma.js [--from=2020] [--to=2000] [--dry-run]
@@ -30,10 +30,10 @@ const DRY_RUN = !!args['dry-run']
 
 const rand       = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const sleep      = ms => new Promise(r => setTimeout(r, ms))
-const delayTeam  = () => sleep(rand(600, 1400))
-const delaySet   = () => sleep(rand(3000, 7000))
-const BREAK_EVERY = 30
-const delayBreak = () => { const ms = rand(90000, 150000); console.log(`\n☕ Pause ${Math.round(ms/1000)}s...\n`); return sleep(ms) }
+const delayTeam  = () => sleep(rand(300, 700))
+const delaySet   = () => sleep(rand(1500, 3500))
+const BREAK_EVERY = 60
+const delayBreak = () => { const ms = rand(20000, 40000); console.log(`\n☕ Pause ${Math.round(ms/1000)}s...\n`); return sleep(ms) }
 
 function findChrome() {
   for (const p of [

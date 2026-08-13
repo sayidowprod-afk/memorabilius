@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * Scraper TCDB Baseball — Toutes saisons 2026→1948, Major Releases uniquement
  *
@@ -33,11 +33,11 @@ const DRY_RUN = !!args['dry-run']
 
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const sleep   = ms => new Promise(r => setTimeout(r, ms))
-const delayTeam  = () => sleep(rand(600, 1400))
-const delaySet   = () => sleep(rand(3000, 7000))
-const BREAK_EVERY = 30
+const delayTeam  = () => sleep(rand(300, 700))
+const delaySet   = () => sleep(rand(1500, 3500))
+const BREAK_EVERY = 60
 const delayBreak = () => {
-  const ms = rand(90000, 150000)
+  const ms = rand(20000, 40000)
   console.log(`\n☕ Pause anti-détection ${Math.round(ms/1000)}s...\n`)
   return sleep(ms)
 }

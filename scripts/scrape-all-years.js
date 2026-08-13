@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * Scraper TCDB NBA — Toutes saisons 2025→1969, Major Releases uniquement
  * Checkpoint, délais aléatoires anti-détection, import via nouveau process
@@ -33,12 +33,12 @@ const DRY_RUN = !!args['dry-run']
 // Délais aléatoires humains (optimisés — ~3x plus rapide, toujours variable)
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const sleep   = ms => new Promise(r => setTimeout(r, ms))
-const delayTeam  = () => sleep(rand(600, 1400))    // était 2200–5500
-const delaySet   = () => sleep(rand(3000, 7000))   // était 12000–30000
+const delayTeam  = () => sleep(rand(300, 700))    // était 2200–5500
+const delaySet   = () => sleep(rand(1500, 3500))   // était 12000–30000
 const delayYear  = () => sleep(rand(8000, 18000))  // était 90000–240000
-const BREAK_EVERY = 30  // était 20
+const BREAK_EVERY = 60  // était 20
 const delayBreak = () => {
-  const ms = rand(90000, 150000) // était 300000–600000
+  const ms = rand(20000, 40000) // était 300000–600000
   console.log(`\n☕ Pause anti-détection ${Math.round(ms/1000)}s...\n`)
   return sleep(ms)
 }
