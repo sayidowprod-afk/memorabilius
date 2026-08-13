@@ -1,6 +1,7 @@
 'use client'
 import { useRef, useState, useEffect } from 'react'
 import { useLang } from '@/lib/LangContext'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -481,12 +482,10 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     recorder.stop()
   }
 
-  const download = () => {
+  const download = async () => {
     if (!videoUrl) return
-    const a = document.createElement('a')
-    a.href = videoUrl
-    a.download = `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`
-    a.click()
+    const blob = await (await fetch(videoUrl)).blob()
+    await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`)
   }
 
   const chip = (active: boolean) => ({

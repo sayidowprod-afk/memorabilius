@@ -1,6 +1,7 @@
 'use client'
 import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
@@ -355,7 +356,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
     c.beckett_designation ||
     [c.y, c.br, c.s, c.v, c.card_number ? `#${c.card_number}` : '', c.n].filter(Boolean).join(' ')
 
-  const exportCSV = () => {
+  const exportCSV = async () => {
     const hasValues = filtered.some(c => cardValues.has(c.f))
     const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch',
       ...(hasValues ? ['Valeur (€)'] : []),
@@ -378,10 +379,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
     view.setUint8(0, 0xFF); view.setUint8(1, 0xFE)
     for (let i = 0; i < csvStr.length; i++) view.setUint16(2 + i * 2, csvStr.charCodeAt(i), true)
     const blob = new Blob([buf], { type: 'text/csv;charset=utf-16le' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url; a.download = `${profileName.replace(/\s+/g, '_')}_collection.csv`; a.click()
-    URL.revokeObjectURL(url)
+    await saveOrShareFile(blob, `${profileName.replace(/\s+/g, '_')}_collection.csv`)
   }
 
   // ── Export ZIP images ──────────────────────────────────────────────────────
@@ -417,10 +415,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       }))
 
       const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 3 } })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url; a.download = `${profileName.replace(/\s+/g, '_')}_images.zip`; a.click()
-      URL.revokeObjectURL(url)
+      await saveOrShareFile(blob, `${profileName.replace(/\s+/g, '_')}_images.zip`)
     } finally {
       setExportingZip(false)
       setZipProgress(0)
@@ -615,7 +610,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
         doc.text(`${p} / ${totalPages}`, PW - MR, PH - 5, { align: 'right' })
       }
 
-      doc.save(`${profileName.replace(/\s+/g, '_')}_collection.pdf`)
+      await saveOrShareFile(doc.output('blob'), `${profileName.replace(/\s+/g, '_')}_collection.pdf`)
     } finally {
       setExportingPdf(false)
     }
@@ -626,10 +621,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
     setExporting(true)
     try {
       const blob = await generate(filtered, profileName, avatarUrl, accent, lang, opts)
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url; a.download = `${profileName.replace(/\s+/g, '_')}_${opts.format}.jpg`; a.click()
-      URL.revokeObjectURL(url)
+      await saveOrShareFile(blob, `${profileName.replace(/\s+/g, '_')}_${opts.format}.jpg`)
     } finally { setExporting(false) }
   }
 

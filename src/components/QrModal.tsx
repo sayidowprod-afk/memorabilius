@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 interface QrModalProps {
   url: string
@@ -23,12 +24,9 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
     return () => { cancelled = true }
   }, [url])
 
-  const download = () => {
+  const download = async () => {
     if (!dataUrl) return
-    const a = document.createElement('a')
-    a.href = dataUrl
-    a.download = `qr-${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`
-    a.click()
+    await saveOrShareFile(dataUrl, `qr-${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`)
   }
 
   const modal = (

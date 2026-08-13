@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import { hapticTap } from '@/lib/haptics'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
@@ -929,11 +930,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       }
 
       const content = await zip.generateAsync({ type: 'blob' })
-      const link = document.createElement('a')
-      link.download = 'qr-codes.zip'
-      link.href = URL.createObjectURL(content)
-      link.click()
-      URL.revokeObjectURL(link.href)
+      await saveOrShareFile(content, 'qr-codes.zip')
     } finally {
       setQrDownloading(false)
     }

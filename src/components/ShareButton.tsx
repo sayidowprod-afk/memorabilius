@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import QRCode from 'qrcode'
 import { useLang } from '@/lib/LangContext'
 import { useIsNative } from '@/lib/useIsNative'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 interface Props {
   url: string
@@ -108,7 +109,7 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
     setCopied(true); setTimeout(() => setCopied(false), 2000)
   }
 
-  const downloadQR = () => {
+  const downloadQR = async () => {
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -118,10 +119,7 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
     if (subtitle) lines.push({ text: subtitle, size: 28, weight: '600', color: '#555555' })
 
     if (lines.length === 0) {
-      const link = document.createElement('a')
-      link.download = 'memorabilius-qr.png'
-      link.href = canvas.toDataURL('image/png')
-      link.click()
+      await saveOrShareFile(canvas.toDataURL('image/png'), 'memorabilius-qr.png')
       return
     }
 
@@ -147,10 +145,7 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
       y += lineH
     }
 
-    const link = document.createElement('a')
-    link.download = 'memorabilius-qr.png'
-    link.href = out.toDataURL('image/png')
-    link.click()
+    await saveOrShareFile(out.toDataURL('image/png'), 'memorabilius-qr.png')
   }
 
   return (

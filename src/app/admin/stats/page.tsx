@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback, type CSSProperties } from 'react'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 const GeoMap = dynamic(() => import('@/components/admin/GeoMap'), { ssr: false })
 
@@ -1192,7 +1193,7 @@ export default function AdminStats() {
   const cp = isMobile ? '16px' : '24px 28px'
   const hs = healthScore(stats)
 
-  function exportCsv() {
+  async function exportCsv() {
     if (!stats) return
     const rows: [string, string][] = [
       ['Métrique', 'Valeur'],
@@ -1218,10 +1219,7 @@ export default function AdminStats() {
     ]
     const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n')
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url; a.download = `memorabilius_stats_${new Date().toISOString().slice(0,10)}.csv`; a.click()
-    URL.revokeObjectURL(url)
+    await saveOrShareFile(blob, `memorabilius_stats_${new Date().toISOString().slice(0,10)}.csv`)
   }
 
   return (

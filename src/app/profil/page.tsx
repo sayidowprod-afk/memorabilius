@@ -1,5 +1,6 @@
 'use client'
 import { toast } from '@/lib/toast'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -208,12 +209,7 @@ export default function Profil() {
       })
       if (!res.ok) { toast.error('Erreur génération image'); return }
       const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `memorabilius-wrap-${format}-${period}.png`
-      a.click()
-      URL.revokeObjectURL(url)
+      await saveOrShareFile(blob, `memorabilius-wrap-${format}-${period}.png`)
     } catch (e: any) {
       toast.error('Erreur : ' + e.message)
     } finally {
