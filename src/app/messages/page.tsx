@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
+import OnlineIndicator from '@/components/OnlineIndicator'
 
 // Préfixe marqueur pour les messages contenant une image (évite une migration de schéma)
 const IMG_PREFIX = '[[img]]'
@@ -65,10 +66,31 @@ function MessagesContent() {
   const [newConvSearch, setNewConvSearch] = useState('')
   const [newConvResults, setNewConvResults] = useState<any[]>([])
   const [uploading, setUploading] = useState(false)
+  const [reactionPickerFor, setReactionPickerFor] = useState<string | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const activeConvRef = useRef<string | null>(null)
+  const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   activeConvRef.current = activeConv
+
+  const REACTIONS = ['❤️', '😂', '😮', '😢', '👍', '🔥']
+
+  const setReaction = async (messageId: string, emoji: string | null) => {
+    setReactionPickerFor(null)
+    await supabase.from('messages').update({ reaction: emoji }).eq('id', messageId)
+    if (userId && activeConv) loadMessages(userId, activeConv)
+  }
+
+  const toggleHeartReaction = (msg: any) => {
+    setReaction(msg.id, msg.reaction === '❤️' ? null : '❤️')
+  }
+
+  const startLongPress = (messageId: string) => {
+    pressTimer.current = setTimeout(() => setReactionPickerFor(messageId), 380)
+  }
+  const cancelLongPress = () => {
+    if (pressTimer.current) { clearTimeout(pressTimer.current); pressTimer.current = null }
+  }
 
   const bg = dark ? '#1a1a1a' : 'white'
   const bgPanel = dark ? '#222' : 'white'
@@ -76,8 +98,7 @@ function MessagesContent() {
   const border = dark ? '#333' : '#f0f0f0'
   const textMain = dark ? '#fff' : '#121212'
   const textMuted = dark ? '#888' : '#999'
-  const bubbleMeBg = '#003DA6'
-  const bubbleThemBg = dark ? '#333' : '#f0f0f0'
+  const bubbleThemBg = dark ? '#262626' : '#efefef'
   const bubbleThemText = dark ? '#fff' : '#121212'
 
   useEffect(() => {
@@ -109,6 +130,17 @@ function MessagesContent() {
         const conv = activeConvRef.current
         if (conv) loadMessages(userId, conv)
       })
+      .on('postgres_changes', {
+        event: 'UPDATE', schema: 'public', table: 'messages',
+      }, (payload: any) => {
+        // Réactions et accusés de lecture arrivent en UPDATE — on rafraîchit
+        // juste la conversation ouverte pour les refléter en direct.
+        const msg = payload.new
+        if (!msg) return
+        if (msg.to_user_id !== userId && msg.from_user_id !== userId) return
+        const conv = activeConvRef.current
+        if (conv) loadMessages(userId, conv)
+      })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
   }, [userId])
@@ -134,7 +166,7 @@ function MessagesContent() {
     }
     const ids = Object.keys(convMap)
     if (ids.length > 0) {
-      const { data: profs } = await supabase.from('profiles').select('id, display_name, avatar_url').in('id', ids)
+      const { data: profs } = await supabase.from('profiles').select('id, display_name, avatar_url, last_seen').in('id', ids)
       const profMap: Record<string, any> = {}
       profs?.forEach(p => { profMap[p.id] = p })
       setProfiles(profMap)
@@ -183,14 +215,14 @@ function MessagesContent() {
 
     await supabase.from('messages').update({ lu: true }).eq('to_user_id', uid).eq('from_user_id', otherId)
     if (!profiles[otherId]) {
-      const { data: p } = await supabase.from('profiles').select('id, display_name, avatar_url').eq('id', otherId).single()
+      const { data: p } = await supabase.from('profiles').select('id, display_name, avatar_url, last_seen').eq('id', otherId).single()
       if (p) setProfiles(prev => ({ ...prev, [otherId]: p }))
     }
   }
 
-  const sendMessage = async () => {
-    if (!newMsg.trim() || !userId || !activeConv) return
-    const content = newMsg.trim()
+  const sendMessage = async (contentOverride?: string) => {
+    const content = (contentOverride ?? newMsg).trim()
+    if (!content || !userId || !activeConv) return
     const { error } = await supabase.from('messages').insert({
       from_user_id: userId,
       to_user_id: activeConv,
@@ -341,16 +373,21 @@ function MessagesContent() {
                 background: activeConv === conv.id ? bgHover : 'transparent',
                 display: 'flex', alignItems: 'center', gap: 12,
               }}>
-                <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
-                  style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
+                <div style={{ position: 'relative', flexShrink: 0 }}>
+                  <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
+                    style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                  <span style={{ position: 'absolute', bottom: 0, right: 0 }}>
+                    <OnlineIndicator lastSeen={profiles[conv.id]?.last_seen} size={12} />
+                  </span>
+                </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
-                    <span style={{ fontWeight: 800, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[conv.id]?.display_name || '...'}</span>
-                    <span style={{ fontSize: 10, color: textMuted, flexShrink: 0 }}>{fmtConvDate(conv.date)}</span>
+                    <span style={{ fontWeight: conv.unread > 0 ? 900 : 700, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[conv.id]?.display_name || '...'}</span>
+                    <span style={{ fontSize: 10, color: conv.unread > 0 ? '#003DA6' : textMuted, fontWeight: conv.unread > 0 ? 800 : 400, flexShrink: 0 }}>{fmtConvDate(conv.date)}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
-                    <p style={{ fontSize: 11, color: textMuted, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
-                    {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 18, height: 18, fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, flexShrink: 0, marginLeft: 4 }}>{conv.unread}</span>}
+                    <p style={{ fontSize: 12, color: conv.unread > 0 ? textMain : textMuted, fontWeight: conv.unread > 0 ? 700 : 400, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
+                    {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 9, height: 9, flexShrink: 0, marginLeft: 6 }} />}
                   </div>
                 </div>
               </div>
@@ -374,8 +411,13 @@ function MessagesContent() {
                   title="Voir la galerie"
                   style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}
                 >
-                  <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
-                    style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                  <div style={{ position: 'relative', flexShrink: 0 }}>
+                    <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
+                      style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                    <span style={{ position: 'absolute', bottom: -1, right: -1 }}>
+                      <OnlineIndicator lastSeen={profiles[activeConv]?.last_seen} size={11} />
+                    </span>
+                  </div>
                   <div>
                     <p style={{ fontWeight: 800, fontSize: 14, margin: 0, color: textMain, textDecoration: 'underline', textDecorationColor: 'transparent', transition: 'text-decoration-color 0.15s' }}
                       onMouseEnter={e => (e.currentTarget.style.textDecorationColor = textMain)}
@@ -388,7 +430,7 @@ function MessagesContent() {
 
               {/* Messages */}
               <div style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {messages.map(msg => {
+                {messages.map((msg, msgIdx) => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
 
@@ -515,39 +557,80 @@ function MessagesContent() {
                           </a>
                         )}
 
-                        {/* Bulle de message */}
-                        {isImageMsg(msg.contenu) ? (
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: isMe ? 'flex-end' : 'flex-start' }}>
-                            <a href={imgUrlOf(msg.contenu)} target="_blank" rel="noopener noreferrer">
+                        {/* Bulle de message — double-tap = ❤️, appui long = choix d'émoji */}
+                        <div
+                          style={{ position: 'relative' }}
+                          onDoubleClick={() => toggleHeartReaction(msg)}
+                          onTouchStart={() => startLongPress(msg.id)}
+                          onTouchEnd={cancelLongPress}
+                          onTouchMove={cancelLongPress}
+                          onMouseDown={() => startLongPress(msg.id)}
+                          onMouseUp={cancelLongPress}
+                          onMouseLeave={cancelLongPress}
+                        >
+                          {isImageMsg(msg.contenu) ? (
+                            <a href={imgUrlOf(msg.contenu)} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
                               <img src={imgUrlOf(msg.contenu)} alt="photo"
-                                style={{ maxWidth: 220, maxHeight: 280, borderRadius: 12, display: 'block', objectFit: 'cover' }} />
+                                style={{ maxWidth: 220, maxHeight: 280, borderRadius: 16, display: 'block', objectFit: 'cover' }} />
                             </a>
-                            <span style={{ fontSize: 10, color: textMuted }}>
-                              {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                          ) : (
+                            <div style={{
+                              padding: '10px 14px', borderRadius: isMe ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+                              background: isMe ? 'linear-gradient(135deg,#1a56db,#003DA6)' : bubbleThemBg,
+                              color: isMe ? 'white' : bubbleThemText,
+                              fontSize: 14, lineHeight: 1.45, userSelect: 'none',
+                            }}>
+                              <p style={{ margin: 0 }}><LinkifiedText text={msg.contenu} /></p>
+                            </div>
+                          )}
+
+                          {msg.reaction && (
+                            <span style={{
+                              position: 'absolute', bottom: -10, [isMe ? 'left' : 'right']: -6,
+                              background: dark ? '#1a1a1a' : 'white', borderRadius: '50%',
+                              width: 22, height: 22, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              fontSize: 13, boxShadow: '0 1px 4px rgba(0,0,0,.25)',
+                            } as React.CSSProperties}>
+                              {msg.reaction}
                             </span>
-                          </div>
-                        ) : (
-                          <div style={{
-                            padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-                            background: isMe ? bubbleMeBg : bubbleThemBg,
-                            color: isMe ? 'white' : bubbleThemText,
-                            fontSize: 13, lineHeight: 1.5,
-                          }}>
-                            <p style={{ margin: 0 }}><LinkifiedText text={msg.contenu} /></p>
-                            <p style={{ margin: '4px 0 0', fontSize: 10, opacity: 0.6, textAlign: 'right' }}>
-                              {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
-                            </p>
-                          </div>
-                        )}
+                          )}
+
+                          {reactionPickerFor === msg.id && (
+                            <div style={{
+                              position: 'absolute', bottom: '100%', marginBottom: 8, [isMe ? 'right' : 'left']: 0,
+                              background: dark ? '#2a2a2a' : 'white', borderRadius: 24, padding: '6px 8px',
+                              display: 'flex', gap: 4, boxShadow: '0 4px 16px rgba(0,0,0,.3)', zIndex: 30,
+                            } as React.CSSProperties}>
+                              {REACTIONS.map(emoji => (
+                                <button key={emoji} onClick={() => setReaction(msg.id, msg.reaction === emoji ? null : emoji)}
+                                  style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', padding: 3, lineHeight: 1 }}>
+                                  {emoji}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <span style={{ fontSize: 10, color: textMuted }}>
+                            {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                          {isMe && msg.lu && msgIdx === messages.length - 1 && (
+                            <span style={{ fontSize: 10, color: textMuted, fontStyle: 'italic' }}>Vu</span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )
                 })}
+                {reactionPickerFor && (
+                  <div onClick={() => setReactionPickerFor(null)} style={{ position: 'fixed', inset: 0, zIndex: 20 }} />
+                )}
                 <div ref={bottomRef} />
               </div>
 
-              {/* Input */}
-              <div style={{ padding: '12px 20px', borderTop: `1px solid ${border}`, display: 'flex', gap: 10, alignItems: 'center' }}>
+              {/* Input façon Insta : pill avec icône appareil photo intégrée + bouton cœur d'envoi rapide */}
+              <div style={{ padding: '10px 16px', borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -556,27 +639,44 @@ function MessagesContent() {
                   multiple
                   onChange={e => { const files = Array.from(e.target.files || []); if (files.length) sendPhotos(files); e.target.value = '' }}
                 />
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={uploading}
-                  title="Envoyer une photo"
-                  style={{
-                    background: 'none', border: `1px solid ${border}`, color: '#003DA6',
-                    width: 40, height: 40, borderRadius: 8, fontSize: 18, cursor: uploading ? 'default' : 'pointer',
-                    flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  }}
-                >{uploading ? '…' : '📷'}</button>
-                <input
-                  value={newMsg}
-                  onChange={e => setNewMsg(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                  placeholder={t('messages_placeholder')}
-                  style={{ flex: 1, background: dark ? '#2a2a2a' : undefined, color: dark ? '#fff' : undefined, borderColor: dark ? '#444' : undefined }}
-                />
-                <button onClick={sendMessage} style={{
-                  background: '#003DA6', color: 'white', border: 'none',
-                  padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 14, cursor: 'pointer'
-                }}>{t('messages_send')}</button>
+                <div style={{
+                  flex: 1, display: 'flex', alignItems: 'center', gap: 6,
+                  background: dark ? '#262626' : '#efefef', borderRadius: 24, padding: '4px 6px 4px 6px',
+                }}>
+                  <button
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                    title="Envoyer une photo"
+                    style={{
+                      background: 'none', border: 'none', color: dark ? '#eee' : '#333',
+                      width: 32, height: 32, borderRadius: '50%', fontSize: 17, cursor: uploading ? 'default' : 'pointer',
+                      flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}
+                  >{uploading ? '…' : '📷'}</button>
+                  <input
+                    value={newMsg}
+                    onChange={e => setNewMsg(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
+                    placeholder={t('messages_placeholder')}
+                    style={{
+                      flex: 1, background: 'transparent', color: dark ? '#fff' : '#121212',
+                      border: 'none', outline: 'none', fontSize: 14, padding: '6px 2px',
+                    }}
+                  />
+                </div>
+                {newMsg.trim() ? (
+                  <button onClick={() => sendMessage()} style={{
+                    background: '#003DA6', color: 'white', border: 'none', flexShrink: 0,
+                    width: 40, height: 40, borderRadius: '50%', fontSize: 16, cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>➤</button>
+                ) : (
+                  <button onClick={() => sendMessage('❤️')} title="Envoyer un cœur" style={{
+                    background: 'none', border: 'none', flexShrink: 0,
+                    width: 40, height: 40, borderRadius: '50%', fontSize: 22, cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>❤️</button>
+                )}
               </div>
             </>
           )}
