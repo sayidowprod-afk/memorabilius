@@ -29,6 +29,14 @@ const ToolIcon = () => (
   </svg>
 )
 
+// Monogramme Memorabilius (façon dos de carte à collectionner) — watermark discret
+const MonogramMark = () => (
+  <svg width="15" height="20" viewBox="0 0 24 32" fill="none">
+    <rect x="1" y="1" width="22" height="30" rx="1.5" stroke="white" strokeWidth="1.6" fill="none" />
+    <path d="M6 24V8l6 8 6-8v16" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+)
+
 export default function MobileBottomNav() {
   const isNative = useIsNative()
   const { user } = useAuth()
@@ -67,16 +75,12 @@ export default function MobileBottomNav() {
       .then(({ data: p }) => setIsAdmin(p?.is_admin ?? false))
   }, [user?.id])
 
-  const hiddenOnRoute = pathname.startsWith('/messages')
-
   useEffect(() => {
-    document.body.classList.toggle('native-bottom-nav', isNative && !hiddenOnRoute)
+    document.body.classList.toggle('native-bottom-nav', isNative)
     return () => { document.body.classList.remove('native-bottom-nav') }
-  }, [isNative, hiddenOnRoute])
+  }, [isNative])
 
-  // Le chat prend tout l'écran, façon Insta — pas de bottom bar par-dessus
-  // (mais le listener du bouton retour Android au-dessus reste actif).
-  if (!isNative || hiddenOnRoute) return null
+  if (!isNative) return null
 
   const toggle = (name: 'communaute' | 'outils') => {
     hapticTap()
@@ -146,7 +150,10 @@ export default function MobileBottomNav() {
                 transform: 'rotate(12deg)',
                 boxShadow: '0 6px 16px rgba(0,61,166,.5)',
                 border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
-              }} />
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <span style={{ opacity: 0.5 }}><MonogramMark /></span>
+              </div>
             </div>
             <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }}>{t('nav_galerie')}</span>
           </Link>

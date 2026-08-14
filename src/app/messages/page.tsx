@@ -7,7 +7,6 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
-import { useIsNative } from '@/lib/useIsNative'
 
 // Préfixe marqueur pour les messages contenant une image (évite une migration de schéma)
 const IMG_PREFIX = '[[img]]'
@@ -45,7 +44,6 @@ function compressImage(file: File): Promise<Blob> {
 function MessagesContent() {
   const { t } = useLang()
   const { dark } = useTheme()
-  const isNative = useIsNative()
   const router = useRouter()
   const searchParams = useSearchParams()
   const toParam = searchParams.get('to')
@@ -150,14 +148,6 @@ function MessagesContent() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
-
-  // Sur l'app native, la topbar/bottombar sont masquées sur cette route (chat
-  // plein écran façon Insta) — on retire aussi le padding du <main> autour.
-  useEffect(() => {
-    if (!isNative) return
-    document.body.classList.add('msg-fullscreen')
-    return () => { document.body.classList.remove('msg-fullscreen') }
-  }, [isNative])
 
   const loadConversations = async (uid: string) => {
     const { data } = await supabase
@@ -337,12 +327,10 @@ function MessagesContent() {
         .msg-back { display: none; }
         @media (max-width: 768px) {
           .msg-back { display: inline-block !important; }
-          .msg-page { margin: 0 !important; padding: 0 !important; max-width: none !important; height: 100dvh !important; }
-          .msg-layout { flex-direction: column !important; height: 100dvh !important; gap: 0 !important; max-width: none !important; margin: 0 !important; }
-          .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 0 !important; box-shadow: none !important; }
-          .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 !important; box-shadow: none !important; }
-          .msg-list-header, .msg-chat-header { padding-top: calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 14px) !important; }
-          .msg-avatar-ring { width: 56px !important; height: 56px !important; }
+          .msg-layout { flex-direction: column !important; height: calc(100vh - 80px) !important; gap: 0 !important; }
+          .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 12px 12px 0 0 !important; }
+          .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
+          .msg-avatar-ring { width: 52px !important; height: 52px !important; }
         }
       `}</style>
 
@@ -351,12 +339,7 @@ function MessagesContent() {
         {/* Liste conversations */}
         <div className="msg-list" style={{ width: 280, background: bgPanel, borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           <div className="msg-list-header" style={{ padding: '16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              {isNative && (
-                <button onClick={() => router.back()} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 22, color: textMain, padding: '0 4px 0 0', display: 'flex' }}>‹</button>
-              )}
-              <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0, color: textMain }}>{t('messages_title')}</h2>
-            </div>
+            <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0, color: textMain }}>{t('messages_title')}</h2>
             <button onClick={() => setNewConvOpen(v => !v)} title="Nouvelle conversation" style={{
               background: newConvOpen ? '#003DA6' : 'none', border: 'none', color: newConvOpen ? 'white' : (dark ? '#eee' : '#222'),
               width: 34, height: 34, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
