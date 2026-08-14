@@ -19,3 +19,13 @@ export async function hapticTap() {
     await Haptics.impact({ style: ImpactStyle.Light })
   } catch {}
 }
+
+// Vibration plus marquée pour un moment de célébration (badge débloqué, etc.)
+export async function hapticSuccess() {
+  if (!Capacitor.isNativePlatform()) return
+  if (!isHapticsEnabled()) return
+  try {
+    const { Haptics, NotificationType } = await import('@capacitor/haptics')
+    await Haptics.notification({ type: NotificationType.Success })
+  } catch {}
+}

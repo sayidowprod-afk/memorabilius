@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { BADGE_CATEGORIES, BadgeCategory, BadgeTier } from '@/lib/badgeDefinitions'
+import { toast } from '@/lib/toast'
+import { hapticSuccess } from '@/lib/haptics'
+import { maybePromptReview } from '@/lib/reviewPrompt'
 
 // ── SVG path generators (module-level, computed once) ──────────────────────
 function polyPath(n: number, r: number, cx = 50, cy = 50, off = 0) {
@@ -361,12 +364,61 @@ function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip
   )
 }
 
+// ── Confetti de célébration (nouveau badge débloqué) ────────────────────────
+const CONFETTI_COLORS = ['#f0cc70', '#9a6028', '#78b0d8', '#f8c030', '#d838f8', '#58c8ff']
+
+function ConfettiBurst({ label, emoji }: { label: string; emoji: string }) {
+  const particles = Array.from({ length: 26 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    delay: Math.random() * 0.25,
+    duration: 1.1 + Math.random() * 0.6,
+    rotate: Math.random() * 360,
+    color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+    size: 6 + Math.random() * 6,
+  }))
+
+  return createPortal(
+    <div style={{ position: 'fixed', inset: 0, zIndex: 99999, pointerEvents: 'none', overflow: 'hidden' }}>
+      <style>{`
+        @keyframes confetti-fall {
+          0%   { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(60vh) rotate(540deg); opacity: 0; }
+        }
+        @keyframes badge-toast-in {
+          0%   { transform: translate(-50%, -20px); opacity: 0; }
+          15%  { transform: translate(-50%, 0); opacity: 1; }
+          85%  { transform: translate(-50%, 0); opacity: 1; }
+          100% { transform: translate(-50%, -12px); opacity: 0; }
+        }
+      `}</style>
+      {particles.map(p => (
+        <span key={p.id} style={{
+          position: 'absolute', top: 0, left: `${p.left}%`,
+          width: p.size, height: p.size * 1.4, background: p.color,
+          borderRadius: 2, animation: `confetti-fall ${p.duration}s ease-in ${p.delay}s forwards`,
+        }} />
+      ))}
+      <div style={{
+        position: 'fixed', top: '18%', left: '50%', animation: 'badge-toast-in 1.8s ease forwards',
+        background: 'linear-gradient(160deg,#f0cc70,#a07018)', color: '#2a1808',
+        fontWeight: 900, fontSize: 15, padding: '12px 22px', borderRadius: 14,
+        boxShadow: '0 10px 30px rgba(0,0,0,.5)', whiteSpace: 'nowrap',
+      }}>
+        {emoji} Badge débloqué : {label}
+      </div>
+    </div>,
+    document.body
+  )
+}
+
 // ── Main component ────────────────────────────────────────────────────────
-export default function BadgeBox({ userId }: { userId: string }) {
+export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?: boolean }) {
   const [data, setData]       = useState<BadgeData | null>(null)
   const [loading, setLoading] = useState(true)
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [celebration, setCelebration] = useState<{ label: string; emoji: string } | null>(null)
 
   useEffect(() => setMounted(true), [])
 
@@ -381,6 +433,60 @@ export default function BadgeBox({ userId }: { userId: string }) {
       })
   }, [userId])
 
+  const statMap: Record<string, number> = data ? {
+    cartes: data.stat_total, rc: data.stat_rc, patch: data.stat_patch,
+    num: data.stat_num, mois: data.mois_count,
+    views: Number(data.views_count), teams: data.teams_count,
+  } : {}
+
+  const earned = new Set<string>()
+  for (const cat of BADGE_CATEGORIES) {
+    const v = statMap[cat.id] ?? 0
+    for (const t of cat.tiers) { if (v >= t.threshold) earned.add(t.id) }
+  }
+  const earnedKey = Array.from(earned).sort().join(',')
+
+  // Détecte les badges nouvellement débloqués (uniquement sur sa propre galerie)
+  // et déclenche célébration (confetti + vibration + toast) et, à partir du
+  // 2e badge débloqué sur l'appareil, une invitation à noter l'app.
+  useEffect(() => {
+    if (!isOwner || !data || !userId || !earnedKey) return
+    const storageKey = `badges-seen-${userId}`
+    const seenRaw = localStorage.getItem(storageKey)
+    const currentIds = earnedKey.split(',')
+    if (seenRaw === null) {
+      // Première mesure sur cet appareil : sert de référence, pas de célébration
+      // (sinon on fêterait d'un coup tous les badges déjà acquis avant ce jour).
+      localStorage.setItem(storageKey, JSON.stringify(currentIds))
+      return
+    }
+    const seen = new Set<string>(JSON.parse(seenRaw))
+    const newlyEarnedIds = currentIds.filter(id => !seen.has(id))
+    if (newlyEarnedIds.length === 0) return
+    localStorage.setItem(storageKey, JSON.stringify(currentIds))
+
+    let best: { cat: BadgeCategory; tier: BadgeTier; tierIdx: number } | null = null
+    for (const cat of BADGE_CATEGORIES) {
+      cat.tiers.forEach((tier, tierIdx) => {
+        if (newlyEarnedIds.includes(tier.id) && (!best || tierIdx > best.tierIdx)) {
+          best = { cat, tier, tierIdx }
+        }
+      })
+    }
+    if (!best) return
+    const { cat, tier } = best as { cat: BadgeCategory; tier: BadgeTier; tierIdx: number }
+
+    hapticSuccess()
+    toast.success(`${cat.emoji} Nouveau badge débloqué : ${tier.label} ${cat.unit} !`)
+    setCelebration({ label: `${tier.label} ${cat.unit}`, emoji: cat.emoji })
+    setTimeout(() => setCelebration(null), 1800)
+
+    const totalKey = 'badges-total-earned-count'
+    const total = Number(localStorage.getItem(totalKey) || '0') + newlyEarnedIds.length
+    localStorage.setItem(totalKey, String(total))
+    if (total >= 2) maybePromptReview()
+  }, [earnedKey, isOwner, userId, !!data])
+
   if (loading) return (
     <div style={{ background: '#180828', borderRadius: 16, padding: 48, textAlign: 'center', color: '#7c3aed', fontSize: 13 }}>
       Chargement des badges…
@@ -388,20 +494,9 @@ export default function BadgeBox({ userId }: { userId: string }) {
   )
   if (!data) return null
 
-  const statMap: Record<string, number> = {
-    cartes: data.stat_total, rc: data.stat_rc, patch: data.stat_patch,
-    num: data.stat_num, mois: data.mois_count,
-    views: Number(data.views_count), teams: data.teams_count,
-  }
-
-  const earned = new Set<string>()
-  for (const cat of BADGE_CATEGORIES) {
-    const v = statMap[cat.id] ?? 0
-    for (const t of cat.tiers) { if (v >= t.threshold) earned.add(t.id) }
-  }
-
   return (
     <div>
+      {celebration && <ConfettiBurst label={celebration.label} emoji={celebration.emoji} />}
       <style>{`
         @keyframes holo-badge {
           0%,100% { filter: hue-rotate(0deg) brightness(1.1) }

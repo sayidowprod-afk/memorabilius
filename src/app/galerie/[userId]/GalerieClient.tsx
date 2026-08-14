@@ -1,6 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
-import { useEffect, useState, useRef, useMemo } from 'react'
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
+import { flushSync } from 'react-dom'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -373,11 +374,25 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
     return { border: `${width}px solid ${color}` }
   }
-  const [popup, setPopup] = useState<Card | null>(null)
+  const [popup, setPopupRaw] = useState<Card | null>(null)
+  // Ouverture/fermeture/navigation du viewer via l'API View Transitions quand
+  // le navigateur la supporte : un fondu-enchaîné natif remplace le cut sec.
+  const setPopup = useCallback((next: Card | null | ((prev: Card | null) => Card | null)) => {
+    const apply = () => flushSync(() => setPopupRaw(next))
+    const startVT = (document as any).startViewTransition?.bind(document)
+    if (!startVT) { apply(); return }
+    const vt = startVT(apply)
+    // Une transition en cours peut être avortée par la suivante (ex: clics rapides
+    // suivant/précédent) — chaque promesse doit être catchée séparément.
+    vt?.ready?.catch(() => {})
+    vt?.updateCallbackDone?.catch(() => {})
+    vt?.finished?.catch(() => {})
+  }, [])
   const [tradeCard, setTradeCard] = useState<Card | null>(null)
   const [tradeSent, setTradeSent] = useState(false)
   const [showConversionBanner, setShowConversionBanner] = useState(true)
   const [loaded, setLoaded] = useState(false)
+  const [usingOfflineCache, setUsingOfflineCache] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
@@ -669,8 +684,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
         setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
         setLoaded(true)
+        setUsingOfflineCache(false)
         const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
         if (target) { const match = allCards.find(c => c.f === target); if (match) setPopup(match) }
+
+        // Cache la galerie du propriétaire pour une consultation hors-ligne partielle
+        if (isOwner) {
+          try { localStorage.setItem(`gallery-cache-${userId}`, JSON.stringify(allCards)) } catch {}
+        }
       }
 
       // Premier batch + card_collections en parallèle → affichage immédiat
@@ -697,7 +718,26 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         )
         applyAndShow([...firstBatch, ...remainingBatches.flat()], ccMap)
       }
-    } catch (e) { console.error('CSV error', e); setLoaded(true) }
+    } catch (e) {
+      console.error('CSV error', e)
+      // Hors-ligne / requête échouée : si c'est la galerie du propriétaire, on
+      // retombe sur la dernière copie mise en cache plutôt que d'afficher du vide.
+      if (isOwner) {
+        try {
+          const cached = localStorage.getItem(`gallery-cache-${userId}`)
+          if (cached) {
+            const allCards: Card[] = JSON.parse(cached)
+            setCards(allCards)
+            setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+            setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
+            setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
+            setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
+            setUsingOfflineCache(true)
+          }
+        } catch {}
+      }
+      setLoaded(true)
+    }
   }
 
   const filtered = useMemo(() => {
@@ -1300,6 +1340,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     <>
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
+        {usingOfflineCache && (
+          <div style={{
+            background: dark ? '#3a2e00' : '#fff8e1', border: `1px solid ${dark ? '#5a4600' : '#ffe082'}`,
+            borderRadius: 10, padding: '10px 16px', marginBottom: 16, fontSize: 13, fontWeight: 600,
+            color: dark ? '#ffd966' : '#8a6500', display: 'flex', alignItems: 'center', gap: 8,
+          }}>
+            📡 Hors ligne — affichage de la dernière version de ta galerie enregistrée sur cet appareil.
+          </div>
+        )}
+
         {/* Header profil */}
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
           
@@ -1649,7 +1699,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {activeTab === 'badges' && (
           <div style={{ paddingBottom: 32 }}>
-            <BadgeBox userId={profile?.id || userId} />
+            <BadgeBox userId={profile?.id || userId} isOwner={isOwner} />
           </div>
         )}
 

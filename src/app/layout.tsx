@@ -20,6 +20,7 @@ import PageTransition from '@/components/PageTransition'
 import PullToRefresh from '@/components/PullToRefresh'
 import PushInit from '@/components/PushInit'
 import OfflineBanner from '@/components/OfflineBanner'
+import LocalRemindersInit from '@/components/LocalRemindersInit'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LangProvider>
             <NativeInit />
             <PushInit />
+            <LocalRemindersInit />
             <OfflineBanner />
             <PullToRefresh />
             <WebOnly><Navbar /></WebOnly>
