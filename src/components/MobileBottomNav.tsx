@@ -14,12 +14,6 @@ import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '
 const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
 const OUTILS_PATHS = ['/scanner', '/setlist', '/recherche', '/profil']
 
-const LANGS = [
-  { code: 'fr' as const, flag: '🇫🇷' },
-  { code: 'en' as const, flag: '🇬🇧' },
-  { code: 'de' as const, flag: '🇩🇪' },
-]
-
 const UsersIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -39,7 +33,7 @@ export default function MobileBottomNav() {
   const isNative = useIsNative()
   const { user } = useAuth()
   const { dark } = useTheme()
-  const { lang, setLang, t } = useLang()
+  const { t } = useLang()
   const router = useRouter()
   const pathname = usePathname()
 
@@ -200,17 +194,6 @@ export default function MobileBottomNav() {
         )}
 
         <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
-        <div style={{ display: 'flex', gap: 6, padding: '8px 12px' }}>
-          {LANGS.map(l => (
-            <button key={l.code} onClick={() => setLang(l.code)} style={{
-              flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'),
-              color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'),
-              border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700,
-            }}>
-              {l.flag}
-            </button>
-          ))}
-        </div>
 
         {user && (
           <button onClick={handleLogout} style={{ ...dropItemStyle, width: '100%', textAlign: 'left', border: 'none', background: 'none', cursor: 'pointer', color: '#c0392b' }}>
