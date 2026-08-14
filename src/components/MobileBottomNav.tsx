@@ -12,7 +12,7 @@ import BottomSheet from '@/components/BottomSheet'
 import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
-const OUTILS_PATHS = ['/scanner', '/setlist', '/recherche', '/profil', '/notifications']
+const OUTILS_PATHS = ['/scanner', '/setlist', '/recherche', '/profil']
 
 const LANGS = [
   { code: 'fr' as const, flag: '🇫🇷' },
@@ -44,7 +44,6 @@ export default function MobileBottomNav() {
   const pathname = usePathname()
 
   const [sheet, setSheet] = useState<'communaute' | 'outils' | null>(null)
-  const [notifs, setNotifs] = useState(0)
   const [isAdmin, setIsAdmin] = useState(false)
 
   const sheetRef = useRef(sheet)
@@ -78,12 +77,6 @@ export default function MobileBottomNav() {
     document.body.classList.toggle('native-bottom-nav', isNative)
     return () => { document.body.classList.remove('native-bottom-nav') }
   }, [isNative])
-
-  useEffect(() => {
-    if (!user || !isNative) { setNotifs(0); return }
-    supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('lu', false)
-      .then(({ count }) => setNotifs(count || 0))
-  }, [user?.id, isNative])
 
   if (!isNative) return null
 
@@ -171,15 +164,6 @@ export default function MobileBottomNav() {
         >
           <ToolIcon />
           <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }}>{t('nav_outils')}</span>
-          {notifs > 0 && (
-            <span style={{
-              position: 'absolute', top: 4, right: '22%', background: '#e74c3c', color: 'white',
-              borderRadius: '50%', minWidth: 16, height: 16, fontSize: 9, fontWeight: 900,
-              display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 3px',
-            }}>
-              {notifs > 9 ? '9+' : notifs}
-            </span>
-          )}
         </button>
       </div>
 
@@ -201,17 +185,6 @@ export default function MobileBottomNav() {
         {user && (
           <>
             <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
-            <Link href="/notifications" style={dropItemStyle} onClick={() => setSheet(null)}>
-              🔔 Notifications
-              {notifs > 0 && (
-                <span style={{
-                  background: '#e74c3c', color: 'white', borderRadius: '50%', minWidth: 18, height: 18,
-                  fontSize: 10, fontWeight: 900, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px',
-                }}>
-                  {notifs > 9 ? '9+' : notifs}
-                </span>
-              )}
-            </Link>
             <Link href="/profil" style={dropItemStyle} onClick={() => setSheet(null)}>👤 {t('nav_profil')}</Link>
           </>
         )}

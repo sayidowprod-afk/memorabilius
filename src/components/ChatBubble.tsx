@@ -217,7 +217,9 @@ export default function ChatBubble() {
     }
   }
 
-  if (!userId) return null
+  // Sur l'app native, l'accès au chat passe par l'icône de la topbar → /messages,
+  // pas par la bulle flottante (qui reste pour le web/PWA).
+  if (!userId || isNative) return null
 
   return (
     <>
