@@ -274,11 +274,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const searchSets = async (q: string, year: string) => {
     if (q.trim().length < 2 && year.trim().length < 4) { setSetPickerResults([]); return }
-    let qry = supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').limit(20)
-    if (year.trim().length >= 4) qry = qry.eq('year', parseInt(year))
+    let qry = supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').limit(60)
+    // Les sets "saison" (ex: 1992-93) sont parfois enregistrés sous l'année de
+    // début, parfois sous celle de fin selon la source — on tolère les deux
+    // plutôt qu'une égalité stricte, sinon certains sets n'apparaissent jamais.
+    if (year.trim().length >= 4) {
+      const y = parseInt(year)
+      qry = qry.or(`year.eq.${y},year.eq.${y - 1},year.eq.${y + 1}`)
+    }
     if (q.trim().length >= 2) qry = qry.ilike('name', `%${q.trim()}%`)
     const { data } = await qry.order('total_cards', { ascending: false })
-    setSetPickerResults(dedupSets(data || []).slice(0, 12))
+    setSetPickerResults(dedupSets(data || []).slice(0, 25))
   }
 
   const LARGE_SET_THRESHOLD = 1500
