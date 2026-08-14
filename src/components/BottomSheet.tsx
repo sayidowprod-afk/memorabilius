@@ -13,7 +13,11 @@ export default function BottomSheet({
   const { dark } = useTheme()
   if (!open) return null
 
-  const bottom = typeof bottomOffset === 'number' ? `${bottomOffset}px` : bottomOffset
+  // La feuille chevauche volontairement le haut de la bottom bar de quelques px :
+  // la bottom bar (z-index plus élevé) la recouvre, ce qui absorbe tout écart
+  // d'arrondi entre les deux calculs de hauteur et évite un liseré visible.
+  const bottomRaw = typeof bottomOffset === 'number' ? `${bottomOffset}px` : bottomOffset
+  const bottom = `calc(${bottomRaw} - 8px)`
 
   return (
     <>

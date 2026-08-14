@@ -150,12 +150,24 @@ export default function MobileBottomNav() {
               textDecoration: 'none', marginTop: -20,
             }}
           >
-            <div style={{
-              width: 54, height: 54, borderRadius: '50%', background: '#003DA6',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 14px rgba(0,61,166,0.4)', border: `3px solid ${dark ? '#1a1a1a' : 'white'}`,
-            }}>
-              <CardIcon />
+            <div style={{ position: 'relative', width: 58, height: 54 }}>
+              <div style={{
+                position: 'absolute', top: 3, left: 15, width: 32, height: 44, borderRadius: 8,
+                background: 'linear-gradient(160deg,#6d97ee,#2352c9)',
+                transform: 'rotate(-16deg)',
+                boxShadow: '0 3px 8px rgba(0,0,0,.28)',
+                border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
+              }} />
+              <div style={{
+                position: 'absolute', top: 3, left: 11, width: 32, height: 44, borderRadius: 8,
+                background: 'linear-gradient(160deg,#1e63e0,#00307e)',
+                transform: 'rotate(11deg)',
+                boxShadow: '0 6px 16px rgba(0,61,166,.5)',
+                border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <CardIcon />
+              </div>
             </div>
             <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }}>{t('nav_galerie')}</span>
           </Link>
