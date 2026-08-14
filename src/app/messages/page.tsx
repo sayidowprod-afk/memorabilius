@@ -7,6 +7,11 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import { useIsNative } from '@/lib/useIsNative'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+
+// Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
+const TOPBAR_HEIGHT_CSS = 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 40px)'
 
 // Préfixe marqueur pour les messages contenant une image (évite une migration de schéma)
 const IMG_PREFIX = '[[img]]'
@@ -44,6 +49,7 @@ function compressImage(file: File): Promise<Blob> {
 function MessagesContent() {
   const { t } = useLang()
   const { dark } = useTheme()
+  const isNative = useIsNative()
   const router = useRouter()
   const searchParams = useSearchParams()
   const toParam = searchParams.get('to')
@@ -148,6 +154,14 @@ function MessagesContent() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  // Chat bord à bord façon Insta sur l'app native : on retire le padding du
+  // <main> autour, la topbar et la bottom bar (hors de <main>) restent visibles.
+  useEffect(() => {
+    if (!isNative) return
+    document.body.classList.add('msg-fullscreen')
+    return () => { document.body.classList.remove('msg-fullscreen') }
+  }, [isNative])
 
   const loadConversations = async (uid: string) => {
     const { data } = await supabase
@@ -332,6 +346,12 @@ function MessagesContent() {
           .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
           .msg-avatar-ring { width: 52px !important; height: 52px !important; }
         }
+        ${isNative ? `
+          /* App native : chat bord à bord, topbar/bottombar restent visibles au-dessus/dessous */
+          .msg-page { margin: 0 !important; padding: 0 !important; max-width: none !important; height: calc(100dvh - ${TOPBAR_HEIGHT_CSS} - ${NAV_TOTAL_HEIGHT_CSS}) !important; }
+          .msg-layout { max-width: none !important; margin: 0 !important; gap: 0 !important; height: 100% !important; }
+          .msg-list, .msg-chat { border-radius: 0 !important; box-shadow: none !important; }
+        ` : ''}
       `}</style>
 
       <div className="msg-layout" style={{ maxWidth: 1000, width: '100%', margin: '0 auto', height: 'calc(100vh - 120px)', display: 'flex', gap: 20 }}>
