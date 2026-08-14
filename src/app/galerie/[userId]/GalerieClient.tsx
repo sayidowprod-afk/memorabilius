@@ -2,6 +2,7 @@
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
+import { updateGalleryWidget } from '@/lib/widgetBridge'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -691,6 +692,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         // Cache la galerie du propriétaire pour une consultation hors-ligne partielle
         if (isOwner) {
           try { localStorage.setItem(`gallery-cache-${userId}`, JSON.stringify(allCards)) } catch {}
+
+          const lastAdded = [...cartesM].sort((a, b) =>
+            new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
+          )[0]
+          if (lastAdded) {
+            updateGalleryWidget({
+              imageUrl: lastAdded.f,
+              playerName: lastAdded.n || 'Ma galerie',
+              totalCards: allCards.length,
+              galleryUrl: `https://www.memorabilius.fr/galerie/${userId}`,
+            })
+          }
         }
       }
 
