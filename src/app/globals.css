@@ -54,7 +54,8 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-body.native-bottom-nav { padding-bottom: calc(64px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))); }
+/* Garder en phase avec NAV_TOTAL_HEIGHT_CSS dans src/lib/nativeLayout.ts (CSS ne peut pas importer du JS) */
+body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)); }
 
 /* ===== DARK MODE FORCÉ SUR TOUS LES ÉLÉMENTS ===== */
 [data-theme="dark"] div,

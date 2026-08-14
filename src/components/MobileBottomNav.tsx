@@ -9,10 +9,10 @@ import { useLang } from '@/lib/LangContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { hapticTap } from '@/lib/haptics'
 import BottomSheet from '@/components/BottomSheet'
+import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
 const OUTILS_PATHS = ['/scanner', '/setlist', '/recherche', '/profil', '/notifications']
-const NAV_HEIGHT = 64
 
 const LANGS = [
   { code: 'fr' as const, flag: '🇫🇷' },
@@ -122,10 +122,10 @@ export default function MobileBottomNav() {
     <>
       <div
         style={{
-          position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 250, height: NAV_HEIGHT,
+          position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 250, minHeight: NAV_CONTENT_HEIGHT,
           background: dark ? '#1a1a1a' : 'white',
           borderTop: `1px solid ${dark ? '#2a2a2a' : '#eee'}`,
-          paddingBottom: 'var(--safe-area-inset-bottom, env(safe-area-inset-bottom))',
+          paddingBottom: NAV_SAFE_AREA_BOTTOM,
           display: 'flex', alignItems: 'center', justifyContent: 'space-around',
         }}
       >
@@ -183,14 +183,14 @@ export default function MobileBottomNav() {
         </button>
       </div>
 
-      <BottomSheet open={sheet === 'communaute'} onClose={() => setSheet(null)} title={t('nav_communaute')} bottomOffset={NAV_HEIGHT}>
+      <BottomSheet open={sheet === 'communaute'} onClose={() => setSheet(null)} title={t('nav_communaute')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
         <Link href="/annuaire" style={dropItemStyle} onClick={() => setSheet(null)}>👥 {t('nav_annuaire')}</Link>
         <Link href="/teams" style={dropItemStyle} onClick={() => setSheet(null)}>🏆 {t('nav_teams')}</Link>
         <Link href="/trades" style={dropItemStyle} onClick={() => setSheet(null)}>🔄 {t('nav_trades')}</Link>
         <Link href="/evenements" style={dropItemStyle} onClick={() => setSheet(null)}>📅 {t('nav_evenements')}</Link>
       </BottomSheet>
 
-      <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_HEIGHT}>
+      <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
         <Link href="/scanner" style={dropItemStyle} onClick={() => setSheet(null)}>📷 {t('nav_scanner')}</Link>
         <Link href="/setlist" style={dropItemStyle} onClick={() => setSheet(null)}>📋 {t('nav_setlist')}</Link>
         <Link href="/recherche" style={dropItemStyle} onClick={() => setSheet(null)}>{t('nav_recherche')}</Link>

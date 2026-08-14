@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
@@ -20,8 +21,8 @@ const STATUS_COLOR: Record<string, string> = { pending: '#7a5500', accepted: '#1
 export default function ChatBubble() {
   const { dark } = useTheme()
   const isNative = useIsNative()
-  // Sur l'app native, la bottom bar (64px + safe-area) prend la place du bas d'écran.
-  const navOffset = isNative ? 'calc(64px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))' : '0px'
+  // Sur l'app native, la bottom bar prend la place du bas d'écran.
+  const navOffset = isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'
   const [userId, setUserId] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
   const [unread, setUnread] = useState(0)

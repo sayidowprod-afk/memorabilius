@@ -8,12 +8,12 @@ export default function BottomSheet({
   onClose: () => void
   title: string
   children: React.ReactNode
-  bottomOffset?: number
+  bottomOffset?: number | string
 }) {
   const { dark } = useTheme()
   if (!open) return null
 
-  const bottom = `${bottomOffset}px`
+  const bottom = typeof bottomOffset === 'number' ? `${bottomOffset}px` : bottomOffset
 
   return (
     <>
