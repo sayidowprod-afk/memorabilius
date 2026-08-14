@@ -45,6 +45,21 @@ function AnnuaireContent() {
   const [search, setSearch] = useState('')
   const [nbaFilter, setNbaFilter] = useState('')
 
+  // Resynchronise l'état des filtres avec l'URL à chaque changement (y compris
+  // navigation arrière/avant), pour ne pas perdre la recherche/team en revenant
+  // de la page d'un collectionneur.
+  useEffect(() => {
+    setTeamFilter(searchParams.get('team_id') || '')
+    setSearch(searchParams.get('q') || '')
+    setNbaFilter(searchParams.get('nba') || '')
+  }, [searchParams])
+
+  useEffect(() => {
+    if (!teamFilter) { setTeamName(''); return }
+    const t = teams.find(t => String(t.id) === teamFilter)
+    if (t) setTeamName(t.name)
+  }, [teamFilter, teams])
+
   useEffect(() => {
     supabase.from('teams').select('id, name').then(({ data }) => {
       setTeams(data || [])
@@ -122,19 +137,33 @@ function AnnuaireContent() {
     setCollectors(prev => prev.filter(c => ids.includes(c.id)))
   }
 
+  const updateUrlParams = (patch: Record<string, string>) => {
+    const params = new URLSearchParams(searchParams.toString())
+    for (const [key, value] of Object.entries(patch)) {
+      if (value) params.set(key, value)
+      else params.delete(key)
+    }
+    router.replace(`?${params.toString()}`, { scroll: false })
+  }
+
   const handleTeamChange = async (tid: string) => {
     setTeamFilter(tid)
-    if (tid) {
-      const t = teams.find(t => String(t.id) === tid)
-      setTeamName(t?.name || '')
-    } else {
-      setTeamName('')
-    }
-    // Mettre à jour l'URL sans recharger
-    const params = new URLSearchParams(searchParams.toString())
-    if (tid) params.set('team_id', tid)
-    else params.delete('team_id')
-    router.replace(`?${params.toString()}`, { scroll: false })
+    updateUrlParams({ team_id: tid })
+  }
+
+  const handleSearchChange = (v: string) => {
+    setSearch(v)
+    updateUrlParams({ q: v })
+  }
+
+  const handleNbaChange = (v: string) => {
+    setNbaFilter(v)
+    updateUrlParams({ nba: v })
+  }
+
+  const clearAllFilters = () => {
+    setSearch(''); setTeamFilter(''); setNbaFilter('')
+    updateUrlParams({ team_id: '', q: '', nba: '' })
   }
 
   const sorted = [...collectors].filter(c =>
@@ -266,7 +295,7 @@ function AnnuaireContent() {
       <div style={{ display: 'flex', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
         <input
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => handleSearchChange(e.target.value)}
           placeholder={t('directory_search_placeholder')}
           style={{ flex: '1 1 200px', minWidth: 180 }}
         />
@@ -274,14 +303,14 @@ function AnnuaireContent() {
           <option value="">{t('all_teams')}</option>
           {teams.map(t => <option key={t.id} value={String(t.id)}>{t.name}</option>)}
         </select>
-        <select value={nbaFilter} onChange={e => setNbaFilter(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
+        <select value={nbaFilter} onChange={e => handleNbaChange(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
           <option value="">{t('directory_all_nba')}</option>
           {SPORTS_TEAMS.map(t => <option key={t.id} value={t.id}>{t.name} ({t.sport.toUpperCase()})</option>)}
         </select>
         {(search || teamFilter || nbaFilter) && (
           <button
             type="button"
-            onClick={() => { setSearch(''); handleTeamChange(''); setNbaFilter('') }}
+            onClick={clearAllFilters}
             style={{ padding: '8px 14px', background: dark ? '#2a2a2a' : '#fff3e0', color: '#e67e22', border: '1px solid #ffe0b2', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0 }}
           >
             ✕ {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}

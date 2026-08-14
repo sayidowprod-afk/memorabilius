@@ -11,6 +11,7 @@ import OnlineIndicator from '@/components/OnlineIndicator'
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -2427,7 +2428,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           style={{
-            position: 'fixed', bottom: 88, right: 24, zIndex: 9000,
+            position: 'fixed', bottom: `calc(88px + ${isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'})`, right: 24, zIndex: 9000,
             width: 44, height: 44, borderRadius: '50%',
             background: accent, color: 'white', border: 'none',
             fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',

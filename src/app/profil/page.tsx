@@ -10,11 +10,13 @@ import { useTheme } from '@/lib/ThemeContext'
 import TeamPicker from '@/components/TeamPicker'
 import { subscribePush } from '@/components/PWAInstall'
 import ShowcaseWidget from '@/components/ShowcaseWidget'
+import { useIsNative } from '@/lib/useIsNative'
 
 export default function Profil() {
   const router = useRouter()
   const { t, lang } = useLang()
   const { dark } = useTheme()
+  const isNative = useIsNative()
   const [userId, setUserId] = useState<string | null>(null)
   const [form, setForm] = useState({ display_name: '', bio: '', lien_csv: '', couleur_bordure: '#003DA6', instagram: '', twitter: '', discord: '' })
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([])
@@ -37,6 +39,7 @@ export default function Profil() {
   const [pushSubscribed, setPushSubscribed] = useState(false)
   const [pushLoading, setPushLoading] = useState(false)
   const [pushError, setPushError] = useState('')
+  const [nativePushPermission, setNativePushPermission] = useState<'granted' | 'denied' | 'prompt' | null>(null)
   const [linkedProviders, setLinkedProviders] = useState<string[]>([])
   const [linkingProvider, setLinkingProvider] = useState<string | null>(null)
   const [wrapSending, setWrapSending] = useState(false)
@@ -77,6 +80,27 @@ export default function Profil() {
       }
     }
   }, [])
+
+  // Sur l'app native, le push passe par FCM (PushInit.tsx) et non par l'API
+  // web Notification/ServiceWorker — on affiche donc l'état de permission natif.
+  useEffect(() => {
+    if (!isNative) return
+    import('@capacitor/push-notifications').then(({ PushNotifications }) => {
+      PushNotifications.checkPermissions().then(p => setNativePushPermission(p.receive as any))
+    }).catch(() => {})
+  }, [isNative])
+
+  const handleRequestNativePush = async () => {
+    setPushLoading(true)
+    try {
+      const { PushNotifications } = await import('@capacitor/push-notifications')
+      const req = await PushNotifications.requestPermissions()
+      setNativePushPermission(req.receive as any)
+      if (req.receive === 'granted') await PushNotifications.register()
+    } finally {
+      setPushLoading(false)
+    }
+  }
 
   const handleEnablePush = async () => {
     setPushLoading(true)
@@ -342,7 +366,24 @@ export default function Profil() {
       {/* Notifications push */}
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
-        {!pushSupported ? (
+        {isNative ? (
+          nativePushPermission === 'granted' ? (
+            <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700 }}>✓ Notifications activées</p>
+          ) : nativePushPermission === 'denied' ? (
+            <p style={{ fontSize: 13, color: '#e74c3c' }}>
+              Bloquées dans les réglages Android de l'application. Autorisez les notifications pour Memorabilius dans Paramètres → Applications → Memorabilius → Notifications.
+            </p>
+          ) : (
+            <div>
+              <p style={{ fontSize: 13, color: '#666', marginBottom: 12 }}>
+                Recevez une alerte pour les messages, likes et cartes de votre wishlist trouvées.
+              </p>
+              <button onClick={handleRequestNativePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                {pushLoading ? '...' : 'Activer les notifications'}
+              </button>
+            </div>
+          )
+        ) : !pushSupported ? (
           <p style={{ fontSize: 13, color: '#999' }}>
             Non disponible sur ce navigateur. Sur iPhone, ajoutez d'abord Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil).
           </p>

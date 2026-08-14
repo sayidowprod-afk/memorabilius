@@ -352,9 +352,10 @@ function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip
 
       <div style={{
         fontSize: 8, fontWeight: 800,
-        color: isEarned ? pal.glow : '#3a1858',
-        textShadow: isEarned ? `0 0 8px ${pal.glow}` : 'none',
+        color: isEarned ? pal.rl : 'rgba(255,255,255,.75)',
+        textShadow: isEarned ? `0 0 6px ${pal.glow}, 0 1px 2px rgba(0,0,0,.9)` : '0 1px 2px rgba(0,0,0,.9)',
         letterSpacing: '.04em', lineHeight: 1,
+        background: 'rgba(0,0,0,.4)', padding: '2px 5px', borderRadius: 5,
       }}>{tier.label}</div>
     </div>
   )

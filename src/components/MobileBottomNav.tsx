@@ -47,7 +47,7 @@ const ToolIcon = () => (
 export default function MobileBottomNav() {
   const isNative = useIsNative()
   const { user } = useAuth()
-  const { dark, toggle: toggleTheme } = useTheme()
+  const { dark } = useTheme()
   const { lang, setLang, t } = useLang()
   const router = useRouter()
   const pathname = usePathname()
@@ -216,6 +216,8 @@ export default function MobileBottomNav() {
           </>
         )}
 
+        <Link href="/parametres" style={dropItemStyle} onClick={() => setSheet(null)}>⚙️ Paramètres</Link>
+
         {!user && (
           <>
             <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
@@ -226,12 +228,6 @@ export default function MobileBottomNav() {
 
         <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
         <div style={{ display: 'flex', gap: 6, padding: '8px 12px' }}>
-          <button onClick={toggleTheme} style={{
-            flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8,
-            padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600,
-          }}>
-            {dark ? '☀️' : '🌙'}
-          </button>
           {LANGS.map(l => (
             <button key={l.code} onClick={() => setLang(l.code)} style={{
               flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'),
