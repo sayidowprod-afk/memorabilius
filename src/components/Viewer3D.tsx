@@ -284,7 +284,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
     if (q.trim().length >= 2) qry = qry.ilike('name', `%${q.trim()}%`)
     const { data } = await qry.order('total_cards', { ascending: false })
-    setSetPickerResults(dedupSets(data || []).slice(0, 25))
+    const exactYear = year.trim().length >= 4 ? parseInt(year) : null
+    // Les correspondances de l'année exacte passent toujours devant celles à
+    // ±1 an (tolérées pour les sets "saison" mal étiquetés), sinon une marque
+    // avec beaucoup de variantes (ex: Topps) peut noyer le bon résultat.
+    const sorted = [...(data || [])].sort((a, b) => {
+      if (exactYear != null) {
+        const aExact = a.year === exactYear ? 0 : 1
+        const bExact = b.year === exactYear ? 0 : 1
+        if (aExact !== bExact) return aExact - bExact
+      }
+      return b.total_cards - a.total_cards
+    })
+    setSetPickerResults(dedupSets(sorted).slice(0, 25))
   }
 
   const LARGE_SET_THRESHOLD = 1500

@@ -1548,46 +1548,49 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           <CollectionStats cards={cards} accent={accent} totalValeur={isOwner ? Array.from(cardValues.values()).reduce((a, b) => a + b, 0) : undefined} />
         )}
 
-        {/* Grail Wall */}
+        {/* Grail Wall — podium 3 places (or/argent/bronze) */}
         {(isOwner || grailCards.length > 0) && (() => {
+          const GRAIL_MAX = 3
+          const MEDALS = [
+            { emoji: '🥇', color: '#FFD700', glow: '#FFD70088', width: 132 },
+            { emoji: '🥈', color: '#C0C0C0', glow: '#C0C0C088', width: 104 },
+            { emoji: '🥉', color: '#CD7F32', glow: '#CD7F3288', width: 104 },
+          ]
           const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
           const grailLoading = grailCards.length > 0 && !cardsLoaded
-          const emptySlots = grailLoading ? (5 - grailCards.length) : (5 - grailItems.length)
+          const podiumOrder = [1, 0, 2] // argent · or · bronze, l'or au centre
 
-          return (
-            <div style={{ marginBottom: 24 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                <span style={{ fontSize: 18 }}>💎</span>
-                <span style={{ fontWeight: 900, fontSize: 15, color: '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
-                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
-              </div>
+          const renderSlot = (i: number) => {
+            const medal = MEDALS[i]
+            if (i >= GRAIL_MAX) return null
 
-              <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
-                {/* Skeleton placeholders while gallery loads */}
-                {grailLoading && Array.from({ length: grailCards.length }).map((_, i) => (
-                  <div key={`sk-${i}`} style={{
-                    flexShrink: 0, width: 120, borderRadius: 10, aspectRatio: '2.5/3.5',
-                    background: dark
-                      ? 'linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%)'
-                      : 'linear-gradient(90deg,#f0f0f0 25%,#e4e4e4 50%,#f0f0f0 75%)',
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 1.5s infinite',
-                  }} />
-                ))}
-                {!grailLoading && grailItems.map((card, i) => {
-                  const tabColor = (card.collection_tag && tabSettings.get(card.collection_tag)?.color) || accent
-                  const resolvedColor = isGradient(tabColor) ? (tabColor.match(/#[0-9a-fA-F]{6}/)?.[0] || accent) : tabColor
-                  return (
-                    <div key={i} onClick={() => setPopup(card)} style={{
-                      flexShrink: 0, width: 120, cursor: 'pointer', position: 'relative',
-                      background: tabColor, padding: 3, borderRadius: 10,
-                      boxShadow: `0 4px 16px ${resolvedColor}44`, transition: 'transform 0.2s',
-                    }}
-                      onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
-                      onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                    >
-                      <div style={{ borderRadius: 8, overflow: 'hidden', background: 'white', position: 'relative' }}>
+            if (grailLoading && i < grailCards.length) {
+              return (
+                <div key={`sk-${i}`} style={{
+                  width: medal.width, borderRadius: 12, aspectRatio: '2.5/3.5',
+                  background: dark
+                    ? 'linear-gradient(90deg,#2a2a2a 25%,#333 50%,#2a2a2a 75%)'
+                    : 'linear-gradient(90deg,#f0f0f0 25%,#e4e4e4 50%,#f0f0f0 75%)',
+                  backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite',
+                }} />
+              )
+            }
+
+            const card = !grailLoading ? grailItems[i] : undefined
+            if (card) {
+              return (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                  <span style={{ fontSize: i === 0 ? 26 : 20 }}>{medal.emoji}</span>
+                  <div onClick={() => setPopup(card)} style={{
+                    width: medal.width, cursor: 'pointer', position: 'relative',
+                    background: `linear-gradient(160deg, ${medal.color}, ${medal.color}99)`, padding: 3, borderRadius: 12,
+                    boxShadow: `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
+                  }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                  >
+                    <div style={{ borderRadius: 9, overflow: 'hidden', background: 'white', position: 'relative' }}>
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
@@ -1606,39 +1609,48 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       {renderCardImage(card)}
                       <div style={{ padding: '6px 8px' }}>
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
-                        <p style={{ fontSize: 9, color: resolvedColor, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
-                      </div>
+                        <p style={{ fontSize: 9, color: medal.color, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
                       </div>
                     </div>
-                  )
-                })}
+                  </div>
+                </div>
+              )
+            }
 
-                {/* Slots vides */}
-                {isOwner && Array.from({ length: emptySlots }).map((_, i) => (
-                  <div key={`empty-${i}`}
+            // Slot vide
+            return (
+              <div key={`empty-${i}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                <span style={{ fontSize: i === 0 ? 26 : 20, opacity: 0.35 }}>{medal.emoji}</span>
+                {isOwner ? (
+                  <div
                     onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}
                     style={{
-                      flexShrink: 0, width: 120, border: `2px dashed ${accent}44`, borderRadius: 10,
+                      width: medal.width, border: `2px dashed ${medal.color}66`, borderRadius: 12,
                       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                      gap: 6, cursor: 'pointer', transition: '0.15s',
-                      aspectRatio: '2.5/3.5',
+                      gap: 6, cursor: 'pointer', transition: '0.15s', aspectRatio: '2.5/3.5',
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = accent; (e.currentTarget as HTMLDivElement).style.background = accent + '08' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = accent + '44'; (e.currentTarget as HTMLDivElement).style.background = 'transparent' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = medal.color; (e.currentTarget as HTMLDivElement).style.background = medal.color + '11' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = medal.color + '66'; (e.currentTarget as HTMLDivElement).style.background = 'transparent' }}
                   >
-                    <span style={{ fontSize: 28, opacity: 0.3 }}>+</span>
-                    <span style={{ fontSize: 10, color: '#bbb', fontWeight: 700, textAlign: 'center', lineHeight: 1.3, padding: '0 8px' }}>
-                      {t('gallery_add_card')}
-                    </span>
+                    <span style={{ fontSize: 24, opacity: 0.4 }}>+</span>
                   </div>
-                ))}
+                ) : (
+                  <div style={{ width: medal.width, border: '2px dashed #eee', borderRadius: 12, aspectRatio: '2.5/3.5' }} />
+                )}
+              </div>
+            )
+          }
 
-                {!isOwner && Array.from({ length: emptySlots }).map((_, i) => (
-                  <div key={`empty-${i}`} style={{
-                    flexShrink: 0, width: 120, border: `2px dashed #eee`, borderRadius: 10,
-                    aspectRatio: '2.5/3.5',
-                  }} />
-                ))}
+          return (
+            <div style={{ marginBottom: 24 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <span style={{ fontSize: 18 }}>💎</span>
+                <span style={{ fontWeight: 900, fontSize: 15, color: '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
+                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
+              </div>
+
+              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-end', justifyContent: 'center' }}>
+                {podiumOrder.map(i => renderSlot(i))}
               </div>
 
               {/* Modal de recherche pour ajouter au grail */}
@@ -1675,7 +1687,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 const pos = grailCards.length
                                 await supabase.from('grail_cards').upsert({ user_id: userId, card_key: card.f, position: pos }, { onConflict: 'user_id,card_key' })
                                 setGrailCards(prev => [...prev, { card_key: card.f, position: pos }])
-                                if (grailCards.length + 1 >= 5) setGrailPickerOpen(false)
+                                if (grailCards.length + 1 >= 3) setGrailPickerOpen(false)
                                 setGrailSearch('')
                               }} style={{ cursor: 'pointer', ...coloredBorder(tabColor), borderRadius: 8, overflow: 'hidden', transition: '0.15s' }}
                                 onMouseEnter={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor }}
