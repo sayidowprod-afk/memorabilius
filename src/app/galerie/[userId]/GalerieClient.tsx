@@ -688,23 +688,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         setUsingOfflineCache(false)
         const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
         if (target) { const match = allCards.find(c => c.f === target); if (match) setPopup(match) }
-
-        // Cache la galerie du propriétaire pour une consultation hors-ligne partielle
-        if (isOwner) {
-          try { localStorage.setItem(`gallery-cache-${userId}`, JSON.stringify(allCards)) } catch {}
-
-          const lastAdded = [...cartesM].sort((a, b) =>
-            new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
-          )[0]
-          if (lastAdded) {
-            updateGalleryWidget({
-              imageUrl: lastAdded.f,
-              playerName: lastAdded.n || 'Ma galerie',
-              totalCards: allCards.length,
-              galleryUrl: `https://www.memorabilius.fr/galerie/${userId}`,
-            })
-          }
-        }
       }
 
       // Premier batch + card_collections en parallèle → affichage immédiat
@@ -752,6 +735,28 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       setLoaded(true)
     }
   }
+
+  // Cache hors-ligne + widget écran d'accueil pour le propriétaire de la galerie.
+  // Séparé de applyAndShow() car isOwner (dérivé de l'auth, résolue en parallèle
+  // du chargement des cartes) peut encore valoir false au moment où les cartes
+  // arrivent en premier — cet effet se redéclenche quand isOwner devient vrai.
+  const lastAddedCard = [...cards]
+    .filter(c => c.created_at)
+    .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())[0]
+  const lastAddedKey = lastAddedCard ? `${lastAddedCard.f}_${cards.length}` : `_${cards.length}`
+
+  useEffect(() => {
+    if (!isOwner || !loaded || cards.length === 0) return
+    try { localStorage.setItem(`gallery-cache-${userId}`, JSON.stringify(cards)) } catch {}
+    if (lastAddedCard) {
+      updateGalleryWidget({
+        imageUrl: lastAddedCard.f,
+        playerName: lastAddedCard.n || 'Ma galerie',
+        totalCards: cards.length,
+        galleryUrl: `https://www.memorabilius.fr/galerie/${userId}`,
+      })
+    }
+  }, [isOwner, loaded, lastAddedKey, userId])
 
   const filtered = useMemo(() => {
     const matchCols = new Set<string>()
