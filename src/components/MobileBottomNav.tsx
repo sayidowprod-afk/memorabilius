@@ -29,12 +29,12 @@ const UsersIcon = () => (
   </svg>
 )
 
-const GridIcon = ({ color = 'white' }: { color?: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="7" height="7" rx="1.5" />
-    <rect x="14" y="3" width="7" height="7" rx="1.5" />
-    <rect x="14" y="14" width="7" height="7" rx="1.5" />
-    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+const CardIcon = ({ color = 'white' }: { color?: string }) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="2.5" width="14" height="19" rx="2.5" />
+    <circle cx="12" cy="9" r="2.6" />
+    <path d="M8 16.5h8" />
+    <path d="M8 19h5" />
   </svg>
 )
 
@@ -124,7 +124,7 @@ export default function MobileBottomNav() {
         style={{
           position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 250, minHeight: NAV_CONTENT_HEIGHT,
           background: dark ? '#1a1a1a' : 'white',
-          borderTop: `1px solid ${dark ? '#2a2a2a' : '#eee'}`,
+          borderTop: '2px solid #003DA6',
           paddingBottom: NAV_SAFE_AREA_BOTTOM,
           display: 'flex', alignItems: 'center', justifyContent: 'space-around',
         }}
@@ -155,7 +155,7 @@ export default function MobileBottomNav() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 4px 14px rgba(0,61,166,0.4)', border: `3px solid ${dark ? '#1a1a1a' : 'white'}`,
             }}>
-              <GridIcon />
+              <CardIcon />
             </div>
             <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }}>{t('nav_galerie')}</span>
           </Link>

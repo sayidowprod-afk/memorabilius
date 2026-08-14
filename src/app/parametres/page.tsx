@@ -5,6 +5,8 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { isHapticsEnabled, setHapticsEnabled } from '@/lib/haptics'
+import PushNotificationSettings from '@/components/PushNotificationSettings'
+import { supabase } from '@/lib/supabase'
 
 const LANGS = [
   { code: 'fr' as const, flag: '🇫🇷', label: 'Français' },
@@ -35,8 +37,12 @@ export default function Parametres() {
   const { lang, setLang } = useLang()
   const isNative = useIsNative()
   const [hapticsOn, setHapticsOnState] = useState(true)
+  const [userId, setUserId] = useState<string | null>(null)
 
   useEffect(() => { setHapticsOnState(isHapticsEnabled()) }, [])
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user.id ?? null))
+  }, [])
 
   const toggleHaptics = () => {
     const next = !hapticsOn
@@ -96,11 +102,13 @@ export default function Parametres() {
 
       <div style={card}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
-        <p style={rowSub}>Activez ou gérez les notifications push (messages, likes, wishlist).</p>
-        <Link href="/profil" style={{
-          display: 'inline-block', marginTop: 12, background: '#003DA6', color: 'white',
-          padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, textDecoration: 'none',
-        }}>Gérer les notifications</Link>
+        {userId ? (
+          <PushNotificationSettings dark={dark} />
+        ) : (
+          <p style={rowSub}>
+            <Link href="/connexion" style={{ color: '#003DA6', fontWeight: 700, textDecoration: 'none' }}>Connectez-vous</Link> pour gérer vos notifications.
+          </p>
+        )}
       </div>
     </div>
   )
