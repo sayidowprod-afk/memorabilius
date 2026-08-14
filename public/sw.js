@@ -1,4 +1,4 @@
-const CACHE_NAME = 'memorabilius-v5'
+const CACHE_NAME = 'memorabilius-v6'
 
 // Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
 const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
@@ -47,29 +47,28 @@ self.addEventListener('notificationclick', (event) => {
   )
 })
 
-// Fetch : stale-while-revalidate sur les navigations de page (coquille HTML uniquement).
-// Affiche instantanément la dernière version connue pendant qu'une version fraîche se
-// télécharge en arrière-plan et remplace le cache — accélère surtout le démarrage à froid
-// de l'app et l'ouverture via deep link. Les données (Supabase, /api/*) ne passent jamais
-// par ici : toujours en direct, comme avant.
+// Fetch : réseau d'abord sur les navigations de page (coquille HTML uniquement).
+// Toujours la version fraîche quand il y a du réseau — le cache ne sert que de
+// secours hors-ligne. (Le stale-while-revalidate testé précédemment affichait
+// l'ancienne version en premier, ce qui donnait l'impression que le site ne se
+// mettait pas à jour sans F5 — problématique vu la fréquence des déploiements.)
+// Les données (Supabase, /api/*) ne passent jamais par ici : toujours en direct.
 self.addEventListener('fetch', (event) => {
   if (event.request.mode !== 'navigate') return
   event.respondWith(
     (async () => {
-      const cache = await caches.open(CACHE_NAME)
-      const cached = await cache.match(event.request)
-
-      const network = fetch(event.request).then((res) => {
-        if (res.ok) cache.put(event.request, res.clone())
+      try {
+        const res = await fetch(event.request)
+        if (res.ok) {
+          const cache = await caches.open(CACHE_NAME)
+          cache.put(event.request, res.clone())
+        }
         return res
-      }).catch(() => null)
-
-      if (cached) {
-        event.waitUntil(network)
-        return cached
+      } catch {
+        const cache = await caches.open(CACHE_NAME)
+        const cached = await cache.match(event.request)
+        return cached || caches.match('/offline.html')
       }
-
-      return (await network) || caches.match('/offline.html')
     })()
   )
 })
