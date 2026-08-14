@@ -2003,7 +2003,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         `}</style>
         
         {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, env(safe-area-inset-bottom))', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
@@ -2090,7 +2090,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         )}
 
         {mounted && qrMode && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, env(safe-area-inset-bottom))', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
                 ? '▦ Clique sur des cartes pour les sélectionner'
@@ -2468,7 +2468,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 8500,
           background: dark ? '#0d1432' : 'white',
           borderTop: dark ? '1px solid rgba(0,120,255,0.2)' : '1px solid rgba(0,61,166,0.12)',
-          padding: '14px 20px', paddingBottom: 'max(14px, env(safe-area-inset-bottom))',
+          padding: '14px 20px', paddingBottom: 'max(14px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))',
           display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap',
           boxShadow: '0 -4px 24px rgba(0,0,0,0.12)',
         }}>

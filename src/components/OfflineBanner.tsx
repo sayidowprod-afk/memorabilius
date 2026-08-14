@@ -26,7 +26,7 @@ export default function OfflineBanner() {
 
   return (
     <div style={{
-      position: 'fixed', top: 'env(safe-area-inset-top)', left: 0, right: 0, zIndex: 400,
+      position: 'fixed', top: 'var(--safe-area-inset-top, env(safe-area-inset-top))', left: 0, right: 0, zIndex: 400,
       background: '#c0392b', color: 'white', textAlign: 'center',
       padding: '8px 16px', fontSize: 13, fontWeight: 700,
       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,

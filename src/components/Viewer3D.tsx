@@ -648,13 +648,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-card--slab { width: min(256px, 61vw) !important; height: min(420px, 100.8vw) !important; }
           .viewer-hint { display: none !important; }
           .viewer-layout--info-expanded .viewer-zone { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 0% !important; opacity: 0; pointer-events: none; }
-          .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + env(safe-area-inset-top)) !important; }
+          .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
           .viewer-info-handle {
             position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
             width: 44px; height: 22px; display: flex; align-items: center; justify-content: center;
             cursor: pointer; background: none; border: none; padding: 0; z-index: 2;
           }
-          .viewer-layout--info-expanded .viewer-info-handle { top: calc(4px + env(safe-area-inset-top)) !important; }
+          .viewer-layout--info-expanded .viewer-info-handle { top: calc(4px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
         }
       `}</style>
       <button
@@ -662,7 +662,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         onMouseEnter={() => setCloseHover(true)}
         onMouseLeave={() => setCloseHover(false)}
         style={{
-          position: 'absolute', top: 'calc(10px + env(safe-area-inset-top))', right: 10, cursor: 'pointer', zIndex: 10001,
+          position: 'absolute', top: 'calc(10px + var(--safe-area-inset-top, env(safe-area-inset-top)))', right: 10, cursor: 'pointer', zIndex: 10001,
           background: closeHover ? '#003DA6' : (dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)'),
           color: closeHover ? 'white' : textColor,
           border: closeHover ? '1px solid #003DA6' : `1px solid ${borderColor}`,
@@ -1395,7 +1395,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 <div style={{ position: 'fixed', inset: 0, zIndex: 99999999, display: 'flex', flexDirection: 'column', background: bg, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
 
                   {/* ── Nav ── */}
-                  <div style={{ background: card, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#e8e8e8'}`, padding: '0 16px', height: 52, paddingTop: 'env(safe-area-inset-top)', boxSizing: 'content-box', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+                  <div style={{ background: card, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#e8e8e8'}`, padding: '0 16px', height: 52, paddingTop: 'var(--safe-area-inset-top, env(safe-area-inset-top))', boxSizing: 'content-box', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
                     <button onClick={() => setSetPickerStep('search')}
                       style={{ background: 'none', border: 'none', cursor: 'pointer', color: accent, fontSize: 14, fontWeight: 700, padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
                       ← Changer

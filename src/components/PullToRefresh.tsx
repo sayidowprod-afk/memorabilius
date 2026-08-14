@@ -65,7 +65,7 @@ export default function PullToRefresh() {
 
   return (
     <div style={{
-      position: 'fixed', top: 'env(safe-area-inset-top)', left: 0, right: 0,
+      position: 'fixed', top: 'var(--safe-area-inset-top, env(safe-area-inset-top))', left: 0, right: 0,
       display: 'flex', justifyContent: 'center',
       height: pull, overflow: 'hidden', zIndex: 260, pointerEvents: 'none',
       transition: pulling.current ? 'none' : 'height 0.2s ease',

@@ -21,7 +21,7 @@ export default function ChatBubble() {
   const { dark } = useTheme()
   const isNative = useIsNative()
   // Sur l'app native, la bottom bar (64px + safe-area) prend la place du bas d'écran.
-  const navOffset = isNative ? 'calc(64px + env(safe-area-inset-bottom))' : '0px'
+  const navOffset = isNative ? 'calc(64px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))' : '0px'
   const [userId, setUserId] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
   const [unread, setUnread] = useState(0)

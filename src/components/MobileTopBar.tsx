@@ -22,7 +22,7 @@ export default function MobileTopBar() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
+        paddingTop: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 10px)',
         paddingBottom: 10,
         background: '#003DA6',
       }}
