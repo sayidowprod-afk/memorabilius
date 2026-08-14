@@ -144,27 +144,14 @@ async function fetchPodium() {
 }
 
 async function fetchPodiumPeriod(pStart: string) {
-  const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
-  let offset = 0
-  const PAGE = 1000
-  while (true) {
-    const { data } = await supabase
-      .from('cartes_manuelles')
-      .select('user_id, profiles(display_name, avatar_url)')
-      .gte('created_at', pStart)
-      .range(offset, offset + PAGE - 1)
-    if (!data?.length) break
-    for (const row of data as any[]) {
-      if (!row.profiles?.display_name) continue
-      const existing = counts.get(row.user_id)
-      if (existing) existing.count++
-      else counts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
-    }
-    if (data.length < PAGE) break
-    offset += PAGE
-  }
-  return [...counts.entries()]
-    .map(([userId, v]) => ({ userId, ...v }))
+  // Agrégation côté DB en une seule requête (même RPC que le podium mensuel) —
+  // remplace l'ancienne pagination manuelle par page de 1000, devenue trop
+  // lente au fil de la croissance de cartes_manuelles (faisait dépasser le
+  // budget de build de la page d'accueil).
+  const { data } = await supabase.rpc('get_monthly_card_counts', { p_start: pStart })
+  return ((data || []) as any[])
+    .filter(row => row.display_name)
+    .map(row => ({ userId: row.user_id, displayName: row.display_name, avatarUrl: row.avatar_url || null, count: Number(row.count) }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 10)
 }
