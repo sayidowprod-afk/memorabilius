@@ -67,12 +67,16 @@ export default function MobileBottomNav() {
       .then(({ data: p }) => setIsAdmin(p?.is_admin ?? false))
   }, [user?.id])
 
-  useEffect(() => {
-    document.body.classList.toggle('native-bottom-nav', isNative)
-    return () => { document.body.classList.remove('native-bottom-nav') }
-  }, [isNative])
+  const hiddenOnRoute = pathname.startsWith('/messages')
 
-  if (!isNative) return null
+  useEffect(() => {
+    document.body.classList.toggle('native-bottom-nav', isNative && !hiddenOnRoute)
+    return () => { document.body.classList.remove('native-bottom-nav') }
+  }, [isNative, hiddenOnRoute])
+
+  // Le chat prend tout l'écran, façon Insta — pas de bottom bar par-dessus
+  // (mais le listener du bouton retour Android au-dessus reste actif).
+  if (!isNative || hiddenOnRoute) return null
 
   const toggle = (name: 'communaute' | 'outils') => {
     hapticTap()

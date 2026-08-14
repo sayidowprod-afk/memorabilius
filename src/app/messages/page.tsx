@@ -7,6 +7,7 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import { useIsNative } from '@/lib/useIsNative'
 
 // Préfixe marqueur pour les messages contenant une image (évite une migration de schéma)
 const IMG_PREFIX = '[[img]]'
@@ -44,6 +45,7 @@ function compressImage(file: File): Promise<Blob> {
 function MessagesContent() {
   const { t } = useLang()
   const { dark } = useTheme()
+  const isNative = useIsNative()
   const router = useRouter()
   const searchParams = useSearchParams()
   const toParam = searchParams.get('to')
@@ -148,6 +150,14 @@ function MessagesContent() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  // Sur l'app native, la topbar/bottombar sont masquées sur cette route (chat
+  // plein écran façon Insta) — on retire aussi le padding du <main> autour.
+  useEffect(() => {
+    if (!isNative) return
+    document.body.classList.add('msg-fullscreen')
+    return () => { document.body.classList.remove('msg-fullscreen') }
+  }, [isNative])
 
   const loadConversations = async (uid: string) => {
     const { data } = await supabase
@@ -322,14 +332,17 @@ function MessagesContent() {
   )
 
   return (
-    <div style={{ maxWidth: 1000, margin: '20px auto', fontFamily: 'Inter, sans-serif', height: 'calc(100vh - 120px)', display: 'flex', gap: 20, padding: '0 10px' }}>
+    <div className="msg-page" style={{ maxWidth: 1000, margin: '20px auto', fontFamily: 'Inter, sans-serif', height: 'calc(100vh - 120px)', display: 'flex', gap: 20, padding: '0 10px' }}>
       <style>{`
         .msg-back { display: none; }
         @media (max-width: 768px) {
           .msg-back { display: inline-block !important; }
-          .msg-layout { flex-direction: column !important; height: calc(100vh - 80px) !important; gap: 0 !important; }
-          .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 12px 12px 0 0 !important; }
-          .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
+          .msg-page { margin: 0 !important; padding: 0 !important; max-width: none !important; height: 100dvh !important; }
+          .msg-layout { flex-direction: column !important; height: 100dvh !important; gap: 0 !important; max-width: none !important; margin: 0 !important; }
+          .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 0 !important; box-shadow: none !important; }
+          .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 !important; box-shadow: none !important; }
+          .msg-list-header, .msg-chat-header { padding-top: calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 14px) !important; }
+          .msg-avatar-ring { width: 56px !important; height: 56px !important; }
         }
       `}</style>
 
@@ -337,9 +350,22 @@ function MessagesContent() {
 
         {/* Liste conversations */}
         <div className="msg-list" style={{ width: 280, background: bgPanel, borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-            <h2 style={{ fontWeight: 900, fontSize: 18, margin: 0, color: textMain }}>{t('messages_title')}</h2>
-            <button onClick={() => setNewConvOpen(v => !v)} title="Nouvelle conversation" style={{ background: newConvOpen ? '#003DA6' : 'none', color: newConvOpen ? 'white' : '#003DA6', border: '1.5px solid #003DA6', borderRadius: 8, width: 30, height: 30, fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 900 }}>+</button>
+          <div className="msg-list-header" style={{ padding: '16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              {isNative && (
+                <button onClick={() => router.back()} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 22, color: textMain, padding: '0 4px 0 0', display: 'flex' }}>‹</button>
+              )}
+              <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0, color: textMain }}>{t('messages_title')}</h2>
+            </div>
+            <button onClick={() => setNewConvOpen(v => !v)} title="Nouvelle conversation" style={{
+              background: newConvOpen ? '#003DA6' : 'none', border: 'none', color: newConvOpen ? 'white' : (dark ? '#eee' : '#222'),
+              width: 34, height: 34, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+            </button>
           </div>
           {newConvOpen && (
             <div style={{ padding: '10px 12px', borderBottom: `1px solid ${border}` }}>
@@ -369,13 +395,13 @@ function MessagesContent() {
             )}
             {conversations.map(conv => (
               <div key={conv.id} onClick={() => selectConv(conv.id)} style={{
-                padding: '12px 16px', cursor: 'pointer', borderBottom: `1px solid ${border}`,
+                padding: '10px 16px', cursor: 'pointer',
                 background: activeConv === conv.id ? bgHover : 'transparent',
-                display: 'flex', alignItems: 'center', gap: 12,
+                display: 'flex', alignItems: 'center', gap: 14,
               }}>
-                <div style={{ position: 'relative', flexShrink: 0 }}>
+                <div className="msg-avatar-ring" style={{ position: 'relative', flexShrink: 0, width: 46, height: 46 }}>
                   <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
-                    style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                    style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} alt="" />
                   <span style={{ position: 'absolute', bottom: 0, right: 0 }}>
                     <OnlineIndicator lastSeen={profiles[conv.id]?.last_seen} size={12} />
                   </span>
@@ -404,7 +430,7 @@ function MessagesContent() {
           ) : (
             <>
               {/* Header */}
-              <div style={{ padding: '12px 16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div className="msg-chat-header" style={{ padding: '12px 16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', gap: 10 }}>
                 <button onClick={() => setActiveConv(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 20, color: '#003DA6', padding: '0 8px 0 0', fontWeight: 700 }} className="msg-back">←</button>
                 <div
                   onClick={() => router.push(`/galerie/${activeConv}`)}

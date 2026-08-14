@@ -53,7 +53,8 @@ export default function MobileTopBar() {
       .then(({ count }) => setChatCount(count || 0))
   }, [user?.id, isNative])
 
-  if (!isNative) return null
+  // Le chat prend tout l'écran, façon Insta, avec son propre header — pas de topbar au-dessus.
+  if (!isNative || pathname.startsWith('/messages')) return null
 
   const scrollsAway = GALLERY_ROOT.test(pathname)
 
