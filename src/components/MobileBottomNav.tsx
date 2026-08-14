@@ -29,15 +29,6 @@ const UsersIcon = () => (
   </svg>
 )
 
-const CardIcon = ({ color = 'white' }: { color?: string }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="5" y="2.5" width="14" height="19" rx="2.5" />
-    <circle cx="12" cy="9" r="2.6" />
-    <path d="M8 16.5h8" />
-    <path d="M8 19h5" />
-  </svg>
-)
-
 const ToolIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
@@ -150,24 +141,21 @@ export default function MobileBottomNav() {
               textDecoration: 'none', marginTop: -20,
             }}
           >
-            <div style={{ position: 'relative', width: 58, height: 54 }}>
+            <div style={{ position: 'relative', width: 70, height: 62 }}>
               <div style={{
-                position: 'absolute', top: 3, left: 15, width: 32, height: 44, borderRadius: 8,
+                position: 'absolute', top: 2, left: 8, width: 38, height: 52, borderRadius: 9,
                 background: 'linear-gradient(160deg,#6d97ee,#2352c9)',
-                transform: 'rotate(-16deg)',
+                transform: 'rotate(-15deg)',
                 boxShadow: '0 3px 8px rgba(0,0,0,.28)',
                 border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
               }} />
               <div style={{
-                position: 'absolute', top: 3, left: 11, width: 32, height: 44, borderRadius: 8,
+                position: 'absolute', top: 2, left: 24, width: 38, height: 52, borderRadius: 9,
                 background: 'linear-gradient(160deg,#1e63e0,#00307e)',
-                transform: 'rotate(11deg)',
+                transform: 'rotate(12deg)',
                 boxShadow: '0 6px 16px rgba(0,61,166,.5)',
                 border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <CardIcon />
-              </div>
+              }} />
             </div>
             <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }}>{t('nav_galerie')}</span>
           </Link>
