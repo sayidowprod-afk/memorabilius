@@ -43,13 +43,18 @@ export async function POST(req: NextRequest) {
       stats.patch += s.patch
     }
 
-    // Pagination pour bypasser le max_rows=1000 de Supabase (identique à la galerie)
+    // Pagination pour bypasser le max_rows=1000 de Supabase (identique à la galerie).
+    // Une page en erreur (ex: instabilité réseau/Supabase) NE DOIT PAS être confondue
+    // avec "plus de cartes" — sinon on écrase stats_total en base avec un total tronqué
+    // (c'est exactement ce qui est arrivé pendant la panne Supabase du 14/08 : plein
+    // de profils bloqués à exactement 1000 alors qu'ils avaient 3000+ cartes).
     for (let from = 0; ; from += 1000) {
-      const { data: batch } = await supabase
+      const { data: batch, error: batchError } = await supabase
         .from('cartes_manuelles')
         .select('rc, auto, patch, num')
         .eq('user_id', userId)
         .range(from, from + 999)
+      if (batchError) return NextResponse.json({ error: batchError.message }, { status: 502 })
       if (!batch || batch.length === 0) break
       for (const m of batch) {
         stats.total++

@@ -40,13 +40,18 @@ export async function GET(req: NextRequest) {
         }
       }
 
-      // Pagination pour bypasser le max_rows=1000 de Supabase
+      // Pagination pour bypasser le max_rows=1000 de Supabase. Une page en erreur
+      // (réseau/instabilité Supabase) ne doit jamais être confondue avec "plus de
+      // cartes" — sinon stats_total est écrasé en base avec un total tronqué (c'est
+      // ce qui est arrivé pour de nombreux profils pendant la panne Supabase du 14/08,
+      // ce cron tournant chaque nuit à 3h UTC sur tous les profils).
       for (let from = 0; ; from += 1000) {
-        const { data: batch } = await supabase
+        const { data: batch, error: batchError } = await supabase
           .from('cartes_manuelles')
           .select('rc, auto, patch, num')
           .eq('user_id', p.id)
           .range(from, from + 999)
+        if (batchError) return { id: p.id, error: batchError.message }
         if (!batch || batch.length === 0) break
         for (const m of batch) {
           stats.total++
