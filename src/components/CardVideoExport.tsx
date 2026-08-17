@@ -51,6 +51,17 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   const DURATION = 6000
   const FPS = isMobile ? 30 : 60
+  // Le rendu par frame (dégradés, shadowBlur, reflet) est du travail CPU pur sur canvas 2D,
+  // pas accéléré GPU sur la plupart des mobiles — à pleine résolution (jusqu'à 1080x1920) ça
+  // ne tient pas le budget de 33ms/frame et produit une vidéo saccadée (frames dupliquées par
+  // captureStream pendant que le dessin traîne). Réduire la résolution interne sur mobile
+  // réduit le coût de la plupart des opérations proportionnellement à la surface.
+  const MOBILE_RES_SCALE = 0.62
+  const scaledDims = (fmt: VideoFormat) => {
+    const { w, h } = VIDEO_FORMATS[fmt]
+    if (!isMobile) return { w, h }
+    return { w: Math.round(w * MOBILE_RES_SCALE), h: Math.round(h * MOBILE_RES_SCALE) }
+  }
   const themeRef = useRef(theme)
   const vfmtRef = useRef(vfmt)
   themeRef.current = theme
@@ -72,7 +83,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const { w, h } = VIDEO_FORMATS[vfmt]
+    const { w, h } = scaledDims(vfmt)
     canvas.width = w; canvas.height = h
     if (recording) return
     let cancelled = false
@@ -212,22 +223,24 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     if (cardW > 2) {
       const floorY = cardCY + cardH / 2
 
-      // ── Reflet sol ────────────────────────────────────────────────────────
-      ctx.save()
-      ctx.beginPath()
-      ctx.rect(cardX, floorY, cardW, cardH * 0.52)
-      ctx.clip()
-      ctx.translate(W / 2, floorY)
-      ctx.scale(1, -1)
-      ctx.globalAlpha = 0.20 * absScale
-      ctx.drawImage(face, -cardW / 2, 0, cardW, cardH)
-      ctx.restore()
-      // Fondu du reflet
-      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.52)
-      reflFade.addColorStop(0, isDark ? 'rgba(0,0,0,0)' : 'rgba(240,244,255,0)')
-      reflFade.addColorStop(0.65, bgBot)
-      ctx.fillStyle = reflFade
-      ctx.fillRect(cardX - 2, floorY, cardW + 4, cardH * 0.52)
+      // ── Reflet sol (coûteux : drawImage + clip supplémentaires, sauté sur mobile) ──
+      if (!IS_MOBILE) {
+        ctx.save()
+        ctx.beginPath()
+        ctx.rect(cardX, floorY, cardW, cardH * 0.52)
+        ctx.clip()
+        ctx.translate(W / 2, floorY)
+        ctx.scale(1, -1)
+        ctx.globalAlpha = 0.20 * absScale
+        ctx.drawImage(face, -cardW / 2, 0, cardW, cardH)
+        ctx.restore()
+        // Fondu du reflet
+        const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.52)
+        reflFade.addColorStop(0, isDark ? 'rgba(0,0,0,0)' : 'rgba(240,244,255,0)')
+        reflFade.addColorStop(0.65, bgBot)
+        ctx.fillStyle = reflFade
+        ctx.fillRect(cardX - 2, floorY, cardW + 4, cardH * 0.52)
+      }
 
       // ── Ombre portée ──────────────────────────────────────────────────────
       ctx.save()
@@ -356,8 +369,10 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
         } else {
           ctx.fillStyle = tag.solid!
         }
-        ctx.shadowColor = tag.solid || tag.grad![0]
-        ctx.shadowBlur  = Math.round(W * 0.018)
+        if (!IS_MOBILE) {
+          ctx.shadowColor = tag.solid || tag.grad![0]
+          ctx.shadowBlur  = Math.round(W * 0.018)
+        }
         ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, badgeR); ctx.fill()
         ctx.shadowBlur  = 0
 
@@ -429,7 +444,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const startRecording = async () => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const { w, h } = VIDEO_FORMATS[vfmtRef.current]
+    const { w, h } = scaledDims(vfmtRef.current)
     canvas.width = w; canvas.height = h
 
     setRecording(true); setProgress(0); setDone(false); setVideoUrl(null)
@@ -496,7 +511,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     transition: '0.15s',
   })
 
-  const { w, h } = VIDEO_FORMATS[vfmt]
+  const { w, h } = scaledDims(vfmt)
 
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
