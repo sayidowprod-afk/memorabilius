@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useIsNative } from '@/lib/useIsNative'
 import { supabase } from '@/lib/supabase'
+import { fetchPendingShare, stagePendingShare } from '@/lib/shareBridge'
 
 export default function NativeInit() {
   const isNative = useIsNative()
@@ -36,6 +37,16 @@ export default function NativeInit() {
       } catch {}
     }
 
+    // Partage reçu d'une autre app (texte/image), éventuellement ciblé sur un contact
+    // précis si lancé depuis un raccourci Partage direct — voir ShareBridgePlugin.java.
+    const checkPendingShare = async () => {
+      const share = await fetchPendingShare()
+      if (!share) return
+      stagePendingShare(share)
+      router.push(share.toUserId ? `/messages?to=${share.toUserId}` : '/messages')
+    }
+    checkPendingShare()
+
     // Resynchronisation au retour au premier plan — le WebView Android gèle les
     // timers JS quand l'app est en arrière-plan (le auto-refresh du token Supabase
     // ne tourne plus), donc au retour la session peut être expirée et les données
@@ -56,6 +67,7 @@ export default function NativeInit() {
         supabase.auth.getSession()
         router.refresh()
       }
+      checkPendingShare()
     }
     document.addEventListener('visibilitychange', onVisibilityChange)
 

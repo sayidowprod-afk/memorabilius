@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aperçu factice pour le sélecteur de widgets, approxime widget_scan.xml. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#0B1E4D"
+                android:centerColor="#0F3FA8"
+                android:endColor="#1E63E0"
+                android:type="linear" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+    <!-- Pastille icône -->
+    <item android:left="30dp" android:top="16dp" android:right="30dp" android:bottom="38dp">
+        <shape android:shape="oval">
+            <solid android:color="#33FFFFFF" />
+        </shape>
+    </item>
+    <!-- Ligne "Scanner" -->
+    <item android:left="20dp" android:top="52dp" android:right="20dp" android:bottom="14dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+</layer-list>

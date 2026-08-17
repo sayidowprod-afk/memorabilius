@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Permet à Memorabilius d'apparaître dans Paramètres Android > Langues de l'application
+     (Android 13+) et synchronise ce choix système avec navigator.language dans la WebView —
+     src/lib/LangContext.tsx s'en sert comme repli si l'utilisateur n'a pas déjà choisi une
+     langue explicitement dans l'app (priorité : localStorage > ce réglage système > défaut). -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="fr" />
+    <locale android:name="en" />
+    <locale android:name="de" />
+</locale-config>

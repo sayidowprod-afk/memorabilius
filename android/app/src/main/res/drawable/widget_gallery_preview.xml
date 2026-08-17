@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aperçu factice affiché dans le sélecteur "Ajouter un widget" — Android n'a pas
+     de moyen de capturer un vrai screenshot du RemoteViews rendu, donc on approxime
+     la mise en page réelle (widget_gallery.xml) avec des formes plates. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#0B1E4D"
+                android:centerColor="#0F3FA8"
+                android:endColor="#1E63E0"
+                android:type="linear" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+    <!-- Vignette carte -->
+    <item android:left="14dp" android:top="10dp" android:right="120dp" android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#26FFFFFF" />
+            <corners android:radius="10dp" />
+            <stroke android:width="1dp" android:color="#33FFFFFF" />
+        </shape>
+    </item>
+    <!-- Ligne "MA GALERIE" -->
+    <item android:left="74dp" android:top="18dp" android:right="30dp" android:bottom="60dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#80B4FF" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+    <!-- Ligne nom -->
+    <item android:left="74dp" android:top="32dp" android:right="18dp" android:bottom="42dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+    <!-- Ligne stats -->
+    <item android:left="74dp" android:top="50dp" android:right="34dp" android:bottom="26dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#CCFFFFFF" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+</layer-list>

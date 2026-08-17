@@ -9,6 +9,7 @@ import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import { takeStagedShare, updateShareTargets } from '@/lib/shareBridge'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
 const TOPBAR_HEIGHT_CSS = 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 40px)'
@@ -289,6 +290,36 @@ function MessagesContent() {
     setActiveConv(id)
     if (userId) loadMessages(userId, id)
   }
+
+  // Reçu d'une autre app via ShareBridgePlugin (voir NativeInit.tsx qui redirige ici) —
+  // consommé une seule fois dès qu'une conversation est ouverte (soit d'entrée si un
+  // contact précis était visé, soit dès que l'utilisateur en choisit une sinon).
+  useEffect(() => {
+    if (!userId || !activeConv) return
+    const share = takeStagedShare()
+    if (!share) return
+    ;(async () => {
+      if (share.imagePath) {
+        try {
+          const res = await fetch(share.imagePath)
+          const blob = await res.blob()
+          await sendPhotos([new File([blob], 'shared.jpg', { type: blob.type || 'image/jpeg' })])
+        } catch {}
+      }
+      if (share.text) setNewMsg(share.text)
+    })()
+  }, [userId, activeConv])
+
+  // Republie les contacts récents comme cibles de Partage direct Android à chaque
+  // changement de la liste de conversations (voir ShareBridgePlugin.java).
+  useEffect(() => {
+    if (!isNative || conversations.length === 0) return
+    updateShareTargets(conversations.slice(0, 4).map(c => ({
+      id: c.id,
+      name: profiles[c.id]?.display_name || 'Collectionneur',
+      avatarUrl: profiles[c.id]?.avatar_url || undefined,
+    })))
+  }, [conversations, profiles, isNative])
 
   const searchNewConv = async (q: string) => {
     setNewConvSearch(q)

@@ -36,4 +36,16 @@
             android:targetClass="fr.memorabilius.app.MainActivity"
             android:data="https://www.memorabilius.fr/recherche" />
     </shortcut>
+
+    <!-- Cibles de Partage direct : les contacts récents publiés dynamiquement par
+         ShareBridgePlugin (categorie ci-dessous) apparaissent en haut de la feuille de
+         partage Android quand une autre app partage du texte/une image vers Memorabilius. -->
+    <share-target android:targetClass="fr.memorabilius.app.MainActivity">
+        <data android:mimeType="text/plain" />
+        <category android:name="fr.memorabilius.app.category.SHARE_TARGET_MESSAGE" />
+    </share-target>
+    <share-target android:targetClass="fr.memorabilius.app.MainActivity">
+        <data android:mimeType="image/*" />
+        <category android:name="fr.memorabilius.app.category.SHARE_TARGET_MESSAGE" />
+    </share-target>
 </shortcuts>
