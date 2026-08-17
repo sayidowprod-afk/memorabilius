@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
     title: '💬 Nouveau commentaire',
     body: (recentComment.content || '').slice(0, 120),
     url: lien,
+    channelId: 'community',
   })
 
   return NextResponse.json({ ok: true })

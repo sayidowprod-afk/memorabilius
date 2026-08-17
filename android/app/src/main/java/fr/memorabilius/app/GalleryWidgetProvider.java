@@ -8,12 +8,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.net.Uri;
+import android.util.TypedValue;
 import android.widget.RemoteViews;
 
 public class GalleryWidgetProvider extends AppWidgetProvider {
 
     public static final String PREFS = "widget_gallery_data";
+
+    // Arrondit les coins de la vignette de carte — sans ça c'est un simple rectangle
+    // photo posé sur le fond, ça ne ressemble pas à une carte à collectionner.
+    private static Bitmap roundCorners(Context context, Bitmap src, float radiusDp) {
+        int w = src.getWidth(), h = src.getHeight();
+        Bitmap out = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(out);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setShader(new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+        float radiusPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radiusDp, context.getResources().getDisplayMetrics());
+        canvas.drawRoundRect(new RectF(0, 0, w, h), radiusPx, radiusPx, paint);
+        return out;
+    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -42,7 +61,7 @@ public class GalleryWidgetProvider extends AppWidgetProvider {
         String imagePath = prefs.getString("last_card_image_path", null);
         if (imagePath != null) {
             Bitmap bmp = BitmapFactory.decodeFile(imagePath);
-            if (bmp != null) views.setImageViewBitmap(R.id.widget_card_image, bmp);
+            if (bmp != null) views.setImageViewBitmap(R.id.widget_card_image, roundCorners(context, bmp, 8f));
         }
 
         String url = prefs.getString("gallery_url", "https://www.memorabilius.fr");

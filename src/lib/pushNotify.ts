@@ -23,7 +23,7 @@ async function getFcmApp() {
   return fcmApp
 }
 
-async function sendFcmToUser(userId: string, payload: { title: string; body: string; url?: string }) {
+async function sendFcmToUser(userId: string, payload: PushPayload) {
   const app = await getFcmApp()
   if (!app) return
 
@@ -42,7 +42,13 @@ async function sendFcmToUser(userId: string, payload: { title: string; body: str
       token: t.token,
       notification: { title: payload.title, body: payload.body },
       data: payload.url ? { url: payload.url } : undefined,
-      android: { priority: 'high' as const },
+      android: {
+        priority: 'high' as const,
+        notification: {
+          channelId: payload.channelId || 'community',
+          ...(payload.imageUrl ? { imageUrl: payload.imageUrl } : {}),
+        },
+      },
     }))
   )
 
@@ -58,10 +64,18 @@ async function sendFcmToUser(userId: string, payload: { title: string; body: str
   }
 }
 
-export async function sendPushToUser(
-  userId: string,
-  payload: { title: string; body: string; url?: string }
-) {
+// channelId doit correspondre à un des canaux créés côté natif (MainActivity.java) :
+// 'messages' | 'trades' | 'wishlist' | 'community'. imageUrl est affichée en grand
+// (BigPictureStyle) par FCM sur Android sans code natif supplémentaire.
+export interface PushPayload {
+  title: string
+  body: string
+  url?: string
+  channelId?: 'messages' | 'trades' | 'wishlist' | 'community'
+  imageUrl?: string
+}
+
+export async function sendPushToUser(userId: string, payload: PushPayload) {
   await sendFcmToUser(userId, payload)
 
   const { data: subs } = await supabaseAdmin

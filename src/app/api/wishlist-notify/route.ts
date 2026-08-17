@@ -64,9 +64,10 @@ export async function POST(req: NextRequest) {
 
   await Promise.all(toNotify.map(async uid => {
     const msg = `${ownerName} recherche une carte que vous possédez : ${wishItem.nom}${wishItem.annee ? ' ' + wishItem.annee : ''}`
+    const matchedCard = (cards || []).find(c => c.user_id === uid)
     await Promise.all([
       supabase.from('notifications').insert({ user_id: uid, type: 'wishlist_match', message: msg, lien: `/galerie/${wishUserId}?tab=wishlist`, lu: false }),
-      sendPushToUser(uid, { title: '🎯 Wishlist Match', body: msg, url: `/galerie/${wishUserId}?tab=wishlist` }),
+      sendPushToUser(uid, { title: '🎯 Wishlist Match', body: msg, url: `/galerie/${wishUserId}?tab=wishlist`, channelId: 'wishlist', imageUrl: matchedCard?.image_recto || undefined }),
     ])
   }))
 
@@ -109,7 +110,7 @@ export async function PUT(req: NextRequest) {
     const msg2 = `${ownerName} vient d'ajouter une carte de votre wishlist : ${card.nom}${card.annee ? ' ' + card.annee : ''}`
     await Promise.all([
       supabase.from('notifications').insert({ user_id: uid, type: 'wishlist_match', message: msg2, lien: `/galerie/${cardUserId}`, lu: false }),
-      sendPushToUser(uid, { title: '🎯 Wishlist Match', body: msg2, url: `/galerie/${cardUserId}` }),
+      sendPushToUser(uid, { title: '🎯 Wishlist Match', body: msg2, url: `/galerie/${cardUserId}`, channelId: 'wishlist', imageUrl: card.image_recto || undefined }),
     ])
   }))
 

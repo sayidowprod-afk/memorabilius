@@ -194,10 +194,14 @@ async function postHandler(req: NextRequest) {
   })
 
   try {
+    const tradeImage = rows.find(r => r.owner_id === receiverId && r.card_image)?.card_image
+      || rows.find(r => r.card_image)?.card_image
     await sendPushToUser(receiverId, {
       title: '🔄 Nouvelle offre d\'échange',
       body: `${senderName} te propose un échange`,
       url: '/messages?to=' + user.id,
+      channelId: 'trades',
+      imageUrl: tradeImage || undefined,
     })
   } catch { /* push non critique */ }
 

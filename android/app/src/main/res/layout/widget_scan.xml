@@ -7,18 +7,27 @@
     android:background="@drawable/widget_background"
     android:gravity="center">
 
-    <TextView
-        android:text="📷"
-        android:textSize="22sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/widget_icon_badge" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_tile_scanner"
+            android:contentDescription="@null" />
+    </FrameLayout>
 
     <TextView
         android:text="Scanner"
         android:textColor="#FFFFFF"
         android:textSize="11sp"
         android:textStyle="bold"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="6dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

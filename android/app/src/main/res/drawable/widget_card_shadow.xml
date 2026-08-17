@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <!-- Posée en dessous et légèrement décalée de la vignette carte pour simuler
+         une ombre portée — RemoteViews n'a pas d'élévation/ombre native. -->
+    <solid android:color="#40000000" />
+    <corners android:radius="10dp" />
+</shape>

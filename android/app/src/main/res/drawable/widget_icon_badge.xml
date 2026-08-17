@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <!-- Pastille circulaire derrière l'icône du widget scan — donne un point focal
+         net au lieu d'un simple emoji flottant sur fond uni. -->
+    <solid android:color="#33FFFFFF" />
+</shape>

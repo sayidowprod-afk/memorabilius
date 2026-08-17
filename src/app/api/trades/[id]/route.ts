@@ -60,6 +60,7 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
       title: action === 'accept' ? '🎉 Échange accepté !' : '❌ Échange refusé',
       body: msgMap[action],
       url: '/trades?tab=echanges',
+      channelId: 'trades',
     })
   }
 

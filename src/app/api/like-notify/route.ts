@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
     title: '❤️ Nouveau like',
     body: `${profile?.display_name || 'Quelqu\'un'} a aimé votre carte`,
     url: `/galerie/${toUserId}`,
+    channelId: 'community',
+    imageUrl: recentLike.card_key || undefined,
   })
 
   return NextResponse.json({ ok: true })

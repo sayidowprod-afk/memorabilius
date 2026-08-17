@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
     title: `💬 ${profile?.display_name || 'Nouveau message'}`,
     body: 'Vous avez reçu un message sur Memorabilius',
     url: `/messages?to=${user.id}`,
+    channelId: 'messages',
   })
 
   return NextResponse.json({ ok: true })
