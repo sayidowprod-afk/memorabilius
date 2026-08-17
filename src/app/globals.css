@@ -62,20 +62,21 @@ body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-b
 body.msg-fullscreen main { padding: 0 !important; max-width: none !important; }
 
 /* App native uniquement (body.native-app posé par NativeInit.tsx) : désactive la sélection
-   de texte et le menu contextuel navigateur (copier/partager) sur les zones non éditables,
+   de texte et le menu contextuel navigateur (copier/partager) sur les boutons/liens/icônes,
    pour que les appuis longs se sentent "app" et non "page web dans un cadre". Le site public
-   en navigateur garde son comportement normal (copier un nom de joueur, etc.). */
-body.native-app {
+   en navigateur garde son comportement normal (copier un nom de joueur, etc.).
+   IMPORTANT : ciblé uniquement sur ces éléments, jamais sur body/html — un user-select:none
+   posé sur un ANCÊTRE d'un <input>/<textarea> (même réactivé dessus) perturbe le clavier
+   Android (zone de composition IME) : backspace qui efface mal, correcteur/suggestions qui
+   n'apparaissent plus. C'est la régression rapportée juste après l'ajout de cette règle. */
+body.native-app button,
+body.native-app a,
+body.native-app img,
+body.native-app nav,
+body.native-app [role="button"] {
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
-}
-body.native-app input,
-body.native-app textarea,
-body.native-app [contenteditable="true"] {
-  -webkit-user-select: text;
-  user-select: text;
-  -webkit-touch-callout: default;
 }
 
 /* ===== DARK MODE FORCÉ SUR TOUS LES ÉLÉMENTS ===== */
