@@ -148,7 +148,7 @@ export default function Profil() {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${session?.access_token}` },
       })
-      if (!res.ok) { toast.error('Erreur génération image'); return }
+      if (!res.ok) { toast.error(t('profile_err_export_image')); return }
       const blob = await res.blob()
       await saveOrShareFile(blob, `memorabilius-wrap-${format}-${period}.png`)
     } catch (e: any) {
@@ -183,8 +183,8 @@ export default function Profil() {
       const { data: { session } } = await supabase.auth.getSession()
       const r = await fetch('/api/delete-account', { method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` }, body: JSON.stringify({ userId }) })
       if (r.ok) { await supabase.auth.signOut(); window.location.href = '/' }
-      else { toast.error('Erreur lors de la suppression'); setDeleting(false) }
-    } catch { toast.error('Erreur'); setDeleting(false) }
+      else { toast.error(t('profile_err_delete')); setDeleting(false) }
+    } catch { toast.error(t('profile_err_generic')); setDeleting(false) }
   }
 
   if (loading) return (
@@ -443,12 +443,12 @@ export default function Profil() {
             <p style={{ fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>{t('profile_delete_confirm')} <strong>{lang === 'fr' ? 'SUPPRIMER' : 'DELETE'}</strong></p>
             <input value={deleteConfirm} onChange={e => setDeleteConfirm(e.target.value)} placeholder={lang === 'fr' ? 'SUPPRIMER' : 'DELETE'} style={{ border: '2px solid #e74c3c' }} />
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={handleDeleteAccount} disabled={deleteConfirm !== (lang === 'fr' ? 'SUPPRIMER' : 'DELETE') || deleting} style={{
-                background: deleteConfirm === (lang === 'fr' ? 'SUPPRIMER' : 'DELETE') ? '#e74c3c' : '#f0f0f0',
-                color: deleteConfirm === (lang === 'fr' ? 'SUPPRIMER' : 'DELETE') ? 'white' : '#999',
+              <button onClick={handleDeleteAccount} disabled={deleteConfirm !== t('profile_delete_word') || deleting} style={{
+                background: deleteConfirm === t('profile_delete_word') ? '#e74c3c' : '#f0f0f0',
+                color: deleteConfirm === t('profile_delete_word') ? 'white' : '#999',
                 border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13
               }}>
-               {deleting ? (lang === 'fr' ? 'Suppression…' : 'Deleting…') : t('profile_delete_btn')}
+               {deleting ? t('profile_deleting') : t('profile_delete_btn')}
               </button>
               <button onClick={() => { setShowDelete(false); setDeleteConfirm('') }} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                 Annuler

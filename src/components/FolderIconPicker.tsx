@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { SPORTS_TEAMS, teamLogoUrl, type Sport } from '@/lib/sportsTeams'
+import { useLang } from '@/lib/LangContext'
 
 // Génère la liste d'emojis à partir des principaux blocs Unicode → « tous les emojis ».
 function buildEmojis(): string[] {
@@ -20,11 +21,11 @@ function buildEmojis(): string[] {
   return out
 }
 
-const SPORT_LABELS: Record<Sport, string> = {
-  nba: '🏀 NBA', wnba: '🏀 WNBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: '⚽ Foot',
-}
-
 export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: string) => void; onClose: () => void }) {
+  const { t } = useLang()
+  const SPORT_LABELS: Record<Sport, string> = {
+    nba: '🏀 NBA', wnba: '🏀 WNBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: t('folder_sport_football'),
+  }
   const [tab, setTab] = useState<'emoji' | 'team'>('emoji')
   const [sport, setSport] = useState<Sport>('nba')
   const emojis = useMemo(buildEmojis, [])
@@ -35,9 +36,9 @@ export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: s
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 3000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 18, width: '100%', maxWidth: 420, maxHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-          <button onClick={() => setTab('emoji')} style={tabStyle(tab === 'emoji')}>😀 Emoji</button>
-          <button onClick={() => setTab('team')} style={tabStyle(tab === 'team')}>🛡️ Équipe</button>
-          <button onClick={() => onPick('')} style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#e74c3c', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>Retirer</button>
+          <button onClick={() => setTab('emoji')} style={tabStyle(tab === 'emoji')}>{t('folder_tab_emoji')}</button>
+          <button onClick={() => setTab('team')} style={tabStyle(tab === 'team')}>{t('folder_tab_team')}</button>
+          <button onClick={() => onPick('')} style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#e74c3c', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>{t('folder_remove')}</button>
         </div>
 
         {tab === 'emoji' ? (

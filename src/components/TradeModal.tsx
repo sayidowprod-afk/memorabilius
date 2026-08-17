@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 interface CardInfo {
   id: string
@@ -81,7 +82,8 @@ function CardGrid({
   loading: boolean
   emptyMsg: string
 }) {
-  if (loading) return <div style={{ color: '#aaa', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>Chargement…</div>
+  const { t } = useLang()
+  if (loading) return <div style={{ color: '#aaa', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>{t('setlist_loading')}</div>
   if (cards.length === 0) return <div style={{ color: '#aaa', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>{emptyMsg}</div>
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6, maxHeight: 180, overflowY: 'auto', padding: 2 }}>
@@ -124,6 +126,7 @@ function CardGrid({
 const selStyle: React.CSSProperties = { padding: '5px 8px', borderRadius: 8, border: '1.5px solid #e0e0e0', fontSize: 11, background: 'white', cursor: 'pointer', fontFamily: 'inherit' }
 
 function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: Filters; onChange: (f: Filters) => void }) {
+  const { t } = useLang()
   const années = useMemo(() => [...new Set(cards.map(c => c.annee).filter(Boolean))].sort().reverse(), [cards])
   const marques = useMemo(() => [...new Set(cards.map(c => c.marque).filter(Boolean))].sort(), [cards])
   const hasActive = filters.rc || filters.auto || filters.patch || filters.annee || filters.marque || filters.search
@@ -141,14 +144,14 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
       {années.length > 0 && (
         <select value={filters.annee} onChange={e => onChange({ ...filters, annee: e.target.value })}
           style={{ ...selStyle, borderColor: filters.annee ? '#003DA6' : '#e0e0e0' }}>
-          <option value="">Année</option>
+          <option value="">{t('gallery_year')}</option>
           {années.map(y => <option key={y} value={y}>{y}</option>)}
         </select>
       )}
       {marques.length > 0 && (
         <select value={filters.marque} onChange={e => onChange({ ...filters, marque: e.target.value })}
           style={{ ...selStyle, borderColor: filters.marque ? '#003DA6' : '#e0e0e0' }}>
-          <option value="">Marque</option>
+          <option value="">{t('picker_brand')}</option>
           {marques.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
       )}
@@ -158,7 +161,7 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
       {hasActive && (
         <button onClick={() => onChange(emptyFilters())}
           style={{ border: 'none', background: 'none', fontSize: 11, color: '#aaa', cursor: 'pointer', padding: '5px 4px' }}>
-          ✕ Effacer
+          {t('trademodal_clear')}
         </button>
       )}
     </div>
@@ -167,6 +170,7 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
 
 export default function TradeModal({ targetCard, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
   const router = useRouter()
+  const { t } = useLang()
 
   const [targetCards, setTargetCards] = useState<CardInfo[]>([{
     id: targetCard.id, nom: targetCard.nom, annee: targetCard.annee, marque: targetCard.marque,
@@ -203,7 +207,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       try {
         const res = await fetch(profile.lien_csv + '&t=' + Date.now())
         if (res.ok) csvCards = parseCSVCards(await res.text()).filter(c => !privateKeys.has(c.image_recto))
-      } catch { setError('Impossible de charger les cartes CSV du destinataire') }
+      } catch { setError(t('trademodal_err_csv_target')) }
     }
     setTargetCards([...manuelCards, ...csvCards])
     setTargetLoading(false)
@@ -225,7 +229,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       try {
         const res = await fetch(profile.lien_csv + '&t=' + Date.now())
         if (res.ok) csvCards = parseCSVCards(await res.text())
-      } catch { setError('Impossible de charger tes cartes CSV') }
+      } catch { setError(t('trademodal_err_csv_mine')) }
     }
     setMyCards([...manuelCards, ...csvCards])
     setMyLoading(false)
@@ -244,10 +248,10 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   const filteredMy = applyFilters(myCards, myFilters)
 
   const submit = async () => {
-    if (targetSelected.size === 0) { setError('Sélectionne au moins une carte à demander'); return }
+    if (targetSelected.size === 0) { setError(t('trademodal_err_select_target')); return }
     setSending(true); setError('')
     const { data: { session } } = await supabase.auth.getSession()
-    if (!session) { setError('Session expirée'); setSending(false); return }
+    if (!session) { setError(t('trademodal_err_session')); setSending(false); return }
 
     const requestedCards = [...targetSelected].map(id => {
       const card = targetCards.find(c => c.id === id)
@@ -271,18 +275,18 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
         body: JSON.stringify({ receiverId: targetUserId, offeredCards, requestedCards, message: message.trim() || undefined }),
       })
       const json = await res.json()
-      if (!res.ok) { setError(json.error || 'Erreur'); setSending(false); return }
+      if (!res.ok) { setError(json.error || t('trademodal_err_generic')); setSending(false); return }
       onSuccess()
       router.push(`/messages?to=${targetUserId}`)
     } catch {
-      setError('Erreur réseau, réessaie')
+      setError(t('trademodal_err_network'))
       setSending(false)
     }
   }
 
   const sectionLabel = (label: string, count: number) => (
     <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', color: '#888' }}>
-      {label} <span style={{ color: '#003DA6' }}>({count} sélectionnée{count > 1 ? 's' : ''})</span>
+      {label} <span style={{ color: '#003DA6' }}>({count} {count > 1 ? t('trademodal_selected_suffix_plural') : t('trademodal_selected_suffix')})</span>
     </div>
   )
 
@@ -293,33 +297,33 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>🔄 Proposer un échange</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>{t('trademodal_title')}</h2>
           <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#888' }}>✕</button>
         </div>
 
         {/* Section : cartes du destinataire */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {sectionLabel(`Cartes de ${targetUserName} à demander`, targetSelected.size)}
-          <input type="text" placeholder="Rechercher…" value={targetFilters.search}
+          {sectionLabel(`${t('trademodal_cards_of')} ${targetUserName} ${t('trademodal_target_cards')}`, targetSelected.size)}
+          <input type="text" placeholder={t('trademodal_search')} value={targetFilters.search}
             onChange={e => setTargetFilters(f => ({ ...f, search: e.target.value }))}
             style={inputStyle} />
           <FilterBar cards={targetCards} filters={targetFilters} onChange={setTargetFilters} />
-          <CardGrid cards={filteredTarget} selected={targetSelected} onToggle={toggleTarget} loading={targetLoading} emptyMsg={`${targetUserName} n'a pas de cartes`} />
+          <CardGrid cards={filteredTarget} selected={targetSelected} onToggle={toggleTarget} loading={targetLoading} emptyMsg={`${targetUserName} ${t('trademodal_no_cards_target')}`} />
         </div>
 
         <div style={{ height: 1, background: '#f0f0f0' }} />
 
         {/* Section : mes cartes */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {sectionLabel('Tes cartes à offrir', mySelected.size)}
-          <input type="text" placeholder="Rechercher par nom, année, marque…" value={myFilters.search}
+          {sectionLabel(t('trademodal_my_cards'), mySelected.size)}
+          <input type="text" placeholder={t('trademodal_search_mine')} value={myFilters.search}
             onChange={e => setMyFilters(f => ({ ...f, search: e.target.value }))}
             style={inputStyle} />
           <FilterBar cards={myCards} filters={myFilters} onChange={setMyFilters} />
-          <CardGrid cards={filteredMy} selected={mySelected} onToggle={toggleMy} loading={myLoading} emptyMsg="Ta collection est vide" />
+          <CardGrid cards={filteredMy} selected={mySelected} onToggle={toggleMy} loading={myLoading} emptyMsg={t('trademodal_my_empty')} />
         </div>
 
-        <textarea placeholder="Message (optionnel)" value={message} onChange={e => setMessage(e.target.value)}
+        <textarea placeholder={t('trademodal_message_placeholder')} value={message} onChange={e => setMessage(e.target.value)}
           maxLength={300} rows={2}
           style={{ resize: 'none', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}
         />
@@ -333,7 +337,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
             fontWeight: 800, fontSize: 15, cursor: (sending || targetSelected.size === 0) ? 'default' : 'pointer',
           }}
         >
-          {sending ? 'Envoi…' : `Envoyer l'offre (${targetSelected.size}↔${mySelected.size})`}
+          {sending ? t('trademodal_sending') : `${t('trademodal_send_offer')} (${targetSelected.size}↔${mySelected.size})`}
         </button>
       </div>
     </div>

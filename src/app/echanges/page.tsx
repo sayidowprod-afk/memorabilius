@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
+import { useLang } from '@/lib/LangContext'
 
 interface TradeCard {
   id: string
@@ -41,12 +42,13 @@ function CardThumb({ card }: { card: TradeCard }) {
 }
 
 function CardStack({ cards, label }: { cards: TradeCard[]; label: string }) {
+  const { t } = useLang()
   return (
     <div style={{ minWidth: 0 }}>
       <div style={{ fontSize: 11, color: '#888', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>{label}</div>
       <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
         {cards.map(c => <CardThumb key={c.id} card={c} />)}
-        {cards.length === 0 && <span style={{ color: '#bbb', fontSize: 13 }}>Aucune carte</span>}
+        {cards.length === 0 && <span style={{ color: '#bbb', fontSize: 13 }}>{t('echanges_no_card')}</span>}
       </div>
       {cards.length > 0 && (
         <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>
@@ -57,15 +59,15 @@ function CardStack({ cards, label }: { cards: TradeCard[]; label: string }) {
   )
 }
 
-const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
-  pending:   { label: 'En attente', color: '#7a5500', bg: '#fff8e1' },
-  accepted:  { label: 'Accepté',    color: '#1b5e20', bg: '#e8f5e9' },
-  refused:   { label: 'Refusé',     color: '#7f0000', bg: '#ffebee' },
-  cancelled: { label: 'Annulé',     color: '#555',    bg: '#f5f5f5' },
-}
-
 export default function EchangesPage() {
   const router = useRouter()
+  const { t } = useLang()
+  const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
+    pending:   { label: t('echanges_status_pending'),   color: '#7a5500', bg: '#fff8e1' },
+    accepted:  { label: t('echanges_status_accepted'),  color: '#1b5e20', bg: '#e8f5e9' },
+    refused:   { label: t('echanges_status_refused'),   color: '#7f0000', bg: '#ffebee' },
+    cancelled: { label: t('echanges_status_cancelled'), color: '#555',    bg: '#f5f5f5' },
+  }
   const [trades, setTrades] = useState<Trade[]>([])
   const [myId, setMyId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -106,7 +108,7 @@ export default function EchangesPage() {
 
   if (loading) return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', color: '#888' }}>
-      Chargement…
+      {t('setlist_loading')}
     </div>
   )
 
@@ -114,22 +116,22 @@ export default function EchangesPage() {
     <div style={{ maxWidth: 640, margin: '0 auto', padding: '32px 16px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
         <Link href="/profil" style={{ color: '#888', textDecoration: 'none', fontSize: 20 }}>←</Link>
-        <h1 style={{ fontSize: 22, fontWeight: 900 }}>🔄 Mes échanges</h1>
+        <h1 style={{ fontSize: 22, fontWeight: 900 }}>{t('echanges_title')}</h1>
       </div>
 
       {/* Tabs */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-        {(['pending', 'history'] as const).map(t => (
+        {(['pending', 'history'] as const).map(tb => (
           <button
-            key={t}
-            onClick={() => setTab(t)}
+            key={tb}
+            onClick={() => setTab(tb)}
             style={{
               border: 'none', borderRadius: 50, padding: '8px 18px', fontWeight: 700, fontSize: 13, cursor: 'pointer',
-              background: tab === t ? '#003DA6' : '#f0f0f0',
-              color: tab === t ? '#fff' : '#555',
+              background: tab === tb ? '#003DA6' : '#f0f0f0',
+              color: tab === tb ? '#fff' : '#555',
             }}
           >
-            {t === 'pending' ? `En attente (${pending.length})` : `Historique (${history.length})`}
+            {tb === 'pending' ? `${t('echanges_tab_pending')} (${pending.length})` : `${t('echanges_tab_history')} (${history.length})`}
           </button>
         ))}
       </div>

@@ -126,6 +126,7 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
   side: 'recto' | 'verso' | 'il' | 'ir'; label: string; preview: string | null; uploading: boolean; aspect?: string
   lang: string; onClear: () => void; onFileChange: (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => void; onCameraClick: (side: 'recto' | 'verso' | 'il' | 'ir') => void
 }) {
+  const { t } = useLang()
   return (
     <div>
       <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{label}</label>
@@ -138,12 +139,12 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
         ) : (
           <div style={{ textAlign: 'center', color: '#bbb', padding: 10 }}>
             <div style={{ fontSize: 32, marginBottom: 6 }}>📷</div>
-            <p style={{ fontSize: 12, fontWeight: 600, margin: 0 }}>{uploading ? '...' : (lang === 'fr' ? 'Cliquer pour ajouter' : 'Click to add')}</p>
+            <p style={{ fontSize: 12, fontWeight: 600, margin: 0 }}>{uploading ? '...' : t('addcard_click_add')}</p>
           </div>
         )}
         {uploading && (
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ color: 'white', fontWeight: 700 }}>Upload...</div>
+            <div style={{ color: 'white', fontWeight: 700 }}>{t('addcard_uploading')}</div>
           </div>
         )}
       </div>
@@ -152,13 +153,13 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
         <button type="button"
           onClick={() => onCameraClick(side)}
           style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-          {lang === 'fr' ? '📸 Prendre une photo' : '📸 Take a photo'}
+          {t('addcard_take_photo')}
         </button>
       )}
       {preview && (
         <button type="button" onClick={onClear}
           style={{ marginTop: 6, width: '100%', background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '6px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-          {lang === 'fr' ? '🗑️ Supprimer' : '🗑️ Remove'}
+          {t('addcard_remove')}
         </button>
       )}
     </div>
@@ -168,7 +169,7 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
 export default function AjouterCarte({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = use(params)
   const router = useRouter()
-  const { lang } = useLang()
+  const { lang, t } = useLang()
   const [saving, setSaving] = useState(false)
   const [showDesignation, setShowDesignation] = useState(false)
   const [designation, setDesignation] = useState('')
@@ -293,7 +294,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         setScannerModal({ side, src })
       }
     } catch {
-      toast.error(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
+      toast.error(t('addcard_err_image_unreadable'))
     }
   }
 
@@ -636,7 +637,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.nom) { toast.error(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
+    if (!form.nom) { toast.error(t('addcard_err_name_required')); return }
     setSaving(true)
 
     const { data: { user } } = await supabase.auth.getUser()
@@ -673,17 +674,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
       <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>
-        ← {lang === 'fr' ? 'Retour à la galerie' : 'Back to gallery'}
+        ← {t('addcard_back_to_gallery')}
       </Link>
       <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 20 }}>
-        {lang === 'fr' ? '➕ Ajouter un objet' : '➕ Add an item'}
+        {t('addcard_title_add')}
       </h1>
 
       {/* Sélecteur de type */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
         {([
-          { id: 'card',        icon: '🃏', label: lang === 'fr' ? 'Carte' : 'Card' },
-          { id: 'memorabilia', icon: '🏆', label: lang === 'fr' ? 'Mémorabilias' : 'Memorabilia' },
+          { id: 'card',        icon: '🃏', label: t('addcard_type_card') },
+          { id: 'memorabilia', icon: '🏆', label: t('addcard_type_memorabilia') },
         ] as const).map(t => (
           <button key={t.id} type="button" onClick={() => setForm(f => ({ ...f, item_type: t.id, grade: '' }))}
             style={{
@@ -701,19 +702,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       <form onSubmit={handleSubmit}>
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
-          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} lang={lang} onClear={() => { setForm(f => ({ ...f, image_recto: '' })); setPreviewRecto(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = [] }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
-          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? (form.format === 'horizontal' || form.is_horizontal)) ? '3.5/2.5' : (getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined)} lang={lang} onClear={() => { setForm(f => ({ ...f, image_verso: '' })); setPreviewVerso(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+          <ImageUploader side="recto" label={form.booklet ? t('addcard_front_cover_booklet') : t('addcard_front_photo')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} lang={lang} onClear={() => { setForm(f => ({ ...f, image_recto: '' })); setPreviewRecto(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = [] }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+          <ImageUploader side="verso" label={form.booklet ? t('addcard_back_cover_booklet') : t('addcard_back_photo')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? (form.format === 'horizontal' || form.is_horizontal)) ? '3.5/2.5' : (getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined)} lang={lang} onClear={() => { setForm(f => ({ ...f, image_verso: '' })); setPreviewVerso(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
         </div>
 
         {/* Photos intérieures (booklet seulement) */}
         {form.booklet && (
           <div style={{ marginBottom: 24 }}>
             <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', color: '#7b1fa2', marginBottom: 10 }}>
-              📖 {lang === 'fr' ? 'Pages intérieures' : 'Interior pages'}
+              📖 {t('addcard_interior_pages')}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-              <ImageUploader side="il" label={lang === 'fr' ? 'Page gauche' : 'Left page'} preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" lang={lang} onClear={() => { setForm(f => ({ ...f, image_interieur_gauche: '' })); setPreviewIL(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
-              <ImageUploader side="ir" label={lang === 'fr' ? 'Page droite' : 'Right page'} preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" lang={lang} onClear={() => { setForm(f => ({ ...f, image_interieur_droite: '' })); setPreviewIR(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+              <ImageUploader side="il" label={t('addcard_left_page')} preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" lang={lang} onClear={() => { setForm(f => ({ ...f, image_interieur_gauche: '' })); setPreviewIL(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+              <ImageUploader side="ir" label={t('addcard_right_page')} preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" lang={lang} onClear={() => { setForm(f => ({ ...f, image_interieur_droite: '' })); setPreviewIR(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
             </div>
           </div>
         )}
@@ -721,10 +722,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         {waitingForVerso && !scanning && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#f0f7ff', border: '1.5px solid #c0d8ff', borderRadius: 10, padding: '10px 16px', marginBottom: 4 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#003DA6', flex: 1 }}>
-              {lang === 'fr' ? '📷 Ajoutez le verso pour une meilleure analyse, ou continuez sans.' : '📷 Add the back for better analysis, or continue without.'}
+              {t('addcard_add_back_hint')}
             </span>
             <button type="button" onClick={analyzeRectoOnly} style={{ padding: '6px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: 'white', color: '#003DA6', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              {lang === 'fr' ? 'Analyser sans verso →' : 'Analyse without back →'}
+              {t('addcard_analyze_no_back')}
             </button>
           </div>
         )}
@@ -732,7 +733,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#f0f7ff', border: '1.5px solid #c0d8ff', borderRadius: 10, padding: '10px 16px', marginBottom: 4 }}>
             <div style={{ width: 16, height: 16, border: '2px solid #003DA6', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', flexShrink: 0 }} />
             <span style={{ fontSize: 13, fontWeight: 600, color: '#003DA6' }}>
-              {lang === 'fr' ? 'Analyse IA en cours…' : 'AI analysis in progress…'}
+              {t('addcard_analyzing')}
             </span>
           </div>
         )}
@@ -748,7 +749,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           <div style={{ border: '1.5px dashed #cbd5e1', borderRadius: 12, padding: showDesignation ? 16 : 0, background: '#f8faff' }}>
             <button type="button" onClick={() => setShowDesignation(v => !v)}
               style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: showDesignation ? '0 0 12px' : '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#003DA6', fontWeight: 800, fontSize: 13 }}>
-              <span>⚡ {lang === 'fr' ? 'Remplir depuis une désignation (Beckett…)' : 'Fill from a designation (Beckett…)'}</span>
+              <span>⚡ {t('addcard_fill_from_designation')}</span>
               <span style={{ fontSize: 16 }}>{showDesignation ? '▲' : '▼'}</span>
             </button>
             {showDesignation && (
@@ -757,9 +758,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                   value={designation}
                   onChange={e => { setDesignation(e.target.value); setDesignationDone(false) }}
                   rows={2}
-                  placeholder={lang === 'fr'
-                    ? 'Ex : 2007-08 UD Black 50th Anniversary Autographs #BR Bill Russell'
-                    : 'Ex: 2007-08 UD Black 50th Anniversary Autographs #BR Bill Russell'}
+                  placeholder={t('addcard_ex_designation')}
                   style={{ width: '100%', boxSizing: 'border-box', borderRadius: 8, border: '1.5px solid #cbd5e1', padding: '10px 12px', fontSize: 13, fontFamily: 'inherit', resize: 'vertical' }}
                 />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
@@ -783,18 +782,16 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                       setDesignationDone(true)
                     }}
                     style={{ background: '#003DA6', color: '#fff', border: 'none', borderRadius: 8, padding: '9px 16px', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
-                    {lang === 'fr' ? 'Remplir les champs' : 'Fill the fields'}
+                    {t('addcard_fill_fields_btn')}
                   </button>
                   {designationDone && (
                     <span style={{ fontSize: 12, color: '#2e7d32', fontWeight: 700 }}>
-                      ✓ {lang === 'fr' ? 'Champs remplis — vérifiez ci-dessous' : 'Fields filled — check below'}
+                      ✓ {t('addcard_fields_filled')}
                     </span>
                   )}
                 </div>
                 <p style={{ fontSize: 11, color: '#94a3b8', margin: '8px 0 0', lineHeight: 1.4 }}>
-                  {lang === 'fr'
-                    ? 'Format : Année · Marque/Collection · #Numéro · Joueur. Les champs restent modifiables.'
-                    : 'Format: Year · Brand/Set · #Number · Player. Fields stay editable.'}
+                  {t('addcard_designation_format_hint')}
                 </p>
               </>
             )}
@@ -802,39 +799,39 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Nom du joueur *' : 'Player name *'}
+              {t('addcard_player_name')}
             </label>
-            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder={lang === 'fr' ? 'Ex : LeBron James' : 'Ex: LeBron James'} />
+            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder={t('addcard_ex_player_name')} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Équipe' : 'Team'}</label>
-              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Lakers' : 'Ex: Lakers'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('gallery_team')}</label>
+              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder={t('addcard_ex_team')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Année' : 'Year'}</label>
-              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 2023-24' : 'Ex: 2023-24'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('gallery_year')}</label>
+              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder={t('addcard_ex_year')} />
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Marque' : 'Brand'}</label>
-              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Panini, Topps…' : 'Ex: Panini, Topps…'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('picker_brand')}</label>
+              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={t('addcard_ex_brand')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Collection' : 'Set'}</label>
-              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Prizm, Chrome…' : 'Ex: Prizm, Chrome…'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_collection')}</label>
+              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={t('addcard_ex_collection')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Variation' : 'Variant'}</label>
-              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Silver Prizm' : 'Ex: Silver Prizm'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_variation')}</label>
+              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={t('addcard_ex_variation')} />
             </div>
             {form.item_type === 'memorabilia' && (
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
-              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Patch logo, Jersey relic…' : 'Ex: Logo patch, Jersey relic…'} />
+              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_patch_desc')} />
             </div>
             )}
           </div>
@@ -844,28 +841,28 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
-                  <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
+                  <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={t('addcard_ex_grade')} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
-                  <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_card_num')}</label>
+                  <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_card_num')} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation' : 'Numbering'}</label>
-                  <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering')}</label>
+                  <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={t('addcard_ex_numbering')} />
                 </div>
               </div>
               {form.grade.trim() && form.grade.trim().toLowerCase() !== 'raw' && (
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de certification' : 'Cert number'}</label>
-                  <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 82659423 (au dos du slab)' : 'Ex: 82659423 (on the slab)'} />
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_cert_num')}</label>
+                  <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={t('addcard_ex_cert_num')} />
                 </div>
               )}
             </>
           ) : (
             <>
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{lang === 'fr' ? 'Taille' : 'Size'}</label>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{t('addcard_label_size')}</label>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
                   {['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'].map(s => (
                     <button key={s} type="button" onClick={() => setForm(f => ({ ...f, grade: f.grade === s ? '' : s }))}
@@ -877,18 +874,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                   ))}
                 </div>
                 <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })}
-                  placeholder={lang === 'fr' ? 'Ex : L, 44, EU 42, 7½, 8×10po…' : 'Ex: L, 44, EU 42, 7½, 8×10in…'} />
+                  placeholder={t('addcard_ex_size')} />
               </div>
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (édition limitée)' : 'Numbering (limited edition)'}</label>
-                <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/500' : 'Ex: 48/500'} />
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering_limited')}</label>
+                <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={t('addcard_ex_numbering_limited')} />
               </div>
             </>
           )}
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Ajouter à la collection...' : 'Add to collection...'}
+              {t('addcard_add_to_collection_placeholder')}
             </label>
             <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
@@ -900,7 +897,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <div style={{ position: 'absolute', top: 2, left: form.disponible_vente ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: '0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
             </div>
             <span style={{ fontWeight: 700, fontSize: 13, color: form.disponible_vente ? '#003DA6' : '#666' }}>
-              {lang === 'fr' ? '🏷️ Disponible à la vente / trade' : '🏷️ Available for sale / trade'}
+              {t('addcard_available_sale')}
             </span>
           </label>
           {form.disponible_vente && (
@@ -950,13 +947,13 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 <span>Booklet</span>
               </button>
             </div>
-            {form.booklet && <p style={{ fontSize: 12, color: '#888', margin: '8px 0 0' }}>{lang === 'fr' ? '4 photos requises (2 couvertures + 2 intérieurs)' : '4 photos required (2 covers + 2 interiors)'}</p>}
+            {form.booklet && <p style={{ fontSize: 12, color: '#888', margin: '8px 0 0' }}>{t('addcard_photos_required')}</p>}
           </div>
           )}
 
           {form.item_type !== 'memorabilia' ? (
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_features')}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
                 { key: 'rc', label: 'RC', activeBg: '#e67e22' },
@@ -974,12 +971,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </div>
           ) : (
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Authenticité' : 'Authentication'}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_authentication')}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
-                { key: 'rc',   label: lang === 'fr' ? '📜 COA inclus' : '📜 COA included', activeBg: '#7b1fa2' },
-                { key: 'auto', label: lang === 'fr' ? '✍️ Autographié' : '✍️ Autographed', activeBg: '#2e7d32' },
-                { key: 'patch', label: lang === 'fr' ? '🎽 Porté en match' : '🎽 Game-worn', activeBg: '#c0392b' },
+                { key: 'rc',   label: t('addcard_coa_included'), activeBg: '#7b1fa2' },
+                { key: 'auto', label: t('addcard_autographed'), activeBg: '#2e7d32' },
+                { key: 'patch', label: t('addcard_game_worn'), activeBg: '#c0392b' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{ padding: '10px 20px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 800, fontSize: 13, transition: '0.2s',
@@ -991,16 +988,16 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             {form.auto && (
               <div style={{ marginTop: 12 }}>
                 <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>
-                  {lang === 'fr' ? '✍️ Signé par' : '✍️ Signed by'}
+                  {t('addcard_signed_by')}
                 </label>
-                <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : LeBron James' : 'Ex: LeBron James'} />
+                <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={t('addcard_ex_player_name')} />
               </div>
             )}
           </div>
           )}
 
           <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
-            {saving ? '...' : (lang === 'fr' ? '✅ Ajouter à ma galerie' : '✅ Add to my gallery')}
+            {saving ? '...' : t('addcard_submit_add')}
           </button>
         </div>
       </form>
@@ -1017,12 +1014,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           }}>
             <div style={{ fontSize: 28, marginBottom: 8, textAlign: 'center' }}>⚠️</div>
             <h3 style={{ fontSize: 17, fontWeight: 900, color: '#111', margin: '0 0 6px', textAlign: 'center' }}>
-              {lang === 'fr' ? 'Carte déjà dans ta galerie ?' : 'Card already in your gallery?'}
+              {t('addcard_dup_title')}
             </h3>
             <p style={{ fontSize: 13, color: '#666', margin: '0 0 16px', textAlign: 'center' }}>
-              {lang === 'fr'
-                ? `Tu as déjà ${dupWarning.cards.length} carte${dupWarning.cards.length > 1 ? 's' : ''} avec ce nom.`
-                : `You already have ${dupWarning.cards.length} card${dupWarning.cards.length > 1 ? 's' : ''} with this name.`}
+              {dupWarning.cards.length > 1 ? t('addcard_dup_count_other').replace('{n}', String(dupWarning.cards.length)) : t('addcard_dup_count_one')}
             </p>
             {/* Aperçu des doublons */}
             <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 20, flexWrap: 'wrap' }}>
@@ -1042,12 +1037,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <button
                 onClick={() => { setDupWarning(null) }}
                 style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: '2px solid #e0e0e0', background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: '#333' }}>
-                {lang === 'fr' ? 'Annuler' : 'Cancel'}
+                {t('profile_cancel')}
               </button>
               <button
                 onClick={async () => { setDupWarning(null); setSaving(true); await doInsert(dupWarning.userId) }}
                 style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: 'none', background: '#003DA6', color: 'white', fontWeight: 800, fontSize: 14, cursor: 'pointer' }}>
-                {lang === 'fr' ? 'Ajouter quand même' : 'Add anyway'}
+                {t('addcard_add_anyway')}
               </button>
             </div>
           </div>
@@ -1062,27 +1057,27 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           <div style={{ background: 'white', borderRadius: 16, padding: '28px 24px', maxWidth: 360, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.25)', textAlign: 'center' }}>
             <img src={binderPrompt.img} alt="" style={{ width: 90, borderRadius: 8, margin: '0 auto 14px', display: 'block' }} />
             <h3 style={{ fontSize: 16, fontWeight: 900, color: '#111', margin: '0 0 6px' }}>
-              {lang === 'fr' ? 'Carte ajoutée !' : 'Card added!'}
+              {t('addcard_added_title')}
             </h3>
             <p style={{ fontSize: 13, color: '#666', margin: '0 0 18px' }}>
-              {lang === 'fr' ? 'La ranger dans un classeur de ta bibliothèque ?' : 'File it into a binder in your library?'}
+              {t('addcard_file_prompt')}
             </p>
             <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
               <button
                 onClick={() => router.push(`/galerie/${userId}`)}
                 style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: '2px solid #e0e0e0', background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: '#333' }}>
-                {lang === 'fr' ? 'Non merci' : 'No thanks'}
+                {t('addcard_no_thanks')}
               </button>
               <button
                 onClick={() => setShowBinderPicker(true)}
                 style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: 'none', background: ACCENT, color: 'white', fontWeight: 800, fontSize: 14, cursor: 'pointer' }}>
-                {lang === 'fr' ? '📔 Ranger' : '📔 File it'}
+                {t('addcard_file_it')}
               </button>
             </div>
             <button
               onClick={resetForm}
               style={{ width: '100%', padding: '11px 0', borderRadius: 10, border: `2px solid ${ACCENT}`, background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: ACCENT }}>
-              {lang === 'fr' ? '➕ Ajouter une autre carte' : '➕ Add another card'}
+              {t('addcard_add_another')}
             </button>
           </div>
         </div>,
@@ -1188,7 +1183,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                     requestAnimationFrame(resetTransform)
                   }}
                   style={{ padding: '7px 14px', borderRadius: 8, border: versoHorizontal ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: versoHorizontal ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  🔄 {lang === 'fr' ? 'Verso à l\'horizontale' : 'Horizontal back'} {versoHorizontal ? '✓' : ''}
+                  🔄 {t('addcard_horizontal_back')} {versoHorizontal ? '✓' : ''}
                 </button>
               </div>
             )
@@ -1273,9 +1268,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           {/* Panneau bas */}
           <div style={{ width: '100%', background: '#1a1a1a', padding: '14px 20px 20px', boxSizing: 'border-box' }}>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', textAlign: 'center', margin: '0 0 10px' }}>
-              {lang === 'fr'
-                ? 'Glissez pour repositionner · Pincez ou molette pour zoomer'
-                : 'Drag to reposition · Pinch or scroll to zoom'}
+              {t('addcard_drag_zoom_hint')}
             </p>
 
             {/* Slider zoom */}
@@ -1297,7 +1290,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 onClick={resetTransform}
                 style={{ padding: '6px 12px', background: 'rgba(255,255,255,0.12)', color: 'white', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}
               >
-                {lang === 'fr' ? 'Recadrer' : 'Fit'}
+                {t('addcard_fit')}
               </button>
             </div>
 
@@ -1330,14 +1323,14 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 onClick={() => setCropModal(null)}
                 style={{ flex: 1, padding: 14, background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: 12, fontWeight: 700, cursor: 'pointer', color: 'white', fontSize: 15 }}
               >
-                {lang === 'fr' ? 'Annuler' : 'Cancel'}
+                {t('profile_cancel')}
               </button>
               <button
                 type="button"
                 onClick={applyCropAndUpload}
                 style={{ flex: 2, padding: 14, background: 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: 'pointer', fontSize: 15 }}
               >
-                {lang === 'fr' ? 'Utiliser cette image' : 'Use this image'}
+                {t('addcard_use_image')}
               </button>
             </div>
           </div>

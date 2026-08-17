@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import { useLang } from '@/lib/LangContext'
 
 const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
@@ -15,10 +16,16 @@ const TRADE_PREFIX = '[[trade_offer:'
 const isTradeMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_PREFIX)
 const tradeIdOf = (c: string) => c.slice(TRADE_PREFIX.length, -2)
 
-const STATUS_LABEL: Record<string, string> = { pending: 'En attente', accepted: 'Accepté ✓', refused: 'Refusé', cancelled: 'Annulé' }
 const STATUS_COLOR: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
 
 export default function ChatBubble() {
+  const { t } = useLang()
+  const STATUS_LABEL: Record<string, string> = {
+    pending: t('chat_status_pending'),
+    accepted: t('chat_status_accepted'),
+    refused: t('chat_status_refused'),
+    cancelled: t('chat_status_cancelled'),
+  }
   const { dark } = useTheme()
   const isNative = useIsNative()
   // Sur l'app native, la bottom bar prend la place du bas d'écran.
@@ -94,7 +101,7 @@ export default function ChatBubble() {
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
       if (!convMap[otherId]) convMap[otherId] = {
-        lastMsg: isTradeMsg(msg.contenu) ? '🔄 Offre d\'échange' : msg.contenu,
+        lastMsg: isTradeMsg(msg.contenu) ? t('chat_trade_offer_label') : msg.contenu,
         date: msg.created_at, unread: 0,
       }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
@@ -156,7 +163,7 @@ export default function ChatBubble() {
     if (!userId || !activeConv) return
     const { data: { session } } = await supabase.auth.getSession()
     if (session?.access_token) {
-      const senderName = profiles[userId]?.display_name || 'Quelqu\'un'
+      const senderName = profiles[userId]?.display_name || t('chat_someone')
       fetch('/api/message-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
@@ -203,7 +210,7 @@ export default function ChatBubble() {
         const path = `chat/${userId}/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`
         const up = new File([blob], 'chat.jpg', { type: 'image/jpeg' })
         const { error } = await supabase.storage.from('avatars').upload(path, up, { upsert: true })
-        if (error) { toast.error('Erreur envoi image : ' + error.message); continue }
+        if (error) { toast.error(t('chat_error_send_image') + error.message); continue }
         const { data } = supabase.storage.from('avatars').getPublicUrl(path)
         await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl })
       }
@@ -211,7 +218,7 @@ export default function ChatBubble() {
       loadConversations(userId)
       notifyRecipient()
     } catch {
-      toast.error('Image illisible, réessayez.')
+      toast.error(t('chat_error_image_unreadable'))
     } finally {
       setUploadingImg(false)
     }
@@ -237,9 +244,9 @@ export default function ChatBubble() {
           boxShadow: '0 4px 16px rgba(0,61,166,0.4)',
           transition: 'all 0.2s', whiteSpace: 'nowrap',
         }}
-        title="Messages"
+        title={t('chat_messages_title')}
       >
-        {open ? '✕' : (unread > 0 ? <>💬 Nouveau message reçu</> : '💬')}
+        {open ? '✕' : (unread > 0 ? <>{t('chat_new_message')}</> : '💬')}
       </button>
 
       {/* Panneau */}
@@ -253,12 +260,12 @@ export default function ChatBubble() {
           {!activeConv ? (
             <>
               <div style={{ padding: '14px 16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h3 style={{ margin: 0, fontWeight: 900, fontSize: 15, color: textMain }}>Messages</h3>
-                <Link href="/messages" style={{ fontSize: 11, color: '#003DA6', fontWeight: 700, textDecoration: 'none' }} onClick={() => setOpen(false)}>Ouvrir en grand</Link>
+                <h3 style={{ margin: 0, fontWeight: 900, fontSize: 15, color: textMain }}>{t('chat_messages_title')}</h3>
+                <Link href="/messages" style={{ fontSize: 11, color: '#003DA6', fontWeight: 700, textDecoration: 'none' }} onClick={() => setOpen(false)}>{t('chat_open_full')}</Link>
               </div>
               <div style={{ overflowY: 'auto', flex: 1 }}>
                 {conversations.length === 0 && (
-                  <p style={{ padding: 20, color: textMuted, fontSize: 13, textAlign: 'center' }}>Aucune conversation</p>
+                  <p style={{ padding: 20, color: textMuted, fontSize: 13, textAlign: 'center' }}>{t('chat_no_conversations')}</p>
                 )}
                 {conversations.map(conv => (
                   <div key={conv.id} onClick={() => selectConv(conv.id)} style={{
@@ -272,7 +279,7 @@ export default function ChatBubble() {
                         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[conv.id]?.display_name || '...'}</span>
                         {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 16, height: 16, fontSize: 9, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, flexShrink: 0 }}>{conv.unread}</span>}
                       </p>
-                      <p style={{ fontSize: 10, color: textMuted, margin: '2px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
+                      <p style={{ fontSize: 10, color: textMuted, margin: '2px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{isImageMsg(conv.lastMsg) ? t('chat_photo') : conv.lastMsg}</p>
                     </div>
                   </div>
                 ))}
@@ -282,7 +289,7 @@ export default function ChatBubble() {
             <>
               <div style={{ padding: '10px 14px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <button onClick={() => setActiveConv(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, color: '#003DA6', padding: 0 }}>←</button>
-                <Link href={`/galerie/${activeConv}`} onClick={() => setOpen(false)} title="Voir la galerie"
+                <Link href={`/galerie/${activeConv}`} onClick={() => setOpen(false)} title={t('chat_view_gallery')}
                   style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flex: 1, minWidth: 0 }}>
                   <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
                     style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} alt="" />
@@ -324,14 +331,14 @@ export default function ChatBubble() {
                           borderRadius: 10, padding: 10,
                         }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                            <span style={{ fontSize: 11, fontWeight: 800, color: '#003DA6' }}>🔄 Offre d'échange</span>
+                            <span style={{ fontSize: 11, fontWeight: 800, color: '#003DA6' }}>{t('chat_trade_offer_label')}</span>
                             {offer && <span style={{ fontSize: 10, fontWeight: 700, color: STATUS_COLOR[offer.status] || '#555' }}>{STATUS_LABEL[offer.status] || offer.status}</span>}
                           </div>
                           {offer ? (
                             <>
                               <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 6 }}>
                                 <div style={{ flex: 1 }}>
-                                  <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? 'Tu offres' : 'Il/elle offre'}</div>
+                                  <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? t('chat_you_offer') : t('chat_they_offer')}</div>
                                   <div style={{ display: 'flex', gap: 3 }}>
                                     {offer.offered_cards.slice(0, 3).map((c: any, i: number) => {
                                       const img = c.image_recto || c.card_image
@@ -353,7 +360,7 @@ export default function ChatBubble() {
                                 </div>
                                 <span style={{ color: textMuted, fontSize: 14, flexShrink: 0 }}>⇄</span>
                                 <div style={{ flex: 1 }}>
-                                  <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? 'Tu demandes' : 'Il/elle demande'}</div>
+                                  <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? t('chat_you_request') : t('chat_they_request')}</div>
                                   <div style={{ display: 'flex', gap: 3 }}>
                                     {offer.requested_cards.slice(0, 3).map((c: any, i: number) => {
                                       const img = c.image_recto || c.card_image
@@ -378,18 +385,18 @@ export default function ChatBubble() {
                                 <div style={{ display: 'flex', gap: 5, marginTop: 4 }}>
                                   {!isSender && (
                                     <>
-                                      <button onClick={() => actOnOffer('accept')} style={{ flex: 1, background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, padding: '5px 0', fontWeight: 800, fontSize: 10, cursor: 'pointer' }}>✓ Accepter</button>
-                                      <button onClick={() => actOnOffer('refuse')} style={{ flex: 1, background: 'none', border: `1px solid ${border}`, borderRadius: 6, padding: '5px 0', fontWeight: 700, fontSize: 10, cursor: 'pointer', color: textMain }}>✕ Refuser</button>
+                                      <button onClick={() => actOnOffer('accept')} style={{ flex: 1, background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, padding: '5px 0', fontWeight: 800, fontSize: 10, cursor: 'pointer' }}>{t('chat_accept')}</button>
+                                      <button onClick={() => actOnOffer('refuse')} style={{ flex: 1, background: 'none', border: `1px solid ${border}`, borderRadius: 6, padding: '5px 0', fontWeight: 700, fontSize: 10, cursor: 'pointer', color: textMain }}>{t('chat_decline')}</button>
                                     </>
                                   )}
                                   {isSender && (
-                                    <button onClick={() => actOnOffer('cancel')} style={{ background: 'none', border: `1px solid ${border}`, borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 10, cursor: 'pointer', color: '#888' }}>Annuler</button>
+                                    <button onClick={() => actOnOffer('cancel')} style={{ background: 'none', border: `1px solid ${border}`, borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 10, cursor: 'pointer', color: '#888' }}>{t('chat_cancel_offer')}</button>
                                   )}
                                 </div>
                               )}
                             </>
                           ) : (
-                            <div style={{ fontSize: 11, color: textMuted }}>Chargement…</div>
+                            <div style={{ fontSize: 11, color: textMuted }}>{t('chat_loading')}</div>
                           )}
                           <div style={{ fontSize: 9, color: textMuted, marginTop: 5, textAlign: 'right' }}>{ts}</div>
                         </div>
@@ -419,7 +426,7 @@ export default function ChatBubble() {
               <div style={{ padding: 10, borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
                 <input ref={fileRef} type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={sendImages} />
                 <button onClick={() => fileRef.current?.click()} disabled={uploadingImg}
-                  title="Envoyer une image"
+                  title={t('chat_send_image_title')}
                   style={{ background: dark ? '#333' : '#f0f0f0', color: dark ? '#ddd' : '#555', border: 'none', borderRadius: 8, padding: '0 10px', height: 32, fontSize: 15, cursor: uploadingImg ? 'wait' : 'pointer', flexShrink: 0 }}>
                   {uploadingImg ? '…' : '📷'}
                 </button>
@@ -427,7 +434,7 @@ export default function ChatBubble() {
                   value={newMsg}
                   onChange={e => setNewMsg(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && sendMessage()}
-                  placeholder="Écrire..."
+                  placeholder={t('chat_write_placeholder')}
                   style={{ flex: 1, fontSize: 12, padding: '8px 10px', borderRadius: 8, border: `1px solid ${border}`, background: dark ? '#2a2a2a' : 'white', color: textMain, outline: 'none' }}
                 />
                 <button onClick={sendMessage} style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '0 12px', height: 32, fontWeight: 700, fontSize: 12, cursor: 'pointer', flexShrink: 0 }}>➤</button>

@@ -752,7 +752,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (lastAddedCard) {
       updateGalleryWidget({
         imageUrl: lastAddedCard.f,
-        playerName: lastAddedCard.n || 'Ma galerie',
+        playerName: lastAddedCard.n || t('gallery_default_gallery_name'),
         totalCards: cards.length,
         galleryUrl: `https://www.memorabilius.fr/galerie/${userId}`,
       })
@@ -1387,7 +1387,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             />
             <div style={{ minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
-                <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || 'Collectionneur'}</h1>
+                <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
@@ -1523,7 +1523,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           </div>
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            📊 {showStats ? 'Masquer les stats' : 'Voir les stats'}
+                            📊 {showStats ? t('gallery_hide_stats') : t('gallery_show_stats')}
                           </button>
                           <button onClick={() => { setQrMode(m => !m); setQrSelected(new Map()); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
@@ -2115,7 +2115,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   await addSelectedToCollection(tag)
                   setBulkNewTag(''); setShowBulkNewTag(false)
                 }}
-                placeholder="Nom de la collection… (Entrée)"
+                placeholder={t('gallery_col_name_placeholder')}
                 style={{ background: 'white', border: 'none', borderRadius: 6, color: '#111', padding: '5px 10px', fontSize: 12, fontWeight: 700, flexShrink: 0, width: 180, outline: 'none' }}
               />
               <button
@@ -2249,8 +2249,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 </div>
               )}
               {d.vendue ? (
-                <div title={lang === 'fr' ? 'Vendue' : 'Sold'} style={{ position: 'absolute', top: 6, right: 6, background: '#c0392b', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
-                  💰 {lang === 'fr' ? 'VENDUE' : 'SOLD'}
+                <div title={t('gallery_sold_badge')} style={{ position: 'absolute', top: 6, right: 6, background: '#c0392b', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
+                  💰 {t('gallery_sold_badge').toUpperCase()}
                 </div>
               ) : d.disponible_vente && (
                 <div title={t('gallery_for_sale_title')} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
@@ -2551,7 +2551,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             image_recto: tradeCard.f,
           }}
           targetUserId={userId}
-          targetUserName={profile?.display_name || 'Collector'}
+          targetUserName={profile?.display_name || t('gallery_default_collector')}
           onClose={() => setTradeCard(null)}
           onSuccess={() => { setTradeCard(null); setTradeSent(true) }}
         />

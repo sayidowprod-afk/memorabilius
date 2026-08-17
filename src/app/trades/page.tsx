@@ -9,6 +9,7 @@ import { inferSportFromTeamName } from '@/lib/sportsTeams'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
+  const { t } = useLang()
   const [zoomed, setZoomed] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50 })
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -19,7 +20,7 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
   return (
     <div onClick={() => setZoomed(!zoomed)} onMouseMove={handleMove} onMouseLeave={() => setZoomed(false)}
       style={{ width: '100%', height: '100%', minHeight: 400, cursor: zoomed ? 'zoom-out' : 'zoom-in', overflow: 'hidden', position: 'relative' }}
-      title={zoomed ? 'Cliquer pour dézoomer' : 'Cliquer pour zoomer'}
+      title={zoomed ? t('events_zoom_out') : t('events_zoom_in')}
     >
       <img src={src} alt={alt} draggable={false} style={{
         width: '100%', height: '100%', objectFit: 'contain', display: 'block',
@@ -45,13 +46,6 @@ function CardThumb({ card }: { card: any }) {
       }
     </div>
   )
-}
-
-const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
-  pending:   { label: 'En attente', color: '#7a5500', bg: '#fff8e1' },
-  accepted:  { label: 'Accepté',    color: '#1b5e20', bg: '#e8f5e9' },
-  refused:   { label: 'Refusé',     color: '#7f0000', bg: '#ffebee' },
-  cancelled: { label: 'Annulé',     color: '#555',    bg: '#f5f5f5' },
 }
 
 // ── Composant principal ───────────────────────────────────────────────────────
@@ -377,14 +371,20 @@ export default function Trades() {
           </div>
 
           {loadingOffers ? (
-            <div style={{ textAlign: 'center', color: '#bbb', padding: '48px 0' }}>Chargement…</div>
+            <div style={{ textAlign: 'center', color: '#bbb', padding: '48px 0' }}>{t('setlist_loading')}</div>
           ) : shownOffers.length === 0 ? (
             <div style={{ textAlign: 'center', color: '#bbb', padding: '48px 0', fontSize: 15 }}>
-              {offerTab === 'pending' ? 'Aucun échange en attente' : 'Aucun historique'}
+              {offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')}
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {shownOffers.map(trade => {
+                const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
+                  pending:   { label: t('echanges_status_pending'),   color: '#7a5500', bg: '#fff8e1' },
+                  accepted:  { label: t('echanges_status_accepted'),  color: '#1b5e20', bg: '#e8f5e9' },
+                  refused:   { label: t('echanges_status_refused'),   color: '#7f0000', bg: '#ffebee' },
+                  cancelled: { label: t('echanges_status_cancelled'), color: '#555',    bg: '#f5f5f5' },
+                }
                 const isSender = trade.sender_id === userId
                 const status = STATUS_LABEL[trade.status] || STATUS_LABEL.cancelled
                 const otherName = isSender ? trade.receiver_name : trade.sender_name
@@ -622,7 +622,7 @@ export default function Trades() {
                         ✓ Marquer comme conclu
                       </button>
                       <button onClick={async () => {
-                        if (!confirm('Supprimer définitivement cette annonce ?')) return
+                        if (!confirm(t('trades_delete_confirm'))) return
                         await supabase.from('trades').delete().eq('id', popup.id)
                         setTrades(prev => prev.filter(t => t.id !== popup.id))
                         setPopup(null)

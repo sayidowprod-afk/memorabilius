@@ -3,49 +3,50 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 const STORAGE_KEY = 'onboarding_v1'
 
-function makeSteps(userId: string) {
+function makeSteps(userId: string, t: (key: any) => string) {
   return [
     {
       icon: '👋',
-      title: 'Bienvenue sur Memorabilius !',
-      desc: 'Votre plateforme dédiée aux collectionneurs de cartes sportives. On vous guide en 4 étapes.',
+      title: t('onboardt_step0_title'),
+      desc: t('onboardt_step0_desc'),
       href: null,
       cta: null,
       completesOn: null as string | null,
     },
     {
       icon: '🖼️',
-      title: 'Votre galerie',
-      desc: 'Retrouvez toutes vos cartes dans votre galerie personnelle. Organisez-les en classeurs.',
+      title: t('onboardt_step1_title'),
+      desc: t('onboardt_step1_desc'),
       href: `/galerie/${userId}`,
-      cta: 'Voir ma galerie',
+      cta: t('onboardt_step1_cta'),
       completesOn: `/galerie/${userId}`,
     },
     {
       icon: '➕',
-      title: 'Ajoutez votre première carte',
-      desc: 'Cliquez sur le bouton + pour scanner une carte en photo ou l\'importer manuellement.',
+      title: t('onboardt_step2_title'),
+      desc: t('onboardt_step2_desc'),
       href: `/galerie/${userId}`,
-      cta: 'Aller à ma galerie',
+      cta: t('onboardt_step2_cta'),
       completesOn: 'card_added',
     },
     {
       icon: '👥',
-      title: 'La communauté',
-      desc: 'Découvrez les collections d\'autres passionnés, likez leurs cartes et proposez des échanges.',
+      title: t('onboardt_step3_title'),
+      desc: t('onboardt_step3_desc'),
       href: '/annuaire',
-      cta: 'Explorer',
+      cta: t('onboardt_step3_cta'),
       completesOn: '/annuaire',
     },
     {
       icon: '👤',
-      title: 'Votre profil',
-      desc: 'Ajoutez une photo et un pseudo pour que la communauté vous reconnaisse.',
+      title: t('onboardt_step4_title'),
+      desc: t('onboardt_step4_desc'),
       href: '/profil',
-      cta: 'Mon profil',
+      cta: t('onboardt_step4_cta'),
       completesOn: '/profil',
     },
   ]
@@ -53,6 +54,7 @@ function makeSteps(userId: string) {
 
 export default function OnboardingTooltip() {
   const pathname = usePathname()
+  const { t } = useLang()
   const [visible, setVisible]       = useState(false)
   const [step, setStep]             = useState(0)
   const [completing, setCompleting] = useState(false)
@@ -84,7 +86,7 @@ export default function OnboardingTooltip() {
     return () => subscription.unsubscribe()
   }, [])
 
-  const steps = userId ? makeSteps(userId) : []
+  const steps = userId ? makeSteps(userId, t) : []
   const s = steps[step]
 
   // ── Completion par URL ─────────────────────────────────────────────────────
@@ -165,7 +167,7 @@ export default function OnboardingTooltip() {
           alignItems: 'center', justifyContent: 'center', gap: 8,
         }}>
           <div style={{ fontSize: 44, animation: 'ob-check 0.4s ease both' }}>✅</div>
-          <p style={{ color: '#fff', fontWeight: 700, fontSize: 15, margin: 0 }}>Étape complétée !</p>
+          <p style={{ color: '#fff', fontWeight: 700, fontSize: 15, margin: 0 }}>{t('onboardt_completed')}</p>
         </div>
       )}
 
@@ -176,7 +178,7 @@ export default function OnboardingTooltip() {
             <span style={{ fontSize: 22 }}>{s.icon}</span>
             <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.3 }}>{s.title}</span>
           </div>
-          <button onClick={dismiss} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text3)', fontSize: 18, lineHeight: 1, padding: '0 0 0 8px', flexShrink: 0 }} aria-label="Fermer">×</button>
+          <button onClick={dismiss} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text3)', fontSize: 18, lineHeight: 1, padding: '0 0 0 8px', flexShrink: 0 }} aria-label={t('gallery_close')}>×</button>
         </div>
 
         {/* Description */}
@@ -210,7 +212,7 @@ export default function OnboardingTooltip() {
             borderRadius: 7, padding: '5px 12px',
             fontSize: 12, fontWeight: 600, cursor: 'pointer', color: 'var(--text2)',
           }}>
-            {isLast ? 'Terminer' : 'Suivant →'}
+            {isLast ? t('onboardt_finish') : t('onboardm_next')}
           </button>
         </div>
       </div>

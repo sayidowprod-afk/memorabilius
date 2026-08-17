@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang } from '@/lib/LangContext'
 import { createPortal } from 'react-dom'
 import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
@@ -121,6 +122,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   initialBinderId?: number | null
 }) {
   const { dark } = useTheme()
+  const { t } = useLang()
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -293,15 +295,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const createFolder = async () => {
-    const name = prompt('Nom du dossier :')?.trim()
+    const name = prompt(t('binder_folder_name_prompt'))?.trim()
     if (!name) return
     const { data, error } = await supabase.from('binder_folders').insert({ user_id: userId, name, position: folders.length }).select().single()
-    if (error) { toast.error('Erreur : ' + error.message); return }
+    if (error) { toast.error(t('binder_error_prefix') + error.message); return }
     setFolders(prev => [...prev, data])
   }
 
   const renameFolder = async (folder: Folder) => {
-    const name = prompt('Renommer le dossier :', folder.name)?.trim()
+    const name = prompt(t('binder_folder_rename_prompt'), folder.name)?.trim()
     if (!name || name === folder.name) return
     await supabase.from('binder_folders').update({ name }).eq('id', folder.id)
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, name } : f))
@@ -310,14 +312,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const saveFolderColor = async (folder: Folder, color: string) => {
     const { error } = await supabase.from('binder_folders').update({ color }).eq('id', folder.id)
-    if (error) { toast.error('Erreur : ' + error.message); return }
+    if (error) { toast.error(t('binder_error_prefix') + error.message); return }
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, color } : f))
   }
 
   const saveFolderIcon = async (folder: Folder, icon: string) => {
     const value = icon || null
     const { error } = await supabase.from('binder_folders').update({ icon: value }).eq('id', folder.id)
-    if (error) { toast.error('Erreur : ' + error.message); return }
+    if (error) { toast.error(t('binder_error_prefix') + error.message); return }
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, icon: value } : f))
     setCurrentFolder(c => c && c.id === folder.id ? { ...c, icon: value } : c)
     setIconPickerFolder(null)
@@ -330,7 +332,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const deleteFolder = async (folder: Folder) => {
-    if (!confirm(`Supprimer le dossier « ${folder.name} » ? Les classeurs qu'il contient repasseront à la racine.`)) return
+    if (!confirm(`${t('binder_folder_delete_confirm_prefix')}« ${folder.name} »${t('binder_folder_delete_confirm_suffix')}`)) return
     await supabase.from('binder_folders').delete().eq('id', folder.id)
     setFolders(prev => prev.filter(f => f.id !== folder.id))
     setBinders(prev => prev.map(b => b.folder_id === folder.id ? { ...b, folder_id: null } : b))
@@ -409,12 +411,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const uploadCover = async (file: File) => {
-    if (file.size > 4 * 1024 * 1024) { toast.error('Image trop lourde (max 4 Mo)'); return }
+    if (file.size > 4 * 1024 * 1024) { toast.error(t('binder_image_too_large')); return }
     setUploadingCover(true)
     const ext = (file.name.split('.').pop() || 'jpg').toLowerCase()
     const path = `binders/${userId}/${Date.now()}.${ext}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingCover(false); return }
+    if (error) { toast.error(t('binder_upload_error_prefix') + error.message); setUploadingCover(false); return }
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     setFCover(data.publicUrl)
     setUploadingCover(false)
@@ -427,14 +429,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const { data, error } = await supabase.from('binders').insert({
         user_id: userId, layout: fLayout, position: binders.length, ...payload,
       }).select().single()
-      if (error) { toast.error('Erreur : ' + error.message); return }
+      if (error) { toast.error(t('binder_error_prefix') + error.message); return }
       setBinders(prev => [...prev, data])
       setFormOpen(null)
       openBinder(data)
     } else {
       const id = formOpen as number
       const { error } = await supabase.from('binders').update(payload).eq('id', id)
-      if (error) { toast.error('Erreur : ' + error.message); return }
+      if (error) { toast.error(t('binder_error_prefix') + error.message); return }
       setBinders(prev => prev.map(b => b.id === id ? { ...b, ...payload } : b))
       setSelected(s => s && s.id === id ? { ...s, ...payload } : s)
       setFormOpen(null)
@@ -442,7 +444,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const deleteBinder = async (id: number) => {
-    if (!confirm('Supprimer définitivement ce classeur et son contenu ?')) return
+    if (!confirm(t('binder_delete_confirm'))) return
     await supabase.from('binders').delete().eq('id', id)
     setBinders(prev => prev.filter(b => b.id !== id))
     closeBinder()
@@ -538,7 +540,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         binder_id: selected.id, page_number: page, slot_index: idx,
         card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal,
       })
-      if (error) { toast.error('Erreur : ' + error.message); return }
+      if (error) { toast.error(t('binder_error_prefix') + error.message); return }
       setSlots(prev => new Map(prev).set(targetKey, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
       setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
       setJustInserted(targetKey)
@@ -596,7 +598,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // Supprimer les anciens slots puis insérer les nouveaux
     await Promise.all(deletes.map(d => supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', d.page).eq('slot_index', d.idx)))
     const { error: insErr } = await supabase.from('binder_slots').insert(inserts)
-    if (insErr) { toast.error('Erreur insertion : ' + insErr.message); openBinder(selected); return }
+    if (insErr) { toast.error(t('binder_insert_error_prefix') + insErr.message); openBinder(selected); return }
 
     setSlots(prev => {
       const m = new Map(prev)
@@ -737,10 +739,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       // Nombre de pages effectif après tri (peut être inférieur à page_count si le classeur avait des trous)
       const newPageCount = idx > 0 ? page : page - 1
       const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
-      if (delErr) { toast.error('Erreur tri (suppression) : ' + delErr.message); return }
+      if (delErr) { toast.error(t('binder_sort_delete_error_prefix') + delErr.message); return }
       if (rows.length) {
         const { error: insErr } = await supabase.from('binder_slots').insert(rows)
-        if (insErr) { toast.error('Erreur tri (insertion) : ' + insErr.message); openBinder(selected); return }
+        if (insErr) { toast.error(t('binder_sort_insert_error_prefix') + insErr.message); openBinder(selected); return }
       }
       if (newPageCount !== selected.page_count) {
         await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
@@ -787,7 +789,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: pageCount } : b))
     }
     const { error } = await supabase.from('binder_slots').insert(inserts)
-    if (error) { toast.error('Erreur : ' + error.message); openBinder(selected); return }
+    if (error) { toast.error(t('binder_error_prefix') + error.message); openBinder(selected); return }
     setSlots(prev => { const m = new Map(prev); for (const [k, v] of localAdds) m.set(k, v); return m })
     setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + inserts.length }))
     setPickerTarget(null)
@@ -819,7 +821,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom, is_horizontal: !!fromSlot.is_horizontal }]
     if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom, is_horizontal: !!toSlot.is_horizontal })
     const { error } = await supabase.from('binder_slots').insert(rows)
-    if (error) { toast.error('Erreur : ' + error.message); openBinder(selected) }
+    if (error) { toast.error(t('binder_error_prefix') + error.message); openBinder(selected) }
   }
 
   // Déplacer une carte = APPUI LONG puis glisser (pour ne pas confondre avec le
@@ -1003,7 +1005,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       background: 'repeating-linear-gradient(45deg, #2a3550 0 6px, #33405f 6px 12px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
-      <div style={{ width: '58%', height: '58%', borderRadius: 4, border: '1px solid rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.35)', fontSize: 9, fontWeight: 900, letterSpacing: '0.15em' }}>DOS</div>
+      <div style={{ width: '58%', height: '58%', borderRadius: 4, border: '1px solid rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.35)', fontSize: 9, fontWeight: 900, letterSpacing: '0.15em' }}>{t('binder_card_back_label')}</div>
     </div>
   )
 
@@ -1064,14 +1066,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   if (pendingCard && isOwner) { placeCard(page, idx, pendingCard); onPlaced?.(); return }
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
                 }}
-                title={pendingCard && isOwner ? 'Insérer ici (décale les cartes suivantes)' : isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
+                title={pendingCard && isOwner ? t('binder_insert_here_title') : isOwner ? t('binder_drag_move_title') : (slot.nom || '')}
               >
                 <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} onLoad={fixOrientationIfLoaded(page, idx, slot)} />
                 <PlasticSheen />
                 {isOwner && (
                   <button
                     onClick={e => { e.stopPropagation(); removeCard(page, idx) }}
-                    title="Retirer du classeur"
+                    title={t('binder_remove_from_binder')}
                     style={{
                       position: 'absolute', top: 2, right: 2, width: isMobile ? 26 : 20, height: isMobile ? 26 : 20, borderRadius: '50%',
                       background: 'rgba(0,0,0,0.55)', color: 'white', border: 'none', fontSize: 11, lineHeight: 1,
@@ -1128,7 +1130,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const binderForm = formOpen !== null && (
     <div onClick={() => setFormOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? 'Nouveau classeur' : 'Modifier le classeur'}</h3>
+        <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? t('binder_new') : t('binder_edit_title')}</h3>
 
         {/* Aperçu couverture */}
         <div style={{ display: 'flex', gap: 14, alignItems: 'stretch' }}>
@@ -1161,7 +1163,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
         {formOpen === 'create' && (
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Pochettes par page</label>
+            <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_pockets_per_page')}</label>
             <div style={{ display: 'flex', gap: 6 }}>
               {LAYOUTS.map(n => (
                 <button key={n} onClick={() => setFLayout(n)} style={{
@@ -1175,11 +1177,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Type de classeur</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_type')}</label>
           <div style={{ display: 'flex', gap: 8 }}>
             {([
-              { id: 'portfolio', icon: '📕', title: 'Portfolio', desc: 'On ne voit que le recto' },
-              { id: 'rings', icon: '🗂️', title: 'À anneaux', desc: 'On voit le dos des cartes' },
+              { id: 'portfolio', icon: '📕', title: t('binder_type_portfolio_title'), desc: t('binder_type_portfolio_desc') },
+              { id: 'rings', icon: '🗂️', title: t('binder_type_rings_title'), desc: t('binder_type_rings_desc') },
             ] as const).map(t => (
               <button key={t.id} type="button" onClick={() => setFType(t.id)} style={{
                 flex: 1, padding: '10px 8px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
@@ -1194,7 +1196,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Couleur</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_color')}</label>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             {BINDER_COLORS.map(c => (
               <button key={c} onClick={() => setFColor(c)} style={{
@@ -1206,7 +1208,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             {/* Bouton couleur personnalisée */}
             <button
               onClick={() => binderColorInputRef.current?.click()}
-              title="Couleur personnalisée"
+              title={t('binder_custom_color')}
               style={{
                 width: 36, height: 36, borderRadius: '50%', cursor: 'pointer', padding: 0, border: 'none',
                 background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
@@ -1228,10 +1230,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Dossier (sous-bibliothèque)</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_folder')}</label>
           <select value={fFolderId ?? ''} onChange={e => setFFolderId(e.target.value ? Number(e.target.value) : null)}
             style={{ width: '100%', padding: '9px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 13, fontWeight: 600, background: 'white', color: '#333', boxSizing: 'border-box' }}>
-            <option value="">— Aucun (racine) —</option>
+            <option value="">{t('binder_folder_none_root')}</option>
             {folders.map(f => <option key={f.id} value={f.id}>📁 {f.name}</option>)}
           </select>
         </div>
@@ -1247,9 +1249,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         >
           <span style={{ fontSize: 18 }}>{fIsPublic ? '🌐' : '🔒'}</span>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 13, color: '#333' }}>{fIsPublic ? 'Classeur public' : 'Classeur privé'}</div>
+            <div style={{ fontWeight: 800, fontSize: 13, color: '#333' }}>{fIsPublic ? t('binder_public') : t('binder_private')}</div>
             <div style={{ fontSize: 11, color: '#888', marginTop: 1 }}>
-              {fIsPublic ? 'Visible dans ta galerie publique' : 'Visible uniquement par toi'}
+              {fIsPublic ? t('binder_visible_public_desc') : t('binder_visible_private_desc')}
             </div>
           </div>
           <div style={{ marginLeft: 'auto', width: 36, height: 20, borderRadius: 10, background: fIsPublic ? '#003DA6' : '#ccc', position: 'relative', transition: 'background 0.2s', flexShrink: 0 }}>
@@ -1258,13 +1260,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </button>
 
         <button onClick={saveForm} disabled={!fName.trim()} className="btn-main btn-primary">
-          {formOpen === 'create' ? 'Créer' : 'Enregistrer'}
+          {formOpen === 'create' ? t('binder_create_btn') : t('binder_save_btn')}
         </button>
       </div>
     </div>
   )
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>Chargement...</p>
+  if (loading) return <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>{t('binder_loading')}</p>
 
   // ── Vue étagère ──
   if (!selected) {
@@ -1283,7 +1285,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     ]
 
     const renderAddBtn = (folderId: number | null) => isOwner ? (
-      <div key="add" onClick={() => openCreateForm(folderId)} title="Nouveau classeur" style={{
+      <div key="add" onClick={() => openCreateForm(folderId)} title={t('binder_new')} style={{
         width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
         background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
@@ -1397,7 +1399,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                           />
                         ))}
                         {/* Couleur personnalisée pour le dossier */}
-                        <label title="Couleur personnalisée" style={{ position: 'relative', width: 20, height: 20, flexShrink: 0, cursor: 'pointer' }}>
+                        <label title={t('binder_custom_color')} style={{ position: 'relative', width: 20, height: 20, flexShrink: 0, cursor: 'pointer' }}>
                           <div style={{
                             width: 20, height: 20, borderRadius: '50%',
                             background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
@@ -1581,11 +1583,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const l = leftFace(pageIndex), r = rightFace(pageIndex)
     if (isRings) {
       const parts: string[] = []
-      if (l) parts.push(`Feuille ${l.page} (dos)`)
-      if (r) parts.push(`Feuille ${r.page} (recto)`)
-      return `${parts.join(' · ') || 'Couverture'} / ${cnt}`
+      if (l) parts.push(`${t('binder_sheet_prefix')} ${l.page}${t('binder_sheet_back_suffix')}`)
+      if (r) parts.push(`${t('binder_sheet_prefix')} ${r.page}${t('binder_sheet_front_suffix')}`)
+      return `${parts.join(' · ') || t('binder_cover_label')} / ${cnt}`
     }
-    const label = l && r ? `Pages ${l.page}–${r.page}` : r ? `Page ${r.page}` : l ? `Page ${l.page}` : 'Couverture'
+    const label = l && r ? `${t('binder_pages_prefix')} ${l.page}–${r.page}` : r ? `${t('binder_page_prefix')} ${r.page}` : l ? `${t('binder_page_prefix')} ${l.page}` : t('binder_cover_label')
     return `${label} / ${cnt}`
   })()
 
@@ -1638,20 +1640,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
           <button onClick={closeBinder} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
-            ←{!isMobile && ` Retour ${pendingCard ? 'aux classeurs' : 'à la bibliothèque'}`}
+            ←{!isMobile && ` ${pendingCard ? t('binder_back_to_binders') : t('binder_back_to_library')}`}
           </button>
           <span style={{ fontWeight: 900, fontSize: isMobile ? 13 : 15, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0, color: dark ? '#f0f0f0' : '#111' }}>{selected.name}</span>
 
           {/* Desktop : toutes les actions en ligne */}
           {!isMobile && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-              <button onClick={toggleFullscreen} title="Plein écran"
+              <button onClick={toggleFullscreen} title={t('binder_fullscreen_title')}
                 style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                 ⛶
               </button>
               {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
               {!pendingCard && (
-                <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                <button onClick={() => setShowQr(true)} title={t('binder_qrcode')} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                   ▦
                 </button>
               )}
@@ -1702,12 +1704,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {/* Mobile : icônes compactes + menu ··· pour les actions owner */}
           {isMobile && !pendingCard && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-              <button onClick={toggleFullscreen} title={binderFullscreen ? 'Quitter le plein écran' : 'Plein écran'}
+              <button onClick={toggleFullscreen} title={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')}
                 style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                 {binderFullscreen ? '⊡' : '⛶'}
               </button>
               <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
-              <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
+              <button onClick={() => setShowQr(true)} title={t('binder_qrcode')} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
               <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: '#666', lineHeight: 1 }}>
                 💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}
               </button>
@@ -1721,20 +1723,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     <>
                       <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
                       <div style={{ position: 'absolute', ...(ownerMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, zIndex: 300, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
-                        <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: dark ? '#666' : '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Trier les cartes</div>
+                        <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: dark ? '#666' : '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{t('binder_sort_cards_header')}</div>
                         {sorting ? (
-                          <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>⏳ Tri en cours…</div>
+                          <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>{t('binder_sorting_progress')}</div>
                         ) : slots.size === 0 ? (
-                          <div style={{ padding: '8px 14px', fontSize: 12, color: '#aaa' }}>Classeur vide</div>
+                          <div style={{ padding: '8px 14px', fontSize: 12, color: '#aaa' }}>{t('binder_empty_binder')}</div>
                         ) : (
                           ([
-                            ['nom_asc',    'Nom A → Z'],
-                            ['nom_desc',   'Nom Z → A'],
-                            ['equipe_asc', 'Équipe A → Z'],
-                            ['annee_asc',  'Ancienne en premier'],
-                            ['annee_desc', 'Récente en premier'],
-                            ['num_asc',    'Numérotation ↑'],
-                            ['num_desc',   'Numérotation ↓'],
+                            ['nom_asc',    t('binder_sort_name_az')],
+                            ['nom_desc',   t('binder_sort_name_za')],
+                            ['equipe_asc', t('binder_sort_team_az')],
+                            ['annee_asc',  t('binder_sort_year_asc_short')],
+                            ['annee_desc', t('binder_sort_year_desc_short')],
+                            ['num_asc',    t('binder_sort_num_asc')],
+                            ['num_desc',   t('binder_sort_num_desc')],
                           ] as const).map(([key, label]) => (
                             <button key={key} onClick={() => { sortBinder(key); setShowOwnerMenu(false) }}
                               style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 14px', fontSize: 14, cursor: 'pointer', color: dark ? '#e0e0e0' : '#333', borderRadius: 8 }}>
@@ -1778,13 +1780,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       <div style={binderFullscreen ? { flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' } : {}}>
         {binderFullscreen && isOpen && (
           <button style={fsArrowStyle('left', canPrev)}
-            onClick={() => { if (canPrev) clickFlip('prev') }} aria-label="Page précédente">‹</button>
+            onClick={() => { if (canPrev) clickFlip('prev') }} aria-label={t('binder_prev_page')}>‹</button>
         )}
 
         <div ref={stageRef} style={{ ...(binderFullscreen ? { width: '100%' } : {}), background: binderFullscreen ? 'transparent' : 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: binderFullscreen ? 0 : 16, padding: binderFullscreen ? '4px 8px' : '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: binderFullscreen ? 0 : coverH + 40, perspective: 1600 }}>
         {!isOpen ? (
           /* ── Classeur fermé : on voit la couverture (pivote à l'ouverture) ── */
-          <div onClick={openTheBinder} title="Ouvrir le classeur" style={{
+          <div onClick={openTheBinder} title={t('binder_open')} style={{
             width: coverW, height: coverH, cursor: 'pointer', position: 'relative', display: 'flex',
             borderRadius: '6px 10px 10px 6px', overflow: 'hidden',
             boxShadow: '0 14px 30px rgba(0,0,0,0.3)',
@@ -1863,7 +1865,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
         {binderFullscreen && isOpen && (
           <button style={fsArrowStyle('right', canNext)}
-            onClick={() => { if (canNext) clickFlip('next') }} aria-label="Page suivante">›</button>
+            onClick={() => { if (canNext) clickFlip('next') }} aria-label={t('binder_next_page')}>›</button>
         )}
       </div>
 
@@ -1899,19 +1901,19 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <button
               onClick={() => canPrev ? clickFlip('prev') : setIsOpen(false)}
               disabled={!!flip} className="btn-main btn-secondary"
-              style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? 'Page précédente' : 'Fermer'}>
-              ←<span className="binder-nav-label"> {canPrev ? 'Page précédente' : 'Fermer'}</span>
+              style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? t('binder_prev_page') : t('binder_close')}>
+              ←<span className="binder-nav-label"> {canPrev ? t('binder_prev_page') : t('binder_close')}</span>
             </button>
             <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>{pageLabel}</span>
             <div style={{ display: 'flex', gap: 8 }}>
               {isOwner && !canNext && (
-                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
+                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label={t('binder_add_page')}>
                   +<span className="binder-nav-label"> Ajouter une page</span>
                 </button>
               )}
               <button onClick={() => clickFlip('next')} disabled={!canNext || !!flip} className="btn-main btn-primary"
-                style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label="Page suivante">
-                <span className="binder-nav-label">Page suivante </span>→
+                style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label={t('binder_next_page')}>
+                <span className="binder-nav-label">{t('binder_next_page')} </span>→
               </button>
             </div>
           </>
@@ -1968,7 +1970,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           binderId={selected.id}
           accent={accent}
           isOwner={isOwner}
-          emptyLabel="Soyez le premier à commenter ce classeur"
+          emptyLabel={t('binder_comments_empty')}
         />
       )}
 

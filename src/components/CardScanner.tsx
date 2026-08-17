@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { detectCornersYOLO, warmupYOLO, isYOLOReady, waitForYOLO } from '@/lib/cornerDetectorYolo'
+import { useLang } from '@/lib/LangContext'
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -931,6 +932,7 @@ const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
 const HANDLE_R = 10
 
 export default function CardScanner({ src, onResult, onFallback, onClose, frameRect }: Props) {
+  const { t } = useLang()
   const canvasRef         = useRef<HTMLCanvasElement>(null)
   const imgRef            = useRef<HTMLImageElement | null>(null)
   const origImgRef        = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
@@ -1339,15 +1341,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
         <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, margin: 0, textAlign: 'center' }}>
-          {!applying && status === 'detecting' && 'Analyse en cours…'}
-          {!applying && status === 'found'     && 'Carte détectée — ajustez les coins si besoin'}
-          {!applying && status === 'notfound'  && 'Non détectée — placez les coins sur la carte'}
-          {applying  && 'Recadrage en cours…'}
+          {!applying && status === 'detecting' && t('scanner_analyzing')}
+          {!applying && status === 'found'     && t('scanner_card_detected')}
+          {!applying && status === 'notfound'  && t('scanner_not_detected')}
+          {applying  && t('scanner_cropping')}
         </p>
         {status === 'detecting' && !applying && (
           <button onClick={() => setStatus('notfound')}
             style={{ padding: '4px 12px', background: 'rgba(255,255,255,0.15)', color: 'white', border: 'none', borderRadius: 20, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            Passer ✕
+            {t('scanner_skip')}
           </button>
         )}
       </div>
@@ -1373,7 +1375,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
             {Math.round(zoom * 100)}% ↺
           </button>
           <button onClick={handleRotate}
-            title="Tourner de 45°"
+            title={t('scanner_rotate_45')}
             style={{ fontSize: 18, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', color: 'rgba(255,255,255,0.7)', lineHeight: 1 }}>
             ↻
           </button>
@@ -1382,7 +1384,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
       {corners.length === 4 && !applying && (
         <div style={{ display: 'flex', gap: 10, marginTop: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
-          {['Haut-gauche','Haut-droit','Bas-droit','Bas-gauche'].map((label, i) => (
+          {[t('scanner_corner_top_left'), t('scanner_corner_top_right'), t('scanner_corner_bottom_right'), t('scanner_corner_bottom_left')].map((label, i) => (
             <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: 'rgba(255,255,255,0.38)' }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: HANDLE_COLORS[i], display: 'inline-block' }} />
               {label}
@@ -1394,7 +1396,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       <div style={{ display: 'flex', gap: 10, marginTop: 12, width: '100%', maxWidth: 420, boxSizing: 'border-box' }}>
         <button onClick={onClose} disabled={applying}
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
-          Annuler
+          {t('scanner_cancel')}
         </button>
         <button onClick={() => {
             // Manuel = replace les 4 coins au centre de l'image, bien visibles, dans
@@ -1406,11 +1408,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
             setStatus('notfound')
           }} disabled={applying}
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
-          Manuel
+          {t('scanner_manual')}
         </button>
         <button onClick={applyWarp} disabled={corners.length < 4 || applying}
           style={{ flex: 2, padding: '13px 0', background: applying ? '#666' : 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: applying ? 'wait' : 'pointer', fontSize: 14 }}>
-          {applying ? 'Traitement…' : 'Utiliser'}
+          {applying ? t('scanner_processing') : t('scanner_use')}
         </button>
       </div>
 
@@ -1419,7 +1421,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       {!applying && (
         <button onClick={onFallback}
           style={{ marginTop: 12, background: 'none', border: 'none', color: 'rgba(255,255,255,0.55)', fontSize: 13, fontWeight: 700, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: 3 }}>
-          ✂️ Rogner à la main
+          {t('scanner_crop_manually')}
         </button>
       )}
     </div>

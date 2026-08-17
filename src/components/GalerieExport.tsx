@@ -2,6 +2,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { useLang } from '@/lib/LangContext'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
@@ -198,7 +199,7 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   ctx.fillText(statParts, tx, avY + HEADER_H * 0.16)
 
   ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.font = `400 ${Math.round(HEADER_H * 0.14)}px ${FONT}`
-  ctx.fillText(new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US'), w - PAD, avY)
+  ctx.fillText(new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : lang === 'de' ? 'de-DE' : 'en-US'), w - PAD, avY)
   ctx.textAlign = 'left'
 
   const images = await loadImgs(cards.map(c => c.f))
@@ -297,7 +298,8 @@ function Toggle({ on, onChange, label }: { on: boolean; onChange: (v: boolean) =
 const SL: React.CSSProperties = { fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#888', marginBottom: 8, display: 'block' }
 
 // ─── Main ──────────────────────────────────────────────────────────────────────
-export default function GalerieExport({ cards, profileName, avatarUrl, accent, lang, cardValues = new Map(), isOwner = false }: Props) {
+export default function GalerieExport({ cards, profileName, avatarUrl, accent, cardValues = new Map(), isOwner = false }: Props) {
+  const { lang, t } = useLang()
   const [open, setOpen] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -358,15 +360,15 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
   const exportCSV = async () => {
     const hasValues = filtered.some(c => cardValues.has(c.f))
-    const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch',
-      ...(hasValues ? ['Valeur (€)'] : []),
-      ...(opts.beckett ? ['Désignation Beckett'] : []),
+    const headers = [t('export_hdr_player'),t('export_hdr_team'),t('export_hdr_year'),t('export_hdr_collection'),t('export_hdr_variation'),t('export_hdr_numbering'),t('export_hdr_grade'),'RC','Auto','Patch',
+      ...(hasValues ? [t('export_hdr_value')] : []),
+      ...(opts.beckett ? [t('export_hdr_beckett')] : []),
     ]
     const rows = filtered.map(c => [
       c.n, c.t, c.y, c.s, c.v, c.num, c.g,
-      c.rc ? 'Oui' : 'Non',
-      c.auto ? 'Oui' : 'Non',
-      c.patch ? 'Oui' : 'Non',
+      c.rc ? t('export_hdr_yes') : t('export_hdr_no'),
+      c.auto ? t('export_hdr_yes') : t('export_hdr_no'),
+      c.patch ? t('export_hdr_yes') : t('export_hdr_no'),
       ...(hasValues ? [cardValues.has(c.f) ? String(cardValues.get(c.f)) : ''] : []),
       ...(opts.beckett ? [beckettDesig(c)] : []),
     ])
@@ -445,18 +447,18 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       type Col = { header: string; key: keyof Card | '_photo' | '_valeur' | '_beckett'; w: number; align?: 'center' | 'right' }
       const cols: Col[] = [
         ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 27 }] : []),
-        { header: 'Joueur',     key: 'n',     w: 42 },
-        { header: 'Équipe',    key: 't',     w: 28 },
-        { header: 'Année',     key: 'y',     w: 16 },
-        { header: 'Collection', key: 's',    w: 48 },
-        { header: 'Variation',  key: 'v',    w: 44 },
+        { header: t('export_hdr_player'),     key: 'n',     w: 42 },
+        { header: t('export_hdr_team'),    key: 't',     w: 28 },
+        { header: t('export_hdr_year'),     key: 'y',     w: 16 },
+        { header: t('export_hdr_collection'), key: 's',    w: 48 },
+        { header: t('export_hdr_variation'),  key: 'v',    w: 44 },
         { header: 'Num.',       key: 'num',  w: 18 },
-        { header: 'Grade',      key: 'g',    w: 16 },
+        { header: t('export_hdr_grade'),      key: 'g',    w: 16 },
         { header: 'RC',         key: 'rc',   w: 9,  align: 'center' },
         { header: 'Auto',       key: 'auto', w: 9,  align: 'center' },
         { header: 'Patch',      key: 'patch',w: 9,  align: 'center' },
-        ...(hasPdfValues ? [{ header: 'Valeur €', key: '_valeur' as const, w: 20, align: 'right' as const }] : []),
-        ...(opts.beckett ? [{ header: 'Désignation Beckett', key: '_beckett' as const, w: 55 }] : []),
+        ...(hasPdfValues ? [{ header: `${t('export_hdr_value_short')} €`, key: '_valeur' as const, w: 20, align: 'right' as const }] : []),
+        ...(opts.beckett ? [{ header: t('export_hdr_beckett'), key: '_beckett' as const, w: 55 }] : []),
       ]
       const usableW = PW - ML - MR
       // Étirer la dernière colonne texte pour remplir (ou réduire si débordement)
@@ -634,7 +636,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
         {/* Header */}
         <div style={{ padding: '16px 20px 12px', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, background: '#fff', zIndex: 1 }}>
-          <span style={{ fontWeight: 800, fontSize: 16 }}>📸 {lang === 'fr' ? 'Exporter la galerie' : 'Export gallery'}</span>
+          <span style={{ fontWeight: 800, fontSize: 16 }}>📸 {t('export_title')}</span>
           <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: '#bbb', lineHeight: 1 }}>×</button>
         </div>
 
@@ -642,22 +644,22 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
           {/* Filtres */}
           <div>
-            <span style={SL}>{lang === 'fr' ? `Sélection de cartes${activeFilters ? ` · ${activeFilters} filtre${activeFilters > 1 ? 's' : ''}` : ''}` : `Card selection${activeFilters ? ` · ${activeFilters} filter${activeFilters > 1 ? 's' : ''}` : ''}`}</span>
+            <span style={SL}>{t('export_card_selection')}{activeFilters ? ` · ${activeFilters} ${activeFilters > 1 ? t('export_filter_other') : t('export_filter_one')}` : ''}</span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <input value={search} onChange={e => setSearch(e.target.value)}
-                placeholder={lang === 'fr' ? 'Joueur...' : 'Player...'}
+                placeholder={t('export_player_placeholder')}
                 style={{ padding: '8px 10px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 13, outline: 'none' }} />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6 }}>
                 <select value={fTeam} onChange={e => setFTeam(e.target.value)} style={{ padding: '7px 8px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 12, outline: 'none' }}>
-                  <option value="">{lang === 'fr' ? 'Équipe' : 'Team'}</option>
-                  {teams.map(t => <option key={t}>{t}</option>)}
+                  <option value="">{t('export_team')}</option>
+                  {teams.map(tm => <option key={tm}>{tm}</option>)}
                 </select>
                 <select value={fBrand} onChange={e => setFBrand(e.target.value)} style={{ padding: '7px 8px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 12, outline: 'none' }}>
-                  <option value="">{lang === 'fr' ? 'Collection' : 'Brand'}</option>
+                  <option value="">{t('export_brand')}</option>
                   {brands.map(b => <option key={b}>{b}</option>)}
                 </select>
                 <select value={fYear} onChange={e => setFYear(e.target.value)} style={{ padding: '7px 8px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 12, outline: 'none' }}>
-                  <option value="">{lang === 'fr' ? 'Année' : 'Year'}</option>
+                  <option value="">{t('export_year')}</option>
                   {years.map(y => <option key={y}>{y}</option>)}
                 </select>
               </div>
@@ -673,12 +675,12 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <select value={sortField} onChange={e => setSortField(e.target.value as any)}
                   style={{ flex: 1, padding: '7px 8px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 12, outline: 'none' }}>
-                  <option value="n">{lang === 'fr' ? 'Trier par : Joueur' : 'Sort by: Player'}</option>
-                  <option value="y">{lang === 'fr' ? 'Trier par : Année' : 'Sort by: Year'}</option>
-                  <option value="t">{lang === 'fr' ? 'Trier par : Équipe' : 'Sort by: Team'}</option>
-                  <option value="s">{lang === 'fr' ? 'Trier par : Collection' : 'Sort by: Set'}</option>
-                  <option value="g">{lang === 'fr' ? 'Trier par : Grade' : 'Sort by: Grade'}</option>
-                  {cardValues.size > 0 && <option value="_value">{lang === 'fr' ? 'Trier par : Valeur' : 'Sort by: Value'}</option>}
+                  <option value="n">{t('export_sort_player')}</option>
+                  <option value="y">{t('export_sort_year')}</option>
+                  <option value="t">{t('export_sort_team')}</option>
+                  <option value="s">{t('export_sort_set')}</option>
+                  <option value="g">{t('export_sort_grade')}</option>
+                  {cardValues.size > 0 && <option value="_value">{t('export_sort_value')}</option>}
                 </select>
                 <button onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')}
                   style={{ padding: '7px 12px', borderRadius: 8, border: '1px solid #e0e0e0', background: '#fafafa', fontSize: 13, cursor: 'pointer', fontWeight: 700, color: '#555' }}>
@@ -687,7 +689,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
               </div>
             </div>
             <p style={{ fontSize: 12, color: '#999', margin: '8px 0 0', textAlign: 'center' }}>
-              {filtered.length} / {cards.length} carte{filtered.length > 1 ? 's' : ''} {lang === 'fr' ? 'sélectionnée' : 'selected'}{filtered.length > 1 ? 's' : ''}
+              {filtered.length} / {cards.length} {filtered.length > 1 ? t('export_cards_selected_other') : t('export_cards_selected_one')}
             </p>
           </div>
 
@@ -700,7 +702,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
               {(Object.entries(FORMATS) as [FormatKey, { label: string }][]).map(([key, f]) => (
                 <button key={key} onClick={() => set('format', key)}
                   style={{ padding: '8px 4px', border: `2px solid ${opts.format === key ? '#003DA6' : '#eee'}`, borderRadius: 8, background: opts.format === key ? '#f0f4ff' : '#fafafa', fontWeight: 700, fontSize: 12, color: opts.format === key ? '#003DA6' : '#555', cursor: 'pointer', transition: '0.15s' }}>
-                  {f.label}
+                  {key === 'square' ? t('export_format_square') : f.label}
                 </button>
               ))}
             </div>
@@ -708,18 +710,18 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
           {/* Fond */}
           <div>
-            <span style={SL}>{lang === 'fr' ? 'Fond' : 'Background'}</span>
+            <span style={SL}>{t('export_background')}</span>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              {(['white', 'black'] as const).map(t => (
-                <button key={t} onClick={() => set('bgType', t)}
-                  style={{ flex: 1, padding: '8px', border: `2px solid ${opts.bgType === t ? '#003DA6' : '#eee'}`, borderRadius: 8, background: t === 'white' ? '#fff' : '#111', color: t === 'white' ? '#333' : '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer', transition: '0.15s' }}>
-                  {t === 'white' ? '⬜ Blanc' : '⬛ Noir'}
+              {(['white', 'black'] as const).map(bg => (
+                <button key={bg} onClick={() => set('bgType', bg)}
+                  style={{ flex: 1, padding: '8px', border: `2px solid ${opts.bgType === bg ? '#003DA6' : '#eee'}`, borderRadius: 8, background: bg === 'white' ? '#fff' : '#111', color: bg === 'white' ? '#333' : '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer', transition: '0.15s' }}>
+                  {bg === 'white' ? t('export_bg_white') : t('export_bg_black')}
                 </button>
               ))}
               <div style={{ position: 'relative', flexShrink: 0 }}>
                 <button onClick={() => set('bgType', 'custom')}
                   style={{ width: 42, height: 38, border: `2px solid ${opts.bgType === 'custom' ? '#003DA6' : '#eee'}`, borderRadius: 8, background: opts.bgColor, cursor: 'pointer' }}
-                  title="Couleur personnalisée">🎨</button>
+                  title={t('export_custom_color')}>🎨</button>
                 {opts.bgType === 'custom' && (
                   <input type="color" value={opts.bgColor} onChange={e => set('bgColor', e.target.value)}
                     style={{ position: 'absolute', bottom: -2, right: -2, width: 22, height: 22, border: 'none', cursor: 'pointer', borderRadius: 4, padding: 0 }} />
@@ -730,11 +732,11 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
           {/* Infos */}
           <div>
-            <span style={SL}>{lang === 'fr' ? 'Informations à afficher' : 'Display options'}</span>
+            <span style={SL}>{t('export_display_options')}</span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <Toggle on={opts.showName} onChange={v => set('showName', v)} label={lang === 'fr' ? 'Nom du joueur' : 'Player name'} />
-              <Toggle on={opts.showVariation} onChange={v => set('showVariation', v)} label={lang === 'fr' ? 'Variation / Parallèle' : 'Variation'} />
-              <Toggle on={opts.showInfo} onChange={v => set('showInfo', v)} label={lang === 'fr' ? 'Année & Collection' : 'Year & Brand'} />
+              <Toggle on={opts.showName} onChange={v => set('showName', v)} label={t('export_player_name')} />
+              <Toggle on={opts.showVariation} onChange={v => set('showVariation', v)} label={t('export_variation')} />
+              <Toggle on={opts.showInfo} onChange={v => set('showInfo', v)} label={t('export_year_brand')} />
               <Toggle on={opts.showBadges} onChange={v => set('showBadges', v)} label="RC · AUTO · PATCH · Grade" />
             </div>
           </div>
@@ -742,19 +744,19 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
           {/* CTA galerie image */}
           <button onClick={handleExport} disabled={exporting || filtered.length === 0}
             style={{ background: exporting || !filtered.length ? '#ccc' : '#003DA6', color: '#fff', border: 'none', borderRadius: 10, padding: '14px', fontWeight: 800, fontSize: 15, cursor: exporting || !filtered.length ? 'not-allowed' : 'pointer', width: '100%', transition: '0.2s' }}>
-            {exporting ? (lang === 'fr' ? '⏳ Génération...' : '⏳ Generating...') : `⬇️ ${lang === 'fr' ? `Télécharger image (${filtered.length} cartes)` : `Download image (${filtered.length} cards)`}`}
+            {exporting ? t('export_generating') : `⬇️ ${t('export_download_image')} (${filtered.length} ${t('export_cards_unit')})`}
           </button>
 
           {isOwner && <div style={{ height: 1, background: '#f0f0f0' }} />}
 
           {/* Export tableur — visible uniquement par le propriétaire */}
           {isOwner && <div>
-            <span style={SL}>{lang === 'fr' ? 'Export tableur / liste' : 'Spreadsheet / list export'}</span>
+            <span style={SL}>{t('export_spreadsheet_list')}</span>
             <Toggle on={tableWithPhotos} onChange={setTableWithPhotos}
-              label={lang === 'fr' ? 'Inclure les photos (PDF uniquement)' : 'Include photos (PDF only)'} />
+              label={t('export_include_photos')} />
             <div style={{ marginTop: 8 }}>
               <Toggle on={opts.beckett} onChange={v => set('beckett', v)}
-                label={lang === 'fr' ? 'Désignation Beckett (CSV + PDF)' : 'Beckett designation (CSV + PDF)'} />
+                label={t('export_beckett_designation')} />
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 12 }}>
               <button onClick={exportCSV} disabled={!filtered.length}
@@ -763,17 +765,15 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
               </button>
               <button onClick={() => exportPdfTable(tableWithPhotos)} disabled={!filtered.length || exportingPdf}
                 style={{ padding: '12px 8px', border: '2px solid #003DA6', borderRadius: 10, background: exportingPdf ? '#e8eeff' : '#f0f4ff', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: filtered.length && !exportingPdf ? 'pointer' : 'not-allowed', transition: '0.15s', opacity: filtered.length ? 1 : 0.5 }}>
-                {exportingPdf ? '⏳ PDF…' : '⬇️ PDF tableau'}
+                {exportingPdf ? t('export_pdf_generating') : t('export_pdf_table')}
               </button>
             </div>
             <button onClick={exportZip} disabled={!filtered.length || exportingZip}
               style={{ marginTop: 8, width: '100%', padding: '12px 8px', border: '2px solid #27ae60', borderRadius: 10, background: exportingZip ? '#eafaf1' : '#f0faf4', color: '#1a7a45', fontWeight: 700, fontSize: 13, cursor: filtered.length && !exportingZip ? 'pointer' : 'not-allowed', transition: '0.15s', opacity: filtered.length ? 1 : 0.5 }}>
-              {exportingZip ? `⏳ ZIP en cours… ${zipProgress}%` : `🗜️ Télécharger les images (ZIP) — ${filtered.length} cartes`}
+              {exportingZip ? `${t('export_zip_in_progress')} ${zipProgress}%` : `${t('export_zip_download')} — ${filtered.length} ${t('export_cards_unit')}`}
             </button>
             <p style={{ fontSize: 11, color: '#aaa', marginTop: 8, lineHeight: 1.5 }}>
-              {lang === 'fr'
-                ? 'CSV s\'ouvre dans Excel / Google Sheets · PDF se télécharge directement · ZIP contient les photos recto/verso'
-                : 'CSV opens in Excel / Google Sheets · PDF downloads directly · ZIP contains front/back photos'}
+              {t('export_hint')}
             </p>
           </div>}
         </div>
@@ -786,7 +786,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
     <>
       <button onClick={() => setOpen(true)} disabled={!cards.length}
         style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 16px', fontWeight: 700, fontSize: 13, cursor: !cards.length ? 'not-allowed' : 'pointer', flex: '1 1 auto', textAlign: 'center', minWidth: 100 }}>
-        📸 {lang === 'fr' ? 'Exporter' : 'Export'}
+        📸 {t('export_button')}
       </button>
       {modal}
     </>

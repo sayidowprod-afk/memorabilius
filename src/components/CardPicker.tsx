@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import { useLang } from '@/lib/LangContext'
 
 export interface PickableCard {
   key: string
@@ -39,6 +40,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   excludeKeys?: Set<string>
   multi?: boolean
 }) {
+  const { t } = useLang()
   const [cards, setCards] = useState<PickableCard[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -127,28 +129,28 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 600, maxHeight: '86vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>🃏 {multi ? 'Choisir des cartes' : 'Choisir une carte'}</h3>
+          <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>🃏 {multi ? t('picker_title_multi') : t('gallery_choose_card')}</h3>
           <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
         </div>
 
         {/* Recherche + filtres */}
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur, une variation..." autoFocus />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('gallery_search')} autoFocus />
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <select value={fTeam} onChange={e => setFTeam(e.target.value)} style={{ ...selectStyle, borderColor: fTeam ? ACCENT : '#e0e0e0' }}>
-            <option value="">Équipe</option>
-            {teams.map(t => <option key={t} value={t}>{t}</option>)}
+            <option value="">{t('gallery_team')}</option>
+            {teams.map(tm => <option key={tm} value={tm}>{tm}</option>)}
           </select>
           <select value={fYear} onChange={e => setFYear(e.target.value)} style={{ ...selectStyle, borderColor: fYear ? ACCENT : '#e0e0e0' }}>
-            <option value="">Année</option>
+            <option value="">{t('gallery_year')}</option>
             {years.map(y => <option key={y} value={y}>{y}</option>)}
           </select>
           <select value={fBrand} onChange={e => setFBrand(e.target.value)} style={{ ...selectStyle, borderColor: fBrand ? ACCENT : '#e0e0e0' }}>
-            <option value="">Marque</option>
+            <option value="">{t('picker_brand')}</option>
             {brands.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
           {categories.length > 0 && (
             <select value={fCategory} onChange={e => setFCategory(e.target.value)} style={{ ...selectStyle, borderColor: fCategory ? ACCENT : '#e0e0e0' }}>
-              <option value="">Catégorie</option>
+              <option value="">{t('picker_category')}</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           )}
@@ -166,13 +168,13 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
           {(fTeam || fYear || fBrand || fCategory || search || fTags.rc || fTags.auto || fTags.patch || fTags.num) && (
             <button onClick={() => { setSearch(''); setFTeam(''); setFYear(''); setFBrand(''); setFCategory(''); setFTags({ rc: false, auto: false, patch: false, num: false }) }}
               style={{ padding: '6px 12px', borderRadius: 20, border: '1px solid #e0e0e0', cursor: 'pointer', fontWeight: 700, fontSize: 11, background: 'white', color: '#888' }}>
-              ✕ Réinitialiser
+              {t('picker_reset')}
             </button>
           )}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-          <span style={{ fontSize: 11, color: '#999' }}>{filtered.length} carte{filtered.length > 1 ? 's' : ''}{multi && picked.length ? ` · ${picked.length} sélectionnée${picked.length > 1 ? 's' : ''}` : ''}</span>
+          <span style={{ fontSize: 11, color: '#999' }}>{filtered.length} {filtered.length > 1 ? t('picker_card_plural') : t('picker_card_singular')}{multi && picked.length ? ` · ${picked.length} ${picked.length > 1 ? t('picker_selected_plural') : t('picker_selected')}` : ''}</span>
           {multi && filtered.length > 0 && (() => {
             const allSel = filtered.every(c => pickedKeys.has(c.key))
             return (
@@ -180,7 +182,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                 if (allSel) { const fk = new Set(filtered.map(c => c.key)); setPicked(prev => prev.filter(p => !fk.has(p.key))) }
                 else setPicked(prev => { const have = new Set(prev.map(p => p.key)); return [...prev, ...filtered.filter(c => !have.has(c.key))] })
               }} style={{ padding: '5px 12px', borderRadius: 20, border: `1.5px solid ${ACCENT}`, background: allSel ? ACCENT : 'white', color: allSel ? 'white' : ACCENT, cursor: 'pointer', fontWeight: 800, fontSize: 11 }}>
-                {allSel ? 'Tout désélectionner' : `Tout sélectionner (${filtered.length})`}
+                {allSel ? t('picker_deselect_all') : `${t('picker_select_all')} (${filtered.length})`}
               </button>
             )
           })()}
@@ -188,9 +190,9 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
 
         <div style={{ overflowY: 'auto', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))', gap: 10, alignContent: 'start' }}>
           {loading ? (
-            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>Chargement...</p>
+            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>{t('setlist_loading')}</p>
           ) : filtered.length === 0 ? (
-            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>Aucune carte trouvée</p>
+            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>{t('picker_no_cards')}</p>
           ) : filtered.map(c => {
             const sel = pickedKeys.has(c.key)
             return (
@@ -224,7 +226,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
         {multi && (
           <button onClick={() => { if (picked.length) onSelectMany?.(picked) }} disabled={!picked.length}
             className="btn-main btn-primary" style={{ opacity: picked.length ? 1 : 0.5 }}>
-            Ajouter {picked.length > 0 ? `(${picked.length})` : ''}
+            {t('gallery_add')} {picked.length > 0 ? `(${picked.length})` : ''}
           </button>
         )}
       </div>

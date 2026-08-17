@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { playerSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang } from '@/lib/LangContext'
 
 const normStr = (s: string) =>
   s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
@@ -41,6 +42,7 @@ interface CardSet {
 
 export default function SetDetailPage({ params }: { params: Promise<{ setId: string }> }) {
   const { dark } = useTheme()
+  const { t } = useLang()
   const { setId } = use(params)
   const [set, setSet] = useState<CardSet | null>(null)
   const [variations, setVariations] = useState<VariationMeta[]>([])
@@ -385,14 +387,14 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     variations.flatMap(v => v.entries.map(e => e.team)).filter(Boolean) as string[]
   )).sort()
 
-  if (loading) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Chargement...</div>
-  if (!set) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Set introuvable.</div>
+  if (loading) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_loading')}</div>
+  if (!set) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_not_found')}</div>
 
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '32px 20px' }}>
       <div style={{ marginBottom: 20 }}>
         <Link href="/setlist" style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
-          ← Setlist {set.sport === 'nba' ? 'NBA' : set.sport === 'nfl' ? 'NFL' : set.sport === 'baseball' ? 'Baseball' : set.sport === 'hockey' ? 'Hockey' : set.sport === 'pokemon' ? 'Pokémon' : 'MTG'}
+          ← {t('setlistdetail_setlist_label')} {set.sport === 'nba' ? 'NBA' : set.sport === 'nfl' ? 'NFL' : set.sport === 'baseball' ? 'Baseball' : set.sport === 'hockey' ? 'Hockey' : set.sport === 'pokemon' ? 'Pokémon' : 'MTG'}
         </Link>
       </div>
 
@@ -402,12 +404,12 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginBottom: userId ? 16 : 0 }}>
           {set.year && <span style={{ fontSize: 13, color: '#888', fontWeight: 700 }}>{set.year}</span>}
           {set.brand && <span style={{ fontSize: 13, color: '#003DA6', fontWeight: 700, background: '#f0f4ff', borderRadius: 6, padding: '2px 8px' }}>{set.brand}</span>}
-          <span style={{ fontSize: 13, color: '#aaa' }}>{set.total_cards.toLocaleString()} cartes · {variations.length} variations</span>
+          <span style={{ fontSize: 13, color: '#aaa' }}>{set.total_cards.toLocaleString()} {t('setlistdetail_cards')} · {variations.length} {t('setlistdetail_variations')}</span>
         </div>
         {userId ? (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: '#333' }}>{totalOwned} / {set.total_cards.toLocaleString()} possédées</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: '#333' }}>{totalOwned} / {set.total_cards.toLocaleString()} {t('setlistdetail_owned')}</span>
               <span style={{ fontSize: 20, fontWeight: 900, color: pct === 100 ? '#2ecc71' : '#003DA6' }}>{pct}%</span>
             </div>
             <div style={{ height: 10, borderRadius: 5, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
@@ -416,7 +418,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           </div>
         ) : (
           <div style={{ fontSize: 13, color: '#888' }}>
-            <Link href="/connexion" style={{ color: '#003DA6', fontWeight: 700 }}>Connectez-vous</Link> pour tracker votre complétion
+            <Link href="/connexion" style={{ color: '#003DA6', fontWeight: 700 }}>{t('setlistdetail_login')}</Link> {t('setlistdetail_login_to_track')}
           </div>
         )}
       </div>
@@ -474,7 +476,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: `1.5px solid ${search ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 14, outline: 'none', background: dark ? '#2a2a2a' : 'white', color: dark ? '#eee' : '#111' }} />
         <select value={filterTeam} onChange={e => setFilterTeam(e.target.value)}
           style={{ padding: '10px 14px', border: `1.5px solid ${filterTeam ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', fontWeight: filterTeam ? 700 : 400, color: filterTeam ? '#003DA6' : (dark ? '#bbb' : '#666'), minWidth: 160 }}>
-          <option value="">Toutes les équipes</option>
+          <option value="">{t('setlistdetail_all_teams')}</option>
           {allTeams.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
         {userId && (
@@ -482,7 +484,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             {(['all', 'owned', 'missing'] as const).map(f => (
               <button key={f} onClick={() => setFilter(f)}
                 style={{ padding: '10px 16px', border: '1.5px solid', borderColor: filter === f ? '#003DA6' : (dark ? '#444' : '#e0e0e0'), borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filter === f ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: filter === f ? 'white' : (dark ? '#eee' : '#333') }}>
-                {f === 'all' ? 'Tout' : f === 'owned' ? '✓ Possédées' : '✗ Manquantes'}
+                {f === 'all' ? t('setlistdetail_filter_all') : f === 'owned' ? t('setlistdetail_filter_owned') : t('setlistdetail_filter_missing')}
               </button>
             ))}
           </div>
@@ -497,7 +499,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             navigator.clipboard.writeText(missing.join('\n')).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000) })
           }}
             style={{ padding: '10px 16px', border: `1.5px solid ${copied ? '#2ecc71' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: copied ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: copied ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
-            {copied ? '✓ Copié !' : '📋 Copier la liste'}
+            {copied ? t('setlistdetail_copied') : t('setlistdetail_copy_list')}
           </button>
         )}
       </div>
@@ -526,7 +528,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               <div onClick={() => toggleVariation(variation.name)}
                 style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '13px 18px', cursor: 'pointer', boxSizing: 'border-box' }}>
                 <span style={{ fontSize: 15, fontWeight: 800, color: '#111', flex: 1 }}>{variation.name}</span>
-                <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} cartes</span>
+                <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} {t('setlistdetail_cards')}</span>
                 {userId && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 130 }}>
                     <div style={{ flex: 1, height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
@@ -539,10 +541,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                   <button
                     onClick={ev => checkAllVariation(variation.name, ev)}
                     disabled={checkingAll === variation.name}
-                    title={varPct === 100 ? 'Tout décocher' : 'Tout cocher'}
+                    title={varPct === 100 ? t('setlistdetail_uncheck_all') : t('setlistdetail_check_all')}
                     style={{ fontSize: 11, fontWeight: 800, padding: '4px 9px', borderRadius: 6, border: '1.5px solid', borderColor: varPct === 100 ? '#2ecc71' : '#003DA6', background: dark ? '#1e1e1e' : 'white', color: varPct === 100 ? '#2ecc71' : '#003DA6', cursor: checkingAll === variation.name ? 'default' : 'pointer', whiteSpace: 'nowrap', opacity: checkingAll === variation.name ? 0.5 : 1, flexShrink: 0 }}
                   >
-                    {checkingAll === variation.name ? '…' : varPct === 100 ? '✗ Tout' : '✓ Tout'}
+                    {checkingAll === variation.name ? '…' : varPct === 100 ? t('setlistdetail_uncheck_all_short') : t('setlistdetail_check_all_short')}
                   </button>
                 )}
                 <span style={{ fontSize: 11, color: '#ccc', marginLeft: 4 }}>{isOpen ? '▲' : '▼'}</span>
@@ -555,10 +557,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                   ) : (
                     <>
                       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
-                        <span>#</span><span></span><span>Joueur</span>{!isMobile && <span>Équipe</span>}<span></span>
+                        <span>#</span><span></span><span>{t('setlistdetail_player')}</span>{!isMobile && <span>{t('setlistdetail_team')}</span>}<span></span>
                       </div>
                       {displayEntries.length === 0 ? (
-                        <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
+                        <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>{t('setlistdetail_no_cards')}</div>
                       ) : displayEntries.map(entry => {
                         // Priorité : carte choisie explicitement → image site → fallback API
                         const communityImg = matchedCardImagesRef.current.get(entry.id) || entry.image_url || communityImages.get(entry.id)
@@ -571,7 +573,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                               <img src={communityImg} alt="" onClick={ev => { ev.stopPropagation(); setPreviewCard({ image: communityImg, nom: entry.player_name, variation: entry.variation || '' }) }}
                                 style={{ width: 36, height: 50, objectFit: 'cover', borderRadius: 3, display: 'block', boxShadow: '0 1px 4px rgba(0,0,0,0.18)', cursor: 'zoom-in' }} />
                             ) : (
-                              <div title="Carte pas encore sur le site" style={{ width: 36, height: 50, background: dark ? '#2a2a2a' : '#f0f0f0', border: `1px dashed ${dark ? '#444' : '#d8d8d8'}`, borderRadius: 3 }} />
+                              <div title={t('setlistdetail_not_on_site')} style={{ width: 36, height: 50, background: dark ? '#2a2a2a' : '#f0f0f0', border: `1px dashed ${dark ? '#444' : '#d8d8d8'}`, borderRadius: 3 }} />
                             )}
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>

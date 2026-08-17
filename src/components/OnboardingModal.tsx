@@ -3,12 +3,14 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang } from '@/lib/LangContext'
 
 const STORAGE_KEY = 'onboarding_done'
 const ACCENT = '#003DA6'
 
 export default function OnboardingModal() {
   const { dark } = useTheme()
+  const { t } = useLang()
   const router = useRouter()
   const [visible, setVisible] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
@@ -86,14 +88,14 @@ export default function OnboardingModal() {
               <Illo>
                 <CardStack />
               </Illo>
-              <Title txt={txt}>Bienvenue sur<br />Memorabilius 🎴</Title>
+              <Title txt={txt}><span dangerouslySetInnerHTML={{ __html: t('onboardm_step1_title') }} /></Title>
               <Sub txt={txt2}>
-                Ta collection mérite mieux qu'un tableau Excel.<br />
-                En <Accent>30 secondes</Accent>, tu peux ajouter ta première carte.
+                {t('onboardm_step1_sub')}<br />
+                <Accent>{t('onboardm_step1_accent')}</Accent>, {t('onboardm_step1_sub2')}
               </Sub>
               <BtnRow>
-                <BtnSkip bg2={bg2} txt2={txt2} onClick={dismiss}>Passer</BtnSkip>
-                <BtnNext onClick={() => goStep(1)}>Commencer →</BtnNext>
+                <BtnSkip bg2={bg2} txt2={txt2} onClick={dismiss}>{t('onboardm_skip')}</BtnSkip>
+                <BtnNext onClick={() => goStep(1)}>{t('onboardm_start')}</BtnNext>
               </BtnRow>
             </Slide>
 
@@ -101,9 +103,9 @@ export default function OnboardingModal() {
             <Slide>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
                 {[
-                  { icon: '📷', title: 'Scanner par IA', sub: 'Photo → fiche complète en 3 sec. Marque, série, RC, tout.' },
-                  { icon: '📦', title: 'Gérer ta collection', sub: 'Classeurs, autos, patches — tout organisé et consultable.' },
-                  { icon: '🔁', title: 'Échanger & vendre', sub: 'Trouve des trades, vois les prix eBay en temps réel.' },
+                  { icon: '📷', title: t('onboardm_feat1_title'), sub: t('onboardm_feat1_sub') },
+                  { icon: '📦', title: t('onboardm_feat2_title'), sub: t('onboardm_feat2_sub') },
+                  { icon: '🔁', title: t('onboardm_feat3_title'), sub: t('onboardm_feat3_sub') },
                 ].map(f => (
                   <div key={f.title} style={{ display: 'flex', alignItems: 'center', gap: 14, background: bg2, borderRadius: 14, padding: '13px 16px' }}>
                     <div style={{ width: 44, height: 44, borderRadius: 12, background: `${ACCENT}22`, border: `1px solid ${ACCENT}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>
@@ -116,11 +118,11 @@ export default function OnboardingModal() {
                   </div>
                 ))}
               </div>
-              <Title txt={txt}>Tout ce dont tu as besoin</Title>
-              <Sub txt={txt2}>On commence par <Accent>ta première carte</Accent>.</Sub>
+              <Title txt={txt}>{t('onboardm_step2_title')}</Title>
+              <Sub txt={txt2}>{t('onboardm_step2_sub')} <Accent>{t('onboardm_step2_accent')}</Accent>.</Sub>
               <BtnRow>
-                <BtnSkip bg2={bg2} txt2={txt2} onClick={() => goStep(0)}>← Retour</BtnSkip>
-                <BtnNext onClick={() => goStep(2)}>Suivant →</BtnNext>
+                <BtnSkip bg2={bg2} txt2={txt2} onClick={() => goStep(0)}>{t('onboardm_back')}</BtnSkip>
+                <BtnNext onClick={() => goStep(2)}>{t('onboardm_next')}</BtnNext>
               </BtnRow>
             </Slide>
 
@@ -129,13 +131,13 @@ export default function OnboardingModal() {
               <div style={{ width: '100%', height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
                 <AddVisual txt2={txt2} />
               </div>
-              <Title txt={txt}>Ajoute ta 1ère carte !</Title>
+              <Title txt={txt}>{t('onboardm_step3_title')}</Title>
               <Sub txt={txt2} style={{ textAlign: 'center' }}>
-                Scanne par IA ou saisis manuellement —<br /><Accent>c'est parti !</Accent>
+                {t('onboardm_step3_sub')}<br /><Accent>{t('onboardm_step3_accent')}</Accent>
               </Sub>
               <BtnRow style={{ width: '100%' }}>
-                <BtnSkip bg2={bg2} txt2={txt2} onClick={() => goStep(1)}>← Retour</BtnSkip>
-                <BtnNext onClick={goToAdd}>+ Ajouter une carte</BtnNext>
+                <BtnSkip bg2={bg2} txt2={txt2} onClick={() => goStep(1)}>{t('onboardm_back')}</BtnSkip>
+                <BtnNext onClick={goToAdd}>{t('onboardm_add_card')}</BtnNext>
               </BtnRow>
             </Slide>
           </div>
@@ -224,6 +226,7 @@ function CardStack() {
 }
 
 function AddVisual({ txt2 }: { txt2: string }) {
+  const { t } = useLang()
   return (
     <div style={{
       width: 130, height: 130, borderRadius: 22,
@@ -232,7 +235,7 @@ function AddVisual({ txt2 }: { txt2: string }) {
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8,
     }}>
       <div style={{ fontSize: 44, color: ACCENT, lineHeight: 1, fontWeight: 300 }}>+</div>
-      <div style={{ fontSize: 12, color: txt2, fontWeight: 600, letterSpacing: '0.3px' }}>Nouvelle carte</div>
+      <div style={{ fontSize: 12, color: txt2, fontWeight: 600, letterSpacing: '0.3px' }}>{t('onboardm_new_card')}</div>
     </div>
   )
 }

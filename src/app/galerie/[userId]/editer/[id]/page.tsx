@@ -36,7 +36,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const { userId, id } = use(params)
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { lang } = useLang()
+  const { lang, t } = useLang()
 
   // Mode modification groupée
   const queueParam = searchParams.get('queue') || ''
@@ -49,7 +49,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const goNext = (skip = false) => {
     const nextIdx = qidxParam + 1
     if (nextIdx >= queueIds.length) {
-      toast.success(lang === 'fr' ? 'Modification groupée terminée !' : 'Bulk edit complete!')
+      toast.success(t('addcard_bulk_edit_done'))
       router.push(`/galerie/${userId}`)
       return
     }
@@ -185,7 +185,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         setScannerModal({ side: side as 'recto' | 'verso', src: dataUrl })
       }
     } catch {
-      toast.error(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
+      toast.error(t('addcard_err_image_unreadable'))
     }
   }
 
@@ -320,7 +320,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         auto: card.auto ?? f.auto,
         patch: card.patch ?? f.patch,
       }))
-      toast.success(lang === 'fr' ? 'Analyse terminée !' : 'Analysis complete!')
+      toast.success(t('addcard_analysis_done'))
     } catch (e: any) { setScanError(e.message) } finally { setScanning(false) }
   }
 
@@ -393,7 +393,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.nom) { toast.error(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
+    if (!form.nom) { toast.error(t('addcard_err_name_required')); return }
     setSaving(true)
 
     const { data: { user } } = await supabase.auth.getUser()
@@ -442,12 +442,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           {preview ? <img src={preview} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} /> : (
             <div style={{ textAlign: 'center', color: '#bbb' }}>
               <div style={{ fontSize: 40, marginBottom: 8 }}>📷</div>
-              <p style={{ fontSize: 13, fontWeight: 600 }}>{uploading ? '...' : (lang === 'fr' ? 'Cliquer pour changer' : 'Click to change')}</p>
+              <p style={{ fontSize: 13, fontWeight: 600 }}>{uploading ? '...' : t('addcard_click_change')}</p>
             </div>
           )}
           {uploading && (
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ color: 'white', fontWeight: 700 }}>{lang === 'fr' ? 'Upload...' : 'Uploading...'}</div>
+              <div style={{ color: 'white', fontWeight: 700 }}>{t('addcard_uploading')}</div>
             </div>
           )}
         </div>
@@ -456,13 +456,13 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         {!uploading && (
           <button type="button" onClick={() => document.getElementById(`camera-${side}`)?.click()}
             style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-            {lang === 'fr' ? '📸 Prendre une photo' : '📸 Take a photo'}
+            {t('addcard_take_photo')}
           </button>
         )}
         {preview && (
           <button type="button" onClick={clearPreview}
             style={{ marginTop: 6, width: '100%', background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '6px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-            {lang === 'fr' ? '🗑️ Supprimer' : '🗑️ Remove'}
+            {t('addcard_remove')}
           </button>
         )}
       </div>
@@ -514,10 +514,10 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       )}
 
       <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>
-        ← {lang === 'fr' ? 'Retour à la galerie' : 'Back to gallery'}
+        ← {t('addcard_back_to_gallery')}
       </Link>
       <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 30 }}>
-        {lang === 'fr' ? '✏️ Modifier la carte' : '✏️ Edit card'}
+        {t('addcard_title_edit')}
       </h1>
 
       <form onSubmit={handleSubmit}>
@@ -537,21 +537,21 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
-          <ImageUploader side="recto" label={lang === 'fr' ? 'Couverture Avant' : 'Front Cover'} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
-          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? form.is_horizontal) ? '3.5/2.5' : undefined} />
+          <ImageUploader side="recto" label={t('addcard_front_cover')} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
+          <ImageUploader side="verso" label={t('addcard_back_cover')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? form.is_horizontal) ? '3.5/2.5' : undefined} />
         </div>
 
         {form.booklet && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
-            <ImageUploader side="il" label="Intérieur Gauche" preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" />
-            <ImageUploader side="ir" label="Intérieur Droit" preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" />
+            <ImageUploader side="il" label={t('addcard_interior_left')} preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" />
+            <ImageUploader side="ir" label={t('addcard_interior_right')} preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" />
           </div>
         )}
 
         {(form.image_recto || form.image_verso) && !scanning && (
           <button type="button" onClick={reAnalyzeCard}
             style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginBottom: 8 }}>
-            🤖 {lang === 'fr' ? "Ré-analyser avec l'IA" : 'Re-analyze with AI'}
+            {t('addcard_reanalyze')}
           </button>
         )}
 
@@ -559,7 +559,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#f0f7ff', border: '1.5px solid #c0d8ff', borderRadius: 10, padding: '10px 16px', marginBottom: 4 }}>
             <div style={{ width: 16, height: 16, border: '2px solid #003DA6', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', flexShrink: 0 }} />
             <span style={{ fontSize: 13, fontWeight: 600, color: '#003DA6' }}>
-              {lang === 'fr' ? 'Analyse IA en cours…' : 'AI analysis in progress…'}
+              {t('addcard_analyzing')}
             </span>
           </div>
         )}
@@ -572,11 +572,11 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Type d\'objet' : 'Item type'}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_item_type')}</label>
             <div style={{ display: 'flex', gap: 10 }}>
               {([
-                { id: 'card',        icon: '🃏', label: lang === 'fr' ? 'Carte' : 'Card' },
-                { id: 'memorabilia', icon: '🏆', label: lang === 'fr' ? 'Mémorabilias' : 'Memorabilia' },
+                { id: 'card',        icon: '🃏', label: t('addcard_type_card') },
+                { id: 'memorabilia', icon: '🏆', label: t('addcard_type_memorabilia') },
               ] as const).map(t => (
                 <button key={t.id} type="button" onClick={() => setForm(f => ({ ...f, item_type: t.id, grade: '' }))}
                   style={{
@@ -594,55 +594,55 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Nom du joueur *' : 'Player name *'}
+              {t('addcard_player_name')}
             </label>
-            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder={lang === 'fr' ? 'Ex : LeBron James' : 'Ex: LeBron James'} />
+            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder={t('addcard_ex_player_name')} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Équipe' : 'Team'}</label>
-              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Lakers' : 'Ex: Lakers'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('gallery_team')}</label>
+              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder={t('addcard_ex_team')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Année' : 'Year'}</label>
-              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 2023-24' : 'Ex: 2023-24'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('gallery_year')}</label>
+              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder={t('addcard_ex_year')} />
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Marque' : 'Brand'}</label>
-              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Panini, Topps…' : 'Ex: Panini, Topps…'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('picker_brand')}</label>
+              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={t('addcard_ex_brand')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Collection' : 'Set'}</label>
-              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Prizm, Chrome…' : 'Ex: Prizm, Chrome…'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_collection')}</label>
+              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={t('addcard_ex_collection')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Variation' : 'Variant'}</label>
-              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Silver Prizm' : 'Ex: Silver Prizm'} />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_variation')}</label>
+              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={t('addcard_ex_variation')} />
             </div>
             {form.item_type === 'memorabilia' && (
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
-              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Patch logo, Jersey relic…' : 'Ex: Logo patch, Jersey relic…'} />
+              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_patch_desc')} />
             </div>
             )}
           </div>
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Désignation Beckett (optionnel)' : 'Beckett designation (optional)'}
+              {t('addcard_beckett_optional')}
             </label>
             <input
               value={form.beckett_designation}
               onChange={e => setForm({ ...form, beckett_designation: e.target.value })}
-              placeholder={lang === 'fr' ? 'Ex : 2023-24 Panini Prizm Silver #48 LeBron James — laissez vide pour génération automatique' : 'Ex: 2023-24 Panini Prizm Silver #48 LeBron James — leave empty for auto-generation'}
+              placeholder={t('addcard_beckett_placeholder')}
             />
             {!form.beckett_designation && (form.annee || form.marque || form.collection) && (
               <p style={{ fontSize: 11, color: '#aaa', marginTop: 4, marginBottom: 0 }}>
-                {lang === 'fr' ? 'Générée automatiquement : ' : 'Auto-generated: '}
+                {t('addcard_auto_generated')}
                 <em>{[form.annee, form.marque, form.collection, form.variation, form.card_number ? `#${form.card_number}` : '', form.nom].filter(Boolean).join(' ')}</em>
               </p>
             )}
@@ -653,28 +653,28 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
-                  <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
+                  <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={t('addcard_ex_grade')} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
-                  <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_card_num')}</label>
+                  <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_card_num')} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (ex: 48/99)' : 'Numbering (ex: 48/99)'}</label>
-                  <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering_ex')}</label>
+                  <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={t('addcard_ex_numbering')} />
                 </div>
               </div>
               {form.grade.trim() && form.grade.trim().toLowerCase() !== 'raw' && (
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de certification' : 'Cert number'}</label>
-                  <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 82659423 (au dos du slab)' : 'Ex: 82659423 (on the slab)'} />
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_cert_num')}</label>
+                  <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={t('addcard_ex_cert_num')} />
                 </div>
               )}
             </>
           ) : (
             <>
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{lang === 'fr' ? 'Taille' : 'Size'}</label>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{t('addcard_label_size')}</label>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
                   {['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'].map(s => (
                     <button key={s} type="button" onClick={() => setForm(f => ({ ...f, grade: f.grade === s ? '' : s }))}
@@ -686,18 +686,18 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                   ))}
                 </div>
                 <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })}
-                  placeholder={lang === 'fr' ? 'Ex : L, 44, EU 42, 7½, 8×10po…' : 'Ex: L, 44, EU 42, 7½, 8×10in…'} />
+                  placeholder={t('addcard_ex_size')} />
               </div>
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (édition limitée)' : 'Numbering (limited edition)'}</label>
-                <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/500' : 'Ex: 48/500'} />
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering_limited')}</label>
+                <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={t('addcard_ex_numbering_limited')} />
               </div>
             </>
           )}
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Ajouter à la collection...' : 'Add to collection...'}
+              {t('addcard_add_to_collection_placeholder')}
             </label>
             <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
@@ -709,7 +709,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <div style={{ position: 'absolute', top: 2, left: form.disponible_vente ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: '0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
             </div>
             <span style={{ fontWeight: 700, fontSize: 13, color: form.disponible_vente ? '#003DA6' : '#666' }}>
-              {lang === 'fr' ? '🏷️ Disponible à la vente / trade' : '🏷️ Available for sale / trade'}
+              {t('addcard_available_sale')}
             </span>
           </label>
           {form.disponible_vente && (
@@ -752,7 +752,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
           {form.item_type !== 'memorabilia' ? (
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_features')}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
                 { key: 'rc', label: 'RC', activeBg: '#e67e22' },
@@ -771,12 +771,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
           ) : (
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Authenticité' : 'Authentication'}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_authentication')}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
-                { key: 'rc',    label: lang === 'fr' ? '📜 COA inclus' : '📜 COA included', activeBg: '#7b1fa2' },
-                { key: 'auto',  label: lang === 'fr' ? '✍️ Autographié' : '✍️ Autographed', activeBg: '#2e7d32' },
-                { key: 'patch', label: lang === 'fr' ? '🎽 Porté en match' : '🎽 Game-worn', activeBg: '#c0392b' },
+                { key: 'rc',    label: t('addcard_coa_included'), activeBg: '#7b1fa2' },
+                { key: 'auto',  label: t('addcard_autographed'), activeBg: '#2e7d32' },
+                { key: 'patch', label: t('addcard_game_worn'), activeBg: '#c0392b' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{ padding: '10px 20px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 800, fontSize: 13, transition: '0.2s',
@@ -788,9 +788,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             {form.auto && (
               <div style={{ marginTop: 12 }}>
                 <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>
-                  {lang === 'fr' ? '✍️ Signé par' : '✍️ Signed by'}
+                  {t('addcard_signed_by')}
                 </label>
-                <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : LeBron James' : 'Ex: LeBron James'} />
+                <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={t('addcard_ex_player_name')} />
               </div>
             )}
           </div>
@@ -799,15 +799,15 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           {/* Localisation physique */}
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>
-              📍 {lang === 'fr' ? 'Localisation physique' : 'Physical location'}
+              {t('addcard_physical_location')}
             </label>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 80px', gap: 12 }}>
               <div>
-                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{lang === 'fr' ? 'Classeur' : 'Binder'}</label>
-                <input value={form.storage_binder} onChange={e => setForm({ ...form, storage_binder: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Binder NBA 2023' : 'Ex: Binder NBA 2023'} />
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{t('addcard_binder_label')}</label>
+                <input value={form.storage_binder} onChange={e => setForm({ ...form, storage_binder: e.target.value })} placeholder={t('addcard_ex_binder')} />
               </div>
               <div>
-                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{lang === 'fr' ? 'Page' : 'Page'}</label>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{t('binder_page_prefix')}</label>
                 <input type="number" min="1" value={form.storage_page} onChange={e => setForm({ ...form, storage_page: e.target.value })} placeholder="1" />
               </div>
               <div>
@@ -820,9 +820,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
             {saving ? '...' : isQueueMode
               ? (queueCurrent < queueTotal
-                ? `✅ ${lang === 'fr' ? 'Enregistrer et passer →' : 'Save and next →'}`
-                : `✅ ${lang === 'fr' ? 'Terminer' : 'Finish'}`)
-              : (lang === 'fr' ? '✅ Enregistrer les modifications' : '✅ Save changes')}
+                ? t('addcard_save_and_next')
+                : `✅ ${t('onboardt_finish')}`)
+              : t('addcard_save_changes')}
           </button>
         </div>
       </form>
@@ -872,7 +872,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                     requestAnimationFrame(resetTransform)
                   }}
                   style={{ padding: '7px 14px', borderRadius: 8, border: versoHorizontal ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: versoHorizontal ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  🔄 {lang === 'fr' ? 'Verso à l\'horizontale' : 'Horizontal back'} {versoHorizontal ? '✓' : ''}
+                  🔄 {t('addcard_horizontal_back')} {versoHorizontal ? '✓' : ''}
                 </button>
               </div>
             )
@@ -893,7 +893,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
           <div style={{ width: '100%', background: '#1a1a1a', padding: '14px 20px 20px', boxSizing: 'border-box' }}>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', textAlign: 'center', margin: '0 0 10px' }}>
-              {lang === 'fr' ? 'Glissez pour repositionner · Pincez ou molette pour zoomer' : 'Drag to reposition · Pinch or scroll to zoom'}
+              {t('addcard_drag_zoom_hint')}
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap', width: 52 }}>🔍 {Math.round(imgTransform.scale * 100)}%</span>
@@ -902,7 +902,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                 style={{ flex: 1, accentColor: '#fff', cursor: 'pointer', height: 4 }} />
               <button type="button" onClick={resetTransform}
                 style={{ padding: '6px 12px', background: 'rgba(255,255,255,0.12)', color: 'white', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                {lang === 'fr' ? 'Recadrer' : 'Fit'}
+                {t('addcard_fit')}
               </button>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
@@ -914,11 +914,11 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             <div style={{ display: 'flex', gap: 10 }}>
               <button type="button" onClick={() => setCropModal(null)}
                 style={{ flex: 1, padding: 14, background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: 12, fontWeight: 700, cursor: 'pointer', color: 'white', fontSize: 15 }}>
-                {lang === 'fr' ? 'Annuler' : 'Cancel'}
+                {t('profile_cancel')}
               </button>
               <button type="button" onClick={applyCropAndUpload}
                 style={{ flex: 2, padding: 14, background: 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: 'pointer', fontSize: 15 }}>
-                {lang === 'fr' ? 'Utiliser cette image' : 'Use this image'}
+                {t('addcard_use_image')}
               </button>
             </div>
           </div>

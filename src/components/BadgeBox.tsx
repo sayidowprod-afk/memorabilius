@@ -6,6 +6,7 @@ import { BADGE_CATEGORIES, BadgeCategory, BadgeTier } from '@/lib/badgeDefinitio
 import { toast } from '@/lib/toast'
 import { hapticSuccess } from '@/lib/haptics'
 import { maybePromptReview } from '@/lib/reviewPrompt'
+import { useLang } from '@/lib/LangContext'
 
 // ── SVG path generators (module-level, computed once) ──────────────────────
 function polyPath(n: number, r: number, cx = 50, cy = 50, off = 0) {
@@ -73,7 +74,7 @@ const CAT_SHAPE: Record<string, Shape> = {
 }
 
 // ── Tier colour system ────────────────────────────────────────────────────
-const TIER_NAMES = ['Bois', 'Pierre', 'Fer', 'Bronze', 'Argent', 'Or', 'Saphir', 'Diamant']
+const TIER_NAME_KEYS = ['badge_tier_wood', 'badge_tier_stone', 'badge_tier_iron', 'badge_tier_bronze', 'badge_tier_silver', 'badge_tier_gold', 'badge_tier_sapphire', 'badge_tier_diamond'] as const
 const TIER = [
   { from: '#4a2e10', mid: '#8a5220', hi: '#c8803c', bottom: '#2a1808', glow: '#9a6028', border: '#c0783888', rl: '#d89040', rd: '#3a2010' },
   { from: '#383838', mid: '#787878', hi: '#c0c0c0', bottom: '#181818', glow: '#909090', border: '#aaaaaa88', rl: '#e0e0e0', rd: '#282828' },
@@ -252,15 +253,16 @@ function BadgeSVG({ cat, tier, palIdx, isEarned, size = 64 }: {
 }
 
 // ── Tooltip portal ────────────────────────────────────────────────────────
-function BadgeTooltip({ t }: { t: TooltipInfo }) {
-  const pal = TIER[t.palIdx] as Pal
-  const pct = Math.min(t.statVal / t.tier.threshold, 1)
-  const yPos = t.above ? t.y - 14 : t.y + 70
+function BadgeTooltip({ t: info }: { t: TooltipInfo }) {
+  const { t } = useLang()
+  const pal = TIER[info.palIdx] as Pal
+  const pct = Math.min(info.statVal / info.tier.threshold, 1)
+  const yPos = info.above ? info.y - 14 : info.y + 70
 
   return (
     <div style={{
-      position: 'fixed', left: t.x, top: yPos,
-      transform: t.above ? 'translate(-50%,-100%)' : 'translate(-50%,0)',
+      position: 'fixed', left: info.x, top: yPos,
+      transform: info.above ? 'translate(-50%,-100%)' : 'translate(-50%,0)',
       zIndex: 99999, pointerEvents: 'none',
       background: 'linear-gradient(145deg,#0d1b2e,#162438)',
       border: `1px solid ${pal.border}`,
@@ -271,24 +273,24 @@ function BadgeTooltip({ t }: { t: TooltipInfo }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
         <div style={{
           flexShrink: 0,
-          filter: t.isEarned ? `drop-shadow(0 0 8px ${pal.glow})` : 'none',
+          filter: info.isEarned ? `drop-shadow(0 0 8px ${pal.glow})` : 'none',
         }}>
-          <BadgeSVG cat={t.cat} tier={t.tier} palIdx={t.palIdx} isEarned={t.isEarned} size={40} />
+          <BadgeSVG cat={info.cat} tier={info.tier} palIdx={info.palIdx} isEarned={info.isEarned} size={40} />
         </div>
         <div>
-          <div style={{ fontSize: 10, color: '#64748b', lineHeight: 1.2 }}>{t.cat.emoji} {t.cat.label}</div>
-          <div style={{ fontSize: 13, fontWeight: 800, color: t.isEarned ? pal.glow : '#94a3b8', lineHeight: 1.3 }}>
-            {t.isEarned ? '✓ ' : '🔒 '}{TIER_NAMES[t.palIdx]}
+          <div style={{ fontSize: 10, color: '#64748b', lineHeight: 1.2 }}>{info.cat.emoji} {info.cat.label}</div>
+          <div style={{ fontSize: 13, fontWeight: 800, color: info.isEarned ? pal.glow : '#94a3b8', lineHeight: 1.3 }}>
+            {info.isEarned ? '✓ ' : '🔒 '}{t(TIER_NAME_KEYS[info.palIdx])}
           </div>
         </div>
       </div>
-      <div style={{ fontSize: 12, color: '#cbd5e1', fontWeight: 600, marginBottom: t.isEarned ? 0 : 8 }}>
-        {t.tier.label} {t.cat.unit}
+      <div style={{ fontSize: 12, color: '#cbd5e1', fontWeight: 600, marginBottom: info.isEarned ? 0 : 8 }}>
+        {info.tier.label} {info.cat.unit}
       </div>
-      {!t.isEarned && (<>
+      {!info.isEarned && (<>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#475569', marginBottom: 4 }}>
-          <span>Progression</span>
-          <span>{fmtN(t.statVal)} / {fmtN(t.tier.threshold)}</span>
+          <span>{t('badge_progression')}</span>
+          <span>{fmtN(info.statVal)} / {fmtN(info.tier.threshold)}</span>
         </div>
         <div style={{ height: 4, background: '#0f172a', borderRadius: 2, overflow: 'hidden' }}>
           <div style={{ height: '100%', width: `${pct * 100}%`, background: `linear-gradient(90deg,${pal.glow},${pal.border})`, borderRadius: 2, transition: '.3s' }} />
@@ -368,6 +370,7 @@ function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip
 const CONFETTI_COLORS = ['#f0cc70', '#9a6028', '#78b0d8', '#f8c030', '#d838f8', '#58c8ff']
 
 function ConfettiBurst({ label, emoji }: { label: string; emoji: string }) {
+  const { t } = useLang()
   const particles = Array.from({ length: 26 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
@@ -405,7 +408,7 @@ function ConfettiBurst({ label, emoji }: { label: string; emoji: string }) {
         fontWeight: 900, fontSize: 15, padding: '12px 22px', borderRadius: 14,
         boxShadow: '0 10px 30px rgba(0,0,0,.5)', whiteSpace: 'nowrap',
       }}>
-        {emoji} Badge débloqué : {label}
+        {emoji} {t('badge_unlocked_prefix')} {label}
       </div>
     </div>,
     document.body
@@ -414,6 +417,7 @@ function ConfettiBurst({ label, emoji }: { label: string; emoji: string }) {
 
 // ── Main component ────────────────────────────────────────────────────────
 export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?: boolean }) {
+  const { t } = useLang()
   const [data, setData]       = useState<BadgeData | null>(null)
   const [loading, setLoading] = useState(true)
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null)
@@ -477,7 +481,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
     const { cat, tier } = best as { cat: BadgeCategory; tier: BadgeTier; tierIdx: number }
 
     hapticSuccess()
-    toast.success(`${cat.emoji} Nouveau badge débloqué : ${tier.label} ${cat.unit} !`)
+    toast.success(`${cat.emoji} ${t('badge_new_unlocked_prefix')} ${tier.label} ${cat.unit} !`)
     setCelebration({ label: `${tier.label} ${cat.unit}`, emoji: cat.emoji })
     setTimeout(() => setCelebration(null), 1800)
 
@@ -489,7 +493,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
 
   if (loading) return (
     <div style={{ background: '#180828', borderRadius: 16, padding: 48, textAlign: 'center', color: '#7c3aed', fontSize: 13 }}>
-      Chargement des badges…
+      {t('badge_loading')}
     </div>
   )
   if (!data) return null
@@ -522,7 +526,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
 
           {/* Moulure */}
           <div style={{ height: 28, background: 'linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(0,0,0,.15) 100%)', borderRadius: '18px 18px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontWeight: 900, fontSize: 11, color: '#6b3c00', letterSpacing: '.18em', textTransform: 'uppercase', textShadow: '0 1px 0 rgba(255,255,255,.25)' }}>✦ Badge Case ✦</span>
+            <span style={{ fontWeight: 900, fontSize: 11, color: '#6b3c00', letterSpacing: '.18em', textTransform: 'uppercase', textShadow: '0 1px 0 rgba(255,255,255,.25)' }}>{t('badge_case_label')}</span>
           </div>
 
           {/* Velours */}
