@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { inferSportFromTeamName } from '@/lib/sportsTeams'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -101,11 +102,17 @@ export default function Trades() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  // Sport (sportsTeams.ts) → vocabulaire local des annonces de /trades
+  const SPORT_TO_LOCAL_KEY: Record<string, string> = {
+    nba: 'basket', wnba: 'basket', nfl: 'football_us', mlb: 'baseball', nhl: 'hockey', football: 'foot',
+  }
+
   const loadForum = async () => {
     const fetchAll = async (queryFn: (from: number, to: number) => any): Promise<any[]> => {
       const result: any[] = []
       for (let page = 0; ; page++) {
-        const { data } = await queryFn(page * 1000, page * 1000 + 999)
+        const { data, error } = await queryFn(page * 1000, page * 1000 + 999)
+        if (error) break // pas d'erreur réseau silencieusement confondue avec "fin des résultats"
         if (!data || data.length === 0) break
         result.push(...data)
         if (data.length < 1000) break
@@ -142,7 +149,7 @@ export default function Trades() {
       image_url: c.image_recto || null,
       image_verso: c.image_verso || null,
       statut: 'actif',
-      sport: null,
+      sport: SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null,
     }))
 
     const merged = [...tradeData, ...cartesAsOffers]
@@ -330,7 +337,7 @@ export default function Trades() {
                     )}
                     <div style={{ padding: '14px 16px' }}>
                       <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
-                      {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>{SPORTS[trade.sport] || '🏀'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
+                      {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
                       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
                         {trade.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
                         {trade.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}

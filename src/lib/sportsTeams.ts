@@ -312,6 +312,16 @@ export function getTeamById(id: string): SportsTeam | null {
   return SPORTS_TEAMS.find(t => t.id === id) || null
 }
 
+// Les cartes n'ont pas de champ "sport" propre — on l'infère du nom d'équipe
+// (texte libre saisi/importé) via la table des équipes connues, sur une base
+// normalisée (casse/espaces). Retourne null si l'équipe n'est pas reconnue.
+const TEAM_NAME_TO_SPORT = new Map<string, Sport>(
+  SPORTS_TEAMS.map(team => [team.name.trim().toLowerCase(), team.sport])
+)
+export function inferSportFromTeamName(teamName: string | null | undefined): Sport | null {
+  return TEAM_NAME_TO_SPORT.get((teamName || '').trim().toLowerCase()) || null
+}
+
 // Backward compat: find NBA team by abbr only
 export function getTeam(abbr: string): SportsTeam | null {
   return SPORTS_TEAMS.find(t => t.sport === 'nba' && t.abbr === abbr) || null

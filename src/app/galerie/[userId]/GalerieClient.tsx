@@ -34,7 +34,7 @@ const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useAuth } from '@/lib/AuthContext'
-import { getTeamById } from '@/lib/sportsTeams'
+import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
@@ -321,7 +321,7 @@ interface Card {
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
-  isManuelle?: boolean; disponible_vente?: boolean; beckett_designation?: string; item_type?: string
+  isManuelle?: boolean; disponible_vente?: boolean; vendue?: boolean; beckett_designation?: string; item_type?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   lien_vinted?: string; lien_ebay?: string;
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
@@ -344,6 +344,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
   const [search, setSearch] = useState(searchParams.get('q') || '')
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [fSport, setFSport] = useState(searchParams.get('sport') || '')
   const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
   const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
   const [fYear, setFYear] = useState(searchParams.get('year') || '')
@@ -653,7 +654,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
-        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, item_type: m.item_type || 'card',
+        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, vendue: m.vendue || false, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
         lien_vinted: m.lien_vinted || '', lien_ebay: m.lien_ebay || '',
       })
@@ -758,6 +759,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }, [isOwner, loaded, lastAddedKey, userId])
 
+  const gallerySports = useMemo(() => {
+    const set = new Set<Sport>()
+    for (const c of cards) { const sp = inferSportFromTeamName(c.t); if (sp) set.add(sp) }
+    return [...set].sort()
+  }, [cards])
+
   const filtered = useMemo(() => {
     const matchCols = new Set<string>()
     if (fCollectionTag) {
@@ -768,6 +775,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       if (!isOwner && privateCards.has(d.f)) return false
       return (
         (d.n.toLowerCase().includes(search.toLowerCase()) || d.v.toLowerCase().includes(search.toLowerCase())) &&
+        (!fSport || inferSportFromTeamName(d.t) === fSport) &&
         (!fTeam || d.t.toLowerCase().includes(fTeam.toLowerCase())) &&
         (!fBrand || d.s.toLowerCase().includes(fBrand.toLowerCase())) &&
         (!fYear || d.y === fYear) &&
@@ -827,7 +835,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       if (primary !== 0 || sortBy2 === 'none') return primary
       return applySort(sortBy2, a, b)
     })
-  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+  }, [cards, search, fSport, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   const filteredStats = useMemo(() => ({
     rc:   filtered.filter(c => c.rc).length,
@@ -1770,6 +1778,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_search_label')}</label>
               <input value={searchInput} onChange={e => { setSearchInput(e.target.value); if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current); searchDebounceRef.current = setTimeout(() => setSearch(e.target.value), 200) }} placeholder={t('gallery_search')} /></div>
+            <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{lang === 'fr' ? 'Sport' : 'Sport'}</label>
+              <select value={fSport} onChange={e => setFSport(e.target.value)}>
+                <option value="">{t('gallery_all')}</option>
+                {gallerySports.map(sp => <option key={sp} value={sp}>{SPORT_LABELS[sp]}</option>)}
+              </select>
+            </div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_team_label')}</label>
               <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_all')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
               <datalist id="gallery-teams">{teams.map(team => <option key={team} value={team} />)}</datalist>
@@ -2234,7 +2248,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   {t('gallery_private')}
                 </div>
               )}
-              {d.disponible_vente && (
+              {d.vendue ? (
+                <div title={lang === 'fr' ? 'Vendue' : 'Sold'} style={{ position: 'absolute', top: 6, right: 6, background: '#c0392b', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
+                  💰 {lang === 'fr' ? 'VENDUE' : 'SOLD'}
+                </div>
+              ) : d.disponible_vente && (
                 <div title={t('gallery_for_sale_title')} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
                   🏷️ {t('gallery_for_sale_label')}
                 </div>
@@ -2434,6 +2452,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             }
           } : undefined}
           onProposeTrade={!isOwner && currentUser && popup.id_manuelle ? () => setTradeCard(popup) : undefined}
+          onVendueChange={(card, vendue) => {
+            setCards(prev => prev.map(c => c.f === card.f ? { ...c, vendue } : c))
+            setPopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)
+          }}
           onNext={() => {
             if (!popup) return
             const idx = filtered.findIndex(c => c.f === popup.f)
