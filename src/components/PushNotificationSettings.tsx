@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useIsNative } from '@/lib/useIsNative'
 import { subscribePush } from '@/components/PWAInstall'
+import { useLang } from '@/lib/LangContext'
 
 export default function PushNotificationSettings({ dark }: { dark: boolean }) {
   const isNative = useIsNative()
+  const { t } = useLang()
   const [pushSupported, setPushSupported] = useState(false)
   const [pushPermission, setPushPermission] = useState<NotificationPermission | null>(null)
   const [pushSubscribed, setPushSubscribed] = useState(false)
@@ -62,7 +64,7 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
       if (perm === 'granted') {
         const ok = await subscribePush(true)
         setPushSubscribed(ok)
-        if (!ok) setPushError("Échec de l'activation. Sur iPhone, assurez-vous d'avoir ajouté Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil), puis réessayez.")
+        if (!ok) setPushError(t('push_ios_error'))
       }
     } finally {
       setPushLoading(false)
@@ -95,44 +97,44 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
     <>
       {isNative ? (
         nativePushPermission === 'granted' ? (
-          <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700 }}>✓ Notifications activées</p>
+          <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700 }}>{t('push_enabled')}</p>
         ) : nativePushPermission === 'denied' ? (
           <p style={{ fontSize: 13, color: '#e74c3c' }}>
-            Bloquées dans les réglages Android de l'application. Autorisez les notifications pour Memorabilius dans Paramètres → Applications → Memorabilius → Notifications.
+            {t('push_blocked_native')}
           </p>
         ) : (
           <div>
             <p style={{ fontSize: 13, color: dark ? '#999' : '#666', marginBottom: 12 }}>
-              Recevez une alerte pour les messages, likes et cartes de votre wishlist trouvées.
+              {t('push_pitch')}
             </p>
             <button onClick={handleRequestNativePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-              {pushLoading ? '...' : 'Activer les notifications'}
+              {pushLoading ? '...' : t('push_enable')}
             </button>
           </div>
         )
       ) : !pushSupported ? (
         <p style={{ fontSize: 13, color: '#999' }}>
-          Non disponible sur ce navigateur. Sur iPhone, ajoutez d'abord Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil).
+          {t('push_unsupported')}
         </p>
       ) : pushPermission === 'denied' ? (
         <p style={{ fontSize: 13, color: '#e74c3c' }}>
-          Bloquées dans les réglages de votre navigateur. Autorisez les notifications pour ce site pour les recevoir.
+          {t('push_blocked_browser')}
         </p>
       ) : pushPermission === 'granted' && pushSubscribed ? (
         <div>
-          <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700, marginBottom: 12 }}>✓ Notifications activées</p>
+          <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700, marginBottom: 12 }}>{t('push_enabled')}</p>
           <button onClick={handleDisablePush} disabled={pushLoading} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-            {pushLoading ? '...' : 'Désactiver'}
+            {pushLoading ? '...' : t('push_disable')}
           </button>
         </div>
       ) : (
         <div>
           <p style={{ fontSize: 13, color: dark ? '#999' : '#666', marginBottom: 12 }}>
-            Recevez une alerte pour les messages, likes et cartes de votre wishlist trouvées.
+            {t('push_pitch')}
           </p>
           {pushError && <p style={{ fontSize: 13, color: '#e74c3c', marginBottom: 12 }}>{pushError}</p>}
           <button onClick={handleEnablePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-            {pushLoading ? '...' : 'Activer les notifications'}
+            {pushLoading ? '...' : t('push_enable')}
           </button>
         </div>
       )}

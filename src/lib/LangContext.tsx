@@ -27,6 +27,27 @@ const translations = {
     nav_mode_clair: '☀️ Mode clair',
     nav_mode_sombre: '🌙 Mode sombre',
 
+    // Paramètres (app native)
+    settings_title: 'Paramètres',
+    settings_appearance: 'Apparence',
+    settings_dark_mode: 'Mode sombre',
+    settings_dark_mode_desc: "Adapte l'interface pour un environnement peu éclairé",
+    settings_language: 'Langue',
+    settings_haptics: 'Retour haptique',
+    settings_vibrations: 'Vibrations',
+    settings_vibrations_desc: 'Petite vibration lors des appuis sur Communauté / Outils',
+    settings_notifications: 'Notifications',
+    settings_login_cta: 'Connectez-vous',
+    settings_login_to_manage: 'pour gérer vos notifications.',
+    push_enabled: '✓ Notifications activées',
+    push_blocked_native: "Bloquées dans les réglages Android de l'application. Autorisez les notifications pour Memorabilius dans Paramètres → Applications → Memorabilius → Notifications.",
+    push_blocked_browser: 'Bloquées dans les réglages de votre navigateur. Autorisez les notifications pour ce site pour les recevoir.',
+    push_unsupported: "Non disponible sur ce navigateur. Sur iPhone, ajoutez d'abord Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil).",
+    push_pitch: 'Recevez une alerte pour les messages, likes et cartes de votre wishlist trouvées.',
+    push_enable: 'Activer les notifications',
+    push_disable: 'Désactiver',
+    push_ios_error: "Échec de l'activation. Sur iPhone, assurez-vous d'avoir ajouté Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil), puis réessayez.",
+
     // Accueil
     home_hero: 'Collectionnez. Identifiez. Échangez.',
     home_sub: "Galerie 3D interactive, scan IA, prix eBay en direct et système d'échanges — la plateforme complète pour les passionnés de cartes.",
@@ -119,6 +140,7 @@ const translations = {
     messages_select: 'Sélectionnez une conversation',
     messages_placeholder: 'Votre message...',
     messages_send: 'Envoyer',
+    messages_seen: 'Vu',
 
     // Notifications
     notif_title: '🔔 Notifications',
@@ -378,6 +400,27 @@ const translations = {
     nav_mode_clair: '☀️ Light mode',
     nav_mode_sombre: '🌙 Dark mode',
 
+    // Settings (native app)
+    settings_title: 'Settings',
+    settings_appearance: 'Appearance',
+    settings_dark_mode: 'Dark mode',
+    settings_dark_mode_desc: 'Adapts the interface for low-light environments',
+    settings_language: 'Language',
+    settings_haptics: 'Haptic feedback',
+    settings_vibrations: 'Vibrations',
+    settings_vibrations_desc: 'Light vibration when tapping Community / Tools',
+    settings_notifications: 'Notifications',
+    settings_login_cta: 'Log in',
+    settings_login_to_manage: 'to manage your notifications.',
+    push_enabled: '✓ Notifications enabled',
+    push_blocked_native: 'Blocked in the app\'s Android settings. Enable notifications for Memorabilius in Settings → Apps → Memorabilius → Notifications.',
+    push_blocked_browser: 'Blocked in your browser settings. Allow notifications for this site to receive them.',
+    push_unsupported: 'Not available on this browser. On iPhone, first add Memorabilius to your home screen (Share → Add to Home Screen).',
+    push_pitch: 'Get alerted for messages, likes, and wishlist cards found.',
+    push_enable: 'Enable notifications',
+    push_disable: 'Disable',
+    push_ios_error: 'Activation failed. On iPhone, make sure you\'ve added Memorabilius to your home screen (Share → Add to Home Screen), then try again.',
+
     // Home
     home_hero: 'Collect. Identify. Trade.',
     home_sub: 'Interactive 3D gallery, AI scan, live eBay prices and trading system — the complete platform for card enthusiasts.',
@@ -470,6 +513,7 @@ const translations = {
     messages_select: 'Select a conversation',
     messages_placeholder: 'Your message...',
     messages_send: 'Send',
+    messages_seen: 'Seen',
 
     // Notifications
     notif_title: '🔔 Notifications',
@@ -729,6 +773,27 @@ const translations = {
     nav_mode_clair: '☀️ Heller Modus',
     nav_mode_sombre: '🌙 Dunkler Modus',
 
+    // Einstellungen (native App)
+    settings_title: 'Einstellungen',
+    settings_appearance: 'Erscheinungsbild',
+    settings_dark_mode: 'Dunkler Modus',
+    settings_dark_mode_desc: 'Passt die Oberfläche für schlecht beleuchtete Umgebungen an',
+    settings_language: 'Sprache',
+    settings_haptics: 'Haptisches Feedback',
+    settings_vibrations: 'Vibration',
+    settings_vibrations_desc: 'Leichte Vibration beim Tippen auf Community / Tools',
+    settings_notifications: 'Benachrichtigungen',
+    settings_login_cta: 'Anmelden',
+    settings_login_to_manage: 'um deine Benachrichtigungen zu verwalten.',
+    push_enabled: '✓ Benachrichtigungen aktiviert',
+    push_blocked_native: 'In den Android-Einstellungen der App blockiert. Aktiviere Benachrichtigungen für Memorabilius unter Einstellungen → Apps → Memorabilius → Benachrichtigungen.',
+    push_blocked_browser: 'In deinen Browser-Einstellungen blockiert. Erlaube Benachrichtigungen für diese Seite, um sie zu erhalten.',
+    push_unsupported: 'In diesem Browser nicht verfügbar. Füge Memorabilius auf dem iPhone zuerst zum Startbildschirm hinzu (Teilen → Zum Home-Bildschirm).',
+    push_pitch: 'Erhalte Benachrichtigungen für Nachrichten, Likes und gefundene Wunschlisten-Karten.',
+    push_enable: 'Benachrichtigungen aktivieren',
+    push_disable: 'Deaktivieren',
+    push_ios_error: 'Aktivierung fehlgeschlagen. Stelle auf dem iPhone sicher, dass Memorabilius zum Startbildschirm hinzugefügt wurde (Teilen → Zum Home-Bildschirm), und versuche es erneut.',
+
     // Startseite
     home_hero: 'Sammeln. Identifizieren. Tauschen.',
     home_sub: 'Interaktive 3D-Galerie, KI-Scan, Live-eBay-Preise und Tauschsystem — die komplette Plattform für Kartenliebhaber.',
@@ -821,6 +886,7 @@ const translations = {
     messages_select: 'Unterhaltung auswählen',
     messages_placeholder: 'Ihre Nachricht...',
     messages_send: 'Senden',
+    messages_seen: 'Gesehen',
 
     // Benachrichtigungen
     notif_title: '🔔 Benachrichtigungen',

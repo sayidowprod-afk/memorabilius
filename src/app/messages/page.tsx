@@ -645,7 +645,7 @@ function MessagesContent() {
                             {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                           </span>
                           {isMe && msg.lu && msgIdx === messages.length - 1 && (
-                            <span style={{ fontSize: 10, color: textMuted, fontStyle: 'italic' }}>Vu</span>
+                            <span style={{ fontSize: 10, color: textMuted, fontStyle: 'italic' }}>{t('messages_seen')}</span>
                           )}
                         </div>
                       </div>

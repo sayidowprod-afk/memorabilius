@@ -183,7 +183,7 @@ export default function MobileBottomNav() {
           </>
         )}
 
-        <Link href="/parametres" style={dropItemStyle} onClick={() => setSheet(null)}>⚙️ Paramètres</Link>
+        <Link href="/parametres" style={dropItemStyle} onClick={() => setSheet(null)}>⚙️ {t('settings_title')}</Link>
 
         {!user && (
           <>
