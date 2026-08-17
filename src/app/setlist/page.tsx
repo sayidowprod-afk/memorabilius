@@ -204,14 +204,17 @@ export default function SetlistPage() {
       try {
         const raw = localStorage.getItem(SETS_CACHE_KEY)
         if (raw) {
-          const { sets: cached, ts } = JSON.parse(raw)
+          const { sets: cached } = JSON.parse(raw)
           if (Array.isArray(cached) && cached.length) {
             setSets(cached)
             const mostRecent = cached.find((s: CardSet) => s.year)?.year
             if (mostRecent) setActiveSeason(prev => prev ?? mostRecent)
             setLoading(false)
-            // Rafraîchir silencieusement si le cache a + de 5 min
-            if (Date.now() - ts > 5 * 60 * 1000) fetchAndCacheSets(true)
+            // Toujours rafraîchir silencieusement en arrière-plan : le cache sert juste
+            // à afficher quelque chose instantanément, jamais à retarder la fraîcheur des
+            // données (ex: une carte placée depuis Viewer3D doit se refléter immédiatement
+            // au prochain passage sur /setlist, pas seulement après 5 minutes).
+            fetchAndCacheSets(true)
             return
           }
         }
@@ -255,6 +258,16 @@ export default function SetlistPage() {
       const extra = COLL_ALIASES[norm(coll)] || []
       return [...new Set([...base, ...extra])]
     }
+
+    // Mots trop génériques pour, seuls, désigner un produit précis (ex: "Panini" matche
+    // aussi bien Prizm que Mosaic que Donruss…). Si après filtrage il ne reste aucun mot
+    // spécifique, la carte est laissée non-matchée plutôt que placée au hasard dans l'un
+    // des sets candidats — c'était la cause principale des placements "random".
+    const GENERIC_WORDS = new Set([
+      'panini', 'topps', 'upperdeck', 'upper', 'deck', 'nba', 'nfl', 'mlb', 'nhl',
+      'basketball', 'football', 'baseball', 'hockey', 'cards', 'card', 'the', 'and',
+    ])
+    const specificWords = (uw: string[]) => uw.filter(w => !GENERIC_WORDS.has(w))
 
     // 1. Galerie (manuelles + CSV)
     const { data: gc } = await supabase.from('cartes_manuelles')
@@ -361,17 +374,21 @@ export default function SetlistPage() {
       const coll = (card.collection || card.collection_tag || '').trim()
       if (!coll) continue  // collection obligatoire
 
-      const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
-      if (!playerEntries.length) continue
+      const playerEntriesAll = entriesByPlayer.get(norm(card.nom)) || []
+      if (!playerEntriesAll.length) continue
 
-      // Si une entrée de ce joueur a été MANUELLEMENT cochée → respecter ce choix
-      if (playerEntries.some(e => manualEntryIds.has(e.id))) {
-        matchedGalleryIdx.add(gi)
-        continue
-      }
+      // Ne pas toucher les entrées déjà cochées manuellement pour ce joueur, mais laisser
+      // la carte matcher d'AUTRES entrées disponibles du même joueur (année/produit différents)
+      // — l'ancien comportement excluait TOUTES les cartes du joueur dès qu'une seule entrée
+      // était cochée manuellement, faisant disparaître silencieusement les autres du sync.
+      const playerEntries = playerEntriesAll.filter(e => !manualEntryIds.has(e.id))
+      if (!playerEntries.length) { matchedGalleryIdx.add(gi); continue }
 
       const uw = collWords(coll)
       if (!uw.length) continue
+      // Collection trop générique (ex: juste "Panini") pour désigner un produit précis
+      // → on préfère laisser la carte non-matchée plutôt que deviner au hasard.
+      if (!specificWords(uw).length) continue
 
       // Trouver toutes les entrées candidates pour cette carte
       const candidates: { entryId: number; extraWords: number }[] = []
@@ -417,8 +434,14 @@ export default function SetlistPage() {
 
       if (!candidates.length) continue
 
-      candidates.sort((a, b) => a.extraWords - b.extraWords)
+      // Tie-break déterministe par entryId : sans ça, les entrées à égalité de score
+      // étaient départagées par l'ordre de retour (non garanti) de la requête Supabase,
+      // ce qui donnait l'impression d'un placement "random" à chaque nouveau sync.
+      candidates.sort((a, b) => a.extraWords - b.extraWords || a.entryId - b.entryId)
       const best = candidates[0]
+      // Ambiguïté persistante (plusieurs entrées à égalité parfaite malgré le filtrage
+      // des mots génériques) → mieux vaut laisser non-matché que trancher au hasard.
+      if (candidates.length > 1 && candidates[1].extraWords === best.extraWords) continue
 
       matchedGalleryIdx.add(gi)
       if (!best.entryId) continue

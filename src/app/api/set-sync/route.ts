@@ -39,6 +39,13 @@ const normBrand = (b: string) => {
   return BRAND_PARENT[n] ?? n
 }
 
+// Mots trop génériques pour, seuls, désigner un produit précis (voir setlist/page.tsx
+// pour le contexte complet — même correctif appliqué des deux côtés).
+const GENERIC_WORDS = new Set([
+  'panini', 'topps', 'upperdeck', 'upper', 'deck', 'nba', 'nfl', 'mlb', 'nhl',
+  'basketball', 'football', 'baseball', 'hockey', 'cards', 'card', 'the', 'and',
+])
+
 // Abbreviations communs dans le hobby
 const EXPAND: Record<string, string> = {
   auto: 'autograph', ref: 'refractor', sp: 'shortprint',
@@ -163,6 +170,9 @@ export async function POST(req: NextRequest) {
           const setNorm = norm(setName)
           const userWords = words(collToTest)
           if (userWords.length > 0 && !userWords.some(w => setNorm.includes(w))) return false
+          // Collection trop générique (ex: juste "Panini") pour désigner ce produit
+          // précis avec confiance → ne pas auto-matcher sur ce seul indice.
+          if (userWords.length > 0 && !userWords.some(w => !GENERIC_WORDS.has(w))) return false
         }
 
         return matchVariation(card.variation || '', e.variation || '')
