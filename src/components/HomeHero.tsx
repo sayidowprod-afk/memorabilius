@@ -144,20 +144,13 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
     })
   }
 
-  const featureList = lang === 'fr' ? [
-    { icon: '🤖', title: 'Scan IA instantané', desc: "1 photo suffit : notre IA reconnaît joueur, année, marque et variation automatiquement.", color: '#003DA6' },
-    { icon: '🃏', title: 'Galerie 3D interactive', desc: "Tes cartes visualisées en holographique interactif. Partage ton profil de collectionneur en 1 lien.", color: '#7c3aed' },
-    { icon: '💰', title: 'Prix eBay en direct', desc: "Connais la valeur de chaque carte grâce aux ventes récentes eBay, en temps réel.", color: '#059669' },
-    { icon: '🔄', title: "Système d'échanges", desc: "Propose des trades directement depuis les galeries. Échange tes doubles avec la communauté.", color: '#d97706' },
-    { icon: '📋', title: 'Sets & complétion', desc: "Compare ta collection aux sets officiels. Vois exactement quelles cartes il te manque.", color: '#0284c7' },
-    { icon: '📔', title: 'Classeurs thématiques', desc: "Organise ta collection dans des classeurs partageables par équipe, saison ou thème.", color: '#0d9488' },
-  ] : [
-    { icon: '🤖', title: 'Instant AI Scan', desc: "1 photo is enough: our AI recognizes player, year, brand and variation automatically.", color: '#003DA6' },
-    { icon: '🃏', title: 'Interactive 3D Gallery', desc: "Your cards visualized in holographic interactive view. Share your collector profile in 1 link.", color: '#7c3aed' },
-    { icon: '💰', title: 'Live eBay Prices', desc: "Know the value of each card from recent eBay sales, in real time.", color: '#059669' },
-    { icon: '🔄', title: 'Trading System', desc: "Propose trades directly from galleries. Exchange doubles with the community.", color: '#d97706' },
-    { icon: '📋', title: 'Sets & completion', desc: "Compare your collection to official sets. See exactly which cards you're missing.", color: '#0284c7' },
-    { icon: '📔', title: 'Thematic Binders', desc: "Organize your collection in shareable binders by team, season or theme.", color: '#0d9488' },
+  const featureList = [
+    { icon: '🤖', title: t('home_feat1_title'), desc: t('home_feat1_desc'), color: '#003DA6' },
+    { icon: '🃏', title: t('home_feat2_title'), desc: t('home_feat2_desc'), color: '#7c3aed' },
+    { icon: '💰', title: t('home_feat3_title'), desc: t('home_feat3_desc'), color: '#059669' },
+    { icon: '🔄', title: t('home_feat4_title'), desc: t('home_feat4_desc'), color: '#d97706' },
+    { icon: '📋', title: t('home_feat5_title'), desc: t('home_feat5_desc'), color: '#0284c7' },
+    { icon: '📔', title: t('home_feat6_title'), desc: t('home_feat6_desc'), color: '#0d9488' },
   ]
 
   return (
@@ -183,7 +176,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
         </div>
 
         <div className="mb-hero-inner">
-          <span className="mb-hero-badge">✦ {lang === 'fr' ? 'La plateforme des collectionneurs de cartes' : 'The platform for card collectors'}</span>
+          <span className="mb-hero-badge">✦ {t('home_badge')}</span>
           <h1 className="mb-hero-title" style={{ color: dark ? '#fff' : '#0a2a6b' }}>
             {t('home_hero')}
           </h1>
@@ -196,9 +189,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
             <RandomBinderButton dark={dark} lang={lang} />
           </div>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginTop: 22 }}>
-            {(lang === 'fr'
-              ? ['🤖 Scan IA', '🃏 Galerie 3D', '💰 Prix eBay live', '🔄 Échanges', '🆓 Gratuit']
-              : ['🤖 AI Scan', '🃏 3D Gallery', '💰 Live eBay prices', '🔄 Trading', '🆓 Free']
+            {([t('home_pill_scan'), t('home_pill_gallery'), t('home_pill_prices'), t('home_pill_trades'), t('home_pill_free')]
             ).map(f => (
               <span key={f} style={{
                 fontSize: 11, padding: '5px 13px', borderRadius: 999, fontWeight: 700,
@@ -213,7 +204,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
 
       {/* Grille des 6 fonctionnalités — 1 ligne forcée */}
       <section style={{ marginBottom: 56 }}>
-        <div className="section-title">{lang === 'fr' ? 'Tout ce dont vous avez besoin' : 'Everything you need'}</div>
+        <div className="section-title">{t('home_everything_needed')}</div>
         <div className="mb-features-grid">
           {featureList.map(f => (
             <div key={f.title}
@@ -240,7 +231,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
       {/* Galeries vedettes — plein format avec overlay */}
       {featuredGalleries.length > 0 && (
         <section style={{ marginBottom: 56 }}>
-          <div className="section-title">{lang === 'fr' ? 'Ils collectionnent avec nous' : 'They collect with us'}</div>
+          <div className="section-title">{t('home_collecting_with_us')}</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18 }}>
             {featuredGalleries.map(g => (
               <Link key={g.id} href={`/galerie/${g.id}`} style={{ textDecoration: 'none' }}>
@@ -271,7 +262,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
                       <div>
                         <div style={{ color: 'white', fontWeight: 800, fontSize: 16, lineHeight: 1.2 }}>{g.display_name}</div>
                         <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, marginTop: 2 }}>
-                          {g.stats_total.toLocaleString('fr-FR')} {lang === 'fr' ? 'cartes' : 'cards'}
+                          {g.stats_total.toLocaleString('fr-FR')} {t('search_cards_lower')}
                         </div>
                       </div>
                     </div>
@@ -281,7 +272,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
                       border: '1px solid rgba(255,255,255,0.22)',
                       padding: '6px 14px', borderRadius: 999,
                     }}>
-                      {lang === 'fr' ? 'Voir la galerie →' : 'View gallery →'}
+                      {t('home_view_gallery_arrow')}
                     </span>
                   </div>
                 </div>
@@ -295,13 +286,13 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
               padding: '13px 28px', borderRadius: 999, textDecoration: 'none',
               boxShadow: '0 4px 20px rgba(0,61,166,0.45)',
             }}>
-              {lang === 'fr' ? '🚀 Créer ma galerie — c\'est gratuit' : '🚀 Create my gallery — it\'s free'}
+              {t('home_create_gallery_free')}
             </Link>
           </div>
         </section>
       )}
 
-      <div className="section-title">{lang === 'fr' ? 'En chiffres' : 'By the numbers'}</div>
+      <div className="section-title">{t('home_by_the_numbers')}</div>
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 20, marginBottom: 50 }}>
         {[
           { val: total, label: t('home_collectors') },
@@ -321,7 +312,8 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
   )
 }
 
-function RandomBinderButton({ dark, lang }: { dark: boolean; lang: string }) {
+function RandomBinderButton({ dark }: { dark: boolean; lang: string }) {
+  const { t } = useLang()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
@@ -341,7 +333,7 @@ function RandomBinderButton({ dark, lang }: { dark: boolean; lang: string }) {
   return (
     <button onClick={go} disabled={loading} className="btn-main btn-secondary"
       style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-      {loading ? '⏳' : '🎲'} {lang === 'fr' ? 'Classeur aléatoire' : 'Random binder'}
+      {loading ? '⏳' : '🎲'} {t('home_random_binder')}
     </button>
   )
 }

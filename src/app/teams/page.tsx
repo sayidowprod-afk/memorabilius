@@ -58,10 +58,10 @@ export default function Teams() {
     setLoading(true)
     const { error } = await supabase.from('team_candidatures').insert({ team_id: teamId, user_id: userId })
     if (error) {
-      toast.error(lang === 'fr' ? 'Erreur : ' + error.message : 'Error: ' + error.message)
+      toast.error(t('teams_err_prefix') + error.message)
     } else {
       setHasCandidature(prev => new Set([...prev, teamId]))
-      toast.success(lang === 'fr' ? 'Candidature envoyée !' : 'Request sent!')
+      toast.success(t('teams_request_sent'))
     }
     setLoading(false)
   }
@@ -113,11 +113,11 @@ export default function Teams() {
 
       {showCreate && (
         <div style={{ background: dark ? '#1e1e1e' : 'white', padding: 24, borderRadius: 12, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-          <h3 style={{ fontWeight: 800, marginBottom: 12 }}>{lang === 'fr' ? 'Créer une nouvelle team' : 'Create a new team'}</h3>
+          <h3 style={{ fontWeight: 800, marginBottom: 12 }}>{t('teams_create_new')}</h3>
           <div style={{ display: 'flex', gap: 12 }}>
-            <input value={newTeamName} onChange={e => setNewTeamName(e.target.value)} placeholder={lang === 'fr' ? 'Nom de la team' : 'Team name'} onKeyDown={e => e.key === 'Enter' && createTeam()} />
+            <input value={newTeamName} onChange={e => setNewTeamName(e.target.value)} placeholder={t('teams_name_placeholder')} onKeyDown={e => e.key === 'Enter' && createTeam()} />
             <button onClick={createTeam} disabled={loading} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
-              {loading ? '...' : (lang === 'fr' ? 'Créer' : 'Create')}
+              {loading ? '...' : t('binder_create_btn')}
             </button>
           </div>
         </div>
@@ -171,8 +171,8 @@ export default function Teams() {
                     ) : pending ? (
                       <span style={{ color: '#e67e22', fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>
                     ) : userId ? (
-                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={lang === 'fr' ? `Rejoindre ${team.name}` : `Join ${team.name}`} style={{ background: '#e8f5e9', color: '#2e7d32', padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 900 }}>
-                        {lang === 'fr' ? 'Rejoindre' : 'Join'}
+                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={`${t('teams_join_aria')} ${team.name}`} style={{ background: '#e8f5e9', color: '#2e7d32', padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 900 }}>
+                        {t('teams_join')}
                       </button>
                     ) : (
                       <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>Voir →</Link>

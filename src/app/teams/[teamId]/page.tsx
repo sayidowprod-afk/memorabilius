@@ -262,7 +262,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       card_key: pendingCard?.card_key || null,
       card_user_id: pendingCard ? currentUser : null,
     })
-    if (error) { toast.error(lang === 'fr' ? 'Erreur d\'envoi.' : 'Send error.'); return }
+    if (error) { toast.error(t('teams_err_send')); return }
     setNewMsg('')
     setPendingCard(null)
   }
@@ -280,7 +280,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       const { error } = await supabase.from('team_message_reactions').insert(
         { message_id: msgId, user_id: currentUser, emoji }
       )
-      if (error && error.code !== '23505') { console.error('[toggleMsgReaction insert]', error); toast.error(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
+      if (error && error.code !== '23505') { console.error('[toggleMsgReaction insert]', error); toast.error(t('teams_err_prefix') + error.message); return }
     }
     const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Vous'
     setMsgReactions(prev => {
@@ -303,7 +303,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       content: newPost.trim() || null,
       card_ids: postCards.map(c => c.id),
     })
-    if (error) { toast.error(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
+    if (error) { toast.error(t('teams_err_prefix') + error.message); return }
     setNewPost('')
     setPostCards([])
     loadPosts(currentUser)
@@ -322,7 +322,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       const { error } = await supabase.from('team_post_reactions').insert(
         { post_id: postId, user_id: currentUser, emoji }
       )
-      if (error && error.code !== '23505') { console.error('[togglePostReaction insert]', error); toast.error(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
+      if (error && error.code !== '23505') { console.error('[togglePostReaction insert]', error); toast.error(t('teams_err_prefix') + error.message); return }
     }
     const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Vous'
     setPostReactions(prev => {
@@ -366,7 +366,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const { data, error } = await supabase.from('team_post_comments').insert({
       post_id: postId, user_id: currentUser, content
     }).select('*').single()
-    if (error) { console.error('[addComment]', error); toast.error(lang === 'fr' ? 'Erreur lors de l\'envoi du commentaire' : 'Error sending comment'); return }
+    if (error) { console.error('[addComment]', error); toast.error(t('teams_err_comment')); return }
     if (data) {
       const [enriched] = await enrichWithProfiles([data])
       setComments(prev => ({ ...prev, [postId]: [...(prev[postId] || []), enriched] }))
@@ -394,7 +394,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       body: JSON.stringify({ candidatureId: cand.id, teamId: parseInt(teamId), userId: cand.user_id, action: 'accept' }) })
     if (!res.ok) {
       const { error } = await res.json().catch(() => ({ error: 'Erreur inconnue' }))
-      toast.error(lang === 'fr' ? `Erreur lors de l'acceptation : ${error}` : `Error accepting: ${error}`)
+      toast.error(t('teams_err_accept_prefix') + error)
       return
     }
     setCandidatures(prev => prev.filter(c => c.id !== cand.id))
@@ -407,7 +407,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       body: JSON.stringify({ candidatureId: cand.id, teamId: parseInt(teamId), userId: cand.user_id, action: 'refuse' }) })
     if (!res.ok) {
       const { error } = await res.json().catch(() => ({ error: 'Erreur inconnue' }))
-      toast.error(lang === 'fr' ? `Erreur : ${error}` : `Error: ${error}`)
+      toast.error(t('teams_err_prefix') + error)
       return
     }
     setCandidatures(prev => prev.filter(c => c.id !== cand.id))
@@ -494,7 +494,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             {isMember && !isChef && (
               leaveConfirm ? (
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                  <span style={{ fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>{lang === 'fr' ? 'Quitter ?' : 'Leave?'}</span>
+                  <span style={{ fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>{t('teams_leave_confirm')}</span>
                   <button onClick={async () => {
                     await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
                     router.push('/teams')
@@ -738,7 +738,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                                 <button onClick={() => setExcludeConfirm(null)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '4px 8px', fontSize: 11, cursor: 'pointer' }}>Non</button>
                               </div>
                             ) : (
-                              <button onClick={() => setExcludeConfirm(m.id)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }} title={lang === 'fr' ? `Exclure ${m.display_name}` : `Exclude ${m.display_name}`}>🚫</button>
+                              <button onClick={() => setExcludeConfirm(m.id)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }} title={`${t('teams_exclude_aria')} ${m.display_name}`}>🚫</button>
                             )}
                           </div>
                         )}
@@ -784,7 +784,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           {galerieLimit < galerieCards.length && (
             <div style={{ textAlign: 'center', marginTop: 16 }}>
               <button onClick={() => setGalerieLimit(l => l + 48)} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 20, padding: '10px 24px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-                {lang === 'fr' ? 'Voir plus' : 'Load more'} ({galerieCards.length - galerieLimit} {lang === 'fr' ? 'restantes' : 'remaining'})
+                {t('teams_load_more')} ({galerieCards.length - galerieLimit} {t('teams_remaining')})
               </button>
             </div>
           )}

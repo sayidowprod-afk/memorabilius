@@ -313,7 +313,7 @@ function AnnuaireContent() {
             onClick={clearAllFilters}
             style={{ padding: '8px 14px', background: dark ? '#2a2a2a' : '#fff3e0', color: '#e67e22', border: '1px solid #ffe0b2', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0 }}
           >
-            ✕ {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
+            ✕ {t('gallery_clear_filters')}
           </button>
         )}
       </div>
@@ -339,7 +339,7 @@ function AnnuaireContent() {
             </tr></thead>
             <tbody>
               {sorted.length === 0 && (
-                <tr><td colSpan={6} style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{lang === 'fr' ? 'Aucun collectionneur dans cette team.' : 'No collectors in this team.'}</td></tr>
+                <tr><td colSpan={6} style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('annuaire_no_collectors')}</td></tr>
               )}
               {sorted.map(c => (
                 <tr key={c.id}>

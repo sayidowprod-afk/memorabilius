@@ -104,7 +104,7 @@ export default function WishlistPage() {
             </div>
             <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
-              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={lang === 'fr' ? 'Budget max, état souhaité...' : 'Max budget, desired condition...'} />
+              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={t('wishlist_notes_placeholder')} />
             </div>
             <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {(['rc', 'auto', 'patch'] as const).map(k => (

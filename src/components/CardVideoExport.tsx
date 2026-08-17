@@ -518,7 +518,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       <div onClick={e => e.stopPropagation()} style={{ background: '#0d0d22', borderRadius: 20, padding: 28, maxWidth: 480, width: '100%', textAlign: 'center', border: `1px solid ${accent}44` }}>
 
         <h2 style={{ color: '#fff', fontWeight: 900, fontSize: 17, margin: '0 0 4px' }}>
-          🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export video'}
+          🎬 {t('video_export_title')}
         </h2>
         <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 12, margin: '0 0 16px' }}>
           {card.n}{card.v ? ` · ${card.v}` : ''}
@@ -540,10 +540,10 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
               </div>
             </div>
             <div>
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>{lang === 'fr' ? 'Thème' : 'Theme'}</p>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>{t('video_theme')}</p>
               <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
-                <button style={chip(theme === 'dark')} onClick={() => setTheme('dark')}>🌙 {lang === 'fr' ? 'Sombre' : 'Dark'}</button>
-                <button style={chip(theme === 'light')} onClick={() => setTheme('light')}>☀️ {lang === 'fr' ? 'Clair' : 'Light'}</button>
+                <button style={chip(theme === 'dark')} onClick={() => setTheme('dark')}>🌙 {t('video_dark')}</button>
+                <button style={chip(theme === 'light')} onClick={() => setTheme('light')}>☀️ {t('video_light')}</button>
               </div>
             </div>
             <div>
@@ -568,27 +568,27 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
           {!recording && !done && (
             <button onClick={startRecording} style={{ background: accent, color: '#fff', border: 'none', borderRadius: 10, padding: '11px 22px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
-              ▶ {lang === 'fr' ? 'Générer' : 'Generate'}
+              ▶ {t('video_generate')}
             </button>
           )}
           {done && videoUrl && (
             <>
               <button onClick={download} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 10, padding: '11px 20px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
-                ⬇ {lang === 'fr' ? `Télécharger (.${codec})` : `Download (.${codec})`}
+                ⬇ {t('video_download')} (.{codec})
               </button>
               <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-                🔄 {lang === 'fr' ? 'Refaire' : 'Redo'}
+                🔄 {t('video_redo')}
               </button>
             </>
           )}
           <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-            {lang === 'fr' ? 'Fermer' : 'Close'}
+            {t('gallery_close')}
           </button>
         </div>
 
         {done && codec === 'webm' && (
           <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: 11, marginTop: 12, lineHeight: 1.5 }}>
-            💡 {lang === 'fr' ? 'Convertir en MP4 sur cloudconvert.com' : 'Convert to MP4 at cloudconvert.com'}
+            💡 {t('video_convert_hint')}
           </p>
         )}
       </div>

@@ -452,7 +452,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const [closeHover, setCloseHover] = useState(false)
   const [infoExpanded, setInfoExpanded] = useState(false)
-  const { lang } = useLang()
+  const { lang, t } = useLang()
 
   const isMemo = popup.item_type === 'memorabilia'
 
@@ -1583,17 +1583,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
                   display: 'flex', alignItems: 'center', gap: 6,
                 }}>
-                  ✏️ {lang === 'fr' ? 'Modifier' : 'Edit'}
+                  {t('binder_edit')}
                 </Link>
               )}
               {!popup.booklet && (
-                <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{
+                <button onClick={toggleFlip90} title={t('viewer_rotate_title')} style={{
                   background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
                   border: 'none', borderRadius: 10, padding: '12px 14px',
                   fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                   transition: '0.2s',
                 }}>
-                  🔄 {lang === 'fr' ? 'Rotation 90°' : 'Rotate 90°'}
+                  🔄 {t('viewer_rotate_btn')}
                 </button>
               )}
               {isOwner && popup.id_manuelle && onVendueChange && (
@@ -1601,20 +1601,20 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   const next = !popup.vendue
                   await supabase.from('cartes_manuelles').update({ vendue: next }).eq('id', popup.id_manuelle)
                   onVendueChange(popup, next)
-                }} title={lang === 'fr' ? 'Marquer comme vendue (reste dans ta galerie)' : 'Mark as sold (stays in your gallery)'} style={{
+                }} title={t('viewer_mark_sold_title')} style={{
                   background: popup.vendue ? '#c0392b' : (dark ? '#2a2a2a' : '#f0f0f0'), color: popup.vendue ? 'white' : (dark ? '#eee' : '#333'),
                   border: 'none', borderRadius: 10, padding: '12px 14px',
                   fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                   transition: '0.2s',
                 }}>
-                  {popup.vendue ? (lang === 'fr' ? '✓ Vendue' : '✓ Sold') : (lang === 'fr' ? '💰 Marquer vendue' : '💰 Mark sold')}
+                  {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
                 </button>
               )}
               <button onClick={() => setShowVideo(true)} style={{
                 flex: 1, background: '#0d0d1f', color: 'white', border: 'none',
                 borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
               }}>
-                🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export as video'}
+                🎬 {t('video_export_title')}
               </button>
               {userId && (
                 <ShareButton
@@ -1693,7 +1693,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     transition: '0.2s', textAlign: 'center', lineHeight: 1.3,
                   }}
                 >
-                  {addState === 'loading' ? '...' : addState === 'added' ? '✓ Ajoutée' : addState === 'duplicate' ? 'Déjà là' : lang === 'fr' ? '+ J\'ai cette carte' : '+ I have it'}
+                  {addState === 'loading' ? '...' : addState === 'added' ? t('viewer_added') : addState === 'duplicate' ? t('viewer_already_there') : t('viewer_have_card')}
                 </button>
               )}
               {currentUserId && (

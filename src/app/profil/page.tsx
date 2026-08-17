@@ -440,8 +440,8 @@ export default function Profil() {
           </button>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <p style={{ fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>{t('profile_delete_confirm')} <strong>{lang === 'fr' ? 'SUPPRIMER' : 'DELETE'}</strong></p>
-            <input value={deleteConfirm} onChange={e => setDeleteConfirm(e.target.value)} placeholder={lang === 'fr' ? 'SUPPRIMER' : 'DELETE'} style={{ border: '2px solid #e74c3c' }} />
+            <p style={{ fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>{t('profile_delete_confirm')} <strong>{t('profile_delete_word')}</strong></p>
+            <input value={deleteConfirm} onChange={e => setDeleteConfirm(e.target.value)} placeholder={t('profile_delete_word')} style={{ border: '2px solid #e74c3c' }} />
             <div style={{ display: 'flex', gap: 10 }}>
               <button onClick={handleDeleteAccount} disabled={deleteConfirm !== t('profile_delete_word') || deleting} style={{
                 background: deleteConfirm === t('profile_delete_word') ? '#e74c3c' : '#f0f0f0',

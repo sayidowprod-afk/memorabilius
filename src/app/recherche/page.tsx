@@ -231,10 +231,10 @@ export default function Recherche() {
         {showTabs && (
           <div style={{ display: 'flex', gap: 4, marginBottom: 20, borderBottom: `2px solid ${border}`, overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
             {([
-              { key: 'all', label: lang === 'fr' ? 'Tout' : 'All', count: totalResults },
-              ...(cards.length > 0 ? [{ key: 'cards', label: lang === 'fr' ? 'Cartes' : 'Cards', count: cards.length }] : []),
-              ...(players.length > 0 ? [{ key: 'players', label: lang === 'fr' ? 'Joueurs' : 'Players', count: players.length }] : []),
-              ...(users.length > 0 ? [{ key: 'collectors', label: lang === 'fr' ? 'Collectionneurs' : 'Collectors', count: users.length }] : []),
+              { key: 'all', label: t('search_tab_all'), count: totalResults },
+              ...(cards.length > 0 ? [{ key: 'cards', label: t('gallery_cards'), count: cards.length }] : []),
+              ...(players.length > 0 ? [{ key: 'players', label: t('search_players'), count: players.length }] : []),
+              ...(users.length > 0 ? [{ key: 'collectors', label: t('search_collectors'), count: users.length }] : []),
             ] as { key: Section; label: string; count: number }[]).map(tab => (
               <button
                 key={tab.key}
@@ -272,7 +272,7 @@ export default function Recherche() {
         {(section === 'all') && teams.length > 0 && (
           <div style={{ marginBottom: 32 }}>
             <h2 style={{ fontWeight: 800, fontSize: 13, marginBottom: 12, color: muted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              {lang === 'fr' ? 'Équipes' : 'Teams'} ({teams.length})
+              {t('search_teams')} ({teams.length})
             </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {teams.map((team, i) => (
@@ -296,7 +296,7 @@ export default function Recherche() {
         {(section === 'all' || section === 'players') && players.length > 0 && (
           <div style={{ marginBottom: 32 }}>
             <h2 style={{ fontWeight: 800, fontSize: 13, marginBottom: 12, color: muted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              {lang === 'fr' ? 'Joueurs' : 'Players'} ({players.length})
+              {t('search_players')} ({players.length})
             </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {players.map((p, i) => (
@@ -328,7 +328,7 @@ export default function Recherche() {
         {(section === 'all' || section === 'collectors') && users.length > 0 && (
           <div style={{ marginBottom: 32 }}>
             <h2 style={{ fontWeight: 800, fontSize: 13, marginBottom: 12, color: muted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              {lang === 'fr' ? 'Collectionneurs' : 'Collectors'} ({users.length})
+              {t('search_collectors')} ({users.length})
             </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {users.map((u, i) => (
@@ -360,34 +360,34 @@ export default function Recherche() {
               <div className="search-sort-row" style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: hasActiveFilter ? 10 : 0 }}>
                 <span style={{ fontWeight: 700, fontSize: 13, color: muted, flex: '1 1 auto' }}>
                   {filteredCards.length !== cards.length
-                    ? <>{filteredCards.length} / {cards.length} {lang === 'fr' ? 'cartes' : 'cards'} — "<strong style={{ color: text }}>{query}</strong>"</>
-                    : <>{cards.length} {lang === 'fr' ? 'cartes' : 'cards'} — "<strong style={{ color: text }}>{query}</strong>"</>
+                    ? <>{filteredCards.length} / {cards.length} {t('search_cards_lower')} — "<strong style={{ color: text }}>{query}</strong>"</>
+                    : <>{cards.length} {t('search_cards_lower')} — "<strong style={{ color: text }}>{query}</strong>"</>
                   }
                 </span>
 
                 {myId && (
                   <>
                     <button onClick={() => setMyMode(m => m === 'only' ? 'all' : 'only')} style={chipStyle(myMode === 'only', '#003DA6')}>
-                      👤 {lang === 'fr' ? 'Mes cartes' : 'My cards'}
+                      👤 {t('search_my_cards')}
                     </button>
                     <button onClick={() => setMyMode(m => m === 'exclude' ? 'all' : 'exclude')} style={chipStyle(myMode === 'exclude', '#c0392b')}>
-                      ✕ {lang === 'fr' ? 'Exclure mes cartes' : 'Exclude mine'}
+                      ✕ {t('search_exclude_mine')}
                     </button>
                   </>
                 )}
 
                 <select value={sortCards} onChange={e => setSortCards(e.target.value as SortKey)}
                   style={{ border: `1.5px solid ${sortCards !== 'default' ? accent : border}`, borderRadius: 20, padding: '6px 12px', fontSize: 12, fontWeight: 700, background: sortCards !== 'default' ? (dark ? '#1a2240' : '#f0f4ff') : surface, color: sortCards !== 'default' ? accent : muted, cursor: 'pointer' }}>
-                  <option value="default">{lang === 'fr' ? '— Trier —' : '— Sort —'}</option>
-                  <option value="y_desc">{lang === 'fr' ? 'Année ↓ (récent)' : 'Year ↓ (recent)'}</option>
-                  <option value="y_asc">{lang === 'fr' ? 'Année ↑ (ancien)' : 'Year ↑ (oldest)'}</option>
-                  <option value="name">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
+                  <option value="default">{t('search_sort_placeholder')}</option>
+                  <option value="y_desc">{t('search_sort_year_desc')}</option>
+                  <option value="y_asc">{t('search_sort_year_asc')}</option>
+                  <option value="name">{t('gallery_sort_player_az')}</option>
                 </select>
 
                 {availableYears.length > 1 && (
                   <select value={fYear} onChange={e => { setFYear(e.target.value); setVisibleCount(48) }}
                     style={{ border: `1.5px solid ${fYear ? accent : border}`, borderRadius: 20, padding: '6px 12px', fontSize: 12, fontWeight: 700, background: fYear ? (dark ? '#1a2240' : '#f0f4ff') : surface, color: fYear ? accent : muted, cursor: 'pointer' }}>
-                    <option value="">{lang === 'fr' ? 'Année' : 'Year'}</option>
+                    <option value="">{t('gallery_year')}</option>
                     {availableYears.map(y => <option key={y} value={y}>{y}</option>)}
                   </select>
                 )}
@@ -395,7 +395,7 @@ export default function Recherche() {
                 {availableBrands.length > 1 && (
                   <select value={fBrand} onChange={e => { setFBrand(e.target.value); setVisibleCount(48) }}
                     style={{ border: `1.5px solid ${fBrand ? accent : border}`, borderRadius: 20, padding: '6px 12px', fontSize: 12, fontWeight: 700, background: fBrand ? (dark ? '#1a2240' : '#f0f4ff') : surface, color: fBrand ? accent : muted, cursor: 'pointer' }}>
-                    <option value="">{lang === 'fr' ? 'Marque' : 'Brand'}</option>
+                    <option value="">{t('picker_brand')}</option>
                     {availableBrands.map(b => <option key={b} value={b}>{b}</option>)}
                   </select>
                 )}
@@ -415,12 +415,12 @@ export default function Recherche() {
                 })}
                 {hasVente && (
                   <button onClick={() => setFVente(v => !v)} style={chipStyle(fVente, '#2e7d32')}>
-                    🏷️ {lang === 'fr' ? 'Vente/Trade' : 'For Sale'}
+                    🏷️ {t('gallery_for_sale_label')}
                   </button>
                 )}
                 {hasActiveFilter && (
                   <button onClick={clearFilters} style={{ ...chipStyle(false), background: 'transparent', color: muted, textDecoration: 'underline', textTransform: 'none', fontWeight: 600 }}>
-                    ✕ {lang === 'fr' ? 'Effacer' : 'Clear'}
+                    ✕ {t('search_clear')}
                   </button>
                 )}
               </div>
@@ -430,10 +430,10 @@ export default function Recherche() {
             {filteredCards.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '48px 20px', color: muted }}>
                 <div style={{ fontSize: 36, marginBottom: 12 }}>🔍</div>
-                <p style={{ fontWeight: 800, fontSize: 15, color: text, marginBottom: 6 }}>{lang === 'fr' ? 'Aucune carte' : 'No cards'}</p>
-                <p style={{ fontSize: 13 }}>{lang === 'fr' ? 'Aucune carte ne correspond à ces filtres.' : 'No cards match these filters.'}</p>
+                <p style={{ fontWeight: 800, fontSize: 15, color: text, marginBottom: 6 }}>{t('gallery_no_match_title')}</p>
+                <p style={{ fontSize: 13 }}>{t('gallery_no_match_sub')}</p>
                 <button onClick={clearFilters} style={{ marginTop: 14, background: accent, color: 'white', border: 'none', borderRadius: 20, padding: '8px 20px', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
-                  {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
+                  {t('gallery_clear_filters')}
                 </button>
               </div>
             ) : (

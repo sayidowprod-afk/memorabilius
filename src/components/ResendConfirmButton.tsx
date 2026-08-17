@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
-export default function ResendConfirmButton({ email, lang }: { email: string; lang: string }) {
+export default function ResendConfirmButton({ email }: { email: string }) {
+  const { t } = useLang()
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   async function resend() {
@@ -13,13 +15,13 @@ export default function ResendConfirmButton({ email, lang }: { email: string; la
 
   if (status === 'sent') return (
     <p style={{ fontSize: 14, color: '#2e7d32', marginTop: 16 }}>
-      ✅ {lang === 'fr' ? 'Email renvoyé ! Vérifiez votre boîte.' : 'Email resent! Check your inbox.'}
+      ✅ {t('resend_email_sent')}
     </p>
   )
 
   if (status === 'error') return (
     <p style={{ fontSize: 14, color: '#c62828', marginTop: 16 }}>
-      ❌ {lang === 'fr' ? 'Erreur — réessayez dans quelques secondes.' : 'Error — try again in a moment.'}
+      ❌ {t('resend_error')}
     </p>
   )
 
@@ -33,9 +35,7 @@ export default function ResendConfirmButton({ email, lang }: { email: string; la
         textDecoration: 'underline', opacity: status === 'sending' ? 0.5 : 1,
       }}
     >
-      {status === 'sending'
-        ? (lang === 'fr' ? 'Envoi…' : 'Sending…')
-        : (lang === 'fr' ? 'Renvoyer l\'email de confirmation' : 'Resend confirmation email')}
+      {status === 'sending' ? t('resend_sending') : t('resend_button')}
     </button>
   )
 }

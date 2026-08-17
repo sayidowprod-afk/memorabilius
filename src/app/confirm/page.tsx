@@ -1,31 +1,31 @@
 import Link from 'next/link'
 import { headers } from 'next/headers'
 import ResendConfirmButton from '@/components/ResendConfirmButton'
+import { translations } from '@/lib/LangContext'
 
 export default async function Confirm({ searchParams }: { searchParams: Promise<{ email?: string }> }) {
   const headersList = await headers()
-  const acceptLang = headersList.get('accept-language') || ''
-  const lang = acceptLang.toLowerCase().startsWith('en') ? 'en' : 'fr'
+  const acceptLang = headersList.get('accept-language')?.toLowerCase() || ''
+  const lang = acceptLang.startsWith('en') ? 'en' : acceptLang.startsWith('de') ? 'de' : 'fr'
+  const t = (key: keyof typeof translations.fr) => translations[lang][key] || translations.fr[key]
   const { email } = await searchParams
 
   return (
     <div style={{ maxWidth: 480, margin: '80px auto', textAlign: 'center' }}>
       <div style={{ fontSize: 64, marginBottom: 24 }}>📬</div>
       <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 12 }}>
-        {lang === 'fr' ? 'Vérifiez vos emails !' : 'Check your emails!'}
+        {t('confirm_check_email_title')}
       </h1>
       <p style={{ color: '#666', fontSize: 16, lineHeight: 1.6, marginBottom: 32 }}>
-        {lang === 'fr'
-          ? 'Un lien de confirmation vous a été envoyé. Cliquez dessus pour activer votre compte.'
-          : 'A confirmation link has been sent. Click it to activate your account.'}
+        {t('confirm_link_sent')}
       </p>
       <div style={{ background: '#fffbf0', border: '1px solid #ffe082', borderRadius: 12, padding: 16, marginBottom: 32, fontSize: 14, color: '#7a6000' }}>
-        💡 {lang === 'fr' ? 'Vérifiez aussi vos spams.' : 'Also check your spam folder.'}
+        💡 {t('confirm_check_spam')}
       </div>
       <Link href="/connexion" className="btn-main btn-primary">
-        {lang === 'fr' ? 'Se connecter' : 'Sign in'}
+        {t('login_btn')}
       </Link>
-      {email && <ResendConfirmButton email={email} lang={lang} />}
+      {email && <ResendConfirmButton email={email} />}
     </div>
   )
 }

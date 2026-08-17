@@ -36,7 +36,7 @@ export default function Connexion() {
     setLoading(true)
     setError('')
     const { error } = await supabase.auth.signInWithPassword({ email: form.email, password: form.password })
-    if (error) { setError(lang === 'fr' ? 'Email ou mot de passe incorrect' : 'Incorrect email or password'); setLoading(false); return }
+    if (error) { setError(t('login_err_credentials')); setLoading(false); return }
 
     if (isNative && bioAvailable && !bioSaved && !wasBiometricPromptDismissed()) {
       setAskBiometric(true)
@@ -66,7 +66,7 @@ export default function Connexion() {
       if (error) throw error
       router.push('/profil')
     } catch {
-      setError(lang === 'fr' ? 'Authentification biométrique échouée' : 'Biometric authentication failed')
+      setError(t('login_err_biometric'))
       setBioLoading(false)
     }
   }
@@ -76,15 +76,15 @@ export default function Connexion() {
       <div style={{ maxWidth: 460, margin: '60px auto' }}>
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', textAlign: 'center' }}>
           <div style={{ fontSize: 40, marginBottom: 12 }}>🔓</div>
-          <h1 style={{ fontWeight: 900, fontSize: 20, marginBottom: 8 }}>{lang === 'fr' ? 'Connexion plus rapide ?' : 'Faster sign-in?'}</h1>
+          <h1 style={{ fontWeight: 900, fontSize: 20, marginBottom: 8 }}>{t('login_faster_title')}</h1>
           <p style={{ color: dark ? '#aaa' : '#666', marginBottom: 24, fontSize: 14 }}>
-            {lang === 'fr' ? 'Active la connexion biométrique pour te reconnecter sans mot de passe la prochaine fois.' : 'Enable biometric sign-in to log back in without a password next time.'}
+            {t('login_faster_desc')}
           </p>
           <button onClick={acceptBiometric} className="btn-main btn-primary" style={{ width: '100%', marginBottom: 10 }}>
-            {lang === 'fr' ? 'Activer' : 'Enable'}
+            {t('login_enable')}
           </button>
           <button onClick={declineBiometric} style={{ width: '100%', background: 'none', border: 'none', color: dark ? '#aaa' : '#666', fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 10 }}>
-            {lang === 'fr' ? 'Non merci' : 'No thanks'}
+            {t('addcard_no_thanks')}
           </button>
         </div>
       </div>
@@ -95,11 +95,11 @@ export default function Connexion() {
     <div style={{ maxWidth: 460, margin: '60px auto' }}>
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 8 }}>{t('login_title')}</h1>
-        <p style={{ color: dark ? '#aaa' : '#666', marginBottom: 30, fontSize: 14 }}>{lang === 'fr' ? 'Content de vous revoir !' : 'Welcome back!'}</p>
+        <p style={{ color: dark ? '#aaa' : '#666', marginBottom: 30, fontSize: 14 }}>{t('login_welcome_back')}</p>
         {isNative && bioAvailable && bioSaved && (
           <button onClick={handleBiometricLogin} disabled={bioLoading} aria-busy={bioLoading} className="btn-main btn-primary"
             style={{ width: '100%', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            🔓 {bioLoading ? (lang === 'fr' ? 'Vérification…' : 'Verifying…') : (lang === 'fr' ? 'Connexion biométrique' : 'Biometric sign-in')}
+            🔓 {bioLoading ? t('login_verifying') : t('login_biometric_signin')}
           </button>
         )}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -109,11 +109,11 @@ export default function Connexion() {
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input type="password" required placeholder={lang === 'fr' ? 'Votre mot de passe' : 'Your password'} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+            <input type="password" required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
           <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading} aria-busy={loading}>
-            {loading ? (lang === 'fr' ? 'Connexion…' : 'Signing in…') : t('login_btn')}
+            {loading ? t('login_signing_in') : t('login_btn')}
           </button>
         </form>
         <OAuthButtons mode="connexion" />

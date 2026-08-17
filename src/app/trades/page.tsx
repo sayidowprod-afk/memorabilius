@@ -265,7 +265,7 @@ export default function Trades() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} style={{ flex: 1, minWidth: 200 }} />
-              <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={lang === 'fr' ? 'Filtrer par équipe...' : 'Filter by team...'} style={{ width: 180 }} />
+              <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} style={{ width: 180 }} />
               <div style={{ display: 'flex', gap: 8 }}>
                 {(['tous', 'offre', 'recherche'] as const).map(f => (
                   <button key={f} onClick={() => setFilter(f)} style={{

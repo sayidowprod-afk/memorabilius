@@ -8,7 +8,7 @@ import OAuthButtons from '@/components/OAuthButtons'
 type PseudoStatus = 'idle' | 'checking' | 'available' | 'taken'
 
 export default function Inscription() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const [form, setForm] = useState({ email: '', password: '', display_name: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -46,8 +46,8 @@ export default function Inscription() {
   const pseudoHint = {
     idle: null,
     checking: <span style={{ color: '#888', fontSize: 12 }}>…</span>,
-    available: <span style={{ color: '#2e7d32', fontSize: 12 }}>✓ {lang === 'fr' ? 'Disponible' : 'Available'}</span>,
-    taken: <span style={{ color: '#c62828', fontSize: 12 }}>✗ {lang === 'fr' ? 'Pseudo déjà pris' : 'Username already taken'}</span>,
+    available: <span style={{ color: '#2e7d32', fontSize: 12 }}>✓ {t('signup_available')}</span>,
+    taken: <span style={{ color: '#c62828', fontSize: 12 }}>✗ {t('signup_taken')}</span>,
   }[pseudoStatus]
 
   return (
@@ -63,7 +63,7 @@ export default function Inscription() {
             </div>
             <input
               type="text" required
-              placeholder={lang === 'fr' ? 'Votre pseudo' : 'Your username'}
+              placeholder={t('signup_username_placeholder')}
               value={form.display_name}
               onChange={e => setForm({ ...form, display_name: e.target.value })}
               style={{ borderColor: pseudoStatus === 'taken' ? '#c62828' : pseudoStatus === 'available' ? '#2e7d32' : undefined }}
@@ -75,7 +75,7 @@ export default function Inscription() {
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input type="password" required placeholder={lang === 'fr' ? 'Min. 6 caractères' : 'Min. 6 characters'} value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+            <input type="password" required placeholder={t('signup_password_placeholder')} value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
           <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking'}>
