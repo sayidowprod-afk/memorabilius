@@ -52,8 +52,27 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
 
   useEffect(() => {
     (async () => {
-      const [{ data: manuelles }, { data: profile }] = await Promise.all([
-        supabase.from('cartes_manuelles').select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection_tag, rc, auto, patch, num, format, is_horizontal').eq('user_id', userId).not('image_recto', 'is', null),
+      // Pagination pour bypasser le max_rows=1000 de Supabase — sans ça, les
+      // collections de plus de 1000 cartes manuelles voient leurs cartes au-delà
+      // de la limite disparaître silencieusement du picker (invisibles pour
+      // n'importe quel classeur, pas seulement celui d'origine).
+      const fetchAllManuelles = async () => {
+        const all: any[] = []
+        for (let from = 0; ; from += 1000) {
+          const { data, error } = await supabase
+            .from('cartes_manuelles')
+            .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection_tag, rc, auto, patch, num, format, is_horizontal')
+            .eq('user_id', userId).not('image_recto', 'is', null)
+            .order('created_at', { ascending: true })
+            .range(from, from + 999)
+          if (error || !data || data.length === 0) break
+          all.push(...data)
+          if (data.length < 1000) break
+        }
+        return all
+      }
+      const [manuelles, { data: profile }] = await Promise.all([
+        fetchAllManuelles(),
         supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').eq('id', userId).single(),
       ])
       const seen = new Set<string>()

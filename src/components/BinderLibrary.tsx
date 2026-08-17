@@ -670,8 +670,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
       // Charger les champs nécessaires depuis cartes_manuelles
       if (by !== 'nom_asc' && by !== 'nom_desc') {
-        const [{ data: cartes }, { data: csvProfile }] = await Promise.all([
-          supabase.from('cartes_manuelles').select('image_recto, annee, equipe, card_number').eq('user_id', userId).limit(10000),
+        // .limit(10000) est un no-op côté PostgREST (plafonné à max_rows=1000) —
+        // pagination réelle nécessaire au-delà de 1000 cartes.
+        const fetchAllCartes = async () => {
+          const all: any[] = []
+          for (let from = 0; ; from += 1000) {
+            const { data, error } = await supabase
+              .from('cartes_manuelles').select('image_recto, annee, equipe, card_number')
+              .eq('user_id', userId).range(from, from + 999)
+            if (error || !data || data.length === 0) break
+            all.push(...data)
+            if (data.length < 1000) break
+          }
+          return all
+        }
+        const [cartes, { data: csvProfile }] = await Promise.all([
+          fetchAllCartes(),
           supabase.from('profiles').select('id, display_name, avatar_url, lien_csv').eq('id', userId).single(),
         ])
         for (const c of cartes || []) {

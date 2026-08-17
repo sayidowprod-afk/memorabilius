@@ -31,9 +31,11 @@ export async function GET(req: NextRequest) {
   const minutesParam = req.nextUrl.searchParams.get('minutes')
   const pMinutes = minutesParam ? parseInt(minutesParam, 10) : null
 
+  // p_minutes toujours explicite (même null) — voir /api/admin/geo pour le détail
+  // de l'ambiguïté de surcharge PostgREST évitée ici.
   const { data, error } = await admin.rpc('get_users_by_country', {
     p_country: country.toUpperCase(),
-    ...(pMinutes ? { p_minutes: pMinutes } : {}),
+    p_minutes: pMinutes,
   })
   if (error) {
     console.error('[users-geo] error', error)

@@ -26,8 +26,13 @@ export async function GET(req: NextRequest) {
   const minutesParam = req.nextUrl.searchParams.get('minutes')
   const pMinutes = minutesParam ? parseInt(minutesParam, 10) : null
 
+  // p_minutes toujours passé explicitement (même null) : un appel sans aucun
+  // argument est ambigu côté PostgREST s'il existe plusieurs signatures de la
+  // fonction (ex: une variante sans paramètre coexistant avec p_minutes DEFAULT
+  // NULL) — l'appel "Toujours" (period=all, p_minutes omis) échouait avec
+  // PGRST203 "Could not choose the best candidate function".
   const { data, error } = await admin.rpc('get_users_country_breakdown', {
-    ...(pMinutes ? { p_minutes: pMinutes } : {}),
+    p_minutes: pMinutes,
   })
   if (error) console.error('[geo] get_users_country_breakdown error', error)
 
