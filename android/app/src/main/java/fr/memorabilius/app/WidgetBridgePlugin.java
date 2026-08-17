@@ -47,6 +47,9 @@ public class WidgetBridgePlugin extends Plugin {
     private String downloadImage(Context context, String urlStr) {
         try {
             URL url = new URL(urlStr);
+            // Défense en profondeur : n'accepte que https, même si l'URL vient toujours
+            // du WebView de confiance côté normal (image_recto sur notre propre stockage).
+            if (!"https".equalsIgnoreCase(url.getProtocol())) return null;
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setConnectTimeout(8000);
             conn.setReadTimeout(8000);

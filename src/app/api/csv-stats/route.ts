@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
+import { fetchCsvCapped, parseCardStats, isAllowedCsvUrl } from '@/lib/csvParse'
 
 export async function GET(req: NextRequest) {
   const url = req.nextUrl.searchParams.get('url')
   if (!url) return NextResponse.json({ error: 'No URL' }, { status: 400 })
-  if (!url.startsWith('https://docs.google.com/spreadsheets/')) {
+  if (!isAllowedCsvUrl(url)) {
     return NextResponse.json({ error: 'Invalid URL' }, { status: 400 })
   }
 

@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { NextRequest } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import { isSafeExternalUrl } from '@/lib/safeUrl'
 
 export const runtime = 'nodejs'
 
@@ -45,6 +46,9 @@ function colsForCount(n: number, format: 'square' | 'story') {
 }
 
 async function fetchAsB64(url: string): Promise<string | null> {
+  // image_recto est un champ libre (cartes CSV) — sans ce garde-fou, une URL
+  // interne/privée pourrait être fetchée par le serveur puis renvoyée en pixels (SSRF).
+  if (!isSafeExternalUrl(url)) return null
   try {
     const r = await fetch(url, { signal: AbortSignal.timeout(8000) })
     if (!r.ok) return null

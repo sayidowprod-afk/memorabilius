@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { NextRequest } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import { isSafeExternalUrl } from '@/lib/safeUrl'
 
 export const runtime = 'nodejs'
 
@@ -56,9 +57,15 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ user
 
   const accent = profile.couleur_bordure || '#003DA6'
   const name = profile.display_name || 'Collector'
-  const thumbs = Array.from({ length: 5 }, (_, i) => (cards || [])[i]?.image_recto || PLACEHOLDER)
-  const avatarUrl = profile.avatar_url
-    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=128`
+  // image_recto/avatar_url sont des URLs stockées librement (import CSV) — next/og
+  // les fetch lui-même côté serveur pour les rasteriser dans l'image, donc une URL
+  // interne/privée non filtrée ici serait aussi un vecteur SSRF que le fetch() guard
+  // habituel (isSafeExternalUrl) ne couvre pas puisqu'il n'y a pas de fetch() explicite.
+  const safeImg = (url: string | null | undefined) => (url && isSafeExternalUrl(url)) ? url : PLACEHOLDER
+  const thumbs = Array.from({ length: 5 }, (_, i) => safeImg((cards || [])[i]?.image_recto))
+  const avatarUrl = (profile.avatar_url && isSafeExternalUrl(profile.avatar_url))
+    ? profile.avatar_url
+    : `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=128`
 
   const countLabel = cardCount != null
     ? `${cardCount} carte${cardCount > 1 ? 's' : ''}`

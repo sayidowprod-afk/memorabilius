@@ -679,7 +679,12 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {/* ── MEMBRES ── */}
       {activeTab === 'membres' && (
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          {/* overflowX:auto sur ce wrapper interne — le tableau (9 colonnes) dépasse
+              largement un écran mobile ; avant, l'overflow:hidden du conteneur externe
+              rognait les colonnes de droite (RC/Auto/Num/Patch/Actions) au lieu de
+              permettre le scroll horizontal. */}
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 640 }}>
             <thead><tr>
               {['#', t('teams_collector'), t('teams_role'), 'Cartes', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Actions'] : [])].map(h => (
                 <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', background: '#fdfdfd' }}>{h}</th>
@@ -744,6 +749,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               })}
             </tbody>
           </table>
+          </div>
         </div>
       )}
 

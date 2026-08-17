@@ -244,28 +244,31 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     // Charger les images communauté via API JS uniquement pour les entrées sans image côté site
     const entryIds = finalData.filter((e: any) => !e.image_url).map((e: any) => e.id)
     if (entryIds.length > 0 && setInfo) {
-      fetch('/api/setlist-images', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          setId: parseInt(setId),
-          setYear: setInfo.year,
-          setBrand: setInfo.brand,
-          setName: setInfo.name,
-          entryIds,
-        }),
-      })
-        .then(r => r.ok ? r.json() : [])
-        .then((imgRows: { entry_id: number; image_url: string }[]) => {
-          if (imgRows.length > 0) {
-            setCommunityImages(prev => {
-              const next = new Map(prev)
-              for (const row of imgRows) next.set(row.entry_id, row.image_url)
-              return next
-            })
-          }
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!session?.access_token) return
+        fetch('/api/setlist-images', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+          body: JSON.stringify({
+            setId: parseInt(setId),
+            setYear: setInfo.year,
+            setBrand: setInfo.brand,
+            setName: setInfo.name,
+            entryIds,
+          }),
         })
-        .catch(() => {})
+          .then(r => r.ok ? r.json() : [])
+          .then((imgRows: { entry_id: number; image_url: string }[]) => {
+            if (imgRows.length > 0) {
+              setCommunityImages(prev => {
+                const next = new Map(prev)
+                for (const row of imgRows) next.set(row.entry_id, row.image_url)
+                return next
+              })
+            }
+          })
+          .catch(() => {})
+      })
     }
 
     setVariations(prev => prev.map(v =>
