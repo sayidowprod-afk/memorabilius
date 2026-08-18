@@ -12,13 +12,13 @@ interface Card {
 
 function PepiteCard({ card, eager, dark }: { card: Card; eager: boolean; dark: boolean }) {
   return (
-    <Link href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} style={{
+    <Link href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} draggable={false} style={{
       flex: '0 0 auto', width: 'clamp(118px, 15vw, 190px)',
       background: dark ? '#1e1e1e' : 'white', borderRadius: 10, overflow: 'hidden',
       border: dark ? '1px solid #2a2a2a' : '1px solid #eee', textDecoration: 'none', display: 'block',
     }}>
       <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
-        <img src={card.img} alt={card.name} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'}
+        <img src={card.img} alt={card.name} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} draggable={false}
           style={card.isHorizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' } : { width: '100%', height: '100%', objectFit: 'cover' }} />
       </div>
       <div style={{ padding: '7px 8px' }}>
@@ -40,12 +40,13 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const drag = useRef({ active: false, startX: 0, startScrollLeft: 0, moved: false })
 
   // Défilement continu vers la gauche façon marquee : le rendu est dupliqué une
   // fois (list + list identique) et scrollLeft revient à 0 exactement à la moitié
   // du scrollWidth total — comme la seconde moitié est une copie pixel identique
   // de la première, ce reset est invisible, ce qui donne l'illusion d'une boucle
-  // infinie plutôt qu'un aller-retour. Pause dès que l'utilisateur touche/scrolle.
+  // infinie plutôt qu'un aller-retour. Pause dès que l'utilisateur touche/drag.
   useEffect(() => {
     if (cards.length === 0) return
     const track = trackRef.current
@@ -55,7 +56,7 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
       if (!pausedRef.current) {
         const singleSetWidth = track.scrollWidth / 2
         if (singleSetWidth > 0) {
-          let next = track.scrollLeft + 0.75
+          let next = track.scrollLeft + 0.5
           if (next >= singleSetWidth) next -= singleSetWidth
           track.scrollLeft = next
         }
@@ -74,7 +75,48 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
   }
   const scheduleResume = () => {
     if (resumeTimer.current) clearTimeout(resumeTimer.current)
-    resumeTimer.current = setTimeout(() => { pausedRef.current = false }, 2200)
+    resumeTimer.current = setTimeout(() => { pausedRef.current = false }, 1200)
+  }
+
+  // Souris = pas de scroll tactile natif : sans ceci la rangée n'est ni
+  // draggable ni cliquable-glissable à la souris, seulement au trackpad/tactile.
+  const onMouseDown = (e: React.MouseEvent) => {
+    const track = trackRef.current
+    if (!track) return
+    drag.current = { active: true, startX: e.clientX, startScrollLeft: track.scrollLeft, moved: false }
+    pause()
+    const onMove = (ev: MouseEvent) => {
+      if (!drag.current.active || !track) return
+      const dx = ev.clientX - drag.current.startX
+      if (Math.abs(dx) > 3) drag.current.moved = true
+      track.scrollLeft = drag.current.startScrollLeft - dx
+    }
+    const onUp = () => {
+      drag.current.active = false
+      document.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseup', onUp)
+      scheduleResume()
+    }
+    document.addEventListener('mousemove', onMove)
+    document.addEventListener('mouseup', onUp)
+  }
+
+  // Un vrai drag (déplacement > seuil) ne doit pas déclencher le lien de la carte.
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (drag.current.moved) {
+      e.preventDefault()
+      e.stopPropagation()
+      drag.current.moved = false
+    }
+  }
+
+  // Scroll horizontal volontaire (trackpad/molette inclinée) uniquement — un
+  // scroll vertical normal de la page ne doit pas mettre la rangée en pause
+  // juste parce que le curseur passe dessus.
+  const onWheel = (e: React.WheelEvent) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return
+    pause()
+    scheduleResume()
   }
 
   return (
@@ -84,15 +126,14 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
       </h2>
       <div
         ref={trackRef}
-        onPointerDown={pause}
-        onPointerUp={scheduleResume}
-        onPointerCancel={scheduleResume}
+        onMouseDown={onMouseDown}
+        onClickCapture={onClickCapture}
         onTouchStart={pause}
         onTouchEnd={scheduleResume}
-        onWheel={() => { pause(); scheduleResume() }}
+        onWheel={onWheel}
         className="pepites-track"
         style={{
-          display: 'flex', gap: 10, overflowX: 'auto',
+          display: 'flex', gap: 10, overflowX: 'auto', cursor: 'grab',
           width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)',
           padding: '0 16px 6px',
         }}
