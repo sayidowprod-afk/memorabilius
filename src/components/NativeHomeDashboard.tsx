@@ -5,6 +5,8 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
 import { hapticTap } from '@/lib/haptics'
 import { BADGE_CATEGORIES, type BadgeCategory, type BadgeTier } from '@/lib/badgeDefinitions'
+import { computeXP, levelFromXP, type LevelInfo } from '@/lib/leveling'
+import { currentChallenge, startOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
 
 // TODO: version de test — copie encore en dur (FR) plutôt que via t('...').
 // LangContext.tsx est modifié en parallèle par un autre passage sur les
@@ -18,6 +20,10 @@ interface DashboardData {
   lastCard: { image: string; name: string } | null
   nextBadge: { cat: BadgeCategory; tier: BadgeTier; value: number; pct: number } | null
   rc: number; patch: number; auto: number; num: number
+  level: LevelInfo
+  streak: number
+  challenge: ChallengeTemplate
+  challengeProgress: number
 }
 
 const ChevronIcon = () => (
@@ -51,11 +57,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     if (!user) return
     let cancelled = false
     ;(async () => {
-      const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }] = await Promise.all([
+      const challenge = currentChallenge()
+      const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }] = await Promise.all([
         supabase.from('profiles').select('display_name, avatar_url, stats_total').eq('id', user.id).single(),
         supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(1),
         supabase.rpc('get_user_badge_data', { p_user_id: user.id }),
         supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('auto', true),
+        supabase.rpc('bump_streak', { p_user_id: user.id }),
+        supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()),
       ])
       if (cancelled) return
 
@@ -65,6 +74,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count,
       }) : null
 
+      const badgesEarned = b ? BADGE_CATEGORIES.reduce((sum, cat) => {
+        const v = { cartes: b.stat_total, rc: b.stat_rc, patch: b.stat_patch, num: b.stat_num, mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count }[cat.id] ?? 0
+        return sum + cat.tiers.filter(t => v >= t.threshold).length
+      }, 0) : 0
+      const level = levelFromXP(computeXP(profile?.stats_total || 0, badgesEarned, b?.teams_count ?? 0))
+
+      const challengeProgress = (weekCards || []).filter(c => challenge.match({ rc: c.rc, auto: c.auto, patch: c.patch, num: c.num })).length
+
       setData({
         displayName: profile?.display_name || 'collectionneur',
         avatarUrl: profile?.avatar_url || null,
@@ -72,6 +89,10 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
         nextBadge,
         rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: autoCount ?? 0,
+        level,
+        streak: streakRows?.[0]?.current_streak ?? 0,
+        challenge,
+        challengeProgress,
       })
     })()
     return () => { cancelled = true }
@@ -95,17 +116,31 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     { label: 'Échanges', val: siteStats.totalTrade },
   ]
 
+  const challengeDone = data.challengeProgress >= data.challenge.target
+
   return (
     <div style={{ background: 'var(--bg, #f8f9fa)', paddingBottom: 8 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '22px 18px 18px' }}>
-        {data.avatarUrl
-          ? <img src={data.avatarUrl} alt="" style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
-          : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17, flexShrink: 0 }}>{data.displayName[0]?.toUpperCase()}</div>
-        }
-        <div style={{ minWidth: 0 }}>
+        <div style={{ position: 'relative', flexShrink: 0 }}>
+          {data.avatarUrl
+            ? <img src={data.avatarUrl} alt="" style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover' }} />
+            : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17 }}>{data.displayName[0]?.toUpperCase()}</div>
+          }
+          <span title={`Niveau ${data.level.level}`} style={{
+            position: 'absolute', bottom: -3, right: -5, background: '#003DA6', color: '#fff',
+            fontSize: 9.5, fontWeight: 900, borderRadius: 8, padding: '1px 5px', border: '2px solid var(--bg, #f8f9fa)',
+          }}>{data.level.level}</span>
+        </div>
+        <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{ fontSize: 12.5, color: 'var(--text2, #777)', fontWeight: 600 }}>Content de te revoir</div>
           <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--text, #121212)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{data.displayName}</div>
         </div>
+        {data.streak > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 3, background: 'rgba(230,126,34,0.12)', borderRadius: 20, padding: '5px 10px', flexShrink: 0 }}>
+            <span style={{ fontSize: 14 }}>🔥</span>
+            <span style={{ fontSize: 13, fontWeight: 900, color: '#e67e22' }}>{data.streak}</span>
+          </div>
+        )}
       </div>
 
       <Link href={`/galerie/${user?.id}`} onClick={hapticTap} style={{
@@ -165,6 +200,29 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           </div>
         </Link>
       )}
+
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 12, margin: '0 16px 20px', padding: '14px 16px',
+        background: challengeDone ? 'linear-gradient(135deg, rgba(46,125,50,0.14), rgba(46,125,50,0.05))' : 'var(--card-bg, #fff)',
+        border: challengeDone ? '1px solid rgba(46,125,50,0.35)' : '1px solid var(--border, #eee)', borderRadius: 18,
+      }}>
+        <span style={{
+          fontSize: 20, flexShrink: 0, width: 40, height: 40, borderRadius: '50%',
+          background: challengeDone ? '#2e7d32' : 'rgba(0,61,166,0.08)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>{challengeDone ? '✓' : data.challenge.emoji}</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
+            Défi de la semaine : <span style={{ color: challengeDone ? '#2e7d32' : '#003DA6' }}>{data.challenge.label}</span>
+          </div>
+          <div style={{ height: 6, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 7 }}>
+            <div style={{ height: '100%', width: `${Math.min(100, Math.round(data.challengeProgress / data.challenge.target * 100))}%`, background: challengeDone ? '#2e7d32' : 'linear-gradient(90deg, #1E63E0, #003DA6)', borderRadius: 3 }} />
+          </div>
+          <div style={{ fontSize: 10.5, color: 'var(--text3, #999)', marginTop: 4 }}>
+            {challengeDone ? 'Défi complété !' : `${data.challengeProgress} / ${data.challenge.target} ${data.challenge.unit} cette semaine`}
+          </div>
+        </div>
+      </div>
 
       <div style={{ display: 'flex', gap: 8, margin: '0 16px 20px' }}>
         {galleryStats.map(s => (

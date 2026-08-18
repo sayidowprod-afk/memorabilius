@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import FollowButton from '@/components/FollowButton'
+import LevelBadge from '@/components/LevelBadge'
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
@@ -1395,6 +1396,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
                 <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
+                {profile?.id && <LevelBadge userId={profile.id} statsTotal={profile?.stats_total || 0} />}
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
