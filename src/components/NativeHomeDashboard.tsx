@@ -3,14 +3,12 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
+import { useLang } from '@/lib/LangContext'
 import { hapticTap } from '@/lib/haptics'
 import { BADGE_CATEGORIES, type BadgeCategory, type BadgeTier } from '@/lib/badgeDefinitions'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 import { currentChallenge, startOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
 
-// TODO: version de test — copie encore en dur (FR) plutôt que via t('...').
-// LangContext.tsx est modifié en parallèle par un autre passage sur les
-// traductions ; câblage i18n propre une fois ce passage terminé.
 interface SiteStats { total: number; totalCartes: number; totalBinders: number; totalTrade: number }
 
 interface DashboardData {
@@ -77,6 +75,7 @@ function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColo
 
 export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
   const { user } = useAuth()
+  const { t } = useLang()
   const [data, setData] = useState<DashboardData | null>(null)
   const [showXpInfo, setShowXpInfo] = useState(false)
 
@@ -107,7 +106,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       const challengeProgress = (weekCards || []).filter(c => challenge.match({ rc: c.rc, auto: c.auto, patch: c.patch, num: c.num })).length
 
       setData({
-        displayName: profile?.display_name || 'collectionneur',
+        displayName: profile?.display_name || t('gallery_default_collector'),
         avatarUrl: profile?.avatar_url || null,
         totalCards: profile?.stats_total || 0,
         lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
@@ -134,10 +133,10 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   ]
 
   const siteStatsList = [
-    { label: 'Collectionneurs', val: siteStats.total },
-    { label: 'Cartes', val: siteStats.totalCartes },
-    { label: 'Classeurs', val: siteStats.totalBinders },
-    { label: 'Échanges', val: siteStats.totalTrade },
+    { label: t('home_collectors'), val: siteStats.total },
+    { label: t('dashboard_stat_cards'), val: siteStats.totalCartes },
+    { label: t('dashboard_stat_binders'), val: siteStats.totalBinders },
+    { label: t('dashboard_stat_trades'), val: siteStats.totalTrade },
   ]
 
   const challengeDone = data.challengeProgress >= data.challenge.target
@@ -150,14 +149,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17, flexShrink: 0 }}>{data.displayName[0]?.toUpperCase()}</div>
         }
         <div style={{ minWidth: 0, flex: 1 }}>
-          <div style={{ fontSize: 12.5, color: 'var(--text2, #777)', fontWeight: 600 }}>Content de te revoir</div>
+          <div style={{ fontSize: 12.5, color: 'var(--text2, #777)', fontWeight: 600 }}>{t('dashboard_greeting')}</div>
           <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--text, #121212)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{data.displayName}</div>
         </div>
         {data.streak > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(230,126,34,0.12)', borderRadius: 20, padding: '5px 10px', flexShrink: 0 }}>
             <span style={{ fontSize: 14 }}>🔥</span>
             <span style={{ fontSize: 11.5, fontWeight: 800, color: '#e67e22', whiteSpace: 'nowrap' }}>
-              {data.streak} jour{data.streak > 1 ? 's' : ''} de suite
+              {t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', String(data.streak))}
             </span>
           </div>
         )}
@@ -170,12 +169,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         boxShadow: '0 6px 14px -6px rgba(11,30,77,0.35)',
       }}>
         <div style={{ flex: 1, padding: '18px 6px 18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.8, color: '#80B4FF', textTransform: 'uppercase' }}>Ma galerie</div>
+          <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.8, color: '#80B4FF', textTransform: 'uppercase' }}>{t('dashboard_my_gallery')}</div>
           <div style={{ fontSize: 30, fontWeight: 900, lineHeight: 1.15, marginTop: 4 }}>{data.totalCards}</div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: '#cddcff', marginTop: -2 }}>carte{data.totalCards === 1 ? '' : 's'}</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#cddcff', marginTop: -2 }}>{t(data.totalCards === 1 ? 'dashboard_card_one' : 'dashboard_card_other')}</div>
           {data.lastCard?.name && (
             <div style={{ fontSize: 11.5, color: '#9fbdf5', marginTop: 12, display: 'flex', alignItems: 'center', gap: 4 }}>
-              Dernier ajout <strong style={{ color: '#fff', fontWeight: 700 }}>{data.lastCard.name}</strong>
+              {t('dashboard_last_added')} <strong style={{ color: '#fff', fontWeight: 700 }}>{data.lastCard.name}</strong>
             </div>
           )}
         </div>
@@ -210,7 +209,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           href={`/galerie/${user?.id}`}
           icon={data.level.level}
           iconBg="linear-gradient(135deg, #1E63E0, #003DA6)"
-          label="Niveau"
+          label={t('word_level')}
           valueLabel={`${data.level.xpIntoLevel}/${data.level.xpForNextLevel} XP`}
           valueColor="#003DA6"
           pct={data.level.pct}
@@ -222,7 +221,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             href={`/galerie/${user?.id}?tab=badges`}
             icon={data.nextBadge.cat.emoji}
             iconBg="radial-gradient(circle at 35% 30%, #f0cc70, #a07018 75%)"
-            label={`Prochain badge : ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}
+            label={`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}
             valueLabel={`${data.nextBadge.value}/${data.nextBadge.tier.threshold}`}
             valueColor="#a07018"
             pct={data.nextBadge.pct}
@@ -233,8 +232,8 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           href={`/galerie/${user?.id}`}
           icon={challengeDone ? '✓' : data.challenge.emoji}
           iconBg={challengeDone ? '#2e7d32' : 'rgba(0,61,166,0.12)'}
-          label={`Défi : ${data.challenge.label}`}
-          valueLabel={challengeDone ? 'Fait !' : `${data.challengeProgress}/${data.challenge.target}`}
+          label={`${t('dashboard_challenge_prefix')} ${t(data.challenge.labelKey)}`}
+          valueLabel={challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}
           valueColor={challengeDone ? '#2e7d32' : '#003DA6'}
           pct={data.challengeProgress / data.challenge.target}
           barColor={challengeDone ? '#2e7d32' : 'linear-gradient(90deg, #1E63E0, #003DA6)'}
@@ -245,13 +244,13 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border, #eee)', borderRadius: 12,
             padding: 10, fontSize: 10, color: 'var(--text2, #777)', lineHeight: 1.6, boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
           }}>
-            XP gagné : <strong style={{ color: 'var(--text, #121212)' }}>+1 à +19</strong> par carte selon sa rareté (RC/auto/patch/num) · <strong style={{ color: 'var(--text, #121212)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text, #121212)' }}>+20</strong> par team rejointe · <strong style={{ color: 'var(--text, #121212)' }}>+10</strong> par échange conclu · bonus de streak et de likes reçus
+            {t('xp_info_explanation')}
           </div>
         )}
       </div>
 
       <h2 style={{ fontSize: 20, fontWeight: 900, margin: '4px 0 16px', textAlign: 'center', color: 'var(--text, #121212)' }}>
-        🌍 Memorabilius en chiffres
+        {t('dashboard_site_stats_title')}
       </h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10, padding: '0 16px 0' }}>
         {siteStatsList.map(s => (

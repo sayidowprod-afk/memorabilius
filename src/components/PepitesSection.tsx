@@ -47,11 +47,17 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
   // du scrollWidth total — comme la seconde moitié est une copie pixel identique
   // de la première, ce reset est invisible, ce qui donne l'illusion d'une boucle
   // infinie plutôt qu'un aller-retour. Pause dès que l'utilisateur touche/drag.
+  // La section reste montée en permanence sur la home — sans garde-fou,
+  // cette boucle continuerait à tourner (et à consommer CPU/batterie) même
+  // scrollée hors écran. Un IntersectionObserver coupe la RAF tant qu'elle
+  // n'est pas visible et la relance dès qu'elle revient dans le viewport.
   useEffect(() => {
     if (cards.length === 0) return
     const track = trackRef.current
     if (!track) return
-    let raf: number
+    let raf: number | null = null
+    let visible = true
+
     const step = () => {
       if (!pausedRef.current) {
         const singleSetWidth = track.scrollWidth / 2
@@ -61,10 +67,20 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
           track.scrollLeft = next
         }
       }
-      raf = requestAnimationFrame(step)
+      raf = visible ? requestAnimationFrame(step) : null
     }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+      if (visible && raf === null) raf = requestAnimationFrame(step)
+    }, { threshold: 0 })
+    observer.observe(track)
+
     raf = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(raf)
+    return () => {
+      if (raf !== null) cancelAnimationFrame(raf)
+      observer.disconnect()
+    }
   }, [cards.length])
 
   if (cards.length === 0) return null

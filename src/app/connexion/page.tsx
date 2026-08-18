@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { isAuthRetryableFetchError } from '@supabase/supabase-js'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
@@ -35,8 +36,19 @@ export default function Connexion() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const { error } = await supabase.auth.signInWithPassword({ email: form.email, password: form.password })
-    if (error) { setError(t('login_err_credentials')); setLoading(false); return }
+    let { error } = await supabase.auth.signInWithPassword({ email: form.email, password: form.password })
+    if (error && isAuthRetryableFetchError(error)) {
+      // Échec réseau (pas identifiants) — fréquent au tout premier lancement de
+      // l'app si le réseau Android n'est pas encore prêt. Un seul retry après un
+      // court délai résout la grande majorité des cas sans action de l'utilisateur.
+      await new Promise(r => setTimeout(r, 1500))
+      ;({ error } = await supabase.auth.signInWithPassword({ email: form.email, password: form.password }))
+    }
+    if (error) {
+      setError(isAuthRetryableFetchError(error) ? t('login_err_network') : t('login_err_credentials'))
+      setLoading(false)
+      return
+    }
 
     if (isNative && bioAvailable && !bioSaved && !wasBiometricPromptDismissed()) {
       setAskBiometric(true)
@@ -62,8 +74,16 @@ export default function Connexion() {
     try {
       const creds = await loginWithBiometric()
       if (!creds) throw new Error('no creds')
-      const { error } = await supabase.auth.signInWithPassword({ email: creds.username, password: creds.password })
-      if (error) throw error
+      let { error } = await supabase.auth.signInWithPassword({ email: creds.username, password: creds.password })
+      if (error && isAuthRetryableFetchError(error)) {
+        await new Promise(r => setTimeout(r, 1500))
+        ;({ error } = await supabase.auth.signInWithPassword({ email: creds.username, password: creds.password }))
+      }
+      if (error) {
+        setError(isAuthRetryableFetchError(error) ? t('login_err_network') : t('login_err_biometric'))
+        setBioLoading(false)
+        return
+      }
       router.push('/profil')
     } catch {
       setError(t('login_err_biometric'))

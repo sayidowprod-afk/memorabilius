@@ -5,17 +5,17 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Capacitor lit les plugins par réflexion depuis le bridge JS — sans ces
+# règles, R8 peut renommer/supprimer les méthodes @PluginMethod et casser
+# tous les appels JS→natif (WidgetBridgePlugin, ShareBridgePlugin, etc.).
+# Capacitor embarque normalement ses propres consumer-rules, mais on les
+# duplique ici en filet de sécurité pour les plugins custom du projet.
+-keep @com.getcapacitor.annotation.CapacitorPlugin class * { *; }
+-keepclassmembers class * extends com.getcapacitor.Plugin {
+    @com.getcapacitor.annotation.PluginMethod public *;
+}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Conserve les numéros de ligne pour que les stack traces envoyées à
+# Crashlytics restent lisibles une fois le code minifié.
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile

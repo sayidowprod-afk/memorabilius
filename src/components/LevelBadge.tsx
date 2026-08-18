@@ -1,12 +1,14 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 
 // Niveau affiché à côté du pseudo sur la galerie publique — même source que
 // le dashboard perso : le total XP événementiel (xp_events, voir xp.ts),
 // public via la fonction SECURITY DEFINER get_user_xp_total.
 export default function LevelBadge({ userId }: { userId: string }) {
+  const { t } = useLang()
   const [level, setLevel] = useState<LevelInfo | null>(null)
   const [showInfo, setShowInfo] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -41,9 +43,9 @@ export default function LevelBadge({ userId }: { userId: string }) {
         border: '1px solid rgba(0,61,166,0.2)', borderRadius: 12, padding: '6px 10px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontSize: 9.5, fontWeight: 800, color: '#003DA6', letterSpacing: 0.5 }}>NIVEAU</span>
+          <span style={{ fontSize: 9.5, fontWeight: 800, color: '#003DA6', letterSpacing: 0.5, textTransform: 'uppercase' }}>{t('word_level')}</span>
           <span style={{ fontSize: 17, fontWeight: 900, color: '#003DA6', lineHeight: 1 }}>{level.level}</span>
-          <button onClick={() => setShowInfo(v => !v)} aria-label="Comment gagner de l'XP" style={{
+          <button onClick={() => setShowInfo(v => !v)} aria-label={t('levelbadge_info_aria')} style={{
             width: 15, height: 15, borderRadius: '50%', border: '1px solid #003DA6', background: 'none',
             color: '#003DA6', fontSize: 9.5, fontWeight: 800, lineHeight: '13px', padding: 0, cursor: 'pointer',
           }}>?</button>
@@ -65,7 +67,7 @@ export default function LevelBadge({ userId }: { userId: string }) {
           boxShadow: '0 12px 32px rgba(0,0,0,0.18)', padding: 12,
           fontSize: 10.5, color: 'var(--text2, #555)', lineHeight: 1.6,
         }}>
-          XP gagné : <strong style={{ color: 'var(--text, #121212)' }}>+1 à +19</strong> par carte selon sa rareté (RC/auto/patch/num) · <strong style={{ color: 'var(--text, #121212)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text, #121212)' }}>+20</strong> par team rejointe · <strong style={{ color: 'var(--text, #121212)' }}>+10</strong> par échange conclu · bonus de streak et de likes reçus
+          {t('xp_info_explanation')}
         </div>
       )}
     </div>

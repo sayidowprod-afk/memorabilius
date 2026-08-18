@@ -53,22 +53,31 @@ self.addEventListener('notificationclick', (event) => {
 // l'ancienne version en premier, ce qui donnait l'impression que le site ne se
 // mettait pas à jour sans F5 — problématique vu la fréquence des déploiements.)
 // Les données (Supabase, /api/*) ne passent jamais par ici : toujours en direct.
+// Un cold start Android peut avoir le réseau pas tout à fait prêt une fraction
+// de seconde (DNS/radio pas encore stabilisés) — sans retry, ce blip transitoire
+// bascule directement sur la page en cache, potentiellement très périmée après
+// un déploiement (référence d'anciens chunks JS supprimés → React ne démarre
+// même pas, donc rien ne peut se rattraper côté app). Un retry avant le fallback
+// évite ça dans l'immense majorité des cas.
 self.addEventListener('fetch', (event) => {
   if (event.request.mode !== 'navigate') return
   event.respondWith(
     (async () => {
-      try {
-        const res = await fetch(event.request)
-        if (res.ok) {
-          const cache = await caches.open(CACHE_NAME)
-          cache.put(event.request, res.clone())
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const res = await fetch(event.request)
+          if (res.ok) {
+            const cache = await caches.open(CACHE_NAME)
+            cache.put(event.request, res.clone())
+          }
+          return res
+        } catch {
+          if (attempt === 0) await new Promise((r) => setTimeout(r, 800))
         }
-        return res
-      } catch {
-        const cache = await caches.open(CACHE_NAME)
-        const cached = await cache.match(event.request)
-        return cached || caches.match('/offline.html')
       }
+      const cache = await caches.open(CACHE_NAME)
+      const cached = await cache.match(event.request)
+      return cached || caches.match('/offline.html')
     })()
   )
 })

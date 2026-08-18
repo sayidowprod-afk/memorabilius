@@ -78,8 +78,18 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const supabaseOrigin = process.env.NEXT_PUBLIC_SUPABASE_URL
   return (
     <html lang="fr" suppressHydrationWarning>
+      {supabaseOrigin && (
+        <head>
+          {/* Quasiment toutes les données de l'app viennent de Supabase — établir
+              la connexion (DNS + TLS) pendant que la page charge évite d'attendre
+              ce round-trip au moment du tout premier fetch. */}
+          <link rel="preconnect" href={supabaseOrigin} />
+          <link rel="dns-prefetch" href={supabaseOrigin} />
+        </head>
+      )}
       <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />

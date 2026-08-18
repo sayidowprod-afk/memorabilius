@@ -3,23 +3,27 @@
 // modèles (même défi pour tout le monde durant une semaine donnée, change
 // chaque lundi, sans tâche planifiée), et la progression est calculée à la
 // demande depuis cartes_manuelles — même principe que le RPC de podium.
+import type { TranslationKey } from '@/lib/LangContext'
+
 export interface CardFlags { rc: boolean; auto: boolean; patch: boolean; num: string | null }
 
 export interface ChallengeTemplate {
   id: string
   emoji: string
-  label: string
-  unit: string
+  // Clés i18n (voir LangContext.tsx) plutôt que du texte en dur — ce fichier
+  // n'a pas accès à useLang(), la traduction se fait au point d'affichage.
+  labelKey: TranslationKey
+  unitKey: TranslationKey
   target: number
   match: (c: CardFlags) => boolean
 }
 
 export const CHALLENGE_TEMPLATES: ChallengeTemplate[] = [
-  { id: 'add10', emoji: '🃏', label: 'Ajoute des cartes', unit: 'cartes', target: 10, match: () => true },
-  { id: 'rc5', emoji: '⭐', label: 'Ajoute des Rookie Cards', unit: 'RC', target: 5, match: c => c.rc },
-  { id: 'auto3', emoji: '✍️', label: 'Ajoute des autographes', unit: 'autos', target: 3, match: c => c.auto },
-  { id: 'patch3', emoji: '🩹', label: 'Ajoute des patches', unit: 'patches', target: 3, match: c => c.patch },
-  { id: 'num5', emoji: '🔢', label: 'Ajoute des cartes numérotées', unit: 'numérotées', target: 5, match: c => !!c.num },
+  { id: 'add10', emoji: '🃏', labelKey: 'challenge_add10', unitKey: 'challenge_unit_cards', target: 10, match: () => true },
+  { id: 'rc5', emoji: '⭐', labelKey: 'challenge_rc5', unitKey: 'challenge_unit_rc', target: 5, match: c => c.rc },
+  { id: 'auto3', emoji: '✍️', labelKey: 'challenge_auto3', unitKey: 'challenge_unit_auto', target: 3, match: c => c.auto },
+  { id: 'patch3', emoji: '🩹', labelKey: 'challenge_patch3', unitKey: 'challenge_unit_patch', target: 3, match: c => c.patch },
+  { id: 'num5', emoji: '🔢', labelKey: 'challenge_num5', unitKey: 'challenge_unit_num', target: 5, match: c => !!c.num },
 ]
 
 function isoWeekNumber(d: Date): number {

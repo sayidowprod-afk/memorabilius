@@ -329,7 +329,11 @@ interface Card {
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
 }
 
-export default function GalerieClient({ userId, initialCardUrl }: { userId: string; initialCardUrl?: string }) {
+interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
+
+export default function GalerieClient({ userId, initialCardUrl, initialCards, initialGrailCards }: {
+  userId: string; initialCardUrl?: string; initialCards?: PreviewCard[]; initialGrailCards?: PreviewCard[]
+}) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [profile, setProfile] = useState<any>(null)
@@ -1963,19 +1967,50 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           )}
         </div>
 
-        {!loaded && (
-          <div className="card-grid">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
-                <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: dark ? 'linear-gradient(90deg, #2a2a2a 25%, #222 50%, #2a2a2a 75%)' : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
-                <div style={{ padding: 8 }}>
-                  <div style={{ height: 10, background: dark ? '#222' : '#e0e0e0', borderRadius: 4, marginBottom: 6, width: '80%' }} />
-                  <div style={{ height: 8, background: dark ? '#252525' : '#e8e8e8', borderRadius: 4, width: '60%' }} />
+        {/* Aperçu statique (purement visuel, aucune interaction) pendant le chargement
+            réel — voir fetchInitialPreview() dans page.tsx. Disparaît dès que `loaded`
+            passe à true via le flux existant, inchangé, qui reste seul maître du jeu. */}
+        {!loaded && initialGrailCards && initialGrailCards.length > 0 && (
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', margin: '0 0 16px' }}>
+            {initialGrailCards.map(c => (
+              <div key={c.id} style={{ width: 90, borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
+                <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
+                  <img src={c.image_recto} alt="" loading="eager" style={c.is_horizontal
+                    ? { width: '140%', height: '71.43%', marginLeft: '-20%', marginTop: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
+                    : { width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             ))}
-            <style>{`@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }`}</style>
           </div>
+        )}
+
+        {!loaded && (
+          initialCards && initialCards.length > 0 ? (
+            <div className="card-grid">
+              {initialCards.map(c => (
+                <div key={c.id} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
+                  <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
+                    <img src={c.image_recto} alt="" loading="eager" style={c.is_horizontal
+                      ? { width: '140%', height: '71.43%', marginLeft: '-20%', marginTop: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
+                      : { width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="card-grid">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div key={i} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
+                  <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: dark ? 'linear-gradient(90deg, #2a2a2a 25%, #222 50%, #2a2a2a 75%)' : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
+                  <div style={{ padding: 8 }}>
+                    <div style={{ height: 10, background: dark ? '#222' : '#e0e0e0', borderRadius: 4, marginBottom: 6, width: '80%' }} />
+                    <div style={{ height: 8, background: dark ? '#252525' : '#e8e8e8', borderRadius: 4, width: '60%' }} />
+                  </div>
+                </div>
+              ))}
+              <style>{`@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }`}</style>
+            </div>
+          )
         )}
 
         <style>{`

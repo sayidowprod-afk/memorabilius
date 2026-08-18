@@ -73,11 +73,83 @@ export async function generateMetadata({
   }
 }
 
+export interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+// Aperçu purement visuel affiché pendant le chargement réel côté client (voir
+// GalerieClient) — seul but : donner quelque chose à regarder plus tôt, sans
+// toucher à la logique de chargement/tri/filtres existante qui reste seule
+// source de vérité. Volontairement absent pour les galeries encore basées sur
+// un CSV externe (ordre différent, imprévisible sans parser le CSV côté serveur).
+//
+// Note : PreviewCard est dupliqué (structure identique) côté GalerieClient
+// plutôt qu'importé, pour garder ce composant client autonome.
+async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard[]; grail: PreviewCard[] }> {
+  const empty = { cards: [], grail: [] }
+  try {
+    let resolvedId = userId
+    if (!UUID_RE.test(userId)) {
+      const { data: p } = await supabase.from('profiles').select('id').eq('slug', userId).single()
+      if (!p) return empty
+      resolvedId = p.id
+    }
+
+    const { data: profile } = await supabase
+      .from('profiles').select('lien_csv, gallery_order').eq('id', resolvedId).single()
+    if (!profile || profile.lien_csv) return empty
+
+    const { data: privateRows } = await supabase
+      .from('cartes_privees').select('card_key').eq('user_id', resolvedId)
+    const privateSet = new Set((privateRows || []).map((r: any) => r.card_key))
+
+    const { data: rows } = await supabase
+      .from('cartes_manuelles')
+      .select('id, image_recto, is_horizontal, position')
+      .eq('user_id', resolvedId)
+      .not('image_recto', 'is', null)
+      .order('position', { ascending: true })
+      .limit(80)
+
+    let candidates = (rows || []).filter((r: any) => !privateSet.has(r.image_recto))
+
+    const galleryOrder: string[] = profile.gallery_order || []
+    if (galleryOrder.length > 0) {
+      const orderMap = new Map(galleryOrder.map((key, idx) => [key, idx]))
+      candidates = [...candidates].sort((a: any, b: any) =>
+        (orderMap.get(a.id) ?? 99999) - (orderMap.get(b.id) ?? 99999))
+    }
+
+    const cards: PreviewCard[] = candidates.slice(0, 24)
+      .map((r: any) => ({ id: r.id, image_recto: r.image_recto, is_horizontal: !!r.is_horizontal }))
+
+    const { data: grailRows } = await supabase
+      .from('grail_cards').select('card_key').eq('user_id', resolvedId).order('position').limit(3)
+    const grailKeys = (grailRows || []).map((r: any) => r.card_key).filter((k: string) => !privateSet.has(k))
+    let grail: PreviewCard[] = []
+    if (grailKeys.length > 0) {
+      const { data: grailCardRows } = await supabase
+        .from('cartes_manuelles').select('id, image_recto, is_horizontal')
+        .in('image_recto', grailKeys)
+      const byKey = new Map((grailCardRows || []).map((r: any) => [r.image_recto, r]))
+      grail = grailKeys
+        .map(k => byKey.get(k))
+        .filter(Boolean)
+        .map((r: any) => ({ id: r.id, image_recto: r.image_recto, is_horizontal: !!r.is_horizontal }))
+    }
+
+    return { cards, grail }
+  } catch {
+    return empty
+  }
+}
+
 export default async function GaleriePage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
+  const { cards: initialCards, grail: initialGrailCards } = await fetchInitialPreview(userId)
   return (
     <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>
-      <GalerieClient userId={userId} />
+      <GalerieClient userId={userId} initialCards={initialCards} initialGrailCards={initialGrailCards} />
     </Suspense>
   )
 }
