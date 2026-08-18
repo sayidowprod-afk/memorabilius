@@ -744,6 +744,9 @@ const translations = {
     setlistprint_only_missing: 'Cartes manquantes uniquement',
     setlistprint_login_hint: 'Connecte-toi pour voir tes cartes possédées',
     setlistdetail_print_link: 'Checklist imprimable',
+    setlistprint_variations_label: 'Variations à imprimer',
+    setlistprint_select_all: 'Tout sélectionner',
+    setlistprint_select_none: 'Tout désélectionner',
 
     // Galerie Export
     export_title: 'Exporter la galerie',
@@ -1859,6 +1862,9 @@ const translations = {
     setlistprint_only_missing: 'Missing cards only',
     setlistprint_login_hint: 'Log in to see your owned cards',
     setlistdetail_print_link: 'Printable checklist',
+    setlistprint_variations_label: 'Variations to print',
+    setlistprint_select_all: 'Select all',
+    setlistprint_select_none: 'Deselect all',
 
     // Galerie Export
     export_title: 'Export gallery',
@@ -2974,6 +2980,9 @@ const translations = {
     setlistprint_only_missing: 'Nur fehlende Karten',
     setlistprint_login_hint: 'Melde dich an, um deine besessenen Karten zu sehen',
     setlistdetail_print_link: 'Druckbare Checkliste',
+    setlistprint_variations_label: 'Zu druckende Varianten',
+    setlistprint_select_all: 'Alle auswählen',
+    setlistprint_select_none: 'Alle abwählen',
 
     // Galerie Export
     export_title: 'Galerie exportieren',

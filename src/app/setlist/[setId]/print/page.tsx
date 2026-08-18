@@ -31,7 +31,8 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   const [owned, setOwned] = useState<Set<number>>(new Set())
   const [userId, setUserId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
-  const [onlyMissing, setOnlyMissing] = useState(false)
+  const [filterMode, setFilterMode] = useState<'all' | 'owned' | 'missing'>('all')
+  const [selectedVariations, setSelectedVariations] = useState<Set<string> | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
@@ -65,6 +66,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
       return String(a.card_number || '').localeCompare(String(b.card_number || ''))
     })
     setEntries(all)
+    setSelectedVariations(new Set(all.map(e => e.variation || 'Base')))
 
     if (userId && all.length) {
       const ids = all.map(e => e.id)
@@ -87,8 +89,25 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   if (loading) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_loading')}</div>
   if (!set) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_not_found')}</div>
 
-  const displayEntries = onlyMissing ? entries.filter(e => !owned.has(e.id)) : entries
+  const allVariationNames = Array.from(new Set(entries.map(e => e.variation || 'Base'))).sort((a, b) => a === 'Base' ? -1 : b === 'Base' ? 1 : a.localeCompare(b))
+  const activeVariations = selectedVariations || new Set(allVariationNames)
+
+  const displayEntries = entries.filter(e => {
+    if (!activeVariations.has(e.variation || 'Base')) return false
+    if (filterMode === 'owned' && !owned.has(e.id)) return false
+    if (filterMode === 'missing' && owned.has(e.id)) return false
+    return true
+  })
   const ownedCount = entries.filter(e => owned.has(e.id)).length
+
+  function toggleVariation(name: string) {
+    setSelectedVariations(prev => {
+      const next = new Set(prev || allVariationNames)
+      if (next.has(name)) next.delete(name)
+      else next.add(name)
+      return next
+    })
+  }
 
   // Regroupe par variation pour afficher un séparateur avant chaque groupe
   const groups: { name: string; items: Entry[] }[] = []
@@ -111,16 +130,42 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         @page { margin: 14mm 10mm; }
       `}</style>
 
-      <div className="no-print" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
-        <button onClick={() => window.print()}
-          style={{ padding: '10px 20px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
-          🖨️ {t('setlistprint_button')}
-        </button>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#666', cursor: userId ? 'pointer' : 'default', opacity: userId ? 1 : 0.5 }}>
-          <input type="checkbox" checked={onlyMissing} disabled={!userId} onChange={e => setOnlyMissing(e.target.checked)} />
-          {t('setlistprint_only_missing')}
-        </label>
-        {!userId && <span style={{ fontSize: 12, color: '#aaa' }}>{t('setlistprint_login_hint')}</span>}
+      <div className="no-print" style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 20 }}>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+          <button onClick={() => window.print()}
+            style={{ padding: '10px 20px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+            🖨️ {t('setlistprint_button')}
+          </button>
+          <div style={{ display: 'flex', gap: 4 }}>
+            {(['all', 'owned', 'missing'] as const).map(f => (
+              <button key={f} onClick={() => setFilterMode(f)} disabled={!userId}
+                style={{ padding: '9px 14px', border: '1.5px solid', borderColor: filterMode === f ? '#003DA6' : '#e0e0e0', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: userId ? 'pointer' : 'default', background: filterMode === f ? '#003DA6' : 'white', color: filterMode === f ? 'white' : '#333', opacity: userId ? 1 : 0.5 }}>
+                {f === 'all' ? t('setlistdetail_filter_all') : f === 'owned' ? t('setlistdetail_filter_owned') : t('setlistdetail_filter_missing')}
+              </button>
+            ))}
+          </div>
+          {!userId && <span style={{ fontSize: 12, color: '#aaa' }}>{t('setlistprint_login_hint')}</span>}
+        </div>
+
+        {allVariationNames.length > 1 && (
+          <div style={{ border: '1.5px solid #e8e8e8', borderRadius: 10, padding: '12px 16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+              <span style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#888' }}>{t('setlistprint_variations_label')}</span>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button onClick={() => setSelectedVariations(new Set(allVariationNames))} style={{ border: 'none', background: 'none', color: '#003DA6', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>{t('setlistprint_select_all')}</button>
+                <button onClick={() => setSelectedVariations(new Set())} style={{ border: 'none', background: 'none', color: '#888', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>{t('setlistprint_select_none')}</button>
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 16px' }}>
+              {allVariationNames.map(name => (
+                <label key={name} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#333', cursor: 'pointer' }}>
+                  <input type="checkbox" checked={activeVariations.has(name)} onChange={() => toggleVariation(name)} />
+                  {name}
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: 18, borderBottom: '2px solid #111', paddingBottom: 14 }}>
