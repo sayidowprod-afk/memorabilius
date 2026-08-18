@@ -1407,7 +1407,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     </span>
                   )
                 })}
-                {profile?.id && <LevelBadge userId={profile.id} statsTotal={profile?.stats_total || 0} />}
+                {profile?.id && <LevelBadge userId={profile.id} />}
               </div>
 
               {profile?.bio && (
@@ -2477,10 +2477,21 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           }}
           onAddToMyGallery={!isOwner && currentUser ? async () => {
             if (addedCards.has(popup.f)) return 'duplicate'
+            // "Déjà dans ma collection" doit exiger une correspondance exacte sur toutes
+            // les infos de la carte, pas juste le nom + collection — sinon deux cartes du
+            // même joueur mais d'année/marque/tirage différents se marquaient à tort comme
+            // déjà possédées.
             let dupQuery = supabase.from('cartes_manuelles')
               .select('id').eq('user_id', currentUser).eq('nom', popup.n).eq('collection', popup.s || '')
+              .eq('auto', !!popup.auto).eq('rc', !!popup.rc).eq('patch', !!popup.patch)
             if (popup.v) dupQuery = dupQuery.eq('variation', popup.v)
             else dupQuery = (dupQuery as any).is('variation', null)
+            if (popup.y) dupQuery = dupQuery.eq('annee', popup.y)
+            else dupQuery = (dupQuery as any).is('annee', null)
+            if (popup.br) dupQuery = dupQuery.eq('marque', popup.br)
+            else dupQuery = (dupQuery as any).is('marque', null)
+            if (popup.num) dupQuery = dupQuery.eq('num', popup.num)
+            else dupQuery = (dupQuery as any).is('num', null)
             const { data: existing } = await dupQuery.limit(1)
             if (existing && existing.length > 0) {
               setAddedCards(prev => new Set(prev).add(popup.f))

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { awardLikeXPIfUnderCap } from '@/lib/xp'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,6 +21,8 @@ export async function POST(req: NextRequest) {
   const { data: recentLike } = await supabaseAdmin.from('card_likes')
     .select('card_key').eq('liker_user_id', user.id).eq('gallery_user_id', toUserId).gte('created_at', since).limit(1).maybeSingle()
   if (!recentLike) return NextResponse.json({ error: 'No recent like found' }, { status: 403 })
+
+  await awardLikeXPIfUnderCap(supabaseAdmin, toUserId)
 
   const { data: profile } = await supabaseAdmin
     .from('profiles').select('display_name').eq('id', user.id).single()

@@ -643,7 +643,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const { data: { user } } = await supabase.auth.getUser()
     if (!user || user.id !== userId) { router.push('/connexion'); return }
 
-    // Doublon = nom + année + marque + numérotation identiques (tout doit matcher, ex: 3/25 ≠ 5/25)
+    // Doublon = nom + année + marque + collection + variation + numérotation + RC/auto/patch
+    // identiques (tout doit matcher, ex: "Les Bleus Blue 11/25" ≠ "Les Bleus Red 11/25" même
+    // si le reste est pareil — plusieurs parallèles d'un set peuvent partager le même tirage).
     // Si nom/année/marque est vide, on ne peut pas conclure → on laisse passer
     let dups: DupCard[] | null = null
     if (form.nom.trim() && form.annee && form.marque.trim()) {
@@ -654,7 +656,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         .ilike('nom', form.nom.trim())
         .eq('annee', parseInt(form.annee))
         .ilike('marque', form.marque.trim())
+        .eq('rc', form.rc).eq('auto', form.auto).eq('patch', form.patch)
       q = form.num.trim() ? q.eq('num', form.num.trim()) : q.is('num', null)
+      q = form.collection.trim() ? q.ilike('collection', form.collection.trim()) : q.is('collection', null)
+      q = form.variation.trim() ? q.ilike('variation', form.variation.trim()) : q.is('variation', null)
       const { data } = await q.limit(5)
       dups = data as DupCard[] | null
     }

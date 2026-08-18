@@ -1,30 +1,24 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
-import { BADGE_CATEGORIES } from '@/lib/badgeDefinitions'
-import { computeXP, levelFromXP, type LevelInfo } from '@/lib/leveling'
+import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 
-// Niveau affiché à côté du pseudo sur la galerie publique — même calcul que
-// le dashboard perso (voir leveling.ts), mais recalculé pour le profil
-// consulté (statsTotal vient déjà du parent, badges/teams via un fetch dédié).
-export default function LevelBadge({ userId, statsTotal }: { userId: string; statsTotal: number }) {
+// Niveau affiché à côté du pseudo sur la galerie publique — même source que
+// le dashboard perso : le total XP événementiel (xp_events, voir xp.ts),
+// public via la fonction SECURITY DEFINER get_user_xp_total.
+export default function LevelBadge({ userId }: { userId: string }) {
   const [level, setLevel] = useState<LevelInfo | null>(null)
   const [showInfo, setShowInfo] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let cancelled = false
-    supabase.rpc('get_user_badge_data', { p_user_id: userId }).then(({ data }) => {
+    supabase.rpc('get_user_xp_total', { p_user_id: userId }).then(({ data }) => {
       if (cancelled) return
-      const b = data?.[0]
-      const badgesEarned = b ? BADGE_CATEGORIES.reduce((sum, cat) => {
-        const v = ({ cartes: b.stat_total, rc: b.stat_rc, patch: b.stat_patch, num: b.stat_num, mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count } as Record<string, number>)[cat.id] ?? 0
-        return sum + cat.tiers.filter(t => v >= t.threshold).length
-      }, 0) : 0
-      setLevel(levelFromXP(computeXP(statsTotal, badgesEarned, b?.teams_count ?? 0)))
+      setLevel(levelFromXP(data ?? 0))
     })
     return () => { cancelled = true }
-  }, [userId, statsTotal])
+  }, [userId])
 
   useEffect(() => {
     if (!showInfo) return
@@ -71,7 +65,7 @@ export default function LevelBadge({ userId, statsTotal }: { userId: string; sta
           boxShadow: '0 12px 32px rgba(0,0,0,0.18)', padding: 12,
           fontSize: 10.5, color: 'var(--text2, #555)', lineHeight: 1.6,
         }}>
-          XP gagné : <strong style={{ color: 'var(--text, #121212)' }}>+2</strong> par carte ajoutée · <strong style={{ color: 'var(--text, #121212)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text, #121212)' }}>+20</strong> par team rejointe
+          XP gagné : <strong style={{ color: 'var(--text, #121212)' }}>+1 à +19</strong> par carte selon sa rareté (RC/auto/patch/num) · <strong style={{ color: 'var(--text, #121212)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text, #121212)' }}>+20</strong> par team rejointe · <strong style={{ color: 'var(--text, #121212)' }}>+10</strong> par échange conclu · bonus de streak et de likes reçus
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { awardXP, checkAndAwardBadgeXP, xpForCard } from '@/lib/xp'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -42,6 +43,9 @@ export async function POST(req: NextRequest) {
       p_patch:   patch ? 1 : 0,
       p_num:     num   ? 1 : 0,
     })
+
+    await awardXP(supabase, userId, 'card_added', xpForCard({ rc, auto, patch, num }))
+    await checkAndAwardBadgeXP(supabase, userId)
 
     return NextResponse.json({ ok: true })
   } catch (err) {

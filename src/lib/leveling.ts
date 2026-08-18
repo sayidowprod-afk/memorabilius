@@ -1,11 +1,7 @@
-// Niveau global du compte — dérivé des stats déjà suivies (cartes, badges,
-// teams) plutôt qu'un journal d'événements séparé : pas de nouvelle table,
-// pas de point d'écriture à ajouter dans chaque route API existante, et le
-// niveau reste toujours cohérent avec les données réelles de l'utilisateur.
-export function computeXP(statsTotal: number, badgesEarned: number, teamsCount: number): number {
-  return statsTotal * 2 + badgesEarned * 15 + teamsCount * 20
-}
-
+// Niveau global du compte — dérivé du total XP événementiel (voir
+// src/lib/xp.ts et la table xp_events), jamais recalculé depuis les stats
+// courantes : l'XP ne redescend donc jamais, même si l'utilisateur supprime
+// des cartes ou quitte une team ensuite.
 export interface LevelInfo {
   level: number
   xp: number

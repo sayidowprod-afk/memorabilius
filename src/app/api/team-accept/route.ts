@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { awardXP, checkAndAwardBadgeXP, XP_AWARDS } from '@/lib/xp'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -40,6 +41,8 @@ export async function POST(req: NextRequest) {
       if (memberError) {
         return NextResponse.json({ error: memberError.message }, { status: 500 })
       }
+      await awardXP(supabase, userId, 'team_joined', XP_AWARDS.TEAM_JOINED)
+      await checkAndAwardBadgeXP(supabase, userId)
     }
 
     const { error: candError } = await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)

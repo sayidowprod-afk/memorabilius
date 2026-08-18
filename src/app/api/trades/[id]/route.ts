@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { awardXP, XP_AWARDS } from '@/lib/xp'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -35,6 +36,11 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
     .from('trade_offers')
     .update({ status: statusMap[action], updated_at: new Date().toISOString() })
     .eq('id', trade.id)
+
+  if (action === 'accept') {
+    await awardXP(supabaseAdmin, trade.sender_id, 'trade_completed', XP_AWARDS.TRADE_COMPLETED)
+    await awardXP(supabaseAdmin, trade.receiver_id, 'trade_completed', XP_AWARDS.TRADE_COMPLETED)
+  }
 
   const notifyUserId = action === 'cancel' ? trade.receiver_id : trade.sender_id
   const { data: actorProfile } = await supabaseAdmin

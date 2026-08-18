@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
 import { hapticTap } from '@/lib/haptics'
 import { BADGE_CATEGORIES, type BadgeCategory, type BadgeTier } from '@/lib/badgeDefinitions'
-import { computeXP, levelFromXP, type LevelInfo } from '@/lib/leveling'
+import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 import { currentChallenge, startOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
 
 // TODO: version de test — copie encore en dur (FR) plutôt que via t('...').
@@ -58,13 +58,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     let cancelled = false
     ;(async () => {
       const challenge = currentChallenge()
-      const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }] = await Promise.all([
+      const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.all([
         supabase.from('profiles').select('display_name, avatar_url, stats_total').eq('id', user.id).single(),
         supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(1),
         supabase.rpc('get_user_badge_data', { p_user_id: user.id }),
         supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('auto', true),
         supabase.rpc('bump_streak', { p_user_id: user.id }),
         supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()),
+        supabase.rpc('get_user_xp_total', { p_user_id: user.id }),
       ])
       if (cancelled) return
 
@@ -74,11 +75,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count,
       }) : null
 
-      const badgesEarned = b ? BADGE_CATEGORIES.reduce((sum, cat) => {
-        const v = { cartes: b.stat_total, rc: b.stat_rc, patch: b.stat_patch, num: b.stat_num, mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count }[cat.id] ?? 0
-        return sum + cat.tiers.filter(t => v >= t.threshold).length
-      }, 0) : 0
-      const level = levelFromXP(computeXP(profile?.stats_total || 0, badgesEarned, b?.teams_count ?? 0))
+      const level = levelFromXP(xpTotal ?? 0)
 
       const challengeProgress = (weekCards || []).filter(c => challenge.match({ rc: c.rc, auto: c.auto, patch: c.patch, num: c.num })).length
 
@@ -194,7 +191,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           </div>
         </div>
         <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--border, #eee)', lineHeight: 1.6 }}>
-          XP gagné : <strong style={{ color: 'var(--text2, #777)' }}>+2</strong> par carte ajoutée · <strong style={{ color: 'var(--text2, #777)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text2, #777)' }}>+20</strong> par team rejointe
+          XP gagné : <strong style={{ color: 'var(--text2, #777)' }}>+1 à +19</strong> par carte selon sa rareté (RC/auto/patch/num) · <strong style={{ color: 'var(--text2, #777)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text2, #777)' }}>+20</strong> par team rejointe · <strong style={{ color: 'var(--text2, #777)' }}>+10</strong> par échange conclu · bonus de streak et de likes reçus
         </div>
       </div>
 
