@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import { recordJsError } from '@/lib/crashlytics'
 
 // À chaque déploiement, les fichiers _next/static/<buildId>/... changent. Un onglet
 // (ou l'app native, qui charge le même site) resté ouvert PENDANT un déploiement garde
@@ -24,11 +25,16 @@ function reloadOnce() {
 
 export default function ChunkErrorReload() {
   useEffect(() => {
+    // Autant profiter de ces écouteurs globaux pour faire remonter TOUTE erreur JS non
+    // interceptée dans Crashlytics (pas seulement les erreurs de chunk) — c'est la seule
+    // visibilité qu'on a sur ce qui casse réellement dans la WebView en production.
     const onError = (event: ErrorEvent) => {
+      recordJsError(event.error || event.message, 'window.onerror')
       if (CHUNK_ERROR_PATTERN.test(event.message || '')) reloadOnce()
     }
     const onRejection = (event: PromiseRejectionEvent) => {
       const msg = event.reason?.message || String(event.reason || '')
+      recordJsError(event.reason, 'unhandledrejection')
       if (CHUNK_ERROR_PATTERN.test(msg)) reloadOnce()
     }
     window.addEventListener('error', onError)

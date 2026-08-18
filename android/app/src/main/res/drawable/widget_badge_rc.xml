@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Même orange que le badge RC affiché dans la galerie web, pour rester cohérent
+     avec le reste de l'app plutôt qu'inventer une nouvelle palette pour le widget. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#E67E22" />
+    <corners android:radius="5dp" />
+</shape>

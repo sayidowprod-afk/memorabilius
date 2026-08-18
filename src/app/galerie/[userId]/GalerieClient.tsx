@@ -755,6 +755,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         playerName: lastAddedCard.n || t('gallery_default_gallery_name'),
         totalCards: cards.length,
         galleryUrl: `https://www.memorabilius.fr/galerie/${userId}`,
+        team: lastAddedCard.t || '',
+        year: lastAddedCard.y || '',
+        rc: !!lastAddedCard.rc,
+        auto: !!lastAddedCard.auto,
+        patch: !!lastAddedCard.patch,
       })
     }
   }, [isOwner, loaded, lastAddedKey, userId])

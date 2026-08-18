@@ -2,7 +2,7 @@
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, use, useCallback } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
@@ -14,6 +14,7 @@ const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐'
 export default function TeamPage({ params }: { params: Promise<{ teamId: string }> }) {
   const { teamId } = use(params)
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { t, lang } = useLang()
   const { dark } = useTheme()
 
@@ -37,6 +38,13 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [deletePostConfirm, setDeletePostConfirm] = useState<number | null>(null)
   const [excludeConfirm, setExcludeConfirm] = useState<string | null>(null)
   const [galerieLimit, setGalerieLimit] = useState(48)
+
+  // Ouvre directement l'onglet candidatures quand on arrive depuis la notification
+  // "nouvelle candidature" envoyée au chef — sinon le lien renvoie sur "feed" et la
+  // demande reste aussi invisible qu'avant.
+  useEffect(() => {
+    if (searchParams.get('tab') === 'candidatures') setActiveTab('candidatures')
+  }, [])
 
   const shareTeam = () => {
     const url = `${window.location.origin}/teams/${teamId}`
@@ -385,7 +393,17 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     // Supprimer une éventuelle ancienne candidature (bug d'acceptation) avant d'en créer une nouvelle
     await supabase.from('team_candidatures').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser).neq('statut', 'en_attente')
     const { error } = await supabase.from('team_candidatures').insert({ team_id: parseInt(teamId), user_id: currentUser })
-    if (!error) setHasCandidature(true)
+    if (!error) {
+      setHasCandidature(true)
+      // Best-effort : le chef ne recevait jusqu'ici aucun signal (ni notification, ni
+      // push) qu'une candidature venait d'arriver, il fallait rouvrir la page par hasard.
+      const { data: { session } } = await supabase.auth.getSession()
+      fetch('/api/team-join-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+        body: JSON.stringify({ teamId: parseInt(teamId) }),
+      }).catch(() => {})
+    }
   }
 
   const accepterCandidature = async (cand: any) => {

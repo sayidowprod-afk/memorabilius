@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.RemoteViews;
 
@@ -49,14 +50,57 @@ public class GalleryWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+        // Beaucoup de lanceurs (dont Nothing OS) imposent une cellule sur 2 rangées
+        // minimum même si targetCellHeight="1" — sans ce hook la mise en page reste
+        // celle sur une ligne, centrée dans une cellule bien plus haute qu'elle, ce
+        // qui laisse un grand bloc de dégradé vide au-dessus du contenu.
+        updateWidget(context, appWidgetManager, appWidgetId);
+    }
+
+    // 1 rangée (~90dp déclaré) reste sur la mise en page compacte horizontale ; à partir
+    // de 2 rangées, une mise en page verticale plus dense évite le vide au-dessus.
+    private static int chooseLayout(AppWidgetManager mgr, int id) {
+        Bundle options = mgr.getAppWidgetOptions(id);
+        int minHeightDp = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 0);
+        return minHeightDp >= 130 ? R.layout.widget_gallery_tall : R.layout.widget_gallery;
+    }
+
+    // "" si vide, sinon les segments non vides joints par le séparateur — évite les
+    // "· ·" ou " • " qui pendent quand un champ (année, set...) n'est pas renseigné.
+    private static String join(String sep, String... parts) {
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) {
+            if (p == null || p.isEmpty()) continue;
+            if (sb.length() > 0) sb.append(sep);
+            sb.append(p);
+        }
+        return sb.toString();
+    }
+
     private static void updateWidget(Context context, AppWidgetManager mgr, int id) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_gallery);
+        RemoteViews views = new RemoteViews(context.getPackageName(), chooseLayout(mgr, id));
 
         String name = prefs.getString("last_card_name", "");
         int total = prefs.getInt("total_cards", 0);
         views.setTextViewText(R.id.widget_player_name, name == null || name.isEmpty() ? "Ma galerie" : name);
         views.setTextViewText(R.id.widget_stats, total + (total == 1 ? " carte" : " cartes"));
+
+        // Cet id n'existe que dans widget_gallery_tall.xml — RemoteViews ignore
+        // silencieusement une action sur un id absent de la mise en page compacte.
+        String team = prefs.getString("last_card_team", "");
+        String year = prefs.getString("last_card_year", "");
+        views.setTextViewText(R.id.widget_card_meta, join(" • ", team, year));
+
+        boolean rc = prefs.getBoolean("last_card_rc", false);
+        boolean auto = prefs.getBoolean("last_card_auto", false);
+        boolean patch = prefs.getBoolean("last_card_patch", false);
+        views.setViewVisibility(R.id.widget_badge_rc, rc ? android.view.View.VISIBLE : android.view.View.GONE);
+        views.setViewVisibility(R.id.widget_badge_auto, auto ? android.view.View.VISIBLE : android.view.View.GONE);
+        views.setViewVisibility(R.id.widget_badge_patch, patch ? android.view.View.VISIBLE : android.view.View.GONE);
+        views.setViewVisibility(R.id.widget_badges_row, (rc || auto || patch) ? android.view.View.VISIBLE : android.view.View.GONE);
 
         String imagePath = prefs.getString("last_card_image_path", null);
         if (imagePath != null) {

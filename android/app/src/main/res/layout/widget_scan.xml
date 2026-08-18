@@ -10,10 +10,13 @@
     <FrameLayout
         android:layout_width="40dp"
         android:layout_height="40dp">
-        <View
+        <!-- ImageView et non View brute : RemoteViews rejette android.view.View
+             ("Class not allowed to be inflated"), seule une liste blanche de vues passe. -->
+        <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/widget_icon_badge" />
+            android:background="@drawable/widget_icon_badge"
+            android:contentDescription="@null" />
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"

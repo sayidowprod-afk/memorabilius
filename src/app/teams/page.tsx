@@ -62,6 +62,13 @@ export default function Teams() {
     } else {
       setHasCandidature(prev => new Set([...prev, teamId]))
       toast.success(t('teams_request_sent'))
+      // Best-effort : sans ça le chef n'a aucun signal qu'une candidature vient d'arriver.
+      const { data: { session } } = await supabase.auth.getSession()
+      fetch('/api/team-join-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+        body: JSON.stringify({ teamId }),
+      }).catch(() => {})
     }
     setLoading(false)
   }

@@ -441,17 +441,6 @@ img {
 body.native-app {
   -webkit-tap-highlight-color: transparent;
 }
-body.native-app * {
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
-}
-body.native-app input,
-body.native-app textarea,
-body.native-app [contenteditable="true"] {
-  -webkit-user-select: text;
-  user-select: text;
-}
 /* opacity uniquement — un transform ici deviendrait le containing block de
    tout descendant position:fixed (modales plein ecran type Viewer3D) et le
    ferait s'afficher hors-viewport au lieu de plein ecran. */

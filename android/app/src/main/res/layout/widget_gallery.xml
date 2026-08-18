@@ -17,12 +17,15 @@
 
         <!-- Ombre portée décalée derrière la carte : le conteneur (60x82) est un peu
              plus grand que l'image (56x78), donc l'ancrer bottom|end décale naturellement
-             l'ombre de 4dp en diagonale sans marge négative (peu fiable en RemoteViews). -->
-        <View
+             l'ombre de 4dp en diagonale sans marge négative (peu fiable en RemoteViews).
+             ImageView et non View brute : RemoteViews a une liste blanche de classes
+             inflables et rejette android.view.View ("Class not allowed to be inflated"). -->
+        <ImageView
             android:layout_width="56dp"
             android:layout_height="78dp"
             android:layout_gravity="bottom|end"
-            android:background="@drawable/widget_card_shadow" />
+            android:background="@drawable/widget_card_shadow"
+            android:contentDescription="@null" />
 
         <ImageView
             android:id="@+id/widget_card_image"

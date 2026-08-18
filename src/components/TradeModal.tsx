@@ -4,12 +4,14 @@ import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 
 interface CardInfo {
   id: string
   nom: string
   annee: string
   marque: string
+  equipe: string
   image_recto: string | null
   rc: boolean
   auto: boolean
@@ -21,12 +23,14 @@ interface Filters {
   search: string
   annee: string
   marque: string
+  equipe: string
+  sport: Sport | ''
   rc: boolean
   auto: boolean
   patch: boolean
 }
 
-const emptyFilters = (): Filters => ({ search: '', annee: '', marque: '', rc: false, auto: false, patch: false })
+const emptyFilters = (): Filters => ({ search: '', annee: '', marque: '', equipe: '', sport: '', rc: false, auto: false, patch: false })
 
 interface TradeModalProps {
   targetCard: { id: string; nom: string; annee: string; marque: string; image_recto?: string }
@@ -48,6 +52,7 @@ function parseCSVCards(csvText: string): CardInfo[] {
       nom: (c[2] || '').trim(),
       annee: (c[4] || '').trim(),
       marque: (c[5] || '').trim(),
+      equipe: (c[3] || '').trim(),
       image_recto: imageUrl,
       auto: c[9]?.toLowerCase().includes('oui') || false,
       rc: c[10]?.toLowerCase().includes('oui') || false,
@@ -65,9 +70,15 @@ function applyFilters(cards: CardInfo[], f: Filters): CardInfo[] {
     if (f.patch && !c.patch) return false
     if (f.annee && c.annee !== f.annee) return false
     if (f.marque && c.marque !== f.marque) return false
+    if (f.equipe && c.equipe !== f.equipe) return false
+    if (f.sport && inferSportFromTeamName(c.equipe) !== f.sport) return false
     if (f.search.trim()) {
       const q = f.search.toLowerCase()
-      if (!c.nom.toLowerCase().includes(q) && !c.annee.includes(q) && !c.marque.toLowerCase().includes(q)) return false
+      const nom = (c.nom || '').toLowerCase()
+      const annee = c.annee || ''
+      const marque = (c.marque || '').toLowerCase()
+      const equipe = (c.equipe || '').toLowerCase()
+      if (!nom.includes(q) && !annee.includes(q) && !marque.includes(q) && !equipe.includes(q)) return false
     }
     return true
   })
@@ -129,7 +140,9 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
   const { t } = useLang()
   const années = useMemo(() => [...new Set(cards.map(c => c.annee).filter(Boolean))].sort().reverse(), [cards])
   const marques = useMemo(() => [...new Set(cards.map(c => c.marque).filter(Boolean))].sort(), [cards])
-  const hasActive = filters.rc || filters.auto || filters.patch || filters.annee || filters.marque || filters.search
+  const équipes = useMemo(() => [...new Set(cards.map(c => c.equipe).filter(Boolean))].sort(), [cards])
+  const sports = useMemo(() => [...new Set(cards.map(c => inferSportFromTeamName(c.equipe)).filter((s): s is Sport => !!s))], [cards])
+  const hasActive = filters.rc || filters.auto || filters.patch || filters.annee || filters.marque || filters.equipe || filters.sport || filters.search
 
   const Tag = ({ label, key2, bg }: { label: string; key2: 'rc' | 'auto' | 'patch'; bg: string }) => (
     <button onClick={() => onChange({ ...filters, [key2]: !filters[key2] })} style={{
@@ -155,6 +168,20 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
           {marques.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
       )}
+      {sports.length > 0 && (
+        <select value={filters.sport} onChange={e => onChange({ ...filters, sport: e.target.value as Sport | '' })}
+          style={{ ...selStyle, borderColor: filters.sport ? '#003DA6' : '#e0e0e0' }}>
+          <option value="">Sport</option>
+          {sports.map(sp => <option key={sp} value={sp}>{SPORT_LABELS[sp]}</option>)}
+        </select>
+      )}
+      {équipes.length > 0 && (
+        <select value={filters.equipe} onChange={e => onChange({ ...filters, equipe: e.target.value })}
+          style={{ ...selStyle, borderColor: filters.equipe ? '#003DA6' : '#e0e0e0' }}>
+          <option value="">Équipe</option>
+          {équipes.map(eq => <option key={eq} value={eq}>{eq}</option>)}
+        </select>
+      )}
       <Tag label="RC" key2="rc" bg="#e67e22" />
       <Tag label="Auto" key2="auto" bg="#2e7d32" />
       <Tag label="Patch" key2="patch" bg="#1976d2" />
@@ -173,7 +200,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   const { t } = useLang()
 
   const [targetCards, setTargetCards] = useState<CardInfo[]>([{
-    id: targetCard.id, nom: targetCard.nom, annee: targetCard.annee, marque: targetCard.marque,
+    id: targetCard.id, nom: targetCard.nom, annee: targetCard.annee, marque: targetCard.marque, equipe: '',
     image_recto: targetCard.image_recto || null, rc: false, auto: false, patch: false, isManuelle: true,
   }])
   const [targetSelected, setTargetSelected] = useState<Set<string>>(new Set([targetCard.id]))
@@ -192,7 +219,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   const fetchTargetCards = useCallback(async () => {
     const [{ data: manuelles }, { data: profile }, { data: privees }] = await Promise.all([
       supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto, rc, auto, patch')
+        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch')
         .eq('user_id', targetUserId)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', targetUserId).single(),
@@ -201,7 +228,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
     const privateKeys = new Set((privees || []).map((p: any) => p.card_key))
     const manuelCards: CardInfo[] = (manuelles || [])
       .filter(c => !privateKeys.has(c.image_recto))
-      .map(c => ({ ...c, isManuelle: true }))
+      .map(c => ({ ...c, nom: c.nom || '', annee: c.annee || '', marque: c.marque || '', equipe: c.equipe || '', isManuelle: true }))
     let csvCards: CardInfo[] = []
     if (profile?.lien_csv) {
       try {
@@ -218,12 +245,12 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
     if (!session) return
     const [{ data: manuelles }, { data: profile }] = await Promise.all([
       supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto, rc, auto, patch')
+        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch')
         .eq('user_id', session.user.id)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', session.user.id).single(),
     ])
-    const manuelCards: CardInfo[] = (manuelles || []).map(c => ({ ...c, isManuelle: true }))
+    const manuelCards: CardInfo[] = (manuelles || []).map(c => ({ ...c, nom: c.nom || '', annee: c.annee || '', marque: c.marque || '', equipe: c.equipe || '', isManuelle: true }))
     let csvCards: CardInfo[] = []
     if (profile?.lien_csv) {
       try {

@@ -23,6 +23,11 @@ public class WidgetBridgePlugin extends Plugin {
         String playerName = call.getString("playerName", "");
         Integer totalCards = call.getInt("totalCards", 0);
         String galleryUrl = call.getString("galleryUrl", "https://www.memorabilius.fr");
+        String team = call.getString("team", "");
+        String year = call.getString("year", "");
+        boolean rc = Boolean.TRUE.equals(call.getBoolean("rc", false));
+        boolean auto = Boolean.TRUE.equals(call.getBoolean("auto", false));
+        boolean patch = Boolean.TRUE.equals(call.getBoolean("patch", false));
 
         Context context = getContext();
 
@@ -36,6 +41,11 @@ public class WidgetBridgePlugin extends Plugin {
             editor.putString("last_card_name", playerName);
             editor.putInt("total_cards", totalCards == null ? 0 : totalCards);
             editor.putString("gallery_url", galleryUrl);
+            editor.putString("last_card_team", team);
+            editor.putString("last_card_year", year);
+            editor.putBoolean("last_card_rc", rc);
+            editor.putBoolean("last_card_auto", auto);
+            editor.putBoolean("last_card_patch", patch);
             if (savedPath != null) editor.putString("last_card_image_path", savedPath);
             editor.apply();
 

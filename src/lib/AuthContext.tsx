@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
 import type { Session, User } from '@supabase/supabase-js'
+import { setCrashlyticsUserId } from '@/lib/crashlytics'
 
 interface AuthState {
   session: Session | null
@@ -20,6 +21,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // component calls getSession(), preventing the race condition that requires F5.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setState({ session, user: session?.user ?? null, loading: false })
+      setCrashlyticsUserId(session?.user?.id ?? null)
     })
 
     return () => subscription.unsubscribe()
