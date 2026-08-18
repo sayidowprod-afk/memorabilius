@@ -20,14 +20,20 @@ SELECT cm.user_id, 'backfill_cards',
       + (CASE WHEN cm.num IS NOT NULL AND cm.num <> '' THEN 3 ELSE 0 END))::int,
   '{"backfill": true}'::jsonb
 FROM cartes_manuelles cm
-WHERE NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = cm.user_id AND e.type = 'backfill_cards')
+WHERE NOT EXISTS (
+  SELECT 1 FROM xp_events e
+  WHERE e.user_id = cm.user_id AND e.type = 'backfill_cards'
+)
 GROUP BY cm.user_id;
 
 -- Teams rejointes
 INSERT INTO xp_events (user_id, type, amount, meta)
 SELECT tm.user_id, 'backfill_teams', COUNT(*)::int * 20, '{"backfill": true}'::jsonb
 FROM team_members tm
-WHERE NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = tm.user_id AND e.type = 'backfill_teams')
+WHERE NOT EXISTS (
+  SELECT 1 FROM xp_events e
+  WHERE e.user_id = tm.user_id AND e.type = 'backfill_teams'
+)
 GROUP BY tm.user_id;
 
 -- Échanges conclus (compte pour les deux parties d'un échange accepté)
@@ -38,7 +44,10 @@ FROM (
   UNION ALL
   SELECT receiver_id AS uid FROM trade_offers WHERE status = 'accepted'
 ) t
-WHERE NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = t.uid AND e.type = 'backfill_trades')
+WHERE NOT EXISTS (
+  SELECT 1 FROM xp_events e
+  WHERE e.user_id = t.uid AND e.type = 'backfill_trades'
+)
 GROUP BY t.uid;
 
 -- Likes reçus (pas de plafond ici, contrairement au flux temps réel : c'est
@@ -46,7 +55,10 @@ GROUP BY t.uid;
 INSERT INTO xp_events (user_id, type, amount, meta)
 SELECT cl.gallery_user_id, 'backfill_likes', COUNT(*)::int * 2, '{"backfill": true}'::jsonb
 FROM card_likes cl
-WHERE NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = cl.gallery_user_id AND e.type = 'backfill_likes')
+WHERE NOT EXISTS (
+  SELECT 1 FROM xp_events e
+  WHERE e.user_id = cl.gallery_user_id AND e.type = 'backfill_likes'
+)
 GROUP BY cl.gallery_user_id;
 
 -- Paliers de streak déjà atteints (sur longest_streak, pas le streak courant)
@@ -59,7 +71,10 @@ SELECT p.id, 'backfill_streak',
   jsonb_build_object('longest_streak', p.longest_streak)
 FROM profiles p
 WHERE COALESCE(p.longest_streak, 0) >= 7
-  AND NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = p.id AND e.type = 'backfill_streak');
+  AND NOT EXISTS (
+    SELECT 1 FROM xp_events e
+    WHERE e.user_id = p.id AND e.type = 'backfill_streak'
+  );
 
 -- Badges actuellement débloqués → +15 chacun, et on les marque comme "vus"
 -- dans profiles.xp_badges_seen pour que checkAndAwardBadgeXP() ne les
@@ -75,7 +90,10 @@ DECLARE
 BEGIN
   FOR p IN
     SELECT pr.id FROM profiles pr
-    WHERE NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = pr.id AND e.type = 'backfill_badges')
+    WHERE NOT EXISTS (
+      SELECT 1 FROM xp_events e
+      WHERE e.user_id = pr.id AND e.type = 'backfill_badges'
+    )
   LOOP
     SELECT * INTO b FROM get_user_badge_data(p.id) LIMIT 1;
     CONTINUE WHEN b IS NULL;
