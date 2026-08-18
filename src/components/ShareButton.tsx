@@ -11,6 +11,12 @@ interface Props {
   subtitle?: string
   compact?: boolean
   buttonStyle?: React.CSSProperties
+  // Contrôle externe (ex: déclenché depuis un menu "···") — si `open` est
+  // fourni, le composant devient contrôlé et n'affiche plus son propre bouton
+  // à moins que hideTrigger soit explicitement false.
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  hideTrigger?: boolean
 }
 
 const BRAND = '#003DA6'
@@ -29,8 +35,13 @@ function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h
 }
 
 
-export default function ShareButton({ url, title, subtitle, compact, buttonStyle }: Props) {
-  const [showModal, setShowModal] = useState(false)
+export default function ShareButton({ url, title, subtitle, compact, buttonStyle, open, onOpenChange, hideTrigger }: Props) {
+  const [internalOpen, setInternalOpen] = useState(false)
+  const showModal = open !== undefined ? open : internalOpen
+  const setShowModal = (v: boolean) => {
+    if (onOpenChange) onOpenChange(v)
+    if (open === undefined) setInternalOpen(v)
+  }
   const [copied, setCopied] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { t } = useLang()
@@ -150,14 +161,16 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
 
   return (
     <>
-      <button onClick={openShare} style={buttonStyle ?? {
-        background: 'none', border: '1px solid #ddd', borderRadius: 8,
-        padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer',
-        fontSize: compact ? 16 : 13, fontWeight: 700,
-        color: '#666', display: 'flex', alignItems: 'center', gap: 6,
-      }}>
-        {compact ? '🔗' : t('gallery_share')}
-      </button>
+      {!hideTrigger && (
+        <button onClick={openShare} style={buttonStyle ?? {
+          background: 'none', border: '1px solid #ddd', borderRadius: 8,
+          padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer',
+          fontSize: compact ? 16 : 13, fontWeight: 700,
+          color: '#666', display: 'flex', alignItems: 'center', gap: 6,
+        }}>
+          {compact ? '🔗' : t('gallery_share')}
+        </button>
+      )}
 
       {showModal && (
         <div onClick={() => setShowModal(false)} style={{

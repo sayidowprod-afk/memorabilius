@@ -8,6 +8,23 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+// Résout le paramètre de route (UUID ou slug) vers l'UUID réel une seule
+// fois, ici, avant que quoi que ce soit d'autre ne s'en serve. Bug trouvé en
+// testant le partage par QR : GalerieClient utilisait le userId brut (donc le
+// slug tel quel) pour filtrer ses requêtes user_id — une UUID column ne
+// matche jamais une chaîne de type slug, donc toute visite via une URL en
+// slug affichait une galerie vide et rendait les actions (suppression,
+// bascule privé, renommage de tag...) silencieusement no-op. En résolvant
+// ici et en ne passant que l'UUID en aval, tout le composant redevient
+// correct sans devoir traquer chaque usage individuellement.
+async function resolveUserId(rawUserId: string): Promise<string> {
+  if (UUID_RE.test(rawUserId)) return rawUserId
+  const { data } = await supabase.from('profiles').select('id').eq('slug', rawUserId).single()
+  return data?.id || rawUserId
+}
+
 export async function generateMetadata({
   params,
   searchParams,
@@ -15,9 +32,10 @@ export async function generateMetadata({
   params: Promise<{ userId: string }>
   searchParams: Promise<{ card?: string }>
 }): Promise<Metadata> {
-  const { userId } = await params
+  const { userId: rawUserId } = await params
   const { card } = await searchParams
   const cardUrl = card ? decodeURIComponent(card) : null
+  const userId = await resolveUserId(rawUserId)
 
   const { data: profile } = await supabase
     .from('profiles')
@@ -75,8 +93,6 @@ export async function generateMetadata({
 
 export interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-
 // Aperçu purement visuel affiché pendant le chargement réel côté client (voir
 // GalerieClient) — seul but : donner quelque chose à regarder plus tôt, sans
 // toucher à la logique de chargement/tri/filtres existante qui reste seule
@@ -84,29 +100,23 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 // un CSV externe (ordre différent, imprévisible sans parser le CSV côté serveur).
 //
 // Note : PreviewCard est dupliqué (structure identique) côté GalerieClient
-// plutôt qu'importé, pour garder ce composant client autonome.
+// plutôt qu'importé, pour garder ce composant client autonome. userId est
+// déjà résolu (UUID) à ce stade.
 async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard[]; grail: PreviewCard[] }> {
   const empty = { cards: [], grail: [] }
   try {
-    let resolvedId = userId
-    if (!UUID_RE.test(userId)) {
-      const { data: p } = await supabase.from('profiles').select('id').eq('slug', userId).single()
-      if (!p) return empty
-      resolvedId = p.id
-    }
-
     const { data: profile } = await supabase
-      .from('profiles').select('lien_csv, gallery_order').eq('id', resolvedId).single()
+      .from('profiles').select('lien_csv, gallery_order').eq('id', userId).single()
     if (!profile || profile.lien_csv) return empty
 
     const { data: privateRows } = await supabase
-      .from('cartes_privees').select('card_key').eq('user_id', resolvedId)
+      .from('cartes_privees').select('card_key').eq('user_id', userId)
     const privateSet = new Set((privateRows || []).map((r: any) => r.card_key))
 
     const { data: rows } = await supabase
       .from('cartes_manuelles')
       .select('id, image_recto, is_horizontal, position')
-      .eq('user_id', resolvedId)
+      .eq('user_id', userId)
       .not('image_recto', 'is', null)
       .order('position', { ascending: true })
       .limit(80)
@@ -124,7 +134,7 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
       .map((r: any) => ({ id: r.id, image_recto: r.image_recto, is_horizontal: !!r.is_horizontal }))
 
     const { data: grailRows } = await supabase
-      .from('grail_cards').select('card_key').eq('user_id', resolvedId).order('position').limit(3)
+      .from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(3)
     const grailKeys = (grailRows || []).map((r: any) => r.card_key).filter((k: string) => !privateSet.has(k))
     let grail: PreviewCard[] = []
     if (grailKeys.length > 0) {
@@ -145,7 +155,8 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
 }
 
 export default async function GaleriePage({ params }: { params: Promise<{ userId: string }> }) {
-  const { userId } = await params
+  const { userId: rawUserId } = await params
+  const userId = await resolveUserId(rawUserId)
   const { cards: initialCards, grail: initialGrailCards } = await fetchInitialPreview(userId)
   return (
     <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>

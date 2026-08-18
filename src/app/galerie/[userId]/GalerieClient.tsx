@@ -12,6 +12,7 @@ import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import FollowButton from '@/components/FollowButton'
 import LevelBadge from '@/components/LevelBadge'
+import ShareButton from '@/components/ShareButton'
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
@@ -337,6 +338,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const searchParams = useSearchParams()
   const router = useRouter()
   const [profile, setProfile] = useState<any>(null)
+  // userId (prop) est le paramètre de route brut — peut être un slug, pas
+  // forcément l'UUID. Toutes les requêtes filtrant par user_id doivent
+  // utiliser l'UUID résolu (profile.id une fois chargé), sinon elles ne
+  // matchent aucune ligne pour les URLs en slug (galerie vide, actions
+  // silencieusement no-op).
+  const uid = profile?.id || userId
   const [cards, setCards] = useState<Card[]>([])
   const [cardsLoaded, setCardsLoaded] = useState(false)
   const [displayed, setDisplayed] = useState<Card[]>([])
@@ -420,7 +427,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const initialBinderId = searchParams.get('binder') ? parseInt(searchParams.get('binder')!, 10) : null
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
-  const [shareCopied, setShareCopied] = useState(false)
+  const [shareModalOpen, setShareModalOpen] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
   // monthlyBadges retired — remplacé par BadgeBox
@@ -502,11 +509,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }, [userId])
 
   useEffect(() => {
-    supabase.from('cartes_privees').select('card_key').eq('user_id', userId)
+    supabase.from('cartes_privees').select('card_key').eq('user_id', uid)
       .then(({ data }) => {
         if (data) setPrivateCards(new Set(data.map((d: any) => d.card_key)))
       })
-    supabase.from('card_values').select('card_key,valeur').eq('user_id', userId)
+    supabase.from('card_values').select('card_key,valeur').eq('user_id', uid)
       .then(({ data }) => {
         if (data) setCardValues(new Map(data.map((d: any) => [d.card_key, d.valeur])))
       })
@@ -522,7 +529,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const togglePrivate = async (cardKey: string) => {
     if (!currentUser || currentUser !== userId) return
     if (privateCards.has(cardKey)) {
-      await supabase.from('cartes_privees').delete().eq('user_id', userId).eq('card_key', cardKey)
+      await supabase.from('cartes_privees').delete().eq('user_id', uid).eq('card_key', cardKey)
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
     } else {
       await supabase.from('cartes_privees').insert({ user_id: userId, card_key: cardKey })
@@ -544,11 +551,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       }).catch(e => console.error('[card-added DELETE] stats divergence:', e))
 
       // 2. Suppression de la table des cartes manuelles
-      const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', userId)
+      const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', uid)
       if (error) throw error
 
       // 3. Nettoyage de sa visibilité si elle était en mode privé
-      await supabase.from('cartes_privees').delete().eq('user_id', userId).eq('card_key', cardKey)
+      await supabase.from('cartes_privees').delete().eq('user_id', uid).eq('card_key', cardKey)
       
       // 3. Mise à jour de l'état local pour faire disparaître l'élément instantanément
       setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
@@ -699,8 +706,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
       // Premier batch + card_collections en parallèle → affichage immédiat
       const [firstResult, ccResult] = await Promise.all([
-        supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', userId).order('created_at', { ascending: true }).range(0, 999),
-        supabase.from('card_collections').select('card_key, collection').eq('user_id', userId),
+        supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
+        supabase.from('card_collections').select('card_key, collection').eq('user_id', uid),
       ])
       const firstBatch = firstResult.data || []
       const totalCount = firstResult.count || 0
@@ -716,7 +723,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         const pageCount = Math.ceil(totalCount / 1000)
         const remainingBatches = await Promise.all(
           Array.from({ length: pageCount - 1 }, (_, i) =>
-            supabase.from('cartes_manuelles').select('*').eq('user_id', userId).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
+            supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
           )
         )
         applyAndShow([...firstBatch, ...remainingBatches.flat()], ccMap)
@@ -1260,14 +1267,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   const newName = renameValue.trim()
                   if (!newName || newName === tag) { setColorPickerTag(null); return }
                   await Promise.all([
-                    supabase.from('card_collections').update({ collection: newName }).eq('user_id', userId).eq('collection', tag),
-                    supabase.from('cartes_manuelles').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
-                    supabase.from('carte_tags').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
+                    supabase.from('card_collections').update({ collection: newName }).eq('user_id', uid).eq('collection', tag),
+                    supabase.from('cartes_manuelles').update({ collection_tag: newName }).eq('user_id', uid).eq('collection_tag', tag),
+                    supabase.from('carte_tags').update({ collection_tag: newName }).eq('user_id', uid).eq('collection_tag', tag),
                   ])
                   const cur = tabSettings.get(tag)
-                  await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
+                  await supabase.from('collection_tab_settings').delete().eq('user_id', uid).eq('tag', tag)
                   if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, color: cur.color, position: cur.position, parent: cur.parent ?? null }, { onConflict: 'user_id,tag' })
-                  await supabase.from('collection_tab_settings').update({ parent: newName }).eq('user_id', userId).eq('parent', tag)
+                  await supabase.from('collection_tab_settings').update({ parent: newName }).eq('user_id', uid).eq('parent', tag)
                   setTabSettings(prev => {
                     const m = new Map(prev)
                     if (cur) m.set(newName, cur); m.delete(tag)
@@ -1335,10 +1342,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimées.</p>
                   <div style={{ display: 'flex', gap: 6 }}>
                     <button onClick={async () => {
-                      await supabase.from('card_collections').delete().eq('user_id', userId).eq('collection', tag)
-                      await supabase.from('cartes_manuelles').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
-                      await supabase.from('carte_tags').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
-                      await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
+                      await supabase.from('card_collections').delete().eq('user_id', uid).eq('collection', tag)
+                      await supabase.from('cartes_manuelles').update({ collection_tag: null }).eq('user_id', uid).eq('collection_tag', tag)
+                      await supabase.from('carte_tags').update({ collection_tag: null }).eq('user_id', uid).eq('collection_tag', tag)
+                      await supabase.from('collection_tab_settings').delete().eq('user_id', uid).eq('tag', tag)
                       setTabSettings(prev => { const m = new Map(prev); m.delete(tag); return m })
                       setCollectionTags(prev => prev.filter(t => t !== tag))
                       setCards(prev => prev.map(c => {
@@ -1384,6 +1391,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             color: dark ? '#ffd966' : '#8a6500', display: 'flex', alignItems: 'center', gap: 8,
           }}>
             📡 Hors ligne — affichage de la dernière version de ta galerie enregistrée sur cet appareil.
+          </div>
+        )}
+
+        {/* Arrivée via le QR "carte de visite" (bouton Partager) — transforme une
+            rencontre en personne en connexion sur l'app en pointant vers le
+            bouton Suivre juste en dessous, plutôt que d'en dupliquer un ici. */}
+        {!isOwner && searchParams.get('src') === 'carte' && (
+          <div style={{
+            background: `${accent}14`, border: `1px solid ${accent}33`, borderRadius: 12,
+            padding: '10px 16px', marginBottom: 14, fontSize: 13, fontWeight: 600,
+            color: dark ? '#ddd' : '#333', textAlign: 'center',
+          }}>
+            {t('gallery_met_banner').replace('{name}', profile?.display_name || t('gallery_default_collector'))}
           </div>
         )}
 
@@ -1511,13 +1531,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                               {editMode ? t('gallery_done') : t('gallery_privacy')}
                             </button>
                           )}
-                          <button onClick={() => {
-                            setActionMenuOpen(false)
-                            const url = window.location.href
-                            if (navigator.share) navigator.share({ title: `Galerie de ${profile?.display_name || 'Collectionneur'}`, url })
-                            else navigator.clipboard.writeText(url).then(() => { setShareCopied(true); setTimeout(() => setShareCopied(false), 2000) })
-                          }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            {shareCopied ? '✓ Lien copié' : '↗ Partager'}
+                          <button onClick={() => { setActionMenuOpen(false); setShareModalOpen(true) }}
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                            ↗ Partager
                           </button>
                           <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
@@ -1545,6 +1561,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         </div>
                       </>
                     )}
+                    <ShareButton
+                      hideTrigger
+                      open={shareModalOpen}
+                      onOpenChange={setShareModalOpen}
+                      url={`/galerie/${profile?.slug || userId}?src=carte`}
+                      title={profile?.display_name || t('gallery_default_collector')}
+                      subtitle={t('gallery_share_subtitle')}
+                    />
                   </div>
                 )}
 
@@ -1615,7 +1639,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
-                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', userId).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✓</button>
+                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', uid).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✓</button>
                             <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(null) }} style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✕</button>
                           </div>
                         ) : (
@@ -2488,7 +2512,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           cardValue={cardValues.get(popup.f)}
           onValueSave={isOwner ? async (val) => {
             if (val == null) {
-              await supabase.from('card_values').delete().eq('user_id', userId).eq('card_key', popup.f)
+              await supabase.from('card_values').delete().eq('user_id', uid).eq('card_key', popup.f)
               setCardValues(prev => { const m = new Map(prev); m.delete(popup.f); return m })
             } else {
               await supabase.from('card_values').upsert({ user_id: userId, card_key: popup.f, valeur: val }, { onConflict: 'user_id,card_key' })
