@@ -51,6 +51,13 @@ const translations = {
     push_enable: 'Activer les notifications',
     push_disable: 'Désactiver',
     push_ios_error: "Échec de l'activation. Sur iPhone, assurez-vous d'avoir ajouté Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil), puis réessayez.",
+    settings_notif_types: 'Types de notifications',
+    settings_notif_popularity: 'Digest de popularité',
+    settings_notif_popularity_desc: 'Un résumé hebdo des vues et likes reçus sur ta galerie',
+    settings_notif_streak: 'Alerte streak en péril',
+    settings_notif_streak_desc: "Un rappel le soir si ta série de jours consécutifs va s'arrêter",
+    settings_notif_winback: 'Relance après inactivité',
+    settings_notif_winback_desc: "Un message si tu n'es pas venu depuis un moment",
 
     // Accueil
     home_hero: 'Collectionnez. Identifiez. Échangez.',
@@ -1125,6 +1132,13 @@ const translations = {
     push_enable: 'Enable notifications',
     push_disable: 'Disable',
     push_ios_error: 'Activation failed. On iPhone, make sure you\'ve added Memorabilius to your home screen (Share → Add to Home Screen), then try again.',
+    settings_notif_types: 'Notification types',
+    settings_notif_popularity: 'Popularity digest',
+    settings_notif_popularity_desc: 'A weekly recap of views and likes on your gallery',
+    settings_notif_streak: 'Streak-at-risk alert',
+    settings_notif_streak_desc: 'An evening reminder if your daily streak is about to break',
+    settings_notif_winback: 'Inactivity reminder',
+    settings_notif_winback_desc: "A message if you haven't been around in a while",
 
     // Home
     home_hero: 'Collect. Identify. Trade.',
@@ -2199,6 +2213,13 @@ const translations = {
     push_enable: 'Benachrichtigungen aktivieren',
     push_disable: 'Deaktivieren',
     push_ios_error: 'Aktivierung fehlgeschlagen. Stelle auf dem iPhone sicher, dass Memorabilius zum Startbildschirm hinzugefügt wurde (Teilen → Zum Home-Bildschirm), und versuche es erneut.',
+    settings_notif_types: 'Benachrichtigungstypen',
+    settings_notif_popularity: 'Beliebtheits-Digest',
+    settings_notif_popularity_desc: 'Eine wöchentliche Zusammenfassung der Aufrufe und Likes deiner Galerie',
+    settings_notif_streak: 'Streak-Gefahr-Warnung',
+    settings_notif_streak_desc: 'Eine abendliche Erinnerung, wenn deine tägliche Serie zu enden droht',
+    settings_notif_winback: 'Erinnerung bei Inaktivität',
+    settings_notif_winback_desc: 'Eine Nachricht, wenn du länger nicht da warst',
 
     // Startseite
     home_hero: 'Sammeln. Identifizieren. Tauschen.',

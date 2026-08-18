@@ -38,11 +38,26 @@ export default function Parametres() {
   const isNative = useIsNative()
   const [hapticsOn, setHapticsOnState] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
+  const [notifPrefs, setNotifPrefs] = useState<{ notif_popularity_digest: boolean; notif_streak_warning: boolean; notif_winback: boolean } | null>(null)
 
   useEffect(() => { setHapticsOnState(isHapticsEnabled()) }, [])
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user.id ?? null))
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const uid = session?.user.id ?? null
+      setUserId(uid)
+      if (uid) {
+        supabase.from('profiles').select('notif_popularity_digest, notif_streak_warning, notif_winback').eq('id', uid).single()
+          .then(({ data }) => { if (data) setNotifPrefs(data as any) })
+      }
+    })
   }, [])
+
+  const toggleNotifPref = (key: 'notif_popularity_digest' | 'notif_streak_warning' | 'notif_winback') => {
+    if (!notifPrefs || !userId) return
+    const next = { ...notifPrefs, [key]: !notifPrefs[key] }
+    setNotifPrefs(next)
+    supabase.from('profiles').update({ [key]: next[key] }).eq('id', userId)
+  }
 
   const toggleHaptics = () => {
     const next = !hapticsOn
@@ -110,6 +125,33 @@ export default function Parametres() {
           </p>
         )}
       </div>
+
+      {userId && notifPrefs && (
+        <div style={card}>
+          <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🎛️ {t('settings_notif_types')}</h3>
+          <div style={row}>
+            <div>
+              <div style={rowLabel}>{t('settings_notif_popularity')}</div>
+              <div style={rowSub}>{t('settings_notif_popularity_desc')}</div>
+            </div>
+            <Toggle on={notifPrefs.notif_popularity_digest} onClick={() => toggleNotifPref('notif_popularity_digest')} />
+          </div>
+          <div style={row}>
+            <div>
+              <div style={rowLabel}>{t('settings_notif_streak')}</div>
+              <div style={rowSub}>{t('settings_notif_streak_desc')}</div>
+            </div>
+            <Toggle on={notifPrefs.notif_streak_warning} onClick={() => toggleNotifPref('notif_streak_warning')} />
+          </div>
+          <div style={row}>
+            <div>
+              <div style={rowLabel}>{t('settings_notif_winback')}</div>
+              <div style={rowSub}>{t('settings_notif_winback_desc')}</div>
+            </div>
+            <Toggle on={notifPrefs.notif_winback} onClick={() => toggleNotifPref('notif_winback')} />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
