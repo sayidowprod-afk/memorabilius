@@ -8,7 +8,6 @@ interface Entry {
   id: number
   card_number: string | null
   player_name: string
-  team: string | null
   variation: string | null
   is_rc: boolean
 }
@@ -23,15 +22,22 @@ interface CardSet {
 }
 
 interface Group { name: string; items: Entry[] }
+type Unit = { kind: 'header'; name: string; count: number } | { kind: 'card'; entry: Entry }
 
 const SPORT_LABEL: Record<string, string> = { nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon' }
 
+// Nombre de lignes (cartes + en-têtes confondus) qui tiennent raisonnablement
+// sur une page A4 avec COLS_PER_PAGE colonnes — estimation empirique basée
+// sur la hauteur de ligne fixe utilisée ci-dessous (~20px/carte).
+const COLS_PER_PAGE = 6
+const ROWS_PER_PAGE = 260
+
 function Header({ set, ownedCount, entriesLength, userId, t }: { set: CardSet; ownedCount: number; entriesLength: number; userId: string | null; t: (k: TranslationKey) => string }) {
   return (
-    <div style={{ textAlign: 'center', marginBottom: 18, borderBottom: '2px solid #111', paddingBottom: 14 }}>
-      <img src="/memorabilius-logo.png" alt="Memorabilius" width={150} height={30} style={{ display: 'inline-block', margin: '0 auto 8px', height: 30, width: 'auto' }} />
-      <h1 style={{ fontSize: 22, fontWeight: 900, margin: '0 0 6px', color: '#111' }}>{set.name}</h1>
-      <div style={{ fontSize: 13, color: '#666' }}>
+    <div style={{ textAlign: 'center', marginBottom: 14, borderBottom: '2px solid #111', paddingBottom: 10 }}>
+      <img src="/memorabilius-logo.png" alt="Memorabilius" width={150} height={30} style={{ display: 'inline-block', margin: '0 auto 6px', height: 26, width: 'auto' }} />
+      <h1 style={{ fontSize: 18, fontWeight: 900, margin: '0 0 4px', color: '#111' }}>{set.name}</h1>
+      <div style={{ fontSize: 11, color: '#666' }}>
         {SPORT_LABEL[set.sport] || set.sport}{set.year ? ` · ${set.year}` : ''}{set.brand ? ` · ${set.brand}` : ''} · {set.total_cards.toLocaleString()} {t('setlistdetail_cards')}
         {userId && <> · {ownedCount} / {entriesLength} {t('setlistdetail_owned')}</>}
       </div>
@@ -40,9 +46,8 @@ function Header({ set, ownedCount, entriesLength, userId, t }: { set: CardSet; o
 }
 
 // `columns` CSS n'est pas fiable (rendu chevauché en natif comme sous
-// html2canvas) : on répartit nous-mêmes les groupes dans N colonnes flex, en
-// remplissant séquentiellement (comme le ferait une mise en page équilibrée)
-// pour garder l'ordre alphabétique.
+// html2canvas) : on répartit nous-mêmes dans N colonnes flex, en remplissant
+// séquentiellement pour garder l'ordre alphabétique.
 function distributeColumns(groups: Group[], n: number): Group[][] {
   const columns: Group[][] = Array.from({ length: n }, () => [])
   const weights = groups.map(g => Math.max(1, g.items.length))
@@ -57,18 +62,48 @@ function distributeColumns(groups: Group[], n: number): Group[][] {
   return columns
 }
 
+// Découpe les groupes sélectionnés en pages A4 indépendantes (chaque page
+// aura son propre en-tête/logo à l'export), puis répartit chaque page en
+// colonnes égales.
+function paginate(groups: Group[], colsPerPage: number, rowsPerPage: number): Unit[][][] {
+  const units: Unit[] = []
+  for (const g of groups) {
+    units.push({ kind: 'header', name: g.name, count: g.items.length })
+    for (const e of g.items) units.push({ kind: 'card', entry: e })
+  }
+  const pages: Unit[][] = []
+  for (let i = 0; i < units.length; i += rowsPerPage) pages.push(units.slice(i, i + rowsPerPage))
+  if (pages.length === 0) pages.push([])
+  return pages.map(pageUnits => {
+    const cols: Unit[][] = Array.from({ length: colsPerPage }, () => [])
+    const per = Math.ceil(pageUnits.length / colsPerPage) || 1
+    pageUnits.forEach((u, i) => cols[Math.min(colsPerPage - 1, Math.floor(i / per))].push(u))
+    return cols
+  })
+}
+
 function CardRow({ e, owned }: { e: Entry; owned: boolean }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6, fontSize: 12, lineHeight: 1.4, marginBottom: 3, breakInside: 'avoid-column' }}>
-      <span style={{ flexShrink: 0, width: 12, height: 12, marginTop: 2, border: '1.3px solid #333', borderRadius: 2, background: owned ? '#111' : 'white' }} />
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 5, fontSize: 11, lineHeight: 1.35, marginBottom: 2 }}>
+      <span style={{ flexShrink: 0, width: 10, height: 10, marginTop: 2, border: '1.2px solid #333', borderRadius: 2, background: owned ? '#111' : 'white' }} />
       <span style={{ color: '#111' }}>
         {e.card_number && <strong>{e.card_number} </strong>}
         {e.player_name}
         {e.is_rc && <span style={{ fontWeight: 800 }}> RC</span>}
-        {e.team && <span style={{ color: '#888' }}> ({e.team})</span>}
       </span>
     </div>
   )
+}
+
+function UnitRow({ u, owned }: { u: Unit; owned: boolean }) {
+  if (u.kind === 'header') {
+    return (
+      <div style={{ fontWeight: 900, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.4px', color: '#003DA6', margin: '8px 0 3px', lineHeight: 1.25 }}>
+        {u.name}
+      </div>
+    )
+  }
+  return <CardRow e={u.entry} owned={owned} />
 }
 
 export default function SetPrintPage({ params }: { params: Promise<{ setId: string }> }) {
@@ -82,7 +117,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   const [filterMode, setFilterMode] = useState<'all' | 'owned' | 'missing'>('all')
   const [selectedVariations, setSelectedVariations] = useState<Set<string> | null>(null)
   const [exporting, setExporting] = useState<'pdf' | 'jpg' | null>(null)
-  const exportNodeRef = useRef<HTMLDivElement>(null)
+  const exportRootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
@@ -101,7 +136,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
     for (let from = 0; ; from += PAGE) {
       const { data: page } = await supabase
         .from('card_set_entries')
-        .select('id, card_number, player_name, team, variation, is_rc')
+        .select('id, card_number, player_name, variation, is_rc')
         .eq('set_id', setId)
         .range(from, from + PAGE - 1)
       if (!page?.length) break
@@ -170,61 +205,42 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   }
 
   const selectedGroups = groups.filter(g => activeVariations.has(g.name))
+  const exportPages = paginate(selectedGroups, COLS_PER_PAGE, ROWS_PER_PAGE)
 
   async function exportAs(kind: 'pdf' | 'jpg') {
     if (exporting || selectedGroups.length === 0) return
     setExporting(kind)
     try {
-      // Le nœud d'export n'existe qu'une fois le portail monté (juste après
-      // `setExporting`) : on attend qu'il apparaisse avant de le capturer.
-      let el: HTMLDivElement | null = null
-      for (let i = 0; i < 20 && !el; i++) {
-        await new Promise(r => requestAnimationFrame(r))
-        el = exportNodeRef.current
+      // Le portail ne monte les pages qu'une fois `exporting` posé : on
+      // attend qu'elles apparaissent avant de les capturer.
+      let pageNodes: HTMLElement[] = []
+      for (let i = 0; i < 40 && pageNodes.length === 0; i++) {
+        await new Promise(r => setTimeout(r, 50))
+        pageNodes = exportRootRef.current ? Array.from(exportRootRef.current.querySelectorAll<HTMLElement>('.export-page')) : []
       }
-      if (!el) return
+      if (pageNodes.length === 0) return
 
       const html2canvas = (await import('html2canvas')).default
-      const canvas = await html2canvas(el, { scale: 2, backgroundColor: '#ffffff', useCORS: true })
       const filename = (set?.name || 'checklist').replace(/[^a-z0-9]+/gi, '-')
 
-      // On découpe le canvas en tranches au ratio A4 (210x297mm) pour que
-      // chaque page/JPG soit bien au format A4, quelle que soit la hauteur.
-      const A4_RATIO = 297 / 210
-      const pageWidthPx = canvas.width
-      const pageHeightPx = Math.round(pageWidthPx * A4_RATIO)
-      const totalPages = Math.max(1, Math.ceil(canvas.height / pageHeightPx))
-
       if (kind === 'jpg') {
-        for (let p = 0; p < totalPages; p++) {
-          const slice = document.createElement('canvas')
-          slice.width = pageWidthPx
-          slice.height = pageHeightPx
-          const ctx = slice.getContext('2d')!
-          ctx.fillStyle = '#ffffff'
-          ctx.fillRect(0, 0, pageWidthPx, pageHeightPx)
-          ctx.drawImage(canvas, 0, p * pageHeightPx, pageWidthPx, pageHeightPx, 0, 0, pageWidthPx, pageHeightPx)
+        for (let p = 0; p < pageNodes.length; p++) {
+          const canvas = await html2canvas(pageNodes[p], { scale: 2, backgroundColor: '#ffffff', useCORS: true })
           const link = document.createElement('a')
-          link.download = totalPages > 1 ? `${filename}-page${p + 1}.jpg` : `${filename}.jpg`
-          link.href = slice.toDataURL('image/jpeg', 0.92)
+          link.download = pageNodes.length > 1 ? `${filename}-page${p + 1}.jpg` : `${filename}.jpg`
+          link.href = canvas.toDataURL('image/jpeg', 0.92)
           link.click()
-          if (p < totalPages - 1) await new Promise(r => setTimeout(r, 200))
+          if (p < pageNodes.length - 1) await new Promise(r => setTimeout(r, 200))
         }
       } else {
         const { jsPDF } = await import('jspdf')
         const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' })
         const pageWidthMm = pdf.internal.pageSize.getWidth()
         const pageHeightMm = pdf.internal.pageSize.getHeight()
-        for (let p = 0; p < totalPages; p++) {
-          const slice = document.createElement('canvas')
-          slice.width = pageWidthPx
-          slice.height = pageHeightPx
-          const ctx = slice.getContext('2d')!
-          ctx.fillStyle = '#ffffff'
-          ctx.fillRect(0, 0, pageWidthPx, pageHeightPx)
-          ctx.drawImage(canvas, 0, p * pageHeightPx, pageWidthPx, pageHeightPx, 0, 0, pageWidthPx, pageHeightPx)
+        for (let p = 0; p < pageNodes.length; p++) {
+          const canvas = await html2canvas(pageNodes[p], { scale: 2, backgroundColor: '#ffffff', useCORS: true })
           if (p > 0) pdf.addPage()
-          pdf.addImage(slice.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, pageWidthMm, pageHeightMm)
+          pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, pageWidthMm, pageHeightMm)
         }
         pdf.save(`${filename}.pdf`)
       }
@@ -233,8 +249,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
     }
   }
 
-  const screenColumns = distributeColumns(groups, 4)
-  const exportColumns = distributeColumns(selectedGroups, 3)
+  const screenColumns = distributeColumns(groups, 5)
 
   return (
     <div className="setlist-print-page">
@@ -285,15 +300,20 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           {t('setlistprint_pick_hint')}
         </div>
       )}
+      {selectedGroups.length > 0 && (
+        <div className="no-print" style={{ fontSize: 12, color: '#888', marginBottom: 12 }}>
+          {exportPages.length > 1 ? `${exportPages.length} pages A4 à l'export` : '1 page A4 à l\'export'}
+        </div>
+      )}
 
       {/* Vue écran : toutes les variations restent affichées en permanence,
-          en mise en page multi-colonnes native (fiable et compacte). La case
-          à cocher ne sert qu'à choisir ce qui part à l'impression/export. */}
+          en mise en page multi-colonnes (fiable, pas de `columns` CSS). La
+          case à cocher ne sert qu'à choisir ce qui part à l'impression/export. */}
       <div className="a4-frame" style={{ maxWidth: '210mm', margin: '0 auto', boxShadow: '0 4px 24px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
         <div id="setlist-print-content" style={{ background: 'white', padding: '14mm 10mm', boxSizing: 'border-box' }}>
           <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} />
 
-          <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
             {screenColumns.map((col, ci) => (
               <div key={ci} style={{ flex: '1 1 0', minWidth: 0 }}>
                 {col.map((g, gi) => {
@@ -325,26 +345,23 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         </div>
       </div>
 
-      {/* Rendu hors-écran dédié à l'export JPG/PDF (colonnes en flex, sans
-          `columns` CSS qui n'est pas fiable sous html2canvas), ne contenant
-          que les variations cochées. Monté seulement pendant la capture. */}
+      {/* Rendu hors-écran dédié à l'export : une page A4 = un div indépendant
+          avec son propre en-tête/logo, capturé séparément par html2canvas.
+          Monté seulement pendant la capture. */}
       {exporting && createPortal(
-        <div ref={exportNodeRef} style={{ position: 'fixed', left: -99999, top: 0, background: 'white', width: '210mm', padding: '14mm 10mm', boxSizing: 'border-box' }}>
-          <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} />
-          <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
-            {exportColumns.map((col, ci) => (
-              <div key={ci} style={{ flex: '1 1 0', minWidth: 0 }}>
-                {col.map((g, gi) => (
-                  <div key={gi}>
-                    <div style={{ fontWeight: 900, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#003DA6', margin: '10px 0 4px' }}>
-                      {g.name}
-                    </div>
-                    {g.items.map(e => <CardRow key={e.id} e={e} owned={owned.has(e.id)} />)}
+        <div ref={exportRootRef} style={{ position: 'fixed', left: -99999, top: 0 }}>
+          {exportPages.map((cols, pi) => (
+            <div key={pi} className="export-page" style={{ width: '210mm', minHeight: '297mm', background: 'white', padding: '12mm 9mm', boxSizing: 'border-box' }}>
+              <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} />
+              <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                {cols.map((col, ci) => (
+                  <div key={ci} style={{ flex: '1 1 0', minWidth: 0 }}>
+                    {col.map((u, ui) => <UnitRow key={ui} u={u} owned={u.kind === 'card' ? owned.has(u.entry.id) : false} />)}
                   </div>
                 ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>,
         document.body
       )}
