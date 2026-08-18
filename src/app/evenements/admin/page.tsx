@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 
 type Request = {
   id: number
@@ -34,6 +35,7 @@ type Event = {
 
 export default function AdminEvenements() {
   const { dark } = useTheme()
+  const { t, lang } = useLang()
   const router = useRouter()
   const [requests, setRequests] = useState<Request[]>([])
   const [events, setEvents] = useState<Event[]>([])
@@ -86,7 +88,7 @@ export default function AdminEvenements() {
   }
 
   const deleteEvent = async (id: number) => {
-    if (!confirm('Supprimer cet événement ?')) return
+    if (!confirm(t('evadmin_confirm_delete_event'))) return
     await supabase.from('event_attendees').delete().eq('event_id', id)
     await supabase.from('events').delete().eq('id', id)
     loadAll()
@@ -97,7 +99,7 @@ export default function AdminEvenements() {
     const path = `evenements/${Date.now()}_${file.name.replace(/[^a-z0-9.]/gi, '_')}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
     setUploadingImg(false)
-    if (error) { toast.error('Erreur upload image : ' + error.message); return null }
+    if (error) { toast.error(t('evadmin_err_upload_image') + error.message); return null }
     return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
   }
 
@@ -124,7 +126,7 @@ export default function AdminEvenements() {
     loadAll()
   }
 
-  const formatDate = (d: string) => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })
+  const formatDate = (d: string) => new Date(d).toLocaleDateString(localeFor(lang), { day: 'numeric', month: 'short', year: 'numeric' })
 
   const bg = dark ? '#121212' : '#f7f8fa'
   const card = dark ? '#1e1e1e' : 'white'
@@ -143,21 +145,21 @@ export default function AdminEvenements() {
     <div style={{ minHeight: '100vh', background: bg, padding: '32px 16px' }}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 12 }}>
-          <h1 style={{ color: text, margin: 0, fontSize: 26, fontWeight: 800 }}>⚙️ Admin — Événements</h1>
+          <h1 style={{ color: text, margin: 0, fontSize: 26, fontWeight: 800 }}>{t('evadmin_title')}</h1>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => setShowAddManual(true)} style={{ padding: '10px 18px', borderRadius: 8, background: '#27ae60', color: 'white', fontWeight: 700, fontSize: 14, border: 'none', cursor: 'pointer' }}>+ Ajouter manuellement</button>
-            <a href="/evenements" style={{ padding: '10px 18px', borderRadius: 8, background: dark ? '#2a2a2a' : '#eee', color: text, fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>← Retour</a>
+            <button onClick={() => setShowAddManual(true)} style={{ padding: '10px 18px', borderRadius: 8, background: '#27ae60', color: 'white', fontWeight: 700, fontSize: 14, border: 'none', cursor: 'pointer' }}>{t('evadmin_add_manually')}</button>
+            <a href="/evenements" style={{ padding: '10px 18px', borderRadius: 8, background: dark ? '#2a2a2a' : '#eee', color: text, fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>{t('evadmin_back')}</a>
           </div>
         </div>
 
-        {loading ? <p style={{ color: sub }}>Chargement...</p> : (
+        {loading ? <p style={{ color: sub }}>{t('evadmin_loading')}</p> : (
           <>
             {/* Demandes en attente */}
             <h2 style={{ color: text, fontSize: 17, fontWeight: 800, marginBottom: 14 }}>
-              Demandes en attente {pending.length > 0 && <span style={{ background: '#e74c3c', color: 'white', borderRadius: 10, padding: '2px 8px', fontSize: 12, marginLeft: 8 }}>{pending.length}</span>}
+              {t('evadmin_pending_requests')} {pending.length > 0 && <span style={{ background: '#e74c3c', color: 'white', borderRadius: 10, padding: '2px 8px', fontSize: 12, marginLeft: 8 }}>{pending.length}</span>}
             </h2>
             {pending.length === 0 ? (
-              <p style={{ color: sub, fontSize: 14, marginBottom: 32 }}>Aucune demande en attente.</p>
+              <p style={{ color: sub, fontSize: 14, marginBottom: 32 }}>{t('evadmin_no_pending')}</p>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 40 }}>
                 {pending.map(req => (
@@ -170,12 +172,12 @@ export default function AdminEvenements() {
                         {req.description && <p style={{ color: sub, margin: '6px 0 0', fontSize: 13 }}>{req.description}</p>}
                         {req.website && <p style={{ color: sub, margin: '4px 0 0', fontSize: 12 }}>🔗 {req.website}</p>}
                         <p style={{ color: sub, margin: '8px 0 0', fontSize: 12 }}>
-                          Par : <strong style={{ color: text }}>{req.profile?.display_name || req.user_id}</strong> · {formatDate(req.created_at)}
+                          {t('evadmin_by_prefix')} <strong style={{ color: text }}>{req.profile?.display_name || req.user_id}</strong> · {formatDate(req.created_at)}
                         </p>
                       </div>
                       <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-                        <button onClick={() => approve(req)} style={{ padding: '8px 16px', borderRadius: 8, background: '#27ae60', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer', fontSize: 13 }}>✅ Approuver</button>
-                        <button onClick={() => reject(req)} style={{ padding: '8px 16px', borderRadius: 8, background: '#e74c3c', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer', fontSize: 13 }}>✗ Refuser</button>
+                        <button onClick={() => approve(req)} style={{ padding: '8px 16px', borderRadius: 8, background: '#27ae60', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer', fontSize: 13 }}>{t('evadmin_approve')}</button>
+                        <button onClick={() => reject(req)} style={{ padding: '8px 16px', borderRadius: 8, background: '#e74c3c', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer', fontSize: 13 }}>{t('evadmin_refuse')}</button>
                       </div>
                     </div>
                   </div>
@@ -184,9 +186,9 @@ export default function AdminEvenements() {
             )}
 
             {/* Événements publiés */}
-            <h2 style={{ color: text, fontSize: 17, fontWeight: 800, marginBottom: 14 }}>Événements publiés ({events.length})</h2>
+            <h2 style={{ color: text, fontSize: 17, fontWeight: 800, marginBottom: 14 }}>{t('evadmin_published_events')} ({events.length})</h2>
             {events.length === 0 ? (
-              <p style={{ color: sub, fontSize: 14, marginBottom: 32 }}>Aucun événement publié.</p>
+              <p style={{ color: sub, fontSize: 14, marginBottom: 32 }}>{t('evadmin_no_published')}</p>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 40 }}>
                 {events.map(ev => (
@@ -199,8 +201,8 @@ export default function AdminEvenements() {
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
-                      <button onClick={() => setEditingEvent(ev as any)} style={{ padding: '6px 14px', borderRadius: 8, background: 'none', border: `1px solid #003DA6`, color: '#003DA6', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>Modifier</button>
-                      <button onClick={() => deleteEvent(ev.id)} style={{ padding: '6px 14px', borderRadius: 8, background: 'none', border: `1px solid #e74c3c`, color: '#e74c3c', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>Supprimer</button>
+                      <button onClick={() => setEditingEvent(ev as any)} style={{ padding: '6px 14px', borderRadius: 8, background: 'none', border: `1px solid #003DA6`, color: '#003DA6', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>{t('evadmin_modify')}</button>
+                      <button onClick={() => deleteEvent(ev.id)} style={{ padding: '6px 14px', borderRadius: 8, background: 'none', border: `1px solid #e74c3c`, color: '#e74c3c', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>{t('evadmin_delete')}</button>
                     </div>
                   </div>
                 ))}
@@ -210,7 +212,7 @@ export default function AdminEvenements() {
             {/* Demandes traitées */}
             {processed.length > 0 && (
               <>
-                <h2 style={{ color: sub, fontSize: 15, fontWeight: 700, marginBottom: 12 }}>Demandes traitées</h2>
+                <h2 style={{ color: sub, fontSize: 15, fontWeight: 700, marginBottom: 12 }}>{t('evadmin_processed_requests')}</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, opacity: 0.6 }}>
                   {processed.map(req => (
                     <div key={req.id} style={{ background: card, border: `1px solid ${border}`, borderRadius: 10, padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -219,7 +221,7 @@ export default function AdminEvenements() {
                         <p style={{ color: sub, margin: '2px 0 0', fontSize: 12 }}>{req.city} · {formatDate(req.date)}</p>
                       </div>
                       <span style={{ fontSize: 12, fontWeight: 700, color: req.status === 'approved' ? '#27ae60' : '#e74c3c', background: req.status === 'approved' ? '#eafaf1' : '#fdecea', padding: '3px 10px', borderRadius: 10 }}>
-                        {req.status === 'approved' ? 'Approuvé' : 'Refusé'}
+                        {req.status === 'approved' ? t('evadmin_approved') : t('evadmin_refused')}
                       </span>
                     </div>
                   ))}
@@ -234,17 +236,17 @@ export default function AdminEvenements() {
       {editingEvent && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }} onClick={() => setEditingEvent(null)}>
           <div style={{ background: card, borderRadius: 16, padding: 28, width: '100%', maxWidth: 480, maxHeight: '90vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <h2 style={{ color: text, margin: '0 0 20px', fontSize: 18, fontWeight: 800 }}>Modifier l'événement</h2>
+            <h2 style={{ color: text, margin: '0 0 20px', fontSize: 18, fontWeight: 800 }}>{t('evadmin_edit_event_title')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <input style={inp} placeholder="Nom *" value={editingEvent.title} onChange={e => setEditingEvent(ev => ev ? { ...ev, title: e.target.value } : ev)} />
-              <textarea style={{ ...inp, minHeight: 70, resize: 'vertical' }} placeholder="Description" value={editingEvent.description || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, description: e.target.value } : ev)} />
+              <input style={inp} placeholder={t('evadmin_ph_name')} value={editingEvent.title} onChange={e => setEditingEvent(ev => ev ? { ...ev, title: e.target.value } : ev)} />
+              <textarea style={{ ...inp, minHeight: 70, resize: 'vertical' }} placeholder={t('evadmin_ph_description')} value={editingEvent.description || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, description: e.target.value } : ev)} />
               <input style={inp} type="date" value={editingEvent.date} onChange={e => setEditingEvent(ev => ev ? { ...ev, date: e.target.value } : ev)} />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                <input style={inp} placeholder="Ville *" value={editingEvent.city} onChange={e => setEditingEvent(ev => ev ? { ...ev, city: e.target.value } : ev)} />
-                <input style={inp} placeholder="Pays" value={editingEvent.country} onChange={e => setEditingEvent(ev => ev ? { ...ev, country: e.target.value } : ev)} />
+                <input style={inp} placeholder={t('evadmin_ph_city')} value={editingEvent.city} onChange={e => setEditingEvent(ev => ev ? { ...ev, city: e.target.value } : ev)} />
+                <input style={inp} placeholder={t('evadmin_ph_country')} value={editingEvent.country} onChange={e => setEditingEvent(ev => ev ? { ...ev, country: e.target.value } : ev)} />
               </div>
-              <input style={inp} placeholder="Lieu" value={editingEvent.location_name || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, location_name: e.target.value } : ev)} />
-              <input style={inp} placeholder="Site web" value={(editingEvent as any).website || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, website: e.target.value } : ev)} />
+              <input style={inp} placeholder={t('evadmin_ph_location')} value={editingEvent.location_name || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, location_name: e.target.value } : ev)} />
+              <input style={inp} placeholder={t('evadmin_ph_website')} value={(editingEvent as any).website || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, website: e.target.value } : ev)} />
               <div>
                 <input ref={editImgInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={async e => {
                   const file = e.target.files?.[0]; if (!file) return
@@ -255,18 +257,18 @@ export default function AdminEvenements() {
                   <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
                     <img src={editingEvent.image_url} style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
                     <button type="button" onClick={() => setEditingEvent(ev => ev ? { ...ev, image_url: undefined } : ev)} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
-                    <button type="button" onClick={() => editImgInputRef.current?.click()} style={{ position: 'absolute', bottom: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 8, padding: '4px 10px', color: 'white', cursor: 'pointer', fontSize: 12, fontWeight: 600 }}>Changer</button>
+                    <button type="button" onClick={() => editImgInputRef.current?.click()} style={{ position: 'absolute', bottom: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 8, padding: '4px 10px', color: 'white', cursor: 'pointer', fontSize: 12, fontWeight: 600 }}>{t('evadmin_change')}</button>
                   </div>
                 ) : (
                   <button type="button" onClick={() => editImgInputRef.current?.click()} disabled={uploadingImg} style={{ width: '100%', padding: '10px', borderRadius: 8, border: `2px dashed ${border}`, background: 'none', color: sub, cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>
-                    {uploadingImg ? 'Upload...' : '🖼️ Ajouter une image'}
+                    {uploadingImg ? t('evadmin_uploading') : t('evadmin_add_image')}
                   </button>
                 )}
               </div>
               <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
-                <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
+                <button onClick={() => setEditingEvent(null)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>{t('profile_cancel')}</button>
                 <button onClick={saveEdit} disabled={saving} style={{ flex: 2, padding: '11px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer' }}>
-                  {saving ? 'Sauvegarde...' : 'Enregistrer'}
+                  {saving ? t('evadmin_saving') : t('evadmin_save')}
                 </button>
               </div>
             </div>
@@ -278,17 +280,17 @@ export default function AdminEvenements() {
       {showAddManual && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }} onClick={() => setShowAddManual(false)}>
           <div style={{ background: card, borderRadius: 16, padding: 28, width: '100%', maxWidth: 480 }} onClick={e => e.stopPropagation()}>
-            <h2 style={{ color: text, margin: '0 0 20px', fontSize: 18, fontWeight: 800 }}>Ajouter un événement</h2>
+            <h2 style={{ color: text, margin: '0 0 20px', fontSize: 18, fontWeight: 800 }}>{t('evadmin_add_event_title')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <input style={inp} placeholder="Nom *" value={manualForm.title} onChange={e => setManualForm(f => ({ ...f, title: e.target.value }))} />
-              <textarea style={{ ...inp, minHeight: 70, resize: 'vertical' }} placeholder="Description" value={manualForm.description} onChange={e => setManualForm(f => ({ ...f, description: e.target.value }))} />
+              <input style={inp} placeholder={t('evadmin_ph_name')} value={manualForm.title} onChange={e => setManualForm(f => ({ ...f, title: e.target.value }))} />
+              <textarea style={{ ...inp, minHeight: 70, resize: 'vertical' }} placeholder={t('evadmin_ph_description')} value={manualForm.description} onChange={e => setManualForm(f => ({ ...f, description: e.target.value }))} />
               <input style={inp} type="date" value={manualForm.date} onChange={e => setManualForm(f => ({ ...f, date: e.target.value }))} />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                <input style={inp} placeholder="Ville *" value={manualForm.city} onChange={e => setManualForm(f => ({ ...f, city: e.target.value }))} />
-                <input style={inp} placeholder="Pays" value={manualForm.country} onChange={e => setManualForm(f => ({ ...f, country: e.target.value }))} />
+                <input style={inp} placeholder={t('evadmin_ph_city')} value={manualForm.city} onChange={e => setManualForm(f => ({ ...f, city: e.target.value }))} />
+                <input style={inp} placeholder={t('evadmin_ph_country')} value={manualForm.country} onChange={e => setManualForm(f => ({ ...f, country: e.target.value }))} />
               </div>
-              <input style={inp} placeholder="Lieu" value={manualForm.location_name} onChange={e => setManualForm(f => ({ ...f, location_name: e.target.value }))} />
-              <input style={inp} placeholder="Site web" value={manualForm.website} onChange={e => setManualForm(f => ({ ...f, website: e.target.value }))} />
+              <input style={inp} placeholder={t('evadmin_ph_location')} value={manualForm.location_name} onChange={e => setManualForm(f => ({ ...f, location_name: e.target.value }))} />
+              <input style={inp} placeholder={t('evadmin_ph_website')} value={manualForm.website} onChange={e => setManualForm(f => ({ ...f, website: e.target.value }))} />
               <div>
                 <input ref={imgInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={async e => {
                   const file = e.target.files?.[0]; if (!file) return
@@ -302,14 +304,14 @@ export default function AdminEvenements() {
                   </div>
                 ) : (
                   <button type="button" onClick={() => imgInputRef.current?.click()} disabled={uploadingImg} style={{ width: '100%', padding: '10px', borderRadius: 8, border: `2px dashed ${border}`, background: 'none', color: sub, cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>
-                    {uploadingImg ? 'Upload...' : '🖼️ Ajouter une image (optionnel)'}
+                    {uploadingImg ? t('evadmin_uploading') : t('evadmin_add_image_optional')}
                   </button>
                 )}
               </div>
               <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
-                <button onClick={() => setShowAddManual(false)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
+                <button onClick={() => setShowAddManual(false)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>{t('profile_cancel')}</button>
                 <button onClick={addManual} disabled={saving || !manualForm.title || !manualForm.date || !manualForm.city} style={{ flex: 2, padding: '11px', borderRadius: 8, background: '#27ae60', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer' }}>
-                  {saving ? 'Ajout...' : 'Publier'}
+                  {saving ? t('evadmin_adding') : t('evadmin_publish')}
                 </button>
               </div>
             </div>

@@ -3,6 +3,7 @@ import PepitesSection from '@/components/PepitesSection'
 import HomeHero from '@/components/HomeHero'
 import PodiumSection from '@/components/PodiumSection'
 import PWAInstall from '@/components/PWAInstall'
+import NativeHomeGate from '@/components/NativeHomeGate'
 
 // ISR : rebuild en arrière-plan toutes les 5 min, instantané pour les visiteurs
 export const revalidate = 300
@@ -59,22 +60,23 @@ async function fetchPepites(): Promise<Card[]> {
   }))
 
   // Passe 1 : max 1 carte par utilisateur pour la diversité
+  const PEPITES_COUNT = 18
   const perUser = new Map<string, number>()
   const result: Card[] = []
   for (const item of items) {
     if ((perUser.get(item.userId) ?? 0) >= 1) continue
     perUser.set(item.userId, 1)
     result.push(item)
-    if (result.length >= 6) break
+    if (result.length >= PEPITES_COUNT) break
   }
 
-  // Passe 2 : compléter jusqu'à 6 en acceptant plusieurs cartes du même user
-  if (result.length < 6) {
+  // Passe 2 : compléter jusqu'à PEPITES_COUNT en acceptant plusieurs cartes du même user
+  if (result.length < PEPITES_COUNT) {
     const inResult = new Set(result.map(r => r.img))
     for (const item of items) {
       if (inResult.has(item.img)) continue
       result.push(item)
-      if (result.length >= 6) break
+      if (result.length >= PEPITES_COUNT) break
     }
   }
 
@@ -210,7 +212,10 @@ export default async function Home() {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }} />
-      <HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />
+      <NativeHomeGate
+        hero={<HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />}
+        siteStats={{ total, totalCartes, totalBinders, totalTrade }}
+      />
       <PepitesSection cards={cards} />
       <PodiumSection month={podium} week={podiumWeek} day={podiumDay} />
       <PWAInstall />

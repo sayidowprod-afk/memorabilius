@@ -178,7 +178,7 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
       {équipes.length > 0 && (
         <select value={filters.equipe} onChange={e => onChange({ ...filters, equipe: e.target.value })}
           style={{ ...selStyle, borderColor: filters.equipe ? '#003DA6' : '#e0e0e0' }}>
-          <option value="">Équipe</option>
+          <option value="">{t('gallery_team')}</option>
           {équipes.map(eq => <option key={eq} value={eq}>{eq}</option>)}
         </select>
       )}

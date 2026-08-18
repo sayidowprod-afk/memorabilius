@@ -464,6 +464,11 @@ main > .page-transition:first-child {
   contain: none;
 }
 
+/* Rangée de pépites en accueil (PepitesSection.tsx) : défilement auto + swipe,
+   scrollbar visible casserait l'effet "carrousel natif". */
+.pepites-track { scrollbar-width: none; -ms-overflow-style: none; }
+.pepites-track::-webkit-scrollbar { display: none; }
+
 /* ===== NAV CLS FIX ===== */
 /* Ces règles doivent être dans globals.css (pas dans un <style> React)
    pour éviter un FOUC qui cause CLS avant la hydration */

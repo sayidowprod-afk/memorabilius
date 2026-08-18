@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback, type CSSProperties } from 'react'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { useLang, localeFor } from '@/lib/LangContext'
 
 const GeoMap = dynamic(() => import('@/components/admin/GeoMap'), { ssr: false })
 
@@ -633,6 +634,7 @@ function SectionTitle({ children }: { children: string }) {
 type RecentUser = { user_id: string; display_name: string; slug: string | null; email: string; created_at: string; cards_count: number; country: string | null }
 
 function RecentUsersSection({ token, isMobile }: { token: string; isMobile: boolean }) {
+  const { lang } = useLang()
   const [users, setUsers]   = useState<RecentUser[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -654,7 +656,7 @@ function RecentUsersSection({ token, isMobile }: { token: string; isMobile: bool
     if (h < 24) return `il y a ${h} h`
     const d = Math.floor(h / 24)
     if (d < 7) return `il y a ${d} j`
-    return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+    return new Date(iso).toLocaleDateString(localeFor(lang), { day: 'numeric', month: 'short' })
   }
 
   const colS = (right = false): CSSProperties => ({
@@ -812,6 +814,7 @@ const GEO_MINUTES: Partial<Record<GeoPeriod, number>> = {
 }
 
 function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
+  const { lang } = useLang()
   const [period, setPeriod]     = useState<GeoPeriod>('live')
   const [geoCntrs, setGeoCntrs] = useState<{ code: string; visitors: number }[]>([])
   const [geoLoad, setGeoLoad]   = useState(false)
@@ -992,7 +995,7 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
                           {u.email}
                         </div>
                         <div style={{ color: '#94a3b8', fontSize: 11, flexShrink: 0 }}>
-                          {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleDateString('fr-FR') : '—'}
+                          {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleDateString(localeFor(lang)) : '—'}
                         </div>
                       </div>
                     ))}

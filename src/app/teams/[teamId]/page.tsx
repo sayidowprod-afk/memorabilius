@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, use, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 
@@ -439,7 +439,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const timeAgo = (d: string) => {
     const diff = Date.now() - new Date(d).getTime()
     const m = Math.floor(diff / 60000)
-    if (m < 1) return 'à l\'instant'
+    if (m < 1) return t('teams_just_now')
     if (m < 60) return `${m}min`
     const h = Math.floor(m / 60)
     if (h < 24) return `${h}h`
@@ -502,7 +502,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
             <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : '#f0f0f0', color: copied ? '#2e7d32' : '#555', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s' }}>
-              {copied ? '✓ Copié !' : '🔗 Partager'}
+              {copied ? t('teams_copied') : t('teams_share')}
             </button>
             {!isMember && !hasCandidature && currentUser && (
               <button onClick={postuler} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_join')}</button>
@@ -580,7 +580,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </div>
               {showPostCardPicker && (
                 <div onClick={e => e.stopPropagation()} style={{ marginTop: 10, maxHeight: 200, overflowY: 'auto' }}>
-                  {myCards.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', padding: 20, fontSize: 13 }}>Aucune carte trouvée.</p>}
+                  {myCards.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', padding: 20, fontSize: 13 }}>{t('teams_no_cards_found')}</p>}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
                   {myCards.map(c => (
                     <div key={c.id} onClick={() => { setPostCards(prev => prev.find(x => x.id === c.id) ? prev : [...prev, c]); setShowPostCardPicker(false) }}
@@ -775,7 +775,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {activeTab === 'galerie' && (
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
-            {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#bbb', padding: 60 }}>Aucune carte trouvée.</p>}
+            {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#bbb', padding: 60 }}>{t('teams_no_cards_found')}</p>}
             {galerieCards.slice(0, galerieLimit).map(card => (
               <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
                 <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.15s, box-shadow 0.15s' }}
@@ -905,7 +905,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 <div style={{ flex: 1 }}>
                   <p style={{ fontWeight: 800, margin: 0 }}>{cand.profiles?.display_name}</p>
                   <p style={{ fontSize: 12, color: '#999', margin: '2px 0 0' }}>
-                    {new Date(cand.created_at).toLocaleDateString('fr-FR')}
+                    {new Date(cand.created_at).toLocaleDateString(localeFor(lang))}
                     {cand.profiles?.id && <Link href={`/galerie/${cand.profiles.id}`} style={{ color: ACCENT, marginLeft: 10, fontWeight: 700, textDecoration: 'none' }}>Voir sa galerie →</Link>}
                   </p>
                 </div>

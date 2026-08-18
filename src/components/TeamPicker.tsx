@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { SPORTS_TEAMS, SPORT_LABELS, FOOTBALL_LEAGUE_LABELS, teamLogoUrl, type Sport, type FootballLeague } from '@/lib/sportsTeams'
+import { useLang } from '@/lib/LangContext'
 
 interface Props {
   value: string[]
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function TeamPicker({ value, onChange, max = 5 }: Props) {
+  const { t } = useLang()
   const [open, setOpen] = useState(false)
   const [sport, setSport] = useState<Sport>('nba')
   const [league, setLeague] = useState<FootballLeague>('premier-league')
@@ -50,7 +52,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
         })}
         {value.length < max && (
           <button onClick={() => setOpen(true)} style={{ border: '1.5px dashed #ccc', borderRadius: 20, padding: '4px 14px', fontSize: 12, fontWeight: 700, color: '#888', background: 'none', cursor: 'pointer' }}>
-            + Ajouter une équipe
+            {t('teampicker_add_team')}
           </button>
         )}
       </div>
@@ -61,7 +63,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
           onClick={() => { setOpen(false); setSearch('') }}>
           <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 520, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12, boxShadow: '0 20px 60px rgba(0,0,0,0.25)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>Choisir une équipe</h3>
+              <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>{t('teampicker_choose_team')}</h3>
               <button onClick={() => { setOpen(false); setSearch('') }} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
             </div>
 
@@ -97,7 +99,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Rechercher…"
+              placeholder={t('trademodal_search')}
               style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #ddd', fontSize: 13 }}
               autoFocus
             />
@@ -125,7 +127,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
             </div>
 
             <p style={{ fontSize: 11, color: '#bbb', margin: 0, textAlign: 'center' }}>
-              {value.length}/{max} équipes sélectionnées
+              {value.length}/{max} {t('teampicker_selected')}
             </p>
           </div>
         </div>

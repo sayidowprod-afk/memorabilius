@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor, type Lang } from '@/lib/LangContext'
 
 interface ActiveListing { price: number; title: string; url: string; img: string }
 interface SoldListing   { price: number; title: string; url: string; img: string; soldDate: string }
@@ -28,14 +28,14 @@ function medianOf(prices: number[]) {
 
 function fmtDate(iso: string, lang: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'short' })
+  return new Date(iso).toLocaleDateString(localeFor(lang as Lang), { day: 'numeric', month: 'short' })
 }
 
 export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, accent, img }: Props) {
   const [active, setActive]   = useState<ActiveListing[]>([])
   const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
-  const { lang } = useLang()
+  const { lang, t } = useLang()
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
   const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}`
@@ -100,12 +100,12 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
       {/* Header avec stats médiane */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Marché</span>
+        <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>{t('cardvalue_market')}</span>
         {!loading && soldMedian > 0 && (
-          <span style={{ fontSize: 13, fontWeight: 900, color: '#2e7d32' }}>{soldMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>vendu (méd.)</span></span>
+          <span style={{ fontSize: 13, fontWeight: 900, color: '#2e7d32' }}>{soldMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>{t('cardvalue_sold_median')}</span></span>
         )}
         {!loading && activeMedian > 0 && (
-          <span style={{ fontSize: 13, fontWeight: 900, color: accent }}>{activeMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>demandé (méd.)</span></span>
+          <span style={{ fontSize: 13, fontWeight: 900, color: accent }}>{activeMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>{t('cardvalue_asked_median')}</span></span>
         )}
         <span style={{ marginLeft: 'auto' }}>{ebayLink}</span>
       </div>
@@ -118,14 +118,14 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
       )}
 
       {!loading && sold.length === 0 && active.length === 0 && (
-        <p style={{ fontSize: 11, color: '#ccc', margin: 0 }}>Aucune annonce trouvée</p>
+        <p style={{ fontSize: 11, color: '#ccc', margin: 0 }}>{t('cardvalue_no_listings')}</p>
       )}
 
       {/* Ventes conclues */}
       {sold.length > 0 && (
         <div style={{ marginBottom: 12 }}>
           <div style={{ fontSize: 9, fontWeight: 800, color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
-            Ventes conclues ({sold.length})
+            {t('cardvalue_sold_completed')} ({sold.length})
           </div>
           <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
             {sold.map((item, i) => (
@@ -155,7 +155,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
       {active.length > 0 && (
         <div>
           <div style={{ fontSize: 9, fontWeight: 800, color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
-            En vente ({active.length})
+            {t('cardvalue_active_listings')} ({active.length})
           </div>
           <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
             {active.map((item, i) => (
@@ -172,7 +172,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
                   }
                   <div style={{ padding: '4px 5px 5px' }}>
                     <div style={{ fontWeight: 900, fontSize: 12, color: accent, lineHeight: 1.1 }}>{item.price}€</div>
-                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>En vente</div>
+                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>{t('cardvalue_active_listings')}</div>
                   </div>
                 </div>
               </a>

@@ -175,7 +175,7 @@ function MessagesContent() {
     const convMap: Record<string, any> = {}
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
-      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? '🔄 Offre d\'échange' : isImageMsg(msg.contenu) ? '📷 Photo' : msg.contenu
+      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : msg.contenu
       if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
@@ -290,6 +290,16 @@ function MessagesContent() {
     setActiveConv(id)
     if (userId) loadMessages(userId, id)
   }
+
+  // La page reste montée quand on y revient via router.push('/messages?to=...') (partage
+  // direct depuis une autre app, notification) pendant qu'elle est déjà ouverte — seul
+  // ?to= change alors, pas la route elle-même, donc rien d'autre ne réagissait à ce
+  // changement (activeConv n'était initialisé qu'une fois via useState). Sans ça, un
+  // partage vers un contact précis pendant que Messages est déjà ouvert ne faisait rien.
+  useEffect(() => {
+    if (!userId || !toParam || toParam === activeConv) return
+    selectConv(toParam)
+  }, [toParam, userId])
 
   // Reçu d'une autre app via ShareBridgePlugin (voir NativeInit.tsx qui redirige ici) —
   // consommé une seule fois dès qu'une conversation est ouverte (soit d'entrée si un
@@ -419,7 +429,7 @@ function MessagesContent() {
                 </div>
               ))}
               {newConvSearch.length >= 2 && newConvResults.length === 0 && (
-                <p style={{ fontSize: 12, color: textMuted, padding: '6px 4px', margin: 0 }}>Aucun résultat</p>
+                <p style={{ fontSize: 12, color: textMuted, padding: '6px 4px', margin: 0 }}>{t('gallery_no_results')}</p>
               )}
             </div>
           )}
@@ -500,7 +510,7 @@ function MessagesContent() {
                     const isSender = offer?.sender_id === userId
                     const isPending = offer?.status === 'pending'
                     const statusColors: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
-                    const statusLabels: Record<string, string> = { pending: 'En attente', accepted: 'Accepté ✓', refused: 'Refusé', cancelled: 'Annulé' }
+                    const statusLabels: Record<string, string> = { pending: t('echanges_status_pending'), accepted: `${t('echanges_status_accepted')} ✓`, refused: t('echanges_status_refused'), cancelled: t('echanges_status_cancelled') }
                     const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
                       const { data: { session } } = await supabase.auth.getSession()
                       if (!session) return
@@ -515,7 +525,7 @@ function MessagesContent() {
                       <div key={msg.id} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
                         <div style={{ background: dark ? '#1e2a3a' : '#f0f4ff', border: `1.5px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`, borderRadius: 14, padding: 14, width: '100%', maxWidth: 420 }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                            <span style={{ fontSize: 12, fontWeight: 800, color: '#003DA6' }}>🔄 Offre d'échange</span>
+                            <span style={{ fontSize: 12, fontWeight: 800, color: '#003DA6' }}>{t('messages_trade_offer')}</span>
                             {offer && <span style={{ fontSize: 11, fontWeight: 700, color: statusColors[offer.status] || '#555' }}>{statusLabels[offer.status] || offer.status}</span>}
                           </div>
                           {offer ? (

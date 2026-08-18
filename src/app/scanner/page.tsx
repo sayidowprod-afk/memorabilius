@@ -3,6 +3,7 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang } from '@/lib/LangContext'
 
 declare const BarcodeDetector: any
 
@@ -65,6 +66,7 @@ type Phase = 'idle' | 'searching' | 'results' | 'loading-sold' | 'done' | 'error
 
 export default function ScannerPage() {
   const { dark } = useTheme()
+  const { t } = useLang()
   const router = useRouter()
   const cameraRef  = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
@@ -338,10 +340,10 @@ export default function ScannerPage() {
     <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Header */}
       <div style={{ position: 'sticky', top: 60, zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
-        <span style={{ fontWeight: 900, fontSize: 16, color: text }}>📷 Scanner de prix</span>
+        <span style={{ fontWeight: 900, fontSize: 16, color: text }}>{t('scanner_header_title')}</span>
         {phase !== 'idle' && (
           <button onClick={reset} style={{ marginLeft: 'auto', fontSize: 12, color: muted, background: 'none', border: `1px solid ${border}`, borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontWeight: 700 }}>
-            ✕ Nouvelle carte
+            {t('scanner_new_card')}
           </button>
         )}
       </div>
@@ -352,8 +354,8 @@ export default function ScannerPage() {
         {phase === 'idle' && (
           <div style={{ paddingTop: 20 }}>
             <p style={{ textAlign: 'center', color: muted, fontSize: 14, marginBottom: 24, lineHeight: 1.7 }}>
-              Photo → correspondances eBay → prix vendus.<br />
-              <strong style={{ color: text }}>Conçu pour les card shows.</strong>
+              {t('scanner_flow_desc')}<br />
+              <strong style={{ color: text }}>{t('scanner_designed_card_shows')}</strong>
             </p>
             <button onClick={() => cameraRef.current?.click()} style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -361,20 +363,20 @@ export default function ScannerPage() {
               borderRadius: 22, cursor: 'pointer', color: '#fff', marginBottom: 12,
             }}>
               <span style={{ fontSize: 64, lineHeight: 1 }}>📷</span>
-              <span style={{ fontSize: 22, fontWeight: 900 }}>Prendre une photo</span>
-              <span style={{ fontSize: 13, opacity: 0.75 }}>Caméra arrière — carte bien à plat</span>
+              <span style={{ fontSize: 22, fontWeight: 900 }}>{t('scanner_take_photo')}</span>
+              <span style={{ fontSize: 13, opacity: 0.75 }}>{t('scanner_camera_hint')}</span>
             </button>
             <button onClick={() => galleryRef.current?.click()} style={{
               width: '100%', padding: '14px 0', background: 'none', border: `2px solid ${border}`,
               borderRadius: 14, cursor: 'pointer', color: muted, fontSize: 14, fontWeight: 700, marginBottom: 12,
             }}>
-              🖼️ Importer depuis la galerie
+              {t('scanner_import_gallery')}
             </button>
 
             {/* ── QR Memorabilius ── */}
             <div style={{ borderTop: `1px solid ${border}`, paddingTop: 16, marginTop: 4 }}>
               <p style={{ textAlign: 'center', fontSize: 12, color: muted, marginBottom: 10 }}>
-                Tu as un QR code Memorabilius ?
+                {t('scanner_qr_question')}
               </p>
               <button onClick={startQrScan} style={{
                 width: '100%', padding: '14px 0', background: 'none',
@@ -382,7 +384,7 @@ export default function ScannerPage() {
                 cursor: 'pointer', color: '#003DA6', fontSize: 14, fontWeight: 800,
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
               }}>
-                <span style={{ fontSize: 20 }}>▦</span> Scanner un QR Memorabilius
+                <span style={{ fontSize: 20 }}>▦</span> {t('scanner_qr_scan_btn')}
               </button>
             </div>
 
@@ -421,7 +423,7 @@ export default function ScannerPage() {
                 marginTop: 24, background: 'rgba(0,0,0,0.6)', borderRadius: 12,
                 padding: '10px 20px', color: '#fff', fontSize: 14, fontWeight: 700,
               }}>
-                {qrFound ? '✅ QR détecté !' : 'Vise le QR Memorabilius…'}
+                {qrFound ? t('scanner_qr_detected') : t('scanner_target_qr')}
               </div>
             </div>
             {/* Bouton fermer */}
@@ -434,7 +436,7 @@ export default function ScannerPage() {
                 fontSize: 15, fontWeight: 700, cursor: 'pointer', backdropFilter: 'blur(8px)',
               }}
             >
-              Annuler
+              {t('scanner_cancel')}
             </button>
           </div>
         )}
@@ -512,12 +514,12 @@ export default function ScannerPage() {
 
               {/* Bouton vers recherche texte Gemini si l'IA a identifié mais user n'a pas choisi */}
               {card && geminiDone && !selectedMatch && imgMatches && imgMatches.length > 0 && phase !== 'loading-sold' && phase !== 'done' && (
-                <button type="button" onClick={() => loadSoldComps('', card)} aria-label="Utiliser l'identification IA pour les prix vendus" style={{
+                <button type="button" onClick={() => loadSoldComps('', card)} aria-label={t('scanner_use_ai_aria')} style={{
                   marginTop: 12, width: '100%', padding: '9px 0', background: 'none',
                   border: `1px solid ${border}`, borderRadius: 10, cursor: 'pointer',
                   color: muted, fontSize: 12, fontWeight: 700,
                 }}>
-                  Utiliser l'identification IA à la place <span aria-hidden="true">→</span>
+                  {t('scanner_use_ai_instead')} <span aria-hidden="true">→</span>
                 </button>
               )}
             </div>
@@ -526,8 +528,8 @@ export default function ScannerPage() {
             {!imgSearchDone && (
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 12 }}>
-                  🔍 Correspondances visuelles eBay
-                  <span style={{ fontWeight: 400, marginLeft: 8, animation: 'pulse 1.4s ease-in-out infinite', display: 'inline-block' }}>chargement…</span>
+                  {t('scanner_visual_matches')}
+                  <span style={{ fontWeight: 400, marginLeft: 8, animation: 'pulse 1.4s ease-in-out infinite', display: 'inline-block' }}>{t('scanner_loading')}</span>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                   {[0,1,2,3,4,5].map(i => (
@@ -546,10 +548,10 @@ export default function ScannerPage() {
             {imgSearchDone && imgMatches && imgMatches.length > 0 && (
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: text, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>
-                  🔍 Correspondances visuelles eBay
+                  {t('scanner_visual_matches')}
                 </div>
                 <div style={{ fontSize: 11, color: muted, marginBottom: 12 }}>
-                  Tape la carte qui correspond pour voir ses prix vendus
+                  {t('scanner_tap_match_hint')}
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                   {imgMatches.map(m => {
@@ -579,7 +581,7 @@ export default function ScannerPage() {
             {imgSearchDone && imgMatches && imgMatches.length === 0 && (
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '14px 16px', marginBottom: 14 }}>
                 <div style={{ fontSize: 12, color: muted }}>
-                  Aucune correspondance visuelle eBay — résultats basés sur l'identification IA.
+                  {t('scanner_no_visual_match')}
                 </div>
               </div>
             )}
@@ -589,13 +591,13 @@ export default function ScannerPage() {
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, marginBottom: 14, overflow: 'hidden' }}>
                 <div style={{ padding: '13px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${border}` }}>
                   <span style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                    {selectedMatch ? '✓ Carte sélectionnée' : 'Valeur marché'}
+                    {selectedMatch ? t('scanner_card_selected') : t('scanner_market_value')}
                   </span>
                   {phase === 'done' && ebay && ebay.soldCount > 0 && (
-                    <span style={{ fontSize: 11, color: muted }}>{ebay.soldCount} ventes eBay US</span>
+                    <span style={{ fontSize: 11, color: muted }}>{ebay.soldCount} {t('scanner_sold_count_suffix')}</span>
                   )}
                   {phase === 'loading-sold' && (
-                    <span style={{ fontSize: 11, color: muted, animation: 'pulse 1.4s ease-in-out infinite' }}>chargement…</span>
+                    <span style={{ fontSize: 11, color: muted, animation: 'pulse 1.4s ease-in-out infinite' }}>{t('scanner_loading')}</span>
                   )}
                 </div>
 
@@ -612,7 +614,7 @@ export default function ScannerPage() {
                   <div style={{ padding: '16px' }}>
                     <div style={{ textAlign: 'center', background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 14, padding: '16px 12px', marginBottom: 12 }}>
                       <div style={{ fontSize: 11, fontWeight: 700, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 6 }}>
-                        Médiane des ventes
+                        {t('scanner_median_sales')}
                       </div>
                       <div style={{ fontSize: 52, fontWeight: 900, color: blue, lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums' }}>
                         {usd(ebay.median)}
@@ -620,18 +622,18 @@ export default function ScannerPage() {
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                       <div style={{ background: dark ? '#0a1f12' : '#f0fdf4', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Min</div>
+                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>{t('scanner_min')}</div>
                         <div style={{ fontWeight: 900, fontSize: 22, color: '#16a34a', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
                       </div>
                       <div style={{ background: dark ? '#1f0a0a' : '#fff5f5', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Max</div>
+                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>{t('scanner_max')}</div>
                         <div style={{ fontWeight: 900, fontSize: 22, color: '#dc2626', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
                       </div>
                     </div>
                   </div>
                 ) : phase === 'done' ? (
                   <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '20px 16px', margin: 0 }}>
-                    Aucune vente récente trouvée.
+                    {t('scanner_no_recent_sales')}
                   </p>
                 ) : (
                   <div style={{ padding: 16 }}>
@@ -656,13 +658,13 @@ export default function ScannerPage() {
                       borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
                       marginBottom: -1,
                     }}>
-                      {key === 'sold' ? `Vendues (${ebay.sold.length})` : `En vente (${ebay.active.length})`}
+                      {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
                     </button>
                   ))}
                 </div>
                 <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
                   {(soldTab === 'sold' ? ebay.sold : ebay.active).length === 0
-                    ? <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '14px 0', margin: 0 }}>Aucun résultat</p>
+                    ? <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '14px 0', margin: 0 }}>{t('gallery_no_results')}</p>
                     : (soldTab === 'sold' ? ebay.sold : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)
                   }
                 </div>
@@ -678,14 +680,14 @@ export default function ScannerPage() {
                     border: `2px dashed ${border}`, borderRadius: 14, cursor: 'pointer',
                     color: muted, fontSize: 13, fontWeight: 700,
                   }}>
-                    📸 Ajouter le verso — améliore la détection
+                    {t('scanner_add_verso')}
                   </button>
                 )}
                 <button onClick={reset} style={{
                   width: '100%', padding: '16px 0', background: blue, border: 'none',
                   borderRadius: 14, color: '#fff', fontWeight: 900, fontSize: 17, cursor: 'pointer',
                 }}>
-                  📷 Scanner une autre carte
+                  {t('scanner_scan_another')}
                 </button>
                 <input ref={versoRef} type="file" accept="image/*" capture="environment" style={{ display: 'none' }}
                   onChange={e => { const f = e.target.files?.[0]; if (f) handleVerso(f); e.target.value = '' }} />
@@ -696,7 +698,7 @@ export default function ScannerPage() {
               <>
                 <p style={{ color: '#dc2626', fontWeight: 700, fontSize: 14, textAlign: 'center' }}>{err}</p>
                 <button onClick={reset} style={{ width: '100%', padding: '14px 0', background: '#dc2626', border: 'none', borderRadius: 14, color: '#fff', fontWeight: 800, fontSize: 15, cursor: 'pointer' }}>
-                  🔄 Réessayer
+                  {t('scanner_retry')}
                 </button>
               </>
             )}

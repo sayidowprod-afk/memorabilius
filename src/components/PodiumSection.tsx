@@ -126,7 +126,7 @@ export default function PodiumSection({ month, week, day }: Props) {
         }
       `}</style>
 
-      <h2 style={{ fontWeight: 900, fontSize: 20, marginBottom: 16 }}>🏆 Podium</h2>
+      <h2 style={{ fontWeight: 900, fontSize: 20, marginBottom: 16, textAlign: 'center' }}>🏆 Podium</h2>
 
       {/* Mobile : tabs */}
       <div className="podium-mobile">

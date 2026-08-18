@@ -263,7 +263,7 @@ export default function Recherche() {
         {searched && !loading && totalResults === 0 && (
           <div style={{ textAlign: 'center', padding: '72px 20px', color: muted }}>
             <div style={{ fontSize: 52, marginBottom: 16 }}>🃏</div>
-            <p style={{ fontSize: 18, fontWeight: 800, color: text, marginBottom: 8 }}>Aucun résultat pour "{query}"</p>
+            <p style={{ fontSize: 18, fontWeight: 800, color: text, marginBottom: 8 }}>{t('search_none')} "{query}"</p>
             <p style={{ fontSize: 14 }}>{t('search_none_sub')}</p>
           </div>
         )}

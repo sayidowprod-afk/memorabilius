@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 
 // Bannière d'accueil : halos + éventail de cartes holographiques flottantes.
@@ -262,7 +262,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
                       <div>
                         <div style={{ color: 'white', fontWeight: 800, fontSize: 16, lineHeight: 1.2 }}>{g.display_name}</div>
                         <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, marginTop: 2 }}>
-                          {g.stats_total.toLocaleString('fr-FR')} {t('search_cards_lower')}
+                          {g.stats_total.toLocaleString(localeFor(lang))} {t('search_cards_lower')}
                         </div>
                       </div>
                     </div>
@@ -296,9 +296,9 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 20, marginBottom: 50 }}>
         {[
           { val: total, label: t('home_collectors') },
-          { val: totalCartes.toLocaleString('fr-FR'), label: t('home_cards') },
-          { val: totalBinders.toLocaleString('fr-FR'), label: t('home_binders') },
-          { val: totalTrade.toLocaleString('fr-FR'), label: t('home_trade') },
+          { val: totalCartes.toLocaleString(localeFor(lang)), label: t('home_cards') },
+          { val: totalBinders.toLocaleString(localeFor(lang)), label: t('home_binders') },
+          { val: totalTrade.toLocaleString(localeFor(lang)), label: t('home_trade') },
         ].map(s => (
           <div key={s.label} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.3)' : '0 10px 30px rgba(0,0,0,0.05)', border: dark ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
             <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6' }}>{s.val}</h3>
@@ -306,8 +306,6 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
           </div>
         ))}
       </section>
-
-      <div className="section-title">{t('home_pepites')}</div>
     </>
   )
 }

@@ -2,7 +2,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor, type Lang } from '@/lib/LangContext'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
@@ -13,7 +13,7 @@ interface Props {
   profileName: string
   avatarUrl: string
   accent: string
-  lang: string
+  lang: Lang
   cardValues?: Map<string, number>
   isOwner?: boolean
 }
@@ -111,7 +111,7 @@ function trunc(ctx: CanvasRenderingContext2D, text: string, maxW: number): strin
   return t + '…'
 }
 
-async function generate(cards: Card[], profileName: string, avatarUrl: string, accent: string, lang: string, opts: Options): Promise<Blob> {
+async function generate(cards: Card[], profileName: string, avatarUrl: string, accent: string, lang: Lang, opts: Options): Promise<Blob> {
   await loadFont()
 
   const { w, h } = FORMATS[opts.format]
@@ -199,7 +199,7 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   ctx.fillText(statParts, tx, avY + HEADER_H * 0.16)
 
   ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.font = `400 ${Math.round(HEADER_H * 0.14)}px ${FONT}`
-  ctx.fillText(new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : lang === 'de' ? 'de-DE' : 'en-US'), w - PAD, avY)
+  ctx.fillText(new Date().toLocaleDateString(localeFor(lang)), w - PAD, avY)
   ctx.textAlign = 'left'
 
   const images = await loadImgs(cards.map(c => c.f))
@@ -525,7 +525,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, c
           doc.setFont(FONT, 'bold'); doc.setFontSize(13); doc.setTextColor(20, 20, 20)
           doc.text(`${profileName} — Collection (${filtered.length} carte${filtered.length > 1 ? 's' : ''})`, ML, y + 5)
           doc.setFont(FONT, 'normal'); doc.setFontSize(7); doc.setTextColor(150)
-          const sub = [`Exporté le ${new Date().toLocaleDateString('fr-FR')} · memorabilius.fr`,
+          const sub = [`Exporté le ${new Date().toLocaleDateString(localeFor(lang))} · memorabilius.fr`,
             hasPdfValues ? `Valeur totale : ${totalValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` : '']
             .filter(Boolean).join('   ·   ')
           doc.text(sub, ML, y + 10)

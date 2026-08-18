@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { inferSportFromTeamName } from '@/lib/sportsTeams'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
@@ -302,8 +302,8 @@ export default function Trades() {
           {loadingForum ? <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement...</p> : (
             filteredForum.length === 0 ? (
               <div style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>
-                <p style={{ fontSize: 18, marginBottom: 12 }}>Aucune annonce pour l'instant</p>
-                <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>Être le premier à poster</Link>
+                <p style={{ fontSize: 18, marginBottom: 12 }}>{t('trades_no_ads_yet')}</p>
+                <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>
               </div>
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
@@ -320,7 +320,7 @@ export default function Trades() {
                       <span style={{ fontSize: 12, fontWeight: 900, color: (trade as any)._source === 'galerie' ? '#6a1b9a' : trade.type === 'offre' ? '#2e7d32' : '#1976d2' }}>
                         {(trade as any)._source === 'galerie' ? '🏷️ Vente/Trade' : trade.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
                       </span>
-                      <span style={{ fontSize: 11, color: '#999' }}>{new Date(trade.created_at).toLocaleDateString('fr-FR')}</span>
+                      <span style={{ fontSize: 11, color: '#999' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                     </div>
                     {trade.image_url ? (
                       <div style={{ background: '#f4f4f4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -397,10 +397,10 @@ export default function Trades() {
                     {/* Header */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>
-                        {isSender ? `Envoyé à ${otherName}` : `Reçu de ${otherName}`}
+                        {isSender ? `${t('trades_sent_to')} ${otherName}` : `${t('trades_received_from')} ${otherName}`}
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: 11, color: '#aaa' }}>{new Date(trade.created_at).toLocaleDateString('fr-FR')}</span>
+                        <span style={{ fontSize: 11, color: '#aaa' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                         <span style={{ background: status.bg, color: status.color, fontSize: 11, fontWeight: 800, padding: '3px 10px', borderRadius: 20 }}>{status.label}</span>
                       </div>
                     </div>
@@ -549,7 +549,7 @@ export default function Trades() {
                   ) : null
                 })()}
                 <div style={{ borderTop: '1px solid #eee', paddingTop: 16 }}>
-                  <p style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', margin: '0 0 10px' }}>Proposé par</p>
+                  <p style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', margin: '0 0 10px' }}>{t('trades_by')}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                     <img src={popup.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(popup.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                       style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid #eee' }} alt="" />
@@ -632,7 +632,7 @@ export default function Trades() {
                     </div>
                   )}
                   <p style={{ fontSize: 11, color: '#bbb', textAlign: 'center', margin: 0 }}>
-                    Publié le {new Date(popup.created_at).toLocaleDateString('fr-FR')}
+                    {t('trades_published')} {new Date(popup.created_at).toLocaleDateString(localeFor(lang))}
                   </p>
                 </div>
               </div>

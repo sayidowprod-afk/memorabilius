@@ -441,6 +441,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const wrapRef = useRef<HTMLDivElement>(null)
   const idleRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
+  const idleWobbleRaf = useRef<number>(0)
+  const idleWobbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const idleWobbleActive = useRef(false)
   const [showVideo, setShowVideo] = useState(false)
 
   const [slabMode, setSlabMode] = useState(false)
@@ -518,6 +521,38 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     applyTransform()
   }, [applyTransform])
 
+  // Petit balancement automatique quand on ne touche à rien — sans ça, rien
+  // n'indique (surtout sur mobile où le hint texte "Glisser..." est masqué,
+  // cf. .viewer-hint en media query) que la carte peut être tournée en 3D.
+  // Oscille autour de la rotation courante (rotX/rotY) plutôt que de forcer un
+  // angle fixe, donc reprend naturellement là où l'utilisateur l'a laissée.
+  const stopIdleWobble = useCallback(() => {
+    idleWobbleActive.current = false
+    cancelAnimationFrame(idleWobbleRaf.current)
+    if (idleWobbleTimer.current) clearTimeout(idleWobbleTimer.current)
+  }, [])
+
+  const startIdleWobble = useCallback((delay: number) => {
+    if (idleWobbleTimer.current) clearTimeout(idleWobbleTimer.current)
+    idleWobbleTimer.current = setTimeout(() => {
+      if (isDragging.current) return
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      idleWobbleActive.current = true
+      const baseY = rotY.current
+      const baseX = rotX.current
+      const start = performance.now()
+      const loop = (now: number) => {
+        if (!idleWobbleActive.current || isDragging.current) return
+        const t = (now - start) / 1000
+        rotY.current = baseY + Math.sin(t * 0.7) * 18
+        rotX.current = baseX + Math.sin(t * 0.5) * 7
+        applyTransform()
+        idleWobbleRaf.current = requestAnimationFrame(loop)
+      }
+      idleWobbleRaf.current = requestAnimationFrame(loop)
+    }, delay)
+  }, [applyTransform])
+
   const pauseSlbAnim = useCallback(() => {
     idleRef.current?.style.setProperty('animation-play-state', 'paused')
   }, [])
@@ -531,7 +566,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     lastX.current = e.clientX
     lastY.current = e.clientY
     pauseSlbAnim()
-  }, [pauseSlbAnim])
+    stopIdleWobble()
+  }, [pauseSlbAnim, stopIdleWobble])
 
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging.current) return
@@ -546,7 +582,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     rafRef.current = requestAnimationFrame(applyTransform)
   }, [applyTransform])
 
-  const onMouseUp = useCallback(() => { isDragging.current = false; resumeSlbAnim() }, [resumeSlbAnim])
+  const onMouseUp = useCallback(() => {
+    isDragging.current = false
+    resumeSlbAnim()
+    startIdleWobble(3500)
+  }, [resumeSlbAnim, startIdleWobble])
 
   const onDoubleClick = useCallback(() => { reset() }, [reset])
 
@@ -583,7 +623,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       )
     }
     pauseSlbAnim()
-  }, [reset, pauseSlbAnim])
+    stopIdleWobble()
+  }, [reset, pauseSlbAnim, stopIdleWobble])
 
   const onTouchMove = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
@@ -611,6 +652,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const onTouchEnd = useCallback(() => {
     isDragging.current = false
     resumeSlbAnim()
+    startIdleWobble(3500)
     const dx = touch1.current.x - swipeStartX.current
     const dy = touch1.current.y - swipeStartY.current
     const dt = Date.now() - swipeStartTime.current
@@ -622,15 +664,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       if (dx < 0) onNext?.()
       else onPrev?.()
     }
-  }, [onNext, onPrev, resumeSlbAnim])
+  }, [onNext, onPrev, resumeSlbAnim, startIdleWobble])
 
   useEffect(() => {
     const prevent = (e: Event) => { if (isDragging.current) e.preventDefault() }
     document.addEventListener('selectstart', prevent)
     document.addEventListener('mouseup', () => { isDragging.current = false })
+    startIdleWobble(1200)
     return () => {
       document.removeEventListener('selectstart', prevent)
       cancelAnimationFrame(rafRef.current)
+      stopIdleWobble()
     }
   }, [])
 

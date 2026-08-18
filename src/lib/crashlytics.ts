@@ -7,7 +7,11 @@ interface FirebaseCrashlyticsPlugin {
   log(options: { message: string }): Promise<void>
 }
 
-const FirebaseCrashlytics = registerPlugin<FirebaseCrashlyticsPlugin>('FirebaseCrashlyticsPlugin')
+// Le nom doit correspondre exactement à @CapacitorPlugin(name = "FirebaseCrashlytics")
+// côté natif (@capacitor-firebase/crashlytics) — 'FirebaseCrashlyticsPlugin' ne
+// résolvait aucun plugin, donc recordException/setUserId échouaient silencieusement
+// (chaque appel est wrappé en .catch(() => {})) et Crashlytics n'a jamais rien reçu.
+const FirebaseCrashlytics = registerPlugin<FirebaseCrashlyticsPlugin>('FirebaseCrashlytics')
 
 // Aucun rapport natif ne couvrait le JS (le layer web n'a que Vercel Analytics, qui ne
 // voit rien de ce qui casse dans la WebView de l'app). Toute erreur JS non interceptée

@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 
 interface TradeCard {
   id: string
@@ -61,7 +61,7 @@ function CardStack({ cards, label }: { cards: TradeCard[]; label: string }) {
 
 export default function EchangesPage() {
   const router = useRouter()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
     pending:   { label: t('echanges_status_pending'),   color: '#7a5500', bg: '#fff8e1' },
     accepted:  { label: t('echanges_status_accepted'),  color: '#1b5e20', bg: '#e8f5e9' },
@@ -138,7 +138,7 @@ export default function EchangesPage() {
 
       {shown.length === 0 && (
         <div style={{ textAlign: 'center', color: '#bbb', padding: '48px 0', fontSize: 15 }}>
-          {tab === 'pending' ? 'Aucun échange en attente' : 'Aucun historique'}
+          {tab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')}
         </div>
       )}
 
@@ -156,11 +156,11 @@ export default function EchangesPage() {
               {/* Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>
-                  {isSender ? `Envoyé à ${otherName}` : `Reçu de ${otherName}`}
+                  {isSender ? `${t('trades_sent_to')} ${otherName}` : `${t('trades_received_from')} ${otherName}`}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ fontSize: 11, color: '#aaa' }}>
-                    {new Date(trade.created_at).toLocaleDateString('fr-FR')}
+                    {new Date(trade.created_at).toLocaleDateString(localeFor(lang))}
                   </span>
                   <span style={{ background: status.bg, color: status.color, fontSize: 11, fontWeight: 800, padding: '3px 10px', borderRadius: 20 }}>
                     {status.label}

@@ -780,7 +780,7 @@ export default function SetlistPage() {
                       <span style={{ fontSize: 12, color: '#003DA6', fontWeight: 700 }}>{t('setlist_placing')}</span>
                     ) : pendingPlace?.cardIdx === i ? (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: dark ? '#1a2a1a' : '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 10, padding: '10px 12px', maxWidth: 280 }}>
-                        <div style={{ fontSize: 12, color: dark ? '#aaa' : '#555' }}>Sera placé dans :</div>
+                        <div style={{ fontSize: 12, color: dark ? '#aaa' : '#555' }}>{t('setlist_will_be_placed_in')}</div>
                         <div style={{ fontWeight: 700, fontSize: 13, color: dark ? '#fff' : '#111' }}>
                           {pendingPlace.setName}
                           {pendingPlace.setYear && <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>({pendingPlace.setYear})</span>}
@@ -834,7 +834,7 @@ export default function SetlistPage() {
                         </button>
                         <button
                           onClick={() => dismissCard(i)}
-                          title="Marquer comme traité"
+                          title={t('setlist_mark_done')}
                           style={{ fontSize: 11, color: '#2ecc71', fontWeight: 700, background: '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 6, padding: '4px 7px', cursor: 'pointer' }}
                         >
                           ✓
@@ -877,7 +877,7 @@ export default function SetlistPage() {
                         </button>
                         <button
                           onClick={() => dismissCard(i)}
-                          title="Marquer comme traité"
+                          title={t('setlist_mark_done')}
                           style={{ fontSize: 11, color: '#2ecc71', fontWeight: 700, background: '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                         >
                           {t('setlist_done')}
@@ -1017,7 +1017,7 @@ export default function SetlistPage() {
       : seasonSets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_collection')}</div>
       ) : displayedSets.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Aucun set ne correspond à cette recherche.</div>
+        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_match_search')}</div>
       ) : (
         <div className="sl-sets-grid">
           {displayedSets.map(set => (
