@@ -49,9 +49,36 @@ function findNextBadge(stat: Record<string, number>): DashboardData['nextBadge']
   return best
 }
 
+function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColor, href, onIconClick, first }: {
+  icon: React.ReactNode; iconBg: string; label: React.ReactNode; valueLabel: string; valueColor: string
+  pct: number; barColor: string; href: string; onIconClick?: () => void; first?: boolean
+}) {
+  const content = (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: first ? '0 0 12px' : '12px 0', borderTop: first ? undefined : '1px solid var(--border, #eee)' }}>
+      <span
+        onClick={onIconClick ? (e) => { e.preventDefault(); onIconClick() } : undefined}
+        style={{
+          fontSize: 15, fontWeight: 900, flexShrink: 0, width: 30, height: 30, borderRadius: '50%',
+          background: iconBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>{icon}</span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
+          <span style={{ color: valueColor, flexShrink: 0 }}>{valueLabel}</span>
+        </div>
+        <div style={{ height: 5, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 6 }}>
+          <div style={{ height: '100%', width: `${Math.min(100, Math.round(pct * 100))}%`, background: barColor, borderRadius: 3 }} />
+        </div>
+      </div>
+    </div>
+  )
+  return <Link href={href} onClick={hapticTap} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+}
+
 export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
   const { user } = useAuth()
   const [data, setData] = useState<DashboardData | null>(null)
+  const [showXpInfo, setShowXpInfo] = useState(false)
 
   useEffect(() => {
     if (!user) return
@@ -168,89 +195,59 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         </div>
       </Link>
 
-      <div style={{
-        margin: '0 16px 10px', padding: '14px 16px',
-        background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 18,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{
-            fontSize: 17, fontWeight: 900, flexShrink: 0, width: 40, height: 40, borderRadius: '50%',
-            background: 'linear-gradient(135deg, #1E63E0, #003DA6)', color: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>{data.level.level}</span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
-              Niveau {data.level.level}
-            </div>
-            <div style={{ height: 6, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 7 }}>
-              <div style={{ height: '100%', width: `${Math.round(data.level.pct * 100)}%`, background: 'linear-gradient(90deg, #1E63E0, #003DA6)', borderRadius: 3 }} />
-            </div>
-            <div style={{ fontSize: 10.5, color: 'var(--text3, #999)', marginTop: 4 }}>
-              {data.level.xpIntoLevel} / {data.level.xpForNextLevel} XP vers le niveau {data.level.level + 1}
-            </div>
-          </div>
-        </div>
-        <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--border, #eee)', lineHeight: 1.6 }}>
-          XP gagné : <strong style={{ color: 'var(--text2, #777)' }}>+1 à +19</strong> par carte selon sa rareté (RC/auto/patch/num) · <strong style={{ color: 'var(--text2, #777)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text2, #777)' }}>+20</strong> par team rejointe · <strong style={{ color: 'var(--text2, #777)' }}>+10</strong> par échange conclu · bonus de streak et de likes reçus
-        </div>
-      </div>
-
-      {data.nextBadge && (
-        <Link href={`/galerie/${user?.id}?tab=badges`} onClick={hapticTap} style={{
-          display: 'flex', alignItems: 'center', gap: 12, margin: '0 16px 10px', padding: '14px 16px',
-          background: 'linear-gradient(135deg, rgba(240,204,112,0.14), rgba(160,112,24,0.06))',
-          border: '1px solid rgba(200,148,40,0.3)', borderRadius: 18, textDecoration: 'none',
-        }}>
-          <span style={{
-            fontSize: 22, flexShrink: 0, width: 40, height: 40, borderRadius: '50%',
-            background: 'radial-gradient(circle at 35% 30%, #f0cc70, #a07018 75%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 10px rgba(160,112,24,0.35)',
-          }}>{data.nextBadge.cat.emoji}</span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
-              Prochain badge : <span style={{ color: '#a07018' }}>{data.nextBadge.tier.label} {data.nextBadge.cat.unit}</span>
-            </div>
-            <div style={{ height: 6, background: 'rgba(160,112,24,0.15)', borderRadius: 3, overflow: 'hidden', marginTop: 7 }}>
-              <div style={{ height: '100%', width: `${Math.round(data.nextBadge.pct * 100)}%`, background: 'linear-gradient(90deg, #a07018, #f0cc70)', borderRadius: 3 }} />
-            </div>
-            <div style={{ fontSize: 10.5, color: 'var(--text3, #999)', marginTop: 4 }}>
-              {data.nextBadge.value} / {data.nextBadge.tier.threshold} {data.nextBadge.cat.unit}
-            </div>
-          </div>
-        </Link>
-      )}
-
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 12, margin: '0 16px 20px', padding: '14px 16px',
-        background: challengeDone ? 'linear-gradient(135deg, rgba(46,125,50,0.14), rgba(46,125,50,0.05))' : 'var(--card-bg, #fff)',
-        border: challengeDone ? '1px solid rgba(46,125,50,0.35)' : '1px solid var(--border, #eee)', borderRadius: 18,
-      }}>
-        <span style={{
-          fontSize: 20, flexShrink: 0, width: 40, height: 40, borderRadius: '50%',
-          background: challengeDone ? '#2e7d32' : 'rgba(0,61,166,0.08)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>{challengeDone ? '✓' : data.challenge.emoji}</span>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
-            Défi de la semaine : <span style={{ color: challengeDone ? '#2e7d32' : '#003DA6' }}>{data.challenge.label}</span>
-          </div>
-          <div style={{ height: 6, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 7 }}>
-            <div style={{ height: '100%', width: `${Math.min(100, Math.round(data.challengeProgress / data.challenge.target * 100))}%`, background: challengeDone ? '#2e7d32' : 'linear-gradient(90deg, #1E63E0, #003DA6)', borderRadius: 3 }} />
-          </div>
-          <div style={{ fontSize: 10.5, color: 'var(--text3, #999)', marginTop: 4 }}>
-            {challengeDone ? 'Défi complété !' : `${data.challengeProgress} / ${data.challenge.target} ${data.challenge.unit} cette semaine`}
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', gap: 8, margin: '0 16px 20px' }}>
+      <div style={{ display: 'flex', gap: 8, margin: '0 16px 14px' }}>
         {galleryStats.map(s => (
           <div key={s.label} style={{ flex: 1, background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: '9px 4px', textAlign: 'center' }}>
             <div style={{ fontSize: 15, fontWeight: 900, color: s.color }}>{s.val}</div>
             <div style={{ fontSize: 8.5, fontWeight: 800, color: 'var(--text3, #999)', letterSpacing: 0.3, marginTop: 1 }}>{s.label}</div>
           </div>
         ))}
+      </div>
+
+      <div style={{ position: 'relative', margin: '0 16px 20px', padding: '0 16px', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 18 }}>
+        <ProgressRow
+          first
+          href={`/galerie/${user?.id}`}
+          icon={data.level.level}
+          iconBg="linear-gradient(135deg, #1E63E0, #003DA6)"
+          label="Niveau"
+          valueLabel={`${data.level.xpIntoLevel}/${data.level.xpForNextLevel} XP`}
+          valueColor="#003DA6"
+          pct={data.level.pct}
+          barColor="linear-gradient(90deg, #1E63E0, #003DA6)"
+          onIconClick={() => setShowXpInfo(v => !v)}
+        />
+        {data.nextBadge && (
+          <ProgressRow
+            href={`/galerie/${user?.id}?tab=badges`}
+            icon={data.nextBadge.cat.emoji}
+            iconBg="radial-gradient(circle at 35% 30%, #f0cc70, #a07018 75%)"
+            label={`Prochain badge : ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}
+            valueLabel={`${data.nextBadge.value}/${data.nextBadge.tier.threshold}`}
+            valueColor="#a07018"
+            pct={data.nextBadge.pct}
+            barColor="linear-gradient(90deg, #a07018, #f0cc70)"
+          />
+        )}
+        <ProgressRow
+          href={`/galerie/${user?.id}`}
+          icon={challengeDone ? '✓' : data.challenge.emoji}
+          iconBg={challengeDone ? '#2e7d32' : 'rgba(0,61,166,0.12)'}
+          label={`Défi : ${data.challenge.label}`}
+          valueLabel={challengeDone ? 'Fait !' : `${data.challengeProgress}/${data.challenge.target}`}
+          valueColor={challengeDone ? '#2e7d32' : '#003DA6'}
+          pct={data.challengeProgress / data.challenge.target}
+          barColor={challengeDone ? '#2e7d32' : 'linear-gradient(90deg, #1E63E0, #003DA6)'}
+        />
+        {showXpInfo && (
+          <div style={{
+            position: 'absolute', top: 8, left: 16, right: 16, zIndex: 5,
+            background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border, #eee)', borderRadius: 12,
+            padding: 10, fontSize: 10, color: 'var(--text2, #777)', lineHeight: 1.6, boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+          }}>
+            XP gagné : <strong style={{ color: 'var(--text, #121212)' }}>+1 à +19</strong> par carte selon sa rareté (RC/auto/patch/num) · <strong style={{ color: 'var(--text, #121212)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text, #121212)' }}>+20</strong> par team rejointe · <strong style={{ color: 'var(--text, #121212)' }}>+10</strong> par échange conclu · bonus de streak et de likes reçus
+          </div>
+        )}
       </div>
 
       <h2 style={{ fontSize: 20, fontWeight: 900, margin: '4px 0 16px', textAlign: 'center', color: 'var(--text, #121212)' }}>
