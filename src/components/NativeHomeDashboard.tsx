@@ -121,24 +121,20 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   return (
     <div style={{ background: 'var(--bg, #f8f9fa)', paddingBottom: 8 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '22px 18px 18px' }}>
-        <div style={{ position: 'relative', flexShrink: 0 }}>
-          {data.avatarUrl
-            ? <img src={data.avatarUrl} alt="" style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover' }} />
-            : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17 }}>{data.displayName[0]?.toUpperCase()}</div>
-          }
-          <span title={`Niveau ${data.level.level}`} style={{
-            position: 'absolute', bottom: -3, right: -5, background: '#003DA6', color: '#fff',
-            fontSize: 9.5, fontWeight: 900, borderRadius: 8, padding: '1px 5px', border: '2px solid var(--bg, #f8f9fa)',
-          }}>{data.level.level}</span>
-        </div>
+        {data.avatarUrl
+          ? <img src={data.avatarUrl} alt="" style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+          : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17, flexShrink: 0 }}>{data.displayName[0]?.toUpperCase()}</div>
+        }
         <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{ fontSize: 12.5, color: 'var(--text2, #777)', fontWeight: 600 }}>Content de te revoir</div>
           <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--text, #121212)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{data.displayName}</div>
         </div>
         {data.streak > 0 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 3, background: 'rgba(230,126,34,0.12)', borderRadius: 20, padding: '5px 10px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(230,126,34,0.12)', borderRadius: 20, padding: '5px 10px', flexShrink: 0 }}>
             <span style={{ fontSize: 14 }}>🔥</span>
-            <span style={{ fontSize: 13, fontWeight: 900, color: '#e67e22' }}>{data.streak}</span>
+            <span style={{ fontSize: 11.5, fontWeight: 800, color: '#e67e22', whiteSpace: 'nowrap' }}>
+              {data.streak} jour{data.streak > 1 ? 's' : ''} de suite
+            </span>
           </div>
         )}
       </div>
@@ -174,6 +170,33 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           <div style={{ position: 'absolute', top: 14, right: 14, color: 'rgba(255,255,255,0.85)' }}><ChevronIcon /></div>
         </div>
       </Link>
+
+      <div style={{
+        margin: '0 16px 10px', padding: '14px 16px',
+        background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 18,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{
+            fontSize: 17, fontWeight: 900, flexShrink: 0, width: 40, height: 40, borderRadius: '50%',
+            background: 'linear-gradient(135deg, #1E63E0, #003DA6)', color: '#fff',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>{data.level.level}</span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
+              Niveau {data.level.level}
+            </div>
+            <div style={{ height: 6, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 7 }}>
+              <div style={{ height: '100%', width: `${Math.round(data.level.pct * 100)}%`, background: 'linear-gradient(90deg, #1E63E0, #003DA6)', borderRadius: 3 }} />
+            </div>
+            <div style={{ fontSize: 10.5, color: 'var(--text3, #999)', marginTop: 4 }}>
+              {data.level.xpIntoLevel} / {data.level.xpForNextLevel} XP vers le niveau {data.level.level + 1}
+            </div>
+          </div>
+        </div>
+        <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--border, #eee)', lineHeight: 1.6 }}>
+          XP gagné : <strong style={{ color: 'var(--text2, #777)' }}>+2</strong> par carte ajoutée · <strong style={{ color: 'var(--text2, #777)' }}>+15</strong> par badge débloqué · <strong style={{ color: 'var(--text2, #777)' }}>+20</strong> par team rejointe
+        </div>
+      </div>
 
       {data.nextBadge && (
         <Link href={`/galerie/${user?.id}?tab=badges`} onClick={hapticTap} style={{
