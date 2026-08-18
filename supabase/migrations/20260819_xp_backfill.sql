@@ -13,8 +13,11 @@
 -- +5 patch, +3 numérotée, cumulables).
 INSERT INTO xp_events (user_id, type, amount, meta)
 SELECT cm.user_id, 'backfill_cards',
-  SUM(1 + 3 * cm.rc::int + 5 * cm.auto::int + 5 * cm.patch::int
-      + 3 * (CASE WHEN cm.num IS NOT NULL AND cm.num <> '' THEN 1 ELSE 0 END))::int,
+  SUM(1
+      + (CASE WHEN cm.rc    THEN 3 ELSE 0 END)
+      + (CASE WHEN cm.auto  THEN 5 ELSE 0 END)
+      + (CASE WHEN cm.patch THEN 5 ELSE 0 END)
+      + (CASE WHEN cm.num IS NOT NULL AND cm.num <> '' THEN 3 ELSE 0 END))::int,
   '{"backfill": true}'::jsonb
 FROM cartes_manuelles cm
 WHERE NOT EXISTS (SELECT 1 FROM xp_events e WHERE e.user_id = cm.user_id AND e.type = 'backfill_cards')
