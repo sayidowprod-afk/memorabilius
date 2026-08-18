@@ -50,7 +50,8 @@ function Header({ set, ownedCount, entriesLength, userId, t }: { set: CardSet; o
 
 // `columns` CSS n'est pas fiable (rendu chevauché en natif comme sous
 // html2canvas) : on répartit nous-mêmes dans N colonnes flex, en remplissant
-// séquentiellement pour garder l'ordre alphabétique.
+// séquentiellement pour garder l'ordre alphabétique. Utilisé uniquement pour
+// la vue écran (toujours affichée en entier, pas de contrainte de pagination).
 function distributeColumns(groups: Group[], n: number): Group[][] {
   const columns: Group[][] = Array.from({ length: n }, () => [])
   const weights = groups.map(g => Math.max(1, g.items.length))
@@ -74,18 +75,8 @@ function groupsToUnits(groups: Group[]): Unit[] {
   return units
 }
 
-function distributeUnitsToColumns(units: Unit[], n: number): Unit[][] {
-  const cols: Unit[][] = Array.from({ length: n }, () => [])
-  const per = Math.ceil(units.length / n) || 1
-  units.forEach((u, i) => cols[Math.min(n - 1, Math.floor(i / per))].push(u))
-  return cols
-}
-
 // Toutes les lignes (cartes ET en-têtes) ont EXACTEMENT la même hauteur fixe
-// (même fontSize/lineHeight/marge) et ne tiennent jamais que sur une seule
-// ligne (nowrap + ellipsis) : la grille verticale est parfaitement uniforme,
-// ce qui permet de découper les pages à n'importe quel multiple de cette
-// hauteur sans jamais couper une ligne en deux (voir exportAs).
+// et ne tiennent jamais que sur une seule ligne (nowrap + ellipsis).
 const ROW_STYLE: CSSProperties = { fontSize: 11, lineHeight: 1.35, marginBottom: 2, whiteSpace: 'nowrap', overflow: 'hidden' }
 
 function CardRow({ e, owned }: { e: Entry; owned: boolean }) {
@@ -123,7 +114,9 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   const [filterMode, setFilterMode] = useState<'all' | 'owned' | 'missing'>('all')
   const [selectedVariations, setSelectedVariations] = useState<Set<string> | null>(null)
   const [exportPhase, setExportPhase] = useState<'idle' | 'pdf' | 'jpg'>('idle')
-  const contentRootRef = useRef<HTMLDivElement>(null)
+  const [exportPages, setExportPages] = useState<Unit[][][]>([])
+  const measureRootRef = useRef<HTMLDivElement>(null)
+  const captureRootRef = useRef<HTMLDivElement>(null)
   const logoImgRef = useRef<HTMLImageElement | null>(null)
 
   useEffect(() => {
@@ -222,67 +215,68 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
 
   const selectedGroups = groups.filter(g => activeVariations.has(g.name))
   const selectedUnits = groupsToUnits(selectedGroups)
-  const contentColumns = distributeUnitsToColumns(selectedUnits, COLS_PER_PAGE)
-  const contentWidthMm = 210 - SIDE_PAD_MM * 2
 
   async function exportAs(kind: 'pdf' | 'jpg') {
     if (exportPhase !== 'idle' || selectedUnits.length === 0) return
     setExportPhase(kind)
     try {
-      // Un seul rendu continu (colonnes seules, sans en-tête, hauteur libre) :
-      // capturé une fois, puis découpé en pages A4 — les colonnes restent
-      // toujours pleines jusqu'en bas, sans "trous" liés à un découpage par
-      // lot. L'en-tête (logo inclus) est redessiné à la main sur chaque page
-      // via l'API Canvas, indépendamment de html2canvas.
-      let contentEl: HTMLElement | null = null
-      for (let i = 0; i < 40 && !contentEl; i++) {
+      // Mesure le pas vertical exact d'une ligne (toutes identiques, voir
+      // ROW_STYLE) via deux lignes témoins hors-écran.
+      let measureEl: HTMLElement | null = null
+      for (let i = 0; i < 40 && !measureEl; i++) {
         await new Promise(r => setTimeout(r, 50))
-        contentEl = contentRootRef.current
+        measureEl = measureRootRef.current
       }
-      if (!contentEl) return
+      if (!measureEl) return
+      const probeRows = Array.from(measureEl.querySelectorAll<HTMLElement>('.unit-row'))
+      const rowPitch = probeRows.length >= 2
+        ? probeRows[1].getBoundingClientRect().top - probeRows[0].getBoundingClientRect().top
+        : 17
 
-      // Toutes les lignes ont EXACTEMENT la même hauteur (voir ROW_STYLE) :
-      // mesurer l'écart entre deux lignes consécutives donne le pas exact de
-      // la grille verticale. Découper à des multiples de ce pas garantit
-      // qu'aucune ligne n'est jamais coupée, dans aucune colonne.
-      const firstCol = (contentEl.firstElementChild as HTMLElement).children[0] as HTMLElement
-      const rows = Array.from(firstCol.querySelectorAll<HTMLElement>('.unit-row'))
-      const rowPitch = rows.length >= 2
-        ? rows[1].getBoundingClientRect().top - rows[0].getBoundingClientRect().top
-        : (rows[0]?.getBoundingClientRect().height || 17)
-      const maxContentHeight = Math.max(
-        0,
-        ...Array.from((contentEl.firstElementChild as HTMLElement).children).map(col => (col as HTMLElement).getBoundingClientRect().height)
-      )
-
-      const html2canvas = (await import('html2canvas')).default
       const scale = 2
-      const contentCanvas = await html2canvas(contentEl, { scale, backgroundColor: '#ffffff' })
-
       const pageWpx = 210 * PX_PER_MM * scale
       const pageHpx = 297 * PX_PER_MM * scale
       const sidePad = SIDE_PAD_MM * PX_PER_MM * scale
       const topBottomPad = TOP_BOTTOM_PAD_MM * PX_PER_MM * scale
       const headerH = HEADER_H_MM * PX_PER_MM * scale
       const headerGap = HEADER_GAP_MM * PX_PER_MM * scale
-      const rawContentAreaHUnscaled = (pageHpx - topBottomPad * 2 - headerH - headerGap) / scale
-      // Arrondi au multiple de rowPitch inférieur pour ne jamais couper une ligne.
-      const contentAreaHUnscaled = Math.max(rowPitch, Math.floor(rawContentAreaHUnscaled / rowPitch) * rowPitch)
-      const totalPages = Math.max(1, Math.ceil(maxContentHeight / contentAreaHUnscaled))
-      const breakpoints = Array.from({ length: totalPages }, (_, p) => Math.min((p + 1) * contentAreaHUnscaled, maxContentHeight))
+      const availablePerPageUnscaled = (pageHpx - topBottomPad * 2 - headerH - headerGap) / scale
 
+      // Écoulement séquentiel type "journal" : on remplit la colonne 1
+      // entièrement de haut en bas, puis la colonne 2, etc., puis on passe à
+      // la page suivante — jamais plusieurs colonnes qui avancent en
+      // parallèle sur des sections de contenu différentes. Garantit un ordre
+      // de lecture toujours cohérent, aucune ligne coupée (grille uniforme)
+      // et un remplissage dense (aucune colonne ne reste vide s'il reste du
+      // contenu à placer).
+      const rowsPerColumn = Math.max(1, Math.floor(availablePerPageUnscaled / rowPitch))
+      const slotsPerPage = rowsPerColumn * COLS_PER_PAGE
+      const totalPages = Math.max(1, Math.ceil(selectedUnits.length / slotsPerPage))
+      const pages: Unit[][][] = []
+      for (let p = 0; p < totalPages; p++) {
+        const pageStart = p * slotsPerPage
+        const cols: Unit[][] = []
+        for (let c = 0; c < COLS_PER_PAGE; c++) {
+          const start = pageStart + c * rowsPerColumn
+          cols.push(selectedUnits.slice(start, start + rowsPerColumn))
+        }
+        pages.push(cols)
+      }
+
+      setExportPages(pages)
+
+      let pageNodes: HTMLElement[] = []
+      for (let i = 0; i < 40 && pageNodes.length === 0; i++) {
+        await new Promise(r => setTimeout(r, 50))
+        pageNodes = captureRootRef.current ? Array.from(captureRootRef.current.querySelectorAll<HTMLElement>('.export-page')) : []
+      }
+      if (pageNodes.length === 0) return
+
+      const html2canvas = (await import('html2canvas')).default
       const filename = (set?.name || 'checklist').replace(/[^a-z0-9]+/gi, '-')
       const logo = logoImgRef.current
 
-      function drawPage(p: number): HTMLCanvasElement {
-        const page = document.createElement('canvas')
-        page.width = pageWpx
-        page.height = pageHpx
-        const ctx = page.getContext('2d')!
-        ctx.fillStyle = '#ffffff'
-        ctx.fillRect(0, 0, pageWpx, pageHpx)
-
-        // En-tête : logo à gauche, titre + infos à droite.
+      function stampHeader(ctx: CanvasRenderingContext2D) {
         const logoH = headerH * 0.72
         const logoW = logoH * LOGO_ASPECT
         if (logo) ctx.drawImage(logo, sidePad, topBottomPad + (headerH - logoH) / 2, logoW, logoH)
@@ -301,32 +295,35 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         ctx.moveTo(sidePad, topBottomPad + headerH)
         ctx.lineTo(pageWpx - sidePad, topBottomPad + headerH)
         ctx.stroke()
+      }
 
-        // Tranche de contenu correspondant à cette page — coupée exactement
-        // entre deux lignes (voir `breakpoints`), jamais en plein milieu.
-        const prevY = p > 0 ? breakpoints[p - 1] : 0
-        const srcY = prevY * scale
-        const sliceH = (breakpoints[p] - prevY) * scale
-        if (sliceH > 0) {
-          ctx.drawImage(contentCanvas, 0, srcY, contentCanvas.width, sliceH, sidePad, topBottomPad + headerH + headerGap, contentCanvas.width, sliceH)
-        }
+      async function renderPage(node: HTMLElement): Promise<HTMLCanvasElement> {
+        const contentCanvas = await html2canvas(node, { scale, backgroundColor: '#ffffff' })
+        const page = document.createElement('canvas')
+        page.width = pageWpx
+        page.height = pageHpx
+        const ctx = page.getContext('2d')!
+        ctx.fillStyle = '#ffffff'
+        ctx.fillRect(0, 0, pageWpx, pageHpx)
+        stampHeader(ctx)
+        ctx.drawImage(contentCanvas, sidePad, topBottomPad + headerH + headerGap)
         return page
       }
 
       if (kind === 'jpg') {
-        for (let p = 0; p < totalPages; p++) {
-          const page = drawPage(p)
+        for (let p = 0; p < pageNodes.length; p++) {
+          const page = await renderPage(pageNodes[p])
           const link = document.createElement('a')
-          link.download = totalPages > 1 ? `${filename}-page${p + 1}.jpg` : `${filename}.jpg`
+          link.download = pageNodes.length > 1 ? `${filename}-page${p + 1}.jpg` : `${filename}.jpg`
           link.href = page.toDataURL('image/jpeg', 0.92)
           link.click()
-          if (p < totalPages - 1) await new Promise(r => setTimeout(r, 200))
+          if (p < pageNodes.length - 1) await new Promise(r => setTimeout(r, 200))
         }
       } else {
         const { jsPDF } = await import('jspdf')
         const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' })
-        for (let p = 0; p < totalPages; p++) {
-          const page = drawPage(p)
+        for (let p = 0; p < pageNodes.length; p++) {
+          const page = await renderPage(pageNodes[p])
           if (p > 0) pdf.addPage()
           pdf.addImage(page.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
         }
@@ -334,6 +331,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
       }
     } finally {
       setExportPhase('idle')
+      setExportPages([])
     }
   }
 
@@ -429,17 +427,31 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         </div>
       </div>
 
-      {/* Rendu hors-écran, colonnes seules (pas d'en-tête ici, redessiné à la
-          main sur chaque page exportée) — capturé une fois en continu. */}
+      {/* Hors-écran : deux lignes témoins pour mesurer le pas vertical exact. */}
       {exporting && createPortal(
-        <div ref={contentRootRef} style={{ position: 'fixed', left: -99999, top: 0, width: `${contentWidthMm}mm`, background: 'white' }}>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-            {contentColumns.map((col, ci) => (
-              <div key={ci} style={{ flex: '1 1 0', minWidth: 0 }}>
-                {col.map((u, ui) => <UnitRow key={ui} u={u} owned={u.kind === 'card' ? owned.has(u.entry.id) : false} />)}
+        <div ref={measureRootRef} style={{ position: 'fixed', left: -99999, top: 0, width: '50mm' }}>
+          <UnitRow u={{ kind: 'card', entry: { id: -1, card_number: '1', player_name: 'X', variation: null, is_rc: false } }} owned={false} />
+          <UnitRow u={{ kind: 'card', entry: { id: -2, card_number: '2', player_name: 'X', variation: null, is_rc: false } }} owned={false} />
+        </div>,
+        document.body
+      )}
+
+      {/* Hors-écran : chaque page A4 = un noeud indépendant (colonnes déjà
+          calculées par écoulement séquentiel, sans en-tête ici — l'en-tête
+          est redessiné après capture via l'API Canvas), capturé séparément. */}
+      {exporting && createPortal(
+        <div ref={captureRootRef} style={{ position: 'fixed', left: -99999, top: 0 }}>
+          {exportPages.map((cols, pi) => (
+            <div key={pi} className="export-page" style={{ width: `${210 - SIDE_PAD_MM * 2}mm`, background: 'white' }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                {cols.map((col, ci) => (
+                  <div key={ci} style={{ flex: '1 1 0', minWidth: 0 }}>
+                    {col.map((u, ui) => <UnitRow key={ui} u={u} owned={u.kind === 'card' ? owned.has(u.entry.id) : false} />)}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>,
         document.body
       )}
