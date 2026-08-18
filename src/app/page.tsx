@@ -59,28 +59,10 @@ async function fetchPepites(): Promise<Card[]> {
     isHorizontal: m.is_horizontal || false,
   }))
 
-  // Passe 1 : max 1 carte par utilisateur pour la diversité
+  // Toujours 18 cartes (tant qu'il y en a assez) — les plus récentes, sans
+  // condition de diversité par utilisateur.
   const PEPITES_COUNT = 18
-  const perUser = new Map<string, number>()
-  const result: Card[] = []
-  for (const item of items) {
-    if ((perUser.get(item.userId) ?? 0) >= 1) continue
-    perUser.set(item.userId, 1)
-    result.push(item)
-    if (result.length >= PEPITES_COUNT) break
-  }
-
-  // Passe 2 : compléter jusqu'à PEPITES_COUNT en acceptant plusieurs cartes du même user
-  if (result.length < PEPITES_COUNT) {
-    const inResult = new Set(result.map(r => r.img))
-    for (const item of items) {
-      if (inResult.has(item.img)) continue
-      result.push(item)
-      if (result.length >= PEPITES_COUNT) break
-    }
-  }
-
-  return result
+  return items.slice(0, PEPITES_COUNT)
 }
 
 async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {

@@ -54,7 +54,7 @@ function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColo
   pct: number; barColor: string; href: string; onIconClick?: () => void; first?: boolean
 }) {
   const content = (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: first ? '0 0 12px' : '12px 0', borderTop: first ? undefined : '1px solid var(--border, #eee)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0', borderTop: first ? undefined : '1px solid var(--border, #eee)' }}>
       <span
         onClick={onIconClick ? (e) => { e.preventDefault(); onIconClick() } : undefined}
         style={{
@@ -167,7 +167,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         display: 'flex', alignItems: 'stretch', margin: '0 16px 14px',
         background: 'linear-gradient(120deg, #0B1E4D 0%, #12318f 60%, #1E63E0 130%)',
         borderRadius: 20, overflow: 'hidden', textDecoration: 'none', color: '#fff',
-        boxShadow: '0 10px 24px -8px rgba(11,30,77,0.55)',
+        boxShadow: '0 6px 14px -6px rgba(11,30,77,0.35)',
       }}>
         <div style={{ flex: 1, padding: '18px 6px 18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.8, color: '#80B4FF', textTransform: 'uppercase' }}>Ma galerie</div>
@@ -197,9 +197,9 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
 
       <div style={{ display: 'flex', gap: 8, margin: '0 16px 14px' }}>
         {galleryStats.map(s => (
-          <div key={s.label} style={{ flex: 1, background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: '9px 4px', textAlign: 'center' }}>
-            <div style={{ fontSize: 15, fontWeight: 900, color: s.color }}>{s.val}</div>
-            <div style={{ fontSize: 8.5, fontWeight: 800, color: 'var(--text3, #999)', letterSpacing: 0.3, marginTop: 1 }}>{s.label}</div>
+          <div key={s.label} style={{ flex: 1, background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: '11px 4px', textAlign: 'center' }}>
+            <div style={{ fontSize: 20, fontWeight: 900, color: s.color }}>{s.val}</div>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', letterSpacing: 0.3, marginTop: 2 }}>{s.label}</div>
           </div>
         ))}
       </div>
