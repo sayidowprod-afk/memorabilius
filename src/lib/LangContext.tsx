@@ -740,6 +740,10 @@ const translations = {
     setlistdetail_team: 'Équipe',
     setlistdetail_no_cards: 'Aucune carte',
     setlistdetail_not_on_site: 'Carte pas encore sur le site',
+    setlistprint_button: 'Imprimer / PDF',
+    setlistprint_only_missing: 'Cartes manquantes uniquement',
+    setlistprint_login_hint: 'Connecte-toi pour voir tes cartes possédées',
+    setlistdetail_print_link: 'Checklist imprimable',
 
     // Galerie Export
     export_title: 'Exporter la galerie',
@@ -1851,6 +1855,10 @@ const translations = {
     setlistdetail_team: 'Team',
     setlistdetail_no_cards: 'No cards',
     setlistdetail_not_on_site: 'Card not yet on the site',
+    setlistprint_button: 'Print / PDF',
+    setlistprint_only_missing: 'Missing cards only',
+    setlistprint_login_hint: 'Log in to see your owned cards',
+    setlistdetail_print_link: 'Printable checklist',
 
     // Galerie Export
     export_title: 'Export gallery',
@@ -2962,6 +2970,10 @@ const translations = {
     setlistdetail_team: 'Team',
     setlistdetail_no_cards: 'Keine Karten',
     setlistdetail_not_on_site: 'Karte noch nicht auf der Seite',
+    setlistprint_button: 'Drucken / PDF',
+    setlistprint_only_missing: 'Nur fehlende Karten',
+    setlistprint_login_hint: 'Melde dich an, um deine besessenen Karten zu sehen',
+    setlistdetail_print_link: 'Druckbare Checkliste',
 
     // Galerie Export
     export_title: 'Galerie exportieren',

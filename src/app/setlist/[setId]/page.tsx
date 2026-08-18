@@ -392,9 +392,12 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '32px 20px' }}>
-      <div style={{ marginBottom: 20 }}>
+      <div style={{ marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
         <Link href="/setlist" style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
           ← {t('setlistdetail_setlist_label')} {set.sport === 'nba' ? 'NBA' : set.sport === 'nfl' ? 'NFL' : set.sport === 'baseball' ? 'Baseball' : set.sport === 'hockey' ? 'Hockey' : set.sport === 'pokemon' ? 'Pokémon' : 'MTG'}
+        </Link>
+        <Link href={`/setlist/${setId}/print`} style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#666', fontWeight: 700, fontSize: 13, textDecoration: 'none', border: `1.5px solid ${dark ? '#444' : '#e0e0e0'}`, borderRadius: 8, padding: '7px 12px' }}>
+          🖨️ {t('setlistdetail_print_link')}
         </Link>
       </div>
 

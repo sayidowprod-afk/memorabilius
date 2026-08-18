@@ -1356,6 +1356,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
       <canvas
         ref={canvasRef}
+        data-no-ptr="true"
         style={{ maxWidth: '100%', maxHeight: '50vh', borderRadius: 8, touchAction: 'none', display: 'block', cursor: dragging !== null ? 'grabbing' : isPanning.current ? 'grab' : 'crosshair' }}
         onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp}
         onWheel={onWheel}

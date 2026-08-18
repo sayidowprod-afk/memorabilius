@@ -750,7 +750,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             />
           </div>
         ) : (
-        <div className="viewer-zone"
+        <div className="viewer-zone" data-no-ptr="true"
           onMouseDown={onMouseDown} onMouseMove={onMouseMove}
           onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
           onDoubleClick={onDoubleClick} onWheel={onWheel}

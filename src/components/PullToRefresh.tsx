@@ -18,6 +18,12 @@ export default function PullToRefresh() {
     if (!isNative) return
 
     const onTouchStart = (e: TouchEvent) => {
+      // Écouteur global sur tout le document — sans cette exclusion, glisser un
+      // point de contour vers le bas dans le scanner de cartes (ou tout autre
+      // widget avec son propre drag) est confondu avec un tir-pour-rafraîchir
+      // et recharge l'app en plein milieu, ce qui a été rapporté comme
+      // « l'app me déconnecte du scan ».
+      if ((e.target as Element)?.closest?.('[data-no-ptr]')) return
       if (window.scrollY <= 0 && !refreshingRef.current) {
         startY.current = e.touches[0].clientY
         pulling.current = true
