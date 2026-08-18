@@ -12,7 +12,7 @@ import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import FollowButton from '@/components/FollowButton'
 import LevelBadge from '@/components/LevelBadge'
-import ShareButton from '@/components/ShareButton'
+import CollectorCard from '@/components/CollectorCard'
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
@@ -283,6 +283,11 @@ function cardThumb(url: string): string {
   return url
 }
 
+// Fallback quand une image externe (lien CSV vers un hébergeur tiers —
+// ibb.co, Google Drive, eBay...) est morte ou temporairement indisponible :
+// mieux vaut une image de remplacement propre qu'une icône cassée.
+const BROKEN_IMAGE_FALLBACK = 'https://placehold.co/300x420?text=Image+indisponible'
+
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
   const src = cardThumb(card.f)
   const fmt = getFormat(card.format)
@@ -298,6 +303,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: fmt.isSlab ? '#111' : undefined }}>
         <img src={src} alt={card.n} loading="lazy" decoding="async"
+          onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
           style={horiz
             ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }
             : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
@@ -313,6 +319,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         sizes="(max-width: 640px) 150px, 220px"
         style={{ objectFit: 'cover' }}
         unoptimized={!isSupabase}
+        onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
       />
     </div>
   )
@@ -1561,13 +1568,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         </div>
                       </>
                     )}
-                    <ShareButton
-                      hideTrigger
+                    <CollectorCard
+                      userId={uid}
                       open={shareModalOpen}
                       onOpenChange={setShareModalOpen}
                       url={`/galerie/${profile?.slug || userId}?src=carte`}
-                      title={profile?.display_name || t('gallery_default_collector')}
-                      subtitle={t('gallery_share_subtitle')}
+                      displayName={profile?.display_name || t('gallery_default_collector')}
+                      avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                      accent={accent}
+                      totalCards={cards.length}
+                      isDonor={!!profile?.is_donor}
                     />
                   </div>
                 )}
