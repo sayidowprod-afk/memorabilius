@@ -536,7 +536,6 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     if (idleWobbleTimer.current) clearTimeout(idleWobbleTimer.current)
     idleWobbleTimer.current = setTimeout(() => {
       if (isDragging.current) return
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
       idleWobbleActive.current = true
       const baseY = rotY.current
       const baseX = rotX.current
