@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { wishlistMatchFoundPush, wishlistCardAddedPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,7 +53,6 @@ export async function POST(req: NextRequest) {
     .eq('id', wishUserId)
     .single()
 
-  const ownerName = wishUser?.display_name || 'Un collectionneur'
   const MAX_NOTIFS = 10
   const toNotify: string[] = []
   for (const card of cards || []) {
@@ -62,12 +62,18 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  const { data: recipientProfiles } = await supabase
+    .from('profiles').select('id, preferred_lang').in('id', toNotify)
+  const langMap = new Map((recipientProfiles || []).map((p: any) => [p.id, normalizePushLang(p.preferred_lang)]))
+
   await Promise.all(toNotify.map(async uid => {
-    const msg = `${ownerName} recherche une carte que vous possédez : ${wishItem.nom}${wishItem.annee ? ' ' + wishItem.annee : ''}`
+    const lang = langMap.get(uid) ?? 'fr'
+    const ownerName = wishUser?.display_name || genericCollectorName(lang)
+    const { title, body } = wishlistMatchFoundPush(lang, ownerName, wishItem.nom, wishItem.annee)
     const matchedCard = (cards || []).find(c => c.user_id === uid)
     await Promise.all([
-      supabase.from('notifications').insert({ user_id: uid, type: 'wishlist_match', message: msg, lien: `/galerie/${wishUserId}?tab=wishlist`, lu: false }),
-      sendPushToUser(uid, { title: '🎯 Wishlist Match', body: msg, url: `/galerie/${wishUserId}?tab=wishlist`, channelId: 'wishlist', imageUrl: matchedCard?.image_recto || undefined }),
+      supabase.from('notifications').insert({ user_id: uid, type: 'wishlist_match', message: body, lien: `/galerie/${wishUserId}?tab=wishlist`, lu: false }),
+      sendPushToUser(uid, { title, body, url: `/galerie/${wishUserId}?tab=wishlist`, channelId: 'wishlist', imageUrl: matchedCard?.image_recto || undefined }),
     ])
   }))
 
@@ -96,7 +102,6 @@ export async function PUT(req: NextRequest) {
     .eq('id', cardUserId)
     .single()
 
-  const ownerName = cardUser?.display_name || 'Un collectionneur'
   const MAX_NOTIFS = 10
   const toNotify: string[] = []
   for (const wish of wishes || []) {
@@ -106,11 +111,17 @@ export async function PUT(req: NextRequest) {
     }
   }
 
+  const { data: recipientProfiles } = await supabase
+    .from('profiles').select('id, preferred_lang').in('id', toNotify)
+  const langMap = new Map((recipientProfiles || []).map((p: any) => [p.id, normalizePushLang(p.preferred_lang)]))
+
   await Promise.all(toNotify.map(async uid => {
-    const msg2 = `${ownerName} vient d'ajouter une carte de votre wishlist : ${card.nom}${card.annee ? ' ' + card.annee : ''}`
+    const lang = langMap.get(uid) ?? 'fr'
+    const ownerName = cardUser?.display_name || genericCollectorName(lang)
+    const { title, body } = wishlistCardAddedPush(lang, ownerName, card.nom, card.annee)
     await Promise.all([
-      supabase.from('notifications').insert({ user_id: uid, type: 'wishlist_match', message: msg2, lien: `/galerie/${cardUserId}`, lu: false }),
-      sendPushToUser(uid, { title: '🎯 Wishlist Match', body: msg2, url: `/galerie/${cardUserId}`, channelId: 'wishlist', imageUrl: card.image_recto || undefined }),
+      supabase.from('notifications').insert({ user_id: uid, type: 'wishlist_match', message: body, lien: `/galerie/${cardUserId}`, lu: false }),
+      sendPushToUser(uid, { title, body, url: `/galerie/${cardUserId}`, channelId: 'wishlist', imageUrl: card.image_recto || undefined }),
     ])
   }))
 

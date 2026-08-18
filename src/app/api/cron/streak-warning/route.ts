@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { streakWarningPush, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
 
   const { data: atRisk } = await supabase
     .from('profiles')
-    .select('id, current_streak')
+    .select('id, current_streak, preferred_lang')
     .eq('notif_streak_warning', true)
     .gt('current_streak', 0)
     .lt('last_activity_date', today)
@@ -30,11 +31,12 @@ export async function GET(req: NextRequest) {
   const sent = { count: 0 }
   const errors: string[] = []
 
-  const processProfile = async (p: { id: string; current_streak: number }) => {
+  const processProfile = async (p: { id: string; current_streak: number; preferred_lang?: string }) => {
     try {
+      const { title, body } = streakWarningPush(normalizePushLang(p.preferred_lang), p.current_streak)
       await sendPushToUser(p.id, {
-        title: '🔥 Ta série est en danger !',
-        body: `Ta série de ${p.current_streak} jour${p.current_streak > 1 ? 's' : ''} s'arrête ce soir — ajoute une carte avant minuit`,
+        title,
+        body,
         url: `/galerie/${p.id}/ajouter`,
         channelId: 'community',
       })

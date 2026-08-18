@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { teamJoinRequestPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -36,14 +37,19 @@ export async function POST(req: NextRequest) {
   const recipients = new Set<string>([team.created_by, ...(admins || []).map((a: any) => a.user_id)])
   recipients.delete(callerId)
 
-  const candidateName = candidate?.display_name || 'Un collectionneur'
   const teamName = team.name || 'votre team'
-  const msg = `${candidateName} souhaite rejoindre ${teamName}`
+
+  const { data: recipientProfiles } = await supabase
+    .from('profiles').select('id, preferred_lang').in('id', [...recipients])
+  const langMap = new Map((recipientProfiles || []).map((p: any) => [p.id, normalizePushLang(p.preferred_lang)]))
 
   await Promise.all([...recipients].map(async uid => {
+    const lang = langMap.get(uid) ?? 'fr'
+    const candidateName = candidate?.display_name || genericCollectorName(lang)
+    const { title, body } = teamJoinRequestPush(lang, candidateName, teamName)
     await Promise.all([
-      supabase.from('notifications').insert({ user_id: uid, type: 'team_join_request', lu: false, message: msg, lien: `/teams/${teamId}?tab=candidatures` }),
-      sendPushToUser(uid, { title: '👥 Nouvelle candidature', body: msg, url: `/teams/${teamId}?tab=candidatures`, channelId: 'community' }),
+      supabase.from('notifications').insert({ user_id: uid, type: 'team_join_request', lu: false, message: body, lien: `/teams/${teamId}?tab=candidatures` }),
+      sendPushToUser(uid, { title, body, url: `/teams/${teamId}?tab=candidatures`, channelId: 'community' }),
     ])
   }))
 

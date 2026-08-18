@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { awardLikeXPIfUnderCap } from '@/lib/xp'
+import { likeReceivedPush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -24,12 +25,16 @@ export async function POST(req: NextRequest) {
 
   await awardLikeXPIfUnderCap(supabaseAdmin, toUserId)
 
-  const { data: profile } = await supabaseAdmin
-    .from('profiles').select('display_name').eq('id', user.id).single()
+  const [{ data: profile }, { data: recipientProfile }] = await Promise.all([
+    supabaseAdmin.from('profiles').select('display_name').eq('id', user.id).single(),
+    supabaseAdmin.from('profiles').select('preferred_lang').eq('id', toUserId).single(),
+  ])
+  const lang = normalizePushLang(recipientProfile?.preferred_lang)
+  const { title, body } = likeReceivedPush(lang, profile?.display_name || someoneNameFallback(lang))
 
   await sendPushToUser(toUserId, {
-    title: '❤️ Nouveau like',
-    body: `${profile?.display_name || 'Quelqu\'un'} a aimé votre carte`,
+    title,
+    body,
     url: `/galerie/${toUserId}`,
     channelId: 'community',
     imageUrl: recentLike.card_key || undefined,

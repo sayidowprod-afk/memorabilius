@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { popularityDigestPush, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,13 +21,13 @@ export async function GET(req: NextRequest) {
   weekStart.setDate(weekStart.getDate() - 7)
   const since = weekStart.toISOString()
 
-  const { data: profiles } = await supabase.from('profiles').select('id').eq('notif_popularity_digest', true)
+  const { data: profiles } = await supabase.from('profiles').select('id, preferred_lang').eq('notif_popularity_digest', true)
   if (!profiles) return NextResponse.json({ error: 'No profiles' }, { status: 500 })
 
   const sent = { count: 0 }
   const errors: string[] = []
 
-  const processProfile = async (p: { id: string }) => {
+  const processProfile = async (p: { id: string; preferred_lang?: string }) => {
     try {
       const [{ count: views }, { count: likes }] = await Promise.all([
         supabase.from('page_views').select('id', { count: 'exact', head: true })
@@ -37,13 +38,11 @@ export async function GET(req: NextRequest) {
 
       if (!views && !likes) return
 
-      const parts: string[] = []
-      if (views) parts.push(`vue ${views} fois`)
-      if (likes) parts.push(`${likes} like${likes > 1 ? 's' : ''} reçu${likes > 1 ? 's' : ''}`)
+      const { title, body } = popularityDigestPush(normalizePushLang(p.preferred_lang), views ?? 0, likes ?? 0)
 
       await sendPushToUser(p.id, {
-        title: '👀 Ta semaine sur Memorabilius',
-        body: `Ta galerie a été ${parts.join(' et ')} cette semaine`,
+        title,
+        body,
         url: `/galerie/${p.id}`,
         channelId: 'community',
       })

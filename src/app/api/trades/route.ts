@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { tradeOfferPush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -181,14 +182,18 @@ async function postHandler(req: NextRequest) {
   ]
   await supabaseAdmin.from('trade_offer_cards').insert(rows)
 
-  const { data: senderProfile } = await supabaseAdmin
-    .from('profiles').select('display_name').eq('id', user.id).single()
-  const senderName = senderProfile?.display_name || 'Quelqu\'un'
+  const [{ data: senderProfile }, { data: receiverProfile }] = await Promise.all([
+    supabaseAdmin.from('profiles').select('display_name').eq('id', user.id).single(),
+    supabaseAdmin.from('profiles').select('preferred_lang').eq('id', receiverId).single(),
+  ])
+  const receiverLang = normalizePushLang(receiverProfile?.preferred_lang)
+  const senderName = senderProfile?.display_name || someoneNameFallback(receiverLang)
+  const { title, body } = tradeOfferPush(receiverLang, senderName)
 
   await supabaseAdmin.from('notifications').insert({
     user_id: receiverId,
     type: 'trade_offer',
-    message: `${senderName} te propose un échange`,
+    message: body,
     lien: '/trades?tab=echanges',
     lu: false,
   })
@@ -197,8 +202,8 @@ async function postHandler(req: NextRequest) {
     const tradeImage = rows.find(r => r.owner_id === receiverId && r.card_image)?.card_image
       || rows.find(r => r.card_image)?.card_image
     await sendPushToUser(receiverId, {
-      title: '🔄 Nouvelle offre d\'échange',
-      body: `${senderName} te propose un échange`,
+      title,
+      body,
       url: '/messages?to=' + user.id,
       channelId: 'trades',
       imageUrl: tradeImage || undefined,

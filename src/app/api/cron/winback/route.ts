@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { winbackPush, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -29,7 +30,7 @@ export async function GET(req: NextRequest) {
     if (data.users.length < 1000) break
   }
 
-  const { data: profiles } = await supabase.from('profiles').select('id, last_winback_sent_at, notif_winback')
+  const { data: profiles } = await supabase.from('profiles').select('id, last_winback_sent_at, notif_winback, preferred_lang')
   if (!profiles) return NextResponse.json({ error: 'No profiles' }, { status: 500 })
   const profileMap = new Map(profiles.map((p: any) => [p.id, p]))
 
@@ -47,9 +48,11 @@ export async function GET(req: NextRequest) {
 
   const processUser = async (u: any) => {
     try {
+      const profile = profileMap.get(u.id)
+      const { title, body } = winbackPush(normalizePushLang(profile?.preferred_lang))
       await sendPushToUser(u.id, {
-        title: '👋 Ça fait un moment !',
-        body: 'Niveaux, streaks, défis hebdo, suivi de collectionneurs… pas mal de choses ont changé depuis ta dernière visite. Reviens voir ta collection !',
+        title,
+        body,
         url: '/',
         channelId: 'community',
       })

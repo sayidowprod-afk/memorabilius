@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { messageReceivedPush, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -21,12 +22,16 @@ export async function POST(req: NextRequest) {
     .select('id').eq('from_user_id', user.id).eq('to_user_id', toUserId).gte('created_at', since).limit(1).maybeSingle()
   if (!recentMsg) return NextResponse.json({ error: 'No recent message found' }, { status: 403 })
 
-  const { data: profile } = await supabaseAdmin
-    .from('profiles').select('display_name').eq('id', user.id).single()
+  const [{ data: profile }, { data: recipientProfile }] = await Promise.all([
+    supabaseAdmin.from('profiles').select('display_name').eq('id', user.id).single(),
+    supabaseAdmin.from('profiles').select('preferred_lang').eq('id', toUserId).single(),
+  ])
+  const lang = normalizePushLang(recipientProfile?.preferred_lang)
+  const { title, body } = messageReceivedPush(lang, profile?.display_name || null)
 
   await sendPushToUser(toUserId, {
-    title: `💬 ${profile?.display_name || 'Nouveau message'}`,
-    body: 'Vous avez reçu un message sur Memorabilius',
+    title,
+    body,
     url: `/messages?to=${user.id}`,
     channelId: 'messages',
   })

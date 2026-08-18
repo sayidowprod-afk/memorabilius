@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
+import { commentReceivedTitle, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,8 +29,12 @@ export async function POST(req: NextRequest) {
     .maybeSingle()
   if (!recentComment) return NextResponse.json({ error: 'No recent comment found' }, { status: 403 })
 
+  const { data: recipientProfile } = await supabaseAdmin
+    .from('profiles').select('preferred_lang').eq('id', targetUserId).single()
+  const lang = normalizePushLang(recipientProfile?.preferred_lang)
+
   await sendPushToUser(targetUserId, {
-    title: '💬 Nouveau commentaire',
+    title: commentReceivedTitle(lang),
     body: (recentComment.content || '').slice(0, 120),
     url: lien,
     channelId: 'community',

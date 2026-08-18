@@ -1,5 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useAuth } from '@/lib/AuthContext'
+import { supabase } from '@/lib/supabase'
 
 export type Lang = 'fr' | 'en' | 'de'
 
@@ -3348,6 +3350,7 @@ const LangContext = createContext<{
 }>({ lang: 'fr', setLang: () => {}, t: (k) => k })
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useAuth()
   const [lang, setLangState] = useState<Lang>('fr')
 
   useEffect(() => {
@@ -3358,6 +3361,14 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     const browser: Lang = navigator.language.startsWith('en') ? 'en' : navigator.language.startsWith('de') ? 'de' : 'fr'
     setLangState(browser)
   }, [])
+
+  // Synchronise sur le profil pour que le serveur (crons, notifications push)
+  // puisse écrire dans la bonne langue — localStorage seul n'est lisible que
+  // côté client, le serveur n'y a jamais accès.
+  useEffect(() => {
+    if (!user) return
+    supabase.from('profiles').update({ preferred_lang: lang }).eq('id', user.id).then(() => {})
+  }, [user, lang])
 
   const setLang = (l: Lang) => {
     setLangState(l)

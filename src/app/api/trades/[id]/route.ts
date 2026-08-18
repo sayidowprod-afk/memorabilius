@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { awardXP, XP_AWARDS } from '@/lib/xp'
+import { tradeResponsePush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -43,28 +44,26 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   }
 
   const notifyUserId = action === 'cancel' ? trade.receiver_id : trade.sender_id
-  const { data: actorProfile } = await supabaseAdmin
-    .from('profiles').select('display_name').eq('id', user.id).single()
-  const actorName = actorProfile?.display_name || 'Quelqu\'un'
-
-  const msgMap: Record<string, string> = {
-    accept: `${actorName} a accepté ton offre d'échange ! 🎉`,
-    refuse: `${actorName} a refusé ton offre d'échange`,
-    cancel: `${actorName} a annulé son offre d'échange`,
-  }
+  const [{ data: actorProfile }, { data: notifyProfile }] = await Promise.all([
+    supabaseAdmin.from('profiles').select('display_name').eq('id', user.id).single(),
+    supabaseAdmin.from('profiles').select('preferred_lang').eq('id', notifyUserId).single(),
+  ])
+  const notifyLang = normalizePushLang(notifyProfile?.preferred_lang)
+  const actorName = actorProfile?.display_name || someoneNameFallback(notifyLang)
+  const { title, body } = tradeResponsePush(notifyLang, action as 'accept' | 'refuse' | 'cancel', actorName)
 
   await supabaseAdmin.from('notifications').insert({
     user_id: notifyUserId,
     type: 'trade_response',
-    message: msgMap[action],
+    message: body,
     lien: '/trades?tab=echanges',
     lu: false,
   })
 
   if (action !== 'cancel') {
     await sendPushToUser(notifyUserId, {
-      title: action === 'accept' ? '🎉 Échange accepté !' : '❌ Échange refusé',
-      body: msgMap[action],
+      title,
+      body,
       url: '/trades?tab=echanges',
       channelId: 'trades',
     })
