@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, use, useRef } from 'react'
+import { useEffect, useState, use, useRef, CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { useLang, TranslationKey } from '@/lib/LangContext'
@@ -25,7 +25,7 @@ interface Group { name: string; items: Entry[] }
 type Unit = { kind: 'header'; name: string; count: number } | { kind: 'card'; entry: Entry }
 
 const SPORT_LABEL: Record<string, string> = { nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon' }
-const COLS_PER_PAGE = 6
+const COLS_PER_PAGE = 4
 const PX_PER_MM = 96 / 25.4
 const SIDE_PAD_MM = 9
 const TOP_BOTTOM_PAD_MM = 9
@@ -81,12 +81,16 @@ function distributeUnitsToColumns(units: Unit[], n: number): Unit[][] {
   return cols
 }
 
-// `whiteSpace:nowrap` + ellipsis force chaque unité (carte ou en-tête) à ne
-// tenir que sur UNE seule ligne, hauteur fixe et prévisible — indispensable
-// pour découper les pages exactement entre deux unités (jamais au milieu).
+// Toutes les lignes (cartes ET en-têtes) ont EXACTEMENT la même hauteur fixe
+// (même fontSize/lineHeight/marge) et ne tiennent jamais que sur une seule
+// ligne (nowrap + ellipsis) : la grille verticale est parfaitement uniforme,
+// ce qui permet de découper les pages à n'importe quel multiple de cette
+// hauteur sans jamais couper une ligne en deux (voir exportAs).
+const ROW_STYLE: CSSProperties = { fontSize: 11, lineHeight: 1.35, marginBottom: 2, whiteSpace: 'nowrap', overflow: 'hidden' }
+
 function CardRow({ e, owned }: { e: Entry; owned: boolean }) {
   return (
-    <div className="unit-row" style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, lineHeight: 1.35, marginBottom: 2, whiteSpace: 'nowrap', overflow: 'hidden' }}>
+    <div className="unit-row" style={{ ...ROW_STYLE, display: 'flex', alignItems: 'center', gap: 5 }}>
       <span style={{ flexShrink: 0, width: 10, height: 10, border: '1.2px solid #333', borderRadius: 2, background: owned ? '#111' : 'white' }} />
       <span style={{ color: '#111', overflow: 'hidden', textOverflow: 'ellipsis' }}>
         {e.card_number && <strong>{e.card_number} </strong>}
@@ -100,7 +104,7 @@ function CardRow({ e, owned }: { e: Entry; owned: boolean }) {
 function UnitRow({ u, owned }: { u: Unit; owned: boolean }) {
   if (u.kind === 'header') {
     return (
-      <div className="unit-row" style={{ fontWeight: 900, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.4px', color: '#003DA6', margin: '8px 0 3px', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+      <div className="unit-row" style={{ ...ROW_STYLE, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.4px', color: '#003DA6', textOverflow: 'ellipsis' }}>
         {u.name}
       </div>
     )
@@ -237,14 +241,18 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
       }
       if (!contentEl) return
 
-      // Mesure la position (bas) de chaque ligne dans le DOM réel, par
-      // colonne, AVANT capture — permet de choisir des coupures de page qui
-      // tombent toujours entre deux lignes, jamais au milieu.
-      const flexRow = contentEl.firstElementChild as HTMLElement
-      const colDivs = Array.from(flexRow.children) as HTMLElement[]
-      const containerTop = contentEl.getBoundingClientRect().top
-      const columnBoundaries: number[][] = colDivs.map(col =>
-        Array.from(col.querySelectorAll<HTMLElement>('.unit-row')).map(row => row.getBoundingClientRect().bottom - containerTop)
+      // Toutes les lignes ont EXACTEMENT la même hauteur (voir ROW_STYLE) :
+      // mesurer l'écart entre deux lignes consécutives donne le pas exact de
+      // la grille verticale. Découper à des multiples de ce pas garantit
+      // qu'aucune ligne n'est jamais coupée, dans aucune colonne.
+      const firstCol = (contentEl.firstElementChild as HTMLElement).children[0] as HTMLElement
+      const rows = Array.from(firstCol.querySelectorAll<HTMLElement>('.unit-row'))
+      const rowPitch = rows.length >= 2
+        ? rows[1].getBoundingClientRect().top - rows[0].getBoundingClientRect().top
+        : (rows[0]?.getBoundingClientRect().height || 17)
+      const maxContentHeight = Math.max(
+        0,
+        ...Array.from((contentEl.firstElementChild as HTMLElement).children).map(col => (col as HTMLElement).getBoundingClientRect().height)
       )
 
       const html2canvas = (await import('html2canvas')).default
@@ -257,36 +265,11 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
       const topBottomPad = TOP_BOTTOM_PAD_MM * PX_PER_MM * scale
       const headerH = HEADER_H_MM * PX_PER_MM * scale
       const headerGap = HEADER_GAP_MM * PX_PER_MM * scale
-      const contentAreaHUnscaled = (pageHpx - topBottomPad * 2 - headerH - headerGap) / scale
-
-      // Construit la liste des coupures de page (en px non mis à l'échelle) :
-      // pour chaque page, on prend — parmi toutes les colonnes ayant encore
-      // du contenu — la coupure la plus restrictive (la plus basse ligne qui
-      // tient encore avant la limite de page), afin qu'aucune colonne ne soit
-      // coupée en plein milieu d'une ligne.
-      const colPtr = new Array(columnBoundaries.length).fill(0)
-      const breakpoints: number[] = []
-      let currentY = 0
-      while (colPtr.some((ptr, ci) => ptr < columnBoundaries[ci].length)) {
-        const idealEnd = currentY + contentAreaHUnscaled
-        let cut = idealEnd
-        for (let ci = 0; ci < columnBoundaries.length; ci++) {
-          const arr = columnBoundaries[ci]
-          let p2 = colPtr[ci]
-          if (p2 >= arr.length) continue
-          while (p2 < arr.length && arr[p2] <= idealEnd) p2++
-          const bestForCol = p2 > colPtr[ci] ? arr[p2 - 1] : arr[colPtr[ci]]
-          if (bestForCol < cut) cut = bestForCol
-        }
-        breakpoints.push(cut)
-        for (let ci = 0; ci < columnBoundaries.length; ci++) {
-          const arr = columnBoundaries[ci]
-          while (colPtr[ci] < arr.length && arr[colPtr[ci]] <= cut + 0.01) colPtr[ci]++
-        }
-        currentY = cut
-      }
-      if (breakpoints.length === 0) breakpoints.push(contentAreaHUnscaled)
-      const totalPages = breakpoints.length
+      const rawContentAreaHUnscaled = (pageHpx - topBottomPad * 2 - headerH - headerGap) / scale
+      // Arrondi au multiple de rowPitch inférieur pour ne jamais couper une ligne.
+      const contentAreaHUnscaled = Math.max(rowPitch, Math.floor(rawContentAreaHUnscaled / rowPitch) * rowPitch)
+      const totalPages = Math.max(1, Math.ceil(maxContentHeight / contentAreaHUnscaled))
+      const breakpoints = Array.from({ length: totalPages }, (_, p) => Math.min((p + 1) * contentAreaHUnscaled, maxContentHeight))
 
       const filename = (set?.name || 'checklist').replace(/[^a-z0-9]+/gi, '-')
       const logo = logoImgRef.current
@@ -354,7 +337,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
     }
   }
 
-  const screenColumns = distributeColumns(groups, 5)
+  const screenColumns = distributeColumns(groups, 4)
   const exporting = exportPhase !== 'idle'
 
   return (
