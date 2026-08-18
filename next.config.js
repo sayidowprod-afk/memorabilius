@@ -12,6 +12,14 @@ const nextConfig = {
     { protocol: 'https', hostname: 'placehold.co' },
   ],
   minimumCacheTTL: 86400,
+  // Le seul next/image optimisé du site est la vignette de galerie
+  // (GalerieClient.tsx, sizes="150px, 220px") — les deviceSizes par défaut de
+  // Next commencent à 640px, donc chaque vignette de 150-220px affichée était
+  // générée à 640px minimum (3-4x plus de pixels que nécessaire), gonflant à
+  // la fois le coût de transformation Vercel et la bande passante pour rien.
+  // Paliers resserrés autour du besoin réel (1x/2x/3x des deux tailles),
+  // avec 1080/1920 en réserve pour un futur usage plus grand.
+  deviceSizes: [150, 220, 300, 440, 660, 1080, 1920],
 },
   async headers() {
     return [

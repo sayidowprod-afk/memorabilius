@@ -10,6 +10,7 @@ import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import FollowButton from '@/components/FollowButton'
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
@@ -1437,6 +1438,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     {t('gallery_message')}
                   </Link>
                 )}
+                <FollowButton targetUserId={userId} accent={accent} />
               </div>
             </div>
           </div>
