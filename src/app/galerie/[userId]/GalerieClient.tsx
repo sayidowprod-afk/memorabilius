@@ -731,11 +731,30 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         if (target) { const match = allCards.find(c => c.f === target); if (match) setPopup(match) }
       }
 
-      // Premier batch + card_collections en parallèle → affichage immédiat
-      const [firstResult, ccResult] = await Promise.all([
-        supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
-        supabase.from('card_collections').select('card_key, collection').eq('user_id', uid),
-      ])
+      // Premier batch + card_collections en parallèle → affichage immédiat.
+      // C'est la requête la plus lourde de la galerie (select('*') sur
+      // jusqu'à 1000 cartes) : sans filet, un ralentissement Supabase ici
+      // laissait la page figée sur le squelette de chargement indéfiniment,
+      // sans jamais tomber dans le catch (une promesse qui ne resout ni ne
+      // rejette jamais ne déclenche aucun des deux). Même filet que init()
+      // et NativeHomeDashboard : timeout de 8s + retry jusqu'à 4 tentatives.
+      const fetchFirstBatch = async (attempt: number): Promise<any> => {
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+        try {
+          return await Promise.race([
+            Promise.all([
+              supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
+              supabase.from('card_collections').select('card_key, collection').eq('user_id', uid),
+            ]),
+            timeout,
+          ])
+        } catch (e) {
+          if (attempt >= 4) throw e
+          await new Promise(r => setTimeout(r, 1200 * attempt))
+          return fetchFirstBatch(attempt + 1)
+        }
+      }
+      const [firstResult, ccResult] = await fetchFirstBatch(1)
       const firstBatch = firstResult.data || []
       const totalCount = firstResult.count || 0
       const ccMap = new Map<string, string[]>()
