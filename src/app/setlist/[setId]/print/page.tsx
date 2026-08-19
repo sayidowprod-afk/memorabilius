@@ -468,11 +468,20 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           ))}
         </div>
         {allTeamNames.length > 1 && (
-          <select value={filterTeam} onChange={e => { setFilterTeam(e.target.value); setFilterPlayer('') }}
-            style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-            <option value="">{t('setlistprint_all_teams')}</option>
-            {allTeamNames.map(team => <option key={team} value={team}>{team}</option>)}
-          </select>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <select value={filterTeam} onChange={e => { setFilterTeam(e.target.value); setFilterPlayer('') }}
+              style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+              <option value="">{t('setlistprint_all_teams')}</option>
+              {allTeamNames.map(team => <option key={team} value={team}>{team}</option>)}
+            </select>
+            {filterTeam && allPlayerNamesForTeam.length > 1 && (
+              <select value={filterPlayer} onChange={e => setFilterPlayer(e.target.value)}
+                style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                <option value="">{t('setlistprint_all_players')}</option>
+                {allPlayerNamesForTeam.map(name => <option key={name} value={name}>{name}</option>)}
+              </select>
+            )}
+          </div>
         )}
         {allVariationNames.length > 1 && (
           <div style={{ display: 'flex', gap: 6, marginLeft: 'auto' }}>
@@ -488,15 +497,6 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         )}
         {!userId && <span style={{ fontSize: 12, color: '#aaa' }}>{t('setlistprint_login_hint')}</span>}
       </div>
-      {filterTeam && allPlayerNamesForTeam.length > 1 && (
-        <div className="no-print" style={{ marginBottom: 20 }}>
-          <select value={filterPlayer} onChange={e => setFilterPlayer(e.target.value)}
-            style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-            <option value="">{t('setlistprint_all_players')}</option>
-            {allPlayerNamesForTeam.map(name => <option key={name} value={name}>{name}</option>)}
-          </select>
-        </div>
-      )}
       {selectedUnits.length === 0 && (
         <div className="no-print" style={{ fontSize: 12, color: '#e67e22', marginBottom: 12 }}>
           {t('setlistprint_pick_hint')}
