@@ -496,8 +496,8 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           mobile qui rendrait le texte illisible) — sur petit écran, l'utilisateur
           fait défiler horizontalement plutôt que de voir 4 colonnes écrasées. */}
       <div className="a4-frame-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-        <div className="a4-frame" style={{ width: '210mm', maxWidth: '210mm', margin: '0 auto', boxShadow: dark ? 'none' : '0 4px 24px rgba(0,0,0,0.1)', border: `1px solid ${dark ? '#333' : '#eee'}` }}>
-        <div id="setlist-print-content" style={{ background: dark ? '#1e1e1e' : 'white', padding: '14mm 10mm', boxSizing: 'border-box' }}>
+        <div className="a4-frame" style={{ width: '210mm', maxWidth: '210mm', margin: '0 auto', boxShadow: dark ? 'none' : '0 4px 24px rgba(0,0,0,0.1)', border: dark ? 'none' : '1px solid #eee' }}>
+        <div id="setlist-print-content" style={{ background: dark ? '#111111' : 'white', padding: '14mm 10mm', boxSizing: 'border-box' }}>
           <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} dark={dark} />
 
           <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
