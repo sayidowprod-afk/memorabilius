@@ -4,7 +4,10 @@
 // plus utilisée pour l'écriture ; normalizeGuideBlocks() la lit encore une fois pour
 // migrer les guides déjà enregistrés avant l'introduction des blocs texte/image.
 
-export type PatternBlendMode = 'multiply' | 'overlay' | 'screen'
+export type PatternBlendMode =
+  | 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten'
+  | 'color-dodge' | 'color-burn' | 'hard-light' | 'soft-light'
+  | 'difference' | 'exclusion' | 'hue' | 'saturation' | 'color' | 'luminosity'
 
 export interface PyramidRow {
   name: string
@@ -17,6 +20,7 @@ export interface PyramidRow {
   // quelle (comportement d'origine, rétro-compatible).
   patternColor?: string
   patternBlendMode?: PatternBlendMode
+  patternOpacity?: number // 0-100, opacité du calque de teinte (défaut 100 si patternColor défini)
   cardImage: string // exemple de carte révélé au survol/tap
 }
 

@@ -5,7 +5,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import type { GuideBlock, PyramidRow, InsertCard, OddsTable } from '@/lib/guideBlockTypes'
-import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
+import PyramidBlock, { rowBackground } from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 import GuideEditor from '@/components/GuideEditor'
 
@@ -209,17 +209,39 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
             <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
           </div>
           {row.patternImage && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 4 }}>
-              <span style={{ fontSize: 11, color: dark ? '#888' : '#999' }}>Teinte (calque) :</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 4, flexWrap: 'wrap' }}>
+              <div style={{ width: 36, height: 36, borderRadius: 6, border: `1px solid ${dark ? '#333' : '#ddd'}`, flexShrink: 0, ...rowBackground(row, dark ? '#2a2a2a' : '#f0f0f0') }}
+                title="Aperçu en direct" />
+              <span style={{ fontSize: 11, color: dark ? '#888' : '#999' }}>Teinte :</span>
               <input type="color" value={row.patternColor || '#ffffff'} onChange={e => updateRow(i, { patternColor: e.target.value })}
                 style={{ width: 28, height: 24, padding: 0, border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 4, cursor: 'pointer' }} />
               <select value={row.patternBlendMode || 'multiply'} onChange={e => updateRow(i, { patternBlendMode: e.target.value as PyramidRow['patternBlendMode'] })} style={{ ...f, padding: '4px 8px' }}>
+                <option value="normal">Normal</option>
                 <option value="multiply">Multiply</option>
-                <option value="overlay">Overlay</option>
                 <option value="screen">Screen</option>
+                <option value="overlay">Overlay</option>
+                <option value="darken">Darken</option>
+                <option value="lighten">Lighten</option>
+                <option value="color-dodge">Color dodge</option>
+                <option value="color-burn">Color burn</option>
+                <option value="hard-light">Hard light</option>
+                <option value="soft-light">Soft light</option>
+                <option value="difference">Difference</option>
+                <option value="exclusion">Exclusion</option>
+                <option value="hue">Hue</option>
+                <option value="saturation">Saturation</option>
+                <option value="color">Color</option>
+                <option value="luminosity">Luminosity</option>
               </select>
+              <span style={{ fontSize: 11, color: dark ? '#888' : '#999', display: 'flex', alignItems: 'center', gap: 4 }}>
+                Opacité
+                <input type="range" min={0} max={100} value={row.patternOpacity ?? 100}
+                  onChange={e => updateRow(i, { patternOpacity: Number(e.target.value) })}
+                  style={{ width: 70, cursor: 'pointer' }} />
+                <span style={{ minWidth: 28, display: 'inline-block' }}>{row.patternOpacity ?? 100}%</span>
+              </span>
               {row.patternColor && (
-                <button type="button" onClick={() => updateRow(i, { patternColor: undefined })} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+                <button type="button" onClick={() => updateRow(i, { patternColor: undefined, patternOpacity: undefined })} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
                   retirer la teinte
                 </button>
               )}

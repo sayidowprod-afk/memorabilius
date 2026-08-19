@@ -13,14 +13,26 @@ interface Props {
 // toucher) la ligne grossit légèrement et révèle l'image d'exemple.
 const PALETTE = ['#f5c518', '#f2a90a', '#e8720f', '#e0392b', '#c62368', '#8e3aa8', '#4a3ac6', '#1e63e0', '#0090c1', '#00a884', '#4caf50', '#9ccc3f']
 
+function hexToRgba(hex: string, opacityPct: number): string {
+  const h = hex.replace('#', '')
+  const r = parseInt(h.length === 3 ? h[0] + h[0] : h.slice(0, 2), 16)
+  const g = parseInt(h.length === 3 ? h[1] + h[1] : h.slice(2, 4), 16)
+  const b = parseInt(h.length === 3 ? h[2] + h[2] : h.slice(4, 6), 16)
+  return `rgba(${r}, ${g}, ${b}, ${Math.max(0, Math.min(100, opacityPct)) / 100})`
+}
+
 // Teinte + mode de fusion façon calque Photoshop, appliqués par-dessus la texture de
 // base (patternImage) via background-blend-mode — permet de réutiliser une seule
 // texture blanche/grise pour toutes les couleurs d'une variation (wave gold, wave
-// silver, wave red...) sans avoir à uploader une image par couleur.
-function rowBackground(row: PyramidRow, fallback: string): { background: string; backgroundBlendMode?: string } {
+// silver, wave red...) sans avoir à uploader une image par couleur. L'opacité du
+// calque de teinte passe par l'alpha de la couleur (background-blend-mode n'a pas de
+// contrôle d'opacité propre) — un calque semi-transparent laisse plus de texture
+// d'origine visible en dessous.
+export function rowBackground(row: PyramidRow, fallback: string): { background: string; backgroundBlendMode?: string } {
   if (row.patternImage && row.patternColor) {
+    const color = hexToRgba(row.patternColor, row.patternOpacity ?? 100)
     return {
-      background: `linear-gradient(${row.patternColor}, ${row.patternColor}), url(${row.patternImage}) center/cover`,
+      background: `linear-gradient(${color}, ${color}), url(${row.patternImage}) center/cover`,
       backgroundBlendMode: row.patternBlendMode || 'multiply',
     }
   }
