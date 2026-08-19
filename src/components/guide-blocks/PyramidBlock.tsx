@@ -264,9 +264,9 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
         {renderColumn(left, leftIndices, 'left')}
 
         <div style={{
-          width: 128, flexShrink: 0, alignSelf: 'flex-start', position: 'sticky', top: 90,
+          width: 190, flexShrink: 0, alignSelf: 'center',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center', gap: 10, padding: '18px 12px', minHeight: 190,
+          textAlign: 'center', gap: 12, padding: '22px 14px', minHeight: 280,
           background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)',
           borderRadius: 14, boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
         }}>
@@ -274,15 +274,15 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
             <>
               {activeRow.cardImage ? (
                 <img src={activeRow.cardImage} alt={activeRow.name} style={{
-                  width: 100, height: 140, objectFit: 'cover', borderRadius: 8,
+                  width: 150, height: 210, objectFit: 'cover', borderRadius: 10,
                   boxShadow: '0 6px 16px rgba(0,0,0,0.25)',
                 }} />
               ) : (
                 <div style={{
-                  width: 100, height: 140, borderRadius: 8, background: 'var(--bg3, #f0f0f0)',
+                  width: 150, height: 210, borderRadius: 10, background: 'var(--bg3, #f0f0f0)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--text3, #ccc)" strokeWidth="1.5">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--text3, #ccc)" strokeWidth="1.5">
                     <rect x="3" y="4" width="18" height="16" rx="2" />
                     <circle cx="9" cy="10" r="2" />
                     <path d="M3 17l5-4 4 3 4-5 5 6" />
@@ -290,11 +290,11 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
                 </div>
               )}
               <div>
-                <div style={{ fontSize: 12.5, fontWeight: 800, color: 'var(--text, #222)', lineHeight: 1.3 }}>{activeRow.name}</div>
+                <div style={{ fontSize: 13.5, fontWeight: 800, color: 'var(--text, #222)', lineHeight: 1.3 }}>{activeRow.name}</div>
                 {activeRow.printRun && (
                   <div style={{
-                    display: 'inline-block', marginTop: 6, padding: '2px 8px', borderRadius: 20,
-                    background: 'var(--bg3, #f0f0f0)', fontSize: 10.5, fontWeight: 700, color: 'var(--text2, #666)',
+                    display: 'inline-block', marginTop: 6, padding: '3px 10px', borderRadius: 20,
+                    background: 'var(--bg3, #f0f0f0)', fontSize: 11, fontWeight: 700, color: 'var(--text2, #666)',
                   }}>
                     /{activeRow.printRun.replace(/^\//, '')}
                   </div>
@@ -303,12 +303,12 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
             </>
           ) : (
             <>
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text3, #ccc)" strokeWidth="1.5">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--text3, #ccc)" strokeWidth="1.5">
                 <rect x="3" y="4" width="18" height="16" rx="2" />
                 <circle cx="9" cy="10" r="2" />
                 <path d="M3 17l5-4 4 3 4-5 5 6" />
               </svg>
-              <span style={{ fontSize: 11.5, color: 'var(--text3, #999)', lineHeight: 1.4 }}>Survolez une variation pour voir la carte</span>
+              <span style={{ fontSize: 12, color: 'var(--text3, #999)', lineHeight: 1.4 }}>Survolez une variation pour voir la carte</span>
             </>
           )}
         </div>
