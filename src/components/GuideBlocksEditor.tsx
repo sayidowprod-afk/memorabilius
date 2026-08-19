@@ -4,6 +4,8 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import type { GuideBlock, PyramidRow, InsertCard, OddsRow } from '@/lib/guideBlockTypes'
+import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
+import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 
 interface Props {
   blocks: GuideBlock[]
@@ -80,39 +82,52 @@ function fieldStyle(dark: boolean): React.CSSProperties {
 // --- Pyramide ---------------------------------------------------------------
 
 function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'pyramid' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
-  const [uploading, setUploading] = useState<number | null>(null)
+  const [uploading, setUploading] = useState<{ i: number; field: 'patternImage' | 'cardImage' } | null>(null)
   const f = fieldStyle(dark)
 
   const updateRow = (i: number, patch: Partial<PyramidRow>) => {
     onChange({ ...block, rows: block.rows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)) })
   }
   const removeRow = (i: number) => onChange({ ...block, rows: block.rows.filter((_, idx) => idx !== i) })
-  const addRow = () => onChange({ ...block, rows: [...block.rows, { name: '', printRun: '', image: '' }] })
+  const addRow = () => onChange({ ...block, rows: [...block.rows, { name: '', printRun: '', patternImage: '', cardImage: '' }] })
 
-  const uploadRowImage = async (i: number, file: File) => {
-    setUploading(i)
+  const uploadRowImage = async (i: number, field: 'patternImage' | 'cardImage', file: File) => {
+    setUploading({ i, field })
     const url = await uploadGuideImage(file, 'pyramid/')
     setUploading(null)
-    if (url) updateRow(i, { image: url })
+    if (url) updateRow(i, { [field]: url } as Partial<PyramidRow>)
   }
+
+  const imgBtn = (row: PyramidRow, i: number, field: 'patternImage' | 'cardImage', label: string) => (
+    <label style={{ ...f, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
+      {row[field] ? <img src={row[field]} alt="" style={{ width: 24, height: 24, objectFit: 'cover', borderRadius: 3 }} /> : null}
+      {uploading?.i === i && uploading.field === field ? '...' : label}
+      <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const file = e.target.files?.[0]; if (file) uploadRowImage(i, field, file) }} />
+    </label>
+  )
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <p style={{ fontSize: 11, color: dark ? '#888' : '#999', margin: '0 0 4px' }}>
-        Ordre = de la plus rare (en haut) à la plus commune (en bas).
+        Ordre = de la plus rare (en haut) à la plus commune (en bas). "Motif" = texture de fond de la barre, "Carte" = exemple révélé au survol.
       </p>
       {block.rows.map((row, i) => (
-        <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 110px auto auto', gap: 6, alignItems: 'center' }}>
+        <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 90px auto auto auto', gap: 6, alignItems: 'center' }}>
           <input style={f} placeholder="Nom de la variation" value={row.name} onChange={e => updateRow(i, { name: e.target.value })} />
           <input style={f} placeholder="Print run" value={row.printRun} onChange={e => updateRow(i, { printRun: e.target.value })} />
-          <label style={{ ...f, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-            {row.image ? <img src={row.image} alt="" style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3 }} /> : (uploading === i ? '...' : 'Image')}
-            <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const file = e.target.files?.[0]; if (file) uploadRowImage(i, file) }} />
-          </label>
+          {imgBtn(row, i, 'patternImage', 'Motif')}
+          {imgBtn(row, i, 'cardImage', 'Carte')}
           <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
         </div>
       ))}
       <button type="button" onClick={addRow} style={{ alignSelf: 'flex-start', ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
+
+      {block.rows.length > 0 && (
+        <div style={{ marginTop: 10, padding: 14, borderRadius: 8, border: `1px dashed ${dark ? '#333' : '#ddd'}` }}>
+          <p style={{ fontSize: 10, fontWeight: 800, color: dark ? '#888' : '#999', textTransform: 'uppercase', margin: '0 0 8px' }}>Aperçu</p>
+          <PyramidBlock rows={block.rows} />
+        </div>
+      )}
     </div>
   )
 }
@@ -175,6 +190,13 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
         </div>
         <button type="button" onClick={addOdds} style={{ marginTop: 6, ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
       </div>
+
+      {(block.cards.length > 0 || block.oddsRows.length > 0) && (
+        <div style={{ padding: 14, borderRadius: 8, border: `1px dashed ${dark ? '#333' : '#ddd'}` }}>
+          <p style={{ fontSize: 10, fontWeight: 800, color: dark ? '#888' : '#999', textTransform: 'uppercase', margin: '0 0 8px' }}>Aperçu</p>
+          <InsertGridBlock cards={block.cards} oddsRows={block.oddsRows} />
+        </div>
+      )}
     </div>
   )
 }

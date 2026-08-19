@@ -4,7 +4,8 @@
 export interface PyramidRow {
   name: string
   printRun: string
-  image: string
+  patternImage: string // texture/motif de fond de la barre (ex: refractor, wave...)
+  cardImage: string // exemple de carte révélé au survol/tap
 }
 
 export interface InsertCard {

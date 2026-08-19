@@ -36,19 +36,20 @@ export default function PyramidBlock({ title, rows }: Props) {
               onClick={() => setActive(a => (a === i ? null : i))}
               style={{
                 position: 'relative', width: `${widthPct}%`, maxWidth: 560, cursor: 'pointer',
-                background: PALETTE[i % PALETTE.length], color: 'white',
+                background: row.patternImage ? `url(${row.patternImage}) center/cover` : PALETTE[i % PALETTE.length],
+                color: 'white',
                 borderRadius: 4, padding: isActive ? '10px 14px' : '6px 14px',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
-                fontSize: isActive ? 13 : 12, fontWeight: 800, textShadow: '0 1px 2px rgba(0,0,0,0.35)',
+                fontSize: isActive ? 13 : 12, fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.6)',
                 transform: isActive ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.15s, padding 0.15s',
                 boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none', zIndex: isActive ? 2 : 1,
               }}
             >
               <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {row.name}{row.printRun && <span style={{ opacity: 0.85, fontWeight: 700 }}> /{row.printRun.replace(/^\//, '')}</span>}
+                {row.name}{row.printRun && <span style={{ opacity: 0.9, fontWeight: 700 }}> /{row.printRun.replace(/^\//, '')}</span>}
               </span>
-              {isActive && row.image && (
-                <img src={row.image} alt={row.name} style={{
+              {isActive && row.cardImage && (
+                <img src={row.cardImage} alt={row.name} style={{
                   position: 'absolute', right: 0, top: '100%', marginTop: 6, width: 90, height: 126,
                   objectFit: 'cover', borderRadius: 8, boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
                 }} />
