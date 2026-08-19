@@ -13,6 +13,21 @@ interface Props {
 // toucher) la ligne grossit légèrement et révèle l'image d'exemple.
 const PALETTE = ['#f5c518', '#f2a90a', '#e8720f', '#e0392b', '#c62368', '#8e3aa8', '#4a3ac6', '#1e63e0', '#0090c1', '#00a884', '#4caf50', '#9ccc3f']
 
+// Teinte + mode de fusion façon calque Photoshop, appliqués par-dessus la texture de
+// base (patternImage) via background-blend-mode — permet de réutiliser une seule
+// texture blanche/grise pour toutes les couleurs d'une variation (wave gold, wave
+// silver, wave red...) sans avoir à uploader une image par couleur.
+function rowBackground(row: PyramidRow, fallback: string): { background: string; backgroundBlendMode?: string } {
+  if (row.patternImage && row.patternColor) {
+    return {
+      background: `linear-gradient(${row.patternColor}, ${row.patternColor}), url(${row.patternImage}) center/cover`,
+      backgroundBlendMode: row.patternBlendMode || 'multiply',
+    }
+  }
+  if (row.patternImage) return { background: `url(${row.patternImage}) center/cover` }
+  return { background: fallback }
+}
+
 export default function PyramidBlock({ title, rows }: Props) {
   const [active, setActive] = useState<number | null>(null)
   if (!rows.length) return null
@@ -34,7 +49,7 @@ export default function PyramidBlock({ title, rows }: Props) {
           const isActive = active === i
           const isApex = i === 0
 
-          const bg = row.patternImage ? `url(${row.patternImage}) center/cover` : PALETTE[i % PALETTE.length]
+          const bg = rowBackground(row, PALETTE[i % PALETTE.length])
 
           if (isApex) {
             // Sommet = un vrai triangle pointu (façon pièce 1/1), pas une barre.
@@ -50,7 +65,7 @@ export default function PyramidBlock({ title, rows }: Props) {
                 }}
               >
                 <div style={{
-                  position: 'absolute', inset: 0, background: bg,
+                  position: 'absolute', inset: 0, ...bg,
                   clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
                   boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
                 }} />
@@ -80,7 +95,7 @@ export default function PyramidBlock({ title, rows }: Props) {
               onClick={() => setActive(a => (a === i ? null : i))}
               style={{
                 position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
-                background: bg, color: 'white',
+                ...bg, color: 'white',
                 borderRadius: 4, padding: isActive ? '10px 14px' : '6px 14px',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
                 fontSize: isActive ? 13 : 12, fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.6)',

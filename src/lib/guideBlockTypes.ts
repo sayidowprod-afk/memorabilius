@@ -4,10 +4,19 @@
 // plus utilisée pour l'écriture ; normalizeGuideBlocks() la lit encore une fois pour
 // migrer les guides déjà enregistrés avant l'introduction des blocs texte/image.
 
+export type PatternBlendMode = 'multiply' | 'overlay' | 'screen'
+
 export interface PyramidRow {
   name: string
   printRun: string
   patternImage: string // texture/motif de fond de la barre (ex: refractor, wave...)
+  // Teinte optionnelle appliquée par-dessus patternImage via background-blend-mode
+  // (façon calque Photoshop) - permet de réutiliser UNE texture de base blanche/grise
+  // pour toutes les couleurs d'une même variation (wave gold, wave silver, wave red...)
+  // au lieu d'uploader une image par couleur. Si absent, patternImage s'affiche telle
+  // quelle (comportement d'origine, rétro-compatible).
+  patternColor?: string
+  patternBlendMode?: PatternBlendMode
   cardImage: string // exemple de carte révélé au survol/tap
 }
 
@@ -30,7 +39,7 @@ export type GuideBlock =
   | { type: 'image'; src: string; caption?: string }
   | { type: 'text_image'; html: string; image: string; imagePosition: 'left' | 'right' }
   | { type: 'pyramid'; title?: string; rows: PyramidRow[] }
-  | { type: 'insert_grid'; title?: string; cards: InsertCard[]; oddsTable: OddsTable; players: string[] }
+  | { type: 'insert_grid'; title?: string; cards: InsertCard[]; oddsTable: OddsTable; players: string[]; width?: 'full' | 'half' | 'third' }
   | { type: 'setlist_embed'; setId: number; title?: string }
 
 // Défend contre les guides déjà enregistrés avec l'ancienne forme du bloc

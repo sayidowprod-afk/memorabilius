@@ -1,12 +1,12 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import type { GuideBlock, PyramidRow, InsertCard, OddsTable } from '@/lib/guideBlockTypes'
 import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
-import TextImageBlock from '@/components/guide-blocks/TextImageBlock'
 import GuideEditor from '@/components/GuideEditor'
 
 interface Props {
@@ -162,7 +162,16 @@ function TextImageEditor({ block, onChange, dark }: { block: Extract<GuideBlock,
 
 function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'pyramid' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
   const [uploading, setUploading] = useState<{ i: number; field: 'patternImage' | 'cardImage' } | null>(null)
+  const [showTemplates, setShowTemplates] = useState(false)
   const f = fieldStyle(dark)
+
+  const onSaveTemplate = async (rows: PyramidRow[]) => {
+    const name = window.prompt('Nom du modèle (ex: "Refractor 2026")')
+    if (!name || !name.trim()) return
+    const { error } = await supabase.from('pyramid_templates').insert({ name: name.trim(), rows })
+    if (error) toast.error(error.message)
+    else toast.success('Modèle sauvegardé')
+  }
 
   const updateRow = (i: number, patch: Partial<PyramidRow>) => {
     onChange({ ...block, rows: block.rows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)) })
@@ -191,15 +200,45 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
         Ordre = de la plus rare (en haut) à la plus commune (en bas). "Motif" = texture de fond de la barre, "Carte" = exemple révélé au survol.
       </p>
       {block.rows.map((row, i) => (
-        <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 90px auto auto auto', gap: 6, alignItems: 'center' }}>
-          <input style={f} placeholder="Nom de la variation" value={row.name} onChange={e => updateRow(i, { name: e.target.value })} />
-          <input style={f} placeholder="Print run" value={row.printRun} onChange={e => updateRow(i, { printRun: e.target.value })} />
-          {imgBtn(row, i, 'patternImage', 'Motif')}
-          {imgBtn(row, i, 'cardImage', 'Carte')}
-          <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+        <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 4, paddingBottom: 6, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px auto auto auto', gap: 6, alignItems: 'center' }}>
+            <input style={f} placeholder="Nom de la variation" value={row.name} onChange={e => updateRow(i, { name: e.target.value })} />
+            <input style={f} placeholder="Print run" value={row.printRun} onChange={e => updateRow(i, { printRun: e.target.value })} />
+            {imgBtn(row, i, 'patternImage', 'Motif')}
+            {imgBtn(row, i, 'cardImage', 'Carte')}
+            <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+          </div>
+          {row.patternImage && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 4 }}>
+              <span style={{ fontSize: 11, color: dark ? '#888' : '#999' }}>Teinte (calque) :</span>
+              <input type="color" value={row.patternColor || '#ffffff'} onChange={e => updateRow(i, { patternColor: e.target.value })}
+                style={{ width: 28, height: 24, padding: 0, border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 4, cursor: 'pointer' }} />
+              <select value={row.patternBlendMode || 'multiply'} onChange={e => updateRow(i, { patternBlendMode: e.target.value as PyramidRow['patternBlendMode'] })} style={{ ...f, padding: '4px 8px' }}>
+                <option value="multiply">Multiply</option>
+                <option value="overlay">Overlay</option>
+                <option value="screen">Screen</option>
+              </select>
+              {row.patternColor && (
+                <button type="button" onClick={() => updateRow(i, { patternColor: undefined })} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+                  retirer la teinte
+                </button>
+              )}
+            </div>
+          )}
         </div>
       ))}
       <button type="button" onClick={addRow} style={{ alignSelf: 'flex-start', ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
+
+      <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+        <button type="button" onClick={() => onSaveTemplate(block.rows)} disabled={block.rows.length === 0}
+          style={{ ...f, cursor: block.rows.length ? 'pointer' : 'default', fontWeight: 700, opacity: block.rows.length ? 1 : 0.5 }}>
+          💾 Sauvegarder comme modèle
+        </button>
+        <button type="button" onClick={() => setShowTemplates(v => !v)} style={{ ...f, cursor: 'pointer', fontWeight: 700 }}>
+          📂 Charger un modèle
+        </button>
+      </div>
+      {showTemplates && <PyramidTemplatePicker dark={dark} onPick={rows => { onChange({ ...block, rows }); setShowTemplates(false) }} onClose={() => setShowTemplates(false)} />}
 
       {block.rows.length > 0 && (
         <div style={{ marginTop: 10, padding: 14, borderRadius: 8, border: `1px dashed ${dark ? '#333' : '#ddd'}` }}>
@@ -207,6 +246,43 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
           <PyramidBlock rows={block.rows} />
         </div>
       )}
+    </div>
+  )
+}
+
+interface PyramidTemplate { id: number; name: string; rows: PyramidRow[] }
+
+function PyramidTemplatePicker({ dark, onPick, onClose }: { dark: boolean; onPick: (rows: PyramidRow[]) => void; onClose: () => void }) {
+  const [templates, setTemplates] = useState<PyramidTemplate[] | null>(null)
+  const f = fieldStyle(dark)
+
+  useEffect(() => {
+    supabase.from('pyramid_templates').select('id, name, rows').order('name').then(({ data }) => setTemplates(data || []))
+  }, [])
+
+  const remove = async (id: number) => {
+    if (!confirm('Supprimer ce modèle ?')) return
+    await supabase.from('pyramid_templates').delete().eq('id', id)
+    setTemplates(prev => prev?.filter(t => t.id !== id) || [])
+  }
+
+  return (
+    <div style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 8, padding: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
+      {templates === null ? (
+        <span style={{ fontSize: 12, color: dark ? '#888' : '#999' }}>Chargement...</span>
+      ) : templates.length === 0 ? (
+        <span style={{ fontSize: 12, color: dark ? '#888' : '#999' }}>Aucun modèle sauvegardé pour l'instant.</span>
+      ) : (
+        templates.map(t => (
+          <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button type="button" onClick={() => onPick(t.rows)} style={{ ...f, flex: 1, textAlign: 'left', cursor: 'pointer' }}>
+              {t.name} <span style={{ color: dark ? '#888' : '#999' }}>({t.rows.length} lignes)</span>
+            </button>
+            <button type="button" onClick={() => remove(t.id)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+          </div>
+        ))
+      )}
+      <button type="button" onClick={onClose} style={{ alignSelf: 'flex-start', border: 'none', background: 'none', color: dark ? '#888' : '#999', cursor: 'pointer', fontSize: 12 }}>Fermer</button>
     </div>
   )
 }
@@ -259,6 +335,17 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div>
+        <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>Largeur</p>
+        <select value={block.width || 'full'} onChange={e => onChange({ ...block, width: e.target.value as 'full' | 'half' | 'third' })} style={f}>
+          <option value="full">Pleine largeur</option>
+          <option value="half">Moitié (2 côte à côte)</option>
+          <option value="third">Tiers (3 côte à côte)</option>
+        </select>
+        <p style={{ fontSize: 10, color: dark ? '#888' : '#999', margin: '4px 0 0' }}>
+          Les blocs "grille inserts" en moitié/tiers consécutifs se placent automatiquement côte à côte à l'affichage.
+        </p>
+      </div>
       <div>
         <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>Cartes</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>

@@ -29,6 +29,69 @@ function sanitizeGuideHtml(html: string): string {
   })
 }
 
+// Rendu bloc par bloc, mais regroupe les `insert_grid` consécutifs qui ne sont PAS
+// en pleine largeur (width: 'half'/'third') dans une même rangée flex plutôt que de
+// les empiler chacun sur toute la largeur — sinon un bloc n'ayant qu'une carte + un
+// petit tableau occupe une pleine ligne de rien, ce qui devient vite long et
+// indigeste dès qu'il y en a plusieurs (cas d'usage typique : une variation par
+// bloc insert_grid).
+function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, SetlistEmbedData>) {
+  const nodes: React.ReactNode[] = []
+  let i = 0
+  while (i < blocks.length) {
+    const block = blocks[i]
+    if (block.type === 'insert_grid' && block.width && block.width !== 'full') {
+      const group: Extract<GuideBlock, { type: 'insert_grid' }>[] = []
+      while (i < blocks.length) {
+        const b = blocks[i]
+        if (b.type === 'insert_grid' && b.width && b.width !== 'full') { group.push(b); i++ }
+        else break
+      }
+      nodes.push(
+        <div key={`group-${i}`} style={{ display: 'flex', flexWrap: 'wrap', gap: 16, margin: '32px 0' }}>
+          {group.map((b, gi) => (
+            <div key={gi} style={{ flex: b.width === 'third' ? '1 1 30%' : '1 1 46%', minWidth: 220 }}>
+              <InsertGridBlock title={b.title} cards={b.cards} oddsTable={b.oddsTable} players={b.players} />
+            </div>
+          ))}
+        </div>
+      )
+      continue
+    }
+    nodes.push(renderSingleBlock(block, i))
+    i++
+  }
+  return nodes
+
+  function renderSingleBlock(block: GuideBlock, key: number): React.ReactNode {
+    if (block.type === 'text') return (
+      <div key={key} className="guide-content" style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--text, #222)' }}
+        dangerouslySetInnerHTML={{ __html: sanitizeGuideHtml(block.html) }} />
+    )
+    if (block.type === 'image') return (
+      <figure key={key} style={{ margin: '32px 0' }}>
+        <img src={block.src} alt={block.caption || ''} style={{ width: '100%', borderRadius: 10, display: 'block' }} />
+        {block.caption && <figcaption style={{ fontSize: 13, color: 'var(--text3, #999)', marginTop: 8, textAlign: 'center' }}>{block.caption}</figcaption>}
+      </figure>
+    )
+    if (block.type === 'text_image') return (
+      <TextImageBlock key={key} html={sanitizeGuideHtml(block.html)} image={block.image} imagePosition={block.imagePosition} />
+    )
+    if (block.type === 'pyramid') return <PyramidBlock key={key} title={block.title} rows={block.rows} />
+    if (block.type === 'insert_grid') return (
+      <div key={key} style={{ margin: '32px 0' }}>
+        <InsertGridBlock title={block.title} cards={block.cards} oddsTable={block.oddsTable} players={block.players} />
+      </div>
+    )
+    if (block.type === 'setlist_embed') {
+      const data = setlistEmbeds.get(block.setId)
+      if (!data) return null
+      return <SetlistEmbedBlock key={key} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} entries={data.entries} />
+    }
+    return null
+  }
+}
+
 export const revalidate = 300
 
 async function resolveLang(): Promise<Lang> {
@@ -125,29 +188,7 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
         <img src={guide.cover_image} alt="" style={{ width: '100%', borderRadius: 12, display: 'block', marginBottom: 28 }} />
       )}
 
-      {guide.blocks.map((block, i) => {
-        if (block.type === 'text') return (
-          <div key={i} className="guide-content" style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--text, #222)' }}
-            dangerouslySetInnerHTML={{ __html: sanitizeGuideHtml(block.html) }} />
-        )
-        if (block.type === 'image') return (
-          <figure key={i} style={{ margin: '32px 0' }}>
-            <img src={block.src} alt={block.caption || ''} style={{ width: '100%', borderRadius: 10, display: 'block' }} />
-            {block.caption && <figcaption style={{ fontSize: 13, color: 'var(--text3, #999)', marginTop: 8, textAlign: 'center' }}>{block.caption}</figcaption>}
-          </figure>
-        )
-        if (block.type === 'text_image') return (
-          <TextImageBlock key={i} html={sanitizeGuideHtml(block.html)} image={block.image} imagePosition={block.imagePosition} />
-        )
-        if (block.type === 'pyramid') return <PyramidBlock key={i} title={block.title} rows={block.rows} />
-        if (block.type === 'insert_grid') return <InsertGridBlock key={i} title={block.title} cards={block.cards} oddsTable={block.oddsTable} players={block.players} />
-        if (block.type === 'setlist_embed') {
-          const data = setlistEmbeds.get(block.setId)
-          if (!data) return null
-          return <SetlistEmbedBlock key={i} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} entries={data.entries} />
-        }
-        return null
-      })}
+      {renderGuideBlocks(guide.blocks, setlistEmbeds)}
 
       <style>{`
         .guide-content h2 { font-size: 24px; font-weight: 800; margin: 32px 0 12px; }

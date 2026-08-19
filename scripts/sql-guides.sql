@@ -31,6 +31,23 @@ CREATE POLICY "admin full access guides" ON guides
 -- ce script une première fois, tu peux exécuter SEULEMENT cette ligne :
 ALTER TABLE guides ADD COLUMN IF NOT EXISTS blocks JSONB DEFAULT '[]'::jsonb;
 
+-- Bibliothèque de modèles de pyramide réutilisables entre guides (nouvelle table -
+-- si tu as déjà exécuté ce script une première fois, tu peux exécuter SEULEMENT ce
+-- bloc). Admin-only en lecture ET écriture (pas de policy publique : cette table
+-- n'est jamais lue en dehors de l'éditeur admin).
+CREATE TABLE IF NOT EXISTS pyramid_templates (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  rows JSONB NOT NULL DEFAULT '[]'::jsonb,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+ALTER TABLE pyramid_templates ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "admin full access pyramid_templates" ON pyramid_templates
+  FOR ALL USING (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true))
+  WITH CHECK (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true));
+
 -- Après avoir exécuté ce script :
 -- 1. Storage → New bucket → nom "guide-images", cocher "Public bucket"
 -- 2. Sur ce bucket, Policies → ajouter :
