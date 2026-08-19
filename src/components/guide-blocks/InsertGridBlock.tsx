@@ -52,27 +52,29 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
           )}
 
           {hasOdds && (
-            <div style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden', flex: '0 1 auto', background: 'var(--card-bg, #fff)' }}>
-              <table style={{ borderCollapse: 'collapse', fontSize: 13.5 }}>
-                <thead>
-                  <tr style={{ background: 'var(--bg3, #f5f5f5)' }}>
-                    <th style={{ padding: '11px 20px', textAlign: 'left', fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3 }}></th>
-                    {oddsTable.columns.map((col, ci) => (
-                      <th key={ci} style={{ padding: '11px 20px', textAlign: 'center', fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3 }}>{col}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {oddsTable.rows.map((row, ri) => (
-                    <tr key={ri} style={{ background: ri % 2 === 1 ? 'var(--bg3, #fafafa)' : 'transparent', borderTop: '1px solid var(--border, #eee)' }}>
-                      <td style={{ padding: '10px 20px', fontWeight: 700, color: 'var(--text2, #555)', whiteSpace: 'nowrap' }}>{row.label}</td>
-                      {oddsTable.columns.map((_, ci) => (
-                        <td key={ci} style={{ padding: '10px 20px', textAlign: 'center', fontWeight: 800, color: '#003DA6', whiteSpace: 'nowrap' }}>{row.values[ci] || '—'}</td>
+            <div className="insert-odds-outer" style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, flex: '1 1 auto', minWidth: 0, background: 'var(--card-bg, #fff)' }}>
+              <div className="insert-odds-scroll" style={{ overflowX: 'auto', borderRadius: 10 }}>
+                <table className="insert-odds-table" style={{ borderCollapse: 'collapse', fontSize: 13.5, width: '100%' }}>
+                  <thead>
+                    <tr style={{ background: 'var(--bg3, #f5f5f5)' }}>
+                      <th className="insert-odds-cell" style={{ textAlign: 'left', fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3, whiteSpace: 'nowrap' }}></th>
+                      {oddsTable.columns.map((col, ci) => (
+                        <th key={ci} className="insert-odds-cell" style={{ textAlign: 'center', fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3, whiteSpace: 'nowrap' }}>{col}</th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {oddsTable.rows.map((row, ri) => (
+                      <tr key={ri} style={{ background: ri % 2 === 1 ? 'var(--bg3, #fafafa)' : 'transparent', borderTop: '1px solid var(--border, #eee)' }}>
+                        <td className="insert-odds-cell" style={{ fontWeight: 700, color: 'var(--text2, #555)', whiteSpace: 'nowrap' }}>{row.label}</td>
+                        {oddsTable.columns.map((_, ci) => (
+                          <td key={ci} className="insert-odds-cell" style={{ textAlign: 'center', fontWeight: 800, color: '#003DA6', whiteSpace: 'nowrap' }}>{row.values[ci] || '—'}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
@@ -101,10 +103,13 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
           transform: translateX(-120%); transition: transform 0.6s ease;
         }
         .insert-grid-card:hover .insert-grid-card-shine { transform: translateX(120%); }
+        .insert-odds-cell { padding: 11px 20px; }
+        .insert-odds-scroll { -webkit-overflow-scrolling: touch; }
         @media (max-width: 480px) {
           .insert-top-row { flex-direction: column !important; }
           .insert-top-row > * { flex-basis: auto !important; width: 100%; }
           .insert-grid-block { justify-content: center; }
+          .insert-odds-cell { padding: 8px 12px; font-size: 12px; }
         }
       `}</style>
     </div>
