@@ -9,7 +9,6 @@ import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
 
-const GuideEditor = dynamic(() => import('@/components/GuideEditor'), { ssr: false })
 const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
 
 function slugify(s: string) {
@@ -34,7 +33,6 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [excerpt, setExcerpt] = useState('')
   const [category, setCategory] = useState('')
   const [coverImage, setCoverImage] = useState('')
-  const [content, setContent] = useState('')
   const [blocks, setBlocks] = useState<GuideBlock[]>([])
   const [published, setPublished] = useState(false)
   const [publishedAt, setPublishedAt] = useState(() => new Date().toISOString().slice(0, 16))
@@ -50,8 +48,8 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
         const { data: g } = await supabase.from('guides').select('*').eq('id', id).single()
         if (g) {
           setTitle(g.title); setSlug(g.slug); setExcerpt(g.excerpt || '')
-          setCategory(g.category || ''); setCoverImage(g.cover_image || ''); setContent(g.content || '')
-          setBlocks(normalizeGuideBlocks(g.blocks))
+          setCategory(g.category || ''); setCoverImage(g.cover_image || '')
+          setBlocks(normalizeGuideBlocks(g.blocks, g.content))
           setPublished(g.published); setPublishedAt(new Date(g.published_at).toISOString().slice(0, 16))
           setSlugTouched(true)
         }
@@ -76,7 +74,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     setSaving(true)
     const payload = {
       title: title.trim(), slug: slug.trim(), excerpt: excerpt.trim() || null,
-      category: category.trim() || null, cover_image: coverImage || null, content, blocks,
+      category: category.trim() || null, cover_image: coverImage || null, content: '', blocks,
       published, published_at: new Date(publishedAt).toISOString(), updated_at: new Date().toISOString(),
     }
     const { error } = isNew
@@ -133,10 +131,6 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
           </div>
           <div>
             <label style={label}>{t('admin_guides_field_content')}</label>
-            <GuideEditor content={content} onChange={setContent} />
-          </div>
-          <div>
-            <label style={label}>Blocs additionnels</label>
             <GuideBlocksEditor blocks={blocks} onChange={setBlocks} />
           </div>
           <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>

@@ -1,5 +1,8 @@
-// Types de blocs riches additionnels d'un guide, stockés dans guides.blocks (JSONB).
-// Rendus après le texte Tiptap (guides.content), jamais entremêlés dedans.
+// Types de blocs d'un guide, stockés dans guides.blocks (JSONB) - séquence unique et
+// ordonnée, mélangeant librement texte, images et blocs riches (l'admin choisit
+// l'ordre). La colonne guides.content (ancien blob HTML unique, pré-blocs) n'est
+// plus utilisée pour l'écriture ; normalizeGuideBlocks() la lit encore une fois pour
+// migrer les guides déjà enregistrés avant l'introduction des blocs texte/image.
 
 export interface PyramidRow {
   name: string
@@ -23,16 +26,21 @@ export interface OddsTable {
 }
 
 export type GuideBlock =
+  | { type: 'text'; html: string }
+  | { type: 'image'; src: string; caption?: string }
+  | { type: 'text_image'; html: string; image: string; imagePosition: 'left' | 'right' }
   | { type: 'pyramid'; title?: string; rows: PyramidRow[] }
   | { type: 'insert_grid'; title?: string; cards: InsertCard[]; oddsTable: OddsTable; players: string[] }
   | { type: 'setlist_embed'; setId: number; title?: string }
 
 // Défend contre les guides déjà enregistrés avec l'ancienne forme du bloc
 // insert_grid (oddsRows: {label,value}[] au lieu de oddsTable, pas de players) -
-// convertit à la volée plutôt que de planter au chargement.
-export function normalizeGuideBlocks(raw: unknown): GuideBlock[] {
-  if (!Array.isArray(raw)) return []
-  return raw.map((b: any) => {
+// convertit à la volée plutôt que de planter au chargement. Migre aussi l'ancien
+// champ guides.content (unique blob HTML rendu avant tous les blocs) en le
+// préfixant comme premier bloc `text`, sauf si un bloc `text` existe déjà en tête
+// (déjà migré lors d'un enregistrement précédent).
+export function normalizeGuideBlocks(raw: unknown, legacyContent?: string | null): GuideBlock[] {
+  const blocks: GuideBlock[] = !Array.isArray(raw) ? [] : raw.map((b: any) => {
     if (b?.type === 'insert_grid') {
       const oddsTable: OddsTable = b.oddsTable && Array.isArray(b.oddsTable.columns) && Array.isArray(b.oddsTable.rows)
         ? b.oddsTable
@@ -43,4 +51,10 @@ export function normalizeGuideBlocks(raw: unknown): GuideBlock[] {
     }
     return b
   })
+
+  if (legacyContent && legacyContent.trim() && blocks[0]?.type !== 'text') {
+    blocks.unshift({ type: 'text', html: legacyContent })
+  }
+
+  return blocks
 }

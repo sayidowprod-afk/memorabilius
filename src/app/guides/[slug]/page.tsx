@@ -10,6 +10,24 @@ import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
 import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 import SetlistEmbedBlock from '@/components/guide-blocks/SetlistEmbedBlock'
+import TextImageBlock from '@/components/guide-blocks/TextImageBlock'
+
+// sanitize-html plutôt qu'isomorphic-dompurify : ce dernier embarque jsdom, connu
+// pour mal se bundler dans les fonctions serverless Vercel (500 en prod alors que
+// ça marchait en local). Liste blanche calquée sur ce que produit GuideEditor.tsx
+// (StarterKit + Image + Link + Youtube).
+function sanitizeGuideHtml(html: string): string {
+  return sanitizeHtml(html, {
+    allowedTags: ['h2', 'h3', 'p', 'a', 'ul', 'ol', 'li', 'blockquote', 'strong', 'em', 'b', 'i', 'img', 'iframe', 'br', 'span'],
+    allowedAttributes: {
+      a: ['href', 'target', 'rel'],
+      img: ['src', 'alt', 'style'],
+      iframe: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen', 'style'],
+      '*': ['style'],
+    },
+    allowedIframeHostnames: ['www.youtube.com', 'youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com'],
+  })
+}
 
 export const revalidate = 300
 
@@ -38,7 +56,7 @@ async function fetchGuide(slug: string): Promise<Guide | null> {
     .lte('published_at', new Date().toISOString())
     .single()
   if (!data) return null
-  return { ...data, blocks: normalizeGuideBlocks(data.blocks) }
+  return { ...data, blocks: normalizeGuideBlocks(data.blocks, data.content) }
 }
 
 interface SetlistEmbedData {
@@ -79,20 +97,6 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
   const [guide, lang] = await Promise.all([fetchGuide(slug), resolveLang()])
   if (!guide) notFound()
   const t = guidesI18n[lang]
-  // sanitize-html plutôt qu'isomorphic-dompurify : ce dernier embarque jsdom, connu
-  // pour mal se bundler dans les fonctions serverless Vercel (500 en prod alors que
-  // ça marchait en local). Liste blanche calquée sur ce que produit GuideEditor.tsx
-  // (StarterKit + Image + Link + Youtube).
-  const safeHtml = sanitizeHtml(guide.content, {
-    allowedTags: ['h2', 'h3', 'p', 'a', 'ul', 'ol', 'li', 'blockquote', 'strong', 'em', 'b', 'i', 'img', 'iframe', 'br', 'span'],
-    allowedAttributes: {
-      a: ['href', 'target', 'rel'],
-      img: ['src', 'alt', 'style'],
-      iframe: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen', 'style'],
-      '*': ['style'],
-    },
-    allowedIframeHostnames: ['www.youtube.com', 'youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com'],
-  })
   const dateLocale = lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : 'fr-FR'
   const dateLabel = new Date(guide.published_at).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })
 
@@ -121,13 +125,20 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
         <img src={guide.cover_image} alt="" style={{ width: '100%', borderRadius: 12, display: 'block', marginBottom: 28 }} />
       )}
 
-      <div
-        className="guide-content"
-        style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--text, #222)' }}
-        dangerouslySetInnerHTML={{ __html: safeHtml }}
-      />
-
       {guide.blocks.map((block, i) => {
+        if (block.type === 'text') return (
+          <div key={i} className="guide-content" style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--text, #222)' }}
+            dangerouslySetInnerHTML={{ __html: sanitizeGuideHtml(block.html) }} />
+        )
+        if (block.type === 'image') return (
+          <figure key={i} style={{ margin: '32px 0' }}>
+            <img src={block.src} alt={block.caption || ''} style={{ width: '100%', borderRadius: 10, display: 'block' }} />
+            {block.caption && <figcaption style={{ fontSize: 13, color: 'var(--text3, #999)', marginTop: 8, textAlign: 'center' }}>{block.caption}</figcaption>}
+          </figure>
+        )
+        if (block.type === 'text_image') return (
+          <TextImageBlock key={i} html={sanitizeGuideHtml(block.html)} image={block.image} imagePosition={block.imagePosition} />
+        )
         if (block.type === 'pyramid') return <PyramidBlock key={i} title={block.title} rows={block.rows} />
         if (block.type === 'insert_grid') return <InsertGridBlock key={i} title={block.title} cards={block.cards} oddsTable={block.oddsTable} players={block.players} />
         if (block.type === 'setlist_embed') {

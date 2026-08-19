@@ -6,6 +6,8 @@ import { uploadGuideImage } from '@/lib/guideUpload'
 import type { GuideBlock, PyramidRow, InsertCard, OddsTable } from '@/lib/guideBlockTypes'
 import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
+import TextImageBlock from '@/components/guide-blocks/TextImageBlock'
+import GuideEditor from '@/components/GuideEditor'
 
 interface Props {
   blocks: GuideBlock[]
@@ -48,7 +50,7 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
         <div key={i} style={{ border: `1px solid ${border}`, borderRadius: 10, padding: 14, background: cardBg }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <span style={{ fontSize: 12, fontWeight: 800, color: sub, textTransform: 'uppercase', letterSpacing: 0.4 }}>
-              {b.type === 'pyramid' ? '🔺 Pyramide de variations' : b.type === 'insert_grid' ? '🎴 Grille inserts' : '📋 Setlist embarquée'}
+              {BLOCK_LABELS[b.type]}
             </span>
             <div style={{ display: 'flex', gap: 6 }}>
               <button type="button" style={smallBtn} disabled={i === 0} onClick={() => moveAt(i, -1)}>↑</button>
@@ -57,6 +59,9 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
             </div>
           </div>
 
+          {b.type === 'text' && <TextEditor block={b} onChange={nb => updateAt(i, nb)} />}
+          {b.type === 'image' && <ImageEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+          {b.type === 'text_image' && <TextImageEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
           {b.type === 'pyramid' && <PyramidEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
           {b.type === 'insert_grid' && <InsertGridEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
           {b.type === 'setlist_embed' && <SetlistEmbedEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
@@ -64,6 +69,9 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
       ))}
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'text', html: '' }])}>+ Texte</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'image', src: '', caption: '' }])}>+ Image</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'text_image', html: '', image: '', imagePosition: 'left' }])}>+ Texte + image</button>
         <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'pyramid', rows: [] }])}>+ Pyramide</button>
         <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'insert_grid', cards: [], oddsTable: { columns: [], rows: [] }, players: [] }])}>+ Grille inserts</button>
         <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'setlist_embed', setId: 0 }])}>+ Setlist</button>
@@ -72,11 +80,82 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
   )
 }
 
+const BLOCK_LABELS: Record<GuideBlock['type'], string> = {
+  text: '📝 Texte',
+  image: '🖼️ Image',
+  text_image: '📰 Texte + image',
+  pyramid: '🔺 Pyramide de variations',
+  insert_grid: '🎴 Grille inserts',
+  setlist_embed: '📋 Setlist embarquée',
+}
+
 function fieldStyle(dark: boolean): React.CSSProperties {
   return {
     padding: '7px 10px', borderRadius: 6, border: `1px solid ${dark ? '#333' : '#ddd'}`,
     background: dark ? '#2a2a2a' : 'white', color: dark ? '#e0e0e0' : '#222', fontSize: 13,
   }
+}
+
+// --- Texte --------------------------------------------------------------------
+
+function TextEditor({ block, onChange }: { block: Extract<GuideBlock, { type: 'text' }>; onChange: (b: GuideBlock) => void }) {
+  return <GuideEditor content={block.html} onChange={html => onChange({ ...block, html })} />
+}
+
+// --- Image seule ----------------------------------------------------------------
+
+function ImageEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'image' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
+  const [uploading, setUploading] = useState(false)
+  const f = fieldStyle(dark)
+
+  const upload = async (file: File) => {
+    setUploading(true)
+    const url = await uploadGuideImage(file, 'blocks/')
+    setUploading(false)
+    if (url) onChange({ ...block, src: url })
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {block.src && <img src={block.src} alt="" style={{ maxWidth: 320, borderRadius: 8, display: 'block' }} />}
+      <label style={{ ...f, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6, alignSelf: 'flex-start' }}>
+        {uploading ? '...' : block.src ? 'Changer l\'image' : 'Choisir une image'}
+        <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const file = e.target.files?.[0]; if (file) upload(file) }} />
+      </label>
+      <input style={f} placeholder="Légende (optionnelle)" value={block.caption || ''} onChange={e => onChange({ ...block, caption: e.target.value })} />
+    </div>
+  )
+}
+
+// --- Texte + image côte à côte --------------------------------------------------
+
+function TextImageEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'text_image' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
+  const [uploading, setUploading] = useState(false)
+  const f = fieldStyle(dark)
+
+  const upload = async (file: File) => {
+    setUploading(true)
+    const url = await uploadGuideImage(file, 'blocks/')
+    setUploading(false)
+    if (url) onChange({ ...block, image: url })
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+        {block.image && <img src={block.image} alt="" style={{ width: 90, height: 90, objectFit: 'cover', borderRadius: 6 }} />}
+        <label style={{ ...f, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          {uploading ? '...' : block.image ? 'Changer l\'image' : 'Choisir une image'}
+          <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const file = e.target.files?.[0]; if (file) upload(file) }} />
+        </label>
+        <select style={f} value={block.imagePosition} onChange={e => onChange({ ...block, imagePosition: e.target.value as 'left' | 'right' })}>
+          <option value="left">Image à gauche</option>
+          <option value="right">Image à droite</option>
+        </select>
+      </div>
+      <GuideEditor content={block.html} onChange={html => onChange({ ...block, html })} />
+    </div>
+  )
 }
 
 // --- Pyramide ---------------------------------------------------------------
