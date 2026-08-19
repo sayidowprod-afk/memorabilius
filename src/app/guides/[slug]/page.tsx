@@ -86,7 +86,7 @@ function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, Setl
     if (block.type === 'setlist_embed') {
       const data = setlistEmbeds.get(block.setId)
       if (!data) return null
-      return <SetlistEmbedBlock key={key} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} entries={data.entries} />
+      return <SetlistEmbedBlock key={key} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} sport={data.sport} entries={data.entries} />
     }
     return null
   }
@@ -126,11 +126,12 @@ interface SetlistEmbedData {
   setId: number
   setName: string
   totalCards: number
+  sport: string | null
   entries: { card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean }[]
 }
 
 async function fetchSetlistEmbed(setId: number): Promise<SetlistEmbedData | null> {
-  const { data: set } = await supabase.from('card_sets').select('name, total_cards').eq('id', setId).single()
+  const { data: set } = await supabase.from('card_sets').select('name, total_cards, sport').eq('id', setId).single()
   if (!set) return null
   const { data: entries } = await supabase
     .from('card_set_entries')
@@ -139,7 +140,7 @@ async function fetchSetlistEmbed(setId: number): Promise<SetlistEmbedData | null
     .order('variation', { ascending: true })
     .order('card_number', { ascending: true })
     .limit(2000)
-  return { setId, setName: set.name, totalCards: set.total_cards, entries: entries || [] }
+  return { setId, setName: set.name, totalCards: set.total_cards, sport: set.sport, entries: entries || [] }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
