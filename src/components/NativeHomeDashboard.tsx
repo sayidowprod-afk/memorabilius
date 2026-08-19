@@ -91,10 +91,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     // ou rester bloquées en attente. Sans filet, setData() n'est jamais appelé et
     // le dashboard reste vide indéfiniment (jusqu'à un F5 manuel). On retente donc
     // automatiquement, avec un timeout pour ne pas dépendre d'un rejet explicite.
+    // Timeout court (4s) et peu de tentatives (2) : un F5 manuel réussit vite car
+    // c'est une requête toute neuve, pas parce qu'elle a besoin de longtemps pour
+    // aboutir — un cycle d'auto-retry trop long (8s x4 + backoff, ~40s) fait juste
+    // paraître la page cassée plus longtemps qu'un simple F5, pour le même résultat.
     const load = async (attempt: number) => {
       try {
         const challenge = currentChallenge()
-        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
         const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
           Promise.all([
             supabase.from('profiles').select('display_name, avatar_url, stats_total').eq('id', user.id).single(),
@@ -133,8 +137,8 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         })
       } catch (e) {
         if (cancelled) return
-        if (attempt < 4) {
-          setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1200 * attempt)
+        if (attempt < 2) {
+          setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1000)
         } else {
           console.error('[NativeHomeDashboard] load failed after retries', e)
           setFailed(true)

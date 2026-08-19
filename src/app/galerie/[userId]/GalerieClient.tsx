@@ -478,7 +478,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       try {
         let resolvedId = userId
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
 
         if (!uuidRegex.test(userId)) {
           const { data: p } = await Promise.race([
@@ -526,7 +526,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         loadCommentCounts(resolvedId)
       } catch (e) {
         if (cancelled) return
-        if (attempt < 4) { setTimeout(() => { if (!cancelled) init(attempt + 1) }, 1200 * attempt); return }
+        if (attempt < 2) { setTimeout(() => { if (!cancelled) init(attempt + 1) }, 1000); return }
         console.error('Gallery init error', e)
         setLoaded(true)
       }
@@ -737,9 +737,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       // laissait la page figée sur le squelette de chargement indéfiniment,
       // sans jamais tomber dans le catch (une promesse qui ne resout ni ne
       // rejette jamais ne déclenche aucun des deux). Même filet que init()
-      // et NativeHomeDashboard : timeout de 8s + retry jusqu'à 4 tentatives.
+      // et NativeHomeDashboard : timeout court + peu de tentatives, pour
+      // atteindre vite un état stable (donnees ou repli) plutot que de
+      // laisser la page paraitre figee pendant ~40s avant de reagir.
       const fetchFirstBatch = async (attempt: number): Promise<any> => {
-        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 6000))
         try {
           return await Promise.race([
             Promise.all([
@@ -749,8 +751,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             timeout,
           ])
         } catch (e) {
-          if (attempt >= 4) throw e
-          await new Promise(r => setTimeout(r, 1200 * attempt))
+          if (attempt >= 2) throw e
+          await new Promise(r => setTimeout(r, 1000))
           return fetchFirstBatch(attempt + 1)
         }
       }

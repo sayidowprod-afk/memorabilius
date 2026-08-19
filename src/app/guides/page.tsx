@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { supabase } from '@/lib/supabase'
 import type { Lang } from '@/lib/LangContext'
 import { guidesI18n } from '@/lib/guidesI18n'
+import GuidesAdminBar from '@/components/GuidesAdminBar'
 
 export const revalidate = 300
 
@@ -55,9 +56,11 @@ export default async function GuidesPage() {
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '40px 20px' }}>
       <h1 style={{ fontSize: 30, fontWeight: 900, margin: '0 0 6px' }}>{t.guides_title}</h1>
-      <p style={{ color: 'var(--text2, #777)', fontSize: 15, margin: '0 0 32px' }}>
+      <p style={{ color: 'var(--text2, #777)', fontSize: 15, margin: '0 0 20px' }}>
         {t.guides_subtitle}
       </p>
+
+      <GuidesAdminBar />
 
       {guides.length === 0 ? (
         <p style={{ color: 'var(--text3, #999)' }}>{t.guides_empty}</p>
