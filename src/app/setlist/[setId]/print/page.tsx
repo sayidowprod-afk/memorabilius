@@ -145,6 +145,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   const [userId, setUserId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [filterMode, setFilterMode] = useState<'all' | 'owned' | 'missing'>('all')
+  const [filterTeam, setFilterTeam] = useState<string>('')
   const [selectedVariations, setSelectedVariations] = useState<Set<string> | null>(null)
   const [exportPhase, setExportPhase] = useState<'idle' | 'pdf' | 'jpg'>('idle')
   const [exportPages, setExportPages] = useState<Unit[][][]>([])
@@ -220,6 +221,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   if (!set) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_not_found')}</div>
 
   const allVariationNames = Array.from(new Set(entries.map(e => e.variation || 'Base'))).sort((a, b) => a === 'Base' ? -1 : b === 'Base' ? 1 : a.localeCompare(b))
+  const allTeamNames = Array.from(new Set(entries.map(e => e.team).filter((v): v is string => !!v))).sort((a, b) => a.localeCompare(b))
   const activeVariations = selectedVariations || new Set(allVariationNames)
   const ownedCount = entries.filter(e => owned.has(e.id)).length
 
@@ -237,6 +239,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   const filteredByOwnership = entries.filter(e => {
     if (filterMode === 'owned' && !owned.has(e.id)) return false
     if (filterMode === 'missing' && owned.has(e.id)) return false
+    if (filterTeam && e.team !== filterTeam) return false
     return true
   })
   const groups: Group[] = []
@@ -448,6 +451,13 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
             </button>
           ))}
         </div>
+        {allTeamNames.length > 1 && (
+          <select value={filterTeam} onChange={e => setFilterTeam(e.target.value)}
+            style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+            <option value="">{t('setlistprint_all_teams')}</option>
+            {allTeamNames.map(team => <option key={team} value={team}>{team}</option>)}
+          </select>
+        )}
         {allVariationNames.length > 1 && (
           <div style={{ display: 'flex', gap: 6, marginLeft: 'auto' }}>
             <button onClick={() => setSelectedVariations(new Set(allVariationNames))}
