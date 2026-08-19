@@ -19,8 +19,11 @@ interface Props {
   onOpenChange: (open: boolean) => void
 }
 
-const QR_SIZE = 108
+const BRAND = '#003DA6'
+const QR_SIZE = 130
 const QR_SCALE = 4
+const QR_LOGO_W = 95   // même ratio que ShareButton (160/220 du QR)
+const QR_LOGO_H = 21
 const CARD_W = 320
 
 function shade(hex: string, amt: number) {
@@ -66,12 +69,41 @@ export default function CollectorCard({ userId, url, displayName, avatarUrl, acc
       const canvas = qrCanvasRef.current
       if (!canvas || cancelled) return
       const phys = QR_SIZE * QR_SCALE
+
+      // QR bleu de marque + badge logo au centre — même design que le QR
+      // de partage générique (ShareButton).
       await QRCode.toCanvas(canvas, fullUrl, {
-        width: phys, margin: 1, errorCorrectionLevel: 'H',
-        color: { dark: '#111111', light: '#ffffff' },
+        width: phys, margin: 2, errorCorrectionLevel: 'H',
+        color: { dark: BRAND, light: '#ffffff' },
       })
       canvas.style.width = `${QR_SIZE}px`
       canvas.style.height = `${QR_SIZE}px`
+      if (cancelled) return
+
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+      const cx = phys / 2, cy = phys / 2
+      const lgW = QR_LOGO_W * QR_SCALE
+      const lgH = QR_LOGO_H * QR_SCALE
+      const pad = 3 * QR_SCALE, bR = 6 * QR_SCALE
+
+      ctx.fillStyle = 'white'
+      rrect(ctx, cx - lgW / 2 - pad, cy - lgH / 2 - pad, lgW + pad * 2, lgH + pad * 2, bR + pad)
+      ctx.fill()
+
+      ctx.fillStyle = BRAND
+      rrect(ctx, cx - lgW / 2, cy - lgH / 2, lgW, lgH, bR)
+      ctx.fill()
+
+      const logo = new Image()
+      logo.src = '/memorabilius-logo-qr-hd.png'
+      await logo.decode()
+      if (cancelled) return
+      ctx.save()
+      rrect(ctx, cx - lgW / 2, cy - lgH / 2, lgW, lgH, bR)
+      ctx.clip()
+      ctx.drawImage(logo, cx - lgW / 2, cy - lgH / 2, lgW, lgH)
+      ctx.restore()
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [open, fullUrl])
@@ -179,6 +211,24 @@ export default function CollectorCard({ userId, url, displayName, avatarUrl, acc
           }}>
             {copied ? `✓ ${t('collectorcard_copied')}` : t('collectorcard_copy_link')}
           </button>
+        </div>
+
+        <div style={{ display: 'flex', gap: 10 }}>
+          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayName)}&url=${encodeURIComponent(fullUrl)}`}
+            target="_blank" rel="noopener noreferrer"
+            style={{ background: '#f0f0f0', color: '#333', padding: '8px 16px', borderRadius: 8, fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+            𝕏 Twitter
+          </a>
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`}
+            target="_blank" rel="noopener noreferrer"
+            style={{ background: '#e8f0fe', color: '#1877F2', padding: '8px 16px', borderRadius: 8, fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+            Facebook
+          </a>
+          <a href={`https://wa.me/?text=${encodeURIComponent(displayName + ' ' + fullUrl)}`}
+            target="_blank" rel="noopener noreferrer"
+            style={{ background: '#e8f5e9', color: '#25D366', padding: '8px 16px', borderRadius: 8, fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+            WhatsApp
+          </a>
         </div>
       </div>
     </div>
