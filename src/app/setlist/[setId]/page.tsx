@@ -412,7 +412,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         {userId ? (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: '#333' }}>{totalOwned} / {set.total_cards.toLocaleString()} {t('setlistdetail_owned')}</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: dark ? '#eee' : '#333' }}>{totalOwned} / {set.total_cards.toLocaleString()} {t('setlistdetail_owned')}</span>
               <span style={{ fontSize: 20, fontWeight: 900, color: pct === 100 ? '#2ecc71' : '#003DA6' }}>{pct}%</span>
             </div>
             <div style={{ height: 10, borderRadius: 5, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
@@ -529,28 +529,33 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           return (
             <div key={variation.name} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}>
               <div onClick={() => toggleVariation(variation.name)}
-                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '13px 18px', cursor: 'pointer', boxSizing: 'border-box' }}>
-                <span style={{ fontSize: 15, fontWeight: 800, color: '#111', flex: 1 }}>{variation.name}</span>
-                <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} {t('setlistdetail_cards')}</span>
-                {userId && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 130 }}>
-                    <div style={{ flex: 1, height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
-                      <div style={{ height: '100%', width: `${varPct}%`, background: varPct === 100 ? '#2ecc71' : 'linear-gradient(90deg, #003DA6, #0057D9)', borderRadius: 3 }} />
+                style={{ width: '100%', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center', gap: isMobile ? 8 : 12, padding: '13px 18px', cursor: 'pointer', boxSizing: 'border-box' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontSize: 15, fontWeight: 800, color: dark ? '#eee' : '#111', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: isMobile ? 'nowrap' : 'normal' }}>{variation.name}</span>
+                  {!isMobile && <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} {t('setlistdetail_cards')}</span>}
+                  <span style={{ fontSize: 11, color: '#ccc', marginLeft: isMobile ? 0 : 4, flexShrink: 0 }}>{isOpen ? '▲' : '▼'}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 12 }}>
+                  {isMobile && <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} {t('setlistdetail_cards')}</span>}
+                  {userId && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: isMobile ? 1 : undefined, minWidth: isMobile ? 0 : 130 }}>
+                      <div style={{ flex: 1, height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${varPct}%`, background: varPct === 100 ? '#2ecc71' : 'linear-gradient(90deg, #003DA6, #0057D9)', borderRadius: 3 }} />
+                      </div>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: varPct === 100 ? '#2ecc71' : '#003DA6', minWidth: 32, textAlign: 'right', flexShrink: 0 }}>{varPct}%</span>
                     </div>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: varPct === 100 ? '#2ecc71' : '#003DA6', minWidth: 32, textAlign: 'right' }}>{varPct}%</span>
-                  </div>
-                )}
-                {userId && (
-                  <button
-                    onClick={ev => checkAllVariation(variation.name, ev)}
-                    disabled={checkingAll === variation.name}
-                    title={varPct === 100 ? t('setlistdetail_uncheck_all') : t('setlistdetail_check_all')}
-                    style={{ fontSize: 11, fontWeight: 800, padding: '4px 9px', borderRadius: 6, border: '1.5px solid', borderColor: varPct === 100 ? '#2ecc71' : '#003DA6', background: dark ? '#1e1e1e' : 'white', color: varPct === 100 ? '#2ecc71' : '#003DA6', cursor: checkingAll === variation.name ? 'default' : 'pointer', whiteSpace: 'nowrap', opacity: checkingAll === variation.name ? 0.5 : 1, flexShrink: 0 }}
-                  >
-                    {checkingAll === variation.name ? '…' : varPct === 100 ? t('setlistdetail_uncheck_all_short') : t('setlistdetail_check_all_short')}
-                  </button>
-                )}
-                <span style={{ fontSize: 11, color: '#ccc', marginLeft: 4 }}>{isOpen ? '▲' : '▼'}</span>
+                  )}
+                  {userId && (
+                    <button
+                      onClick={ev => checkAllVariation(variation.name, ev)}
+                      disabled={checkingAll === variation.name}
+                      title={varPct === 100 ? t('setlistdetail_uncheck_all') : t('setlistdetail_check_all')}
+                      style={{ fontSize: 11, fontWeight: 800, padding: '4px 9px', borderRadius: 6, border: '1.5px solid', borderColor: varPct === 100 ? '#2ecc71' : '#003DA6', background: dark ? '#1e1e1e' : 'white', color: varPct === 100 ? '#2ecc71' : '#003DA6', cursor: checkingAll === variation.name ? 'default' : 'pointer', whiteSpace: 'nowrap', opacity: checkingAll === variation.name ? 0.5 : 1, flexShrink: 0 }}
+                    >
+                      {checkingAll === variation.name ? '…' : varPct === 100 ? t('setlistdetail_uncheck_all_short') : t('setlistdetail_check_all_short')}
+                    </button>
+                  )}
+                </div>
               </div>
 
               {isOpen && (
