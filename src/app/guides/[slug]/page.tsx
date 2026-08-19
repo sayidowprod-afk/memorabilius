@@ -6,7 +6,7 @@ import sanitizeHtml from 'sanitize-html'
 import { supabase } from '@/lib/supabase'
 import type { Lang } from '@/lib/LangContext'
 import { guidesI18n } from '@/lib/guidesI18n'
-import type { GuideBlock } from '@/lib/guideBlockTypes'
+import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
 import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 import SetlistEmbedBlock from '@/components/guide-blocks/SetlistEmbedBlock'
@@ -38,7 +38,7 @@ async function fetchGuide(slug: string): Promise<Guide | null> {
     .lte('published_at', new Date().toISOString())
     .single()
   if (!data) return null
-  return { ...data, blocks: Array.isArray(data.blocks) ? data.blocks : [] }
+  return { ...data, blocks: normalizeGuideBlocks(data.blocks) }
 }
 
 interface SetlistEmbedData {
@@ -129,7 +129,7 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
 
       {guide.blocks.map((block, i) => {
         if (block.type === 'pyramid') return <PyramidBlock key={i} title={block.title} rows={block.rows} />
-        if (block.type === 'insert_grid') return <InsertGridBlock key={i} title={block.title} cards={block.cards} oddsRows={block.oddsRows} />
+        if (block.type === 'insert_grid') return <InsertGridBlock key={i} title={block.title} cards={block.cards} oddsTable={block.oddsTable} players={block.players} />
         if (block.type === 'setlist_embed') {
           const data = setlistEmbeds.get(block.setId)
           if (!data) return null

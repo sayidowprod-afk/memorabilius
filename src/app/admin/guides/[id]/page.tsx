@@ -7,7 +7,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
-import type { GuideBlock } from '@/lib/guideBlockTypes'
+import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
 
 const GuideEditor = dynamic(() => import('@/components/GuideEditor'), { ssr: false })
 const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
@@ -51,7 +51,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
         if (g) {
           setTitle(g.title); setSlug(g.slug); setExcerpt(g.excerpt || '')
           setCategory(g.category || ''); setCoverImage(g.cover_image || ''); setContent(g.content || '')
-          setBlocks(Array.isArray(g.blocks) ? g.blocks : [])
+          setBlocks(normalizeGuideBlocks(g.blocks))
           setPublished(g.published); setPublishedAt(new Date(g.published_at).toISOString().slice(0, 16))
           setSlugTouched(true)
         }

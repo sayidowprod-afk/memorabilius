@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { uploadGuideImage } from '@/lib/guideUpload'
-import type { GuideBlock, PyramidRow, InsertCard, OddsRow } from '@/lib/guideBlockTypes'
+import type { GuideBlock, PyramidRow, InsertCard, OddsTable } from '@/lib/guideBlockTypes'
 import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 
@@ -65,7 +65,7 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'pyramid', rows: [] }])}>+ Pyramide</button>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'insert_grid', cards: [], oddsRows: [] }])}>+ Grille inserts</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'insert_grid', cards: [], oddsTable: { columns: [], rows: [] }, players: [] }])}>+ Grille inserts</button>
         <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'setlist_embed', setId: 0 }])}>+ Setlist</button>
       </div>
     </div>
@@ -151,11 +151,32 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
     if (url) updateCard(i, { image: url })
   }
 
-  const updateOdds = (i: number, patch: Partial<OddsRow>) => {
-    onChange({ ...block, oddsRows: block.oddsRows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)) })
+  const table = block.oddsTable
+
+  const setTable = (t: OddsTable) => onChange({ ...block, oddsTable: t })
+
+  const addColumn = () => {
+    const columns = [...table.columns, '']
+    const rows = table.rows.map(r => ({ ...r, values: [...r.values, ''] }))
+    setTable({ columns, rows })
   }
-  const removeOdds = (i: number) => onChange({ ...block, oddsRows: block.oddsRows.filter((_, idx) => idx !== i) })
-  const addOdds = () => onChange({ ...block, oddsRows: [...block.oddsRows, { label: '', value: '' }] })
+  const renameColumn = (ci: number, name: string) => {
+    setTable({ ...table, columns: table.columns.map((c, idx) => (idx === ci ? name : c)) })
+  }
+  const removeColumn = (ci: number) => {
+    setTable({
+      columns: table.columns.filter((_, idx) => idx !== ci),
+      rows: table.rows.map(r => ({ ...r, values: r.values.filter((_, idx) => idx !== ci) })),
+    })
+  }
+  const addRow = () => setTable({ ...table, rows: [...table.rows, { label: '', values: table.columns.map(() => '') }] })
+  const updateRowLabel = (ri: number, label: string) => {
+    setTable({ ...table, rows: table.rows.map((r, idx) => (idx === ri ? { ...r, label } : r)) })
+  }
+  const updateCell = (ri: number, ci: number, value: string) => {
+    setTable({ ...table, rows: table.rows.map((r, idx) => (idx === ri ? { ...r, values: r.values.map((v, cidx) => (cidx === ci ? value : v)) } : r)) })
+  }
+  const removeRow = (ri: number) => setTable({ ...table, rows: table.rows.filter((_, idx) => idx !== ri) })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -178,23 +199,49 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
       </div>
 
       <div>
-        <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>Tableau odds / print run</p>
+        <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>
+          Tableau odds (colonnes = ex. Holo/Platinum, lignes = ex. Hobby/Jumbo/Value)
+        </p>
+
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
+          {table.columns.map((col, ci) => (
+            <div key={ci} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <input style={{ ...f, width: 110 }} placeholder="Colonne" value={col} onChange={e => renameColumn(ci, e.target.value)} />
+              <button type="button" onClick={() => removeColumn(ci)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+          <button type="button" onClick={addColumn} style={{ ...f, cursor: 'pointer', fontWeight: 700 }}>+ Colonne</button>
+        </div>
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {block.oddsRows.map((row, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: 6, alignItems: 'center' }}>
-              <input style={f} placeholder="Libellé (ex: Hobby)" value={row.label} onChange={e => updateOdds(i, { label: e.target.value })} />
-              <input style={f} placeholder="Valeur (ex: 1:351)" value={row.value} onChange={e => updateOdds(i, { value: e.target.value })} />
-              <button type="button" onClick={() => removeOdds(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+          {table.rows.map((row, ri) => (
+            <div key={ri} style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+              <input style={{ ...f, width: 110 }} placeholder="Ligne (ex: Hobby)" value={row.label} onChange={e => updateRowLabel(ri, e.target.value)} />
+              {table.columns.map((_, ci) => (
+                <input key={ci} style={{ ...f, width: 90 }} placeholder="Valeur" value={row.values[ci] || ''} onChange={e => updateCell(ri, ci, e.target.value)} />
+              ))}
+              <button type="button" onClick={() => removeRow(ri)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
             </div>
           ))}
         </div>
-        <button type="button" onClick={addOdds} style={{ marginTop: 6, ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
+        <button type="button" onClick={addRow} style={{ marginTop: 6, ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
       </div>
 
-      {(block.cards.length > 0 || block.oddsRows.length > 0) && (
+      <div>
+        <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>Joueurs présents (un par ligne)</p>
+        <textarea
+          style={{ ...f, width: '100%', minHeight: 100, resize: 'vertical', boxSizing: 'border-box' }}
+          placeholder={'Nikola Jokić\nLuka Dončić\n...'}
+          value={block.players.join('\n')}
+          onChange={e => onChange({ ...block, players: e.target.value.split('\n') })}
+          onBlur={e => onChange({ ...block, players: e.target.value.split('\n').map(s => s.trim()).filter(Boolean) })}
+        />
+      </div>
+
+      {(block.cards.length > 0 || table.rows.length > 0 || block.players.length > 0) && (
         <div style={{ padding: 14, borderRadius: 8, border: `1px dashed ${dark ? '#333' : '#ddd'}` }}>
           <p style={{ fontSize: 10, fontWeight: 800, color: dark ? '#888' : '#999', textTransform: 'uppercase', margin: '0 0 8px' }}>Aperçu</p>
-          <InsertGridBlock cards={block.cards} oddsRows={block.oddsRows} />
+          <InsertGridBlock cards={block.cards} oddsTable={table} players={block.players} />
         </div>
       )}
     </div>
