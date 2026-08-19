@@ -3,6 +3,7 @@ import { useEffect, useState, use, useRef, CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { useLang, TranslationKey } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 
 interface Entry {
@@ -40,26 +41,29 @@ const LOGO_ASPECT = 21924 / 4866
 // deux variantes selon la taille d'écran : cadre compact avec logo sur
 // mobile (garde l'aperçu "feuille A4"), en-tête centré type ancien design
 // sur desktop (texte "MEMORABILIUS.FR" au lieu du logo).
-function Header({ set, ownedCount, entriesLength, userId, t }: { set: CardSet; ownedCount: number; entriesLength: number; userId: string | null; t: (k: TranslationKey) => string }) {
+function Header({ set, ownedCount, entriesLength, userId, t, dark }: { set: CardSet; ownedCount: number; entriesLength: number; userId: string | null; t: (k: TranslationKey) => string; dark: boolean }) {
   const meta = (
     <>
       {SPORT_LABEL[set.sport] || set.sport}{set.year ? ` · ${set.year}` : ''}{set.brand ? ` · ${set.brand}` : ''} · {set.total_cards.toLocaleString()} {t('setlistdetail_cards')}
       {userId && <> · {ownedCount} / {entriesLength} {t('setlistdetail_owned')}</>}
     </>
   )
+  const titleColor = dark ? '#f0f0f0' : '#111'
+  const metaColor = dark ? '#999' : '#666'
+  const borderColor = dark ? '#333' : '#111'
   return (
     <>
-      <div className="print-header-mobile" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, borderBottom: '2px solid #111', paddingBottom: 8 }}>
-        <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ height: 22, width: 'auto', flexShrink: 0 }} />
+      <div className="print-header-mobile" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, borderBottom: `2px solid ${borderColor}`, paddingBottom: 8 }}>
+        <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ height: 22, width: 'auto', flexShrink: 0, filter: dark ? 'invert(1) brightness(1.6)' : 'none' }} />
         <div style={{ textAlign: 'left', flex: 1, minWidth: 0 }}>
-          <h1 style={{ fontSize: 15, fontWeight: 900, margin: '0 0 2px', color: '#111' }}>{set.name}</h1>
-          <div style={{ fontSize: 10, color: '#666' }}>{meta}</div>
+          <h1 style={{ fontSize: 15, fontWeight: 900, margin: '0 0 2px', color: titleColor }}>{set.name}</h1>
+          <div style={{ fontSize: 10, color: metaColor }}>{meta}</div>
         </div>
       </div>
-      <div className="print-header-desktop" style={{ textAlign: 'center', marginBottom: 18, borderBottom: '2px solid #111', paddingBottom: 14 }}>
-        <a href="/" style={{ fontSize: 12, fontWeight: 800, color: '#003DA6', letterSpacing: '0.5px', textDecoration: 'none' }}>MEMORABILIUS.FR</a>
-        <h1 style={{ fontSize: 26, fontWeight: 900, margin: '6px 0 4px', color: '#111' }}>{set.name}</h1>
-        <div style={{ fontSize: 13, color: '#666' }}>{meta}</div>
+      <div className="print-header-desktop" style={{ textAlign: 'center', marginBottom: 18, borderBottom: `2px solid ${borderColor}`, paddingBottom: 14 }}>
+        <a href="/" style={{ fontSize: 12, fontWeight: 800, color: dark ? '#5b8def' : '#003DA6', letterSpacing: '0.5px', textDecoration: 'none' }}>MEMORABILIUS.FR</a>
+        <h1 style={{ fontSize: 26, fontWeight: 900, margin: '6px 0 4px', color: titleColor }}>{set.name}</h1>
+        <div style={{ fontSize: 13, color: metaColor }}>{meta}</div>
       </div>
     </>
   )
@@ -109,17 +113,18 @@ function CardRow({ e, owned }: { e: Entry; owned: boolean }) {
   )
 }
 
-// Variante écran uniquement (affiche l'équipe) — l'export PDF/JPG continue
-// d'utiliser CardRow/UnitRow tels quels, indépendants de ce composant.
-function ScreenCardRow({ e, owned }: { e: Entry; owned: boolean }) {
+// Variante écran uniquement (affiche l'équipe, s'adapte au thème sombre) —
+// l'export PDF/JPG continue d'utiliser CardRow/UnitRow tels quels, toujours
+// sur fond blanc quel que soit le thème (voir #setlist-export-root plus bas).
+function ScreenCardRow({ e, owned, dark }: { e: Entry; owned: boolean; dark: boolean }) {
   return (
     <div className="unit-row" style={{ ...ROW_STYLE, display: 'flex', alignItems: 'center', gap: 5 }}>
-      <span style={{ flexShrink: 0, width: 10, height: 10, border: '1.2px solid #333', borderRadius: 2, background: owned ? '#111' : 'white' }} />
-      <span style={{ color: '#111', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+      <span className="owned-check" style={{ flexShrink: 0, width: 10, height: 10, border: `1.2px solid ${dark ? '#777' : '#333'}`, borderRadius: 2, background: owned ? (dark ? '#f0f0f0' : '#111') : 'transparent' }} />
+      <span style={{ color: dark ? '#eee' : '#111', overflow: 'hidden', textOverflow: 'ellipsis' }}>
         {e.card_number && <strong>{e.card_number} </strong>}
         {e.player_name}
         {e.is_rc && <span style={{ fontWeight: 800 }}> RC</span>}
-        {e.team && <span style={{ color: '#999', fontWeight: 400 }}> ({e.team})</span>}
+        {e.team && <span style={{ color: dark ? '#888' : '#999', fontWeight: 400 }}> ({e.team})</span>}
       </span>
     </div>
   )
@@ -138,6 +143,7 @@ function UnitRow({ u, owned }: { u: Unit; owned: boolean }) {
 
 export default function SetPrintPage({ params }: { params: Promise<{ setId: string }> }) {
   const { t } = useLang()
+  const { dark } = useTheme()
   const { setId } = use(params)
   const [set, setSet] = useState<CardSet | null>(null)
   const [entries, setEntries] = useState<Entry[]>([])
@@ -379,29 +385,22 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   return (
     <div className="setlist-print-page">
       <style jsx global>{`
-        /* Cette checklist est toujours conçue pour être imprimée/exportée sur
-           fond blanc — on neutralise ici la surcharge CSS globale du mode
-           sombre (qui recolore tout élément avec un style inline "blanc" en
-           fond sombre) pour l'aperçu écran (#setlist-print-content) ET pour
-           les noeuds hors-écran capturés par html2canvas lors de l'export
-           PDF/JPG (.export-page) — sans ce deuxième volet, l'export généré
-           en thème sombre restait cassé même une fois l'aperçu corrigé.
-           Sélecteurs ancrés sur l'#id / la classe dédiée pour être garantis
-           plus spécifiques que les règles globales (elles-mêmes en
+        /* L'export PDF/JPG (.export-page, noeuds hors-écran capturés par
+           html2canvas) doit TOUJOURS rester sur fond blanc / texte sombre,
+           quel que soit le thème de l'appli — on neutralise ici la surcharge
+           CSS globale du mode sombre (qui recolore tout élément avec un
+           style inline "blanc" en fond sombre) pour ce conteneur précis.
+           L'aperçu écran (#setlist-print-content), lui, s'adapte réellement
+           au thème via les props "dark" passées aux composants — pas besoin
+           de le neutraliser ici. Sélecteur ancré sur l'#id dédié pour être
+           garanti plus spécifique que les règles globales (elles-mêmes en
            !important) quel que soit leur ordre d'apparition dans la feuille
            de style.
         */
-        [data-theme="dark"] #setlist-print-content,
         [data-theme="dark"] #setlist-export-root .export-page { background: white !important; }
-        [data-theme="dark"] #setlist-print-content div,
-        [data-theme="dark"] #setlist-print-content h1,
         [data-theme="dark"] #setlist-export-root div { color: #111 !important; }
-        [data-theme="dark"] #setlist-print-content div[style*="666"],
-        [data-theme="dark"] #setlist-print-content div[style*="102, 102, 102"],
         [data-theme="dark"] #setlist-export-root div[style*="666"],
         [data-theme="dark"] #setlist-export-root div[style*="102, 102, 102"] { color: #666 !important; }
-        [data-theme="dark"] #setlist-print-content div[style*="003DA6"],
-        [data-theme="dark"] #setlist-print-content div[style*="0, 61, 166"],
         [data-theme="dark"] #setlist-export-root div[style*="003DA6"],
         [data-theme="dark"] #setlist-export-root div[style*="0, 61, 166"] { color: #003DA6 !important; }
         /* Aperçu écran : cadre "feuille A4" compact sur mobile (défilement
@@ -426,6 +425,18 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           .a4-frame { box-shadow: none !important; border: none !important; max-width: 100% !important; width: 100% !important; }
           #setlist-print-content { padding: 0 !important; }
           [data-variation-active="false"] { display: none !important; }
+          /* Le bouton "Imprimer/PDF" (window.print()) imprime directement le
+             DOM de l'aperçu écran, qui suit maintenant le thème de l'appli —
+             on force donc explicitement le papier en blanc/noir ici, quel
+             que soit le thème actif, pour ne jamais imprimer une page sombre. */
+          #setlist-print-content { background: white !important; }
+          #setlist-print-content div, #setlist-print-content h1 { color: #111 !important; }
+          #setlist-print-content div[style*="999"],
+          #setlist-print-content div[style*="153, 153, 153"] { color: #666 !important; }
+          #setlist-print-content div[style*="5b8def"],
+          #setlist-print-content div[style*="91, 141, 239"] { color: #003DA6 !important; }
+          #setlist-print-content .owned-check { border-color: #333 !important; background: white !important; }
+          #setlist-print-content .owned-check[style*="240, 240, 240"] { background: #111 !important; }
         }
         @page { size: A4; margin: 14mm 10mm; }
       `}</style>
@@ -485,9 +496,9 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           mobile qui rendrait le texte illisible) — sur petit écran, l'utilisateur
           fait défiler horizontalement plutôt que de voir 4 colonnes écrasées. */}
       <div className="a4-frame-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-        <div className="a4-frame" style={{ width: '210mm', maxWidth: '210mm', margin: '0 auto', boxShadow: '0 4px 24px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
-        <div id="setlist-print-content" style={{ background: 'white', padding: '14mm 10mm', boxSizing: 'border-box' }}>
-          <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} />
+        <div className="a4-frame" style={{ width: '210mm', maxWidth: '210mm', margin: '0 auto', boxShadow: dark ? 'none' : '0 4px 24px rgba(0,0,0,0.1)', border: `1px solid ${dark ? '#333' : '#eee'}` }}>
+        <div id="setlist-print-content" style={{ background: dark ? '#1a1a1a' : 'white', padding: '14mm 10mm', boxSizing: 'border-box' }}>
+          <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} dark={dark} />
 
           <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
             {screenColumns.map((col, ci) => (
@@ -502,12 +513,12 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
                       <div style={{ display: 'grid', gridTemplateColumns: '14px 1fr', columnGap: 6, alignItems: 'start', margin: '10px 0 4px' }}>
                         <input type="checkbox" className="no-print" checked={active} onChange={() => toggleVariation(g.name)}
                           style={{ marginTop: 2, cursor: 'pointer' }} />
-                        <div style={{ fontWeight: 900, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#003DA6', lineHeight: 1.3 }}>
+                        <div style={{ fontWeight: 900, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.5px', color: dark ? '#5b8def' : '#003DA6', lineHeight: 1.3 }}>
                           {g.name}{' '}
-                          <span className="no-print" style={{ fontSize: 11, color: '#bbb', fontWeight: 700, textTransform: 'none', letterSpacing: 0 }}>({g.items.length})</span>
+                          <span className="no-print" style={{ fontSize: 11, color: dark ? '#777' : '#bbb', fontWeight: 700, textTransform: 'none', letterSpacing: 0 }}>({g.items.length})</span>
                         </div>
                       </div>
-                      {g.items.map(e => <ScreenCardRow key={e.id} e={e} owned={owned.has(e.id)} />)}
+                      {g.items.map(e => <ScreenCardRow key={e.id} e={e} owned={owned.has(e.id)} dark={dark} />)}
                     </div>
                   )
                 })}
