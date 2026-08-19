@@ -24,10 +24,54 @@ export default function PyramidBlock({ title, rows }: Props) {
   return (
     <div style={{ margin: '32px 0' }}>
       {title && <h3 style={{ fontSize: 19, fontWeight: 800, margin: '0 0 14px' }}>{title}</h3>}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, maxWidth: 560, margin: '0 auto' }}>
         {rows.map((row, i) => {
+          // Largeur en % du conteneur (pas de plafond en pixels par ligne) : sinon,
+          // dès que plusieurs lignes dépassaient la largeur max en pixels, elles se
+          // retrouvaient toutes identiques en bas au lieu de continuer à s'élargir,
+          // aplatissant la forme triangulaire.
           const widthPct = minWidth + ((maxWidth - minWidth) * (i + 1)) / n
           const isActive = active === i
+          const isApex = i === 0
+
+          const bg = row.patternImage ? `url(${row.patternImage}) center/cover` : PALETTE[i % PALETTE.length]
+
+          if (isApex) {
+            // Sommet = un vrai triangle pointu (façon pièce 1/1), pas une barre.
+            return (
+              <div
+                key={i}
+                onMouseEnter={() => setActive(i)}
+                onMouseLeave={() => setActive(a => (a === i ? null : a))}
+                onClick={() => setActive(a => (a === i ? null : i))}
+                style={{
+                  position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
+                  height: isActive ? 56 : 44, transition: 'height 0.15s, width 0.15s',
+                }}
+              >
+                <div style={{
+                  position: 'absolute', inset: 0, background: bg,
+                  clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                  boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
+                }} />
+                <span style={{
+                  position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)',
+                  color: 'white', fontSize: 11, fontWeight: 900, textShadow: '0 1px 3px rgba(0,0,0,0.7)',
+                  whiteSpace: 'nowrap', maxWidth: '90%', overflow: 'hidden', textOverflow: 'ellipsis',
+                }}>
+                  {row.name}{row.printRun && ` /${row.printRun.replace(/^\//, '')}`}
+                </span>
+                {isActive && row.cardImage && (
+                  <img src={row.cardImage} alt={row.name} style={{
+                    position: 'absolute', left: '50%', top: '100%', marginTop: 6, transform: 'translateX(-50%)',
+                    width: 90, height: 126, objectFit: 'cover', borderRadius: 8,
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
+                  }} />
+                )}
+              </div>
+            )
+          }
+
           return (
             <div
               key={i}
@@ -35,9 +79,8 @@ export default function PyramidBlock({ title, rows }: Props) {
               onMouseLeave={() => setActive(a => (a === i ? null : a))}
               onClick={() => setActive(a => (a === i ? null : i))}
               style={{
-                position: 'relative', width: `${widthPct}%`, maxWidth: 560, cursor: 'pointer',
-                background: row.patternImage ? `url(${row.patternImage}) center/cover` : PALETTE[i % PALETTE.length],
-                color: 'white',
+                position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
+                background: bg, color: 'white',
                 borderRadius: 4, padding: isActive ? '10px 14px' : '6px 14px',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
                 fontSize: isActive ? 13 : 12, fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.6)',
