@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { PyramidRow } from '@/lib/guideBlockTypes'
 
 interface Props {
@@ -14,8 +14,9 @@ interface Props {
 const PALETTE = ['#f5c518', '#f2a90a', '#e8720f', '#e0392b', '#c62368', '#8e3aa8', '#4a3ac6', '#1e63e0', '#0090c1', '#00a884', '#4caf50', '#9ccc3f']
 
 // Au-delà de ce nombre de lignes, la pyramide devient trop longue à parcourir en une
-// seule colonne — on la coupe alors en deux (voir SplitPyramid). En dessous, une
-// seule pyramide reste plus lisible qu'une coupure artificielle sur peu de lignes.
+// seule colonne — on la coupe alors en deux (voir SplitPyramid), y compris sur
+// mobile (chaque colonne reste collée à son bord d'écran). En dessous, une seule
+// pyramide reste plus lisible qu'une coupure artificielle sur peu de lignes.
 const SPLIT_THRESHOLD = 6
 
 // Beaucoup de lignes n'ont pas de patternColor défini à la main par l'admin (juste un
@@ -70,31 +71,18 @@ export function rowBackground(row: PyramidRow, fallback: string): { background: 
   return { background: fallback }
 }
 
-function useIsNarrow() {
-  const [narrow, setNarrow] = useState(false)
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 640px)')
-    setNarrow(mq.matches)
-    const onChange = () => setNarrow(mq.matches)
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
-  }, [])
-  return narrow
-}
-
 export default function PyramidBlock({ title, rows }: Props) {
-  const isNarrow = useIsNarrow()
   if (!rows.length) return null
 
   return (
     <div style={{ margin: '32px 0' }}>
       {title && <h3 style={{ fontSize: 19, fontWeight: 800, margin: '0 0 14px' }}>{title}</h3>}
-      {rows.length > SPLIT_THRESHOLD && !isNarrow ? <SplitPyramid rows={rows} /> : <SinglePyramid rows={rows} />}
+      {rows.length > SPLIT_THRESHOLD ? <SplitPyramid rows={rows} /> : <SinglePyramid rows={rows} />}
     </div>
   )
 }
 
-// --- Pyramide unique (peu de lignes, ou mobile) -----------------------------
+// --- Pyramide unique (peu de lignes) ----------------------------------------
 
 function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
   const [active, setActive] = useState<number | null>(null)
@@ -177,15 +165,21 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
   )
 }
 
-// --- Pyramide coupée en deux (beaucoup de lignes) ---------------------------
+// --- Pyramide coupée en deux (beaucoup de lignes, desktop ET mobile) --------
 //
 // La ligne la plus rare (sommet) reste un triangle centré en haut. Les lignes
 // suivantes sont réparties en alternance entre une colonne gauche (ancrée à gauche,
 // s'élargit vers la droite) et une colonne droite (ancrée à droite, s'élargit vers la
-// gauche) — chacune forme sa propre petite pyramide rare→commune. Un encart central
-// entre les deux affiche la carte + le nom de la ligne survolée/tapée, au lieu de
-// faire apparaître l'image sous chaque barre (qui, avec 2 colonnes côte à côte,
-// manquerait de place et chevaucherait la colonne voisine).
+// gauche) — chacune forme sa propre petite pyramide rare→commune, collée à son bord
+// d'écran sur mobile comme sur desktop.
+//
+// Deux façons d'afficher la carte survolée/tapée coexistent dans le DOM en
+// permanence, et c'est UNIQUEMENT une media query CSS qui bascule laquelle est
+// visible (`.pyr-panel` / `.pyr-inline`) — pas de condition React sur la largeur
+// d'écran. Un `useState`+`matchMedia` ferait la même bascule mais avec un flash
+// (SSR ne connaît pas la largeur d'écran, donc un premier rendu "faux" avant que
+// l'effect ne corrige) ; le CSS pur évite ce flash et reste correct dès le premier
+// rendu, sans JS.
 function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
   const [active, setActive] = useState<number | null>(null)
   const apex = rows[0]
@@ -198,9 +192,21 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
   const activeRow = active !== null ? rows[active] : null
   const apexBg = rowBackground(apex, fallbackColorFor(apex.name, 0))
 
+  const inlineReveal = (row: PyramidRow, anchor: 'left' | 'right' | 'center') => (
+    row.cardImage ? (
+      <img src={row.cardImage} alt={row.name} className="pyr-inline" style={{
+        position: 'absolute', top: '100%', marginTop: 6,
+        left: anchor === 'right' ? 'auto' : 0, right: anchor === 'right' ? 0 : 'auto',
+        ...(anchor === 'center' ? { left: '50%', transform: 'translateX(-50%)' } : {}),
+        width: 72, height: 100, objectFit: 'cover', borderRadius: 8,
+        boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
+      }} />
+    ) : null
+  )
+
   const renderColumn = (colRows: PyramidRow[], colIndices: number[], anchor: 'left' | 'right') => {
     const n = colRows.length
-    const minWidth = 55
+    const minWidth = 48
     const maxWidth = 100
     return (
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
@@ -216,7 +222,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
               onMouseLeave={() => setActive(a => (a === globalIndex ? null : a))}
               onClick={() => setActive(a => (a === globalIndex ? null : globalIndex))}
               style={{
-                width: `${widthPct}%`, cursor: 'pointer', ...bg, color: 'white',
+                position: 'relative', width: `${widthPct}%`, cursor: 'pointer', ...bg, color: 'white',
                 alignSelf: anchor === 'left' ? 'flex-start' : 'flex-end',
                 borderRadius: 6, padding: isActive ? '9px 12px' : '6px 12px',
                 display: 'flex', alignItems: 'center',
@@ -226,11 +232,13 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
                 transform: isActive ? 'scale(1.03)' : 'scale(1)', transition: 'transform 0.15s, padding 0.15s',
                 boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
                 textAlign: anchor === 'left' ? 'left' : 'right',
+                zIndex: isActive ? 2 : 1,
               }}
             >
               <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {row.name}{row.printRun && <span style={{ opacity: 0.9, fontWeight: 700 }}> /{row.printRun.replace(/^\//, '')}</span>}
               </span>
+              {isActive && inlineReveal(row, anchor)}
             </div>
           )
         })}
@@ -258,12 +266,13 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
         }}>
           {apex.name}{apex.printRun && ` /${apex.printRun.replace(/^\//, '')}`}
         </span>
+        {active === 0 && inlineReveal(apex, 'center')}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'stretch', gap: 10 }}>
+      <div className="pyr-columns" style={{ display: 'flex', alignItems: 'stretch', gap: 10 }}>
         {renderColumn(left, leftIndices, 'left')}
 
-        <div style={{
+        <div className="pyr-panel" style={{
           width: 190, flexShrink: 0, alignSelf: 'center',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           textAlign: 'center', gap: 12, padding: '22px 14px', minHeight: 280,
@@ -315,6 +324,15 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
 
         {renderColumn(right, rightIndices, 'right')}
       </div>
+
+      <style>{`
+        .pyr-inline { display: none; }
+        @media (max-width: 640px) {
+          .pyr-panel { display: none !important; }
+          .pyr-inline { display: block !important; }
+          .pyr-columns { gap: 6px !important; align-items: flex-start !important; }
+        }
+      `}</style>
     </div>
   )
 }
