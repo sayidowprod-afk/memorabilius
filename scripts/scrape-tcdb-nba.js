@@ -5,12 +5,12 @@
  *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only
  *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only --limit=3
  *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only --dry-run
+ *   node scripts/scrape-tcdb-nba.js --year=2024 --name="Topps Chrome" --dry-run
+ *   node scripts/scrape-tcdb-nba.js --year=2024 --slot=2   (lancer un 2e scraper en parallèle)
  */
 require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
 require('dns').setDefaultResultOrder('ipv4first')
-const puppeteerExtra = require('puppeteer-extra')
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
-puppeteerExtra.use(StealthPlugin())
+const { openBrowser: launchBrowser, killChrome } = require('./browser-helper')
 const { createClient } = require('@supabase/supabase-js')
 const nodeFetch = require('node-fetch')
 const fs = require('fs')
@@ -38,8 +38,10 @@ const LIMIT = args.limit ? parseInt(args.limit) : null
 const DRY_RUN = !!args['dry-run']
 const SKIP_EXISTING = !args['force']
 const NAME_FILTER = args.name ? args.name.toLowerCase() : null
+const SLOT = args.slot ? parseInt(args.slot) : 1
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
+const rand = (min, max) => Math.floor(min + Math.random() * (max - min))
 
 async function retry(fn, attempts = 3, delay = 3000) {
   for (let i = 0; i < attempts; i++) {
@@ -63,14 +65,6 @@ const NBA_TEAMS = new Set([
 ])
 
 const MAJOR_BRANDS = /(Panini|Topps|Upper Deck|Fleer|Donruss|Hoops|SkyBox|Score|Bowman|Finest|Prizm|Select|Mosaic|Chronicles|Revolution|Obsidian|Optic|Immaculate|National Treasures|Contenders|Spectra|Noir|Eminence)/i
-
-function findChrome() {
-  for (const p of [
-    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-    process.env.LOCALAPPDATA + '\\Google\\Chrome\\Application\\chrome.exe',
-  ]) { try { if (fs.existsSync(p)) return p } catch {} }
-}
 
 let _solverrOk = null
 async function solverrGet(url) {
@@ -272,20 +266,19 @@ async function main() {
   if (DRY_RUN) console.log('   Mode: DRY RUN (pas d\'insertion)')
   if (LIMIT) console.log(`   Limite: ${LIMIT} sets`)
 
-  const browser = await puppeteerExtra.launch({
-    executablePath: findChrome(),
-    headless: false,
-    defaultViewport: null,
-    userDataDir: require('path').join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'scrape-profile-tcdb'),
-    args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled'],
-  })
-  const page = await browser.newPage()
+  let browser = null
+  const openBrowser = async () => {
+    const result = await launchBrowser(SLOT)
+    browser = result.browser
+    const p = result.page
+    await waitCF(p, TCDB)
+    await sleep(rand(2000, 4000))
+    console.log('✓ Browser OK (webdriver=false)\n')
+    return p
+  }
+  let page = await openBrowser()
 
   try {
-    await waitCF(page, TCDB)
-    await sleep(2000)
-    console.log('✓ Cloudflare OK\n')
-
     console.log(`📋 Récupération des sets ${YEAR}-${String(YEAR+1).slice(2)}...`)
     let sets = await fetchSets(page, YEAR)
     console.log(`   ${sets.length} sets trouvés`)
@@ -304,6 +297,7 @@ async function main() {
     for (let si = 0; si < sets.length; si++) {
       const set = sets[si]
       console.log(`\n[${si+1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
+      if (si > 0 && si % 8 === 0) { page = await openBrowser() }
 
       try {
         if (SKIP_EXISTING) {
@@ -347,7 +341,7 @@ async function main() {
     }
 
     // Phase 2 : fermer le browser, puis spawner un process fresh pour l'import
-    await browser.close()
+    killChrome(SLOT)
     const valid = scraped.filter(Boolean)
     console.log(`\n✓ Browser fermé — ${valid.length} sets à importer\n`)
 
@@ -361,7 +355,7 @@ async function main() {
       console.log(`🏁 Dry run terminé: ${valid.length} sets`)
     }
   } finally {
-    try { await browser.close() } catch {}
+    killChrome(SLOT)
   }
 }
 
