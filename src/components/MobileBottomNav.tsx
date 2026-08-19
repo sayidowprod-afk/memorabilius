@@ -12,7 +12,7 @@ import BottomSheet from '@/components/BottomSheet'
 import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
-const OUTILS_PATHS = ['/scanner', '/setlist', '/recherche', '/profil']
+const OUTILS_PATHS = ['/scanner', '/setlist', '/guides', '/recherche', '/profil']
 
 const UsersIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -171,6 +171,7 @@ export default function MobileBottomNav() {
       <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
         <Link href="/scanner" style={dropItemStyle} onClick={() => setSheet(null)}>📷 {t('nav_scanner')}</Link>
         <Link href="/setlist" style={dropItemStyle} onClick={() => setSheet(null)}>📋 {t('nav_setlist')}</Link>
+        {isAdmin && <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>}
         <Link href="/recherche" style={dropItemStyle} onClick={() => setSheet(null)}>{t('nav_recherche')}</Link>
         {isAdmin && (
           <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setSheet(null)}>📊 {t('nav_admin_stats')}</Link>

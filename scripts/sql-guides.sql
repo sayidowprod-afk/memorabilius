@@ -1,0 +1,34 @@
+-- Table pour la section "Guides" (articles admin)
+-- À exécuter dans Supabase SQL Editor
+
+CREATE TABLE IF NOT EXISTS guides (
+  id SERIAL PRIMARY KEY,
+  slug TEXT UNIQUE NOT NULL,
+  title TEXT NOT NULL,
+  excerpt TEXT,
+  cover_image TEXT,
+  category TEXT,
+  content TEXT NOT NULL,          -- HTML produit par l'éditeur riche (Tiptap)
+  published BOOLEAN DEFAULT false,
+  published_at TIMESTAMPTZ DEFAULT now(),
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_guides_published ON guides(published, published_at DESC);
+
+ALTER TABLE guides ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public read published guides" ON guides
+  FOR SELECT USING (published = true AND published_at <= now());
+
+CREATE POLICY "admin full access guides" ON guides
+  FOR ALL USING (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true))
+  WITH CHECK (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true));
+
+-- Après avoir exécuté ce script :
+-- 1. Storage → New bucket → nom "guide-images", cocher "Public bucket"
+-- 2. Sur ce bucket, Policies → ajouter :
+--    - SELECT (lecture) : "true" (public)
+--    - INSERT/UPDATE/DELETE (écriture) : réservé aux admins, ex.
+--      EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true)

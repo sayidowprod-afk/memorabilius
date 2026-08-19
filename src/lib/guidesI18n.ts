@@ -1,0 +1,26 @@
+// Traductions pour les pages publiques /guides (composants serveur) — LangContext.tsx
+// est marqué 'use client', son objet `translations` ne peut pas être importé
+// de façon fiable dans un composant serveur (frontière RSC). On duplique donc ici
+// les quelques chaînes nécessaires plutôt que de dépendre du module client.
+import type { Lang } from '@/lib/LangContext'
+
+export const guidesI18n: Record<Lang, { guides_title: string; guides_subtitle: string; guides_empty: string; guides_back: string }> = {
+  fr: {
+    guides_title: 'Guides',
+    guides_subtitle: 'Conseils, tutoriels et checklists pour les collectionneurs',
+    guides_empty: 'Aucun guide pour le moment.',
+    guides_back: '← Tous les guides',
+  },
+  en: {
+    guides_title: 'Guides',
+    guides_subtitle: 'Tips, tutorials and checklists for collectors',
+    guides_empty: 'No guides yet.',
+    guides_back: '← All guides',
+  },
+  de: {
+    guides_title: 'Guides',
+    guides_subtitle: 'Tipps, Anleitungen und Checklisten für Sammler',
+    guides_empty: 'Noch keine Guides.',
+    guides_back: '← Alle Guides',
+  },
+}
