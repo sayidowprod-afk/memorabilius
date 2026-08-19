@@ -6,6 +6,10 @@ import DOMPurify from 'isomorphic-dompurify'
 import { supabase } from '@/lib/supabase'
 import type { Lang } from '@/lib/LangContext'
 import { guidesI18n } from '@/lib/guidesI18n'
+import type { GuideBlock } from '@/lib/guideBlockTypes'
+import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
+import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
+import SetlistEmbedBlock from '@/components/guide-blocks/SetlistEmbedBlock'
 
 export const revalidate = 300
 
@@ -21,18 +25,40 @@ interface Guide {
   cover_image: string | null
   category: string | null
   content: string
+  blocks: GuideBlock[]
   published_at: string
 }
 
 async function fetchGuide(slug: string): Promise<Guide | null> {
   const { data } = await supabase
     .from('guides')
-    .select('title, excerpt, cover_image, category, content, published_at')
+    .select('title, excerpt, cover_image, category, content, blocks, published_at')
     .eq('slug', slug)
     .eq('published', true)
     .lte('published_at', new Date().toISOString())
     .single()
-  return data
+  if (!data) return null
+  return { ...data, blocks: Array.isArray(data.blocks) ? data.blocks : [] }
+}
+
+interface SetlistEmbedData {
+  setId: number
+  setName: string
+  totalCards: number
+  entries: { card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean }[]
+}
+
+async function fetchSetlistEmbed(setId: number): Promise<SetlistEmbedData | null> {
+  const { data: set } = await supabase.from('card_sets').select('name, total_cards').eq('id', setId).single()
+  if (!set) return null
+  const { data: entries } = await supabase
+    .from('card_set_entries')
+    .select('card_number, player_name, team, variation, is_rc')
+    .eq('set_id', setId)
+    .order('variation', { ascending: true })
+    .order('card_number', { ascending: true })
+    .limit(2000)
+  return { setId, setName: set.name, totalCards: set.total_cards, entries: entries || [] }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -57,6 +83,13 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
   const dateLocale = lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : 'fr-FR'
   const dateLabel = new Date(guide.published_at).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })
 
+  const setlistEmbeds = new Map<number, SetlistEmbedData>()
+  const setlistBlockIds = guide.blocks.filter((b): b is Extract<GuideBlock, { type: 'setlist_embed' }> => b.type === 'setlist_embed' && b.setId > 0).map(b => b.setId)
+  if (setlistBlockIds.length) {
+    const fetched = await Promise.all([...new Set(setlistBlockIds)].map(fetchSetlistEmbed))
+    for (const f of fetched) if (f) setlistEmbeds.set(f.setId, f)
+  }
+
   return (
     <article style={{ maxWidth: 760, margin: '0 auto', padding: '40px 20px' }}>
       <Link href="/guides" style={{ fontSize: 13, fontWeight: 700, color: '#003DA6', textDecoration: 'none' }}>
@@ -80,6 +113,17 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
         style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--text, #222)' }}
         dangerouslySetInnerHTML={{ __html: safeHtml }}
       />
+
+      {guide.blocks.map((block, i) => {
+        if (block.type === 'pyramid') return <PyramidBlock key={i} title={block.title} rows={block.rows} />
+        if (block.type === 'insert_grid') return <InsertGridBlock key={i} title={block.title} cards={block.cards} oddsRows={block.oddsRows} />
+        if (block.type === 'setlist_embed') {
+          const data = setlistEmbeds.get(block.setId)
+          if (!data) return null
+          return <SetlistEmbedBlock key={i} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} entries={data.entries} />
+        }
+        return null
+      })}
 
       <style>{`
         .guide-content h2 { font-size: 24px; font-weight: 800; margin: 32px 0 12px; }

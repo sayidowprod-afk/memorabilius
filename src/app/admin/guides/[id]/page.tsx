@@ -6,8 +6,11 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { toast } from '@/lib/toast'
+import { uploadGuideImage } from '@/lib/guideUpload'
+import type { GuideBlock } from '@/lib/guideBlockTypes'
 
 const GuideEditor = dynamic(() => import('@/components/GuideEditor'), { ssr: false })
+const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
 
 function slugify(s: string) {
   return s.toLowerCase().trim()
@@ -32,6 +35,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [category, setCategory] = useState('')
   const [coverImage, setCoverImage] = useState('')
   const [content, setContent] = useState('')
+  const [blocks, setBlocks] = useState<GuideBlock[]>([])
   const [published, setPublished] = useState(false)
   const [publishedAt, setPublishedAt] = useState(() => new Date().toISOString().slice(0, 16))
   const [uploadingCover, setUploadingCover] = useState(false)
@@ -47,6 +51,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
         if (g) {
           setTitle(g.title); setSlug(g.slug); setExcerpt(g.excerpt || '')
           setCategory(g.category || ''); setCoverImage(g.cover_image || ''); setContent(g.content || '')
+          setBlocks(Array.isArray(g.blocks) ? g.blocks : [])
           setPublished(g.published); setPublishedAt(new Date(g.published_at).toISOString().slice(0, 16))
           setSlugTouched(true)
         }
@@ -60,15 +65,10 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   }
 
   const uploadCover = async (file: File) => {
-    if (file.size > 5 * 1024 * 1024) { toast.error('Image trop lourde (max 5 Mo)'); return }
     setUploadingCover(true)
-    const ext = file.name.split('.').pop()
-    const path = `covers/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`
-    const { error } = await supabase.storage.from('guide-images').upload(path, file)
+    const url = await uploadGuideImage(file, 'covers/')
     setUploadingCover(false)
-    if (error) { toast.error("Erreur d'upload : " + error.message); return }
-    const { data } = supabase.storage.from('guide-images').getPublicUrl(path)
-    setCoverImage(data.publicUrl)
+    if (url) setCoverImage(url)
   }
 
   const save = async () => {
@@ -76,7 +76,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     setSaving(true)
     const payload = {
       title: title.trim(), slug: slug.trim(), excerpt: excerpt.trim() || null,
-      category: category.trim() || null, cover_image: coverImage || null, content,
+      category: category.trim() || null, cover_image: coverImage || null, content, blocks,
       published, published_at: new Date(publishedAt).toISOString(), updated_at: new Date().toISOString(),
     }
     const { error } = isNew
@@ -134,6 +134,10 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
           <div>
             <label style={label}>{t('admin_guides_field_content')}</label>
             <GuideEditor content={content} onChange={setContent} />
+          </div>
+          <div>
+            <label style={label}>Blocs additionnels</label>
+            <GuideBlocksEditor blocks={blocks} onChange={setBlocks} />
           </div>
           <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
             <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: text, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>

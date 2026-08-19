@@ -6,8 +6,7 @@ import Link from '@tiptap/extension-link'
 import Youtube from '@tiptap/extension-youtube'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
-import { supabase } from '@/lib/supabase'
-import { toast } from '@/lib/toast'
+import { uploadGuideImage } from '@/lib/guideUpload'
 
 interface Props {
   content: string
@@ -49,13 +48,8 @@ export default function GuideEditor({ content, onChange }: Props) {
     input.onchange = async () => {
       const file = input.files?.[0]
       if (!file) return
-      if (file.size > 5 * 1024 * 1024) { toast.error('Image trop lourde (max 5 Mo)'); return }
-      const ext = file.name.split('.').pop()
-      const path = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`
-      const { error } = await supabase.storage.from('guide-images').upload(path, file)
-      if (error) { toast.error("Erreur d'upload : " + error.message); return }
-      const { data } = supabase.storage.from('guide-images').getPublicUrl(path)
-      editor.chain().focus().setImage({ src: data.publicUrl }).run()
+      const url = await uploadGuideImage(file, 'content/')
+      if (url) editor.chain().focus().setImage({ src: url }).run()
     }
     input.click()
   }

@@ -1,0 +1,221 @@
+'use client'
+import { useState } from 'react'
+import { supabase } from '@/lib/supabase'
+import { useTheme } from '@/lib/ThemeContext'
+import { uploadGuideImage } from '@/lib/guideUpload'
+import type { GuideBlock, PyramidRow, InsertCard, OddsRow } from '@/lib/guideBlockTypes'
+
+interface Props {
+  blocks: GuideBlock[]
+  onChange: (blocks: GuideBlock[]) => void
+}
+
+// Éditeur admin des blocs riches additionnels d'un guide (pyramide de variations,
+// grille d'inserts + odds, setlist embarquée) — s'ajoutent après le texte Tiptap,
+// jamais entremêlés dedans. Voir src/lib/guideBlockTypes.ts pour les formes de données
+// et src/app/guides/[slug]/page.tsx + src/components/guide-blocks/* pour le rendu public.
+export default function GuideBlocksEditor({ blocks, onChange }: Props) {
+  const { dark } = useTheme()
+  const border = dark ? '#2a2a2a' : '#eee'
+  const text = dark ? '#e0e0e0' : '#222'
+  const sub = dark ? '#999' : '#666'
+  const cardBg = dark ? '#1a1a1a' : '#fafafa'
+
+  const updateAt = (i: number, b: GuideBlock) => onChange(blocks.map((x, idx) => (idx === i ? b : x)))
+  const removeAt = (i: number) => onChange(blocks.filter((_, idx) => idx !== i))
+  const moveAt = (i: number, dir: -1 | 1) => {
+    const j = i + dir
+    if (j < 0 || j >= blocks.length) return
+    const next = [...blocks]
+    ;[next[i], next[j]] = [next[j], next[i]]
+    onChange(next)
+  }
+
+  const addBtnStyle: React.CSSProperties = {
+    padding: '9px 14px', borderRadius: 8, border: `1.5px solid #003DA6`, background: dark ? '#1a1a1a' : 'white',
+    color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+  }
+  const smallBtn: React.CSSProperties = {
+    padding: '5px 9px', borderRadius: 6, border: `1px solid ${border}`, background: cardBg, color: text,
+    fontWeight: 700, fontSize: 12, cursor: 'pointer',
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      {blocks.map((b, i) => (
+        <div key={i} style={{ border: `1px solid ${border}`, borderRadius: 10, padding: 14, background: cardBg }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <span style={{ fontSize: 12, fontWeight: 800, color: sub, textTransform: 'uppercase', letterSpacing: 0.4 }}>
+              {b.type === 'pyramid' ? '🔺 Pyramide de variations' : b.type === 'insert_grid' ? '🎴 Grille inserts' : '📋 Setlist embarquée'}
+            </span>
+            <div style={{ display: 'flex', gap: 6 }}>
+              <button type="button" style={smallBtn} disabled={i === 0} onClick={() => moveAt(i, -1)}>↑</button>
+              <button type="button" style={smallBtn} disabled={i === blocks.length - 1} onClick={() => moveAt(i, 1)}>↓</button>
+              <button type="button" style={{ ...smallBtn, color: '#e74c3c', borderColor: '#e74c3c' }} onClick={() => removeAt(i)}>Supprimer</button>
+            </div>
+          </div>
+
+          {b.type === 'pyramid' && <PyramidEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+          {b.type === 'insert_grid' && <InsertGridEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+          {b.type === 'setlist_embed' && <SetlistEmbedEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+        </div>
+      ))}
+
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'pyramid', rows: [] }])}>+ Pyramide</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'insert_grid', cards: [], oddsRows: [] }])}>+ Grille inserts</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'setlist_embed', setId: 0 }])}>+ Setlist</button>
+      </div>
+    </div>
+  )
+}
+
+function fieldStyle(dark: boolean): React.CSSProperties {
+  return {
+    padding: '7px 10px', borderRadius: 6, border: `1px solid ${dark ? '#333' : '#ddd'}`,
+    background: dark ? '#2a2a2a' : 'white', color: dark ? '#e0e0e0' : '#222', fontSize: 13,
+  }
+}
+
+// --- Pyramide ---------------------------------------------------------------
+
+function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'pyramid' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
+  const [uploading, setUploading] = useState<number | null>(null)
+  const f = fieldStyle(dark)
+
+  const updateRow = (i: number, patch: Partial<PyramidRow>) => {
+    onChange({ ...block, rows: block.rows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)) })
+  }
+  const removeRow = (i: number) => onChange({ ...block, rows: block.rows.filter((_, idx) => idx !== i) })
+  const addRow = () => onChange({ ...block, rows: [...block.rows, { name: '', printRun: '', image: '' }] })
+
+  const uploadRowImage = async (i: number, file: File) => {
+    setUploading(i)
+    const url = await uploadGuideImage(file, 'pyramid/')
+    setUploading(null)
+    if (url) updateRow(i, { image: url })
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <p style={{ fontSize: 11, color: dark ? '#888' : '#999', margin: '0 0 4px' }}>
+        Ordre = de la plus rare (en haut) à la plus commune (en bas).
+      </p>
+      {block.rows.map((row, i) => (
+        <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 110px auto auto', gap: 6, alignItems: 'center' }}>
+          <input style={f} placeholder="Nom de la variation" value={row.name} onChange={e => updateRow(i, { name: e.target.value })} />
+          <input style={f} placeholder="Print run" value={row.printRun} onChange={e => updateRow(i, { printRun: e.target.value })} />
+          <label style={{ ...f, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            {row.image ? <img src={row.image} alt="" style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3 }} /> : (uploading === i ? '...' : 'Image')}
+            <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const file = e.target.files?.[0]; if (file) uploadRowImage(i, file) }} />
+          </label>
+          <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+        </div>
+      ))}
+      <button type="button" onClick={addRow} style={{ alignSelf: 'flex-start', ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
+    </div>
+  )
+}
+
+// --- Grille inserts -----------------------------------------------------------
+
+function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'insert_grid' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
+  const [uploading, setUploading] = useState<number | null>(null)
+  const f = fieldStyle(dark)
+
+  const updateCard = (i: number, patch: Partial<InsertCard>) => {
+    onChange({ ...block, cards: block.cards.map((c, idx) => (idx === i ? { ...c, ...patch } : c)) })
+  }
+  const removeCard = (i: number) => onChange({ ...block, cards: block.cards.filter((_, idx) => idx !== i) })
+  const addCard = () => onChange({ ...block, cards: [...block.cards, { name: '', image: '', printRun: '' }] })
+
+  const uploadCardImage = async (i: number, file: File) => {
+    setUploading(i)
+    const url = await uploadGuideImage(file, 'inserts/')
+    setUploading(null)
+    if (url) updateCard(i, { image: url })
+  }
+
+  const updateOdds = (i: number, patch: Partial<OddsRow>) => {
+    onChange({ ...block, oddsRows: block.oddsRows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)) })
+  }
+  const removeOdds = (i: number) => onChange({ ...block, oddsRows: block.oddsRows.filter((_, idx) => idx !== i) })
+  const addOdds = () => onChange({ ...block, oddsRows: [...block.oddsRows, { label: '', value: '' }] })
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div>
+        <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>Cartes</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {block.cards.map((card, i) => (
+            <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto auto', gap: 6, alignItems: 'center' }}>
+              <input style={f} placeholder="Nom" value={card.name} onChange={e => updateCard(i, { name: e.target.value })} />
+              <input style={f} placeholder="Print run (optionnel)" value={card.printRun || ''} onChange={e => updateCard(i, { printRun: e.target.value })} />
+              <label style={{ ...f, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                {card.image ? <img src={card.image} alt="" style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3 }} /> : (uploading === i ? '...' : 'Image')}
+                <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const file = e.target.files?.[0]; if (file) uploadCardImage(i, file) }} />
+              </label>
+              <button type="button" onClick={() => removeCard(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button type="button" onClick={addCard} style={{ marginTop: 6, ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une carte</button>
+      </div>
+
+      <div>
+        <p style={{ fontSize: 11, fontWeight: 800, color: dark ? '#888' : '#999', margin: '0 0 6px', textTransform: 'uppercase' }}>Tableau odds / print run</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {block.oddsRows.map((row, i) => (
+            <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: 6, alignItems: 'center' }}>
+              <input style={f} placeholder="Libellé (ex: Hobby)" value={row.label} onChange={e => updateOdds(i, { label: e.target.value })} />
+              <input style={f} placeholder="Valeur (ex: 1:351)" value={row.value} onChange={e => updateOdds(i, { value: e.target.value })} />
+              <button type="button" onClick={() => removeOdds(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+            </div>
+          ))}
+        </div>
+        <button type="button" onClick={addOdds} style={{ marginTop: 6, ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
+      </div>
+    </div>
+  )
+}
+
+// --- Setlist embarquée --------------------------------------------------------
+
+function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'setlist_embed' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
+  const [search, setSearch] = useState('')
+  const [results, setResults] = useState<{ id: number; name: string; year: number | null }[]>([])
+  const [selectedName, setSelectedName] = useState('')
+  const f = fieldStyle(dark)
+
+  const runSearch = async (q: string) => {
+    setSearch(q)
+    if (q.trim().length < 2) { setResults([]); return }
+    const { data } = await supabase.from('card_sets').select('id, name, year').ilike('name', `%${q}%`).limit(10)
+    setResults(data || [])
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {block.setId > 0 && selectedName ? (
+        <div style={{ ...f, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span>{selectedName}</span>
+          <button type="button" onClick={() => { onChange({ ...block, setId: 0 }); setSelectedName('') }} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+        </div>
+      ) : (
+        <>
+          <input style={f} placeholder="Rechercher un set (ex: 2024-25 Panini Mosaic)" value={search} onChange={e => runSearch(e.target.value)} />
+          {results.length > 0 && (
+            <div style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 6, overflow: 'hidden' }}>
+              {results.map(r => (
+                <button key={r.id} type="button" onClick={() => { onChange({ ...block, setId: r.id }); setSelectedName(`${r.name}${r.year ? ` (${r.year})` : ''}`); setResults([]) }}
+                  style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', border: 'none', borderBottom: `1px solid ${dark ? '#333' : '#eee'}`, background: dark ? '#2a2a2a' : 'white', color: dark ? '#e0e0e0' : '#222', cursor: 'pointer', fontSize: 13 }}>
+                  {r.name}{r.year ? ` (${r.year})` : ''}
+                </button>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  )
+}

@@ -26,6 +26,11 @@ CREATE POLICY "admin full access guides" ON guides
   FOR ALL USING (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true))
   WITH CHECK (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND is_admin = true));
 
+-- Blocs riches additionnels (pyramide de variations, grille d'inserts, setlist
+-- embarquée) — colonne ajoutée après coup, ALTER idempotent. Si tu as déjà exécuté
+-- ce script une première fois, tu peux exécuter SEULEMENT cette ligne :
+ALTER TABLE guides ADD COLUMN IF NOT EXISTS blocks JSONB DEFAULT '[]'::jsonb;
+
 -- Après avoir exécuté ce script :
 -- 1. Storage → New bucket → nom "guide-images", cocher "Public bucket"
 -- 2. Sur ce bucket, Policies → ajouter :
