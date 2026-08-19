@@ -82,42 +82,62 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   useEffect(() => {
     if (!user) return
     let cancelled = false
-    ;(async () => {
-      const challenge = currentChallenge()
-      const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.all([
-        supabase.from('profiles').select('display_name, avatar_url, stats_total').eq('id', user.id).single(),
-        supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(1),
-        supabase.rpc('get_user_badge_data', { p_user_id: user.id }),
-        supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('auto', true),
-        supabase.rpc('bump_streak', { p_user_id: user.id }),
-        supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()),
-        supabase.rpc('get_user_xp_total', { p_user_id: user.id }),
-      ])
-      if (cancelled) return
 
-      const b = badgeRows?.[0]
-      const nextBadge = b ? findNextBadge({
-        cartes: b.stat_total, rc: b.stat_rc, patch: b.stat_patch, num: b.stat_num,
-        mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count,
-      }) : null
+    // Juste après un cold start Android, le WebView peut redémarrer avant que le
+    // réseau (DNS/TLS) ne soit vraiment prêt : ces requêtes peuvent alors échouer
+    // ou rester bloquées en attente. Sans filet, setData() n'est jamais appelé et
+    // le dashboard reste vide indéfiniment (jusqu'à un F5 manuel). On retente donc
+    // automatiquement, avec un timeout pour ne pas dépendre d'un rejet explicite.
+    const load = async (attempt: number) => {
+      try {
+        const challenge = currentChallenge()
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+        const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
+          Promise.all([
+            supabase.from('profiles').select('display_name, avatar_url, stats_total').eq('id', user.id).single(),
+            supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(1),
+            supabase.rpc('get_user_badge_data', { p_user_id: user.id }),
+            supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('auto', true),
+            supabase.rpc('bump_streak', { p_user_id: user.id }),
+            supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()),
+            supabase.rpc('get_user_xp_total', { p_user_id: user.id }),
+          ]),
+          timeout,
+        ])
+        if (cancelled) return
 
-      const level = levelFromXP(xpTotal ?? 0)
+        const b = badgeRows?.[0]
+        const nextBadge = b ? findNextBadge({
+          cartes: b.stat_total, rc: b.stat_rc, patch: b.stat_patch, num: b.stat_num,
+          mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count,
+        }) : null
 
-      const challengeProgress = (weekCards || []).filter(c => challenge.match({ rc: c.rc, auto: c.auto, patch: c.patch, num: c.num })).length
+        const level = levelFromXP(xpTotal ?? 0)
 
-      setData({
-        displayName: profile?.display_name || t('gallery_default_collector'),
-        avatarUrl: profile?.avatar_url || null,
-        totalCards: profile?.stats_total || 0,
-        lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
-        nextBadge,
-        rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: autoCount ?? 0,
-        level,
-        streak: streakRows?.[0]?.current_streak ?? 0,
-        challenge,
-        challengeProgress,
-      })
-    })()
+        const challengeProgress = (weekCards || []).filter(c => challenge.match({ rc: c.rc, auto: c.auto, patch: c.patch, num: c.num })).length
+
+        setData({
+          displayName: profile?.display_name || t('gallery_default_collector'),
+          avatarUrl: profile?.avatar_url || null,
+          totalCards: profile?.stats_total || 0,
+          lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
+          nextBadge,
+          rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: autoCount ?? 0,
+          level,
+          streak: streakRows?.[0]?.current_streak ?? 0,
+          challenge,
+          challengeProgress,
+        })
+      } catch (e) {
+        if (cancelled) return
+        if (attempt < 4) {
+          setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1200 * attempt)
+        } else {
+          console.error('[NativeHomeDashboard] load failed after retries', e)
+        }
+      }
+    }
+    load(1)
     return () => { cancelled = true }
   }, [user])
 
