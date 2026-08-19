@@ -27,20 +27,24 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
       {title && <h3 style={{ fontSize: 16, fontWeight: 800, margin: '0 0 14px' }}>{title}</h3>}
 
       {(cards.length > 0 || hasOdds) && (
-        <div className="insert-top-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-start', marginBottom: players.length > 0 ? 16 : 0 }}>
+        <div className="insert-top-row" style={{
+          display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start',
+          marginBottom: players.length > 0 ? 18 : 0, background: 'var(--bg3, #fafafa)',
+          borderRadius: 10, padding: 18,
+        }}>
           {cards.length > 0 && (
-            <div className="insert-grid-block" style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            <div className="insert-grid-block" style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
               {cards.map((card, i) => (
-                <div key={i} className="insert-grid-card" style={{ flex: '0 0 150px', width: 150, borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border, #eee)', background: 'var(--bg3, #fafafa)', position: 'relative' }}>
+                <div key={i} className="insert-grid-card" style={{ flex: '0 0 190px', width: 190, borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border, #eee)', background: 'var(--card-bg, #fff)', position: 'relative' }}>
                   {card.image && (
                     <div className="insert-grid-card-img" style={{ overflow: 'hidden' }}>
                       <img src={card.image} alt={card.name} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} />
                       <div className="insert-grid-card-shine" />
                     </div>
                   )}
-                  <div style={{ padding: '8px 9px' }}>
-                    <div style={{ fontSize: 13, fontWeight: 700, lineHeight: 1.3, color: 'var(--text, #222)' }}>{card.name}</div>
-                    {card.printRun && <div style={{ fontSize: 11, color: 'var(--text3, #999)', marginTop: 2, fontWeight: 600 }}>{card.printRun}</div>}
+                  <div style={{ padding: '10px 12px' }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, lineHeight: 1.3, color: 'var(--text, #222)' }}>{card.name}</div>
+                    {card.printRun && <div style={{ fontSize: 12, color: 'var(--text3, #999)', marginTop: 3, fontWeight: 600 }}>{card.printRun}</div>}
                   </div>
                 </div>
               ))}
@@ -48,22 +52,22 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
           )}
 
           {hasOdds && (
-            <div style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden', flex: '0 1 auto' }}>
-              <table style={{ borderCollapse: 'collapse', fontSize: 12.5 }}>
+            <div style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden', flex: '0 1 auto', background: 'var(--card-bg, #fff)' }}>
+              <table style={{ borderCollapse: 'collapse', fontSize: 13.5 }}>
                 <thead>
                   <tr style={{ background: 'var(--bg3, #f5f5f5)' }}>
-                    <th style={{ padding: '9px 16px', textAlign: 'left', fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3 }}></th>
+                    <th style={{ padding: '11px 20px', textAlign: 'left', fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3 }}></th>
                     {oddsTable.columns.map((col, ci) => (
-                      <th key={ci} style={{ padding: '9px 16px', textAlign: 'center', fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3 }}>{col}</th>
+                      <th key={ci} style={{ padding: '11px 20px', textAlign: 'center', fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.3 }}>{col}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {oddsTable.rows.map((row, ri) => (
                     <tr key={ri} style={{ background: ri % 2 === 1 ? 'var(--bg3, #fafafa)' : 'transparent', borderTop: '1px solid var(--border, #eee)' }}>
-                      <td style={{ padding: '8px 16px', fontWeight: 700, color: 'var(--text2, #555)', whiteSpace: 'nowrap' }}>{row.label}</td>
+                      <td style={{ padding: '10px 20px', fontWeight: 700, color: 'var(--text2, #555)', whiteSpace: 'nowrap' }}>{row.label}</td>
                       {oddsTable.columns.map((_, ci) => (
-                        <td key={ci} style={{ padding: '8px 16px', textAlign: 'center', fontWeight: 800, color: '#003DA6', whiteSpace: 'nowrap' }}>{row.values[ci] || '—'}</td>
+                        <td key={ci} style={{ padding: '10px 20px', textAlign: 'center', fontWeight: 800, color: '#003DA6', whiteSpace: 'nowrap' }}>{row.values[ci] || '—'}</td>
                       ))}
                     </tr>
                   ))}
@@ -76,8 +80,8 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
 
       {players.length > 0 && (
         <div>
-          <p style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.4, margin: '0 0 6px' }}>Joueurs</p>
-          <div style={{ columns: '2 130px', columnGap: 14, fontSize: 12, lineHeight: 1.7, color: 'var(--text2, #555)' }}>
+          <p style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.4, margin: '0 0 8px' }}>Joueurs</p>
+          <div style={{ columns: '150px', columnGap: 20, fontSize: 12.5, lineHeight: 1.8, color: 'var(--text2, #555)' }}>
             {players.map((name, i) => (
               <div key={i} style={{ breakInside: 'avoid' }}>{name}</div>
             ))}
