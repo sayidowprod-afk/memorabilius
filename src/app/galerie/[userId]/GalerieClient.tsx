@@ -467,21 +467,38 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }, [authUser])
 
   useEffect(() => {
-    const init = async () => {
+    let cancelled = false
+    // Juste après un cold start (Android surtout), le réseau peut ne pas être
+    // vraiment prêt : ces requêtes peuvent alors rester bloquées en attente
+    // indéfiniment (ni resolve ni reject). Sans filet, la galerie reste
+    // figée sur le squelette de chargement pour toujours. On retente donc
+    // automatiquement, avec un timeout pour ne pas dépendre d'un rejet
+    // explicite (même filet que NativeHomeDashboard).
+    const init = async (attempt: number) => {
       try {
         let resolvedId = userId
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000))
+
         if (!uuidRegex.test(userId)) {
-          const { data: p } = await supabase.from('profiles').select('id').eq('slug', userId).single()
+          const { data: p } = await Promise.race([
+            supabase.from('profiles').select('id').eq('slug', userId).single(),
+            timeout,
+          ])
+          if (cancelled) return
           if (p) resolvedId = p.id
           else { setLoaded(true); return }
         }
 
         // Tags + profil en parallèle — pas de getSession() qui peut bloquer/pendre
-        const [{ data: tagsData }, { data: profileData }] = await Promise.all([
-          supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId),
-          supabase.from('profiles').select('*').eq('id', resolvedId).single(),
+        const [{ data: tagsData }, { data: profileData }] = await Promise.race([
+          Promise.all([
+            supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId),
+            supabase.from('profiles').select('*').eq('id', resolvedId).single(),
+          ]),
+          timeout,
         ])
+        if (cancelled) return
         const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
         setCsvTags(tagsMap)
 
@@ -508,11 +525,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           })
         loadCommentCounts(resolvedId)
       } catch (e) {
+        if (cancelled) return
+        if (attempt < 4) { setTimeout(() => { if (!cancelled) init(attempt + 1) }, 1200 * attempt); return }
         console.error('Gallery init error', e)
         setLoaded(true)
       }
     }
-    init()
+    init(1)
+    return () => { cancelled = true }
   }, [userId])
 
   useEffect(() => {
