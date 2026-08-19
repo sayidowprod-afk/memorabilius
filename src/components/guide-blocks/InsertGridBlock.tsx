@@ -28,13 +28,18 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
       {(cards.length > 0 || hasOdds) && (
         <div className="insert-top-row" style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: players.length > 0 ? 14 : 0 }}>
           {cards.length > 0 && (
-            <div className="insert-grid-block" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(84px, 1fr))', gap: 8, flex: hasOdds ? '0 1 40%' : '1 1 auto', minWidth: 0 }}>
+            <div className="insert-grid-block" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 12, flex: hasOdds ? '0 1 44%' : '1 1 auto', minWidth: 0 }}>
               {cards.map((card, i) => (
-                <div key={i} className="insert-grid-card" style={{ borderRadius: 8, overflow: 'hidden', border: '1px solid var(--border, #eee)', background: 'var(--bg3, #fafafa)' }}>
-                  {card.image && <img src={card.image} alt={card.name} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} />}
-                  <div style={{ padding: '5px 6px' }}>
-                    <div style={{ fontSize: 11, fontWeight: 700, lineHeight: 1.25 }}>{card.name}</div>
-                    {card.printRun && <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 1 }}>{card.printRun}</div>}
+                <div key={i} className="insert-grid-card" style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border, #eee)', background: 'var(--bg3, #fafafa)', position: 'relative' }}>
+                  {card.image && (
+                    <div className="insert-grid-card-img" style={{ overflow: 'hidden' }}>
+                      <img src={card.image} alt={card.name} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} />
+                      <div className="insert-grid-card-shine" />
+                    </div>
+                  )}
+                  <div style={{ padding: '8px 9px' }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, lineHeight: 1.3, color: 'var(--text, #222)' }}>{card.name}</div>
+                    {card.printRun && <div style={{ fontSize: 11, color: 'var(--text3, #999)', marginTop: 2, fontWeight: 600 }}>{card.printRun}</div>}
                   </div>
                 </div>
               ))}
@@ -78,8 +83,17 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
       )}
 
       <style>{`
-        .insert-grid-card { transition: transform 0.15s, box-shadow 0.15s; }
-        .insert-grid-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px -6px rgba(0,0,0,0.3); }
+        .insert-grid-card { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+        .insert-grid-card:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.4); border-color: #003DA6 !important; }
+        .insert-grid-card-img { position: relative; }
+        .insert-grid-card-img img { transition: transform 0.35s ease; }
+        .insert-grid-card:hover .insert-grid-card-img img { transform: scale(1.08); }
+        .insert-grid-card-shine {
+          position: absolute; inset: 0; pointer-events: none;
+          background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+          transform: translateX(-120%); transition: transform 0.6s ease;
+        }
+        .insert-grid-card:hover .insert-grid-card-shine { transform: translateX(120%); }
         @media (max-width: 480px) {
           .insert-top-row { flex-direction: column !important; }
           .insert-top-row > * { flex-basis: auto !important; width: 100%; }
