@@ -1700,7 +1700,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             <div style={{ marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
-                <span style={{ fontWeight: 900, fontSize: 15, color: '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
+                <span style={{ fontWeight: 900, fontSize: 15, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
                 <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
@@ -1714,7 +1714,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   onClick={() => setGrailPickerOpen(false)}>
                   <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>💎 {t('gallery_choose_card')}</h3>
+                      <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16, color: dark ? '#eee' : '#121212' }}>💎 {t('gallery_choose_card')}</h3>
                       <button onClick={() => setGrailPickerOpen(false)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
                     </div>
                     <input
@@ -1722,7 +1722,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       value={grailSearch}
                       onChange={e => setGrailSearch(e.target.value)}
                       placeholder={t('gallery_search_collection')}
-                      style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', fontSize: 14, outline: 'none' }}
+                      style={{ padding: '10px 14px', borderRadius: 8, border: dark ? '1px solid #444' : '1px solid #ddd', fontSize: 14, outline: 'none', background: dark ? '#2a2a2a' : 'white', color: dark ? '#eee' : '#111' }}
                     />
                     <div style={{ overflowY: 'auto', flex: 1 }}>
                       {grailSearch.trim().length === 0 ? (

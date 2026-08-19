@@ -446,7 +446,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     return `${Math.floor(h / 24)}j`
   }
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement...</p>
+  if (loading) return <p style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>Chargement...</p>
 
   const tabs = [
     { key: 'feed', label: '📰 Feed' },
@@ -487,21 +487,21 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <h1 style={{ fontWeight: 900, fontSize: 24, margin: 0 }}>{team.name}</h1>
-              {isChef && <Link href={`/teams/${teamId}/editer`} style={{ background: '#f0f0f0', color: '#444', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>{t('teams_modify')}</Link>}
+              {isChef && <Link href={`/teams/${teamId}/editer`} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #444)', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>{t('teams_modify')}</Link>}
             </div>
-            {team.description && <p style={{ color: '#666', fontSize: 14, margin: '4px 0 0' }}>{team.description}</p>}
-            <p style={{ color: '#999', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>
+            {team.description && <p style={{ color: 'var(--text2, #666)', fontSize: 14, margin: '4px 0 0' }}>{team.description}</p>}
+            <p style={{ color: 'var(--text3, #999)', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>
           </div>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {[{ val: totalStats.total, label: 'Cartes', color: ACCENT }, { val: totalStats.rc, label: 'RC', color: '#e67e22' }, { val: totalStats.auto, label: 'Auto', color: '#2e7d32' }].map(s => (
               <div key={s.label} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 20, fontWeight: 900, color: s.color }}>{s.val}</div>
-                <div style={{ fontSize: 10, color: '#999', textTransform: 'uppercase', fontWeight: 700 }}>{s.label}</div>
+                <div style={{ fontSize: 10, color: 'var(--text3, #999)', textTransform: 'uppercase', fontWeight: 700 }}>{s.label}</div>
               </div>
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : '#f0f0f0', color: copied ? '#2e7d32' : '#555', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s' }}>
+            <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : 'var(--bg3, #f0f0f0)', color: copied ? '#2e7d32' : 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s' }}>
               {copied ? t('teams_copied') : t('teams_share')}
             </button>
             {!isMember && !hasCandidature && currentUser && (
@@ -517,7 +517,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
                     router.push('/teams')
                   }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Oui</button>
-                  <button onClick={() => setLeaveConfirm(false)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Non</button>
+                  <button onClick={() => setLeaveConfirm(false)} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Non</button>
                 </div>
               ) : (
                 <button onClick={() => setLeaveConfirm(true)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 8, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>{t('teams_leave')}</button>
@@ -532,8 +532,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         {tabs.map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key as any)} style={{
             padding: '10px 18px', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-            background: activeTab === tab.key ? ACCENT : '#f0f0f0',
-            color: activeTab === tab.key ? 'white' : '#333',
+            background: activeTab === tab.key ? ACCENT : 'var(--bg3, #f0f0f0)',
+            color: activeTab === tab.key ? 'white' : 'var(--text2, #333)',
           }}>{tab.label}</button>
         ))}
       </div>
@@ -546,7 +546,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               <textarea value={newPost} onChange={e => setNewPost(e.target.value)}
                 placeholder="Partagez quelque chose avec votre team..."
-                style={{ width: '100%', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '12px 14px', fontSize: 14, resize: 'none', outline: 'none', fontFamily: 'Inter, sans-serif', boxSizing: 'border-box', minHeight: 80 }} />
+                style={{ width: '100%', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '12px 14px', fontSize: 14, resize: 'none', outline: 'none', fontFamily: 'Inter, sans-serif', boxSizing: 'border-box', minHeight: 80 }} />
               {postCards.length > 0 && (
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '8px 0' }}>
                   {postCards.map(c => (
@@ -563,7 +563,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   {EMOJIS.map(e => (
                     <button key={e} onClick={() => setNewPost(p => p + e)}
                       style={{ fontSize: 18, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 3px', borderRadius: 6 }}
-                      onMouseEnter={ev => (ev.currentTarget as HTMLButtonElement).style.background = '#f0f0f0'}
+                      onMouseEnter={ev => (ev.currentTarget as HTMLButtonElement).style.background = 'var(--bg3, #f0f0f0)'}
                       onMouseLeave={ev => (ev.currentTarget as HTMLButtonElement).style.background = 'none'}>{e}</button>
                   ))}
                 </div>
@@ -580,16 +580,16 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </div>
               {showPostCardPicker && (
                 <div onClick={e => e.stopPropagation()} style={{ marginTop: 10, maxHeight: 200, overflowY: 'auto' }}>
-                  {myCards.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', padding: 20, fontSize: 13 }}>{t('teams_no_cards_found')}</p>}
+                  {myCards.length === 0 && <p style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: 20, fontSize: 13 }}>{t('teams_no_cards_found')}</p>}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
                   {myCards.map(c => (
                     <div key={c.id} onClick={() => { setPostCards(prev => prev.find(x => x.id === c.id) ? prev : [...prev, c]); setShowPostCardPicker(false) }}
-                      style={{ cursor: 'pointer', borderRadius: 6, overflow: 'hidden', border: '2px solid transparent', transition: 'border-color 0.15s', background: '#f0f0f0', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      style={{ cursor: 'pointer', borderRadius: 6, overflow: 'hidden', border: '2px solid transparent', transition: 'border-color 0.15s', background: 'var(--bg3, #f0f0f0)', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                       onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = ACCENT}
                       onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = 'transparent'}>
                       {c.image_recto
                         ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
-                        : <span style={{ fontSize: 10, color: '#999', textAlign: 'center', padding: 4 }}>{c.nom}</span>}
+                        : <span style={{ fontSize: 10, color: 'var(--text3, #999)', textAlign: 'center', padding: 4 }}>{c.nom}</span>}
                     </div>
                   ))}
                   </div>
@@ -599,7 +599,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           )}
 
           {/* Liste des posts */}
-          {posts.length === 0 && <div style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Aucun post pour l'instant.</div>}
+          {posts.length === 0 && <div style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>Aucun post pour l'instant.</div>}
           {posts.map(post => (
             <div key={post.id} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               {/* Header */}
@@ -607,14 +607,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 <img src={post.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                 <div style={{ flex: 1 }}>
-                  <Link href={`/galerie/${post.user_id}`} style={{ fontWeight: 800, color: '#111', textDecoration: 'none', fontSize: 14 }}>{post.profiles?.display_name || 'Membre'}</Link>
-                  <div style={{ fontSize: 11, color: '#bbb' }}>{timeAgo(post.created_at)}</div>
+                  <Link href={`/galerie/${post.user_id}`} style={{ fontWeight: 800, color: 'var(--text, #111)', textDecoration: 'none', fontSize: 14 }}>{post.profiles?.display_name || 'Membre'}</Link>
+                  <div style={{ fontSize: 11, color: 'var(--text3, #bbb)' }}>{timeAgo(post.created_at)}</div>
                 </div>
                 {post.user_id === currentUser && (
                   deletePostConfirm === post.id ? (
                     <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
                       <button onClick={() => { deletePost(post.id); setDeletePostConfirm(null) }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '3px 8px', cursor: 'pointer', fontSize: 11, fontWeight: 700 }}>Oui</button>
-                      <button onClick={() => setDeletePostConfirm(null)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '3px 8px', cursor: 'pointer', fontSize: 11 }}>Non</button>
+                      <button onClick={() => setDeletePostConfirm(null)} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '3px 8px', cursor: 'pointer', fontSize: 11 }}>Non</button>
                     </div>
                   ) : (
                     <button onClick={() => setDeletePostConfirm(post.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontSize: 16, padding: 4 }}>🗑️</button>
@@ -622,7 +622,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 )}
               </div>
               {/* Contenu */}
-              {post.content && <p style={{ fontSize: 15, color: '#222', margin: '0 0 12px', lineHeight: 1.6 }}><LinkifiedText text={post.content} /></p>}
+              {post.content && <p style={{ fontSize: 15, color: 'var(--text, #222)', margin: '0 0 12px', lineHeight: 1.6 }}><LinkifiedText text={post.content} /></p>}
               {post.card_ids?.length > 0 && <PostCardsPreview cardIds={post.card_ids} userId={post.user_id} />}
               {post.card_key && post.card_user_id && !post.card_ids?.length && <CardPreview cardKey={post.card_key} userId={post.card_user_id} />}
               {/* Réactions */}
@@ -630,22 +630,22 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 {(postReactions[post.id] || []).map(r => (
                   <button key={r.emoji} onClick={e => { e.stopPropagation(); togglePostReaction(post.id, r.emoji) }}
                     title={r.names.join(', ')}
-                    style={{ padding: '4px 10px', borderRadius: 20, border: `1.5px solid ${r.mine ? ACCENT : '#e0e0e0'}`, background: r.mine ? '#f0f4ff' : 'white', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: r.mine ? ACCENT : '#333' }}>
+                    style={{ padding: '4px 10px', borderRadius: 20, border: `1.5px solid ${r.mine ? ACCENT : 'var(--border, #e0e0e0)'}`, background: r.mine ? '#f0f4ff' : 'var(--card-bg, #fff)', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: r.mine ? ACCENT : 'var(--text2, #333)' }}>
                     {r.emoji} {r.count}
                   </button>
                 ))}
                 {isMember && (
                   <div style={{ position: 'relative' }} onClick={e => e.stopPropagation()}>
                     <button onClick={() => setShowEmojiForPost(showEmojiForPost === post.id ? null : post.id)}
-                      style={{ padding: '4px 10px', borderRadius: 20, border: '1.5px solid #e0e0e0', background: 'white', cursor: 'pointer', fontSize: 13, color: '#999' }}>
+                      style={{ padding: '4px 10px', borderRadius: 20, border: '1.5px solid var(--border, #e0e0e0)', background: 'var(--card-bg, #fff)', cursor: 'pointer', fontSize: 13, color: 'var(--text3, #999)' }}>
                       + 😊
                     </button>
                     {showEmojiForPost === post.id && (
-                      <div style={{ position: 'absolute', bottom: 36, left: 0, background: 'white', borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', padding: 8, display: 'flex', gap: 4, zIndex: 100 }}>
+                      <div style={{ position: 'absolute', bottom: 36, left: 0, background: 'var(--card-bg, #fff)', borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', padding: 8, display: 'flex', gap: 4, zIndex: 100 }}>
                         {EMOJIS.map(e => (
                           <button key={e} onClick={() => togglePostReaction(post.id, e)}
                             style={{ fontSize: 20, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 4px', borderRadius: 6 }}
-                            onMouseEnter={ev => (ev.currentTarget as HTMLButtonElement).style.background = '#f0f0f0'}
+                            onMouseEnter={ev => (ev.currentTarget as HTMLButtonElement).style.background = 'var(--bg3, #f0f0f0)'}
                             onMouseLeave={ev => (ev.currentTarget as HTMLButtonElement).style.background = 'none'}>{e}</button>
                         ))}
                       </div>
@@ -654,21 +654,21 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 )}
                 {/* Bouton commentaires */}
                 <button onClick={() => showComments[post.id] ? setShowComments(p => ({ ...p, [post.id]: false })) : loadComments(post.id)}
-                  style={{ marginLeft: 'auto', padding: '4px 10px', borderRadius: 20, border: '1.5px solid #e0e0e0', background: 'white', cursor: 'pointer', fontSize: 12, color: '#666', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  style={{ marginLeft: 'auto', padding: '4px 10px', borderRadius: 20, border: '1.5px solid var(--border, #e0e0e0)', background: 'var(--card-bg, #fff)', cursor: 'pointer', fontSize: 12, color: 'var(--text2, #666)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   💬 {post.commentCount ?? 0}
                 </button>
               </div>
               {/* Section commentaires */}
               {showComments[post.id] && (
-                <div style={{ marginTop: 16, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
+                <div style={{ marginTop: 16, borderTop: '1px solid var(--border, #f0f0f0)', paddingTop: 16 }}>
                   {(comments[post.id] || []).map(c => (
                     <div key={c.id} style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'flex-start' }}>
                       <img src={c.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                         style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                       <div style={{ flex: 1, background: '#f5f7ff', borderRadius: 10, padding: '8px 12px' }}>
                         <span style={{ fontWeight: 800, fontSize: 12, color: ACCENT }}>{c.profiles?.display_name || 'Membre'}</span>
-                        <span style={{ fontSize: 11, color: '#bbb', marginLeft: 8 }}>{timeAgo(c.created_at)}</span>
-                        <p style={{ margin: '4px 0 0', fontSize: 13, color: '#222' }}>{c.content}</p>
+                        <span style={{ fontSize: 11, color: 'var(--text3, #bbb)', marginLeft: 8 }}>{timeAgo(c.created_at)}</span>
+                        <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--text, #222)' }}>{c.content}</p>
                       </div>
                       {c.user_id === currentUser && (
                         <button onClick={() => deleteComment(post.id, c.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ccc', fontSize: 12, padding: 2, flexShrink: 0 }}>✕</button>
@@ -680,7 +680,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       <input value={newComment[post.id] || ''} onChange={e => setNewComment(p => ({ ...p, [post.id]: e.target.value }))}
                         onKeyDown={e => e.key === 'Enter' && addComment(post.id)}
                         placeholder="Ajouter un commentaire..."
-                        style={{ flex: 1, border: '1.5px solid #e0e0e0', borderRadius: 20, padding: '8px 14px', fontSize: 13, outline: 'none', fontFamily: 'Inter, sans-serif' }} />
+                        style={{ flex: 1, border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 20, padding: '8px 14px', fontSize: 13, outline: 'none', fontFamily: 'Inter, sans-serif' }} />
                       <button onClick={() => addComment(post.id)}
                         style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 20, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                         Envoyer
@@ -705,7 +705,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 640 }}>
             <thead><tr>
               {['#', t('teams_collector'), t('teams_role'), 'Cartes', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Actions'] : [])].map(h => (
-                <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', background: '#fdfdfd' }}>{h}</th>
+                <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: 'var(--text3, #999)', borderBottom: '2px solid var(--border, #f0f0f0)', background: 'var(--bg3, #fdfdfd)' }}>{h}</th>
               ))}
             </tr></thead>
             <tbody>
@@ -728,7 +728,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     <td style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>
                       {role === 'chef' && <span style={{ fontSize: 11, background: ACCENT, color: 'white', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>👑 Chef</span>}
                       {role === 'admin' && <span style={{ fontSize: 11, background: '#e8f5e9', color: '#2e7d32', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>⭐ Admin</span>}
-                      {role === 'member' && <span style={{ fontSize: 11, background: '#f0f0f0', color: '#666', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>Membre</span>}
+                      {role === 'member' && <span style={{ fontSize: 11, background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #666)', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>Membre</span>}
                     </td>
                     {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.num, m.stats?.patch].map((val, vi) => (
                       <td key={vi} style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>
@@ -753,7 +753,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                                   setExcludeConfirm(null)
                                   init()
                                 }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 8px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>Oui</button>
-                                <button onClick={() => setExcludeConfirm(null)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '4px 8px', fontSize: 11, cursor: 'pointer' }}>Non</button>
+                                <button onClick={() => setExcludeConfirm(null)} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '4px 8px', fontSize: 11, cursor: 'pointer' }}>Non</button>
                               </div>
                             ) : (
                               <button onClick={() => setExcludeConfirm(m.id)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }} title={`${t('teams_exclude_aria')} ${m.display_name}`}>🚫</button>
@@ -775,10 +775,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {activeTab === 'galerie' && (
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
-            {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#bbb', padding: 60 }}>{t('teams_no_cards_found')}</p>}
+            {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text3, #bbb)', padding: 60 }}>{t('teams_no_cards_found')}</p>}
             {galerieCards.slice(0, galerieLimit).map(card => (
               <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                <div style={{ borderRadius: 10, overflow: 'hidden', background: 'var(--card-bg, #fff)', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.15s, box-shadow 0.15s' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 20px rgba(0,0,0,0.14)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'none'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)' }}>
                   {card.image_recto
@@ -788,8 +788,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       </div>
                   }
                   <div style={{ padding: '6px 8px' }}>
-                    <div style={{ fontSize: 11, fontWeight: 800, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
-                    <div style={{ fontSize: 10, color: '#999', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                    <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text, #111)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
+                    <div style={{ fontSize: 10, color: 'var(--text3, #999)', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
                       <img src={card.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.profiles?.display_name || 'U')}&background=003DA6&color=fff&size=20`}
                         style={{ width: 14, height: 14, borderRadius: '50%' }} alt="" />
                       {card.profiles?.display_name}
@@ -812,9 +812,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {/* ── CHAT ── */}
       {activeTab === 'chat' && isMember && (
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: 560 }}>
-          <div style={{ padding: '14px 18px', borderBottom: '1px solid #f0f0f0', fontWeight: 800, fontSize: 15 }}>💬 Chat en direct</div>
+          <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--border, #f0f0f0)', fontWeight: 800, fontSize: 15 }}>💬 Chat en direct</div>
           <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {messages.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', marginTop: 40 }}>{t('teams_no_message')}</p>}
+            {messages.length === 0 && <p style={{ textAlign: 'center', color: 'var(--text3, #bbb)', marginTop: 40 }}>{t('teams_no_message')}</p>}
             {messages.map(msg => {
               const isMe = msg.user_id === currentUser
               return (
@@ -822,8 +822,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   <img src={msg.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                     style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                   <div style={{ maxWidth: '72%' }}>
-                    {!isMe && <p style={{ fontSize: 11, color: '#999', margin: '0 0 3px', fontWeight: 700 }}>{msg.profiles?.display_name}</p>}
-                    <div style={{ background: isMe ? ACCENT : '#f0f0f0', color: isMe ? 'white' : '#121212', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: 14, lineHeight: 1.5 }}>
+                    {!isMe && <p style={{ fontSize: 11, color: 'var(--text3, #999)', margin: '0 0 3px', fontWeight: 700 }}>{msg.profiles?.display_name}</p>}
+                    <div style={{ background: isMe ? ACCENT : 'var(--bg3, #f0f0f0)', color: isMe ? 'white' : 'var(--text, #121212)', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: 14, lineHeight: 1.5 }}>
                       {msg.contenu && <LinkifiedText text={msg.contenu} />}
                       {msg.card_key && msg.card_user_id && <CardPreview cardKey={msg.card_key} userId={msg.card_user_id} compact />}
                     </div>
@@ -832,26 +832,26 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       {(msgReactions[msg.id] || []).map(r => (
                         <button key={r.emoji} onClick={e => { e.stopPropagation(); toggleMsgReaction(msg.id, r.emoji) }}
                           title={r.names.join(', ')}
-                          style={{ padding: '2px 8px', borderRadius: 12, border: `1.5px solid ${r.mine ? ACCENT : '#e0e0e0'}`, background: r.mine ? '#f0f4ff' : 'white', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+                          style={{ padding: '2px 8px', borderRadius: 12, border: `1.5px solid ${r.mine ? ACCENT : 'var(--border, #e0e0e0)'}`, background: r.mine ? '#f0f4ff' : 'var(--card-bg, #fff)', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
                           {r.emoji} {r.count}
                         </button>
                       ))}
                       <div style={{ position: 'relative' }} onClick={e => e.stopPropagation()}>
                         <button onClick={() => setShowEmojiForMsg(showEmojiForMsg === msg.id ? null : msg.id)}
-                          style={{ padding: '2px 6px', borderRadius: 12, border: '1.5px solid #e0e0e0', background: 'white', cursor: 'pointer', fontSize: 11, color: '#bbb' }}>+</button>
+                          style={{ padding: '2px 6px', borderRadius: 12, border: '1.5px solid var(--border, #e0e0e0)', background: 'var(--card-bg, #fff)', cursor: 'pointer', fontSize: 11, color: 'var(--text3, #bbb)' }}>+</button>
                         {showEmojiForMsg === msg.id && (
-                          <div style={{ position: 'absolute', bottom: 28, left: isMe ? 'auto' : 0, right: isMe ? 0 : 'auto', background: 'white', borderRadius: 10, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', padding: 6, display: 'flex', gap: 2, zIndex: 100 }}>
+                          <div style={{ position: 'absolute', bottom: 28, left: isMe ? 'auto' : 0, right: isMe ? 0 : 'auto', background: 'var(--card-bg, #fff)', borderRadius: 10, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', padding: 6, display: 'flex', gap: 2, zIndex: 100 }}>
                             {EMOJIS.map(e => (
                               <button key={e} onClick={() => toggleMsgReaction(msg.id, e)}
                                 style={{ fontSize: 18, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 3px', borderRadius: 4 }}
-                                onMouseEnter={ev => (ev.currentTarget as HTMLButtonElement).style.background = '#f0f0f0'}
+                                onMouseEnter={ev => (ev.currentTarget as HTMLButtonElement).style.background = 'var(--bg3, #f0f0f0)'}
                                 onMouseLeave={ev => (ev.currentTarget as HTMLButtonElement).style.background = 'none'}>{e}</button>
                             ))}
                           </div>
                         )}
                       </div>
                     </div>
-                    <p style={{ fontSize: 10, color: '#bbb', margin: '2px 0 0', textAlign: isMe ? 'right' : 'left' }}>
+                    <p style={{ fontSize: 10, color: 'var(--text3, #bbb)', margin: '2px 0 0', textAlign: isMe ? 'right' : 'left' }}>
                       {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
@@ -870,23 +870,23 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           )}
           {/* Card picker */}
           {showCardPicker && (
-            <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f0f0', maxHeight: 160, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))', gap: 4 }}>
+            <div style={{ padding: '8px 16px', borderTop: '1px solid var(--border, #f0f0f0)', maxHeight: 160, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))', gap: 4 }}>
               {myCards.map(c => (
                 <div key={c.id} onClick={() => { setPendingCard(c); setShowCardPicker(false) }}
-                  style={{ cursor: 'pointer', borderRadius: 4, overflow: 'hidden', background: '#f0f0f0', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  style={{ cursor: 'pointer', borderRadius: 4, overflow: 'hidden', background: 'var(--bg3, #f0f0f0)', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {c.image_recto
                     ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
-                    : <span style={{ fontSize: 9, color: '#999', textAlign: 'center', padding: 2 }}>{c.nom}</span>}
+                    : <span style={{ fontSize: 9, color: 'var(--text3, #999)', textAlign: 'center', padding: 2 }}>{c.nom}</span>}
                 </div>
               ))}
             </div>
           )}
-          <div style={{ padding: '10px 14px', borderTop: '1px solid #f0f0f0', display: 'flex', gap: 8, alignItems: 'center' }}>
+          <div style={{ padding: '10px 14px', borderTop: '1px solid var(--border, #f0f0f0)', display: 'flex', gap: 8, alignItems: 'center' }}>
             <button onClick={() => setShowCardPicker(!showCardPicker)}
               style={{ background: '#f0f4ff', color: ACCENT, border: 'none', borderRadius: 8, padding: '10px 12px', fontWeight: 700, cursor: 'pointer', fontSize: 18, flexShrink: 0 }}>🃏</button>
             <input value={newMsg} onChange={e => setNewMsg(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-              placeholder="Votre message..." style={{ flex: 1, padding: '10px 14px', border: '1.5px solid #e0e0e0', borderRadius: 8, fontSize: 14, outline: 'none' }} />
+              placeholder="Votre message..." style={{ flex: 1, padding: '10px 14px', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 8, fontSize: 14, outline: 'none' }} />
             <button onClick={sendMessage} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_send')}</button>
           </div>
         </div>
@@ -895,16 +895,16 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {/* ── CANDIDATURES ── */}
       {activeTab === 'candidatures' && isChef && (
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
-          <div style={{ padding: '14px 20px', borderBottom: '1px solid #f0f0f0', fontWeight: 800 }}>📋 Candidatures en attente</div>
+          <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--border, #f0f0f0)', fontWeight: 800 }}>📋 Candidatures en attente</div>
           {candidatures.length === 0
-            ? <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('teams_no_candidatures')}</p>
+            ? <p style={{ textAlign: 'center', padding: 40, color: 'var(--text3, #bbb)' }}>{t('teams_no_candidatures')}</p>
             : candidatures.map(cand => (
               <div key={cand.id} style={{ padding: '16px 20px', borderBottom: '1px solid #f5f5f5', display: 'flex', alignItems: 'center', gap: 16 }}>
                 <img src={cand.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(cand.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                 <div style={{ flex: 1 }}>
                   <p style={{ fontWeight: 800, margin: 0 }}>{cand.profiles?.display_name}</p>
-                  <p style={{ fontSize: 12, color: '#999', margin: '2px 0 0' }}>
+                  <p style={{ fontSize: 12, color: 'var(--text3, #999)', margin: '2px 0 0' }}>
                     {new Date(cand.created_at).toLocaleDateString(localeFor(lang))}
                     {cand.profiles?.id && <Link href={`/galerie/${cand.profiles.id}`} style={{ color: ACCENT, marginLeft: 10, fontWeight: 700, textDecoration: 'none' }}>Voir sa galerie →</Link>}
                   </p>
@@ -936,14 +936,14 @@ function PostCardsPreview({ cardIds, userId }: { cardIds: number[]; userId: stri
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(cards.length, 4)}, 1fr)`, gap: 8, marginTop: 10 }}>
       {cards.map(c => (
         <Link key={c.id} href={`/galerie/${userId}`} style={{ textDecoration: 'none' }}>
-          <div style={{ borderRadius: 8, overflow: 'hidden', background: '#f0f0f0', aspectRatio: '2.5/3.5' }}>
+          <div style={{ borderRadius: 8, overflow: 'hidden', background: 'var(--bg3, #f0f0f0)', aspectRatio: '2.5/3.5' }}>
             {c.image_recto
               ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
               : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 6 }}>
                   <span style={{ fontSize: 10, fontWeight: 700, color: '#003DA6', textAlign: 'center' }}>{c.nom}</span>
                 </div>}
           </div>
-          <div style={{ fontSize: 10, fontWeight: 700, color: '#333', marginTop: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
+          <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--text2, #333)', marginTop: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
         </Link>
       ))}
     </div>

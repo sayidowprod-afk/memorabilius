@@ -96,7 +96,7 @@ export default function Notifications() {
   if (loading) return <p style={{ textAlign: 'center', padding: 60 }}>Chargement...</p>
 
   return (
-    <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 16px', boxSizing: 'border-box' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('notif_title')}</h1>
         {'Notification' in window && pushPerm === 'denied' && (
@@ -135,7 +135,7 @@ export default function Notifications() {
             >
               {testLoading ? '...' : '🧪 Tester'}
             </button>
-            <button onClick={handleDisablePush} disabled={pushLoading} style={{ padding: '6px 12px', background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+            <button onClick={handleDisablePush} disabled={pushLoading} style={{ padding: '6px 12px', background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
               {pushLoading ? '...' : 'Désactiver'}
             </button>
           </div>
@@ -152,12 +152,12 @@ export default function Notifications() {
       </div>
 
       {notifs.length === 0 ? (
-        <div style={{ background: 'white', borderRadius: 16, padding: 60, textAlign: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+        <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 60, textAlign: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>🔔</div>
-          <p style={{ color: '#bbb', fontSize: 16 }}>{t('notif_none')}</p>
+          <p style={{ color: 'var(--text3, #bbb)', fontSize: 16 }}>{t('notif_none')}</p>
         </div>
       ) : (
-        <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+        <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           {notifs.map((n, i) => (
             <div key={n.id} onClick={() => n.lien && router.push(n.lien)} style={{
               padding: '16px 20px', borderBottom: i < notifs.length - 1 ? `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` : 'none',
@@ -172,7 +172,7 @@ export default function Notifications() {
               <span style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
               <div style={{ flex: 1 }}>
                 <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: dark ? '#f0f0f0' : '#121212' }}>{n.message}</p>
-                <p style={{ margin: '3px 0 0', fontSize: 12, color: '#999' }}>{timeAgo(n.created_at)}</p>
+                <p style={{ margin: '3px 0 0', fontSize: 12, color: 'var(--text3, #999)' }}>{timeAgo(n.created_at)}</p>
               </div>
               {!n.lu && <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
             </div>

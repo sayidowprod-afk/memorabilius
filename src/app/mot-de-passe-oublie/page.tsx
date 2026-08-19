@@ -25,7 +25,7 @@ export default function MotDePasseOublie() {
     <div style={{ maxWidth: 480, margin: '80px auto', textAlign: 'center', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ fontSize: 64, marginBottom: 24 }}>📧</div>
       <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 12 }}>Email envoyé !</h1>
-      <p style={{ color: '#666', fontSize: 16, lineHeight: 1.6, marginBottom: 32 }}>
+      <p style={{ color: 'var(--text2, #666)', fontSize: 16, lineHeight: 1.6, marginBottom: 32 }}>
         Un lien de réinitialisation a été envoyé à <strong>{email}</strong>. Vérifiez vos spams si besoin.
       </p>
       <Link href="/connexion" className="btn-main btn-primary">Retour à la connexion</Link>
@@ -33,13 +33,13 @@ export default function MotDePasseOublie() {
   )
 
   return (
-    <div style={{ maxWidth: 460, margin: '60px auto', fontFamily: 'Inter, sans-serif' }}>
-      <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
+    <div style={{ maxWidth: 460, margin: '60px auto', fontFamily: 'Inter, sans-serif', padding: '0 16px', boxSizing: 'border-box' }}>
+      <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', maxWidth: '100%', boxSizing: 'border-box' }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 8 }}>Mot de passe oublié</h1>
-        <p style={{ color: '#666', marginBottom: 30, fontSize: 14 }}>Entrez votre email pour recevoir un lien de réinitialisation.</p>
+        <p style={{ color: 'var(--text2, #666)', marginBottom: 30, fontSize: 14 }}>Entrez votre email pour recevoir un lien de réinitialisation.</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Email</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Email</label>
             <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
@@ -47,7 +47,7 @@ export default function MotDePasseOublie() {
             {loading ? 'Envoi...' : 'Envoyer le lien'}
           </button>
         </form>
-        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: '#666' }}>
+        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: 'var(--text2, #666)' }}>
           <Link href="/connexion" style={{ color: '#003DA6', fontWeight: 700 }}>← Retour à la connexion</Link>
         </p>
       </div>

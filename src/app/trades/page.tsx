@@ -242,14 +242,14 @@ export default function Trades() {
       </div>
 
       {/* Tabs principaux */}
-      <div style={{ display: 'flex', gap: 6, marginBottom: 20, borderBottom: '2px solid #f0f0f0', paddingBottom: 0 }}>
+      <div style={{ display: 'flex', gap: 6, marginBottom: 20, borderBottom: '2px solid var(--border, #f0f0f0)', paddingBottom: 0, flexWrap: 'wrap' }}>
         {([
           { key: 'annonces', label: '📋 Annonces' },
           { key: 'echanges', label: `🔄 Mes échanges${pendingOffers.length > 0 ? ` (${pendingOffers.length})` : ''}` },
         ] as const).map(tab => (
           <button key={tab.key} onClick={() => setMainTab(tab.key)} style={{
             border: 'none', background: 'none', padding: '10px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer',
-            color: mainTab === tab.key ? '#003DA6' : '#888',
+            color: mainTab === tab.key ? '#003DA6' : 'var(--text3, #888)',
             borderBottom: mainTab === tab.key ? '2px solid #003DA6' : '2px solid transparent',
             marginBottom: -2,
           }}>{tab.label}</button>
@@ -264,44 +264,44 @@ export default function Trades() {
           {/* Filtres */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} style={{ flex: 1, minWidth: 200 }} />
-              <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} style={{ width: 180 }} />
-              <div style={{ display: 'flex', gap: 8 }}>
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} style={{ flex: 1, minWidth: 200, boxSizing: 'border-box' }} />
+              <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} style={{ width: 180, maxWidth: '100%', boxSizing: 'border-box' }} />
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {(['tous', 'offre', 'recherche'] as const).map(f => (
                   <button key={f} onClick={() => setFilter(f)} style={{
                     padding: '8px 18px', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-                    background: filter === f ? '#003DA6' : '#f0f0f0',
-                    color: filter === f ? 'white' : '#333',
+                    background: filter === f ? '#003DA6' : 'var(--bg3, #f0f0f0)',
+                    color: filter === f ? 'white' : 'var(--text2, #333)',
                   }}>{f === 'tous' ? t('trades_all') : f === 'offre' ? t('trades_offers') : t('trades_searches')}</button>
                 ))}
               </div>
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#888' }}>{t('trades_sport_label')}</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)' }}>{t('trades_sport_label')}</span>
               {Object.entries(SPORTS).map(([key, emoji]) => {
                 const labels: Record<string, string> = { basket: 'Basket', foot: 'Football', football_us: 'Football US', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', tcg: 'TCG' }
                 return (
                   <button key={key} onClick={() => setFSport(fSport === key ? '' : key)} title={labels[key]} style={{
                     padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-                    background: fSport === key ? '#003DA6' : '#f0f0f0',
-                    color: fSport === key ? 'white' : '#333',
+                    background: fSport === key ? '#003DA6' : 'var(--bg3, #f0f0f0)',
+                    color: fSport === key ? 'white' : 'var(--text2, #333)',
                   }}>{emoji}</button>
                 )
               })}
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#888', marginLeft: 8 }}>Tags :</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', marginLeft: 8 }}>Tags :</span>
               {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
                 <button key={k} onClick={() => setFTags(prev => ({ ...prev, [k]: !prev[k] }))} style={{
                   padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 900, fontSize: 12, textTransform: 'uppercase',
-                  background: fTags[k] ? '#003DA6' : '#f0f0f0',
-                  color: fTags[k] ? 'white' : '#333',
+                  background: fTags[k] ? '#003DA6' : 'var(--bg3, #f0f0f0)',
+                  color: fTags[k] ? 'white' : 'var(--text2, #333)',
                 }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
               ))}
             </div>
           </div>
 
-          {loadingForum ? <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement...</p> : (
+          {loadingForum ? <p style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>Chargement...</p> : (
             filteredForum.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>
+              <div style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>
                 <p style={{ fontSize: 18, marginBottom: 12 }}>{t('trades_no_ads_yet')}</p>
                 <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>
               </div>
@@ -309,8 +309,8 @@ export default function Trades() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
                 {filteredForum.map(trade => (
                   <div key={trade.id} onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
-                    background: 'white', borderRadius: 16, overflow: 'hidden',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #eee',
+                    background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid var(--border, #eee)',
                     cursor: 'pointer', transition: '0.2s',
                   }}
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
@@ -320,14 +320,14 @@ export default function Trades() {
                       <span style={{ fontSize: 12, fontWeight: 900, color: (trade as any)._source === 'galerie' ? '#6a1b9a' : trade.type === 'offre' ? '#2e7d32' : '#1976d2' }}>
                         {(trade as any)._source === 'galerie' ? '🏷️ Vente/Trade' : trade.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
                       </span>
-                      <span style={{ fontSize: 11, color: '#999' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
+                      <span style={{ fontSize: 11, color: 'var(--text3, #999)' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                     </div>
                     {trade.image_url ? (
-                      <div style={{ background: '#f4f4f4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ background: 'var(--bg3, #f4f4f4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
                       </div>
                     ) : (
-                      <div style={{ height: 80, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>🃏</div>
+                      <div style={{ height: 80, background: 'var(--bg3, #f8f8f8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>🃏</div>
                     )}
                     <div style={{ padding: '14px 16px' }}>
                       <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
@@ -338,10 +338,10 @@ export default function Trades() {
                         {trade.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}># NUM</span>}
                         {trade.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid #f0f0f0' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
                         <img src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
-                        <span style={{ fontSize: 12, fontWeight: 700, color: '#444' }}>{trade.profiles?.display_name}</span>
+                        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text2, #444)' }}>{trade.profiles?.display_name}</span>
                       </div>
                     </div>
                   </div>
@@ -362,8 +362,8 @@ export default function Trades() {
             {(['pending', 'history'] as const).map(t => (
               <button key={t} onClick={() => setOfferTab(t)} style={{
                 border: 'none', borderRadius: 50, padding: '8px 18px', fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                background: offerTab === t ? '#003DA6' : '#f0f0f0',
-                color: offerTab === t ? '#fff' : '#555',
+                background: offerTab === t ? '#003DA6' : 'var(--bg3, #f0f0f0)',
+                color: offerTab === t ? '#fff' : 'var(--text2, #555)',
               }}>
                 {t === 'pending' ? `En attente (${pendingOffers.length})` : `Historique (${historyOffers.length})`}
               </button>
@@ -371,9 +371,9 @@ export default function Trades() {
           </div>
 
           {loadingOffers ? (
-            <div style={{ textAlign: 'center', color: '#bbb', padding: '48px 0' }}>{t('setlist_loading')}</div>
+            <div style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: '48px 0' }}>{t('setlist_loading')}</div>
           ) : shownOffers.length === 0 ? (
-            <div style={{ textAlign: 'center', color: '#bbb', padding: '48px 0', fontSize: 15 }}>
+            <div style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: '48px 0', fontSize: 15 }}>
               {offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')}
             </div>
           ) : (
@@ -393,14 +393,14 @@ export default function Trades() {
                 const theirCards = isSender ? trade.requested_cards : trade.offered_cards
 
                 return (
-                  <div key={trade.id} style={{ background: '#fff', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1.5px solid #f0f0f0' }}>
+                  <div key={trade.id} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1.5px solid var(--border, #f0f0f0)' }}>
                     {/* Header */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text, #333)' }}>
                         {isSender ? `${t('trades_sent_to')} ${otherName}` : `${t('trades_received_from')} ${otherName}`}
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: 11, color: '#aaa' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
+                        <span style={{ fontSize: 11, color: 'var(--text3, #aaa)' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                         <span style={{ background: status.bg, color: status.color, fontSize: 11, fontWeight: 800, padding: '3px 10px', borderRadius: 20 }}>{status.label}</span>
                       </div>
                     </div>
@@ -408,7 +408,7 @@ export default function Trades() {
                     {/* Cartes */}
                     <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: 12 }}>
                       <div>
-                        <div style={{ fontSize: 11, color: '#888', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu offres</div>
+                        <div style={{ fontSize: 11, color: 'var(--text3, #888)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu offres</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                           {myCards.map((c: any, i: number) => {
                             const q = [c.nom || c.card_nom, c.annee, c.marque, c.rc ? 'RC' : '', c.auto ? 'auto' : '', c.patch ? 'patch' : ''].filter(Boolean).join(' ')
@@ -419,13 +419,13 @@ export default function Trades() {
                               </div>
                             )
                           })}
-                          {myCards.length === 0 && <span style={{ color: '#bbb', fontSize: 13 }}>Aucune</span>}
+                          {myCards.length === 0 && <span style={{ color: 'var(--text3, #bbb)', fontSize: 13 }}>Aucune</span>}
                         </div>
-                        {myCards.length > 0 && <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>{myCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
+                        {myCards.length > 0 && <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>{myCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
                       </div>
-                      <div style={{ fontSize: 20, paddingTop: 20, color: '#ccc', flex: '0 0 auto' }}>⇄</div>
+                      <div style={{ fontSize: 20, paddingTop: 20, color: 'var(--text3, #ccc)', flex: '0 0 auto' }}>⇄</div>
                       <div>
-                        <div style={{ fontSize: 11, color: '#888', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu demandes</div>
+                        <div style={{ fontSize: 11, color: 'var(--text3, #888)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu demandes</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                           {theirCards.map((c: any, i: number) => {
                             const q = [c.nom || c.card_nom, c.annee, c.marque, c.rc ? 'RC' : '', c.auto ? 'auto' : '', c.patch ? 'patch' : ''].filter(Boolean).join(' ')
@@ -436,15 +436,15 @@ export default function Trades() {
                               </div>
                             )
                           })}
-                          {theirCards.length === 0 && <span style={{ color: '#bbb', fontSize: 13 }}>Aucune</span>}
+                          {theirCards.length === 0 && <span style={{ color: 'var(--text3, #bbb)', fontSize: 13 }}>Aucune</span>}
                         </div>
-                        {theirCards.length > 0 && <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>{theirCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
+                        {theirCards.length > 0 && <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>{theirCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
                       </div>
                     </div>
 
                     {/* Message */}
                     {trade.message && (
-                      <div style={{ marginBottom: 12, background: '#f8f8f8', borderRadius: 8, padding: '8px 12px', fontSize: 13, color: '#555' }}>
+                      <div style={{ marginBottom: 12, background: 'var(--bg3, #f8f8f8)', borderRadius: 8, padding: '8px 12px', fontSize: 13, color: 'var(--text2, #555)' }}>
                         💬 {trade.message}
                       </div>
                     )}
@@ -452,7 +452,7 @@ export default function Trades() {
                     {/* Actions */}
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       <button onClick={() => router.push(`/messages?to=${otherUserId}`)}
-                        style={{ border: '1.5px solid #003DA6', borderRadius: 50, padding: '9px 18px', background: '#fff', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                        style={{ border: '1.5px solid #003DA6', borderRadius: 50, padding: '9px 18px', background: 'var(--card-bg, #fff)', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
                         💬 Discuter
                       </button>
                       {trade.status === 'pending' && !isSender && (
@@ -462,14 +462,14 @@ export default function Trades() {
                             {acting === trade.id + 'accept' ? '…' : '✓ Accepter'}
                           </button>
                           <button disabled={acting !== null} onClick={() => actOnOffer(trade.id, 'refuse')}
-                            style={{ flex: 1, border: '2px solid #ccc', borderRadius: 50, padding: '10px', background: '#fff', color: '#555', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
+                            style={{ flex: 1, border: '2px solid var(--border, #ccc)', borderRadius: 50, padding: '10px', background: 'var(--card-bg, #fff)', color: 'var(--text2, #555)', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
                             {acting === trade.id + 'refuse' ? '…' : '✕ Refuser'}
                           </button>
                         </>
                       )}
                       {trade.status === 'pending' && isSender && (
                         <button disabled={acting !== null} onClick={() => actOnOffer(trade.id, 'cancel')}
-                          style={{ border: '2px solid #ccc', borderRadius: 50, padding: '9px 20px', background: '#fff', color: '#888', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                          style={{ border: '2px solid var(--border, #ccc)', borderRadius: 50, padding: '9px 20px', background: 'var(--card-bg, #fff)', color: 'var(--text3, #888)', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
                           {acting === trade.id + 'cancel' ? '…' : 'Annuler l\'offre'}
                         </button>
                       )}
@@ -489,8 +489,8 @@ export default function Trades() {
           zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
           <div onClick={e => e.stopPropagation()} style={{
-            background: 'white', borderRadius: 20, overflow: 'hidden',
-            maxWidth: 800, width: '100%', maxHeight: '90vh',
+            background: 'var(--card-bg, #fff)', borderRadius: 20, overflow: 'hidden',
+            maxWidth: 800, width: '100%', maxHeight: '90vh', boxSizing: 'border-box',
             display: 'flex', flexDirection: 'column',
             boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
           }}>
@@ -505,7 +505,7 @@ export default function Trades() {
               }
             `}</style>
             <div className="trade-popup-inner" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', flex: 1, minHeight: 0 }}>
-              <div className="trade-popup-img" style={{ background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
+              <div className="trade-popup-img" style={{ background: 'var(--bg3, #f8f8f8)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
                 {popup.image_url
                   ? <ImageZoom src={popupShowVerso && popup.image_verso ? popup.image_verso : popup.image_url} alt={popup.titre} key={popupShowVerso ? 'verso' : 'recto'} />
                   : <span style={{ fontSize: 80 }}>🃏</span>}
@@ -519,17 +519,17 @@ export default function Trades() {
                 )}
               </div>
               <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
-                <button onClick={() => setPopup(null)} style={{ alignSelf: 'flex-end', background: '#f0f0f0', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+                <button onClick={() => setPopup(null)} style={{ alignSelf: 'flex-end', background: 'var(--bg3, #f0f0f0)', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text, #121212)' }}>×</button>
                 <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
                 {(popup.joueur || popup.annee || popup.marque || popup.equipe) && (
-                  <div style={{ background: '#f8f8f8', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <div style={{ background: 'var(--bg3, #f8f8f8)', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
                     {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>{popup.sport ? (SPORTS[popup.sport] || '🏀') : '🃏'} {popup.joueur}</p>}
-                    {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏟️ {popup.equipe}</p>}
-                    {popup.annee && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📅 {popup.annee}</p>}
-                    {popup.marque && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏷️ {popup.marque}</p>}
-                    {popup._source === 'galerie' && popup.collection && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📦 {popup.collection}{popup.variation ? ` · ${popup.variation}` : ''}</p>}
-                    {popup._source === 'galerie' && popup.grade && popup.grade !== 'Raw' && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>⭐ {popup.grade}{popup.cert_number ? ` · #${popup.cert_number}` : ''}</p>}
-                    {popup._source === 'galerie' && popup.num && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🔢 {popup.card_number || ''} {popup.num}</p>}
+                    {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🏟️ {popup.equipe}</p>}
+                    {popup.annee && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>📅 {popup.annee}</p>}
+                    {popup.marque && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🏷️ {popup.marque}</p>}
+                    {popup._source === 'galerie' && popup.collection && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>📦 {popup.collection}{popup.variation ? ` · ${popup.variation}` : ''}</p>}
+                    {popup._source === 'galerie' && popup.grade && popup.grade !== 'Raw' && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>⭐ {popup.grade}{popup.cert_number ? ` · #${popup.cert_number}` : ''}</p>}
+                    {popup._source === 'galerie' && popup.num && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🔢 {popup.card_number || ''} {popup.num}</p>}
                     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
                       {popup.rc && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
                       {popup.auto && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
@@ -538,7 +538,7 @@ export default function Trades() {
                     </div>
                   </div>
                 )}
-                {popup.description && <p style={{ fontSize: 14, color: '#555', lineHeight: 1.6, margin: 0 }}>{popup.description}</p>}
+                {popup.description && <p style={{ fontSize: 14, color: 'var(--text2, #555)', lineHeight: 1.6, margin: 0 }}>{popup.description}</p>}
                 {(() => {
                   const q = [popup.joueur || popup.titre, popup.annee, popup.marque, popup.rc ? 'RC' : '', popup.auto ? 'auto' : '', popup.patch ? 'patch' : '', popup.num ? 'numbered' : ''].filter(Boolean).join(' ')
                   return q ? (
@@ -548,12 +548,12 @@ export default function Trades() {
                     </a>
                   ) : null
                 })()}
-                <div style={{ borderTop: '1px solid #eee', paddingTop: 16 }}>
-                  <p style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', margin: '0 0 10px' }}>{t('trades_by')}</p>
+                <div style={{ borderTop: '1px solid var(--border, #eee)', paddingTop: 16 }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text3, #999)', textTransform: 'uppercase', margin: '0 0 10px' }}>{t('trades_by')}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                     <img src={popup.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(popup.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
-                      style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid #eee' }} alt="" />
-                    <Link href={`/galerie/${popup.profiles?.id}`} onClick={() => setPopup(null)} style={{ fontWeight: 800, fontSize: 15, color: '#121212', textDecoration: 'none' }}>
+                      style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border, #eee)' }} alt="" />
+                    <Link href={`/galerie/${popup.profiles?.id}`} onClick={() => setPopup(null)} style={{ fontWeight: 800, fontSize: 15, color: 'var(--text, #121212)', textDecoration: 'none' }}>
                       {popup.profiles?.display_name}
                     </Link>
                   </div>
@@ -573,7 +573,7 @@ export default function Trades() {
                       )}
                       {popup.lien_ebay && (
                         <a href={popup.lien_ebay} target="_blank" rel="noopener noreferrer" style={{
-                          flex: 1, background: 'white', border: '2px solid #e0e0e0', padding: '12px',
+                          flex: 1, background: 'var(--card-bg, #fff)', border: '2px solid var(--border, #e0e0e0)', padding: '12px',
                           borderRadius: 10, textDecoration: 'none',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}>
@@ -600,7 +600,7 @@ export default function Trades() {
                   {userId === popup.user_id && popup._source === 'galerie' && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                       <Link href={`/galerie/${userId}`} onClick={() => setPopup(null)} style={{
-                        background: '#f0f0f0', color: '#333', padding: '12px',
+                        background: 'var(--bg3, #f0f0f0)', color: 'var(--text, #333)', padding: '12px',
                         borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
                       }}>
                         🖼️ Voir dans ma galerie
@@ -613,7 +613,7 @@ export default function Trades() {
                   {userId === popup.user_id && !popup._source && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                       <Link href={`/trades/${popup.id}`} onClick={() => setPopup(null)} style={{
-                        background: '#f0f0f0', color: '#333', padding: '12px',
+                        background: 'var(--bg3, #f0f0f0)', color: 'var(--text, #333)', padding: '12px',
                         borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
                       }}>
                         ✏️ Modifier l'annonce
@@ -631,7 +631,7 @@ export default function Trades() {
                       </button>
                     </div>
                   )}
-                  <p style={{ fontSize: 11, color: '#bbb', textAlign: 'center', margin: 0 }}>
+                  <p style={{ fontSize: 11, color: 'var(--text3, #bbb)', textAlign: 'center', margin: 0 }}>
                     {t('trades_published')} {new Date(popup.created_at).toLocaleDateString(localeFor(lang))}
                   </p>
                 </div>

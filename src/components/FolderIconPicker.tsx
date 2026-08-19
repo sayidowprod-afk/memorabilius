@@ -34,7 +34,7 @@ export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: s
 
   return createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 3000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 18, width: '100%', maxWidth: 420, maxHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 18, width: '100%', maxWidth: 420, maxHeight: '80vh', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
           <button onClick={() => setTab('emoji')} style={tabStyle(tab === 'emoji')}>{t('folder_tab_emoji')}</button>
           <button onClick={() => setTab('team')} style={tabStyle(tab === 'team')}>{t('folder_tab_team')}</button>
@@ -46,7 +46,7 @@ export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: s
             {emojis.map((e, i) => (
               <button key={i} onClick={() => onPick(e)}
                 style={{ fontSize: 22, lineHeight: '38px', height: 38, background: 'none', border: 'none', cursor: 'pointer', borderRadius: 6 }}
-                onMouseEnter={ev => (ev.currentTarget.style.background = '#f0f0f0')}
+                onMouseEnter={ev => (ev.currentTarget.style.background = 'var(--bg3, #f0f0f0)')}
                 onMouseLeave={ev => (ev.currentTarget.style.background = 'none')}>
                 {e}
               </button>
@@ -62,7 +62,7 @@ export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: s
             <div style={{ overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(52px, 1fr))', gap: 6 }}>
               {teams.map(t => (
                 <button key={t.id} onClick={() => onPick(`team:${t.id}`)} title={t.name}
-                  style={{ background: '#f8f8f8', border: '1px solid #eee', borderRadius: 8, cursor: 'pointer', padding: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', height: 52 }}>
+                  style={{ background: 'var(--bg3, #f8f8f8)', border: '1px solid var(--border, #eee)', borderRadius: 8, cursor: 'pointer', padding: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', height: 52 }}>
                   <img src={teamLogoUrl(t)} alt={t.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                 </button>
               ))}
@@ -79,7 +79,7 @@ function tabStyle(active: boolean, small = false): React.CSSProperties {
   return {
     padding: small ? '5px 10px' : '7px 14px', borderRadius: 10, cursor: 'pointer',
     fontSize: small ? 12 : 13, fontWeight: 700,
-    border: active ? '2px solid #003DA6' : '2px solid #e0e0e0',
-    background: active ? '#003DA6' : 'white', color: active ? 'white' : '#333',
+    border: active ? '2px solid #003DA6' : '2px solid var(--border, #e0e0e0)',
+    background: active ? '#003DA6' : 'var(--card-bg, #fff)', color: active ? 'white' : 'var(--text2, #333)',
   }
 }

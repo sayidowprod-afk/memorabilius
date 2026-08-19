@@ -94,8 +94,8 @@ function CardGrid({
   emptyMsg: string
 }) {
   const { t } = useLang()
-  if (loading) return <div style={{ color: '#aaa', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>{t('setlist_loading')}</div>
-  if (cards.length === 0) return <div style={{ color: '#aaa', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>{emptyMsg}</div>
+  if (loading) return <div style={{ color: 'var(--text3, #aaa)', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>{t('setlist_loading')}</div>
+  if (cards.length === 0) return <div style={{ color: 'var(--text3, #aaa)', fontSize: 13, padding: '12px 0', textAlign: 'center' }}>{emptyMsg}</div>
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6, maxHeight: 180, overflowY: 'auto', padding: 2 }}>
       {cards.map(c => {
@@ -105,7 +105,7 @@ function CardGrid({
             title={`${c.nom} ${c.annee} ${c.isManuelle ? '' : '(CSV)'}`}
             style={{
               border: isSel ? '2.5px solid #003DA6' : '2px solid transparent',
-              borderRadius: 8, background: isSel ? '#e8f0ff' : '#f5f5f5',
+              borderRadius: 8, background: isSel ? '#e8f0ff' : 'var(--bg3, #f5f5f5)',
               padding: 3, cursor: 'pointer', position: 'relative',
               aspectRatio: '2.5/3.5', overflow: 'hidden',
             }}
@@ -134,7 +134,7 @@ function CardGrid({
   )
 }
 
-const selStyle: React.CSSProperties = { padding: '5px 8px', borderRadius: 8, border: '1.5px solid #e0e0e0', fontSize: 11, background: 'white', cursor: 'pointer', fontFamily: 'inherit' }
+const selStyle: React.CSSProperties = { padding: '5px 8px', borderRadius: 8, border: '1.5px solid var(--border, #e0e0e0)', fontSize: 11, background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', cursor: 'pointer', fontFamily: 'inherit' }
 
 function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: Filters; onChange: (f: Filters) => void }) {
   const { t } = useLang()
@@ -312,20 +312,20 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   }
 
   const sectionLabel = (label: string, count: number) => (
-    <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', color: '#888' }}>
+    <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', color: 'var(--text2, #888)' }}>
       {label} <span style={{ color: '#003DA6' }}>({count} {count > 1 ? t('trademodal_selected_suffix_plural') : t('trademodal_selected_suffix')})</span>
     </div>
   )
 
-  const inputStyle: React.CSSProperties = { border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box' }
+  const inputStyle: React.CSSProperties = { border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box', background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }
 
   const modal = (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto', boxSizing: 'border-box' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>{t('trademodal_title')}</h2>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#888' }}>✕</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
         </div>
 
         {/* Section : cartes du destinataire */}
@@ -338,7 +338,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
           <CardGrid cards={filteredTarget} selected={targetSelected} onToggle={toggleTarget} loading={targetLoading} emptyMsg={`${targetUserName} ${t('trademodal_no_cards_target')}`} />
         </div>
 
-        <div style={{ height: 1, background: '#f0f0f0' }} />
+        <div style={{ height: 1, background: 'var(--border, #f0f0f0)' }} />
 
         {/* Section : mes cartes */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -352,7 +352,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
 
         <textarea placeholder={t('trademodal_message_placeholder')} value={message} onChange={e => setMessage(e.target.value)}
           maxLength={300} rows={2}
-          style={{ resize: 'none', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}
+          style={{ resize: 'none', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none', background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }}
         />
 
         {error && <div style={{ color: '#c00', fontSize: 13, fontWeight: 600 }}>{error}</div>}

@@ -123,14 +123,14 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
     .filter(c => !fTags.patch || c.patch)
     .filter(c => !fTags.num || c.num)
 
-  const selectStyle: React.CSSProperties = { padding: '7px 10px', borderRadius: 8, border: '1.5px solid #e0e0e0', fontSize: 12, background: 'white', cursor: 'pointer' }
+  const selectStyle: React.CSSProperties = { padding: '7px 10px', borderRadius: 8, border: '1.5px solid var(--border, #e0e0e0)', fontSize: 12, background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', cursor: 'pointer' }
 
   return createPortal(
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 600, maxHeight: '86vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 16, padding: 20, width: '100%', maxWidth: 600, maxHeight: '86vh', display: 'flex', flexDirection: 'column', gap: 12, boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>🃏 {multi ? t('picker_title_multi') : t('gallery_choose_card')}</h3>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text3, #999)' }}>✕</button>
         </div>
 
         {/* Recherche + filtres */}
@@ -161,27 +161,27 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
             return (
               <button key={t.key} onClick={() => setFTags(prev => ({ ...prev, [t.key]: !prev[t.key] }))} style={{
                 padding: '6px 12px', borderRadius: 20, border: 'none', cursor: 'pointer', fontWeight: 900, fontSize: 11,
-                background: on ? t.bg : '#f0f0f0', color: on ? 'white' : '#555',
+                background: on ? t.bg : 'var(--bg3, #f0f0f0)', color: on ? 'white' : 'var(--text2, #555)',
               }}>{t.label}</button>
             )
           })}
           {(fTeam || fYear || fBrand || fCategory || search || fTags.rc || fTags.auto || fTags.patch || fTags.num) && (
             <button onClick={() => { setSearch(''); setFTeam(''); setFYear(''); setFBrand(''); setFCategory(''); setFTags({ rc: false, auto: false, patch: false, num: false }) }}
-              style={{ padding: '6px 12px', borderRadius: 20, border: '1px solid #e0e0e0', cursor: 'pointer', fontWeight: 700, fontSize: 11, background: 'white', color: '#888' }}>
+              style={{ padding: '6px 12px', borderRadius: 20, border: '1px solid var(--border, #e0e0e0)', cursor: 'pointer', fontWeight: 700, fontSize: 11, background: 'var(--card-bg, #fff)', color: 'var(--text2, #888)' }}>
               {t('picker_reset')}
             </button>
           )}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-          <span style={{ fontSize: 11, color: '#999' }}>{filtered.length} {filtered.length > 1 ? t('picker_card_plural') : t('picker_card_singular')}{multi && picked.length ? ` · ${picked.length} ${picked.length > 1 ? t('picker_selected_plural') : t('picker_selected')}` : ''}</span>
+          <span style={{ fontSize: 11, color: 'var(--text3, #999)' }}>{filtered.length} {filtered.length > 1 ? t('picker_card_plural') : t('picker_card_singular')}{multi && picked.length ? ` · ${picked.length} ${picked.length > 1 ? t('picker_selected_plural') : t('picker_selected')}` : ''}</span>
           {multi && filtered.length > 0 && (() => {
             const allSel = filtered.every(c => pickedKeys.has(c.key))
             return (
               <button onClick={() => {
                 if (allSel) { const fk = new Set(filtered.map(c => c.key)); setPicked(prev => prev.filter(p => !fk.has(p.key))) }
                 else setPicked(prev => { const have = new Set(prev.map(p => p.key)); return [...prev, ...filtered.filter(c => !have.has(c.key))] })
-              }} style={{ padding: '5px 12px', borderRadius: 20, border: `1.5px solid ${ACCENT}`, background: allSel ? ACCENT : 'white', color: allSel ? 'white' : ACCENT, cursor: 'pointer', fontWeight: 800, fontSize: 11 }}>
+              }} style={{ padding: '5px 12px', borderRadius: 20, border: `1.5px solid ${ACCENT}`, background: allSel ? ACCENT : 'var(--card-bg, #fff)', color: allSel ? 'white' : ACCENT, cursor: 'pointer', fontWeight: 800, fontSize: 11 }}>
                 {allSel ? t('picker_deselect_all') : `${t('picker_select_all')} (${filtered.length})`}
               </button>
             )
@@ -190,9 +190,9 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
 
         <div style={{ overflowY: 'auto', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))', gap: 10, alignContent: 'start' }}>
           {loading ? (
-            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>{t('setlist_loading')}</p>
+            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text3, #999)', padding: 20 }}>{t('setlist_loading')}</p>
           ) : filtered.length === 0 ? (
-            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>{t('picker_no_cards')}</p>
+            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text3, #999)', padding: 20 }}>{t('picker_no_cards')}</p>
           ) : filtered.map(c => {
             const sel = pickedKeys.has(c.key)
             return (
@@ -201,9 +201,9 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                   if (multi) setPicked(prev => sel ? prev.filter(p => p.key !== c.key) : [...prev, c])
                   else onSelect?.(c)
                 }}
-                style={{ cursor: 'pointer', borderRadius: 8, border: sel ? `2px solid ${ACCENT}` : '1px solid #eee', transition: '0.15s', position: 'relative', background: '#f4f4f4' }}
+                style={{ cursor: 'pointer', borderRadius: 8, border: sel ? `2px solid ${ACCENT}` : '1px solid var(--border, #eee)', transition: '0.15s', position: 'relative', background: 'var(--bg3, #f4f4f4)' }}
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = ACCENT }}
-                onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = '#eee' }}
+                onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = 'var(--border, #eee)' }}
               >
                 <img src={c.img} alt={c.nom} loading="lazy"
                   style={{ width: '100%', height: 140, objectFit: 'contain', display: 'block', borderRadius: '6px 6px 0 0' }} />

@@ -43,10 +43,10 @@ export default function LikedCards({ userId }: { userId: string }) {
       .eq('card_key', item.card_key).eq('gallery_user_id', item.gallery_user_id).eq('liker_user_id', userId)
   }
 
-  if (loading) return <p style={{ color: '#999', textAlign: 'center', padding: 40 }}>Chargement...</p>
+  if (loading) return <p style={{ color: 'var(--text3, #999)', textAlign: 'center', padding: 40 }}>Chargement...</p>
 
   if (items.length === 0) return (
-    <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
+    <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text3, #bbb)' }}>
       <div style={{ fontSize: 48, marginBottom: 12 }}>🤍</div>
       <p style={{ fontWeight: 700, fontSize: 16 }}>Aucune carte aimée pour le moment</p>
       <p style={{ fontSize: 13, marginTop: 4 }}>Likez des cartes dans les galeries pour les retrouver ici</p>
@@ -57,11 +57,11 @@ export default function LikedCards({ userId }: { userId: string }) {
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 16 }}>
       {items.map(item => (
         <div key={`${item.gallery_user_id}-${item.card_key}`} style={{
-          background: 'white', borderRadius: 12, overflow: 'hidden',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid #f0f0f0',
+          background: 'var(--card-bg, #fff)', borderRadius: 12, overflow: 'hidden',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid var(--border, #f0f0f0)',
         }}>
           <Link href={`/galerie/${item.gallery_user_id}?card=${encodeURIComponent(item.card_key)}`} style={{ display: 'block' }}>
-            <img src={item.card_key} alt="" style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block', background: '#f5f5f5' }} />
+            <img src={item.card_key} alt="" style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
           </Link>
           <div style={{ padding: '8px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
             <Link href={`/galerie/${item.gallery_user_id}`} style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', textDecoration: 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

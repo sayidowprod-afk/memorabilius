@@ -51,14 +51,14 @@ export default function Inscription() {
   }[pseudoStatus]
 
   return (
-    <div style={{ maxWidth: 460, margin: '60px auto' }}>
-      <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
+    <div style={{ maxWidth: 460, margin: '60px auto', padding: '0 16px', boxSizing: 'border-box' }}>
+      <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', maxWidth: '100%', boxSizing: 'border-box' }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 8 }}>{t('register_title')}</h1>
-        <p style={{ color: '#666', marginBottom: 30, fontSize: 14 }}>{t('register_sub')}</p>
+        <p style={{ color: 'var(--text2, #666)', marginBottom: 30, fontSize: 14 }}>{t('register_sub')}</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888' }}>{t('register_pseudo')}</label>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)' }}>{t('register_pseudo')}</label>
               {pseudoHint}
             </div>
             <input
@@ -70,11 +70,11 @@ export default function Inscription() {
             />
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
             <input type="email" required placeholder="votre@email.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
             <input type="password" required placeholder={t('signup_password_placeholder')} value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
@@ -83,7 +83,7 @@ export default function Inscription() {
           </button>
         </form>
         <OAuthButtons mode="inscription" />
-        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: '#666' }}>
+        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: 'var(--text2, #666)' }}>
           {t('register_have_account')} <Link href="/connexion" style={{ color: '#003DA6', fontWeight: 700 }}>{t('register_connect')}</Link>
         </p>
       </div>

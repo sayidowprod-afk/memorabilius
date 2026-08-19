@@ -26,13 +26,13 @@ function Bar({ label, count, max, color }: { label: string; count: number; max: 
   const pct = max > 0 ? (count / max) * 100 : 0
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
-      <div style={{ width: 90, fontSize: 11, fontWeight: 700, color: '#555', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right', flexShrink: 0 }}>
+      <div style={{ width: 90, fontSize: 11, fontWeight: 700, color: 'var(--text2, #555)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right', flexShrink: 0 }}>
         {label}
       </div>
-      <div style={{ flex: 1, background: '#f0f0f0', borderRadius: 4, height: 10, overflow: 'hidden' }}>
+      <div style={{ flex: 1, background: 'var(--bg3, #f0f0f0)', borderRadius: 4, height: 10, overflow: 'hidden' }}>
         <div style={{ width: `${pct}%`, height: '100%', background: color, borderRadius: 4, transition: '0.4s' }} />
       </div>
-      <div style={{ width: 28, fontSize: 11, fontWeight: 800, color: '#333', textAlign: 'right', flexShrink: 0 }}>
+      <div style={{ width: 28, fontSize: 11, fontWeight: 800, color: 'var(--text, #333)', textAlign: 'right', flexShrink: 0 }}>
         {count}
       </div>
     </div>
@@ -80,9 +80,9 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
   const gradedPct = stats.total > 0 ? Math.round((stats.graded / stats.total) * 100) : 0
 
   return (
-    <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 14, padding: '20px 22px', marginBottom: 20 }}>
+    <div style={{ background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 14, padding: '20px 22px', marginBottom: 20 }}>
       {/* Ligne sommaire */}
-      <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 18, paddingBottom: 16, borderBottom: '1px solid #f4f4f4' }}>
+      <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 18, paddingBottom: 16, borderBottom: '1px solid var(--border, #f4f4f4)' }}>
         {[
           { val: stats.total,  label: t('gallery_cards'),  color: accent },
           { val: stats.graded, label: t('stats_graded'), color: '#7b1fa2' },
@@ -93,7 +93,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         ].map(s => (
           <div key={s.label} style={{ textAlign: 'center', minWidth: 50 }}>
             <div style={{ fontSize: 24, fontWeight: 900, color: s.color }}>{s.val}</div>
-            <div style={{ fontSize: 9, fontWeight: 700, color: '#aaa', textTransform: 'uppercase' }}>{s.label}</div>
+            <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #aaa)', textTransform: 'uppercase' }}>{s.label}</div>
           </div>
         ))}
         {totalValeur != null && totalValeur > 0 && (
@@ -109,16 +109,16 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         {/* Gradées vs Raw */}
         {stats.graded > 0 && (
           <div>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
               {t('stats_graded_vs_raw')}
             </div>
             <div style={{ display: 'flex', height: 12, borderRadius: 6, overflow: 'hidden', marginBottom: 6 }}>
               <div style={{ width: `${gradedPct}%`, background: '#7b1fa2', transition: '0.4s' }} />
-              <div style={{ flex: 1, background: '#f0f0f0' }} />
+              <div style={{ flex: 1, background: 'var(--bg3, #f0f0f0)' }} />
             </div>
             <div style={{ display: 'flex', gap: 12, fontSize: 11 }}>
-              <span><b style={{ color: '#7b1fa2' }}>{stats.graded}</b> <span style={{ color: '#aaa' }}>{t('stats_graded').toLowerCase()} ({gradedPct}%)</span></span>
-              <span><b style={{ color: '#555' }}>{stats.raw}</b> <span style={{ color: '#aaa' }}>raw</span></span>
+              <span><b style={{ color: '#7b1fa2' }}>{stats.graded}</b> <span style={{ color: 'var(--text3, #aaa)' }}>{t('stats_graded').toLowerCase()} ({gradedPct}%)</span></span>
+              <span><b style={{ color: 'var(--text2, #555)' }}>{stats.raw}</b> <span style={{ color: 'var(--text3, #aaa)' }}>raw</span></span>
             </div>
             {stats.graded > 0 && (
               <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
@@ -130,7 +130,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
             )}
             {stats.psa > 0 && stats.topGrades.length > 0 && (
               <div style={{ marginTop: 10 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, color: '#ccc', textTransform: 'uppercase', marginBottom: 5 }}>{t('stats_psa_notes')}</div>
+                <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #ccc)', textTransform: 'uppercase', marginBottom: 5 }}>{t('stats_psa_notes')}</div>
                 {stats.topGrades.map(g => (
                   <Bar key={g.label} label={`PSA ${g.label}`} count={g.count} max={stats.topGrades[0]?.count ?? 1} color="#c0392b" />
                 ))}
@@ -142,7 +142,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         {/* Top marques */}
         {stats.topBrands.length > 0 && (
           <div>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
               {t('stats_brands')}
             </div>
             {stats.topBrands.map(b => (
@@ -154,7 +154,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         {/* Top années */}
         {stats.topYears.length > 0 && (
           <div>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
               {t('stats_years')}
             </div>
             {stats.topYears.map(y => (
@@ -166,7 +166,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         {/* Top équipes */}
         {stats.topTeams.length > 1 && (
           <div>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
               {t('stats_players_teams')}
             </div>
             {stats.topTeams.map(t => (

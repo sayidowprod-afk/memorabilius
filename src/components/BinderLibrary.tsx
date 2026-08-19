@@ -1129,7 +1129,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // ── Formulaire création / édition (partagé) ──
   const binderForm = formOpen !== null && (
     <div onClick={() => setFormOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? t('binder_new') : t('binder_edit_title')}</h3>
 
         {/* Aperçu couverture */}
@@ -1153,23 +1153,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Nom</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Nom</label>
           <input value={fName} onChange={e => setFName(e.target.value)} placeholder="Ex : Rookies 2024" autoFocus />
         </div>
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Sous-titre (optionnel)</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Sous-titre (optionnel)</label>
           <input value={fSubtitle} onChange={e => setFSubtitle(e.target.value)} placeholder="Ex : Panini Prizm" />
         </div>
 
         {formOpen === 'create' && (
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_pockets_per_page')}</label>
+            <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_pockets_per_page')}</label>
             <div style={{ display: 'flex', gap: 6 }}>
               {LAYOUTS.map(n => (
                 <button key={n} onClick={() => setFLayout(n)} style={{
                   flex: 1, padding: '8px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 800, fontSize: 13,
-                  border: fLayout === n ? `2px solid ${accent}` : '2px solid #e0e0e0',
-                  background: fLayout === n ? accent : 'white', color: fLayout === n ? 'white' : '#333',
+                  border: fLayout === n ? `2px solid ${accent}` : '2px solid var(--border, #e0e0e0)',
+                  background: fLayout === n ? accent : 'var(--card-bg, #fff)', color: fLayout === n ? 'white' : 'var(--text2, #333)',
                 }}>{n}</button>
               ))}
             </div>
@@ -1177,7 +1177,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_type')}</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_type')}</label>
           <div style={{ display: 'flex', gap: 8 }}>
             {([
               { id: 'portfolio', icon: '📕', title: t('binder_type_portfolio_title'), desc: t('binder_type_portfolio_desc') },
@@ -1185,18 +1185,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             ] as const).map(t => (
               <button key={t.id} type="button" onClick={() => setFType(t.id)} style={{
                 flex: 1, padding: '10px 8px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
-                border: fType === t.id ? `2px solid ${accent}` : '2px solid #e0e0e0',
-                background: fType === t.id ? `${accent}0d` : 'white',
+                border: fType === t.id ? `2px solid ${accent}` : '2px solid var(--border, #e0e0e0)',
+                background: fType === t.id ? `${accent}0d` : 'var(--card-bg, #fff)',
               }}>
-                <div style={{ fontSize: 15, fontWeight: 900, color: fType === t.id ? accent : '#333' }}>{t.icon} {t.title}</div>
-                <div style={{ fontSize: 10.5, color: '#888', marginTop: 2 }}>{t.desc}</div>
+                <div style={{ fontSize: 15, fontWeight: 900, color: fType === t.id ? accent : 'var(--text2, #333)' }}>{t.icon} {t.title}</div>
+                <div style={{ fontSize: 10.5, color: 'var(--text3, #888)', marginTop: 2 }}>{t.desc}</div>
               </button>
             ))}
           </div>
         </div>
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_color')}</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_color')}</label>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             {BINDER_COLORS.map(c => (
               <button key={c} onClick={() => setFColor(c)} style={{
@@ -1224,15 +1224,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               style={{ display: 'none' }}
             />
             {!BINDER_COLORS.includes(fColor) && (
-              <span style={{ fontSize: 11, color: '#888', fontFamily: 'monospace' }}>{fColor}</span>
+              <span style={{ fontSize: 11, color: 'var(--text3, #888)', fontFamily: 'monospace' }}>{fColor}</span>
             )}
           </div>
         </div>
 
         <div>
-          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>{t('binder_label_folder')}</label>
+          <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_folder')}</label>
           <select value={fFolderId ?? ''} onChange={e => setFFolderId(e.target.value ? Number(e.target.value) : null)}
-            style={{ width: '100%', padding: '9px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 13, fontWeight: 600, background: 'white', color: '#333', boxSizing: 'border-box' }}>
+            style={{ width: '100%', padding: '9px 10px', borderRadius: 8, border: '1.5px solid var(--border, #ddd)', fontSize: 13, fontWeight: 600, background: 'var(--card-bg, #fff)', color: 'var(--text2, #333)', boxSizing: 'border-box' }}>
             <option value="">{t('binder_folder_none_root')}</option>
             {folders.map(f => <option key={f.id} value={f.id}>📁 {f.name}</option>)}
           </select>
@@ -1244,7 +1244,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           style={{
             display: 'flex', alignItems: 'center', gap: 10, width: '100%',
             padding: '10px 14px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
-            border: '1.5px solid #ddd', background: fIsPublic ? '#f0f6ff' : '#fff8f0',
+            border: '1.5px solid var(--border, #ddd)', background: fIsPublic ? '#f0f6ff' : '#fff8f0',
           }}
         >
           <span style={{ fontSize: 18 }}>{fIsPublic ? '🌐' : '🔒'}</span>
@@ -1266,7 +1266,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     </div>
   )
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>{t('binder_loading')}</p>
+  if (loading) return <p style={{ textAlign: 'center', padding: 40, color: 'var(--text3, #999)' }}>{t('binder_loading')}</p>
 
   // ── Vue étagère ──
   if (!selected) {
@@ -1348,12 +1348,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         {isOwner && (
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, gap: 8 }}>
             {!isMobile && (
-              <span style={{ fontSize: 11, color: '#aaa', fontStyle: 'italic' }}>
+              <span style={{ fontSize: 11, color: 'var(--text3, #aaa)', fontStyle: 'italic' }}>
                 💡 Glisse un classeur sur une section pour l'y ranger
               </span>
             )}
             <button onClick={createFolder}
-              style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 10, padding: isMobile ? '10px 18px' : '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: '#888', marginLeft: 'auto' }}>
+              style={{ background: 'none', border: '1.5px dashed var(--border, #ccc)', borderRadius: 10, padding: isMobile ? '10px 18px' : '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: 'var(--text3, #888)', marginLeft: 'auto' }}>
               + Nouvelle section
             </button>
           </div>
@@ -1461,7 +1461,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
 
         {binders.length === 0 && !isOwner && (
-          <p style={{ textAlign: 'center', color: '#bbb', padding: 40 }}>Aucun classeur pour l'instant.</p>
+          <p style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: 40 }}>Aucun classeur pour l'instant.</p>
         )}
 
         {/* Aperçu flottant de la tranche pendant la réorganisation */}
@@ -1658,7 +1658,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 </button>
               )}
               {!pendingCard && (
-                <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
+                <button onClick={() => setShowComments(true)} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: dark ? '#ccc' : '#666' }}>
                   💬 Commentaires{commentCount > 0 ? ` (${commentCount})` : ''}
                 </button>
               )}
@@ -1710,13 +1710,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               </button>
               <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
               <button onClick={() => setShowQr(true)} title={t('binder_qrcode')} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
-              <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: '#666', lineHeight: 1 }}>
+              <button onClick={() => setShowComments(true)} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#666', lineHeight: 1 }}>
                 💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}
               </button>
               {isOwner && (
                 <div style={{ position: 'relative' }}>
                   <button onClick={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setOwnerMenuUp(r.bottom > window.innerHeight * 0.55); setShowOwnerMenu(v => !v) }}
-                    style={{ background: showOwnerMenu ? '#f0f0f0' : 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 12px', cursor: 'pointer', fontSize: 16, color: '#555', lineHeight: 1, fontWeight: 900 }}>
+                    style={{ background: showOwnerMenu ? (dark ? '#2a2a2a' : '#f0f0f0') : 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 12px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#555', lineHeight: 1, fontWeight: 900 }}>
                     ···
                   </button>
                   {showOwnerMenu && (
@@ -1904,7 +1904,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? t('binder_prev_page') : t('binder_close')}>
               ←<span className="binder-nav-label"> {canPrev ? t('binder_prev_page') : t('binder_close')}</span>
             </button>
-            <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>{pageLabel}</span>
+            <span style={{ fontSize: 12, color: 'var(--text3, #999)', whiteSpace: 'nowrap' }}>{pageLabel}</span>
             <div style={{ display: 'flex', gap: 8 }}>
               {isOwner && !canNext && (
                 <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label={t('binder_add_page')}>

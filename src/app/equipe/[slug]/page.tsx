@@ -122,7 +122,7 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
   if (!team) {
     return (
       <div style={{ maxWidth: 700, margin: '0 auto', padding: '80px 16px', textAlign: 'center', fontFamily: 'Inter, sans-serif' }}>
-        <h1 style={{ fontSize: 28, fontWeight: 900, color: '#111', marginBottom: 12 }}>Équipe introuvable</h1>
+        <h1 style={{ fontSize: 28, fontWeight: 900, color: 'var(--text, #111)', marginBottom: 12 }}>Équipe introuvable</h1>
         <Link href="/recherche" style={{ color: ACCENT, fontWeight: 700, textDecoration: 'none' }}>← Recherche</Link>
       </div>
     )
@@ -141,12 +141,12 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
           <div style={{ fontSize: 11, color: teamColor, fontWeight: 700, textTransform: 'uppercase', marginBottom: 4, letterSpacing: '0.08em' }}>
             {team.sport.toUpperCase()}
           </div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, margin: '0 0 10px', color: '#111' }}>{team.name}</h1>
+          <h1 style={{ fontSize: 36, fontWeight: 900, margin: '0 0 10px', color: 'var(--text, #111)' }}>{team.name}</h1>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 12, background: '#f0f4ff', color: ACCENT, padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
               {sets.length} sets
             </span>
-            <span style={{ fontSize: 12, background: '#f0f0f0', color: '#555', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+            <span style={{ fontSize: 12, background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #555)', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
               {communityCards.length} cartes en communauté
             </span>
           </div>
@@ -156,12 +156,12 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
       {/* Joueurs */}
       {players.length > 0 && (
         <section style={{ marginBottom: 40 }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: '#111' }}>Joueurs ({players.length})</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: 'var(--text, #111)' }}>Joueurs ({players.length})</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {players.map((p: any) => (
               <Link key={p.name} href={`/joueur/${playerSlug(p.name)}`} style={{ textDecoration: 'none' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'white', border: `2px solid ${teamColor}`, borderRadius: 50, padding: '5px 14px 5px 10px' }}>
-                  <span style={{ fontWeight: 800, fontSize: 13, color: '#121212' }}>{p.name}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'var(--card-bg, #fff)', border: `2px solid ${teamColor}`, borderRadius: 50, padding: '5px 14px 5px 10px' }}>
+                  <span style={{ fontWeight: 800, fontSize: 13, color: 'var(--text, #121212)' }}>{p.name}</span>
                   {p.isRc && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 700 }}>RC</span>}
                 </div>
               </Link>
@@ -173,11 +173,11 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
       {/* Cartes communauté */}
       {communityCards.length > 0 && (
         <section style={{ marginBottom: 40 }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: '#111' }}>Dans les collections ({communityCards.length})</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: 'var(--text, #111)' }}>Dans les collections ({communityCards.length})</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
             {communityCards.map((card: any) => (
               <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', border: '1px solid #eee' }}>
+                <div style={{ borderRadius: 10, overflow: 'hidden', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)' }}>
                   <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
                     <img src={card.img} alt={card.nom} style={card.is_horizontal ? {
                       position: 'absolute', width: '140%', height: '71.43%',
@@ -185,8 +185,8 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
                     } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   </div>
                   <div style={{ padding: '8px 10px' }}>
-                    <div style={{ fontSize: 11, fontWeight: 800, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
-                    <div style={{ fontSize: 10, color: '#999', marginTop: 2 }}>{card.display_name}</div>
+                    <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text, #111)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
+                    <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 2 }}>{card.display_name}</div>
                   </div>
                 </div>
               </Link>
@@ -198,13 +198,13 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
       {/* Sets */}
       {sets.length > 0 && (
         <section>
-          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: '#111' }}>Sets ({sets.length})</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: 'var(--text, #111)' }}>Sets ({sets.length})</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
             {sets.map((set: any) => (
               <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ background: 'white', borderRadius: 10, padding: '12px 16px', border: '1px solid #eee' }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: '#111', marginBottom: 3 }}>{set.name}</div>
-                  <div style={{ fontSize: 11, color: '#999' }}>
+                <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 10, padding: '12px 16px', border: '1px solid var(--border, #eee)' }}>
+                  <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--text, #111)', marginBottom: 3 }}>{set.name}</div>
+                  <div style={{ fontSize: 11, color: 'var(--text3, #999)' }}>
                     {set.year ? seasonLabel(set.year, set.sport) : ''}{set.brand ? ` · ${set.brand}` : ''} · {(set.sport || '').toUpperCase()}
                   </div>
                 </div>

@@ -36,24 +36,24 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
     >
       <div
         onClick={e => e.stopPropagation()}
-        style={{ background: '#fff', borderRadius: 18, padding: 28, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, maxWidth: 340, width: '100%' }}
+        style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 18, padding: 28, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, maxWidth: 340, width: '100%', boxSizing: 'border-box' }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h3 style={{ fontWeight: 800, fontSize: 16, margin: 0 }}>QR Code</h3>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#888' }}>✕</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
         </div>
 
-        <div style={{ fontSize: 13, color: '#555', textAlign: 'center', fontWeight: 600 }}>{title}</div>
+        <div style={{ fontSize: 13, color: 'var(--text2, #555)', textAlign: 'center', fontWeight: 600 }}>{title}</div>
 
         {dataUrl ? (
-          <img src={dataUrl} alt="QR Code" style={{ width: 220, height: 220, imageRendering: 'pixelated' }} />
+          <img src={dataUrl} alt="QR Code" style={{ width: 220, height: 220, imageRendering: 'pixelated', background: '#fff', borderRadius: 4 }} />
         ) : (
-          <div style={{ width: 220, height: 220, background: '#f5f5f5', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: 13 }}>
+          <div style={{ width: 220, height: 220, background: 'var(--bg3, #f5f5f5)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text3, #aaa)', fontSize: 13 }}>
             Génération…
           </div>
         )}
 
-        <div style={{ fontSize: 11, color: '#aaa', textAlign: 'center', wordBreak: 'break-all' }}>
+        <div style={{ fontSize: 11, color: 'var(--text3, #aaa)', textAlign: 'center', wordBreak: 'break-all' }}>
           memorabilius.fr{url.startsWith('http') ? '' : url}
         </div>
 
@@ -69,7 +69,7 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
           ⬇ Télécharger PNG
         </button>
 
-        <div style={{ fontSize: 11, color: '#bbb', textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: 'var(--text3, #bbb)', textAlign: 'center' }}>
           Imprime ce QR et colle-le sur ton classeur physique
         </div>
       </div>

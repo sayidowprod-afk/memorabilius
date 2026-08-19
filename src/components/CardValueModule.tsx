@@ -86,63 +86,63 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
 
   const ebayLink = (
     <a href={ebaySearchUrl} target="_blank" rel="noopener noreferrer"
-      style={{ fontSize: 10, fontWeight: 700, color: '#999', textDecoration: 'none',
+      style={{ fontSize: 10, fontWeight: 700, color: 'var(--text3, #999)', textDecoration: 'none',
         display: 'inline-flex', alignItems: 'center', gap: 3,
-        border: '1px solid #e8e8e8', borderRadius: 20, padding: '3px 9px', transition: '0.15s' }}
+        border: '1px solid var(--border, #e8e8e8)', borderRadius: 20, padding: '3px 9px', transition: '0.15s' }}
       onMouseEnter={e => (e.currentTarget.style.borderColor = '#bbb')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = '#e8e8e8')}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border, #e8e8e8)')}
     >
       eBay ↗
     </a>
   )
 
   return (
-    <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
+    <div style={{ borderTop: '1px solid var(--border, #eee)', paddingTop: 14, marginTop: 14 }}>
       {/* Header avec stats médiane */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>{t('cardvalue_market')}</span>
+        <span style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 1 }}>{t('cardvalue_market')}</span>
         {!loading && soldMedian > 0 && (
-          <span style={{ fontSize: 13, fontWeight: 900, color: '#2e7d32' }}>{soldMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>{t('cardvalue_sold_median')}</span></span>
+          <span style={{ fontSize: 13, fontWeight: 900, color: '#2e7d32' }}>{soldMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #aaa)' }}>{t('cardvalue_sold_median')}</span></span>
         )}
         {!loading && activeMedian > 0 && (
-          <span style={{ fontSize: 13, fontWeight: 900, color: accent }}>{activeMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>{t('cardvalue_asked_median')}</span></span>
+          <span style={{ fontSize: 13, fontWeight: 900, color: accent }}>{activeMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #aaa)' }}>{t('cardvalue_asked_median')}</span></span>
         )}
         <span style={{ marginLeft: 'auto' }}>{ebayLink}</span>
       </div>
 
       {loading && (
-        <div style={{ height: 4, background: '#f0f0f0', borderRadius: 2, overflow: 'hidden', marginBottom: 10 }}>
+        <div style={{ height: 4, background: 'var(--bg3, #f0f0f0)', borderRadius: 2, overflow: 'hidden', marginBottom: 10 }}>
           <div style={{ height: '100%', background: `linear-gradient(90deg,${accent}33,${accent},${accent}33)`,
             backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
         </div>
       )}
 
       {!loading && sold.length === 0 && active.length === 0 && (
-        <p style={{ fontSize: 11, color: '#ccc', margin: 0 }}>{t('cardvalue_no_listings')}</p>
+        <p style={{ fontSize: 11, color: 'var(--text3, #ccc)', margin: 0 }}>{t('cardvalue_no_listings')}</p>
       )}
 
       {/* Ventes conclues */}
       {sold.length > 0 && (
         <div style={{ marginBottom: 12 }}>
-          <div style={{ fontSize: 9, fontWeight: 800, color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
             {t('cardvalue_sold_completed')} ({sold.length})
           </div>
           <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
             {sold.map((item, i) => (
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
                 style={{ textDecoration: 'none', flexShrink: 0, width: 70 }}>
-                <div style={{ borderRadius: 6, overflow: 'hidden', border: '1.5px solid #e8e8e8',
-                  background: 'white', transition: '0.15s' }}
+                <div style={{ borderRadius: 6, overflow: 'hidden', border: '1.5px solid var(--border, #e8e8e8)',
+                  background: 'var(--card-bg, #fff)', transition: '0.15s' }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = '#2e7d32')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#e8e8e8')}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border, #e8e8e8)')}
                 >
                   {item.img
-                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: '#f5f5f5' }} />
-                    : <div style={{ width: '100%', aspectRatio: '1', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
+                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
+                    : <div style={{ width: '100%', aspectRatio: '1', background: 'var(--bg3, #f5f5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
                   }
                   <div style={{ padding: '4px 5px 5px' }}>
                     <div style={{ fontWeight: 900, fontSize: 12, color: '#2e7d32', lineHeight: 1.1 }}>{item.price}€</div>
-                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>{fmtDate(item.soldDate, lang)}</div>
+                    <div style={{ fontSize: 9, color: 'var(--text3, #aaa)', marginTop: 1 }}>{fmtDate(item.soldDate, lang)}</div>
                   </div>
                 </div>
               </a>
@@ -154,7 +154,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
       {/* Annonces actives */}
       {active.length > 0 && (
         <div>
-          <div style={{ fontSize: 9, fontWeight: 800, color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
             {t('cardvalue_active_listings')} ({active.length})
           </div>
           <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
@@ -162,17 +162,17 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
                 style={{ textDecoration: 'none', flexShrink: 0, width: 70 }}>
                 <div style={{ borderRadius: 6, overflow: 'hidden', border: `1.5px solid ${accent}44`,
-                  background: 'white', transition: '0.15s' }}
+                  background: 'var(--card-bg, #fff)', transition: '0.15s' }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = accent)}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = `${accent}44`)}
                 >
                   {item.img
-                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: '#f5f5f5' }} />
-                    : <div style={{ width: '100%', aspectRatio: '1', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
+                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
+                    : <div style={{ width: '100%', aspectRatio: '1', background: 'var(--bg3, #f5f5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
                   }
                   <div style={{ padding: '4px 5px 5px' }}>
                     <div style={{ fontWeight: 900, fontSize: 12, color: accent, lineHeight: 1.1 }}>{item.price}€</div>
-                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>{t('cardvalue_active_listings')}</div>
+                    <div style={{ fontSize: 9, color: 'var(--text3, #aaa)', marginTop: 1 }}>{t('cardvalue_active_listings')}</div>
                   </div>
                 </div>
               </a>

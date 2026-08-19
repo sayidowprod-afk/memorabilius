@@ -152,10 +152,10 @@ export default function EchangesPage() {
 
           const otherUserId = isSender ? trade.receiver_id : trade.sender_id
           return (
-            <div key={trade.id} style={{ background: '#fff', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1.5px solid #f0f0f0' }}>
+            <div key={trade.id} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1.5px solid var(--border, #f0f0f0)' }}>
               {/* Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text, #333)' }}>
                   {isSender ? `${t('trades_sent_to')} ${otherName}` : `${t('trades_received_from')} ${otherName}`}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -177,7 +177,7 @@ export default function EchangesPage() {
 
               {/* Message */}
               {trade.message && (
-                <div style={{ marginTop: 12, background: '#f8f8f8', borderRadius: 8, padding: '8px 12px', fontSize: 13, color: '#555' }}>
+                <div style={{ marginTop: 12, background: 'var(--bg3, #f8f8f8)', borderRadius: 8, padding: '8px 12px', fontSize: 13, color: 'var(--text2, #555)' }}>
                   💬 {trade.message}
                 </div>
               )}
@@ -186,7 +186,7 @@ export default function EchangesPage() {
               <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
                 <button
                   onClick={() => router.push(`/messages?to=${otherUserId}`)}
-                  style={{ border: '1.5px solid #003DA6', borderRadius: 50, padding: '9px 18px', background: '#fff', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                  style={{ border: '1.5px solid #003DA6', borderRadius: 50, padding: '9px 18px', background: 'var(--card-bg, #fff)', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
                 >
                   💬 Discuter
                 </button>
@@ -202,7 +202,7 @@ export default function EchangesPage() {
                     <button
                       disabled={acting !== null}
                       onClick={() => act(trade.id, 'refuse')}
-                      style={{ flex: 1, border: '2px solid #ccc', borderRadius: 50, padding: '10px', background: '#fff', color: '#555', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}
+                      style={{ flex: 1, border: '2px solid var(--border, #ccc)', borderRadius: 50, padding: '10px', background: 'var(--card-bg, #fff)', color: 'var(--text2, #555)', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}
                     >
                       {acting === trade.id + 'refuse' ? '…' : '✕ Refuser'}
                     </button>
@@ -212,7 +212,7 @@ export default function EchangesPage() {
                   <button
                     disabled={acting !== null}
                     onClick={() => act(trade.id, 'cancel')}
-                    style={{ border: '2px solid #ccc', borderRadius: 50, padding: '9px 20px', background: '#fff', color: '#888', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                    style={{ border: '2px solid var(--border, #ccc)', borderRadius: 50, padding: '9px 20px', background: 'var(--card-bg, #fff)', color: 'var(--text2, #888)', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
                   >
                     {acting === trade.id + 'cancel' ? '…' : 'Annuler l\'offre'}
                   </button>

@@ -52,8 +52,8 @@ function WishCard({ item, accent, isOwner, onRemove }: {
 
   return (
     <div style={{
-      background: 'white', borderRadius: 14, overflow: 'hidden',
-      boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1px solid #f0f0f0',
+      background: 'var(--card-bg, #fff)', borderRadius: 14, overflow: 'hidden',
+      boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1px solid var(--border, #f0f0f0)',
       display: 'flex', flexDirection: 'column', position: 'relative',
     }}>
       {/* Card image area */}
@@ -101,8 +101,8 @@ function WishCard({ item, accent, isOwner, onRemove }: {
 
       {/* Info area */}
       <div style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <div style={{ fontWeight: 800, fontSize: 13, lineHeight: 1.2, color: '#111' }}>{item.nom}</div>
-        <div style={{ fontSize: 11, color: '#999', lineHeight: 1.3 }}>
+        <div style={{ fontWeight: 800, fontSize: 13, lineHeight: 1.2, color: 'var(--text, #111)' }}>{item.nom}</div>
+        <div style={{ fontSize: 11, color: 'var(--text3, #999)', lineHeight: 1.3 }}>
           {[item.annee, item.marque, item.collection].filter(Boolean).join(' · ')}
         </div>
 
@@ -118,7 +118,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
         )}
 
         {item.notes && (
-          <div style={{ fontSize: 10, color: '#aaa', fontStyle: 'italic', lineHeight: 1.3 }}>
+          <div style={{ fontSize: 10, color: 'var(--text3, #aaa)', fontStyle: 'italic', lineHeight: 1.3 }}>
             &ldquo;{item.notes}&rdquo;
           </div>
         )}
@@ -126,7 +126,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
         {/* Possédée par */}
         {collectors && collectors.length > 0 && (
           <div style={{ marginTop: 'auto', paddingTop: 6 }}>
-            <div style={{ fontSize: 9, color: '#bbb', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>
+            <div style={{ fontSize: 9, color: 'var(--text3, #bbb)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>
               {t('wishlist_owned_by')}
             </div>
             <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
@@ -184,7 +184,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   }
 
   if (items.length === 0 && !isOwner) return (
-    <div style={{ textAlign: 'center', padding: '60px 20px', color: '#ccc' }}>
+    <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text3, #ccc)' }}>
       <div style={{ fontSize: 40, marginBottom: 8 }}>🎯</div>
       <p style={{ fontWeight: 700 }}>{t('wishlist_none')}</p>
     </div>
@@ -195,7 +195,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
       {isOwner && (
         <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'flex-end' }}>
           <button onClick={() => setShowForm(!showForm)} style={{
-            background: showForm ? '#eee' : accent, color: showForm ? '#333' : 'white',
+            background: showForm ? 'var(--bg3, #eee)' : accent, color: showForm ? 'var(--text2, #333)' : 'white',
             border: 'none', borderRadius: 10, padding: '10px 20px',
             fontWeight: 800, fontSize: 13, cursor: 'pointer',
           }}>
@@ -205,50 +205,50 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
       )}
 
       {showForm && isOwner && (
-        <div style={{ background: 'white', borderRadius: 14, padding: 20, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #eee' }}>
+        <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 14, padding: 20, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid var(--border, #eee)' }}>
           <h3 style={{ fontWeight: 800, margin: '0 0 14px', fontSize: 14 }}>{t('wishlist_new_wanted')}</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 10 }}>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
               <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
               <input value={form.annee} onChange={e => setForm(p => ({ ...p, annee: e.target.value }))} placeholder="2024-25" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_brand')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_brand')}</label>
               <input value={form.marque} onChange={e => setForm(p => ({ ...p, marque: e.target.value }))} placeholder="Panini" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_collection_label')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_collection_label')}</label>
               <input value={form.collection} onChange={e => setForm(p => ({ ...p, collection: e.target.value }))} placeholder="National Treasures" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_variation_label')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_variation_label')}</label>
               <input value={form.variation} onChange={e => setForm(p => ({ ...p, variation: e.target.value }))} placeholder="Holo" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_num_label')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_num_label')}</label>
               <input value={form.num} onChange={e => setForm(p => ({ ...p, num: e.target.value }))} placeholder="/99" />
             </div>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
               <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={t('wishlist_notes_placeholder')} />
             </div>
-            <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8 }}>
+            <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {(['rc', 'auto', 'patch'] as const).map(k => (
                 <button key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
                   padding: '6px 14px', border: 'none', borderRadius: 6, cursor: 'pointer',
                   fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
-                  background: form[k] ? (k === 'rc' ? '#e67e22' : k === 'auto' ? '#2e7d32' : '#1976d2') : '#f0f0f0',
-                  color: form[k] ? 'white' : '#333',
+                  background: form[k] ? (k === 'rc' ? '#e67e22' : k === 'auto' ? '#2e7d32' : '#1976d2') : 'var(--bg3, #f0f0f0)',
+                  color: form[k] ? 'white' : 'var(--text2, #333)',
                 }}>{k}</button>
               ))}
             </div>
           </div>
           <button onClick={save} disabled={saving || !form.nom.trim()} style={{
-            marginTop: 14, width: '100%', background: form.nom.trim() ? accent : '#ccc',
+            marginTop: 14, width: '100%', background: form.nom.trim() ? accent : 'var(--border, #ccc)',
             color: 'white', border: 'none', borderRadius: 10, padding: '11px',
             fontWeight: 800, fontSize: 13, cursor: form.nom.trim() ? 'pointer' : 'default',
           }}>
