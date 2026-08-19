@@ -99,12 +99,16 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       try {
         const challenge = currentChallenge()
         const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
-        const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { count: autoCount }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
+        // stats_total/rc/patch/num/auto viennent tous de profiles (recalculés chaque
+        // nuit par /api/recalcul-stats, CSV inclus) — `auto` faisait avant l'objet
+        // d'une requête live séparée sur cartes_manuelles uniquement, ratant les
+        // cartes auto importées par CSV (incohérent avec rc/patch/num, en plus d'une
+        // requête réseau de plus qui contribue au cold start).
+        const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
           Promise.all([
-            supabase.from('profiles').select('display_name, avatar_url, stats_total').eq('id', user.id).single(),
+            supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).single(),
             supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(1),
             supabase.rpc('get_user_badge_data', { p_user_id: user.id }),
-            supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('auto', true),
             supabase.rpc('bump_streak', { p_user_id: user.id }),
             supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()),
             supabase.rpc('get_user_xp_total', { p_user_id: user.id }),
@@ -129,7 +133,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           totalCards: profile?.stats_total || 0,
           lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
           nextBadge,
-          rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: autoCount ?? 0,
+          rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: profile?.stats_auto ?? 0,
           level,
           streak: streakRows?.[0]?.current_streak ?? 0,
           challenge,
