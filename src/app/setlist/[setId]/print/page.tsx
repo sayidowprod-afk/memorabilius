@@ -9,6 +9,7 @@ interface Entry {
   id: number
   card_number: string | null
   player_name: string
+  team: string | null
   variation: string | null
   is_rc: boolean
 }
@@ -34,18 +35,33 @@ const HEADER_H_MM = 13
 const HEADER_GAP_MM = 3
 const LOGO_ASPECT = 21924 / 4866
 
+// Header de l'aperçu écran uniquement (le PDF/JPG exporté dessine son propre
+// en-tête via stampHeader() sur le canvas, indépendant de ce composant) —
+// deux variantes selon la taille d'écran : cadre compact avec logo sur
+// mobile (garde l'aperçu "feuille A4"), en-tête centré type ancien design
+// sur desktop (texte "MEMORABILIUS.FR" au lieu du logo).
 function Header({ set, ownedCount, entriesLength, userId, t }: { set: CardSet; ownedCount: number; entriesLength: number; userId: string | null; t: (k: TranslationKey) => string }) {
+  const meta = (
+    <>
+      {SPORT_LABEL[set.sport] || set.sport}{set.year ? ` · ${set.year}` : ''}{set.brand ? ` · ${set.brand}` : ''} · {set.total_cards.toLocaleString()} {t('setlistdetail_cards')}
+      {userId && <> · {ownedCount} / {entriesLength} {t('setlistdetail_owned')}</>}
+    </>
+  )
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, borderBottom: '2px solid #111', paddingBottom: 8 }}>
-      <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ height: 22, width: 'auto', flexShrink: 0 }} />
-      <div style={{ textAlign: 'left', flex: 1, minWidth: 0 }}>
-        <h1 style={{ fontSize: 15, fontWeight: 900, margin: '0 0 2px', color: '#111' }}>{set.name}</h1>
-        <div style={{ fontSize: 10, color: '#666' }}>
-          {SPORT_LABEL[set.sport] || set.sport}{set.year ? ` · ${set.year}` : ''}{set.brand ? ` · ${set.brand}` : ''} · {set.total_cards.toLocaleString()} {t('setlistdetail_cards')}
-          {userId && <> · {ownedCount} / {entriesLength} {t('setlistdetail_owned')}</>}
+    <>
+      <div className="print-header-mobile" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, borderBottom: '2px solid #111', paddingBottom: 8 }}>
+        <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ height: 22, width: 'auto', flexShrink: 0 }} />
+        <div style={{ textAlign: 'left', flex: 1, minWidth: 0 }}>
+          <h1 style={{ fontSize: 15, fontWeight: 900, margin: '0 0 2px', color: '#111' }}>{set.name}</h1>
+          <div style={{ fontSize: 10, color: '#666' }}>{meta}</div>
         </div>
       </div>
-    </div>
+      <div className="print-header-desktop" style={{ textAlign: 'center', marginBottom: 18, borderBottom: '2px solid #111', paddingBottom: 14 }}>
+        <a href="/" style={{ fontSize: 12, fontWeight: 800, color: '#003DA6', letterSpacing: '0.5px', textDecoration: 'none' }}>MEMORABILIUS.FR</a>
+        <h1 style={{ fontSize: 26, fontWeight: 900, margin: '6px 0 4px', color: '#111' }}>{set.name}</h1>
+        <div style={{ fontSize: 13, color: '#666' }}>{meta}</div>
+      </div>
+    </>
   )
 }
 
@@ -88,6 +104,22 @@ function CardRow({ e, owned }: { e: Entry; owned: boolean }) {
         {e.card_number && <strong>{e.card_number} </strong>}
         {e.player_name}
         {e.is_rc && <span style={{ fontWeight: 800 }}> RC</span>}
+      </span>
+    </div>
+  )
+}
+
+// Variante écran uniquement (affiche l'équipe) — l'export PDF/JPG continue
+// d'utiliser CardRow/UnitRow tels quels, indépendants de ce composant.
+function ScreenCardRow({ e, owned }: { e: Entry; owned: boolean }) {
+  return (
+    <div className="unit-row" style={{ ...ROW_STYLE, display: 'flex', alignItems: 'center', gap: 5 }}>
+      <span style={{ flexShrink: 0, width: 10, height: 10, border: '1.2px solid #333', borderRadius: 2, background: owned ? '#111' : 'white' }} />
+      <span style={{ color: '#111', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        {e.card_number && <strong>{e.card_number} </strong>}
+        {e.player_name}
+        {e.is_rc && <span style={{ fontWeight: 800 }}> RC</span>}
+        {e.team && <span style={{ color: '#999', fontWeight: 400 }}> ({e.team})</span>}
       </span>
     </div>
   )
@@ -147,7 +179,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
     for (let from = 0; ; from += PAGE) {
       const { data: page } = await supabase
         .from('card_set_entries')
-        .select('id, card_number, player_name, variation, is_rc')
+        .select('id, card_number, player_name, team, variation, is_rc')
         .eq('set_id', setId)
         .range(from, from + PAGE - 1)
       if (!page?.length) break
@@ -347,18 +379,41 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         /* Cette checklist est toujours conçue pour être imprimée/exportée sur
            fond blanc — on neutralise ici la surcharge CSS globale du mode
            sombre (qui recolore tout élément avec un style inline "blanc" en
-           fond sombre) pour ce conteneur précis. Sélecteurs ancrés sur l'#id
-           du contenu pour être garantis plus spécifiques que les règles
-           globales (elles-mêmes en !important) quel que soit leur ordre
-           d'apparition dans la feuille de style.
+           fond sombre) pour l'aperçu écran (#setlist-print-content) ET pour
+           les noeuds hors-écran capturés par html2canvas lors de l'export
+           PDF/JPG (.export-page) — sans ce deuxième volet, l'export généré
+           en thème sombre restait cassé même une fois l'aperçu corrigé.
+           Sélecteurs ancrés sur l'#id / la classe dédiée pour être garantis
+           plus spécifiques que les règles globales (elles-mêmes en
+           !important) quel que soit leur ordre d'apparition dans la feuille
+           de style.
         */
-        [data-theme="dark"] #setlist-print-content { background: white !important; }
+        [data-theme="dark"] #setlist-print-content,
+        [data-theme="dark"] #setlist-export-root .export-page { background: white !important; }
         [data-theme="dark"] #setlist-print-content div,
-        [data-theme="dark"] #setlist-print-content h1 { color: #111 !important; }
+        [data-theme="dark"] #setlist-print-content h1,
+        [data-theme="dark"] #setlist-export-root div { color: #111 !important; }
         [data-theme="dark"] #setlist-print-content div[style*="666"],
-        [data-theme="dark"] #setlist-print-content div[style*="102, 102, 102"] { color: #666 !important; }
+        [data-theme="dark"] #setlist-print-content div[style*="102, 102, 102"],
+        [data-theme="dark"] #setlist-export-root div[style*="666"],
+        [data-theme="dark"] #setlist-export-root div[style*="102, 102, 102"] { color: #666 !important; }
         [data-theme="dark"] #setlist-print-content div[style*="003DA6"],
-        [data-theme="dark"] #setlist-print-content div[style*="0, 61, 166"] { color: #003DA6 !important; }
+        [data-theme="dark"] #setlist-print-content div[style*="0, 61, 166"],
+        [data-theme="dark"] #setlist-export-root div[style*="003DA6"],
+        [data-theme="dark"] #setlist-export-root div[style*="0, 61, 166"] { color: #003DA6 !important; }
+        /* Aperçu écran : cadre "feuille A4" compact sur mobile (défilement
+           horizontal, voir .a4-frame-scroll plus haut), mise en page pleine
+           largeur façon ancien design sur desktop — n'affecte jamais
+           l'export PDF/JPG, qui utilise ses propres noeuds hors-écran
+           (.export-page) indépendants de ce conteneur. */
+        .print-header-desktop { display: none; }
+        @media (min-width: 900px) {
+          .print-header-mobile { display: none !important; }
+          .print-header-desktop { display: block; }
+          .a4-frame-scroll { overflow-x: visible; }
+          .a4-frame { width: 100% !important; max-width: 1400px !important; border: none !important; box-shadow: none !important; }
+          #setlist-print-content { padding: 0 !important; }
+        }
         @media print {
           nav, footer, .no-print, [class*="MobileTopBar"], [class*="MobileBottomNav"] { display: none !important; }
           main { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
@@ -442,7 +497,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
                           <span className="no-print" style={{ fontSize: 11, color: '#bbb', fontWeight: 700, textTransform: 'none', letterSpacing: 0 }}>({g.items.length})</span>
                         </div>
                       </div>
-                      {g.items.map(e => <CardRow key={e.id} e={e} owned={owned.has(e.id)} />)}
+                      {g.items.map(e => <ScreenCardRow key={e.id} e={e} owned={owned.has(e.id)} />)}
                     </div>
                   )
                 })}
@@ -460,8 +515,8 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
       {/* Hors-écran : deux lignes témoins pour mesurer le pas vertical exact. */}
       {exporting && createPortal(
         <div ref={measureRootRef} style={{ position: 'fixed', left: -99999, top: 0, width: '50mm' }}>
-          <UnitRow u={{ kind: 'card', entry: { id: -1, card_number: '1', player_name: 'X', variation: null, is_rc: false } }} owned={false} />
-          <UnitRow u={{ kind: 'card', entry: { id: -2, card_number: '2', player_name: 'X', variation: null, is_rc: false } }} owned={false} />
+          <UnitRow u={{ kind: 'card', entry: { id: -1, card_number: '1', player_name: 'X', team: null, variation: null, is_rc: false } }} owned={false} />
+          <UnitRow u={{ kind: 'card', entry: { id: -2, card_number: '2', player_name: 'X', team: null, variation: null, is_rc: false } }} owned={false} />
         </div>,
         document.body
       )}
@@ -470,7 +525,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           calculées par écoulement séquentiel, sans en-tête ici — l'en-tête
           est redessiné après capture via l'API Canvas), capturé séparément. */}
       {exporting && createPortal(
-        <div ref={captureRootRef} style={{ position: 'fixed', left: -99999, top: 0 }}>
+        <div ref={captureRootRef} id="setlist-export-root" style={{ position: 'fixed', left: -99999, top: 0 }}>
           {exportPages.map((cols, pi) => (
             <div key={pi} className="export-page" style={{ width: `${210 - SIDE_PAD_MM * 2}mm`, background: 'white' }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
