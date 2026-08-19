@@ -3,6 +3,7 @@ import { useEffect, useState, use, useRef, CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { useLang, TranslationKey } from '@/lib/LangContext'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 interface Entry {
   id: number
@@ -310,13 +311,14 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         return page
       }
 
+      // <a download> et pdf.save() reposent sur le téléchargement navigateur, qui
+      // n'existe pas dans la WebView Android — saveOrShareFile gère le fallback
+      // natif (écriture + partage) automatiquement selon la plateforme.
       if (kind === 'jpg') {
         for (let p = 0; p < pageNodes.length; p++) {
           const page = await renderPage(pageNodes[p])
-          const link = document.createElement('a')
-          link.download = pageNodes.length > 1 ? `${filename}-page${p + 1}.jpg` : `${filename}.jpg`
-          link.href = page.toDataURL('image/jpeg', 0.92)
-          link.click()
+          const name = pageNodes.length > 1 ? `${filename}-page${p + 1}.jpg` : `${filename}.jpg`
+          await saveOrShareFile(page.toDataURL('image/jpeg', 0.92), name)
           if (p < pageNodes.length - 1) await new Promise(r => setTimeout(r, 200))
         }
       } else {
@@ -327,7 +329,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           if (p > 0) pdf.addPage()
           pdf.addImage(page.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 210, 297)
         }
-        pdf.save(`${filename}.pdf`)
+        await saveOrShareFile(pdf.output('blob'), `${filename}.pdf`)
       }
     } finally {
       setExportPhase('idle')
