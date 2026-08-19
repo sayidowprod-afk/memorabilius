@@ -77,11 +77,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   const { user } = useAuth()
   const { t } = useLang()
   const [data, setData] = useState<DashboardData | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [retryKey, setRetryKey] = useState(0)
   const [showXpInfo, setShowXpInfo] = useState(false)
 
   useEffect(() => {
     if (!user) return
     let cancelled = false
+    setFailed(false)
 
     // Juste après un cold start Android, le WebView peut redémarrer avant que le
     // réseau (DNS/TLS) ne soit vraiment prêt : ces requêtes peuvent alors échouer
@@ -134,15 +137,39 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1200 * attempt)
         } else {
           console.error('[NativeHomeDashboard] load failed after retries', e)
+          setFailed(true)
         }
       }
     }
     load(1)
     return () => { cancelled = true }
-  }, [user])
+  }, [user, retryKey])
 
   if (!data) {
-    return <div style={{ background: 'var(--bg, #f8f9fa)', minHeight: 420 }} />
+    // Sans filet visible ici, un échec réseau réel (pas juste un cold start)
+    // laissait l'utilisateur bloqué sur une boîte vide indéfiniment, sans
+    // indication ni moyen de réessayer autrement qu'un F5 manuel.
+    if (failed) {
+      return (
+        <div style={{ background: 'var(--bg, #f8f9fa)', minHeight: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, padding: 24, textAlign: 'center' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text2, #777)' }}>{t('dashboard_load_error')}</div>
+          <button onClick={() => setRetryKey(k => k + 1)}
+            style={{ padding: '10px 22px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+            {t('dashboard_retry')}
+          </button>
+        </div>
+      )
+    }
+    return (
+      <div style={{ background: 'var(--bg, #f8f9fa)', minHeight: 420, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{
+          width: 30, height: 30, borderRadius: '50%',
+          border: '3px solid var(--border, #e0e0e0)', borderTopColor: '#003DA6',
+          animation: 'spin 0.8s linear infinite',
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    )
   }
 
   const galleryStats = [

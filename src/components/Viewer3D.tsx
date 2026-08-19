@@ -701,7 +701,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; transition: none; }
           .viewer-zone { flex: 0 0 78%; width: 100% !important; min-height: 0; }
-          .viewer-info { flex: 0 0 22%; width: 100% !important; min-height: 0; padding: 18px 14px 8px !important; justify-content: flex-start !important; overflow-y: auto !important; position: relative; }
+          .viewer-info { flex: 0 0 22%; width: 100% !important; min-height: 0; padding: 18px 14px calc(8px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))) !important; justify-content: flex-start !important; overflow-y: auto !important; position: relative; }
           .viewer-info h2 { font-size: 1.15rem !important; margin: 2px 0 !important; }
           .viewer-info label { font-size: 10.5px !important; }
           .viewer-info-value { font-size: 13.5px !important; }
@@ -710,7 +710,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-card--slab { width: min(256px, 61vw) !important; height: min(420px, 100.8vw) !important; }
           .viewer-hint { display: none !important; }
           .viewer-layout--info-expanded .viewer-zone { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 0% !important; opacity: 0; pointer-events: none; }
-          .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
+          .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; padding-bottom: calc(20px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))) !important; }
           .viewer-info-handle {
             position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
             width: 44px; height: 22px; display: flex; align-items: center; justify-content: center;

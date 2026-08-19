@@ -124,6 +124,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
     supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
   }, [])
 
+
   useEffect(() => {
     // Précharge le logo comme élément Image indépendant du DOM : on le
     // dessine nous-mêmes sur chaque page exportée via l'API Canvas, plutôt
@@ -343,19 +344,35 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   return (
     <div className="setlist-print-page">
       <style jsx global>{`
+        /* Cette checklist est toujours conçue pour être imprimée/exportée sur
+           fond blanc — on neutralise ici la surcharge CSS globale du mode
+           sombre (qui recolore tout élément avec un style inline "blanc" en
+           fond sombre) pour ce conteneur précis. Sélecteurs ancrés sur l'#id
+           du contenu pour être garantis plus spécifiques que les règles
+           globales (elles-mêmes en !important) quel que soit leur ordre
+           d'apparition dans la feuille de style.
+        */
+        [data-theme="dark"] #setlist-print-content { background: white !important; }
+        [data-theme="dark"] #setlist-print-content div,
+        [data-theme="dark"] #setlist-print-content h1 { color: #111 !important; }
+        [data-theme="dark"] #setlist-print-content div[style*="666"],
+        [data-theme="dark"] #setlist-print-content div[style*="102, 102, 102"] { color: #666 !important; }
+        [data-theme="dark"] #setlist-print-content div[style*="003DA6"],
+        [data-theme="dark"] #setlist-print-content div[style*="0, 61, 166"] { color: #003DA6 !important; }
         @media print {
           nav, footer, .no-print, [class*="MobileTopBar"], [class*="MobileBottomNav"] { display: none !important; }
           main { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
           body { background: white !important; }
           .setlist-print-page { padding: 0 !important; }
-          .a4-frame { box-shadow: none !important; border: none !important; max-width: 100% !important; }
+          .a4-frame-scroll { overflow: visible !important; }
+          .a4-frame { box-shadow: none !important; border: none !important; max-width: 100% !important; width: 100% !important; }
           #setlist-print-content { padding: 0 !important; }
           [data-variation-active="false"] { display: none !important; }
         }
         @page { size: A4; margin: 14mm 10mm; }
       `}</style>
 
-      <div className="no-print" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
+      <div className="no-print" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20, position: 'sticky', top: 0, zIndex: 20, background: 'var(--bg, white)', padding: '10px 0' }}>
         <button onClick={() => window.print()}
           style={{ padding: '10px 20px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
           🖨️ {t('setlistprint_button')}
@@ -377,9 +394,15 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           ))}
         </div>
         {allVariationNames.length > 1 && (
-          <div style={{ display: 'flex', gap: 10, marginLeft: 'auto' }}>
-            <button onClick={() => setSelectedVariations(new Set(allVariationNames))} style={{ border: 'none', background: 'none', color: '#003DA6', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>{t('setlistprint_select_all')}</button>
-            <button onClick={() => setSelectedVariations(new Set())} style={{ border: 'none', background: 'none', color: '#888', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>{t('setlistprint_select_none')}</button>
+          <div style={{ display: 'flex', gap: 6, marginLeft: 'auto' }}>
+            <button onClick={() => setSelectedVariations(new Set(allVariationNames))}
+              style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+              {t('setlistprint_select_all')}
+            </button>
+            <button onClick={() => setSelectedVariations(new Set())}
+              style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#888', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+              {t('setlistprint_select_none')}
+            </button>
           </div>
         )}
         {!userId && <span style={{ fontSize: 12, color: '#aaa' }}>{t('setlistprint_login_hint')}</span>}
@@ -393,7 +416,11 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
       {/* Vue écran : toutes les variations restent affichées en permanence,
           en mise en page multi-colonnes (fiable, pas de `columns` CSS). La
           case à cocher ne sert qu'à choisir ce qui part à l'impression/export. */}
-      <div className="a4-frame" style={{ maxWidth: '210mm', margin: '0 auto', boxShadow: '0 4px 24px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
+      {/* Le contenu garde toujours sa largeur A4 réelle (pas de compression sur
+          mobile qui rendrait le texte illisible) — sur petit écran, l'utilisateur
+          fait défiler horizontalement plutôt que de voir 4 colonnes écrasées. */}
+      <div className="a4-frame-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div className="a4-frame" style={{ width: '210mm', maxWidth: '210mm', margin: '0 auto', boxShadow: '0 4px 24px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
         <div id="setlist-print-content" style={{ background: 'white', padding: '14mm 10mm', boxSizing: 'border-box' }}>
           <Header set={set} ownedCount={ownedCount} entriesLength={entries.length} userId={userId} t={t} />
 
@@ -426,6 +453,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           {groups.length === 0 && (
             <div style={{ textAlign: 'center', padding: 40, color: '#aaa' }}>{t('setlistdetail_no_cards')}</div>
           )}
+        </div>
         </div>
       </div>
 
