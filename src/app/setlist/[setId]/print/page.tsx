@@ -152,6 +152,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
   const [loading, setLoading] = useState(true)
   const [filterMode, setFilterMode] = useState<'all' | 'owned' | 'missing'>('all')
   const [filterTeam, setFilterTeam] = useState<string>('')
+  const [filterPlayer, setFilterPlayer] = useState<string>('')
   const [selectedVariations, setSelectedVariations] = useState<Set<string> | null>(null)
   const [exportPhase, setExportPhase] = useState<'idle' | 'pdf' | 'jpg'>('idle')
   const [exportPages, setExportPages] = useState<Unit[][][]>([])
@@ -228,6 +229,9 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
 
   const allVariationNames = Array.from(new Set(entries.map(e => e.variation || 'Base'))).sort((a, b) => a === 'Base' ? -1 : b === 'Base' ? 1 : a.localeCompare(b))
   const allTeamNames = Array.from(new Set(entries.map(e => e.team).filter((v): v is string => !!v))).sort((a, b) => a.localeCompare(b))
+  const allPlayerNamesForTeam = filterTeam
+    ? Array.from(new Set(entries.filter(e => e.team === filterTeam).map(e => e.player_name))).sort((a, b) => a.localeCompare(b))
+    : []
   const activeVariations = selectedVariations || new Set(allVariationNames)
   const ownedCount = entries.filter(e => owned.has(e.id)).length
 
@@ -246,6 +250,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
     if (filterMode === 'owned' && !owned.has(e.id)) return false
     if (filterMode === 'missing' && owned.has(e.id)) return false
     if (filterTeam && e.team !== filterTeam) return false
+    if (filterPlayer && e.player_name !== filterPlayer) return false
     return true
   })
   const groups: Group[] = []
@@ -463,7 +468,7 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
           ))}
         </div>
         {allTeamNames.length > 1 && (
-          <select value={filterTeam} onChange={e => setFilterTeam(e.target.value)}
+          <select value={filterTeam} onChange={e => { setFilterTeam(e.target.value); setFilterPlayer('') }}
             style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
             <option value="">{t('setlistprint_all_teams')}</option>
             {allTeamNames.map(team => <option key={team} value={team}>{team}</option>)}
@@ -483,6 +488,15 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         )}
         {!userId && <span style={{ fontSize: 12, color: '#aaa' }}>{t('setlistprint_login_hint')}</span>}
       </div>
+      {filterTeam && allPlayerNamesForTeam.length > 1 && (
+        <div className="no-print" style={{ marginBottom: 20 }}>
+          <select value={filterPlayer} onChange={e => setFilterPlayer(e.target.value)}
+            style={{ padding: '9px 14px', borderRadius: 8, border: '1.5px solid #e0e0e0', background: 'white', color: '#333', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+            <option value="">{t('setlistprint_all_players')}</option>
+            {allPlayerNamesForTeam.map(name => <option key={name} value={name}>{name}</option>)}
+          </select>
+        </div>
+      )}
       {selectedUnits.length === 0 && (
         <div className="no-print" style={{ fontSize: 12, color: '#e67e22', marginBottom: 12 }}>
           {t('setlistprint_pick_hint')}
