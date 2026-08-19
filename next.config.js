@@ -11,7 +11,13 @@ const nextConfig = {
     { protocol: 'https', hostname: '*.googleusercontent.com' },
     { protocol: 'https', hostname: 'placehold.co' },
   ],
-  minimumCacheTTL: 86400,
+  // Les photos de cartes ne changent quasiment jamais une fois uploadees :
+  // 1 jour de cache forcait Vercel a retransformer (et re-facturer) la meme
+  // image chaque jour pour rien. 1 an -> les transformations ne sont payees
+  // qu'une fois par image/taille, plus jamais reevaluees a moins d'un nouvel
+  // upload (nouvelle URL). C'est le plus gros poste de cout du plan (Image
+  // Optimization Transformation + Cache Writes, ~10e/mois).
+  minimumCacheTTL: 31536000,
   // Le seul next/image optimisé du site est la vignette de galerie
   // (GalerieClient.tsx, sizes="150px, 220px") — les deviceSizes par défaut de
   // Next commencent à 640px, donc chaque vignette de 150-220px affichée était
