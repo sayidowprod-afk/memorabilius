@@ -27,6 +27,10 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
 
   const updateAt = (i: number, b: GuideBlock) => onChange(blocks.map((x, idx) => (idx === i ? b : x)))
   const removeAt = (i: number) => onChange(blocks.filter((_, idx) => idx !== i))
+  const duplicateAt = (i: number) => {
+    const copy = JSON.parse(JSON.stringify(blocks[i])) as GuideBlock
+    onChange([...blocks.slice(0, i + 1), copy, ...blocks.slice(i + 1)])
+  }
   const moveAt = (i: number, dir: -1 | 1) => {
     const j = i + dir
     if (j < 0 || j >= blocks.length) return
@@ -55,6 +59,7 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
             <div style={{ display: 'flex', gap: 6 }}>
               <button type="button" style={smallBtn} disabled={i === 0} onClick={() => moveAt(i, -1)}>↑</button>
               <button type="button" style={smallBtn} disabled={i === blocks.length - 1} onClick={() => moveAt(i, 1)}>↓</button>
+              <button type="button" style={smallBtn} onClick={() => duplicateAt(i)} title="Dupliquer ce bloc">⧉ Dupliquer</button>
               <button type="button" style={{ ...smallBtn, color: '#e74c3c', borderColor: '#e74c3c' }} onClick={() => removeAt(i)}>Supprimer</button>
             </div>
           </div>

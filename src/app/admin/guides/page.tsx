@@ -50,6 +50,24 @@ export default function AdminGuidesPage() {
     loadAll()
   }
 
+  const duplicate = async (g: Guide) => {
+    const { data: full } = await supabase.from('guides')
+      .select('title, excerpt, cover_image, category, content, blocks')
+      .eq('id', g.id).single()
+    if (!full) return
+    const slug = `${g.slug}-copie-${Date.now().toString(36)}`
+    const { data: created, error } = await supabase.from('guides').insert({
+      ...full,
+      title: `${full.title} (copie)`,
+      slug,
+      published: false,
+      published_at: new Date().toISOString(),
+    }).select('id').single()
+    if (error) { alert(error.message); return }
+    await loadAll()
+    if (created) router.push(`/admin/guides/${created.id}`)
+  }
+
   const bg = dark ? '#121212' : '#f7f8fa'
   const card = dark ? '#1e1e1e' : 'white'
   const border = dark ? '#2a2a2a' : '#eee'
@@ -91,6 +109,9 @@ export default function AdminGuidesPage() {
                   <Link href={`/admin/guides/${g.id}`} style={{ padding: '7px 12px', borderRadius: 7, background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>
                     {t('admin_guides_edit')}
                   </Link>
+                  <button onClick={() => duplicate(g)} style={{ padding: '7px 12px', borderRadius: 7, border: `1px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+                    {t('admin_guides_duplicate')}
+                  </button>
                   <button onClick={() => remove(g)} style={{ padding: '7px 12px', borderRadius: 7, border: '1px solid #e74c3c', background: 'transparent', color: '#e74c3c', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
                     {t('admin_guides_delete')}
                   </button>
