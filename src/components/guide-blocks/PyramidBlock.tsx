@@ -218,7 +218,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
               style={{
                 width: `${widthPct}%`, cursor: 'pointer', ...bg, color: 'white',
                 alignSelf: anchor === 'left' ? 'flex-start' : 'flex-end',
-                borderRadius: 4, padding: isActive ? '9px 12px' : '6px 12px',
+                borderRadius: 6, padding: isActive ? '9px 12px' : '6px 12px',
                 display: 'flex', alignItems: 'center',
                 justifyContent: anchor === 'left' ? 'flex-start' : 'flex-end',
                 gap: 8, fontSize: isActive ? 12.5 : 11.5, fontWeight: 800,
@@ -264,25 +264,52 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
         {renderColumn(left, leftIndices, 'left')}
 
         <div style={{
-          width: 110, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center',
-          justifyContent: 'center', textAlign: 'center', gap: 8, padding: '0 4px',
-          borderLeft: '1px dashed var(--border, #ddd)', borderRight: '1px dashed var(--border, #ddd)',
+          width: 128, flexShrink: 0, alignSelf: 'flex-start', position: 'sticky', top: 90,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          textAlign: 'center', gap: 10, padding: '18px 12px', minHeight: 190,
+          background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)',
+          borderRadius: 14, boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
         }}>
           {activeRow ? (
             <>
-              {activeRow.cardImage && (
+              {activeRow.cardImage ? (
                 <img src={activeRow.cardImage} alt={activeRow.name} style={{
-                  width: 96, height: 134, objectFit: 'cover', borderRadius: 8,
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                  width: 100, height: 140, objectFit: 'cover', borderRadius: 8,
+                  boxShadow: '0 6px 16px rgba(0,0,0,0.25)',
                 }} />
+              ) : (
+                <div style={{
+                  width: 100, height: 140, borderRadius: 8, background: 'var(--bg3, #f0f0f0)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--text3, #ccc)" strokeWidth="1.5">
+                    <rect x="3" y="4" width="18" height="16" rx="2" />
+                    <circle cx="9" cy="10" r="2" />
+                    <path d="M3 17l5-4 4 3 4-5 5 6" />
+                  </svg>
+                </div>
               )}
               <div>
-                <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text, #222)' }}>{activeRow.name}</div>
-                {activeRow.printRun && <div style={{ fontSize: 11, color: 'var(--text3, #999)', marginTop: 2 }}>/{activeRow.printRun.replace(/^\//, '')}</div>}
+                <div style={{ fontSize: 12.5, fontWeight: 800, color: 'var(--text, #222)', lineHeight: 1.3 }}>{activeRow.name}</div>
+                {activeRow.printRun && (
+                  <div style={{
+                    display: 'inline-block', marginTop: 6, padding: '2px 8px', borderRadius: 20,
+                    background: 'var(--bg3, #f0f0f0)', fontSize: 10.5, fontWeight: 700, color: 'var(--text2, #666)',
+                  }}>
+                    /{activeRow.printRun.replace(/^\//, '')}
+                  </div>
+                )}
               </div>
             </>
           ) : (
-            <span style={{ fontSize: 12, color: 'var(--text3, #999)' }}>Survolez une variation</span>
+            <>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text3, #ccc)" strokeWidth="1.5">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <circle cx="9" cy="10" r="2" />
+                <path d="M3 17l5-4 4 3 4-5 5 6" />
+              </svg>
+              <span style={{ fontSize: 11.5, color: 'var(--text3, #999)', lineHeight: 1.4 }}>Survolez une variation pour voir la carte</span>
+            </>
           )}
         </div>
 
