@@ -18,6 +18,31 @@ const PALETTE = ['#f5c518', '#f2a90a', '#e8720f', '#e0392b', '#c62368', '#8e3aa8
 // seule pyramide reste plus lisible qu'une coupure artificielle sur peu de lignes.
 const SPLIT_THRESHOLD = 6
 
+// Beaucoup de lignes n'ont pas de patternColor défini à la main par l'admin (juste un
+// nom + print run) — sans ça elles retombaient sur PALETTE cyclée par index, donnant
+// des couleurs arc-en-ciel sans rapport avec le nom affiché (ex: "WAVE BLACK" rendu
+// en cyan). On devine la couleur depuis le nom de la variation en premier, PALETTE ne
+// sert plus qu'aux noms sans mot-couleur reconnaissable (ex: "REFRACTOR", "X-FACTOR").
+const NAME_COLOR_MAP: [RegExp, string][] = [
+  [/white/i, '#d8d8d8'],
+  [/black/i, '#1c1c1c'],
+  [/gold/i, '#c9a227'],
+  [/silver/i, '#9a9a9a'],
+  [/\bred\b/i, '#c0392b'],
+  [/orange/i, '#d9791e'],
+  [/purple/i, '#7d3ac1'],
+  [/pink|magenta/i, '#d6336c'],
+  [/green/i, '#2f9e44'],
+  [/\bblue\b/i, '#1c6fd6'],
+  [/aqua|teal|cyan/i, '#0f9e94'],
+  [/yellow/i, '#c9a800'],
+]
+
+function fallbackColorFor(name: string, i: number): string {
+  for (const [re, color] of NAME_COLOR_MAP) if (re.test(name)) return color
+  return PALETTE[i % PALETTE.length]
+}
+
 function hexToRgba(hex: string, opacityPct: number): string {
   const h = hex.replace('#', '')
   const r = parseInt(h.length === 3 ? h[0] + h[0] : h.slice(0, 2), 16)
@@ -83,7 +108,7 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
         const widthPct = minWidth + ((maxWidth - minWidth) * (i + 1)) / n
         const isActive = active === i
         const isApex = i === 0
-        const bg = rowBackground(row, PALETTE[i % PALETTE.length])
+        const bg = rowBackground(row, fallbackColorFor(row.name, i))
 
         if (isApex) {
           return (
@@ -171,11 +196,11 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
   const rightIndices = rest.map((_, i) => i + 1).filter((_, i) => i % 2 === 1)
 
   const activeRow = active !== null ? rows[active] : null
-  const apexBg = rowBackground(apex, PALETTE[0])
+  const apexBg = rowBackground(apex, fallbackColorFor(apex.name, 0))
 
   const renderColumn = (colRows: PyramidRow[], colIndices: number[], anchor: 'left' | 'right') => {
     const n = colRows.length
-    const minWidth = 40
+    const minWidth = 55
     const maxWidth = 100
     return (
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
@@ -183,7 +208,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
           const globalIndex = colIndices[i]
           const widthPct = minWidth + ((maxWidth - minWidth) * (i + 1)) / n
           const isActive = active === globalIndex
-          const bg = rowBackground(row, PALETTE[globalIndex % PALETTE.length])
+          const bg = rowBackground(row, fallbackColorFor(row.name, globalIndex))
           return (
             <div
               key={globalIndex}
@@ -235,12 +260,12 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
         </span>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'stretch', gap: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'stretch', gap: 10 }}>
         {renderColumn(left, leftIndices, 'left')}
 
         <div style={{
-          width: 140, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center',
-          justifyContent: 'center', textAlign: 'center', gap: 8, padding: '0 6px',
+          width: 110, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center',
+          justifyContent: 'center', textAlign: 'center', gap: 8, padding: '0 4px',
           borderLeft: '1px dashed var(--border, #ddd)', borderRight: '1px dashed var(--border, #ddd)',
         }}>
           {activeRow ? (
