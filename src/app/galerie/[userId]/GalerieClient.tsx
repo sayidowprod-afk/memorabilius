@@ -908,7 +908,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     patch: filtered.filter(c => c.patch).length,
   }), [filtered])
 
-  useEffect(() => { setPage(1) }, [filtered])
+  // Volontairement PAS `[filtered]` : `filtered` recalcule (nouvelle
+  // référence) a chaque `setCards()`, y compris un simple glisser-deposer
+  // pour reordonner - ca renvoyait l'utilisateur en page 1 (donc en haut)
+  // a chaque deplacement de carte. On ne reinitialise la page que quand un
+  // critere de filtre/tri change reellement.
+  useEffect(() => { setPage(1) }, [search, fSport, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, sortBy, sortBy2, pinTeam])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
