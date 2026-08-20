@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { toast } from '@/lib/toast'
-import { uploadGuideImage } from '@/lib/guideUpload'
+import { uploadGuideImage, uploadGuideCardImage } from '@/lib/guideUpload'
 import { sportEmoji } from '@/lib/sportEmoji'
 import type { GuideBlock, PyramidRow, InsertCard, OddsTable } from '@/lib/guideBlockTypes'
 import PyramidBlock, { rowBackground } from '@/components/guide-blocks/PyramidBlock'
@@ -187,7 +187,7 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
 
   const uploadRowImage = async (i: number, field: 'patternImage' | 'cardImage', file: File) => {
     setUploading({ i, field })
-    const url = await uploadGuideImage(file, 'pyramid/')
+    const url = field === 'cardImage' ? await uploadGuideCardImage(file, 'pyramid/') : await uploadGuideImage(file, 'pyramid/')
     setUploading(null)
     if (url) updateRow(i, { [field]: url } as Partial<PyramidRow>)
   }
@@ -342,7 +342,7 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
 
   const uploadCardImage = async (i: number, file: File) => {
     setUploading(i)
-    const url = await uploadGuideImage(file, 'inserts/')
+    const url = await uploadGuideCardImage(file, 'inserts/')
     setUploading(null)
     if (url) updateCard(i, { image: url })
   }

@@ -178,7 +178,7 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
               {isActive && row.cardImage && (
                 <img src={row.cardImage} alt={row.name} style={{
                   position: 'absolute', left: '50%', top: '100%', marginTop: 6, transform: 'translateX(-50%)',
-                  width: 90, height: 126, objectFit: 'cover', borderRadius: 8,
+                  width: 90, height: 126, objectFit: 'contain', background: 'var(--bg3, #f2f2f2)', borderRadius: 8,
                   boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
                 }} />
               )}
@@ -214,7 +214,7 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
             {isActive && row.cardImage && (
               <img src={row.cardImage} alt={row.name} style={{
                 position: 'absolute', right: 0, top: '100%', marginTop: 6, width: 90, height: 126,
-                objectFit: 'cover', borderRadius: 8, boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
+                objectFit: 'contain', background: 'var(--bg3, #f2f2f2)', borderRadius: 8, boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
               }} />
             )}
           </div>
@@ -258,7 +258,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
         position: 'absolute', top: '100%', marginTop: 6,
         left: anchor === 'right' ? 'auto' : 0, right: anchor === 'right' ? 0 : 'auto',
         ...(anchor === 'center' ? { left: '50%', transform: 'translateX(-50%)' } : {}),
-        width: 72, height: 100, objectFit: 'cover', borderRadius: 8,
+        width: 72, height: 100, objectFit: 'contain', background: 'var(--bg3, #f2f2f2)', borderRadius: 8,
         boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
       }} />
     ) : null
@@ -352,7 +352,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
             <>
               {activeRow.cardImage ? (
                 <img src={activeRow.cardImage} alt={activeRow.name} style={{
-                  width: 150, height: 210, objectFit: 'cover', borderRadius: 10,
+                  width: 150, height: 210, objectFit: 'contain', background: 'var(--bg3, #f2f2f2)', borderRadius: 10,
                   boxShadow: '0 6px 16px rgba(0,0,0,0.25)',
                 }} />
               ) : (
