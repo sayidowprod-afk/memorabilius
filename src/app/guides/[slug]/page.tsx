@@ -11,6 +11,7 @@ import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 import SetlistEmbedBlock from '@/components/guide-blocks/SetlistEmbedBlock'
 import TextImageBlock from '@/components/guide-blocks/TextImageBlock'
+import { buildColorVocab } from '@/lib/variationMatch'
 
 // sanitize-html plutôt qu'isomorphic-dompurify : ce dernier embarque jsdom, connu
 // pour mal se bundler dans les fonctions serverless Vercel (500 en prod alors que
@@ -35,7 +36,14 @@ function sanitizeGuideHtml(html: string): string {
 // petit tableau occupe une pleine ligne de rien, ce qui devient vite long et
 // indigeste dès qu'il y en a plusieurs (cas d'usage typique : une variation par
 // bloc insert_grid).
+function collectPyramidRowNames(blocks: GuideBlock[]): string[] {
+  const names: string[] = []
+  for (const b of blocks) if (b.type === 'pyramid') for (const row of b.rows) if (row.name) names.push(row.name)
+  return names
+}
+
 function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, SetlistEmbedData>) {
+  const colorVocab = buildColorVocab(collectPyramidRowNames(blocks))
   const nodes: React.ReactNode[] = []
   let i = 0
   while (i < blocks.length) {
@@ -91,7 +99,7 @@ function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, Setl
     if (block.type === 'setlist_embed') {
       const data = setlistEmbeds.get(block.setId)
       if (!data) return null
-      return <SetlistEmbedBlock key={key} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} sport={data.sport} entries={data.entries} />
+      return <SetlistEmbedBlock key={key} title={block.title} setId={data.setId} setName={data.setName} totalCards={data.totalCards} sport={data.sport} entries={data.entries} colorVocab={colorVocab} />
     }
     return null
   }
