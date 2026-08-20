@@ -239,7 +239,7 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
             {imgBtn(row, i, 'cardImage', 'Carte')}
             <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
           </div>
-          {row.patternImage && (() => {
+          {(() => {
             const isGradient = !!(row.patternGradient && row.patternGradient.length >= GRADIENT_MIN)
             const modeBtn = (on: boolean, label: string) => (
               <button type="button" onClick={() => setGradientMode(i, on)}
@@ -265,24 +265,26 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
                     {modeBtn(false, 'Uni')}
                     {modeBtn(true, 'Dégradé')}
                   </span>
-                  <select value={row.patternBlendMode || 'multiply'} onChange={e => updateRow(i, { patternBlendMode: e.target.value as PyramidRow['patternBlendMode'] })} style={{ ...f, padding: '4px 6px', fontSize: 11 }}>
-                    <option value="normal">Normal</option>
-                    <option value="multiply">Multiply</option>
-                    <option value="screen">Screen</option>
-                    <option value="overlay">Overlay</option>
-                    <option value="darken">Darken</option>
-                    <option value="lighten">Lighten</option>
-                    <option value="color-dodge">Color dodge</option>
-                    <option value="color-burn">Color burn</option>
-                    <option value="hard-light">Hard light</option>
-                    <option value="soft-light">Soft light</option>
-                    <option value="difference">Difference</option>
-                    <option value="exclusion">Exclusion</option>
-                    <option value="hue">Hue</option>
-                    <option value="saturation">Saturation</option>
-                    <option value="color">Color</option>
-                    <option value="luminosity">Luminosity</option>
-                  </select>
+                  {row.patternImage ? (
+                    <select value={row.patternBlendMode || 'multiply'} onChange={e => updateRow(i, { patternBlendMode: e.target.value as PyramidRow['patternBlendMode'] })} style={{ ...f, padding: '4px 6px', fontSize: 11 }}>
+                      <option value="normal">Normal</option>
+                      <option value="multiply">Multiply</option>
+                      <option value="screen">Screen</option>
+                      <option value="overlay">Overlay</option>
+                      <option value="darken">Darken</option>
+                      <option value="lighten">Lighten</option>
+                      <option value="color-dodge">Color dodge</option>
+                      <option value="color-burn">Color burn</option>
+                      <option value="hard-light">Hard light</option>
+                      <option value="soft-light">Soft light</option>
+                      <option value="difference">Difference</option>
+                      <option value="exclusion">Exclusion</option>
+                      <option value="hue">Hue</option>
+                      <option value="saturation">Saturation</option>
+                      <option value="color">Color</option>
+                      <option value="luminosity">Luminosity</option>
+                    </select>
+                  ) : <span />}
                   <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                     <input type="range" min={0} max={100} value={row.patternOpacity ?? 100}
                       onChange={e => updateRow(i, { patternOpacity: Number(e.target.value) })}

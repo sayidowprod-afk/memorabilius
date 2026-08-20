@@ -94,11 +94,15 @@ export function rowBackground(row: PyramidRow, fallback: string): { background: 
   const stops = row.patternGradient && row.patternGradient.length >= 2
     ? row.patternGradient
     : row.patternColor ? [row.patternColor, row.patternColor] : null
-  if (row.patternImage && stops) {
+  if (stops) {
     const opacity = row.patternOpacity ?? 100
     const colorStops = stops.map(c => hexToRgba(c, opacity)).join(', ')
+    const tint = `linear-gradient(135deg, ${colorStops})`
+    // Sans motif (texture) à teinter, la couleur/dégradé s'affiche seul — pas besoin
+    // d'un mode de fusion (rien en dessous avec quoi se mélanger).
+    if (!row.patternImage) return { background: tint }
     return {
-      background: `linear-gradient(135deg, ${colorStops}), url(${row.patternImage}) center/cover`,
+      background: `${tint}, url(${row.patternImage}) center/cover`,
       backgroundBlendMode: row.patternBlendMode || 'multiply',
     }
   }
