@@ -39,8 +39,25 @@ function classify(e: Entry): Exclude<TabKey, 'full' | 'teams'> {
 }
 
 const TAB_LABELS: Record<TabKey, string> = {
-  base: 'Base', variations: 'Variations', autographs: 'Autographs',
-  memorabilia: 'Memorabilia', inserts: 'Inserts', full: 'Full Checklist', teams: 'Team Sets',
+  base: 'Base', inserts: 'Inserts', variations: 'Variations', autographs: 'Autographs',
+  memorabilia: 'Memorabilia', full: 'Full Checklist', teams: 'Team Sets',
+}
+
+// Ordre d'affichage des onglets : catégories "physiques" d'abord (Base, Inserts,
+// Variations, Autographs, Memorabilia), puis les vues agrégées (Full Checklist,
+// Team Sets) à la fin.
+const TAB_ORDER: TabKey[] = ['base', 'inserts', 'variations', 'autographs', 'memorabilia', 'full', 'teams']
+
+// Tri "façon TCDB" par numéro de carte, croissant. `localeCompare` en mode `numeric`
+// gère aussi bien les numéros purs ("1", "23") que les préfixes alphanumériques
+// ("FAN-1", "80TBA-AB") en comparant les segments numériques par valeur plutôt que
+// lexicographiquement (sinon "10" passerait avant "2").
+function cardNumCompare(a: Entry, b: Entry): number {
+  return (a.card_number || '').localeCompare(b.card_number || '', undefined, { numeric: true, sensitivity: 'base' })
+}
+
+function slugifyTeam(name: string): string {
+  return name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
 }
 
 export default function SetlistEmbedBlock({ title, setId, setName, totalCards, sport, entries }: Props) {
@@ -52,17 +69,23 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
       base: [], variations: [], autographs: [], memorabilia: [], inserts: [],
     }
     for (const e of entries) byTab[classify(e)].push(e)
-
-    const available: TabKey[] = ['full']
     ;(['base', 'variations', 'autographs', 'memorabilia', 'inserts'] as const).forEach(k => {
-      if (byTab[k].length) available.push(k)
+      byTab[k].sort(cardNumCompare)
     })
+
+    const available: TabKey[] = TAB_ORDER.filter(k => {
+      if (k === 'full') return true
+      if (k === 'teams') return false // décidé plus bas une fois les équipes groupées
+      return byTab[k].length > 0
+    })
+
     const teams = new Map<string, Entry[]>()
     for (const e of entries) {
       const key = e.team || 'Autres'
       if (!teams.has(key)) teams.set(key, [])
       teams.get(key)!.push(e)
     }
+    for (const items of teams.values()) items.sort(cardNumCompare)
     if (teams.size > 1) available.push('teams')
 
     return { tabEntries: byTab, availableTabs: available, teamGroups: teams }
@@ -138,8 +161,23 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
 
       {tab === 'teams' ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', padding: '10px 14px', border: '1px solid var(--border, #eee)', borderRadius: 10, background: 'var(--bg3, #fafafa)' }}>
+            {[...teamGroups.keys()].map(teamName => (
+              <a
+                key={teamName}
+                href={`#team-${slugifyTeam(teamName)}`}
+                onClick={e => {
+                  e.preventDefault()
+                  document.getElementById(`team-${slugifyTeam(teamName)}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+                style={{ fontSize: 12.5, fontWeight: 700, color: '#003DA6', textDecoration: 'none' }}
+              >
+                {teamName}
+              </a>
+            ))}
+          </div>
           {[...teamGroups.entries()].map(([teamName, items]) => (
-            <div key={teamName} style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden' }}>
+            <div key={teamName} id={`team-${slugifyTeam(teamName)}`} style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden', scrollMarginTop: 90 }}>
               <div style={{ padding: '8px 14px', background: 'var(--bg3, #f7f8fa)', fontSize: 12, fontWeight: 800, color: 'var(--text, #222)', textTransform: 'uppercase', letterSpacing: 0.4 }}>
                 {teamName} <span style={{ color: 'var(--text3, #999)', fontWeight: 700 }}>({items.length})</span>
               </div>

@@ -37,8 +37,11 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
               {cards.map((card, i) => (
                 <div key={i} className="insert-grid-card" style={{ flex: '0 0 190px', width: 190, borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border, #eee)', background: 'var(--card-bg, #fff)', position: 'relative' }}>
                   {card.image && (
-                    <div className="insert-grid-card-img" style={{ overflow: 'hidden' }}>
-                      <img src={card.image} alt={card.name} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} />
+                    <div className="insert-grid-card-img" style={{ overflow: 'hidden', aspectRatio: '2.5/3.5', background: 'var(--bg3, #f2f2f2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {/* `contain` plutôt que `cover` : certaines cartes (ex. panoramiques,
+                          multi-joueurs) sont au format horizontal — les recadrer en `cover`
+                          sur un ratio portrait 2.5/3.5 coupait l'image de façon illisible. */}
+                      <img src={card.image} alt={card.name} style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' }} />
                       <div className="insert-grid-card-shine" />
                     </div>
                   )}

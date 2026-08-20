@@ -79,8 +79,13 @@ function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, Setl
     )
     if (block.type === 'pyramid') return <PyramidBlock key={key} title={block.title} rows={block.rows} />
     if (block.type === 'insert_grid') return (
-      <div key={key} style={{ margin: '32px 0' }}>
-        <InsertGridBlock title={block.title} cards={block.cards} oddsTable={block.oddsTable} players={block.players} />
+      // Casse la largeur de <article> (760px) pour laisser au tableau d'odds la place
+      // de s'afficher entièrement à côté de la carte au lieu de scroller/empiler dès
+      // qu'il y a beaucoup de colonnes de parallèles.
+      <div key={key} style={{ width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+        <div style={{ maxWidth: 1100, margin: '32px auto', padding: '0 20px', boxSizing: 'border-box' }}>
+          <InsertGridBlock title={block.title} cards={block.cards} oddsTable={block.oddsTable} players={block.players} />
+        </div>
       </div>
     )
     if (block.type === 'setlist_embed') {
