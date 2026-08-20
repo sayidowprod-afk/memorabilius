@@ -1,6 +1,7 @@
 'use client'
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { sportEmoji } from '@/lib/sportEmoji'
 
 interface Entry {
   card_number: string | null
@@ -17,23 +18,6 @@ interface Props {
   totalCards: number
   sport: string | null
   entries: Entry[]
-}
-
-const SPORT_EMOJI: Record<string, string> = {
-  nba: '🏀', basketball: '🏀',
-  nfl: '🏈', football: '🏈',
-  mlb: '⚾', baseball: '⚾',
-  nhl: '🏒', hockey: '🏒',
-  soccer: '⚽', 'soccer-international': '⚽', football_intl: '⚽',
-  tennis: '🎾',
-  mma: '🥊', ufc: '🥊', wrestling: '🤼',
-  racing: '🏎️', f1: '🏎️', nascar: '🏎️',
-  pokemon: '⚡', mtg: '🃏', tcg: '🃏',
-}
-
-function sportEmoji(sport: string | null): string | null {
-  if (!sport) return null
-  return SPORT_EMOJI[sport.toLowerCase()] || null
 }
 
 type TabKey = 'base' | 'variations' | 'autographs' | 'memorabilia' | 'inserts' | 'full' | 'teams'

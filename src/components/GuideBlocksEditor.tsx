@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
+import { sportEmoji } from '@/lib/sportEmoji'
 import type { GuideBlock, PyramidRow, InsertCard, OddsTable } from '@/lib/guideBlockTypes'
 import PyramidBlock, { rowBackground } from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
@@ -458,14 +459,14 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
 
 function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'setlist_embed' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
   const [search, setSearch] = useState('')
-  const [results, setResults] = useState<{ id: number; name: string; year: number | null }[]>([])
+  const [results, setResults] = useState<{ id: number; name: string; year: number | null; sport: string | null }[]>([])
   const [selectedName, setSelectedName] = useState('')
   const f = fieldStyle(dark)
 
   const runSearch = async (q: string) => {
     setSearch(q)
     if (q.trim().length < 2) { setResults([]); return }
-    const { data } = await supabase.from('card_sets').select('id, name, year').ilike('name', `%${q}%`).limit(10)
+    const { data } = await supabase.from('card_sets').select('id, name, year, sport').ilike('name', `%${q}%`).limit(10)
     setResults(data || [])
   }
 
@@ -481,12 +482,16 @@ function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlo
           <input style={f} placeholder="Rechercher un set (ex: 2024-25 Panini Mosaic)" value={search} onChange={e => runSearch(e.target.value)} />
           {results.length > 0 && (
             <div style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 6, overflow: 'hidden' }}>
-              {results.map(r => (
-                <button key={r.id} type="button" onClick={() => { onChange({ ...block, setId: r.id }); setSelectedName(`${r.name}${r.year ? ` (${r.year})` : ''}`); setResults([]) }}
-                  style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', border: 'none', borderBottom: `1px solid ${dark ? '#333' : '#eee'}`, background: dark ? '#2a2a2a' : 'white', color: dark ? '#e0e0e0' : '#222', cursor: 'pointer', fontSize: 13 }}>
-                  {r.name}{r.year ? ` (${r.year})` : ''}
-                </button>
-              ))}
+              {results.map(r => {
+                const emoji = sportEmoji(r.sport)
+                const label = `${emoji ? `${emoji} ` : ''}${r.name}${r.year ? ` (${r.year})` : ''}`
+                return (
+                  <button key={r.id} type="button" onClick={() => { onChange({ ...block, setId: r.id }); setSelectedName(label); setResults([]) }}
+                    style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', border: 'none', borderBottom: `1px solid ${dark ? '#333' : '#eee'}`, background: dark ? '#2a2a2a' : 'white', color: dark ? '#e0e0e0' : '#222', cursor: 'pointer', fontSize: 13 }}>
+                    {label}
+                  </button>
+                )
+              })}
             </div>
           )}
         </>
