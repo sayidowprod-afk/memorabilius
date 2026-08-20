@@ -71,17 +71,23 @@ function parseDesignation(raw: string) {
   } = {}
   let s = ` ${raw.trim().replace(/\s+/g, ' ')} `
 
-  // Numérotation (ex : 25/99)
-  const numMatch = s.match(/\b(\d{1,5}\/\d{1,5})\b/)
-  if (numMatch) { out.num = numMatch[1]; s = s.replace(numMatch[0], ' ') }
+  // Numérotation (ex : 25/99) — mais pas une saison écrite avec un "/" (ex: 2007/08),
+  // que ce regex générique attraperait sinon par erreur avant même que l'année ne
+  // soit extraite plus bas, marquant la carte comme numérotée à tort.
+  const numMatch = s.match(/\b(\d{1,5})\/(\d{1,5})\b/)
+  if (numMatch) {
+    const [full, a, b] = numMatch
+    const looksLikeSeason = /^(19|20)\d{2}$/.test(a) && b.length === 2 && (parseInt(a.slice(2), 10) + 1) % 100 === parseInt(b, 10)
+    if (!looksLikeSeason) { out.num = full; s = s.replace(full, ' ') }
+  }
 
   // N° de carte (#BR, #1, #HTR-IFS…)
   const cardMatch = s.match(/#\s*([A-Za-z0-9][A-Za-z0-9-]*)/)
   let hashIndex = -1
   if (cardMatch) { out.card_number = cardMatch[1]; hashIndex = cardMatch.index ?? -1 }
 
-  // Année en tête (2023, 2007-08, 2007-2008)
-  const yearMatch = s.match(/\b((?:19|20)\d{2}(?:-\d{2,4})?)\b/)
+  // Année en tête (2023, 2007-08, 2007/08, 2007-2008)
+  const yearMatch = s.match(/\b((?:19|20)\d{2}(?:[-/]\d{2,4})?)\b/)
   let afterYearIndex = 0
   if (yearMatch) { out.annee = yearMatch[1]; afterYearIndex = (yearMatch.index ?? 0) + yearMatch[0].length }
 
