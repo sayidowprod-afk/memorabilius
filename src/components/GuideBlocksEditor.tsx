@@ -27,10 +27,35 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
   const cardBg = dark ? '#1a1a1a' : '#fafafa'
 
   const updateAt = (i: number, b: GuideBlock) => onChange(blocks.map((x, idx) => (idx === i ? b : x)))
-  const removeAt = (i: number) => onChange(blocks.filter((_, idx) => idx !== i))
+  // Replié/déplié par bloc — un guide avec beaucoup de blocs (pyramide, plusieurs
+  // grilles d'inserts...) devient vite long à parcourir pour n'éditer qu'un seul
+  // d'entre eux. L'état suit le CONTENU du bloc (pas juste sa position) à travers
+  // les réordonnancements/duplications/suppressions, sinon replier "Inserts" puis
+  // remonter un autre bloc au-dessus afficherait le mauvais bloc replié.
+  const [collapsed, setCollapsed] = useState<Set<number>>(new Set())
+  const toggleCollapsed = (i: number) => setCollapsed(prev => {
+    const next = new Set(prev)
+    if (next.has(i)) next.delete(i); else next.add(i)
+    return next
+  })
+  const allCollapsed = blocks.length > 0 && blocks.every((_, i) => collapsed.has(i))
+
+  const removeAt = (i: number) => {
+    onChange(blocks.filter((_, idx) => idx !== i))
+    setCollapsed(prev => {
+      const next = new Set<number>()
+      prev.forEach(idx => { if (idx < i) next.add(idx); else if (idx > i) next.add(idx - 1) })
+      return next
+    })
+  }
   const duplicateAt = (i: number) => {
     const copy = JSON.parse(JSON.stringify(blocks[i])) as GuideBlock
     onChange([...blocks.slice(0, i + 1), copy, ...blocks.slice(i + 1)])
+    setCollapsed(prev => {
+      const next = new Set<number>()
+      prev.forEach(idx => { if (idx <= i) next.add(idx); else next.add(idx + 1) })
+      return next
+    })
   }
   const moveAt = (i: number, dir: -1 | 1) => {
     const j = i + dir
@@ -38,6 +63,13 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
     const next = [...blocks]
     ;[next[i], next[j]] = [next[j], next[i]]
     onChange(next)
+    setCollapsed(prev => {
+      const n = new Set(prev)
+      const hi = prev.has(i), hj = prev.has(j)
+      if (hi) n.add(j); else n.delete(j)
+      if (hj) n.add(i); else n.delete(i)
+      return n
+    })
   }
 
   const addBtnStyle: React.CSSProperties = {
@@ -51,12 +83,25 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      {blocks.map((b, i) => (
+      {blocks.length > 1 && (
+        <button type="button" style={{ ...smallBtn, alignSelf: 'flex-end' }}
+          onClick={() => setCollapsed(allCollapsed ? new Set() : new Set(blocks.map((_, i) => i)))}>
+          {allCollapsed ? '⊞ Tout déplier' : '⊟ Tout replier'}
+        </button>
+      )}
+      {blocks.map((b, i) => {
+        const isCollapsed = collapsed.has(i)
+        return (
         <div key={i} style={{ border: `1px solid ${border}`, borderRadius: 10, padding: 14, background: cardBg }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <span style={{ fontSize: 12, fontWeight: 800, color: sub, textTransform: 'uppercase', letterSpacing: 0.4 }}>
-              {BLOCK_LABELS[b.type]}
-            </span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isCollapsed ? 0 : 10 }}>
+            <button type="button" onClick={() => toggleCollapsed(i)}
+              style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              aria-label={isCollapsed ? 'Déplier ce bloc' : 'Replier ce bloc'}>
+              <span style={{ fontSize: 10, color: sub, transform: isCollapsed ? 'rotate(-90deg)' : 'none', transition: 'transform 0.15s' }}>▾</span>
+              <span style={{ fontSize: 12, fontWeight: 800, color: sub, textTransform: 'uppercase', letterSpacing: 0.4 }}>
+                {BLOCK_LABELS[b.type]}
+              </span>
+            </button>
             <div style={{ display: 'flex', gap: 6 }}>
               <button type="button" style={smallBtn} disabled={i === 0} onClick={() => moveAt(i, -1)}>↑</button>
               <button type="button" style={smallBtn} disabled={i === blocks.length - 1} onClick={() => moveAt(i, 1)}>↓</button>
@@ -65,14 +110,19 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
             </div>
           </div>
 
-          {b.type === 'text' && <TextEditor block={b} onChange={nb => updateAt(i, nb)} />}
-          {b.type === 'image' && <ImageEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
-          {b.type === 'text_image' && <TextImageEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
-          {b.type === 'pyramid' && <PyramidEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
-          {b.type === 'insert_grid' && <InsertGridEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
-          {b.type === 'setlist_embed' && <SetlistEmbedEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+          {!isCollapsed && (
+            <>
+              {b.type === 'text' && <TextEditor block={b} onChange={nb => updateAt(i, nb)} />}
+              {b.type === 'image' && <ImageEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+              {b.type === 'text_image' && <TextImageEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+              {b.type === 'pyramid' && <PyramidEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+              {b.type === 'insert_grid' && <InsertGridEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+              {b.type === 'setlist_embed' && <SetlistEmbedEditor block={b} onChange={nb => updateAt(i, nb)} dark={dark} />}
+            </>
+          )}
         </div>
-      ))}
+        )
+      })}
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'text', html: '' }])}>+ Texte</button>
