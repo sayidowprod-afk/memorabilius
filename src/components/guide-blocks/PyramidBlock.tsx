@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { PyramidRow } from '@/lib/guideBlockTypes'
 
 interface Props {
@@ -11,6 +11,21 @@ interface Props {
 // bas (commune). Le nom + print run restent toujours visibles sur la barre ; au
 // survol (desktop) ou au tap (mobile — :hover n'existe pas de façon fiable au
 // toucher) la ligne grossit légèrement et révèle l'image d'exemple.
+
+// Sur tactile, un tap synthétise mouseenter PUIS click dans le même cycle d'événement
+// — avec onMouseEnter qui ouvre (setActive(i)) et onClick qui bascule (setActive(a =>
+// a === i ? null : i)), le click voit l'état déjà ouvert par le mouseenter et le
+// referme aussitôt : la ligne ne s'ouvre jamais au premier tap ("pas cliquable, pas
+// de carte qui s'affiche"). On ne branche donc les gestionnaires de survol que sur
+// les appareils qui ont un vrai hover ; sur les autres, seul onClick agit (un simple
+// toggle, sans conflit).
+function useHoverCapable(): boolean {
+  const [hoverCapable, setHoverCapable] = useState(true)
+  useEffect(() => {
+    setHoverCapable(window.matchMedia('(hover: hover) and (pointer: fine)').matches)
+  }, [])
+  return hoverCapable
+}
 const PALETTE = ['#f5c518', '#f2a90a', '#e8720f', '#e0392b', '#c62368', '#8e3aa8', '#4a3ac6', '#1e63e0', '#0090c1', '#00a884', '#4caf50', '#9ccc3f']
 
 // Au-delà de ce nombre de lignes, la pyramide devient trop longue à parcourir en une
@@ -86,6 +101,7 @@ export default function PyramidBlock({ title, rows }: Props) {
 
 function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
   const [active, setActive] = useState<number | null>(null)
+  const hoverCapable = useHoverCapable()
   const n = rows.length
   const minWidth = 30
   const maxWidth = 100
@@ -102,8 +118,8 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
           return (
             <div
               key={i}
-              onMouseEnter={() => setActive(i)}
-              onMouseLeave={() => setActive(a => (a === i ? null : a))}
+              onMouseEnter={hoverCapable ? () => setActive(i) : undefined}
+              onMouseLeave={hoverCapable ? () => setActive(a => (a === i ? null : a)) : undefined}
               onClick={() => setActive(a => (a === i ? null : i))}
               style={{
                 position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
@@ -182,6 +198,7 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
 // rendu, sans JS.
 function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
   const [active, setActive] = useState<number | null>(null)
+  const hoverCapable = useHoverCapable()
   const apex = rows[0]
   const rest = rows.slice(1)
   const left = rest.filter((_, i) => i % 2 === 0)
@@ -218,8 +235,8 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
           return (
             <div
               key={globalIndex}
-              onMouseEnter={() => setActive(globalIndex)}
-              onMouseLeave={() => setActive(a => (a === globalIndex ? null : a))}
+              onMouseEnter={hoverCapable ? () => setActive(globalIndex) : undefined}
+              onMouseLeave={hoverCapable ? () => setActive(a => (a === globalIndex ? null : a)) : undefined}
               onClick={() => setActive(a => (a === globalIndex ? null : globalIndex))}
               style={{
                 position: 'relative', width: `${widthPct}%`, cursor: 'pointer', ...bg, color: 'white',
@@ -249,8 +266,8 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
   return (
     <div style={{ maxWidth: 720, margin: '0 auto' }}>
       <div
-        onMouseEnter={() => setActive(0)}
-        onMouseLeave={() => setActive(a => (a === 0 ? null : a))}
+        onMouseEnter={hoverCapable ? () => setActive(0) : undefined}
+        onMouseLeave={hoverCapable ? () => setActive(a => (a === 0 ? null : a)) : undefined}
         onClick={() => setActive(a => (a === 0 ? null : 0))}
         style={{ position: 'relative', width: '42%', margin: '0 auto 3px', cursor: 'pointer', height: active === 0 ? 56 : 44, transition: 'height 0.15s' }}
       >

@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 
-// Petit ilot client sur la page /guides (composant serveur) : seul moyen d'atteindre
-// /admin/guides depuis l'interface tant que le lien de nav "Guides" pointe vers la
-// page publique et reste lui-meme cache aux non-admins.
+// Petit ilot client sur la page /guides (composant serveur), visible uniquement des
+// admins : seul moyen d'atteindre /admin/guides depuis l'interface, le lien de nav
+// "Guides" pointant vers la page publique (accessible a tous).
 export default function GuidesAdminBar() {
   const { dark } = useTheme()
   const [isAdmin, setIsAdmin] = useState(false)
