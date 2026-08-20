@@ -161,19 +161,20 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
 
       {tab === 'teams' ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', padding: '10px 14px', border: '1px solid var(--border, #eee)', borderRadius: 10, background: 'var(--bg3, #fafafa)' }}>
-            {[...teamGroups.keys()].map(teamName => (
-              <a
-                key={teamName}
-                href={`#team-${slugifyTeam(teamName)}`}
-                onClick={e => {
-                  e.preventDefault()
-                  document.getElementById(`team-${slugifyTeam(teamName)}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                }}
-                style={{ fontSize: 12.5, fontWeight: 700, color: '#003DA6', textDecoration: 'none' }}
-              >
-                {teamName}
-              </a>
+          <div style={{ columns: '220px', columnGap: 28, padding: '18px 22px', border: '1px solid var(--border, #eee)', borderRadius: 10, background: 'var(--bg3, #fafafa)' }}>
+            {[...teamGroups.keys()].sort((a, b) => a.localeCompare(b)).map(teamName => (
+              <div key={teamName} style={{ breakInside: 'avoid' }}>
+                <a
+                  href={`#team-${slugifyTeam(teamName)}`}
+                  onClick={e => {
+                    e.preventDefault()
+                    document.getElementById(`team-${slugifyTeam(teamName)}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }}
+                  style={{ display: 'inline-block', padding: '5px 0', fontSize: 13.5, fontWeight: 600, color: '#003DA6', textDecoration: 'none' }}
+                >
+                  {teamName}
+                </a>
+              </div>
             ))}
           </div>
           {[...teamGroups.entries()].map(([teamName, items]) => (
