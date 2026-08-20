@@ -130,17 +130,34 @@ interface SetlistEmbedData {
   entries: { card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean }[]
 }
 
+// PostgREST plafonne chaque requête à 1000 lignes par défaut — un simple .limit(2000)
+// ne suffisait pas pour les gros sets (Topps Chrome Update fait 6000+ cartes avec
+// tous les parallèles), ce qui coupait silencieusement la checklist embarquée et
+// vidait des onglets entiers (Autographs, Inserts...) puisque leurs cartes tombaient
+// après la coupure. On pagine donc par blocs de 1000 jusqu'à tout récupérer.
+async function fetchAllSetEntries(setId: number) {
+  const entries: { card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean }[] = []
+  const pageSize = 1000
+  for (let from = 0; from < 20000; from += pageSize) {
+    const { data, error } = await supabase
+      .from('card_set_entries')
+      .select('card_number, player_name, team, variation, is_rc')
+      .eq('set_id', setId)
+      .order('variation', { ascending: true })
+      .order('card_number', { ascending: true })
+      .range(from, from + pageSize - 1)
+    if (error || !data || data.length === 0) break
+    entries.push(...data)
+    if (data.length < pageSize) break
+  }
+  return entries
+}
+
 async function fetchSetlistEmbed(setId: number): Promise<SetlistEmbedData | null> {
   const { data: set } = await supabase.from('card_sets').select('name, total_cards, sport').eq('id', setId).single()
   if (!set) return null
-  const { data: entries } = await supabase
-    .from('card_set_entries')
-    .select('card_number, player_name, team, variation, is_rc')
-    .eq('set_id', setId)
-    .order('variation', { ascending: true })
-    .order('card_number', { ascending: true })
-    .limit(2000)
-  return { setId, setName: set.name, totalCards: set.total_cards, sport: set.sport, entries: entries || [] }
+  const entries = await fetchAllSetEntries(setId)
+  return { setId, setName: set.name, totalCards: set.total_cards, sport: set.sport, entries }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
