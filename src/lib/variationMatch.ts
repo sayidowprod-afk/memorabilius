@@ -20,22 +20,31 @@ function wordTokens(s: string): string[] {
   return s.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean)
 }
 
+// "speckle" n'apparaît dans aucune ligne de pyramide (les "Image Variation - Black
+// Speckle / Gold Speckle..." ne sont pas des parallèles couleur au sens Refractor,
+// mais restent la même carte physique juste recolorée) — ajouté à la main au
+// vocabulaire de base, comme "refractor".
+const BASE_VOCAB = ['refractor', 'speckle']
+
 export function buildColorVocab(pyramidRowNames: string[]): Set<string> {
-  const vocab = new Set<string>(['refractor'])
+  const vocab = new Set<string>(BASE_VOCAB)
   for (const name of pyramidRowNames) for (const t of wordTokens(name)) vocab.add(t)
   return vocab
 }
 
-// Retire les mots de fin de chaîne appartenant au vocabulaire couleur/motif. Un mot
-// composé (ex: "RayWave", scrapé sans espace) n'est retiré que si TOUS ses
-// sous-tokens sont dans le vocabulaire. Renvoie la chaîne restante (peut être vide
-// si la variation n'était qu'un empilement de mots couleur, ex: "Aqua Refractor").
+// Retire les mots de fin de chaîne appartenant au vocabulaire couleur/motif, ainsi
+// que la ponctuation isolée qui traînerait ensuite en fin de chaîne (ex: le "-" de
+// "Image Variation - Black Speckle" une fois "Black Speckle" retiré). Un mot composé
+// (ex: "RayWave", scrapé sans espace) n'est retiré que si TOUS ses sous-tokens sont
+// dans le vocabulaire. Renvoie la chaîne restante (peut être vide si la variation
+// n'était qu'un empilement de mots couleur, ex: "Aqua Refractor").
 export function stripColorSuffix(variation: string, vocab: Set<string>): string {
   const words = variation.trim().split(/\s+/).filter(Boolean)
   let end = words.length
   while (end > 0) {
     const sub = wordTokens(words[end - 1])
-    if (sub.length > 0 && sub.every(t => vocab.has(t))) end--
+    if (sub.length === 0) { end--; continue }
+    if (sub.every(t => vocab.has(t))) end--
     else break
   }
   return words.slice(0, end).join(' ').trim()
