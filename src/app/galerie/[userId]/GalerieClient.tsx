@@ -2589,6 +2589,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, vendue } : c))
             setPopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)
           }}
+          onDisponibleVenteChange={(card, disponible_vente) => {
+            setCards(prev => prev.map(c => c.f === card.f ? { ...c, disponible_vente } : c))
+            setPopup(prev => prev && prev.f === card.f ? { ...prev, disponible_vente } : prev)
+          }}
           onNext={() => {
             if (!popup) return
             const idx = filtered.findIndex(c => c.f === popup.f)

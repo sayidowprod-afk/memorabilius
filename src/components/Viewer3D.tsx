@@ -32,7 +32,7 @@ interface Card {
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
-  lien_vinted?: string; lien_ebay?: string; vendue?: boolean;
+  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; disponible_vente?: boolean;
 }
 
 // Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
@@ -53,7 +53,7 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -67,6 +67,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   onCollectionTagChange?: (card: Card, tag: string) => void
   onCollectionsChange?: (card: Card, next: string[]) => void
   onVendueChange?: (card: Card, vendue: boolean) => void
+  onDisponibleVenteChange?: (card: Card, disponibleVente: boolean) => void
   allCollectionTags?: string[]
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
@@ -1651,6 +1652,20 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   transition: '0.2s',
                 }}>
                   {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
+                </button>
+              )}
+              {isOwner && popup.id_manuelle && onDisponibleVenteChange && (
+                <button onClick={async () => {
+                  const next = !popup.disponible_vente
+                  await supabase.from('cartes_manuelles').update({ disponible_vente: next }).eq('id', popup.id_manuelle)
+                  onDisponibleVenteChange(popup, next)
+                }} title={t('viewer_mark_forsale_title')} style={{
+                  background: popup.disponible_vente ? '#003DA6' : (dark ? '#2a2a2a' : '#f0f0f0'), color: popup.disponible_vente ? 'white' : (dark ? '#eee' : '#333'),
+                  border: 'none', borderRadius: 10, padding: '12px 14px',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                  transition: '0.2s',
+                }}>
+                  {popup.disponible_vente ? `✓ ${t('gallery_for_sale_label')}` : t('viewer_mark_forsale_btn')}
                 </button>
               )}
               <button onClick={() => setShowVideo(true)} style={{
