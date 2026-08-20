@@ -931,6 +931,14 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
 const HANDLE_R = 10
 
+// Loupe tactile : au doigt, le point qu'on essaie de positionner est caché sous le
+// doigt lui-même — impossible de viser précisément ("le doigt est devant"). On
+// affiche donc un cercle grossissant la zone du coin en cours de glissement,
+// décalé au-dessus du point de contact pour rester visible.
+const MAG_SIZE = 110   // diamètre affiché (px)
+const MAG_ZOOM = 2.5   // grossissement par rapport au canvas déjà rendu (zoom/pan inclus)
+const MAG_OFFSET_Y = 90 // distance au-dessus du doigt (px)
+
 export default function CardScanner({ src, onResult, onFallback, onClose, frameRect }: Props) {
   const { t } = useLang()
   const canvasRef         = useRef<HTMLCanvasElement>(null)
@@ -957,6 +965,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   const lastPinchDist = useRef(0)
   const lastPanPt     = useRef<Pt | null>(null)
   const isPanning     = useRef(false)
+
+  // Loupe tactile (voir MAG_SIZE ci-dessus) : touchPoint = position écran du doigt
+  // (pour placer la bulle flottante), magnifierCanvasRef = son propre mini-canvas.
+  const [touchPoint, setTouchPoint] = useState<Pt | null>(null)
+  const magnifierCanvasRef = useRef<HTMLCanvasElement>(null)
 
   // Précharge le modèle YOLO dès le montage pour réduire la latence au premier scan
   useEffect(() => { warmupYOLO() }, [])
@@ -1162,6 +1175,41 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     ctx.restore()
   }, [corners, zoom, pan])
 
+  // Redessine la loupe à chaque déplacement pendant un glissé tactile — même
+  // source que le canvas principal (déjà zoomé/pan/roté), juste un recadrage
+  // agrandi centré sur le coin en cours.
+  useEffect(() => {
+    if (dragging === null || !touchPoint) return
+    const mainCanvas = canvasRef.current
+    const magCanvas  = magnifierCanvasRef.current
+    if (!mainCanvas || !magCanvas) return
+    const c  = corners[dragging]
+    if (!c) return
+    const cw = mainCanvas.width, ch = mainCanvas.height
+    const z  = zoomRef.current, p = panRef.current
+    // Transform "aller" (inverse de screenToCanvasCoord) : où ce coin apparaît
+    // dans le bitmap déjà rendu du canvas principal.
+    const bx = (c.x - p.x) * z + cw / 2
+    const by = (c.y - p.y) * z + ch / 2
+    const srcSize = MAG_SIZE / MAG_ZOOM
+    const mctx = magCanvas.getContext('2d')!
+    mctx.clearRect(0, 0, MAG_SIZE, MAG_SIZE)
+    mctx.save()
+    mctx.beginPath(); mctx.arc(MAG_SIZE / 2, MAG_SIZE / 2, MAG_SIZE / 2 - 3, 0, Math.PI * 2); mctx.clip()
+    mctx.drawImage(mainCanvas, bx - srcSize / 2, by - srcSize / 2, srcSize, srcSize, 0, 0, MAG_SIZE, MAG_SIZE)
+    mctx.restore()
+    // Réticule au centre — pointe exactement là où le coin sera posé au relâché.
+    mctx.strokeStyle = HANDLE_COLORS[dragging]
+    mctx.lineWidth = 1.5
+    mctx.beginPath()
+    mctx.moveTo(MAG_SIZE / 2, MAG_SIZE / 2 - 9); mctx.lineTo(MAG_SIZE / 2, MAG_SIZE / 2 + 9)
+    mctx.moveTo(MAG_SIZE / 2 - 9, MAG_SIZE / 2); mctx.lineTo(MAG_SIZE / 2 + 9, MAG_SIZE / 2)
+    mctx.stroke()
+    mctx.beginPath()
+    mctx.arc(MAG_SIZE / 2, MAG_SIZE / 2, MAG_SIZE / 2 - 3, 0, Math.PI * 2)
+    mctx.strokeStyle = 'rgba(255,255,255,0.9)'; mctx.lineWidth = 3; mctx.stroke()
+  }, [corners, dragging, touchPoint])
+
   // ── Conversion écran → coordonnées canvas (inverse de la transform draw) ──
   // draw: screenPt = (canvasPt - pan) * zoom + center
   // inverse: canvasPt = (screenPt - center) / zoom + pan
@@ -1244,7 +1292,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       const t = e.touches[0]
       const pos = screenToCanvasCoord(t.clientX, t.clientY)
       const idx = nearestCorner(pos)
-      if (idx >= 0) { hasAdjusted.current = true; setDragging(idx) }
+      if (idx >= 0) { hasAdjusted.current = true; setDragging(idx); setTouchPoint({ x: t.clientX, y: t.clientY }) }
       else { isPanning.current = true; lastPanPt.current = { x: t.clientX, y: t.clientY } }
     } else if (e.touches.length === 2) {
       setDragging(null); isPanning.current = false
@@ -1266,6 +1314,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
         const pos = screenToCanvasCoord(t.clientX, t.clientY)
         const canvas = canvasRef.current!
         setCorners(prev => { const n = [...prev]; n[dragging] = { x: Math.max(0, Math.min(canvas.width, pos.x)), y: Math.max(0, Math.min(canvas.height, pos.y)) }; return n })
+        setTouchPoint({ x: t.clientX, y: t.clientY })
       } else if (isPanning.current && lastPanPt.current) {
         const canvas = canvasRef.current!
         const rect   = canvas.getBoundingClientRect()
@@ -1301,7 +1350,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     }
   }
   const onTouchEnd = (e: React.TouchEvent) => {
-    if (e.touches.length === 0) { setDragging(null); isPanning.current = false; lastPanPt.current = null }
+    if (e.touches.length === 0) { setDragging(null); setTouchPoint(null); isPanning.current = false; lastPanPt.current = null }
     if (e.touches.length === 1) { lastPinchDist.current = 0 }
   }
 
@@ -1362,6 +1411,18 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
         onWheel={onWheel}
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
       />
+
+      {dragging !== null && touchPoint && (
+        <div style={{
+          position: 'fixed', zIndex: 999, pointerEvents: 'none',
+          left: Math.max(8, Math.min(window.innerWidth - MAG_SIZE - 8, touchPoint.x - MAG_SIZE / 2)),
+          top: touchPoint.y - MAG_OFFSET_Y - MAG_SIZE,
+          width: MAG_SIZE, height: MAG_SIZE, borderRadius: '50%',
+          boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
+        }}>
+          <canvas ref={magnifierCanvasRef} width={MAG_SIZE} height={MAG_SIZE} style={{ width: MAG_SIZE, height: MAG_SIZE, borderRadius: '50%' }} />
+        </div>
+      )}
 
       {/* Zoom slider + bouton rotation */}
       {corners.length === 4 && !applying && (
