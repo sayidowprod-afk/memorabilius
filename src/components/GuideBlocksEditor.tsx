@@ -466,7 +466,8 @@ function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlo
   const runSearch = async (q: string) => {
     setSearch(q)
     if (q.trim().length < 2) { setResults([]); return }
-    const { data } = await supabase.from('card_sets').select('id, name, year, sport').ilike('name', `%${q}%`).limit(10)
+    const { data } = await supabase.from('card_sets').select('id, name, year, sport')
+      .ilike('name', `%${q}%`).order('year', { ascending: false }).limit(50)
     setResults(data || [])
   }
 
@@ -481,7 +482,7 @@ function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlo
         <>
           <input style={f} placeholder="Rechercher un set (ex: 2024-25 Panini Mosaic)" value={search} onChange={e => runSearch(e.target.value)} />
           {results.length > 0 && (
-            <div style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 6, overflow: 'hidden' }}>
+            <div style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 6, overflow: 'hidden', maxHeight: 320, overflowY: 'auto' }}>
               {results.map(r => {
                 const emoji = sportEmoji(r.sport)
                 const label = `${emoji ? `${emoji} ` : ''}${r.name}${r.year ? ` (${r.year})` : ''}`
