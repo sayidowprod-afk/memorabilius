@@ -1165,12 +1165,22 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     ctx.fillStyle   = 'rgba(0,229,255,0.10)'; ctx.fill()
     ctx.strokeStyle = '#00e5ff'; ctx.lineWidth = 2.5 / z; ctx.stroke()
 
-    // Handles (taille constante quel que soit le zoom)
+    // Handles en croix (taille constante quel que soit le zoom) — un disque plein
+    // masque justement le point qu'il désigne ; une croix pointe le pixel exact sans
+    // le recouvrir, plus facile à viser précisément. Halo sombre dessous pour rester
+    // lisible sur fond clair comme sombre, croix colorée par-dessus (même code
+    // couleur que la légende sous le canvas).
     corners.forEach((c, i) => {
-      ctx.beginPath()
-      ctx.arc(c.x, c.y, HANDLE_R / z, 0, Math.PI * 2)
-      ctx.fillStyle   = HANDLE_COLORS[i]; ctx.fill()
-      ctx.strokeStyle = 'rgba(0,0,0,0.4)'; ctx.lineWidth = 2 / z; ctx.stroke()
+      const r = HANDLE_R / z
+      const drawCross = (color: string, width: number) => {
+        ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round'
+        ctx.beginPath()
+        ctx.moveTo(c.x - r, c.y); ctx.lineTo(c.x + r, c.y)
+        ctx.moveTo(c.x, c.y - r); ctx.lineTo(c.x, c.y + r)
+        ctx.stroke()
+      }
+      drawCross('rgba(0,0,0,0.55)', 4.5 / z)
+      drawCross(HANDLE_COLORS[i], 2.5 / z)
     })
     ctx.restore()
   }, [corners, zoom, pan])
