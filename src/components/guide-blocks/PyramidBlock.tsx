@@ -59,6 +59,19 @@ function fallbackColorFor(name: string, i: number): string {
   return PALETTE[i % PALETTE.length]
 }
 
+// Combien de lignes en tête de pyramide partagent le même print run (ex: deux
+// variations toutes deux /1) : elles se partagent alors le sommet à égalité au lieu
+// qu'une seule occupe le triangle et l'autre retombe en simple barre en dessous. Ne
+// groupe que sur un print run réellement renseigné (sinon des lignes sans print run
+// se retrouveraient groupées par erreur).
+function apexGroupCount(rows: PyramidRow[]): number {
+  const first = (rows[0]?.printRun || '').trim()
+  if (!first) return 1
+  let n = 1
+  while (n < rows.length && (rows[n].printRun || '').trim() === first) n++
+  return n
+}
+
 function hexToRgba(hex: string, opacityPct: number): string {
   const h = hex.replace('#', '')
   const r = parseInt(h.length === 3 ? h[0] + h[0] : h.slice(0, 2), 16)
@@ -105,16 +118,19 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
   const n = rows.length
   const minWidth = 30
   const maxWidth = 100
+  const apexCount = apexGroupCount(rows)
+  const apexRows = rows.slice(0, apexCount)
+  const restRows = rows.slice(apexCount)
+  // Largeur du sommet identique à celle qu'aurait occupée un apex unique (même
+  // formule qu'avant, à i=0) — partagée à parts égales entre les lignes ex-aequo.
+  const apexSlotWidthPct = minWidth + ((maxWidth - minWidth) * 1) / n
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, maxWidth: 560, margin: '0 auto' }}>
-      {rows.map((row, i) => {
-        const widthPct = minWidth + ((maxWidth - minWidth) * (i + 1)) / n
-        const isActive = active === i
-        const isApex = i === 0
-        const bg = rowBackground(row, fallbackColorFor(row.name, i))
-
-        if (isApex) {
+      <div style={{ display: 'flex', gap: 8, width: `${apexSlotWidthPct}%` }}>
+        {apexRows.map((row, i) => {
+          const isActive = active === i
+          const bg = rowBackground(row, fallbackColorFor(row.name, i))
           return (
             <div
               key={i}
@@ -122,8 +138,8 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
               onMouseLeave={hoverCapable ? () => setActive(a => (a === i ? null : a)) : undefined}
               onClick={() => setActive(a => (a === i ? null : i))}
               style={{
-                position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
-                height: isActive ? 56 : 44, transition: 'height 0.15s, width 0.15s',
+                position: 'relative', flex: '1 1 0', minWidth: 0, cursor: 'pointer',
+                height: isActive ? 56 : 44, transition: 'height 0.15s',
               }}
             >
               <div style={{
@@ -147,13 +163,19 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
               )}
             </div>
           )
-        }
+        })}
+      </div>
 
+      {restRows.map((row, j) => {
+        const i = apexCount + j
+        const widthPct = minWidth + ((maxWidth - minWidth) * (i + 1)) / n
+        const isActive = active === i
+        const bg = rowBackground(row, fallbackColorFor(row.name, i))
         return (
           <div
             key={i}
-            onMouseEnter={() => setActive(i)}
-            onMouseLeave={() => setActive(a => (a === i ? null : a))}
+            onMouseEnter={hoverCapable ? () => setActive(i) : undefined}
+            onMouseLeave={hoverCapable ? () => setActive(a => (a === i ? null : a)) : undefined}
             onClick={() => setActive(a => (a === i ? null : i))}
             style={{
               position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
@@ -199,15 +221,15 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
 function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
   const [active, setActive] = useState<number | null>(null)
   const hoverCapable = useHoverCapable()
-  const apex = rows[0]
-  const rest = rows.slice(1)
+  const apexCount = apexGroupCount(rows)
+  const apexRows = rows.slice(0, apexCount)
+  const rest = rows.slice(apexCount)
   const left = rest.filter((_, i) => i % 2 === 0)
   const right = rest.filter((_, i) => i % 2 === 1)
-  const leftIndices = rest.map((_, i) => i + 1).filter((_, i) => i % 2 === 0)
-  const rightIndices = rest.map((_, i) => i + 1).filter((_, i) => i % 2 === 1)
+  const leftIndices = rest.map((_, i) => i + apexCount).filter((_, i) => i % 2 === 0)
+  const rightIndices = rest.map((_, i) => i + apexCount).filter((_, i) => i % 2 === 1)
 
   const activeRow = active !== null ? rows[active] : null
-  const apexBg = rowBackground(apex, fallbackColorFor(apex.name, 0))
 
   const inlineReveal = (row: PyramidRow, anchor: 'left' | 'right' | 'center') => (
     row.cardImage ? (
@@ -265,25 +287,34 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
 
   return (
     <div style={{ maxWidth: 720, margin: '0 auto' }}>
-      <div
-        onMouseEnter={hoverCapable ? () => setActive(0) : undefined}
-        onMouseLeave={hoverCapable ? () => setActive(a => (a === 0 ? null : a)) : undefined}
-        onClick={() => setActive(a => (a === 0 ? null : 0))}
-        style={{ position: 'relative', width: '42%', margin: '0 auto 3px', cursor: 'pointer', height: active === 0 ? 56 : 44, transition: 'height 0.15s' }}
-      >
-        <div style={{
-          position: 'absolute', inset: 0, ...apexBg,
-          clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
-          boxShadow: active === 0 ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
-        }} />
-        <span style={{
-          position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)',
-          color: 'white', fontSize: 11, fontWeight: 900, textShadow: '0 1px 3px rgba(0,0,0,0.7)',
-          whiteSpace: 'nowrap', maxWidth: '90%', overflow: 'hidden', textOverflow: 'ellipsis',
-        }}>
-          {apex.name}{apex.printRun && ` /${apex.printRun.replace(/^\//, '')}`}
-        </span>
-        {active === 0 && inlineReveal(apex, 'center')}
+      <div style={{ display: 'flex', gap: 6, width: '42%', margin: '0 auto 3px' }}>
+        {apexRows.map((row, i) => {
+          const isActive = active === i
+          const bg = rowBackground(row, fallbackColorFor(row.name, i))
+          return (
+            <div
+              key={i}
+              onMouseEnter={hoverCapable ? () => setActive(i) : undefined}
+              onMouseLeave={hoverCapable ? () => setActive(a => (a === i ? null : a)) : undefined}
+              onClick={() => setActive(a => (a === i ? null : i))}
+              style={{ position: 'relative', flex: '1 1 0', minWidth: 0, cursor: 'pointer', height: isActive ? 56 : 44, transition: 'height 0.15s' }}
+            >
+              <div style={{
+                position: 'absolute', inset: 0, ...bg,
+                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
+              }} />
+              <span style={{
+                position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)',
+                color: 'white', fontSize: 11, fontWeight: 900, textShadow: '0 1px 3px rgba(0,0,0,0.7)',
+                whiteSpace: 'nowrap', maxWidth: '90%', overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>
+                {row.name}{row.printRun && ` /${row.printRun.replace(/^\//, '')}`}
+              </span>
+              {isActive && inlineReveal(row, apexRows.length > 1 ? (i === 0 ? 'left' : 'right') : 'center')}
+            </div>
+          )
+        })}
       </div>
 
       <div className="pyr-columns" style={{ display: 'flex', alignItems: 'stretch', gap: 10 }}>
