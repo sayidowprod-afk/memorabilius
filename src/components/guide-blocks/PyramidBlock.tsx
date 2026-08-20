@@ -88,10 +88,17 @@ function hexToRgba(hex: string, opacityPct: number): string {
 // contrôle d'opacité propre) — un calque semi-transparent laisse plus de texture
 // d'origine visible en dessous.
 export function rowBackground(row: PyramidRow, fallback: string): { background: string; backgroundBlendMode?: string } {
-  if (row.patternImage && row.patternColor) {
-    const color = hexToRgba(row.patternColor, row.patternOpacity ?? 100)
+  // Dégradé personnalisé (2+ points) prioritaire sur la teinte unie s'il est
+  // renseigné. Une teinte unie se ramène au même mécanisme (2 fois la même
+  // couleur) — l'angle 135deg ne change donc rien pour les lignes existantes.
+  const stops = row.patternGradient && row.patternGradient.length >= 2
+    ? row.patternGradient
+    : row.patternColor ? [row.patternColor, row.patternColor] : null
+  if (row.patternImage && stops) {
+    const opacity = row.patternOpacity ?? 100
+    const colorStops = stops.map(c => hexToRgba(c, opacity)).join(', ')
     return {
-      background: `linear-gradient(${color}, ${color}), url(${row.patternImage}) center/cover`,
+      background: `linear-gradient(135deg, ${colorStops}), url(${row.patternImage}) center/cover`,
       backgroundBlendMode: row.patternBlendMode || 'multiply',
     }
   }

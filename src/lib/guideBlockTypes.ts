@@ -19,6 +19,10 @@ export interface PyramidRow {
   // au lieu d'uploader une image par couleur. Si absent, patternImage s'affiche telle
   // quelle (comportement d'origine, rétro-compatible).
   patternColor?: string
+  // Dégradé personnalisé (2+ couleurs) appliqué à la place de patternColor quand
+  // renseigné — nombre de points libre (ex: rainbow à 3+ couleurs). patternColor
+  // reste géré séparément pour la teinte unie (rétro-compat des lignes existantes).
+  patternGradient?: string[]
   patternBlendMode?: PatternBlendMode
   patternOpacity?: number // 0-100, opacité du calque de teinte (défaut 100 si patternColor défini)
   cardImage: string // exemple de carte révélé au survol/tap

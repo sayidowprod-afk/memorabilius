@@ -185,6 +185,31 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
   const removeRow = (i: number) => onChange({ ...block, rows: block.rows.filter((_, idx) => idx !== i) })
   const addRow = () => onChange({ ...block, rows: [...block.rows, { name: '', printRun: '', patternImage: '', cardImage: '' }] })
 
+  // Bascule teinte unie (patternColor) / dégradé personnalisé (patternGradient, 2+
+  // points) - un seul actif à la fois, rowBackground() priorise le dégradé s'il est
+  // renseigné. On amorce le dégradé avec 2 points repris de la couleur unie en cours
+  // pour ne pas repartir de zéro visuellement en changeant de mode.
+  const GRADIENT_MIN = 2
+  const GRADIENT_MAX = 6
+  const setGradientMode = (i: number, on: boolean) => {
+    const row = block.rows[i]
+    if (on) updateRow(i, { patternGradient: row.patternGradient && row.patternGradient.length >= GRADIENT_MIN ? row.patternGradient : [row.patternColor || '#ff0000', '#0000ff'] })
+    else updateRow(i, { patternGradient: undefined })
+  }
+  const updateGradientStop = (i: number, gi: number, color: string) => {
+    const grad = [...(block.rows[i].patternGradient || [])]
+    grad[gi] = color
+    updateRow(i, { patternGradient: grad })
+  }
+  const addGradientStop = (i: number) => {
+    const grad = [...(block.rows[i].patternGradient || []), '#ffffff']
+    if (grad.length <= GRADIENT_MAX) updateRow(i, { patternGradient: grad })
+  }
+  const removeGradientStop = (i: number, gi: number) => {
+    const grad = (block.rows[i].patternGradient || []).filter((_, idx) => idx !== gi)
+    if (grad.length >= GRADIENT_MIN) updateRow(i, { patternGradient: grad })
+  }
+
   const uploadRowImage = async (i: number, field: 'patternImage' | 'cardImage', file: File) => {
     setUploading({ i, field })
     const url = field === 'cardImage' ? await uploadGuideCardImage(file, 'pyramid/') : await uploadGuideImage(file, 'pyramid/')
@@ -214,48 +239,97 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
             {imgBtn(row, i, 'cardImage', 'Carte')}
             <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
           </div>
-          {row.patternImage && (
-            <div style={{ display: 'grid', gridTemplateColumns: '52px 26px 1fr 100px 18px', gap: 6, alignItems: 'center', paddingLeft: 4 }}>
-              <div className="pyramid-swatch" style={{
-                width: 52, height: 52, borderRadius: 6, border: `1px solid ${dark ? '#333' : '#ddd'}`,
-                cursor: 'zoom-in', position: 'relative', ...rowBackground(row, dark ? '#2a2a2a' : '#f0f0f0'),
-              }}>
-                <div className="pyramid-swatch-zoom" style={{ ...rowBackground(row, dark ? '#2a2a2a' : '#f0f0f0') }} />
+          {row.patternImage && (() => {
+            const isGradient = !!(row.patternGradient && row.patternGradient.length >= GRADIENT_MIN)
+            const modeBtn = (on: boolean, label: string) => (
+              <button type="button" onClick={() => setGradientMode(i, on)}
+                style={{
+                  padding: '4px 8px', fontSize: 10, fontWeight: 700, cursor: 'pointer', borderRadius: 4,
+                  border: `1px solid ${isGradient === on ? '#003DA6' : (dark ? '#333' : '#ddd')}`,
+                  background: isGradient === on ? '#003DA6' : 'transparent',
+                  color: isGradient === on ? 'white' : (dark ? '#aaa' : '#666'),
+                }}>
+                {label}
+              </button>
+            )
+            return (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, paddingLeft: 4 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '52px auto 1fr 100px 18px', gap: 6, alignItems: 'center' }}>
+                  <div className="pyramid-swatch" style={{
+                    width: 52, height: 52, borderRadius: 6, border: `1px solid ${dark ? '#333' : '#ddd'}`,
+                    cursor: 'zoom-in', position: 'relative', ...rowBackground(row, dark ? '#2a2a2a' : '#f0f0f0'),
+                  }}>
+                    <div className="pyramid-swatch-zoom" style={{ ...rowBackground(row, dark ? '#2a2a2a' : '#f0f0f0') }} />
+                  </div>
+                  <span style={{ display: 'flex', gap: 3 }}>
+                    {modeBtn(false, 'Uni')}
+                    {modeBtn(true, 'Dégradé')}
+                  </span>
+                  <select value={row.patternBlendMode || 'multiply'} onChange={e => updateRow(i, { patternBlendMode: e.target.value as PyramidRow['patternBlendMode'] })} style={{ ...f, padding: '4px 6px', fontSize: 11 }}>
+                    <option value="normal">Normal</option>
+                    <option value="multiply">Multiply</option>
+                    <option value="screen">Screen</option>
+                    <option value="overlay">Overlay</option>
+                    <option value="darken">Darken</option>
+                    <option value="lighten">Lighten</option>
+                    <option value="color-dodge">Color dodge</option>
+                    <option value="color-burn">Color burn</option>
+                    <option value="hard-light">Hard light</option>
+                    <option value="soft-light">Soft light</option>
+                    <option value="difference">Difference</option>
+                    <option value="exclusion">Exclusion</option>
+                    <option value="hue">Hue</option>
+                    <option value="saturation">Saturation</option>
+                    <option value="color">Color</option>
+                    <option value="luminosity">Luminosity</option>
+                  </select>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <input type="range" min={0} max={100} value={row.patternOpacity ?? 100}
+                      onChange={e => updateRow(i, { patternOpacity: Number(e.target.value) })}
+                      style={{ width: 52, cursor: 'pointer' }} />
+                    <span style={{ fontSize: 10, color: dark ? '#888' : '#999', minWidth: 26 }}>{row.patternOpacity ?? 100}%</span>
+                  </span>
+                  {(row.patternColor || isGradient) ? (
+                    <button type="button" onClick={() => updateRow(i, { patternColor: undefined, patternGradient: undefined, patternOpacity: undefined })}
+                      title="Retirer la teinte" style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 13, fontWeight: 700 }}>
+                      ✕
+                    </button>
+                  ) : <span />}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, paddingLeft: 58 }}>
+                  {!isGradient ? (
+                    <input type="color" value={row.patternColor || '#ffffff'} onChange={e => updateRow(i, { patternColor: e.target.value })}
+                      style={{ width: 26, height: 26, padding: 0, border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 4, cursor: 'pointer' }} />
+                  ) : (
+                    <>
+                      {row.patternGradient!.map((c, gi) => (
+                        <span key={gi} style={{ position: 'relative' }}>
+                          <input type="color" value={c} onChange={e => updateGradientStop(i, gi, e.target.value)}
+                            style={{ width: 26, height: 26, padding: 0, border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 4, cursor: 'pointer' }} />
+                          {row.patternGradient!.length > GRADIENT_MIN && (
+                            <button type="button" onClick={() => removeGradientStop(i, gi)} title="Retirer ce point"
+                              style={{
+                                position: 'absolute', top: -6, right: -6, width: 14, height: 14, lineHeight: '13px',
+                                borderRadius: '50%', border: 'none', background: '#e74c3c', color: 'white',
+                                fontSize: 9, fontWeight: 700, cursor: 'pointer', padding: 0,
+                              }}>
+                              ✕
+                            </button>
+                          )}
+                        </span>
+                      ))}
+                      {row.patternGradient!.length < GRADIENT_MAX && (
+                        <button type="button" onClick={() => addGradientStop(i)} title="Ajouter un point de dégradé"
+                          style={{ ...f, padding: '4px 8px', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
+                          + point
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
               </div>
-              <input type="color" value={row.patternColor || '#ffffff'} onChange={e => updateRow(i, { patternColor: e.target.value })}
-                style={{ width: 26, height: 26, padding: 0, border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 4, cursor: 'pointer' }} />
-              <select value={row.patternBlendMode || 'multiply'} onChange={e => updateRow(i, { patternBlendMode: e.target.value as PyramidRow['patternBlendMode'] })} style={{ ...f, padding: '4px 6px', fontSize: 11 }}>
-                <option value="normal">Normal</option>
-                <option value="multiply">Multiply</option>
-                <option value="screen">Screen</option>
-                <option value="overlay">Overlay</option>
-                <option value="darken">Darken</option>
-                <option value="lighten">Lighten</option>
-                <option value="color-dodge">Color dodge</option>
-                <option value="color-burn">Color burn</option>
-                <option value="hard-light">Hard light</option>
-                <option value="soft-light">Soft light</option>
-                <option value="difference">Difference</option>
-                <option value="exclusion">Exclusion</option>
-                <option value="hue">Hue</option>
-                <option value="saturation">Saturation</option>
-                <option value="color">Color</option>
-                <option value="luminosity">Luminosity</option>
-              </select>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                <input type="range" min={0} max={100} value={row.patternOpacity ?? 100}
-                  onChange={e => updateRow(i, { patternOpacity: Number(e.target.value) })}
-                  style={{ width: 52, cursor: 'pointer' }} />
-                <span style={{ fontSize: 10, color: dark ? '#888' : '#999', minWidth: 26 }}>{row.patternOpacity ?? 100}%</span>
-              </span>
-              {row.patternColor ? (
-                <button type="button" onClick={() => updateRow(i, { patternColor: undefined, patternOpacity: undefined })}
-                  title="Retirer la teinte" style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 13, fontWeight: 700 }}>
-                  ✕
-                </button>
-              ) : <span />}
-            </div>
-          )}
+            )
+          })()}
         </div>
       ))}
       <button type="button" onClick={addRow} style={{ alignSelf: 'flex-start', ...f, cursor: 'pointer', fontWeight: 700 }}>+ Ajouter une ligne</button>
