@@ -933,6 +933,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     requestAnimationFrame(() => finishFlip(dir))
   }
 
+  // Saute directement au dernier feuillet, sans animation de feuilletage (un
+  // classeur peut avoir des dizaines de pages, tourner une par une jusqu'à la fin
+  // serait trop long). Même simulation que canNext pour rester cohérent avec les
+  // bornes de navigation ci-dessus.
+  const goToLastPage = () => {
+    if (!selected || flip) return
+    let p = 0
+    while (isRings ? p / 2 + 1 <= selected.page_count : p + 2 <= selected.page_count) p += 2
+    setPageIndex(p)
+  }
+
   // ── Swipe pour tourner la page : UN seul détecteur sur toute la scène ──
   // Ne démarre que sur un glissé nettement horizontal (> vertical), ce qui le
   // distingue d'un tap sur pochette. Les cartes pleines gèrent leur propre glissé
@@ -1882,7 +1893,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               Ouvrir le classeur
             </button>
           ) : (
-            <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.35)', letterSpacing: '0.04em' }}>{pageLabel}</span>
+            <>
+              <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.35)', letterSpacing: '0.04em' }}>{pageLabel}</span>
+              {canNext && (
+                <button onClick={goToLastPage} disabled={!!flip} aria-label={t('binder_last_page')} title={t('binder_last_page')}
+                  style={{ pointerEvents: 'auto', background: dark ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.55)', border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)'}`, borderRadius: 10, padding: '6px 12px', cursor: 'pointer', color: dark ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)', fontSize: 13, fontWeight: 600, backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}>
+                  ⏭
+                </button>
+              )}
+            </>
           )}
         </div>
       )}
@@ -1909,6 +1928,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               {isOwner && !canNext && (
                 <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label={t('binder_add_page')}>
                   +<span className="binder-nav-label"> Ajouter une page</span>
+                </button>
+              )}
+              {canNext && (
+                <button onClick={goToLastPage} disabled={!!flip} className="btn-main btn-secondary"
+                  style={{ padding: isMobile ? '12px 14px' : '8px 12px', fontSize: 13 }} aria-label={t('binder_last_page')} title={t('binder_last_page')}>
+                  ⏭
                 </button>
               )}
               <button onClick={() => clickFlip('next')} disabled={!canNext || !!flip} className="btn-main btn-primary"
