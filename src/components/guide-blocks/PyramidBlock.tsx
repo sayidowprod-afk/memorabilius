@@ -99,6 +99,27 @@ export function rowBackground(row: PyramidRow, fallback: string): { background: 
   return { background: fallback }
 }
 
+// Découpe le triangle apex (clip-path 'polygon(50% 0%, 100% 100%, 0% 100%)') en N
+// tranches verticales égales, pour que plusieurs variations ex-aequo au sommet
+// (même print run, ex: deux /1) se PARTAGENT un seul triangle plutôt que d'afficher
+// chacune son propre petit triangle complet côte à côte. Renvoie le clip-path (en
+// coordonnées locales 0-100% de la tranche k) de la portion du triangle global
+// tombant dans cette tranche : un triangle simple pour les deux tranches extrêmes
+// (bord extérieur droit vertical/gauche vertical), un pentagone en forme de maison
+// pour toute tranche centrale qui contient la pointe (utile si N ≥ 3).
+function apexSlicePolygon(k: number, N: number): string {
+  if (N <= 1) return 'polygon(50% 0%, 100% 100%, 0% 100%)'
+  const x0 = (k / N) * 100
+  const x1 = ((k + 1) / N) * 100
+  const yTop = (x: number) => (x <= 50 ? 100 - 2 * x : 2 * x - 100)
+  const y0 = Math.max(0, Math.min(100, yTop(x0)))
+  const y1 = Math.max(0, Math.min(100, yTop(x1)))
+  const points: [number, number][] = [[0, y0]]
+  if (x0 < 50 && x1 > 50) points.push([((50 - x0) / (x1 - x0)) * 100, 0])
+  points.push([100, y1], [100, 100], [0, 100])
+  return `polygon(${points.map(([x, y]) => `${x}% ${y}%`).join(', ')})`
+}
+
 export default function PyramidBlock({ title, rows }: Props) {
   if (!rows.length) return null
 
@@ -127,7 +148,7 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, maxWidth: 560, margin: '0 auto' }}>
-      <div style={{ display: 'flex', gap: 8, width: `${apexSlotWidthPct}%` }}>
+      <div style={{ display: 'flex', gap: 3, width: `${apexSlotWidthPct}%` }}>
         {apexRows.map((row, i) => {
           const isActive = active === i
           const bg = rowBackground(row, fallbackColorFor(row.name, i))
@@ -144,7 +165,7 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
             >
               <div style={{
                 position: 'absolute', inset: 0, ...bg,
-                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                clipPath: apexSlicePolygon(i, apexRows.length),
                 boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
               }} />
               <span style={{
@@ -287,7 +308,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
 
   return (
     <div style={{ maxWidth: 720, margin: '0 auto' }}>
-      <div style={{ display: 'flex', gap: 6, width: '42%', margin: '0 auto 3px' }}>
+      <div style={{ display: 'flex', gap: 3, width: '42%', margin: '0 auto 3px' }}>
         {apexRows.map((row, i) => {
           const isActive = active === i
           const bg = rowBackground(row, fallbackColorFor(row.name, i))
@@ -301,7 +322,7 @@ function SplitPyramid({ rows }: { rows: PyramidRow[] }) {
             >
               <div style={{
                 position: 'absolute', inset: 0, ...bg,
-                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                clipPath: apexSlicePolygon(i, apexRows.length),
                 boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
               }} />
               <span style={{
