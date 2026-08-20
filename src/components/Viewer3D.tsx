@@ -1617,15 +1617,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             document.body
           )}
 
-          {/* Boutons actions */}
+          {/* Boutons actions — grille 2 colonnes : Modifier/Rotation, Vente-Trade/
+              Marquer vendue, Partager/Exporter vidéo (au lieu d'un flex-wrap qui
+              cassait la ligne au hasard selon les boutons visibles). */}
           <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
               {isOwner && popup.id_manuelle && userId && (
                 <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} style={{
                   background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
-                  border: 'none', borderRadius: 10, padding: '12px 14px',
+                  border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
                   fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
-                  display: 'flex', alignItems: 'center', gap: 6,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                 }}>
                   {t('binder_edit')}
                 </Link>
@@ -1633,25 +1635,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               {!popup.booklet && (
                 <button onClick={toggleFlip90} title={t('viewer_rotate_title')} style={{
                   background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
-                  border: 'none', borderRadius: 10, padding: '12px 14px',
+                  border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
                   fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                   transition: '0.2s',
                 }}>
                   🔄 {t('viewer_rotate_btn')}
-                </button>
-              )}
-              {isOwner && popup.id_manuelle && onVendueChange && (
-                <button onClick={async () => {
-                  const next = !popup.vendue
-                  await supabase.from('cartes_manuelles').update({ vendue: next }).eq('id', popup.id_manuelle)
-                  onVendueChange(popup, next)
-                }} title={t('viewer_mark_sold_title')} style={{
-                  background: popup.vendue ? '#c0392b' : (dark ? '#2a2a2a' : '#f0f0f0'), color: popup.vendue ? 'white' : (dark ? '#eee' : '#333'),
-                  border: 'none', borderRadius: 10, padding: '12px 14px',
-                  fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                  transition: '0.2s',
-                }}>
-                  {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
                 </button>
               )}
               {isOwner && onDisponibleVenteChange && (popup.id_manuelle || userId) && (
@@ -1667,19 +1655,27 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   onDisponibleVenteChange(popup, next)
                 }} title={t('viewer_mark_forsale_title')} style={{
                   background: popup.disponible_vente ? '#003DA6' : (dark ? '#2a2a2a' : '#f0f0f0'), color: popup.disponible_vente ? 'white' : (dark ? '#eee' : '#333'),
-                  border: 'none', borderRadius: 10, padding: '12px 14px',
+                  border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
                   fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                   transition: '0.2s',
                 }}>
                   {popup.disponible_vente ? `✓ ${t('gallery_for_sale_label')}` : t('viewer_mark_forsale_btn')}
                 </button>
               )}
-              <button onClick={() => setShowVideo(true)} style={{
-                flex: 1, background: '#0d0d1f', color: 'white', border: 'none',
-                borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
-              }}>
-                🎬 {t('video_export_title')}
-              </button>
+              {isOwner && popup.id_manuelle && onVendueChange && (
+                <button onClick={async () => {
+                  const next = !popup.vendue
+                  await supabase.from('cartes_manuelles').update({ vendue: next }).eq('id', popup.id_manuelle)
+                  onVendueChange(popup, next)
+                }} title={t('viewer_mark_sold_title')} style={{
+                  background: popup.vendue ? '#c0392b' : (dark ? '#2a2a2a' : '#f0f0f0'), color: popup.vendue ? 'white' : (dark ? '#eee' : '#333'),
+                  border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                  transition: '0.2s',
+                }}>
+                  {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
+                </button>
+              )}
               {userId && (
                 <ShareButton
                   url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
@@ -1688,11 +1684,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   buttonStyle={{
                     background: dark ? '#2a2a2a' : '#f0f0f0',
                     color: dark ? '#eee' : '#333',
-                    border: 'none', borderRadius: 10, padding: '12px 14px',
+                    border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box', width: '100%',
                     fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                   }}
                 />
               )}
+              <button onClick={() => setShowVideo(true)} style={{
+                background: '#0d0d1f', color: 'white', border: 'none', boxSizing: 'border-box',
+                borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
+              }}>
+                🎬 {t('video_export_title')}
+              </button>
             </div>
             {(popup.lien_vinted || popup.lien_ebay) && (
               <div style={{ display: 'flex', gap: 8 }}>
