@@ -144,20 +144,27 @@ interface SetlistEmbedData {
 }
 
 // PostgREST plafonne chaque requête à 1000 lignes par défaut — un simple .limit(2000)
-// ne suffisait pas pour les gros sets (Topps Chrome Update fait 6000+ cartes avec
+// ne suffisait pas pour les gros sets (Topps Chrome Update fait 19 000+ cartes avec
 // tous les parallèles), ce qui coupait silencieusement la checklist embarquée et
 // vidait des onglets entiers (Autographs, Inserts...) puisque leurs cartes tombaient
 // après la coupure. On pagine donc par blocs de 1000 jusqu'à tout récupérer.
+//
+// Tri par `id` (clé primaire indexée), pas par `variation`/`card_number` (colonnes
+// texte non indexées) : la pagination par `.range()` exige un ordre stable d'une
+// requête à l'autre, mais SetlistEmbedBlock re-trie déjà tout côté client
+// (cardNumCompare/teamEntryCompare) — trier par des colonnes texte en base ne servait
+// donc à rien et forçait Postgres à re-trier ~19 000 lignes à CHAQUE page de CHAQUE
+// requête (jusqu'à 20 requêtes par chargement de page), un coût inutile qui pèse
+// lourd sur un compute Nano.
 async function fetchAllSetEntries(setId: number) {
   const entries: { card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean }[] = []
   const pageSize = 1000
-  for (let from = 0; from < 20000; from += pageSize) {
+  for (let from = 0; from < 60000; from += pageSize) {
     const { data, error } = await supabase
       .from('card_set_entries')
       .select('card_number, player_name, team, variation, is_rc')
       .eq('set_id', setId)
-      .order('variation', { ascending: true })
-      .order('card_number', { ascending: true })
+      .order('id', { ascending: true })
       .range(from, from + pageSize - 1)
     if (error || !data || data.length === 0) break
     entries.push(...data)
