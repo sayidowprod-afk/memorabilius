@@ -18,12 +18,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/trades`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: `${base}/recherche`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${base}/tuto`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${base}/guides`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
   ]
 
   try {
-    const [{ data: profiles }, { data: sets }, { data: cards }] = await Promise.all([
+    const [{ data: profiles }, { data: sets }, { data: guides }, { data: cards }] = await Promise.all([
       supabase.from('profiles').select('id, slug, updated_at'),
       supabase.from('card_sets').select('id, updated_at').order('id'),
+      // Contenu editorial (checklists, guides de set) - bon aimant SEO longue traine
+      // (ex: "2025-26 Topps Chrome Update checklist").
+      supabase.from('guides').select('slug, published_at').eq('published', true).lte('published_at', new Date().toISOString()),
       // Fiches carte individuelles : le vrai aimant à trafic SEO (recherches type
       // "Michael Jordan 1993-94 Upper Deck"). Plafonné pour rester dans une taille de
       // sitemap raisonnable ; priorise les cartes les plus récemment ajoutées.
@@ -57,7 +61,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       }))
 
-    return [...staticPages, ...galeries, ...setPages, ...cardPages]
+    const guidePages: MetadataRoute.Sitemap = (guides || []).map((g: any) => ({
+      url: `${base}/guides/${g.slug}`,
+      lastModified: new Date(g.published_at || new Date()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+
+    return [...staticPages, ...galeries, ...setPages, ...cardPages, ...guidePages]
   } catch {
     return staticPages
   }
