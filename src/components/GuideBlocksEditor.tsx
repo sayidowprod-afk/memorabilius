@@ -280,6 +280,33 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
       <p style={{ fontSize: 11, color: dark ? '#888' : '#999', margin: '0 0 4px' }}>
         Ordre = de la plus rare (en haut) à la plus commune (en bas). "Motif" = texture de fond de la barre, "Carte" = exemple révélé au survol.
       </p>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+        <span style={{ fontSize: 11, fontWeight: 700, color: dark ? '#888' : '#999' }}>Style :</span>
+        {([
+          ['auto', 'Auto'],
+          ['single', 'Unie'],
+          ['split', 'Séparée'],
+          ['joined', 'Jointe'],
+        ] as const).map(([val, label]) => (
+          <button key={val} type="button" onClick={() => onChange({ ...block, layout: val })}
+            style={{
+              padding: '4px 10px', fontSize: 11, fontWeight: 700, cursor: 'pointer', borderRadius: 4,
+              border: `1px solid ${(block.layout || 'auto') === val ? '#003DA6' : (dark ? '#333' : '#ddd')}`,
+              background: (block.layout || 'auto') === val ? '#003DA6' : 'transparent',
+              color: (block.layout || 'auto') === val ? 'white' : (dark ? '#aaa' : '#666'),
+            }}>
+            {label}
+          </button>
+        ))}
+        <span style={{ fontSize: 10, color: dark ? '#666' : '#aaa' }}>
+          {block.layout === 'single' ? '1 colonne, barres pleines'
+            : block.layout === 'split' ? '2 colonnes gauche/droite alternées'
+            : block.layout === 'joined' ? '1 colonne, chaque barre coupée en 2 au centre'
+            : '1 colonne si ≤ 6 lignes, sinon 2 colonnes'}
+        </span>
+      </div>
+
       {block.rows.map((row, i) => (
         <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 4, paddingBottom: 6, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px auto auto auto', gap: 6, alignItems: 'center' }}>
@@ -400,7 +427,7 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
       {block.rows.length > 0 && (
         <div style={{ marginTop: 10, padding: 14, borderRadius: 8, border: `1px dashed ${dark ? '#333' : '#ddd'}` }}>
           <p style={{ fontSize: 10, fontWeight: 800, color: dark ? '#888' : '#999', textTransform: 'uppercase', margin: '0 0 8px' }}>Aperçu</p>
-          <PyramidBlock rows={block.rows} />
+          <PyramidBlock rows={block.rows} layout={block.layout} />
         </div>
       )}
 

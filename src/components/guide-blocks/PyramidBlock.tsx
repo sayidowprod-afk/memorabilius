@@ -5,6 +5,7 @@ import type { PyramidRow } from '@/lib/guideBlockTypes'
 interface Props {
   title?: string
   rows: PyramidRow[]
+  layout?: 'auto' | 'single' | 'split' | 'joined'
 }
 
 // Pyramide de variations : une barre par ligne, largeur croissante du haut (rare) au
@@ -131,13 +132,17 @@ function apexSlicePolygon(k: number, N: number): string {
   return `polygon(${points.map(([x, y]) => `${x}% ${y}%`).join(', ')})`
 }
 
-export default function PyramidBlock({ title, rows }: Props) {
+export default function PyramidBlock({ title, rows, layout = 'auto' }: Props) {
   if (!rows.length) return null
+
+  const chosen = layout !== 'auto' ? layout : (rows.length > SPLIT_THRESHOLD ? 'split' : 'single')
 
   return (
     <div style={{ margin: '32px 0' }}>
       {title && <h3 style={{ fontSize: 19, fontWeight: 800, margin: '0 0 14px' }}>{title}</h3>}
-      {rows.length > SPLIT_THRESHOLD ? <SplitPyramid rows={rows} /> : <SinglePyramid rows={rows} />}
+      {chosen === 'split' && <SplitPyramid rows={rows} />}
+      {chosen === 'single' && <SinglePyramid rows={rows} />}
+      {chosen === 'joined' && <JoinedPyramid rows={rows} />}
     </div>
   )
 }
@@ -220,6 +225,108 @@ function SinglePyramid({ rows }: { rows: PyramidRow[] }) {
             }}
           >
             <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {row.name}{row.printRun && <span style={{ opacity: 0.9, fontWeight: 700 }}> /{row.printRun.replace(/^\//, '')}</span>}
+            </span>
+            {isActive && row.cardImage && (
+              <img src={row.cardImage} alt={row.name} style={{
+                position: 'absolute', right: 0, top: '100%', marginTop: 6, width: 90, height: 126,
+                objectFit: 'contain', background: 'var(--bg3, #f2f2f2)', borderRadius: 8, boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
+              }} />
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+// --- Pyramide "jointe" (colonne unique, chaque barre coupée en 2 moitiés qui se
+// rejoignent au centre) -------------------------------------------------------
+//
+// Même structure que SinglePyramid (sommet identique, y compris le partage entre
+// variations ex-aequo) mais les lignes en dessous du sommet ne sont plus des barres
+// pleines : chaque ligne garde SA place dans la pile du haut vers le bas (pas
+// d'alternance gauche/droite comme SplitPyramid), simplement dessinée en 2 moitiés
+// symétriques avec un fin espace au centre — même esprit visuel que le sommet
+// partagé, appliqué à toute la pyramide plutôt qu'aux seules variations ex-aequo.
+function JoinedPyramid({ rows }: { rows: PyramidRow[] }) {
+  const [active, setActive] = useState<number | null>(null)
+  const hoverCapable = useHoverCapable()
+  const n = rows.length
+  const minWidth = 30
+  const maxWidth = 100
+  const apexCount = apexGroupCount(rows)
+  const apexRows = rows.slice(0, apexCount)
+  const restRows = rows.slice(apexCount)
+  const apexSlotWidthPct = minWidth + ((maxWidth - minWidth) * 1) / n
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, maxWidth: 560, margin: '0 auto' }}>
+      <div style={{ display: 'flex', gap: 3, width: `${apexSlotWidthPct}%` }}>
+        {apexRows.map((row, i) => {
+          const isActive = active === i
+          const bg = rowBackground(row, fallbackColorFor(row.name, i))
+          return (
+            <div
+              key={i}
+              onMouseEnter={hoverCapable ? () => setActive(i) : undefined}
+              onMouseLeave={hoverCapable ? () => setActive(a => (a === i ? null : a)) : undefined}
+              onClick={() => setActive(a => (a === i ? null : i))}
+              style={{
+                position: 'relative', flex: '1 1 0', minWidth: 0, cursor: 'pointer',
+                height: isActive ? 56 : 44, transition: 'height 0.15s',
+              }}
+            >
+              <div style={{
+                position: 'absolute', inset: 0, ...bg,
+                clipPath: apexSlicePolygon(i, apexRows.length),
+                boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
+              }} />
+              <span style={{
+                position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)',
+                color: 'white', fontSize: 11, fontWeight: 900, textShadow: '0 1px 3px rgba(0,0,0,0.7)',
+                whiteSpace: 'nowrap', maxWidth: '90%', overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>
+                {row.name}{row.printRun && ` /${row.printRun.replace(/^\//, '')}`}
+              </span>
+              {isActive && row.cardImage && (
+                <img src={row.cardImage} alt={row.name} style={{
+                  position: 'absolute', left: '50%', top: '100%', marginTop: 6, transform: 'translateX(-50%)',
+                  width: 90, height: 126, objectFit: 'contain', background: 'var(--bg3, #f2f2f2)', borderRadius: 8,
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.35)', zIndex: 3,
+                }} />
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {restRows.map((row, j) => {
+        const i = apexCount + j
+        const widthPct = minWidth + ((maxWidth - minWidth) * (i + 1)) / n
+        const isActive = active === i
+        const bg = rowBackground(row, fallbackColorFor(row.name, i))
+        return (
+          <div
+            key={i}
+            onMouseEnter={hoverCapable ? () => setActive(i) : undefined}
+            onMouseLeave={hoverCapable ? () => setActive(a => (a === i ? null : a)) : undefined}
+            onClick={() => setActive(a => (a === i ? null : i))}
+            style={{
+              position: 'relative', width: `${widthPct}%`, cursor: 'pointer',
+              height: isActive ? 40 : 32, transform: isActive ? 'scale(1.04)' : 'scale(1)',
+              transition: 'transform 0.15s, height 0.15s', zIndex: isActive ? 2 : 1,
+            }}
+          >
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', gap: 3 }}>
+              <div style={{ flex: '1 1 0', ...bg, borderRadius: '4px 0 0 4px', boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none' }} />
+              <div style={{ flex: '1 1 0', ...bg, borderRadius: '0 4px 4px 0', boxShadow: isActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none' }} />
+            </div>
+            <span style={{
+              position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', paddingLeft: 14, paddingRight: 14,
+              color: 'white', fontSize: isActive ? 13 : 12, fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.6)',
+              overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', pointerEvents: 'none',
+            }}>
               {row.name}{row.printRun && <span style={{ opacity: 0.9, fontWeight: 700 }}> /{row.printRun.replace(/^\//, '')}</span>}
             </span>
             {isActive && row.cardImage && (

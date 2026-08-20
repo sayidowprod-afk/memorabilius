@@ -46,7 +46,14 @@ export type GuideBlock =
   | { type: 'text'; html: string }
   | { type: 'image'; src: string; caption?: string }
   | { type: 'text_image'; html: string; image: string; imagePosition: 'left' | 'right' }
-  | { type: 'pyramid'; title?: string; rows: PyramidRow[] }
+  // layout : force le style d'affichage de la pyramide au lieu du choix automatique
+  // (auto = colonne unique si <= 6 lignes, sinon 2 colonnes gauche/droite alternées) :
+  //  - 'single'  : une seule colonne centrée, une barre pleine largeur par ligne.
+  //  - 'split'   : 2 colonnes ancrées aux bords, lignes alternées gauche/droite.
+  //  - 'joined'  : une seule colonne (comme 'single'), mais chaque barre est coupée
+  //                en 2 moitiés symétriques qui se rejoignent au centre (comme le
+  //                sommet partagé entre variations ex-aequo), au lieu d'alterner.
+  | { type: 'pyramid'; title?: string; rows: PyramidRow[]; layout?: 'auto' | 'single' | 'split' | 'joined' }
   | { type: 'insert_grid'; title?: string; cards: InsertCard[]; oddsTable: OddsTable; players: string[]; width?: 'full' | 'half' | 'third' }
   | { type: 'setlist_embed'; setId: number; title?: string }
 

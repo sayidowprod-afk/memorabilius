@@ -85,7 +85,7 @@ function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, Setl
     if (block.type === 'text_image') return (
       <TextImageBlock key={key} html={sanitizeGuideHtml(block.html)} image={block.image} imagePosition={block.imagePosition} />
     )
-    if (block.type === 'pyramid') return <PyramidBlock key={key} title={block.title} rows={block.rows} />
+    if (block.type === 'pyramid') return <PyramidBlock key={key} title={block.title} rows={block.rows} layout={block.layout} />
     if (block.type === 'insert_grid') return (
       // Casse la largeur de <article> (760px) pour laisser au tableau d'odds la place
       // de s'afficher entièrement à côté de la carte au lieu de scroller/empiler dès
