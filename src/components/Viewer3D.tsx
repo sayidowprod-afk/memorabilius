@@ -1654,10 +1654,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
                 </button>
               )}
-              {isOwner && popup.id_manuelle && onDisponibleVenteChange && (
+              {isOwner && onDisponibleVenteChange && (popup.id_manuelle || userId) && (
                 <button onClick={async () => {
                   const next = !popup.disponible_vente
-                  await supabase.from('cartes_manuelles').update({ disponible_vente: next }).eq('id', popup.id_manuelle)
+                  if (popup.id_manuelle) {
+                    await supabase.from('cartes_manuelles').update({ disponible_vente: next }).eq('id', popup.id_manuelle)
+                  } else if (userId) {
+                    // Carte CSV (source externe en lecture seule) : même mécanisme de
+                    // surcharge que collection_tag, upsert par (user_id, card_key).
+                    await supabase.from('carte_tags').upsert({ user_id: userId, card_key: popup.f, disponible_vente: next }, { onConflict: 'user_id,card_key' })
+                  }
                   onDisponibleVenteChange(popup, next)
                 }} title={t('viewer_mark_forsale_title')} style={{
                   background: popup.disponible_vente ? '#003DA6' : (dark ? '#2a2a2a' : '#f0f0f0'), color: popup.disponible_vente ? 'white' : (dark ? '#eee' : '#333'),

@@ -448,6 +448,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
   // monthlyBadges retired — remplacé par BadgeBox
   const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
+  // Cartes CSV : disponible_vente n'existe pas sur le CSV lui-même (source externe
+  // en lecture seule) - même mécanisme de surcharge que collection_tag, stocké dans
+  // carte_tags par (user_id, card_key).
+  const [csvVente, setCsvVente] = useState<Map<string, boolean>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
   const [grailSearch, setGrailSearch] = useState('')
   const [expandedCollections, setExpandedCollections] = useState<Set<string>>(new Set())
@@ -502,7 +506,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         // Tags + profil en parallèle — pas de getSession() qui peut bloquer/pendre
         const [{ data: tagsData }, { data: profileData }] = await Promise.race([
           Promise.all([
-            supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId),
+            supabase.from('carte_tags').select('card_key, collection_tag, disponible_vente').eq('user_id', resolvedId),
             supabase.from('profiles').select('*').eq('id', resolvedId).single(),
           ]),
           timeout,
@@ -510,8 +514,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         if (cancelled) return
         const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
         setCsvTags(tagsMap)
+        const venteMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.disponible_vente || false]))
+        setCsvVente(venteMap)
 
-        if (profileData) { setProfile(profileData); loadCSV(profileData.lien_csv ?? null, tagsMap, profileData.gallery_order || []) }
+        if (profileData) { setProfile(profileData); loadCSV(profileData.lien_csv ?? null, tagsMap, profileData.gallery_order || [], venteMap) }
         else setLoaded(true)
         // badges chargés dans BadgeBox à la demande
         supabase.from('collection_tab_settings').select('tag, color, position, parent').eq('user_id', resolvedId).then(({ data }) => {
@@ -669,7 +675,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     router.push(`/galerie/${userId}/editer/${manualIds[0]}?queue=${queue}&qidx=0`)
   }
 
-  const loadCSV = async (url: string | null, tagsMap?: Map<string, string>, galleryOrder: string[] = []) => {
+  const loadCSV = async (url: string | null, tagsMap?: Map<string, string>, galleryOrder: string[] = [], venteMap?: Map<string, boolean>) => {
     try {
       let parsed: Card[] = []
       if (url) {
@@ -687,7 +693,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             rc: c[10]?.toLowerCase().includes('oui') || false,
             patch: c[11]?.toLowerCase().includes('oui') || false,
             g: c[12] || 'Raw', card_number: c[13]?.trim() || '', isManuelle: false,
-            collection_tag: (tagsMap || csvTags).get(c[0]?.trim()) || ''
+            collection_tag: (tagsMap || csvTags).get(c[0]?.trim()) || '',
+            disponible_vente: (venteMap || csvVente).get(c[0]?.trim()) || false
           }
         }).filter(Boolean) as Card[]
       }
