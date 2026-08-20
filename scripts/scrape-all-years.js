@@ -7,6 +7,7 @@
  *   node scripts/scrape-all-years.js
  *   node scripts/scrape-all-years.js --from=2020 --to=2000
  *   node scripts/scrape-all-years.js --dry-run
+ *   node scripts/scrape-all-years.js --from=2025 --to=2025 --name="Hoops" --force
  */
 require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
 
@@ -30,6 +31,13 @@ const FROM    = args.from  ? parseInt(args.from)  : 2025  // année TCDB (2025 =
 const TO      = args.to    ? parseInt(args.to)    : 1969
 const DRY_RUN = !!args['dry-run']
 const SLOT    = args.slot ? parseInt(args.slot) : 1
+// Filtre optionnel sur un set précis (ex: "Hoops") — sans lui, tous les sets Major
+// Releases de la plage d'années sont traités comme avant. --force ignore le
+// checkpoint doneTcdbIds pour les sets qui matchent le filtre (sinon un set déjà
+// scrapé est silencieusement sauté, checkpoint oblige) — n'affecte que les sets
+// filtrés par --name, pas le reste de la plage.
+const NAME_FILTER = args.name ? args.name.toLowerCase() : null
+const FORCE   = !!args.force
 
 // Délais aléatoires humains (optimisés — ~3x plus rapide, toujours variable)
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
@@ -232,7 +240,7 @@ async function fetchTeamCards(page, sid, teamId, teamSlug) {
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''
           const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isPlayerName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isPlayerName) { playerName = linkText; continue }
@@ -262,7 +270,8 @@ function importYear(jsonFile) {
 // ── Scraper un set ────────────────────────────────────────────────────────────
 
 async function scrapeSet(page, set, year, cp) {
-  if (cp.doneTcdbIds.includes(set.tcdb_id)) {
+  const forceThis = FORCE && NAME_FILTER && set.name.toLowerCase().includes(NAME_FILTER)
+  if (cp.doneTcdbIds.includes(set.tcdb_id) && !forceThis) {
     console.log(`  ⏭️  tcdb_id:${set.tcdb_id} déjà fait`)
     return null
   }
@@ -376,6 +385,7 @@ async function main() {
       let yearOk = 0
       for (let si = 0; si < sets.length; si++) {
         const set = sets[si]
+        if (NAME_FILTER && !set.name.toLowerCase().includes(NAME_FILTER)) continue
         console.log(`\n  [${si+1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
 
         try {
