@@ -60,6 +60,22 @@ function slugifyTeam(name: string): string {
   return name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
 }
 
+// Tri "façon Beckett Team Set Checklists" (voir capture de référence) : au sein
+// d'une équipe, les cartes sont groupées par set/insert (Base d'abord, puis
+// alphabétique — "1980-81 Topps Basketball Autographs", "Activators", "Captains"…),
+// et chaque groupe est trié par numéro de carte croissant. Un simple tri par
+// numéro de carte mélangerait les inserts entre eux (chaque set a sa propre
+// numérotation, ex. "AC-16" vs "CB-9").
+function teamEntryCompare(a: Entry, b: Entry): number {
+  const va = a.variation || 'Base'
+  const vb = b.variation || 'Base'
+  const aBase = /^base/i.test(va) ? 0 : 1
+  const bBase = /^base/i.test(vb) ? 0 : 1
+  if (aBase !== bBase) return aBase - bBase
+  if (va !== vb) return va.localeCompare(vb, undefined, { numeric: true, sensitivity: 'base' })
+  return cardNumCompare(a, b)
+}
+
 export default function SetlistEmbedBlock({ title, setId, setName, totalCards, sport, entries }: Props) {
   const emoji = sportEmoji(sport)
   const [tab, setTab] = useState<TabKey>('full')
@@ -85,7 +101,7 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
       if (!teams.has(key)) teams.set(key, [])
       teams.get(key)!.push(e)
     }
-    for (const items of teams.values()) items.sort(cardNumCompare)
+    for (const items of teams.values()) items.sort(teamEntryCompare)
     if (teams.size > 1) available.push('teams')
 
     return { tabEntries: byTab, availableTabs: available, teamGroups: teams }
@@ -104,7 +120,7 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
     return groups
   }
 
-  const renderList = (list: Entry[]) => (
+  const renderList = (list: Entry[], opts?: { hideTeam?: boolean }) => (
     <div style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden' }}>
       {groupByVariation(list).map((g, gi) => (
         <div key={gi}>
@@ -118,7 +134,7 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
                 {e.player_name}
                 {e.is_rc && <span style={{ marginLeft: 6, fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px' }}>RC</span>}
               </span>
-              {e.team && <span style={{ color: 'var(--text3, #999)', fontSize: 12 }}>{e.team}</span>}
+              {!opts?.hideTeam && e.team && <span style={{ color: 'var(--text3, #999)', fontSize: 12 }}>{e.team}</span>}
             </div>
           ))}
         </div>
@@ -178,20 +194,11 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
             ))}
           </div>
           {[...teamGroups.entries()].map(([teamName, items]) => (
-            <div key={teamName} id={`team-${slugifyTeam(teamName)}`} style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, overflow: 'hidden', scrollMarginTop: 90 }}>
-              <div style={{ padding: '8px 14px', background: 'var(--bg3, #f7f8fa)', fontSize: 12, fontWeight: 800, color: 'var(--text, #222)', textTransform: 'uppercase', letterSpacing: 0.4 }}>
+            <div key={teamName} id={`team-${slugifyTeam(teamName)}`} style={{ scrollMarginTop: 90 }}>
+              <h4 style={{ padding: '2px 0 8px', margin: 0, fontSize: 14, fontWeight: 800, color: 'var(--text, #222)' }}>
                 {teamName} <span style={{ color: 'var(--text3, #999)', fontWeight: 700 }}>({items.length})</span>
-              </div>
-              {items.map((e, ei) => (
-                <div key={ei} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 14px', fontSize: 13, borderTop: '1px solid var(--border, #f0f0f0)' }}>
-                  {e.card_number && <strong style={{ minWidth: 40, color: 'var(--text3, #999)' }}>{e.card_number}</strong>}
-                  <span style={{ flex: 1 }}>
-                    {e.player_name}
-                    {e.is_rc && <span style={{ marginLeft: 6, fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px' }}>RC</span>}
-                  </span>
-                  {e.variation && <span style={{ color: 'var(--text3, #999)', fontSize: 12 }}>{e.variation}</span>}
-                </div>
-              ))}
+              </h4>
+              {renderList(items, { hideTeam: true })}
             </div>
           ))}
         </div>
