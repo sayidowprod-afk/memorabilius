@@ -578,6 +578,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setBinderPrompt(null); setShowBinderPicker(false)
     setDesignation(''); setDesignationDone(false); setShowDesignation(false)
     setScanError(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; geminiPrediction.current = null; scannerCornersRef.current = {}
+    // "Ajouter une autre carte" repart du formulaire vide, mais la page restait
+    // scrollée là où l'utilisateur avait fini (confirmation d'ajout, en bas) — le
+    // formulaire ré-affiché en haut n'était pas visible sans scroller manuellement.
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const doInsert = async (uid: string) => {
