@@ -17,6 +17,7 @@ import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -990,19 +991,20 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const getCardId = (c: Card) => c.id_manuelle || c.f
 
-  const toggleQrCard = (d: Card) => {
+  const toggleQrCard = async (d: Card) => {
     const cardId = getCardId(d)
+    if (qrSelected.has(cardId)) {
+      setQrSelected(prev => { const next = new Map(prev); next.delete(cardId); return next })
+      return
+    }
+    const url = d.id_manuelle ? `/s/${d.id_manuelle}` : await getCsvCardSharePath(userId, d.f)
     setQrSelected(prev => {
       const next = new Map(prev)
-      if (next.has(cardId)) {
-        next.delete(cardId)
-      } else {
-        next.set(cardId, {
-          url: d.id_manuelle ? `/s/${d.id_manuelle}` : `/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
-          title: d.n,
-          subtitle: [d.y, d.br, d.s].filter(Boolean).join(' · '),
-        })
-      }
+      next.set(cardId, {
+        url,
+        title: d.n,
+        subtitle: [d.y, d.br, d.s].filter(Boolean).join(' · '),
+      })
       return next
     })
   }
@@ -1123,10 +1125,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (!isNative) return
     hapticTap()
     try {
+      const path = d.id_manuelle ? `/s/${d.id_manuelle}` : await getCsvCardSharePath(userId, d.f)
       const { Share } = await import('@capacitor/share')
       await Share.share({
         title: d.n,
-        url: `https://www.memorabilius.fr/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
+        url: `https://www.memorabilius.fr${path}`,
       })
     } catch {}
   }
@@ -2485,11 +2488,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                           if (currentUser !== userId) {
                             const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
                             const likerName = liker?.display_name || 'Quelqu\'un'
+                            const lien = d.id_manuelle ? `/s/${d.id_manuelle}` : await getCsvCardSharePath(userId, d.f)
                             await supabase.from('notifications').insert({
                               user_id: userId,
                               type: 'like',
                               message: `${likerName} a aimé votre carte`,
-                              lien: `/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
+                              lien,
                               lu: false,
                             })
                             const { data: { session } } = await supabase.auth.getSession()
@@ -2662,7 +2666,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               if (currentUser !== userId) {
                 const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
                 const likerName = liker?.display_name || 'Quelqu\'un'
-                await supabase.from('notifications').insert({ user_id: userId, type: 'like', message: `${likerName} a aimé votre carte`, lien: `/galerie/${userId}?card=${encodeURIComponent(popup.f)}`, lu: false })
+                const lien = popup.id_manuelle ? `/s/${popup.id_manuelle}` : await getCsvCardSharePath(userId, popup.f)
+                await supabase.from('notifications').insert({ user_id: userId, type: 'like', message: `${likerName} a aimé votre carte`, lien, lu: false })
                 const { data: { session } } = await supabase.auth.getSession()
                 if (session?.access_token) {
                   fetch('/api/like-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` }, body: JSON.stringify({ toUserId: userId, likerName }) }).catch(() => {})

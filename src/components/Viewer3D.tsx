@@ -14,6 +14,7 @@ import BookletViewer from '@/components/BookletViewer'
 import ShareButton from '@/components/ShareButton'
 import { getFormat } from '@/lib/cardFormats'
 import { supabase } from '@/lib/supabase'
+import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 
 interface SetPlacementData {
   entry_id: number; set_id: number; set_name: string
@@ -90,6 +91,18 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
   useEffect(() => { setValeurInput(cardValue != null ? String(cardValue) : '') }, [popup.f, cardValue])
   useEffect(() => { setInfoExpanded(false) }, [popup.f])
+
+  // Lien de partage court pour les cartes CSV (pas d'UUID cartes_manuelles disponible
+  // pour /s/{id}) — voir src/lib/csvCardShortLink.ts. Se résout en arrière-plan ; le
+  // ShareButton retombe sur le lien long historique tant que ce n'est pas prêt.
+  const [csvSharePath, setCsvSharePath] = useState<string | null>(null)
+  useEffect(() => {
+    setCsvSharePath(null)
+    if (popup.id_manuelle || !userId) return
+    let cancelled = false
+    getCsvCardSharePath(userId, popup.f).then(path => { if (!cancelled) setCsvSharePath(path) })
+    return () => { cancelled = true }
+  }, [popup.f, popup.id_manuelle, userId])
 
   const [inWishlist, setInWishlist] = useState(false)
   const [wishlistLoading, setWishlistLoading] = useState(false)
@@ -1688,7 +1701,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               )}
               {userId && (
                 <ShareButton
-                  url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
+                  url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : (csvSharePath || `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`)}
                   title={popup.n}
                   subtitle={[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}
                   buttonStyle={{
