@@ -198,6 +198,24 @@ export default function ScannerPage() {
 
   useEffect(() => () => stopQrScan(), [stopQrScan])
 
+  // Ctrl+V : colle le recto si aucune photo encore prise, sinon le verso.
+  useEffect(() => {
+    const onPaste = (e: ClipboardEvent) => {
+      if (qrMode) return
+      const items = e.clipboardData?.items
+      if (!items) return
+      const imageItem = Array.from(items).find(it => it.type.startsWith('image/'))
+      if (!imageItem) return
+      const file = imageItem.getAsFile()
+      if (!file) return
+      e.preventDefault()
+      if (!imgSrc) handleRecto(file)
+      else if (!versoSrc && (phase === 'results' || phase === 'done')) handleVerso(file)
+    }
+    window.addEventListener('paste', onPaste)
+    return () => window.removeEventListener('paste', onPaste)
+  }, [qrMode, imgSrc, versoSrc, phase])
+
   const reset = () => {
     setPhase('idle'); setImgSrc(null); setVersoSrc(null)
     setRectoB64(null); setImgMatches(null); setImgSearchDone(false)
