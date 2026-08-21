@@ -745,7 +745,20 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         setLoaded(true)
         setUsingOfflineCache(false)
         const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
-        if (target) { const match = allCards.find(c => c.f === target); if (match) setPopup(match) }
+        if (target) {
+          const match = allCards.find(c => c.f === target)
+          if (match) {
+            setPopup(match)
+            // Nettoie l'URL affichée dans la barre d'adresse : peu importe d'où vient ce
+            // lien long (recherche globale, ancienne notification, partage...), on la
+            // remplace par le lien court une fois la carte résolue côté client.
+            if (!match.id_manuelle) {
+              getCsvCardSharePath(userId, match.f).then(path => {
+                if (path.startsWith('/c/')) router.replace(path)
+              })
+            }
+          }
+        }
       }
 
       // Premier batch + card_collections en parallèle → affichage immédiat.
