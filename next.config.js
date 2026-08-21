@@ -39,6 +39,29 @@ const nextConfig = {
           { key: 'Strict-Transport-Security',     value: 'max-age=31536000; includeSubDomains' },
         ],
       },
+      {
+        // Isolation cross-origin (nécessaire à SharedArrayBuffer → WASM multi-thread
+        // pour onnxruntime-web, voir src/lib/cornerDetectorYolo.ts) UNIQUEMENT sur la
+        // page de scan de carte — 'credentialless' plutôt que 'require-corp' pour ne
+        // pas exiger un header CORP sur chaque image externe chargée ailleurs sur le
+        // site (cartes CSV hébergées sur des domaines tiers variés) : seules les
+        // requêtes AVEC identifiants seraient bloquées si elles manquent de CORS,
+        // ce qui n'est pas le cas des <img> classiques.
+        source: '/galerie/:userId/ajouter',
+        headers: [
+          { key: 'Cross-Origin-Opener-Policy',   value: 'same-origin' },
+          { key: 'Cross-Origin-Embedder-Policy', value: 'credentialless' },
+        ],
+      },
+      {
+        // CardScanner (donc detectCornersYOLO) est aussi utilisé pour re-scanner les
+        // coins depuis la page de modification d'une carte.
+        source: '/galerie/:userId/editer/:id',
+        headers: [
+          { key: 'Cross-Origin-Opener-Policy',   value: 'same-origin' },
+          { key: 'Cross-Origin-Embedder-Policy', value: 'credentialless' },
+        ],
+      },
     ]
   },
 }

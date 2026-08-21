@@ -18,7 +18,12 @@ async function getSession(): Promise<OrtSession> {
     const ort = await import('onnxruntime-web')
     console.log('[YOLO] ORT importé, init WASM...')
     ort.env.wasm.wasmPaths = ORT_CDN
-    ort.env.wasm.numThreads = 1
+    // Multi-thread (SharedArrayBuffer) seulement si la page est cross-origin isolée
+    // (headers COOP/COEP, voir next.config.js) — sinon le navigateur n'expose pas
+    // SharedArrayBuffer et ort retombe silencieusement sur 1 thread de toute façon.
+    // Plafonné à 4 : au-delà, le gain marginal ne justifie pas de saturer un mobile
+    // bas de gamme (peu de coeurs, cache partagé).
+    ort.env.wasm.numThreads = (window as any).crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1
     console.log('[YOLO] chargement corners.onnx...')
     const s = await ort.InferenceSession.create('/models/corners.onnx', {
       executionProviders: ['wasm'],
