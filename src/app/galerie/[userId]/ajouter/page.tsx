@@ -286,7 +286,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     return () => el.removeEventListener('wheel', onWheel)
   }, [cropModal])
 
+  // Le décodage plein format d'un fichier a lieu AVANT tout redimensionnement
+  // (downscaleToDataURL doit d'abord charger l'image pour connaître ses dimensions) —
+  // un fichier anormalement lourd (photo "haute résolution" atypique, panorama,
+  // scan...) peut donc encore faire planter la décodage même si le résultat final
+  // est ensuite réduit à 1600px. Rejet en amont plutôt que de tenter le décodage.
+  const MAX_FILE_BYTES = 30 * 1024 * 1024 // 30 Mo — largement au-dessus d'une photo de téléphone normale
+
   const processFile = async (file: File, side: 'recto' | 'verso' | 'il' | 'ir') => {
+    if (file.size > MAX_FILE_BYTES) { toast.error(t('addcard_err_image_too_large')); return }
     try {
       const src = await downscaleToDataURL(file)
       if (side === 'il' || side === 'ir') {
@@ -358,8 +366,13 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     return new Promise(resolve => {
       const url = URL.createObjectURL(blob)
       const img = new Image()
-      img.onload = () => { URL.revokeObjectURL(url); resolve(img.naturalWidth > img.naturalHeight) }
-      img.onerror = () => { URL.revokeObjectURL(url); resolve(false) }
+      // Filet de sécurité : sur un blob pathologique (0 octet, format exotique...),
+      // ni onload ni onerror ne se déclenchent forcément dans certains navigateurs —
+      // sans ce timeout, uploadBlob() reste bloqué indéfiniment sur "upload en cours",
+      // ce qui a l'air d'un plantage de l'app plutôt qu'une simple photo à réessayer.
+      const timeout = setTimeout(() => { URL.revokeObjectURL(url); resolve(false) }, 5000)
+      img.onload = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(img.naturalWidth > img.naturalHeight) }
+      img.onerror = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(false) }
       img.src = url
     })
   }
@@ -371,43 +384,55 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     else setUploadingIR(true)
     setScannerModal(null)
 
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) {
-      setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false)
-      router.push('/connexion')
-      return
-    }
-
-    const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
-    const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
-    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
-
-    const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-    const url = data.publicUrl
-    if (side === 'recto') {
-      setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false)
-      const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(blob) })
-      rectoBase64Ref.current = rectoB64
-      ebayHintsRef.current = []
-      const { data: { session: ebaySession } } = await supabase.auth.getSession()
-      if (ebaySession) {
-        Promise.race([
-          fetch('/api/ebay-image-search', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${ebaySession.access_token}` }, body: JSON.stringify({ imageBase64: rectoB64 }) }).then(r => r.json()),
-          new Promise<null>(r => setTimeout(() => r(null), 3000)),
-        ]).then((ebayRes: any) => {
-          if (ebayRes?.items?.length) ebayHintsRef.current = (ebayRes.items as { title: string }[]).slice(0, 5).map((i: { title: string }) => i.title).filter(Boolean)
-        }).catch(() => {})
+    // Filet de sécurité global : une carte sur ~5000 fait planter/geler l'app à cette
+    // étape (signalé par un utilisateur) sans qu'on ait pu reproduire la cause exacte
+    // (fichier atypique, décodage qui échoue autrement qu'en erreur propre...). Sans ce
+    // try/catch, une exception inattendue laissait le bouton bloqué en "upload en
+    // cours" pour toujours — ça ressemble à un plantage même si ce n'en est pas un.
+    // Mieux vaut un message d'erreur clair (photo à réessayer) qu'un blocage silencieux.
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false)
+        router.push('/connexion')
+        return
       }
-      setWaitingForVerso(true)
+
+      const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
+      const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
+      const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+      if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
+
+      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+      const url = data.publicUrl
+      if (side === 'recto') {
+        setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false)
+        const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(blob) })
+        rectoBase64Ref.current = rectoB64
+        ebayHintsRef.current = []
+        const { data: { session: ebaySession } } = await supabase.auth.getSession()
+        if (ebaySession) {
+          Promise.race([
+            fetch('/api/ebay-image-search', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${ebaySession.access_token}` }, body: JSON.stringify({ imageBase64: rectoB64 }) }).then(r => r.json()),
+            new Promise<null>(r => setTimeout(() => r(null), 3000)),
+          ]).then((ebayRes: any) => {
+            if (ebayRes?.items?.length) ebayHintsRef.current = (ebayRes.items as { title: string }[]).slice(0, 5).map((i: { title: string }) => i.title).filter(Boolean)
+          }).catch(() => {})
+        }
+        setWaitingForVerso(true)
+      }
+      else if (side === 'verso') {
+        const versoHorizontal = await detectBlobOrientation(blob)
+        setForm(f => ({ ...f, image_verso: url, verso_is_horizontal: versoHorizontal }))
+        setPreviewVerso(url); setUploadingVerso(false); setWaitingForVerso(false); analyzeCard(blob, true, rectoBase64Ref.current)
+      }
+      else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: url })); setPreviewIL(url); setUploadingIL(false) }
+      else { setForm(f => ({ ...f, image_interieur_droite: url })); setPreviewIR(url); setUploadingIR(false) }
+    } catch (e) {
+      console.error('[uploadBlob]', e)
+      toast.error(t('addcard_err_image_unreadable'))
+      setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false)
     }
-    else if (side === 'verso') {
-      const versoHorizontal = await detectBlobOrientation(blob)
-      setForm(f => ({ ...f, image_verso: url, verso_is_horizontal: versoHorizontal }))
-      setPreviewVerso(url); setUploadingVerso(false); setWaitingForVerso(false); analyzeCard(blob, true, rectoBase64Ref.current)
-    }
-    else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: url })); setPreviewIL(url); setUploadingIL(false) }
-    else { setForm(f => ({ ...f, image_interieur_droite: url })); setPreviewIR(url); setUploadingIR(false) }
   }
 
   const analyzeCard = async (blob: Blob, isVerso = false, rectoBase64?: string | null) => {
