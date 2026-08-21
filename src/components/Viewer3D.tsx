@@ -274,6 +274,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     })
   }
 
+  // Mots-outils sans rapport avec le nom réel stocké en base (ex: card_sets.name =
+  // "1991-92 Upper Deck", jamais "Upper Deck base set") — ignorés dans la recherche
+  // pour ne pas exiger un mot que la ligne ne contiendra jamais.
+  const SEARCH_STOPWORDS = new Set(['de', 'du', 'des', 'la', 'le', 'les', 'of', 'the', 'a', 'an', 'base', 'set'])
+
   const searchSets = async (q: string, year: string) => {
     if (q.trim().length < 2 && year.trim().length < 4) { setSetPickerResults([]); return }
     let qry = supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').limit(60)
@@ -284,7 +289,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       const y = parseInt(year)
       qry = qry.or(`year.eq.${y},year.eq.${y - 1},year.eq.${y + 1}`)
     }
-    if (q.trim().length >= 2) qry = qry.ilike('name', `%${q.trim()}%`)
+    // Un seul ILIKE sur la phrase entière exigeait l'ordre et la ponctuation exacts
+    // du nom stocké ("upper deck 91-92" ne matchait jamais "1991-92 Upper Deck") —
+    // un ILIKE par mot (tous requis, peu importe l'ordre) matche les deux formes.
+    const allTokens = q.trim().toLowerCase().split(/\s+/).filter(Boolean)
+    const tokens = allTokens.filter(w => !SEARCH_STOPWORDS.has(w))
+    for (const w of (tokens.length ? tokens : allTokens)) qry = qry.ilike('name', `%${w}%`)
     const { data } = await qry.order('total_cards', { ascending: false })
     const exactYear = year.trim().length >= 4 ? parseInt(year) : null
     // Les correspondances de l'année exacte passent toujours devant celles à

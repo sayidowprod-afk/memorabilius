@@ -286,10 +286,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     return () => el.removeEventListener('wheel', onWheel)
   }, [cropModal])
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
-    const file = e.target.files?.[0]
-    e.target.value = ''
-    if (!file) return
+  const processFile = async (file: File, side: 'recto' | 'verso' | 'il' | 'ir') => {
     try {
       const src = await downscaleToDataURL(file)
       if (side === 'il' || side === 'ir') {
@@ -303,6 +300,43 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       toast.error(t('addcard_err_image_unreadable'))
     }
   }
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    await processFile(file, side)
+  }
+
+  // Coller une image (Ctrl+V, PC uniquement — pas d'équivalent mobile) : va dans la
+  // première case encore vide, dans le même ordre que le formulaire (recto → verso
+  // → intérieur gauche → intérieur droit pour un booklet). Ignoré si un modal est
+  // déjà ouvert (scan/recadrage/caméra en cours) ou si le presse-papiers ne contient
+  // pas d'image (laisse le comportement de collage normal, ex. coller du texte).
+  useEffect(() => {
+    const onPaste = (e: ClipboardEvent) => {
+      if (scannerModal || cropModal || cameraModal) return
+      const items = e.clipboardData?.items
+      if (!items) return
+      const imageItem = Array.from(items).find(it => it.type.startsWith('image/'))
+      if (!imageItem) return
+      const file = imageItem.getAsFile()
+      if (!file) return
+
+      const side: 'recto' | 'verso' | 'il' | 'ir' | null =
+        !form.image_recto ? 'recto'
+        : !form.image_verso ? 'verso'
+        : form.booklet && !form.image_interieur_gauche ? 'il'
+        : form.booklet && !form.image_interieur_droite ? 'ir'
+        : null
+      if (!side) { toast.error(t('addcard_paste_no_slot')); return }
+
+      e.preventDefault()
+      processFile(file, side)
+    }
+    window.addEventListener('paste', onPaste)
+    return () => window.removeEventListener('paste', onPaste)
+  }, [scannerModal, cropModal, cameraModal, form.image_recto, form.image_verso, form.image_interieur_gauche, form.image_interieur_droite, form.booklet, t])
 
   const [scanning, setScanning] = useState(false)
   const [scanError, setScanError] = useState<string | null>(null)
