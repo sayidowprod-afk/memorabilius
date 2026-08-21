@@ -1,7 +1,7 @@
 // Détection de coins par YOLOv8-pose en ONNX — tourne entièrement dans le navigateur.
 // Le modèle est chargé une fois depuis /models/corners.onnx et mis en cache.
 
-const IMGSZ = 640
+const IMGSZ = 1280
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
 type Pt = { x: number; y: number }
