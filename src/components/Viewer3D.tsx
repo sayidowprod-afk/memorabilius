@@ -267,16 +267,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     return null
   }
 
-  const normSetKey = (s: { name: string; year: number | null }) => {
+  const normSetKey = (s: { name: string; year: number | null; sport: string }) => {
     // Garde le nom COMPLET (avec préfixe année) → "2021 Panini Mosaic" ≠ "2021-22 Panini Mosaic"
-    // Seul le ratio de cartes (dans dedupSets) peut encore fusionner deux entrées
+    // Seul le ratio de cartes (dans dedupSets) peut encore fusionner deux entrées.
+    // Le sport fait partie de la clé : "1992-93 Topps" NBA et "1992-93 Topps" hockey
+    // sont deux sets bien distincts malgré le nom identique — les fusionner faisait
+    // disparaître silencieusement celui des deux avec le moins de cartes.
     const base = s.name.toLowerCase().replace(/\s+/g, ' ').trim()
-    return `${s.year}_${base}`
+    return `${s.year}_${(s.sport || '').toLowerCase()}_${base}`
   }
 
   // Dedup sets avec le même nom normalisé, SAUF si les counts de cartes diffèrent
   // significativement (>50%) → ce sont des sets genuinement différents
-  const dedupSets = <T extends { name: string; year: number | null; total_cards: number }>(sets: T[]): T[] => {
+  const dedupSets = <T extends { name: string; year: number | null; sport: string; total_cards: number }>(sets: T[]): T[] => {
     const seen = new Map<string, number>()
     return sets.filter(s => {
       const key = normSetKey(s)
