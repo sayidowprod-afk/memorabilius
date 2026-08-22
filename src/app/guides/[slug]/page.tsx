@@ -19,14 +19,68 @@ import { buildColorVocab } from '@/lib/variationMatch'
 // (StarterKit + Image + Link + Youtube).
 function sanitizeGuideHtml(html: string): string {
   return sanitizeHtml(html, {
-    allowedTags: ['h2', 'h3', 'p', 'a', 'ul', 'ol', 'li', 'blockquote', 'strong', 'em', 'b', 'i', 'img', 'iframe', 'br', 'span'],
+    allowedTags: [
+      'h2', 'h3', 'p', 'a', 'ul', 'ol', 'li', 'blockquote', 'strong', 'em', 'b', 'i', 'u', 's', 'mark',
+      'img', 'iframe', 'br', 'span', 'hr', 'table', 'colgroup', 'col', 'thead', 'tbody', 'tr', 'th', 'td', 'label', 'input', 'div',
+    ],
     allowedAttributes: {
       a: ['href', 'target', 'rel'],
       img: ['src', 'alt', 'style'],
       iframe: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen', 'style'],
+      th: ['colspan', 'rowspan'],
+      td: ['colspan', 'rowspan'],
+      // data-type/data-checked : listes à cocher Tiptap (<ul data-type="taskList"><li data-type="taskItem" data-checked>)
+      ul: ['data-type'],
+      li: ['data-type', 'data-checked'],
+      input: ['type', 'checked', 'disabled'],
+      // data-callout : encadrés astuce/attention/info (voir src/lib/tiptapCallout.ts) — valeurs
+      // fixes ('tip'|'warning'|'info') pilotées uniquement par l'éditeur, jamais par l'utilisateur final.
+      div: ['data-callout'],
       '*': ['style'],
     },
     allowedIframeHostnames: ['www.youtube.com', 'youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com'],
+  })
+}
+
+function slugify(text: string): string {
+  return text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+}
+
+interface TocItem { id: string; text: string; level: 2 | 3 }
+
+// Sommaire auto-généré à partir des H2/H3 des blocs texte, dans l'ordre du guide.
+// Les id injectés dans injectHeadingIds() suivent EXACTEMENT le même ordre de
+// parcours (blocs texte/texte+image, dans l'ordre, un <h2>/<h3> à la fois) pour
+// que les ancres du sommaire pointent sur le bon titre.
+function extractToc(blocks: GuideBlock[]): TocItem[] {
+  const items: TocItem[] = []
+  const seen = new Map<string, number>()
+  const re = /<h([23])[^>]*>(.*?)<\/h\1>/gi
+  for (const b of blocks) {
+    if (b.type !== 'text' && b.type !== 'text_image') continue
+    re.lastIndex = 0
+    let m: RegExpExecArray | null
+    while ((m = re.exec(b.html))) {
+      const text = m[2].replace(/<[^>]+>/g, '').trim()
+      if (!text) continue
+      let slug = slugify(text) || 'section'
+      const count = seen.get(slug) || 0
+      seen.set(slug, count + 1)
+      if (count > 0) slug = `${slug}-${count}`
+      items.push({ id: slug, text, level: Number(m[1]) as 2 | 3 })
+    }
+  }
+  return items
+}
+
+// Injecte les id du sommaire dans le HTML déjà sanitisé (pas besoin d'élargir la
+// liste blanche pour `id` puisqu'on l'ajoute après coup). `cursor` est partagé entre
+// tous les blocs texte d'un même guide pour rester synchronisé avec extractToc().
+function injectHeadingIds(html: string, toc: TocItem[], cursor: { i: number }): string {
+  return html.replace(/<h([23])((?:\s[^>]*)?)>/gi, (full, lvl, attrs) => {
+    const item = toc[cursor.i]
+    cursor.i++
+    return item ? `<h${lvl}${attrs} id="${item.id}">` : full
   })
 }
 
@@ -42,8 +96,9 @@ function collectPyramidRowNames(blocks: GuideBlock[]): string[] {
   return names
 }
 
-function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, SetlistEmbedData>) {
+function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, SetlistEmbedData>, toc: TocItem[]) {
   const colorVocab = buildColorVocab(collectPyramidRowNames(blocks))
+  const headingCursor = { i: 0 }
   const nodes: React.ReactNode[] = []
   let i = 0
   while (i < blocks.length) {
@@ -74,7 +129,7 @@ function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, Setl
   function renderSingleBlock(block: GuideBlock, key: number): React.ReactNode {
     if (block.type === 'text') return (
       <div key={key} className="guide-content" style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--text, #222)' }}
-        dangerouslySetInnerHTML={{ __html: sanitizeGuideHtml(block.html) }} />
+        dangerouslySetInnerHTML={{ __html: injectHeadingIds(sanitizeGuideHtml(block.html), toc, headingCursor) }} />
     )
     if (block.type === 'image') return (
       <figure key={key} style={{ margin: '32px 0' }}>
@@ -83,7 +138,7 @@ function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<number, Setl
       </figure>
     )
     if (block.type === 'text_image') return (
-      <TextImageBlock key={key} html={sanitizeGuideHtml(block.html)} image={block.image} imagePosition={block.imagePosition} />
+      <TextImageBlock key={key} html={injectHeadingIds(sanitizeGuideHtml(block.html), toc, headingCursor)} image={block.image} imagePosition={block.imagePosition} />
     )
     if (block.type === 'pyramid') return <PyramidBlock key={key} title={block.title} rows={block.rows} layout={block.layout} />
     if (block.type === 'insert_grid') return (
@@ -207,6 +262,7 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
     const fetched = await Promise.all([...new Set(setlistBlockIds)].map(fetchSetlistEmbed))
     for (const f of fetched) if (f) setlistEmbeds.set(f.setId, f)
   }
+  const toc = extractToc(guide.blocks)
 
   return (
     <article style={{ maxWidth: 760, margin: '0 auto', padding: '40px 20px' }}>
@@ -226,9 +282,27 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
         <img src={guide.cover_image} alt="" style={{ width: '100%', borderRadius: 12, display: 'block', marginBottom: 28 }} />
       )}
 
-      {renderGuideBlocks(guide.blocks, setlistEmbeds)}
+      {toc.length >= 2 && (
+        <nav aria-label="Sommaire" style={{ border: `1px solid var(--border, #e8eaed)`, borderRadius: 12, padding: '16px 18px', margin: '0 0 28px' }}>
+          <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text3, #888)', marginBottom: 8 }}>
+            Sommaire
+          </div>
+          <ol style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {toc.map(item => (
+              <li key={item.id} style={{ paddingLeft: item.level === 3 ? 16 : 0 }}>
+                <a href={`#${item.id}`} style={{ fontSize: item.level === 3 ? 13 : 14, fontWeight: item.level === 3 ? 500 : 700, color: '#003DA6', textDecoration: 'none' }}>
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
+      {renderGuideBlocks(guide.blocks, setlistEmbeds, toc)}
 
       <style>{`
+        .guide-content h2, .guide-content h3 { scroll-margin-top: 90px; }
         .guide-content h2 { font-size: 24px; font-weight: 800; margin: 32px 0 12px; }
         .guide-content h3 { font-size: 19px; font-weight: 800; margin: 24px 0 10px; }
         .guide-content p { margin: 0 0 16px; }
@@ -238,6 +312,20 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
         .guide-content blockquote { border-left: 3px solid #003DA6; margin: 20px 0; padding: 4px 0 4px 16px; color: var(--text2, #666); font-style: italic; }
         .guide-content a { color: #003DA6; }
         .guide-content iframe { max-width: 100%; border-radius: 8px; aspect-ratio: 16/9; width: 100%; height: auto; margin: 20px 0; }
+        .guide-content hr { border: none; border-top: 1.5px solid var(--border, #e8eaed); margin: 32px 0; }
+        .guide-content mark { background: #fff3a3; color: #222; padding: 0 2px; border-radius: 2px; }
+        .guide-content table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 14px; }
+        .guide-content th, .guide-content td { border: 1px solid var(--border, #e0e0e0); padding: 8px 10px; text-align: left; }
+        .guide-content th { background: var(--card-bg2, #f5f6f8); font-weight: 800; }
+        .guide-content ul[data-type="taskList"] { list-style: none; padding-left: 0; margin: 0 0 16px; }
+        .guide-content ul[data-type="taskList"] li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+        .guide-content ul[data-type="taskList"] li > label { display: flex; align-items: center; padding-top: 2px; }
+        .guide-content ul[data-type="taskList"] input[type="checkbox"] { margin: 0; width: 16px; height: 16px; }
+        .guide-content div[data-callout] { border-radius: 10px; padding: 14px 16px; margin: 0 0 20px; }
+        .guide-content div[data-callout] p:last-child { margin-bottom: 0; }
+        .guide-content div[data-callout="tip"] { background: rgba(0,184,148,0.1); border: 1px solid rgba(0,184,148,0.3); }
+        .guide-content div[data-callout="warning"] { background: rgba(217,119,6,0.1); border: 1px solid rgba(217,119,6,0.3); }
+        .guide-content div[data-callout="info"] { background: rgba(0,61,166,0.08); border: 1px solid rgba(0,61,166,0.25); }
       `}</style>
     </article>
   )
