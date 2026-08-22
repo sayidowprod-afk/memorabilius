@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import GalerieClient from './GalerieClient'
+import { resolveProfileBySlugParam, canonicalProfileSlug } from '@/lib/resolveProfileSlug'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -11,7 +12,8 @@ const supabase = createClient(
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-// Résout le paramètre de route (UUID ou slug) vers l'UUID réel une seule
+// Résout le paramètre de route (UUID, pseudo court, ou slug complet avec
+// suffixe — voir src/lib/resolveProfileSlug.ts) vers l'UUID réel une seule
 // fois, ici, avant que quoi que ce soit d'autre ne s'en serve. Bug trouvé en
 // testant le partage par QR : GalerieClient utilisait le userId brut (donc le
 // slug tel quel) pour filtrer ses requêtes user_id — une UUID column ne
@@ -21,9 +23,8 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 // ici et en ne passant que l'UUID en aval, tout le composant redevient
 // correct sans devoir traquer chaque usage individuellement.
 async function resolveUserId(rawUserId: string): Promise<string> {
-  if (UUID_RE.test(rawUserId)) return rawUserId
-  const { data } = await supabase.from('profiles').select('id').eq('slug', rawUserId).single()
-  return data?.id || rawUserId
+  const profile = await resolveProfileBySlugParam(supabase, rawUserId)
+  return profile?.id || rawUserId
 }
 
 export async function generateMetadata({
@@ -164,14 +165,16 @@ export default async function GaleriePage({
   const { userId: rawUserId } = await params
   const userId = await resolveUserId(rawUserId)
 
-  // Toute visite via l'UUID brut (ancien lien, notification, favori, partage...)
-  // bascule automatiquement vers l'URL lisible /galerie/{pseudo} — chaque profil a
-  // un slug (voir idx_profiles_slug) depuis longtemps, donc plutôt que de traquer
-  // chaque endroit du code qui construit encore un lien en UUID, on corrige la
-  // barre d'adresse une bonne fois pour toutes ici, quelle que soit l'origine du lien.
-  if (UUID_RE.test(rawUserId)) {
+  // Toute visite via l'UUID brut OU le slug complet avec suffixe (ancien lien,
+  // notification, favori, partage...) bascule automatiquement vers l'URL la plus
+  // lisible possible : le pseudo seul ("tched69") quand il ne désigne qu'un profil,
+  // sinon le slug complet ("tched69-75b2") pour désambiguïser. Plutôt que de
+  // traquer chaque endroit du code qui construit encore un lien en UUID/slug long,
+  // on corrige la barre d'adresse une bonne fois pour toutes ici.
+  if (UUID_RE.test(rawUserId) || /-[0-9a-f]{4}$/i.test(rawUserId)) {
     const { data: profile } = await supabase.from('profiles').select('slug').eq('id', userId).single()
-    if (profile?.slug) {
+    const canonical = profile?.slug ? await canonicalProfileSlug(supabase, profile.slug) : null
+    if (canonical && canonical !== rawUserId) {
       const sp = await searchParams
       const qs = new URLSearchParams()
       for (const [k, v] of Object.entries(sp)) {
@@ -180,7 +183,7 @@ export default async function GaleriePage({
         else qs.set(k, v)
       }
       const suffix = qs.toString()
-      redirect(`/galerie/${profile.slug}${suffix ? `?${suffix}` : ''}`)
+      redirect(`/galerie/${canonical}${suffix ? `?${suffix}` : ''}`)
     }
   }
 

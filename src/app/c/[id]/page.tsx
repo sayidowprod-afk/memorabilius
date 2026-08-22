@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+import { canonicalProfileSlug } from '@/lib/resolveProfileSlug'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -43,6 +44,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
   const { data: profile } = await supabase
     .from('profiles').select('slug').eq('id', link.user_id).single()
+  const dest = profile?.slug ? await canonicalProfileSlug(supabase, profile.slug) : link.user_id
 
-  redirect(`/galerie/${profile?.slug || link.user_id}?card=${encodeURIComponent(link.image_url)}`)
+  redirect(`/galerie/${dest}?card=${encodeURIComponent(link.image_url)}`)
 }
