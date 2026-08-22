@@ -17,13 +17,22 @@ export default function LikedCards({ userId }: { userId: string }) {
   useEffect(() => {
     (async () => {
       setLoading(true)
-      const { data: likes } = await supabase
-        .from('card_likes')
-        .select('card_key, gallery_user_id, created_at')
-        .eq('liker_user_id', userId)
-        .order('created_at', { ascending: false })
+      // PostgREST plafonne chaque réponse à 1000 lignes (max_rows) — pagination réelle
+      // nécessaire pour un collectionneur ayant liké plus de 1000 cartes au total.
+      const likes: { card_key: string; gallery_user_id: string; created_at: string }[] = []
+      for (let from = 0; ; from += 1000) {
+        const { data, error } = await supabase
+          .from('card_likes')
+          .select('card_key, gallery_user_id, created_at')
+          .eq('liker_user_id', userId)
+          .order('created_at', { ascending: false })
+          .range(from, from + 999)
+        if (error || !data || data.length === 0) break
+        likes.push(...data)
+        if (data.length < 1000) break
+      }
 
-      if (!likes?.length) { setItems([]); setLoading(false); return }
+      if (!likes.length) { setItems([]); setLoading(false); return }
 
       const galleryIds = [...new Set(likes.map(l => l.gallery_user_id))]
       const { data: profiles } = await supabase

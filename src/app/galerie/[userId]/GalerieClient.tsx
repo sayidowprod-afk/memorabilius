@@ -527,18 +527,31 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
           if (data) setGrailCards(data)
         })
-        supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId).limit(2000)
-          .then(({ data: likesData }) => {
-            if (!likesData) return
-            // authUser?.id peut être null si l'auth n'est pas encore résolue — liked sera recalculé à la prochaine visite
-            const myId = authUser?.id || null
-            const map = new Map<string, { count: number; liked: boolean }>()
-            for (const l of likesData) {
-              const prev = map.get(l.card_key) || { count: 0, liked: false }
-              map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === myId })
-            }
-            setCardLikes(map)
-          })
+        ;(async () => {
+          // PostgREST plafonne chaque réponse à 1000 lignes (max_rows) même avec un
+          // .limit() plus élevé — une galerie populaire dépassant 1000 likes cumulés
+          // se faisait tronquer silencieusement, ce qui faisait disparaître le coeur
+          // "aimé" sur les cartes likées les plus récemment (celles hors des 1000
+          // premières lignes renvoyées, sans tri garanti). Pagination réelle nécessaire,
+          // comme pour binder_slots/cartes_manuelles/card_set_entries ailleurs.
+          const likesData: { card_key: string; liker_user_id: string }[] = []
+          for (let from = 0; ; from += 1000) {
+            const { data, error } = await supabase
+              .from('card_likes').select('card_key, liker_user_id')
+              .eq('gallery_user_id', resolvedId).range(from, from + 999)
+            if (error || !data || data.length === 0) break
+            likesData.push(...data)
+            if (data.length < 1000) break
+          }
+          // authUser?.id peut être null si l'auth n'est pas encore résolue — liked sera recalculé à la prochaine visite
+          const myId = authUser?.id || null
+          const map = new Map<string, { count: number; liked: boolean }>()
+          for (const l of likesData) {
+            const prev = map.get(l.card_key) || { count: 0, liked: false }
+            map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === myId })
+          }
+          setCardLikes(map)
+        })()
         loadCommentCounts(resolvedId)
       } catch (e) {
         if (cancelled) return
