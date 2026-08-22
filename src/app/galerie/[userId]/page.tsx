@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
+import { redirect } from 'next/navigation'
 import GalerieClient from './GalerieClient'
 
 const supabase = createClient(
@@ -154,9 +155,35 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
   }
 }
 
-export default async function GaleriePage({ params }: { params: Promise<{ userId: string }> }) {
+export default async function GaleriePage({
+  params, searchParams,
+}: {
+  params: Promise<{ userId: string }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}) {
   const { userId: rawUserId } = await params
   const userId = await resolveUserId(rawUserId)
+
+  // Toute visite via l'UUID brut (ancien lien, notification, favori, partage...)
+  // bascule automatiquement vers l'URL lisible /galerie/{pseudo} — chaque profil a
+  // un slug (voir idx_profiles_slug) depuis longtemps, donc plutôt que de traquer
+  // chaque endroit du code qui construit encore un lien en UUID, on corrige la
+  // barre d'adresse une bonne fois pour toutes ici, quelle que soit l'origine du lien.
+  if (UUID_RE.test(rawUserId)) {
+    const { data: profile } = await supabase.from('profiles').select('slug').eq('id', userId).single()
+    if (profile?.slug) {
+      const sp = await searchParams
+      const qs = new URLSearchParams()
+      for (const [k, v] of Object.entries(sp)) {
+        if (v == null) continue
+        if (Array.isArray(v)) v.forEach(x => qs.append(k, x))
+        else qs.set(k, v)
+      }
+      const suffix = qs.toString()
+      redirect(`/galerie/${profile.slug}${suffix ? `?${suffix}` : ''}`)
+    }
+  }
+
   const { cards: initialCards, grail: initialGrailCards } = await fetchInitialPreview(userId)
   return (
     <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>
