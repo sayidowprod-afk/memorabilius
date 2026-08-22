@@ -542,7 +542,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                       <div style={{ flex: 1, height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
                         <div style={{ height: '100%', width: `${varPct}%`, background: varPct === 100 ? '#2ecc71' : 'linear-gradient(90deg, #003DA6, #0057D9)', borderRadius: 3 }} />
                       </div>
-                      <span style={{ fontSize: 12, fontWeight: 700, color: varPct === 100 ? '#2ecc71' : '#003DA6', minWidth: 32, textAlign: 'right', flexShrink: 0 }}>{varPct}%</span>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: varPct === 100 ? '#2ecc71' : '#003DA6', minWidth: 52, textAlign: 'right', flexShrink: 0, whiteSpace: 'nowrap' }}>{variation.owned}/{variation.count}</span>
                     </div>
                   )}
                   {userId && (

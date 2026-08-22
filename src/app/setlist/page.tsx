@@ -766,13 +766,13 @@ export default function SetlistPage() {
                   )}
                 </div>
                 {unmatchedCards.map((card, i) => (
-                  <div key={i} style={{ padding: '12px 0', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <div key={i} style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#333' : '#f0f0f0'}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
                     <div style={{ flex: 1, minWidth: 180 }}>
-                      <div style={{ fontWeight: 700, fontSize: 14, color: '#111' }}>
+                      <div style={{ fontWeight: 700, fontSize: 14, color: dark ? '#f0f0f0' : '#111' }}>
                         {card.nom || '—'}
-                        {card.variation && <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>{card.variation}</span>}
+                        {card.variation && <span style={{ fontWeight: 400, color: dark ? '#999' : '#888', marginLeft: 6 }}>{card.variation}</span>}
                       </div>
-                      <div style={{ fontSize: 12, color: '#aaa', marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: dark ? '#999' : '#aaa', marginTop: 2 }}>
                         {[card.annee, card.marque, card.collection].filter(Boolean).join(' · ')}
                       </div>
                     </div>
@@ -835,7 +835,7 @@ export default function SetlistPage() {
                         <button
                           onClick={() => dismissCard(i)}
                           title={t('setlist_mark_done')}
-                          style={{ fontSize: 11, color: '#2ecc71', fontWeight: 700, background: '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 6, padding: '4px 7px', cursor: 'pointer' }}
+                          style={{ fontSize: 11, color: '#2ecc71', fontWeight: 700, background: dark ? 'rgba(46,204,113,0.12)' : '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 6, padding: '4px 7px', cursor: 'pointer' }}
                         >
                           ✓
                         </button>
