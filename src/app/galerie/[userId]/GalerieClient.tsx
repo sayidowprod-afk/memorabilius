@@ -2058,6 +2058,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   {t('gallery_all')}
                 </button>
                 {principals.map(tag => renderTagPill(tag, 0))}
+                {isOwner && (
+                  <button
+                    onClick={async () => {
+                      const name = prompt(t('gallery_new_collection_prompt'))?.trim()
+                      if (!name || collectionTags.includes(name)) return
+                      const position = principals.length
+                      await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: name, color: accent, position }, { onConflict: 'user_id,tag' })
+                      setTabSettings(prev => new Map(prev).set(name, { color: accent, position, parent: null }))
+                      setCollectionTags(prev => [...prev, name].sort())
+                      setFCollectionTag(name)
+                    }}
+                    title={t('gallery_new_collection_title')}
+                    style={{
+                      width: 26, height: 26, borderRadius: '50%', border: `2px dashed ${dark ? '#444' : '#ccc'}`,
+                      background: 'none', color: dark ? '#888' : '#999', fontSize: 15, fontWeight: 900, lineHeight: 1,
+                      cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                    }}
+                  >+</button>
+                )}
               </div>
               {activeChildren.length > 0 && (
                 <div style={{ marginTop: 6, paddingLeft: 10, borderLeft: `3px solid ${activeParentColor}`, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>

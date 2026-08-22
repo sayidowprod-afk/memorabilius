@@ -283,12 +283,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setBinders(allBinders)
     setFolders(fdata || [])
     if (allBinders.length) {
-      const { data: slotRows } = await supabase
-        .from('binder_slots')
-        .select('binder_id')
-        .in('binder_id', allBinders.map(b => b.id))
+      // PostgREST plafonne les réponses à 1000 lignes (max_rows) même sans .limit() —
+      // au-delà, les binder_slots des derniers classeurs de la liste étaient tronqués
+      // silencieusement, ce qui affichait "aucune carte" sur des classeurs pourtant
+      // remplis. Pagination réelle nécessaire, comme pour cartes_manuelles ailleurs.
+      const binderIds = allBinders.map(b => b.id)
       const counts: Record<number, number> = {}
-      for (const row of slotRows || []) counts[row.binder_id] = (counts[row.binder_id] || 0) + 1
+      for (let from = 0; ; from += 1000) {
+        const { data: slotRows, error } = await supabase
+          .from('binder_slots')
+          .select('binder_id')
+          .in('binder_id', binderIds)
+          .range(from, from + 999)
+        if (error || !slotRows || slotRows.length === 0) break
+        for (const row of slotRows) counts[row.binder_id] = (counts[row.binder_id] || 0) + 1
+        if (slotRows.length < 1000) break
+      }
       setCardCounts(counts)
     }
     setLoading(false)
@@ -422,6 +432,32 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setUploadingCover(false)
   }
 
+  // Réécrit tous les slots existants dans le nouvel agencement (nombre de pochettes
+  // par page), en conservant l'ordre de lecture (page, index) — nécessaire car
+  // slot_index dépend directement du layout : passer de 9 à 4 pochettes/page sans
+  // ça laisserait des cartes à des index invalides pour le nouveau format.
+  const reflowSlotsForLayout = async (binderId: number, currentSlots: Map<string, Slot>, newLayout: number) => {
+    const ordered = [...currentSlots.values()].sort((a, b) => a.page_number - b.page_number || a.slot_index - b.slot_index)
+    const newSlots = new Map<string, Slot>()
+    const rows: any[] = []
+    let page = 1, idx = 0
+    for (const s of ordered) {
+      if (idx >= newLayout) { page++; idx = 0 }
+      newSlots.set(slotKey(page, idx), { ...s, page_number: page, slot_index: idx })
+      rows.push({ binder_id: binderId, page_number: page, slot_index: idx, card_key: s.card_key, img: s.img, img_back: s.img_back, nom: s.nom, is_horizontal: !!s.is_horizontal })
+      idx++
+    }
+    const newPageCount = Math.max(1, idx > 0 ? page : page - 1)
+    const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', binderId)
+    if (delErr) throw delErr
+    if (rows.length) {
+      const { error: insErr } = await supabase.from('binder_slots').insert(rows)
+      if (insErr) throw insErr
+    }
+    setSlots(newSlots)
+    return newPageCount
+  }
+
   const saveForm = async () => {
     if (!fName.trim()) return
     const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType, folder_id: fFolderId, is_public: fIsPublic }
@@ -435,10 +471,24 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       openBinder(data)
     } else {
       const id = formOpen as number
-      const { error } = await supabase.from('binders').update(payload).eq('id', id)
+      const current = binders.find(b => b.id === id)
+      let fullPayload: typeof payload & { layout?: number; page_count?: number } = payload
+      if (current && fLayout !== current.layout) {
+        if (slots.size > 0 && !confirm(t('binder_layout_change_confirm'))) return
+        try {
+          const newPageCount = await reflowSlotsForLayout(id, slots, fLayout)
+          fullPayload = { ...payload, layout: fLayout, page_count: newPageCount }
+        } catch (e: any) {
+          toast.error(t('binder_error_prefix') + e.message)
+          return
+        }
+      }
+      const { error } = await supabase.from('binders').update(fullPayload).eq('id', id)
       if (error) { toast.error(t('binder_error_prefix') + error.message); return }
-      setBinders(prev => prev.map(b => b.id === id ? { ...b, ...payload } : b))
-      setSelected(s => s && s.id === id ? { ...s, ...payload } : s)
+      setBinders(prev => prev.map(b => b.id === id ? { ...b, ...fullPayload } : b))
+      setSelected(s => s && s.id === id ? { ...s, ...fullPayload } : s)
+      setPageIndex(0)
+      setIsOpen(false)
       setFormOpen(null)
     }
   }
@@ -1172,20 +1222,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           <input value={fSubtitle} onChange={e => setFSubtitle(e.target.value)} placeholder="Ex : Panini Prizm" />
         </div>
 
-        {formOpen === 'create' && (
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_pockets_per_page')}</label>
-            <div style={{ display: 'flex', gap: 6 }}>
-              {LAYOUTS.map(n => (
-                <button key={n} onClick={() => setFLayout(n)} style={{
-                  flex: 1, padding: '8px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 800, fontSize: 13,
-                  border: fLayout === n ? `2px solid ${accent}` : '2px solid var(--border, #e0e0e0)',
-                  background: fLayout === n ? accent : 'var(--card-bg, #fff)', color: fLayout === n ? 'white' : 'var(--text2, #333)',
-                }}>{n}</button>
-              ))}
-            </div>
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_pockets_per_page')}</label>
+          <div style={{ display: 'flex', gap: 6 }}>
+            {LAYOUTS.map(n => (
+              <button key={n} onClick={() => setFLayout(n)} style={{
+                flex: 1, padding: '8px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 800, fontSize: 13,
+                border: fLayout === n ? `2px solid ${accent}` : '2px solid var(--border, #e0e0e0)',
+                background: fLayout === n ? accent : 'var(--card-bg, #fff)', color: fLayout === n ? 'white' : 'var(--text2, #333)',
+              }}>{n}</button>
+            ))}
           </div>
-        )}
+          {formOpen !== 'create' && fLayout !== binders.find(b => b.id === formOpen)?.layout && (
+            <p style={{ fontSize: 11, color: '#d97706', marginTop: 6, marginBottom: 0 }}>{t('binder_layout_change_warning')}</p>
+          )}
+        </div>
 
         <div>
           <label style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('binder_label_type')}</label>
