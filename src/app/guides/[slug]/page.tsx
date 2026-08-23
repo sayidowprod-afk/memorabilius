@@ -1,4 +1,5 @@
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
@@ -59,6 +60,18 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
   const { slug } = await params
   const guide = await fetchGuide(slug)
   if (!guide) notFound()
+
+  // /guides/[slug] est la source française — un visiteur qui a choisi anglais/allemand
+  // pour le site (sélecteur de langue, cookie geo-lang) atterrissait quand même sur le
+  // contenu français si le lien qu'il suivait pointait ici plutôt que directement vers
+  // /{lang}/guides/{slug}. Redirige automatiquement vers la traduction dès qu'elle
+  // existe, pour tout point d'entrée (nav, lien partagé, recherche...).
+  const geoLang = (await cookies()).get('geo-lang')?.value
+  if (geoLang === 'en' || geoLang === 'de') {
+    const { data: translation } = await supabase
+      .from('guide_translations').select('lang').eq('guide_id', guide.id).eq('lang', geoLang).maybeSingle()
+    if (translation) redirect(`/${geoLang}/guides/${slug}`)
+  }
 
   return (
     <GuideArticle data={{
