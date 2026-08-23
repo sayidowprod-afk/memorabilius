@@ -100,7 +100,12 @@ export default function MobileBottomNav() {
     <>
       <div
         style={{
-          position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 250, minHeight: NAV_CONTENT_HEIGHT,
+          // z-index tres eleve, deliberement : c'est la navigation GLOBALE de l'app,
+          // elle ne doit jamais se retrouver sous une bannière/barre d'action propre
+          // a une page (plusieurs a 8500-9999 sur la galerie, ex: bannière d'inscription,
+          // barre de sélection multiple) qui pourrait sinon peindre par-dessus son
+          // libellé — signalé : "Ma galerie" caché/coupe en bas de l'app Android.
+          position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 99999, minHeight: NAV_CONTENT_HEIGHT,
           background: dark ? '#1a1a1a' : 'white',
           borderTop: '2px solid #003DA6',
           paddingBottom: NAV_SAFE_AREA_BOTTOM,
