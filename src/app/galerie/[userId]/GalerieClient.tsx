@@ -294,25 +294,21 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   const fmt = getFormat(card.format)
   const horiz = isHorizontalFormat(card.format, card.is_horizontal)
   const ratio = fmt.isSlab ? cardDisplayRatio(card.format, card.is_horizontal) : '2.5/3.5'
-  // Optimisation Vercel uniquement pour les images Supabase Storage — les images
-  // CSV (domaines externes variés) passent en unoptimized pour éviter les
-  // restrictions de remotePatterns.
-  const isSupabase = src.includes('.supabase.co/storage/v1/object/public/')
 
+  // unoptimized inconditionnel : les photos sont déjà compressées à l'upload (max
+  // 1600px, voir downscaleToDataURL dans ajouter/page.tsx), donc le gain à les
+  // repasser par l'optimiseur d'images Vercel (redimensionnement + conversion
+  // webp/avif à la volée) est marginal — mais c'était le premier poste de coût
+  // du plan (facturé par combinaison image×taille rencontrée, "Image Optimization
+  // Transformation"). Retire ce passage payant plutôt que le laisser scaler avec
+  // la croissance du site ; on paie un peu plus de bande passante à la place.
   if (fmt.isSlab || horiz) {
-    // Slab et cartes horizontales (rotation complexe) : passait par un <img> classique
-    // qui téléchargeait l'image pleine résolution (jusqu'à 1600px, voir
-    // downscaleToDataURL dans ajouter/page.tsx) même pour une vignette de 150-220px —
-    // NextImage en mode `fill` applique le même style (transform de rotation inclus,
-    // NextImage se contente de fusionner notre style par-dessus le sien) tout en
-    // passant par l'optimiseur Vercel qui sert une version redimensionnée/mise en
-    // cache pour les images Supabase Storage.
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: fmt.isSlab ? '#111' : undefined }}>
         <NextImage
           src={src} alt={card.n} fill
           sizes="(max-width: 640px) 150px, 220px"
-          unoptimized={!isSupabase}
+          unoptimized
           onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
           style={horiz
             ? { width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
@@ -328,7 +324,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         src={src} alt={card.n} fill
         sizes="(max-width: 640px) 150px, 220px"
         style={{ objectFit: 'cover' }}
-        unoptimized={!isSupabase}
+        unoptimized
         onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
       />
     </div>
