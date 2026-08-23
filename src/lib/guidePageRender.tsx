@@ -202,7 +202,13 @@ export const GUIDE_CONTENT_STYLE = `
   .guide-content h3 { font-size: 19px; font-weight: 800; margin: 24px 0 10px; }
   .guide-content p { margin: 0 0 16px; }
   .guide-content img { max-width: 100%; border-radius: 8px; display: block; margin: 20px 0; }
-  .guide-content ul, .guide-content ol { margin: 0 0 16px; padding-left: 24px; }
+  .guide-content ul, .guide-content ol { margin: 0 0 16px; padding-left: 24px; list-style-position: outside; }
+  /* Un alignement centré/droite laissé sur un paragraphe avant sa conversion en liste
+     (bouton Centrer/Aligner à droite dans l'éditeur) se propage sur le <p> interne de
+     chaque <li> — avec list-style-position hérité en "inside" par endroits, la puce se
+     déplaçait avec le texte au lieu de rester fixe à gauche. Les listes restent toujours
+     alignées à gauche, quel que soit l'alignement choisi avant la conversion. */
+  .guide-content li, .guide-content li p { text-align: left !important; }
   .guide-content li { margin-bottom: 6px; }
   .guide-content blockquote { border-left: 3px solid #003DA6; margin: 20px 0; padding: 4px 0 4px 16px; color: var(--text2, #666); font-style: italic; }
   .guide-content a { color: #003DA6; }
