@@ -27,6 +27,7 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
   const cardBg = dark ? '#1a1a1a' : '#fafafa'
 
   const updateAt = (i: number, b: GuideBlock) => onChange(blocks.map((x, idx) => (idx === i ? b : x)))
+  const newBlockId = () => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `${Math.random().toString(36).slice(2)}${Date.now()}`)
   // Replié/déplié par bloc — un guide avec beaucoup de blocs (pyramide, plusieurs
   // grilles d'inserts...) devient vite long à parcourir pour n'éditer qu'un seul
   // d'entre eux. L'état suit le CONTENU du bloc (pas juste sa position) à travers
@@ -50,6 +51,7 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
   }
   const duplicateAt = (i: number) => {
     const copy = JSON.parse(JSON.stringify(blocks[i])) as GuideBlock
+    copy.id = newBlockId()
     onChange([...blocks.slice(0, i + 1), copy, ...blocks.slice(i + 1)])
     setCollapsed(prev => {
       const next = new Set<number>()
@@ -92,7 +94,7 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
       {blocks.map((b, i) => {
         const isCollapsed = collapsed.has(i)
         return (
-        <div key={i} style={{ border: `1px solid ${border}`, borderRadius: 10, padding: 14, background: cardBg }}>
+        <div key={b.id ?? i} style={{ border: `1px solid ${border}`, borderRadius: 10, padding: 14, background: cardBg }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isCollapsed ? 0 : 10 }}>
             <button type="button" onClick={() => toggleCollapsed(i)}
               style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
@@ -125,12 +127,12 @@ export default function GuideBlocksEditor({ blocks, onChange }: Props) {
       })}
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'text', html: '' }])}>+ Texte</button>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'image', src: '', caption: '' }])}>+ Image</button>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'text_image', html: '', image: '', imagePosition: 'left' }])}>+ Texte + image</button>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'pyramid', rows: [] }])}>+ Pyramide</button>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'insert_grid', cards: [], oddsTable: { columns: [], rows: [] }, players: [] }])}>+ Grille inserts</button>
-        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { type: 'setlist_embed', setId: 0 }])}>+ Setlist</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { id: newBlockId(), type: 'text', html: '' }])}>+ Texte</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { id: newBlockId(), type: 'image', src: '', caption: '' }])}>+ Image</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { id: newBlockId(), type: 'text_image', html: '', image: '', imagePosition: 'left' }])}>+ Texte + image</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { id: newBlockId(), type: 'pyramid', rows: [] }])}>+ Pyramide</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { id: newBlockId(), type: 'insert_grid', cards: [], oddsTable: { columns: [], rows: [] }, players: [] }])}>+ Grille inserts</button>
+        <button type="button" style={addBtnStyle} onClick={() => onChange([...blocks, { id: newBlockId(), type: 'setlist_embed', setId: 0 }])}>+ Setlist</button>
       </div>
     </div>
   )

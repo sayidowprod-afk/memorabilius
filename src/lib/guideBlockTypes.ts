@@ -42,7 +42,17 @@ export interface OddsTable {
   rows: { label: string; values: string[] }[]
 }
 
-export type GuideBlock =
+// `id` est un identifiant client stable (généré à la création du bloc, préservé à
+// travers toutes les modifications puisque chaque éditeur de bloc met à jour via
+// `{ ...block, champ }`) — sert de clé React dans GuideBlocksEditor.tsx. Sans lui,
+// la clé retombait sur l'index dans le tableau, et React réutilisait l'instance
+// (donc l'éditeur Tiptap, qui ne se resynchronise pas tout seul si son contenu
+// change sans remonter) d'un autre bloc après un déplacement/suppression/ajout —
+// symptômes : un bloc de texte affichait le contenu d'un ancien voisin ("ne se
+// met pas à jour"), et supprimer un bloc en supprimait visuellement un autre.
+// Optionnel dans le type car les guides déjà enregistrés n'en ont pas —
+// normalizeGuideBlocks() en assigne un à la volée pour ceux-là.
+export type GuideBlock = { id?: string } & (
   | { type: 'text'; html: string }
   | { type: 'image'; src: string; caption?: string }
   | { type: 'text_image'; html: string; image: string; imagePosition: 'left' | 'right' }
@@ -56,6 +66,7 @@ export type GuideBlock =
   | { type: 'pyramid'; title?: string; rows: PyramidRow[]; layout?: 'auto' | 'single' | 'split' | 'joined' }
   | { type: 'insert_grid'; title?: string; cards: InsertCard[]; oddsTable: OddsTable; players: string[]; width?: 'full' | 'half' | 'third' }
   | { type: 'setlist_embed'; setId: number; title?: string }
+)
 
 // Défend contre les guides déjà enregistrés avec l'ancienne forme du bloc
 // insert_grid (oddsRows: {label,value}[] au lieu de oddsTable, pas de players) -
@@ -63,6 +74,10 @@ export type GuideBlock =
 // champ guides.content (unique blob HTML rendu avant tous les blocs) en le
 // préfixant comme premier bloc `text`, sauf si un bloc `text` existe déjà en tête
 // (déjà migré lors d'un enregistrement précédent).
+function randomBlockId(): string {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36)
+}
+
 export function normalizeGuideBlocks(raw: unknown, legacyContent?: string | null): GuideBlock[] {
   const blocks: GuideBlock[] = !Array.isArray(raw) ? [] : raw.map((b: any) => {
     if (b?.type === 'insert_grid') {
@@ -71,7 +86,7 @@ export function normalizeGuideBlocks(raw: unknown, legacyContent?: string | null
         : Array.isArray(b.oddsRows) && b.oddsRows.length > 0
           ? { columns: ['Valeur'], rows: b.oddsRows.map((r: any) => ({ label: r.label || '', values: [r.value || ''] })) }
           : { columns: [], rows: [] }
-      return { type: 'insert_grid', title: b.title, cards: Array.isArray(b.cards) ? b.cards : [], oddsTable, players: Array.isArray(b.players) ? b.players : [] }
+      return { id: b.id, type: 'insert_grid', title: b.title, cards: Array.isArray(b.cards) ? b.cards : [], oddsTable, players: Array.isArray(b.players) ? b.players : [] }
     }
     return b
   })
@@ -79,6 +94,8 @@ export function normalizeGuideBlocks(raw: unknown, legacyContent?: string | null
   if (legacyContent && legacyContent.trim() && blocks[0]?.type !== 'text') {
     blocks.unshift({ type: 'text', html: legacyContent })
   }
+
+  for (const b of blocks) if (!b.id) b.id = randomBlockId()
 
   return blocks
 }
