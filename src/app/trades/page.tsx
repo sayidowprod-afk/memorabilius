@@ -526,15 +526,17 @@ export default function Trades() {
               <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
                 <button onClick={() => setPopup(null)} style={{ alignSelf: 'flex-end', background: 'var(--bg3, #f0f0f0)', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text, #121212)' }}>×</button>
                 <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
-                {(popup.joueur || popup.annee || popup.marque || popup.equipe) && (
+                {(popup.joueur || popup.annee || popup.marque || popup.equipe || popup.collection || popup.card_number || popup.numerotation) && (
                   <div style={{ background: 'var(--bg3, #f8f8f8)', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
                     {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>{popup.sport ? (SPORTS[popup.sport] || '🏀') : '🃏'} {popup.joueur}</p>}
                     {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🏟️ {popup.equipe}</p>}
                     {popup.annee && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>📅 {popup.annee}</p>}
                     {popup.marque && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🏷️ {popup.marque}</p>}
                     {popup._source === 'galerie' && popup.collection && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>📦 {popup.collection}{popup.variation ? ` · ${popup.variation}` : ''}</p>}
+                    {!popup._source && popup.collection && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>📦 {popup.collection}</p>}
                     {popup._source === 'galerie' && popup.grade && popup.grade !== 'Raw' && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>⭐ {popup.grade}{popup.cert_number ? ` · #${popup.cert_number}` : ''}</p>}
                     {popup._source === 'galerie' && popup.num && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🔢 {popup.card_number || ''} {popup.num}</p>}
+                    {!popup._source && (popup.card_number || popup.numerotation) && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🔢 {popup.card_number || ''} {popup.numerotation || ''}</p>}
                     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
                       {popup.rc && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
                       {popup.auto && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}

@@ -18,6 +18,9 @@ export default function NouveauTrade() {
     equipe: '',
     annee: '',
     marque: '',
+    collection: '',
+    card_number: '',
+    numerotation: '',
     description: '',
     image_url: '',
     rc: false,
@@ -26,7 +29,7 @@ export default function NouveauTrade() {
     patch: false,
     sport: 'basket',
   })
-  const [imageError, setImageError] = useState(false)
+  const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -34,6 +37,18 @@ export default function NouveauTrade() {
       setUserId(session.user.id)
     })
   }, [])
+
+  const uploadImage = async (file: File) => {
+    if (!userId) return
+    if (file.size > 8 * 1024 * 1024) { toast.error(t('trades_new_image_too_large')); return }
+    setUploading(true)
+    const path = `trades/${userId}/${Date.now()}.jpg`
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    if (error) { toast.error(t('trades_new_error_prefix') + error.message); setUploading(false); return }
+    const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+    setForm(f => ({ ...f, image_url: data.publicUrl }))
+    setUploading(false)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -142,29 +157,41 @@ export default function NouveauTrade() {
             </div>
           </div>
 
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('trades_form_marque_label')}</label>
-            <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={t('trades_form_marque_placeholder')} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('trades_form_marque_label')}</label>
+              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={t('trades_form_marque_placeholder')} />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('addcard_label_collection')}</label>
+              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={t('addcard_ex_collection')} />
+            </div>
           </div>
 
-          {/* URL image */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('addcard_label_card_num')}</label>
+              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_card_num')} />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering')}</label>
+              <input value={form.numerotation} onChange={e => setForm({ ...form, numerotation: e.target.value })} placeholder={t('addcard_ex_numbering')} />
+            </div>
+          </div>
+
+          {/* Photo */}
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('trades_form_image_label')}</label>
-            <input value={form.image_url} autoComplete="off" inputMode="url"
-              onChange={e => { setForm({ ...form, image_url: e.target.value }); setImageError(false) }}
-              placeholder={t('trades_form_image_placeholder')} />
-            <p style={{ fontSize: 11, color: 'var(--text3, #999)', marginTop: 4 }}>{t('trades_new_image_hint')}</p>
-            {/* Aperçu immédiat : certains liens "de la page produit" (pas l'image directe)
-                ou protégés contre le hotlinking ne s'affichent jamais une fois publiés —
-                mieux vaut le voir tout de suite qu'après publication. */}
-            {form.image_url && (
-              imageError ? (
-                <p style={{ fontSize: 12, color: '#e74c3c', marginTop: 8 }}>{t('trades_new_image_error')}</p>
-              ) : (
-                <img src={form.image_url} alt="" onError={() => setImageError(true)} onLoad={() => setImageError(false)}
-                  style={{ marginTop: 8, maxWidth: 120, maxHeight: 168, borderRadius: 8, display: 'block', objectFit: 'contain', border: '1px solid var(--border, #eee)' }} />
-              )
-            )}
+            <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+              {form.image_url && (
+                <img src={form.image_url} alt="" style={{ width: 70, height: 98, borderRadius: 8, objectFit: 'cover', border: '1px solid var(--border, #eee)' }} />
+              )}
+              <label className="btn-main btn-secondary" style={{ padding: '10px 16px', fontSize: 13, cursor: 'pointer', display: 'inline-block' }}>
+                {uploading ? t('trades_new_uploading') : form.image_url ? t('trades_new_image_change') : t('trades_new_image_choose')}
+                <input type="file" accept="image/*" style={{ display: 'none' }}
+                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadImage(f); e.target.value = '' }} />
+              </label>
+            </div>
           </div>
 
           {/* Description */}
