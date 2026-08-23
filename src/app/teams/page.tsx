@@ -56,6 +56,10 @@ export default function Teams() {
   const joinTeam = async (teamId: number) => {
     if (!userId) return
     setLoading(true)
+    // Supprimer une éventuelle ancienne candidature (refusée, ou acceptée puis quittée)
+    // avant d'en recréer une — sinon la contrainte unique (team_id, user_id) fait
+    // échouer l'insert avec une erreur brute affichée à l'utilisateur.
+    await supabase.from('team_candidatures').delete().eq('team_id', teamId).eq('user_id', userId).neq('statut', 'en_attente')
     const { error } = await supabase.from('team_candidatures').insert({ team_id: teamId, user_id: userId })
     if (error) {
       toast.error(t('teams_err_prefix') + error.message)
