@@ -26,6 +26,7 @@ export default function NouveauTrade() {
     patch: false,
     sport: 'basket',
   })
+  const [imageError, setImageError] = useState(false)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -149,8 +150,21 @@ export default function NouveauTrade() {
           {/* URL image */}
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('trades_form_image_label')}</label>
-            <input value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder={t('trades_form_image_placeholder')} />
+            <input value={form.image_url} autoComplete="off" inputMode="url"
+              onChange={e => { setForm({ ...form, image_url: e.target.value }); setImageError(false) }}
+              placeholder={t('trades_form_image_placeholder')} />
             <p style={{ fontSize: 11, color: 'var(--text3, #999)', marginTop: 4 }}>{t('trades_new_image_hint')}</p>
+            {/* Aperçu immédiat : certains liens "de la page produit" (pas l'image directe)
+                ou protégés contre le hotlinking ne s'affichent jamais une fois publiés —
+                mieux vaut le voir tout de suite qu'après publication. */}
+            {form.image_url && (
+              imageError ? (
+                <p style={{ fontSize: 12, color: '#e74c3c', marginTop: 8 }}>{t('trades_new_image_error')}</p>
+              ) : (
+                <img src={form.image_url} alt="" onError={() => setImageError(true)} onLoad={() => setImageError(false)}
+                  style={{ marginTop: 8, maxWidth: 120, maxHeight: 168, borderRadius: 8, display: 'block', objectFit: 'contain', border: '1px solid var(--border, #eee)' }} />
+              )
+            )}
           </div>
 
           {/* Description */}

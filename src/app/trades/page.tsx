@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang, localeFor } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { inferSportFromTeamName } from '@/lib/sportsTeams'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
@@ -53,6 +54,7 @@ export default function Trades() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { t, lang } = useLang()
+  const { dark } = useTheme()
 
   // Tab principal : annonces forum | mes échanges directs
   const [mainTab, setMainTab] = useState<'annonces' | 'echanges'>(
@@ -210,18 +212,21 @@ export default function Trades() {
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {profile?.instagram && (
         <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 12, fontWeight: 700, color: '#E1306C', background: '#fce4ec', padding: '4px 10px', borderRadius: 20, textDecoration: 'none' }}>
+          style={{ fontSize: 12, fontWeight: 700, color: '#E1306C', background: dark ? '#3d0010' : '#fce4ec', padding: '4px 10px', borderRadius: 20, textDecoration: 'none' }}>
           📸 {profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
         </a>
       )}
       {profile?.twitter && (
+        // Fond clair fixe (#121212 sur #f0f0f0) invisible en mode sombre — le hack CSS
+        // global qui matche sur le style inline (voir globals.css) ne s'appliquait pas
+        // de façon fiable ici, donc couleurs pilotées directement par le thème.
         <a href={`https://x.com/${profile.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 12, fontWeight: 700, color: '#121212', background: '#f0f0f0', padding: '4px 10px', borderRadius: 20, textDecoration: 'none' }}>
+          style={{ fontSize: 12, fontWeight: 700, color: dark ? '#f0f0f0' : '#121212', background: dark ? '#2a2a2a' : '#f0f0f0', padding: '4px 10px', borderRadius: 20, textDecoration: 'none' }}>
           𝕏 {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
         </a>
       )}
       {profile?.discord && (
-        <span style={{ fontSize: 12, fontWeight: 700, color: '#5865F2', background: '#eef0ff', padding: '4px 10px', borderRadius: 20 }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: '#5865F2', background: dark ? '#1a1a3d' : '#eef0ff', padding: '4px 10px', borderRadius: 20 }}>
           🎮 {profile.discord}
         </span>
       )}

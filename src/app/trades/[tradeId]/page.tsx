@@ -27,6 +27,7 @@ export default function EditerTrade({ params }: { params: Promise<{ tradeId: str
     description: '', image_url: '', sport: 'basket',
     rc: false, auto: false, num: false, patch: false,
   })
+  const [imageError, setImageError] = useState(false)
 
   useEffect(() => {
     const init = async () => {
@@ -153,7 +154,17 @@ export default function EditerTrade({ params }: { params: Promise<{ tradeId: str
           {/* Image */}
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('trades_form_image_label')}</label>
-            <input value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder={t('trades_form_image_placeholder')} />
+            <input value={form.image_url} autoComplete="off" inputMode="url"
+              onChange={e => { setForm({ ...form, image_url: e.target.value }); setImageError(false) }}
+              placeholder={t('trades_form_image_placeholder')} />
+            {form.image_url && (
+              imageError ? (
+                <p style={{ fontSize: 12, color: '#e74c3c', marginTop: 8 }}>{t('trades_new_image_error')}</p>
+              ) : (
+                <img src={form.image_url} alt="" onError={() => setImageError(true)} onLoad={() => setImageError(false)}
+                  style={{ marginTop: 8, maxWidth: 120, maxHeight: 168, borderRadius: 8, display: 'block', objectFit: 'contain', border: '1px solid var(--border, #eee)' }} />
+              )
+            )}
           </div>
 
           {/* Description */}
