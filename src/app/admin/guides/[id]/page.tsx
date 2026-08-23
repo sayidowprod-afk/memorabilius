@@ -37,6 +37,9 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [published, setPublished] = useState(false)
   const [publishedAt, setPublishedAt] = useState(() => new Date().toISOString().slice(0, 16))
   const [uploadingCover, setUploadingCover] = useState(false)
+  const [translations, setTranslations] = useState<{ lang: string; translated_at: string; cover_image: string | null }[]>([])
+  const [translating, setTranslating] = useState(false)
+  const [uploadingCoverLang, setUploadingCoverLang] = useState<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -52,10 +55,42 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
           setBlocks(normalizeGuideBlocks(g.blocks, g.content))
           setPublished(g.published); setPublishedAt(new Date(g.published_at).toISOString().slice(0, 16))
           setSlugTouched(true)
+          const { data: trans } = await supabase.from('guide_translations').select('lang, translated_at, cover_image').eq('guide_id', id)
+          setTranslations(trans || [])
         }
       }
     })
   }, [])
+
+  const translate = async () => {
+    if (isNew) { toast.error('Enregistre le guide avant de le traduire'); return }
+    setTranslating(true)
+    const { data: { session } } = await supabase.auth.getSession()
+    const r = await fetch('/api/translate-guide', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+      body: JSON.stringify({ guideId: id }),
+    })
+    const body = await r.json().catch(() => ({}))
+    setTranslating(false)
+    if (!r.ok) { toast.error(body.error || 'Erreur de traduction'); return }
+    const failed = Object.entries(body.results || {}).filter(([, v]) => v !== 'ok')
+    if (failed.length) toast.error('Échec pour : ' + failed.map(([lang]) => lang).join(', '))
+    else toast.success('Guide traduit en EN et DE')
+    const { data: trans } = await supabase.from('guide_translations').select('lang, translated_at, cover_image').eq('guide_id', id)
+    setTranslations(trans || [])
+  }
+
+  const uploadTranslationCover = async (lang: string, file: File) => {
+    setUploadingCoverLang(lang)
+    const url = await uploadGuideImage(file, 'covers/')
+    if (url) {
+      const { error } = await supabase.from('guide_translations').update({ cover_image: url }).eq('guide_id', id).eq('lang', lang)
+      if (error) toast.error(error.message)
+      else setTranslations(prev => prev.map(t2 => t2.lang === lang ? { ...t2, cover_image: url } : t2))
+    }
+    setUploadingCoverLang(null)
+  }
 
   const onTitleChange = (v: string) => {
     setTitle(v)
@@ -133,6 +168,44 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
             <label style={label}>{t('admin_guides_field_content')}</label>
             <GuideBlocksEditor blocks={blocks} onChange={setBlocks} />
           </div>
+
+          {!isNew && (
+            <div style={{ background: dark ? '#161616' : '#f7f8fa', border: `1px solid ${border}`, borderRadius: 10, padding: 16 }}>
+              <div style={{ fontSize: 12, fontWeight: 800, color: sub, textTransform: 'uppercase', letterSpacing: 0.4, marginBottom: 8 }}>
+                🌐 Traductions (EN / DE)
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 12 }}>
+                {(['en', 'de'] as const).map(l => {
+                  const found = translations.find(t2 => t2.lang === l)
+                  return (
+                    <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, color: text }}>
+                      {found?.cover_image && (
+                        <img src={found.cover_image} alt="" style={{ width: 44, height: 44, borderRadius: 6, objectFit: 'cover', flexShrink: 0 }} />
+                      )}
+                      <div style={{ flex: 1 }}>
+                        {l.toUpperCase()} : {found ? `traduit le ${new Date(found.translated_at).toLocaleDateString('fr-FR')}` : 'pas encore traduit'}
+                      </div>
+                      {found && (
+                        <label style={{ fontSize: 11, fontWeight: 700, color: '#003DA6', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                          {uploadingCoverLang === l ? '...' : 'image ' + l}
+                          <input type="file" accept="image/*" disabled={uploadingCoverLang === l} style={{ display: 'none' }}
+                            onChange={e => { const f = e.target.files?.[0]; if (f) uploadTranslationCover(l, f) }} />
+                        </label>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+              <button type="button" onClick={translate} disabled={translating}
+                style={{ padding: '8px 16px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 13, cursor: translating ? 'default' : 'pointer', opacity: translating ? 0.6 : 1 }}>
+                {translating ? 'Traduction en cours…' : translations.length ? 'Retraduire (écrase les traductions actuelles)' : 'Traduire ce guide'}
+              </button>
+              <p style={{ fontSize: 11, color: sub, marginTop: 8, marginBottom: 0 }}>
+                Enregistre d'abord tes modifications ci-dessus — la traduction part de la dernière version enregistrée, pas du brouillon en cours.
+              </p>
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
             <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: text, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
               <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} />
