@@ -56,23 +56,22 @@ export default function Teams() {
   const joinTeam = async (teamId: number) => {
     if (!userId) return
     setLoading(true)
-    // Supprimer une éventuelle ancienne candidature (refusée, ou acceptée puis quittée)
-    // avant d'en recréer une — sinon la contrainte unique (team_id, user_id) fait
-    // échouer l'insert avec une erreur brute affichée à l'utilisateur.
-    await supabase.from('team_candidatures').delete().eq('team_id', teamId).eq('user_id', userId).neq('statut', 'en_attente')
-    const { error } = await supabase.from('team_candidatures').insert({ team_id: teamId, user_id: userId })
-    if (error) {
-      toast.error(t('teams_err_prefix') + error.message)
+    // Passe par le serveur (service role) : un candidat déjà refusé (ou parti après avoir
+    // été accepté) laisse une ligne team_candidatures non "en_attente" en base, et sa
+    // suppression exige un DELETE qu'aucune policy RLS n'autorise côté client (testé —
+    // le DELETE réussit silencieusement sans rien supprimer, l'INSERT échoue ensuite).
+    const { data: { session } } = await supabase.auth.getSession()
+    const r = await fetch('/api/team-join', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+      body: JSON.stringify({ teamId }),
+    })
+    const body = await r.json().catch(() => ({}))
+    if (!r.ok) {
+      toast.error(t('teams_err_prefix') + (body.error || r.statusText))
     } else {
       setHasCandidature(prev => new Set([...prev, teamId]))
       toast.success(t('teams_request_sent'))
-      // Best-effort : sans ça le chef n'a aucun signal qu'une candidature vient d'arriver.
-      const { data: { session } } = await supabase.auth.getSession()
-      fetch('/api/team-join-notify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
-        body: JSON.stringify({ teamId }),
-      }).catch(() => {})
     }
     setLoading(false)
   }

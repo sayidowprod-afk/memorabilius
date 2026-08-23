@@ -390,19 +390,21 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const postuler = async () => {
     if (!currentUser) { router.push('/connexion'); return }
-    // Supprimer une éventuelle ancienne candidature (bug d'acceptation) avant d'en créer une nouvelle
-    await supabase.from('team_candidatures').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser).neq('statut', 'en_attente')
-    const { error } = await supabase.from('team_candidatures').insert({ team_id: parseInt(teamId), user_id: currentUser })
-    if (!error) {
+    // Passe par le serveur (service role) : un candidat déjà refusé (ou parti après avoir
+    // été accepté) laisse une ligne team_candidatures non "en_attente" en base, et sa
+    // suppression exige un DELETE qu'aucune policy RLS n'autorise côté client (testé —
+    // le DELETE réussit silencieusement sans rien supprimer, l'INSERT échoue ensuite).
+    const { data: { session } } = await supabase.auth.getSession()
+    const r = await fetch('/api/team-join', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+      body: JSON.stringify({ teamId: parseInt(teamId) }),
+    })
+    if (r.ok) {
       setHasCandidature(true)
-      // Best-effort : le chef ne recevait jusqu'ici aucun signal (ni notification, ni
-      // push) qu'une candidature venait d'arriver, il fallait rouvrir la page par hasard.
-      const { data: { session } } = await supabase.auth.getSession()
-      fetch('/api/team-join-notify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
-        body: JSON.stringify({ teamId: parseInt(teamId) }),
-      }).catch(() => {})
+    } else {
+      const { error } = await r.json().catch(() => ({ error: 'Erreur inconnue' }))
+      toast.error(t('teams_err_prefix') + error)
     }
   }
 
