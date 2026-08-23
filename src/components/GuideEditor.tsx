@@ -85,8 +85,12 @@ export default function GuideEditor({ content, onChange }: Props) {
   }
 
   const addLink = () => {
-    const url = window.prompt(t('editor_link_prompt'))
-    if (!url) return
+    // Pré-remplit avec le lien existant si le curseur est déjà dessus, et vider le
+    // champ (au lieu d'annuler) retire le lien — jusqu'ici aucun moyen d'en enlever un.
+    const previousUrl = editor.getAttributes('link').href || ''
+    const url = window.prompt(t('editor_link_prompt'), previousUrl)
+    if (url === null) return
+    if (url.trim() === '') { editor.chain().focus().extendMarkRange('link').unsetLink().run(); return }
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
   }
 
