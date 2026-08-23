@@ -104,21 +104,43 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     if (url) setCoverImage(url)
   }
 
+  const buildPayload = () => ({
+    title: title.trim(), slug: slug.trim(), excerpt: excerpt.trim() || null,
+    category: category.trim() || null, cover_image: coverImage || null, content: '', blocks,
+    published, published_at: new Date(publishedAt).toISOString(), updated_at: new Date().toISOString(),
+  })
+
   const save = async () => {
     if (!title.trim() || !slug.trim()) { toast.error('Titre et slug requis'); return }
     setSaving(true)
-    const payload = {
-      title: title.trim(), slug: slug.trim(), excerpt: excerpt.trim() || null,
-      category: category.trim() || null, cover_image: coverImage || null, content: '', blocks,
-      published, published_at: new Date(publishedAt).toISOString(), updated_at: new Date().toISOString(),
-    }
     const { error } = isNew
-      ? await supabase.from('guides').insert(payload)
-      : await supabase.from('guides').update(payload).eq('id', id)
+      ? await supabase.from('guides').insert(buildPayload())
+      : await supabase.from('guides').update(buildPayload()).eq('id', id)
     setSaving(false)
     if (error) { toast.error(error.message); return }
     toast.success(t('admin_guides_saved'))
     router.push('/admin/guides')
+  }
+
+  const [previewing, setPreviewing] = useState(false)
+  const preview = async () => {
+    if (!title.trim() || !slug.trim()) { toast.error('Titre et slug requis'); return }
+    if (isNew) { toast.error('Enregistre le guide une première fois avant de le prévisualiser'); return }
+    setPreviewing(true)
+    // Enregistre l'état courant du brouillon (sans changer "published") pour que
+    // l'aperçu montre bien les dernières modifications, pas l'ancienne version en base.
+    const { error: saveErr } = await supabase.from('guides').update(buildPayload()).eq('id', id)
+    if (saveErr) { toast.error(saveErr.message); setPreviewing(false); return }
+    const { data: { session } } = await supabase.auth.getSession()
+    const r = await fetch('/api/admin/guide-preview-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+      body: JSON.stringify({ guideId: id }),
+    })
+    const body = await r.json().catch(() => ({}))
+    setPreviewing(false)
+    if (!r.ok) { toast.error(body.error || 'Erreur de prévisualisation'); return }
+    window.open(`/guides/${slug.trim()}/preview?token=${body.token}`, '_blank')
   }
 
   if (checking) return null
@@ -217,10 +239,18 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
             </div>
           </div>
 
-          <button onClick={save} disabled={saving}
-            style={{ alignSelf: 'flex-start', padding: '12px 24px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, cursor: saving ? 'default' : 'pointer', opacity: saving ? 0.6 : 1 }}>
-            {saving ? t('admin_guides_saving') : t('admin_guides_save')}
-          </button>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button onClick={save} disabled={saving}
+              style={{ padding: '12px 24px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, cursor: saving ? 'default' : 'pointer', opacity: saving ? 0.6 : 1 }}>
+              {saving ? t('admin_guides_saving') : t('admin_guides_save')}
+            </button>
+            {!isNew && (
+              <button type="button" onClick={preview} disabled={previewing}
+                style={{ padding: '12px 24px', borderRadius: 8, border: `1.5px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 14, cursor: previewing ? 'default' : 'pointer', opacity: previewing ? 0.6 : 1 }}>
+                {previewing ? '…' : '👁️ Aperçu'}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
