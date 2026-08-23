@@ -75,7 +75,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     setTranslating(false)
     if (!r.ok) { toast.error(body.error || 'Erreur de traduction'); return }
     const failed = Object.entries(body.results || {}).filter(([, v]) => v !== 'ok')
-    if (failed.length) toast.error('Échec pour : ' + failed.map(([lang]) => lang).join(', '))
+    if (failed.length) toast.error(failed.map(([lang, v]) => `${lang} : ${v}`).join(' · '))
     else toast.success('Guide traduit en EN et DE')
     const { data: trans } = await supabase.from('guide_translations').select('lang, translated_at, cover_image').eq('guide_id', id)
     setTranslations(trans || [])

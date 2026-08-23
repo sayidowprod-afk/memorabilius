@@ -61,7 +61,7 @@ RÈGLES STRICTES :
 - Certaines chaînes contiennent du HTML (balises <h2>, <p>, <table>, <ul data-type="taskList">, <div data-callout="tip">, etc.) — préserve EXACTEMENT toutes les balises, attributs et structure, ne traduis QUE le texte visible entre les balises.
 - Ne traduis JAMAIS : noms de joueurs, noms de marques (Panini, Topps, Prizm, Chrome...), noms de sets/collections, numéros, chiffres, URLs, noms propres.
 - Garde le ton, le niveau de langue et la longueur approximative.
-- Réponds UNIQUEMENT avec un tableau JSON de chaînes, dans le même ordre, la même longueur, sans aucun texte ni markdown autour.
+- Le tableau de sortie DOIT contenir EXACTEMENT ${strings.length} éléments, un par élément d'entrée, dans le même ordre — ne fusionne jamais deux éléments, ne divise jamais un élément en plusieurs.
 
 ${JSON.stringify(strings)}`
 
@@ -70,9 +70,27 @@ ${JSON.stringify(strings)}`
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.2, maxOutputTokens: 8192 },
+      generationConfig: {
+        temperature: 0.2,
+        maxOutputTokens: 32768,
+        // thinkingBudget: 0 est essentiel — sans lui, le "raisonnement" interne de
+        // gemini-2.5-flash (invisible, pas dans la réponse) consommait à lui seul
+        // ~96% du budget de tokens sur un guide de taille normale (23 blocs, 20 Ko),
+        // ne laissant presque rien pour la traduction réelle -> réponse tronquée,
+        // JSON invalide, échec silencieux (voir /admin/guides toujours "pas encore
+        // traduit" après avoir cliqué). Vérifié : sans thinkingBudget, finishReason
+        // "MAX_TOKENS" et JSON tronqué ; avec, "STOP" et JSON complet.
+        thinkingConfig: { thinkingBudget: 0 },
+        // responseSchema (mode JSON structuré) garantit une syntaxe valide (fini les
+        // guillemets non échappés qui cassaient le parsing) ET, avec minItems/maxItems
+        // fixés au nombre exact d'éléments attendus, empêche le modèle de fusionner/
+        // diviser des éléments (vérifié : sans ces bornes, le modèle retournait parfois
+        // 33 éléments au lieu des 25 attendus).
+        responseMimeType: 'application/json',
+        responseSchema: { type: 'ARRAY', items: { type: 'STRING' }, minItems: strings.length, maxItems: strings.length },
+      },
     }),
-    signal: AbortSignal.timeout(45000),
+    signal: AbortSignal.timeout(60000),
   })
   if (!res.ok) throw new Error(`Gemini error: ${await res.text()}`)
   const data = await res.json()
