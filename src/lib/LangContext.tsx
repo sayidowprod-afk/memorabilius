@@ -3634,11 +3634,18 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('lang') as Lang
-    if (saved === 'fr' || saved === 'en' || saved === 'de') { setLangState(saved); return }
     const geo = document.cookie.split(';').find(c => c.trim().startsWith('geo-lang='))?.split('=')?.[1]?.trim() as Lang | undefined
-    if (geo === 'fr' || geo === 'en' || geo === 'de') { setLangState(geo); return }
-    const browser: Lang = navigator.language.startsWith('en') ? 'en' : navigator.language.startsWith('de') ? 'de' : 'fr'
-    setLangState(browser)
+    const resolved: Lang =
+      (saved === 'fr' || saved === 'en' || saved === 'de') ? saved
+      : (geo === 'fr' || geo === 'en' || geo === 'de') ? geo
+      : navigator.language.startsWith('en') ? 'en' : navigator.language.startsWith('de') ? 'de' : 'fr'
+    setLangState(resolved)
+    // Resynchronise le cookie à CHAQUE chargement, pas seulement au clic explicite sur
+    // le sélecteur — un visiteur qui avait déjà "en"/"de" en localStorage AVANT ce
+    // correctif ne repassait jamais par setLang(), donc le cookie geo-lang restait
+    // périmé indéfiniment et la redirection vers les guides traduits ne se déclenchait
+    // jamais pour lui malgré un site bien affiché en anglais/allemand.
+    if (resolved !== geo) document.cookie = `geo-lang=${resolved}; path=/; max-age=31536000; samesite=lax`
   }, [])
 
   // Synchronise sur le profil pour que le serveur (crons, notifications push)
