@@ -3652,6 +3652,12 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   const setLang = (l: Lang) => {
     setLangState(l)
     localStorage.setItem('lang', l)
+    // Garde le cookie geo-lang synchronisé sur le choix explicite — sans ça, ce
+    // cookie ne reflétait que la détection géo initiale, jamais un changement
+    // manuel via le sélecteur, donc les pages rendues côté serveur (ex: guides
+    // traduits sur /[lang]/guides/[slug]) ne voyaient jamais ce choix et
+    // continuaient de servir le français malgré un site passé en EN/DE.
+    document.cookie = `geo-lang=${l}; path=/; max-age=31536000; samesite=lax`
   }
 
   const t = (key: TranslationKey): string => translations[lang][key] || translations.fr[key] || key

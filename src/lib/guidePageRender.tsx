@@ -215,8 +215,13 @@ export const GUIDE_CONTENT_STYLE = `
   .guide-content iframe { max-width: 100%; border-radius: 8px; aspect-ratio: 16/9; width: 100%; height: auto; margin: 20px 0; }
   .guide-content hr { border: none; border-top: 1.5px solid var(--border, #e8eaed); margin: 32px 0; }
   .guide-content mark { background: #fff3a3; color: #222; padding: 0 2px; border-radius: 2px; }
-  .guide-content table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 14px; }
-  .guide-content th, .guide-content td { border: 1px solid var(--border, #e0e0e0); padding: 8px 10px; text-align: left; }
+  /* display:block + overflow-x:auto sur la <table> elle-même (pas de wrapper <div>
+     possible, le HTML vient tel quel du contenu sanitisé) : un tableau à plusieurs
+     colonnes ne se comprime jamais sous sa largeur de contenu minimale (width:100%
+     seul ne l'empêche pas de déborder), ce qui poussait toute la page en scroll
+     horizontal sur mobile au lieu de faire défiler seulement le tableau. */
+  .guide-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 14px; }
+  .guide-content th, .guide-content td { border: 1px solid var(--border, #e0e0e0); padding: 8px 10px; text-align: left; white-space: nowrap; }
   .guide-content th { background: var(--card-bg2, #f5f6f8); font-weight: 800; }
   .guide-content ul[data-type="taskList"] { list-style: none; padding-left: 0; margin: 0 0 16px; }
   .guide-content ul[data-type="taskList"] li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
