@@ -1,6 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, Suspense } from 'react'
+import { createPortal } from 'react-dom'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -763,7 +764,7 @@ function MessagesContent() {
         </div>
       </div>
 
-      {expandedOffer && (
+      {expandedOffer && createPortal(
         <div onClick={() => setExpandedOffer(null)} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
           <div onClick={e => e.stopPropagation()} style={{ background: bgPanel, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 480, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -802,7 +803,8 @@ function MessagesContent() {
             ))}
             {expandedOffer.message && <div style={{ fontSize: 13, color: textMuted, fontStyle: 'italic' }}>"{expandedOffer.message}"</div>}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )

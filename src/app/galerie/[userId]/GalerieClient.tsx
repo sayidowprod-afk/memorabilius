@@ -1801,7 +1801,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
 
               {/* Modal de recherche pour ajouter au grail */}
-              {grailPickerOpen && (
+              {grailPickerOpen && createPortal(
                 <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
                   onClick={() => setGrailPickerOpen(false)}>
                   <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -1853,7 +1853,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       )}
                     </div>
                   </div>
-                </div>
+                </div>,
+                document.body
               )}
             </div>
           )

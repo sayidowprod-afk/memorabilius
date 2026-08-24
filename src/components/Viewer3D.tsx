@@ -710,7 +710,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  return (
+  // Portale sur document.body : ce composant est monte au fil de la page
+  // (galerie), sous des ancetres avec `contain: layout` (globals.css, LCP) —
+  // ca cree un containing block pour position:fixed et recentrait la modale
+  // sur le milieu de la PAGE au lieu du milieu de l'ECRAN une fois scrolle,
+  // au lieu de rester fixee au viewport comme les autres modales de l'app.
+  if (typeof document === 'undefined') return null
+  return createPortal(
     <div style={{
       position: 'fixed', inset: 0,
       background: bg, zIndex: 9999999,
@@ -1924,6 +1930,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} />}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

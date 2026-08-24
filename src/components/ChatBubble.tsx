@@ -1,6 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -460,7 +461,7 @@ export default function ChatBubble() {
         </div>
       )}
 
-      {expandedOffer && (
+      {expandedOffer && createPortal(
         <div onClick={() => setExpandedOffer(null)} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
           <div onClick={e => e.stopPropagation()} style={{ background: bg, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 420, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -498,7 +499,8 @@ export default function ChatBubble() {
               </div>
             ))}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )
