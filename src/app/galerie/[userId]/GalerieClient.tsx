@@ -1518,11 +1518,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
         {/* Header profil — bandeau degrade base sur la couleur d'accent du collectionneur,
             plus immersif qu'un fond uni, tout en gardant le contenu parfaitement lisible. */}
-        <div style={{ position: 'relative', overflow: 'hidden', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)' }}>
+        <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)' }}>
           <div style={{
-            position: 'absolute', inset: 0, height: 90,
+            position: 'absolute', inset: 0, height: 90, borderRadius: '16px 16px 0 0',
             background: `linear-gradient(135deg, ${accent}${dark ? '3a' : '26'}, transparent 80%)`,
-            pointerEvents: 'none',
+            pointerEvents: 'none', overflow: 'hidden',
           }} />
           <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
 
