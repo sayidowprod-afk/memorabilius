@@ -8,6 +8,8 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { useLang } from '@/lib/LangContext'
+import { fireConfetti } from '@/components/Confetti'
+import CardTagBadges from '@/components/CardTagBadges'
 
 const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
@@ -324,11 +326,12 @@ export default function ChatBubble() {
                     const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
                       const { data: { session } } = await supabase.auth.getSession()
                       if (!session || !offer) return
-                      await fetch(`/api/trades/${offer.id}`, {
+                      const res = await fetch(`/api/trades/${offer.id}`, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
                         body: JSON.stringify({ action }),
                       })
+                      if (res.ok && action === 'accept') fireConfetti()
                       if (userId) loadMessages(activeConv!)
                     }
                     return (
@@ -458,7 +461,7 @@ export default function ChatBubble() {
       )}
 
       {expandedOffer && (
-        <div onClick={() => setExpandedOffer(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+        <div onClick={() => setExpandedOffer(null)} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
           <div onClick={e => e.stopPropagation()} style={{ background: bg, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 420, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: 15, fontWeight: 800, margin: 0 }}>{t('chat_trade_offer_label')}</h3>
@@ -476,7 +479,6 @@ export default function ChatBubble() {
                   {section.cards.map((c: any, i: number) => {
                     const img = c.image_recto || c.card_image
                     const href = img ? `/galerie/${section.ownerId}?card=${encodeURIComponent(img)}` : null
-                    const tags = [c.rc && 'RC', c.auto && 'AUTO', c.patch && 'PATCH'].filter(Boolean)
                     return (
                       <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center', textDecoration: 'none', color: textMain, background: dark ? '#2a2a2a' : '#f7f7f7', borderRadius: 10, padding: 8 }}>
                         <div style={{ width: 38, height: 52, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flexShrink: 0 }}>
@@ -485,8 +487,8 @@ export default function ChatBubble() {
                         <div style={{ minWidth: 0, flex: 1 }}>
                           <div style={{ fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom || '—'}</div>
                           <div style={{ fontSize: 10, color: textMuted }}>{[c.annee, c.marque].filter(Boolean).join(' · ')}</div>
-                          {tags.length > 0 && <div style={{ display: 'flex', gap: 4, marginTop: 3 }}>
-                            {tags.map(tag => <span key={tag} style={{ fontSize: 8, fontWeight: 900, padding: '1px 5px', borderRadius: 4, background: '#003DA6', color: '#fff' }}>{tag}</span>)}
+                          {(c.rc || c.auto || c.patch) && <div style={{ display: 'flex', gap: 4, marginTop: 3 }}>
+                            <CardTagBadges rc={c.rc} auto={c.auto} patch={c.patch} size="xs" />
                           </div>}
                         </div>
                       </a>

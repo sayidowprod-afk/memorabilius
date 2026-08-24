@@ -7,9 +7,12 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import { onlineStatusColor } from '@/lib/onlineStatus'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { takeStagedShare, updateShareTargets } from '@/lib/shareBridge'
+import { fireConfetti } from '@/components/Confetti'
+import CardTagBadges from '@/components/CardTagBadges'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
 const TOPBAR_HEIGHT_CSS = 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 40px)'
@@ -446,7 +449,7 @@ function MessagesContent() {
               }}>
                 <div className="msg-avatar-ring" style={{ position: 'relative', flexShrink: 0, width: 46, height: 46 }}>
                   <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
-                    style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                    style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', boxShadow: onlineStatusColor(profiles[conv.id]?.last_seen) ? `0 0 0 2px ${onlineStatusColor(profiles[conv.id]?.last_seen)}` : undefined }} alt="" />
                   <span style={{ position: 'absolute', bottom: 0, right: 0 }}>
                     <OnlineIndicator lastSeen={profiles[conv.id]?.last_seen} size={12} />
                   </span>
@@ -484,7 +487,7 @@ function MessagesContent() {
                 >
                   <div style={{ position: 'relative', flexShrink: 0 }}>
                     <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
-                      style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                      style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', boxShadow: onlineStatusColor(profiles[activeConv]?.last_seen) ? `0 0 0 2px ${onlineStatusColor(profiles[activeConv]?.last_seen)}` : undefined }} alt="" />
                     <span style={{ position: 'absolute', bottom: -1, right: -1 }}>
                       <OnlineIndicator lastSeen={profiles[activeConv]?.last_seen} size={11} />
                     </span>
@@ -515,11 +518,12 @@ function MessagesContent() {
                     const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
                       const { data: { session } } = await supabase.auth.getSession()
                       if (!session) return
-                      await fetch(`/api/trades/${offer.id}`, {
+                      const res = await fetch(`/api/trades/${offer.id}`, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
                         body: JSON.stringify({ action }),
                       })
+                      if (res.ok && action === 'accept') fireConfetti()
                       if (userId) loadMessages(userId, activeConv!)
                     }
                     return (
@@ -760,7 +764,7 @@ function MessagesContent() {
       </div>
 
       {expandedOffer && (
-        <div onClick={() => setExpandedOffer(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+        <div onClick={() => setExpandedOffer(null)} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
           <div onClick={e => e.stopPropagation()} style={{ background: bgPanel, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 480, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0 }}>{t('messages_trade_offer')}</h3>
@@ -778,7 +782,6 @@ function MessagesContent() {
                   {section.cards.map((c: any, i: number) => {
                     const img = c.image_recto || c.card_image
                     const href = img ? `/galerie/${section.ownerId}?card=${encodeURIComponent(img)}` : null
-                    const tags = [c.rc && 'RC', c.auto && 'AUTO', c.patch && 'PATCH'].filter(Boolean)
                     return (
                       <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center', textDecoration: 'none', color: textMain, background: dark ? '#262626' : '#f7f7f7', borderRadius: 10, padding: 8 }}>
                         <div style={{ width: 42, height: 58, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flexShrink: 0 }}>
@@ -787,8 +790,8 @@ function MessagesContent() {
                         <div style={{ minWidth: 0, flex: 1 }}>
                           <div style={{ fontSize: 13, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom || '—'}</div>
                           <div style={{ fontSize: 11, color: textMuted }}>{[c.annee, c.marque].filter(Boolean).join(' · ')}</div>
-                          {tags.length > 0 && <div style={{ display: 'flex', gap: 4, marginTop: 3 }}>
-                            {tags.map(tag => <span key={tag} style={{ fontSize: 9, fontWeight: 900, padding: '1px 5px', borderRadius: 4, background: '#003DA6', color: '#fff' }}>{tag}</span>)}
+                          {(c.rc || c.auto || c.patch) && <div style={{ display: 'flex', gap: 4, marginTop: 3 }}>
+                            <CardTagBadges rc={c.rc} auto={c.auto} patch={c.patch} size="sm" />
                           </div>}
                         </div>
                       </a>

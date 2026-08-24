@@ -32,6 +32,7 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
   const modal = (
     <div
       onClick={onClose}
+      className="modal-glass-overlay"
       style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000001, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
     >
       <div

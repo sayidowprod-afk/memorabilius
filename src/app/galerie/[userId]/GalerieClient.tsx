@@ -19,6 +19,8 @@ import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
+import { fireConfetti } from '@/components/Confetti'
+import CardTagBadges from '@/components/CardTagBadges'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -1211,13 +1213,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     return (
       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
         {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>🏆 MÉMO</span>}
-        {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
-        {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
+        <CardTagBadges rc={d.rc} auto={d.auto} size="md" />
         {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
         {bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', display: 'inline-block', animation: 'bro-anim 2.6s ease-in-out infinite' }}>{d.num}</span>}
         {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', display: 'inline-block', animation: 'oon-anim 1.8s ease-in-out infinite' }}>{d.num}</span>}
         {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', display: 'inline-block', animation: 'low-anim 2.2s ease-in-out infinite' }}>{d.num}</span>}
-        {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
+        <CardTagBadges patch={d.patch} size="md" />
         {d.printing_plate && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#111827', color: 'white' }}>PLATE</span>}
       </div>
     )
@@ -1833,6 +1834,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                                 const pos = grailCards.length
                                 await supabase.from('grail_cards').upsert({ user_id: userId, card_key: card.f, position: pos }, { onConflict: 'user_id,card_key' })
                                 setGrailCards(prev => [...prev, { card_key: card.f, position: pos }])
+                                fireConfetti()
                                 if (grailCards.length + 1 >= 3) setGrailPickerOpen(false)
                                 setGrailSearch('')
                               }} style={{ cursor: 'pointer', ...coloredBorder(tabColor), borderRadius: 8, overflow: 'hidden', transition: '0.15s' }}

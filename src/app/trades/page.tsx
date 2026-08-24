@@ -8,6 +8,8 @@ import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { inferSportFromTeamName } from '@/lib/sportsTeams'
 import SkeletonBlock from '@/components/SkeletonBlock'
+import { sportColor } from '@/lib/sportColors'
+import CardTagBadges from '@/components/CardTagBadges'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -239,7 +241,7 @@ export default function Trades() {
 
       {/* ── En-tête + onglets principaux ── */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
-        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('trades_title')}</h1>
+        <h1 style={{ fontWeight: 900, fontSize: 32, letterSpacing: '-0.5px', margin: 0 }}>{t('trades_title')}</h1>
         {mainTab === 'annonces' && (
           <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>
             {t('trades_post')}
@@ -286,10 +288,11 @@ export default function Trades() {
               <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)' }}>{t('trades_sport_label')}</span>
               {Object.entries(SPORTS).map(([key, emoji]) => {
                 const labels: Record<string, string> = { basket: 'Basket', foot: 'Football', football_us: 'Football US', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', tcg: 'TCG' }
+                const c = sportColor(key)
                 return (
                   <button key={key} onClick={() => setFSport(fSport === key ? '' : key)} title={labels[key]} style={{
-                    padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-                    background: fSport === key ? '#003DA6' : 'var(--bg3, #f0f0f0)',
+                    padding: '5px 12px', border: `1.5px solid ${fSport === key ? c : 'transparent'}`, borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
+                    background: fSport === key ? c : 'var(--bg3, #f0f0f0)',
                     color: fSport === key ? 'white' : 'var(--text2, #333)',
                   }}>{emoji}</button>
                 )
@@ -345,16 +348,13 @@ export default function Trades() {
                         <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
                       </div>
                     ) : (
-                      <div style={{ height: 80, background: 'var(--bg3, #f8f8f8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>🃏</div>
+                      <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>
                     )}
                     <div style={{ padding: '14px 16px' }}>
                       <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
                       {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
                       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
-                        {trade.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
-                        {trade.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
-                        {trade.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}># NUM</span>}
-                        {trade.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
+                        <CardTagBadges rc={trade.rc} auto={trade.auto} patch={trade.patch} num={trade.num} size="md" />
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
                         <img src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
@@ -502,7 +502,7 @@ export default function Trades() {
 
       {/* ── Popup annonce forum ─────────────────────────────────────────────── */}
       {popup && createPortal(
-        <div onClick={() => setPopup(null)} style={{
+        <div onClick={() => setPopup(null)} className="modal-glass-overlay" style={{
           position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.6)',
           zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
@@ -551,10 +551,7 @@ export default function Trades() {
                     {popup._source === 'galerie' && popup.num && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🔢 {popup.card_number || ''} {popup.num}</p>}
                     {!popup._source && (popup.card_number || popup.numerotation) && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🔢 {popup.card_number || ''} {popup.numerotation || ''}</p>}
                     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
-                      {popup.rc && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
-                      {popup.auto && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
-                      {popup.num && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}># NUM</span>}
-                      {popup.patch && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
+                      <CardTagBadges rc={popup.rc} auto={popup.auto} patch={popup.patch} num={popup.num} size="lg" />
                     </div>
                   </div>
                 )}

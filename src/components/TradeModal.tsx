@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
+import { sportColor } from '@/lib/sportColors'
+import CardTagBadges from '@/components/CardTagBadges'
 
 interface CardInfo {
   id: string
@@ -119,9 +121,7 @@ function CardGrid({
             )}
             {(c.rc || c.auto || c.patch) && (
               <div style={{ position: 'absolute', bottom: 2, left: 2, display: 'flex', gap: 2 }}>
-                {c.rc && <span style={{ background: '#003DA6', color: '#fff', fontSize: 7, fontWeight: 900, padding: '1px 3px', borderRadius: 3 }}>RC</span>}
-                {c.auto && <span style={{ background: '#8B0000', color: '#fff', fontSize: 7, fontWeight: 900, padding: '1px 3px', borderRadius: 3 }}>AU</span>}
-                {c.patch && <span style={{ background: '#4a2c00', color: '#fff', fontSize: 7, fontWeight: 900, padding: '1px 3px', borderRadius: 3 }}>PA</span>}
+                <CardTagBadges rc={c.rc} auto={c.auto} patch={c.patch} size="xs" compact />
               </div>
             )}
             {!c.isManuelle && (
@@ -170,7 +170,7 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
       )}
       {sports.length > 0 && (
         <select value={filters.sport} onChange={e => onChange({ ...filters, sport: e.target.value as Sport | '' })}
-          style={{ ...selStyle, borderColor: filters.sport ? '#003DA6' : '#e0e0e0' }}>
+          style={{ ...selStyle, borderColor: filters.sport ? sportColor(filters.sport) : '#e0e0e0' }}>
           <option value="">Sport</option>
           {sports.map(sp => <option key={sp} value={sp}>{SPORT_LABELS[sp]}</option>)}
         </select>
@@ -320,7 +320,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   const inputStyle: React.CSSProperties = { border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box', background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }
 
   const modal = (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+    <div onClick={onClose} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto', boxSizing: 'border-box' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

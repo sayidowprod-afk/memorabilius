@@ -85,8 +85,8 @@ export default async function GuidesPage() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '40px 20px' }}>
-      <h1 style={{ fontSize: 30, fontWeight: 900, margin: '0 0 6px' }}>{t.guides_title}</h1>
-      <p style={{ color: 'var(--text2, #777)', fontSize: 15, margin: '0 0 20px' }}>
+      <h1 style={{ fontSize: 32, fontWeight: 900, letterSpacing: '-0.5px', margin: '0 0 6px' }}>{t.guides_title}</h1>
+      <p style={{ color: 'var(--text2, #777)', fontSize: 14, margin: '0 0 20px' }}>
         {t.guides_subtitle}
       </p>
 

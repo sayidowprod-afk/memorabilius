@@ -79,14 +79,14 @@ export default function GuidesListClient({
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
           {filtered.map(g => (
             <Link key={g.slug} href={g.href} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{
+              <div className="hover-lift" style={{
                 border: '1px solid var(--border, #eee)', borderRadius: 14, overflow: 'hidden',
                 background: 'var(--card-bg, #fff)', height: '100%', display: 'flex', flexDirection: 'column',
               }}>
                 {g.cover_image ? (
                   <img src={g.cover_image} alt="" loading="lazy" style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
                 ) : (
-                  <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--bg3, #f0f0f0)' }} />
+                  <div className="card-placeholder" style={{ width: '100%', aspectRatio: '16/9' }}>📖</div>
                 )}
                 <div style={{ padding: 16, flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {g.category && (

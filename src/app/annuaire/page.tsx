@@ -284,7 +284,7 @@ function AnnuaireContent() {
         }
       `}</style>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>
-        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>
+        <h1 style={{ fontWeight: 900, fontSize: 32, letterSpacing: '-0.5px', margin: 0 }}>
           {teamName ? `${lang === 'fr' ? 'Team' : 'Team'} : ${teamName}` : t('directory_title')}
         </h1>
         {teamName && (
