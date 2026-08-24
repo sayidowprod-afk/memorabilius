@@ -1516,14 +1516,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
         )}
 
-        {/* Header profil — bandeau degrade base sur la couleur d'accent du collectionneur,
-            plus immersif qu'un fond uni, tout en gardant le contenu parfaitement lisible. */}
+        {/* Header profil — spheres degradees flottantes dans la couleur d'accent du
+            collectionneur, floutees, plutot qu'un fond uni. Le calque est clippe sur
+            lui-meme (overflow:hidden juste ici) pour ne jamais recouper le menu "···"
+            qui doit pouvoir deborder du header. */}
         <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)' }}>
           <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, height: 100, borderRadius: '16px 16px 0 0',
-            background: `radial-gradient(ellipse 340px 100px at 12% 0%, ${accent}${dark ? '40' : '2b'}, transparent 75%)`,
-            pointerEvents: 'none', overflow: 'hidden',
-          }} />
+            position: 'absolute', top: 0, left: 0, right: 0, height: 110, borderRadius: '16px 16px 0 0',
+            overflow: 'hidden', pointerEvents: 'none',
+          }}>
+            <div className="profile-orb profile-orb-1" style={{ background: accent }} />
+            <div className="profile-orb profile-orb-2" style={{ background: accent }} />
+            <div className="profile-orb profile-orb-3" style={{ background: accent }} />
+          </div>
           <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
