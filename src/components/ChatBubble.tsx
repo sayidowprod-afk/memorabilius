@@ -40,6 +40,7 @@ export default function ChatBubble() {
   const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})
   const [newMsg, setNewMsg] = useState('')
   const [uploadingImg, setUploadingImg] = useState(false)
+  const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const openRef = useRef(false)
@@ -381,6 +382,11 @@ export default function ChatBubble() {
                                   )}
                                 </div>
                               </div>
+                              <button onClick={() => setExpandedOffer(offer)} style={{
+                                width: '100%', background: 'none', border: `1px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`,
+                                borderRadius: 6, padding: '4px', fontWeight: 700, fontSize: 9.5, cursor: 'pointer',
+                                color: '#003DA6', marginTop: 2,
+                              }}>{t('messages_trade_view_all')}</button>
                               {isPending && (
                                 <div style={{ display: 'flex', gap: 5, marginTop: 4 }}>
                                   {!isSender && (
@@ -441,6 +447,48 @@ export default function ChatBubble() {
               </div>
             </>
           )}
+        </div>
+      )}
+
+      {expandedOffer && (
+        <div onClick={() => setExpandedOffer(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+          <div onClick={e => e.stopPropagation()} style={{ background: bg, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 420, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h3 style={{ fontSize: 15, fontWeight: 800, margin: 0 }}>{t('chat_trade_offer_label')}</h3>
+              <button onClick={() => setExpandedOffer(null)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
+            </div>
+            {([
+              { label: expandedOffer.sender_id === userId ? t('chat_you_offer') : t('chat_they_offer'), cards: expandedOffer.offered_cards, ownerId: expandedOffer.sender_id },
+              { label: expandedOffer.sender_id === userId ? t('chat_you_request') : t('chat_they_request'), cards: expandedOffer.requested_cards, ownerId: expandedOffer.receiver_id },
+            ] as const).map((section, si) => (
+              <div key={si}>
+                <div style={{ fontSize: 10, fontWeight: 800, color: textMuted, textTransform: 'uppercase', marginBottom: 8 }}>
+                  {section.label} ({section.cards.length})
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {section.cards.map((c: any, i: number) => {
+                    const img = c.image_recto || c.card_image
+                    const href = img ? `/galerie/${section.ownerId}?card=${encodeURIComponent(img)}` : null
+                    const tags = [c.rc && 'RC', c.auto && 'AUTO', c.patch && 'PATCH'].filter(Boolean)
+                    return (
+                      <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center', textDecoration: 'none', color: textMain, background: dark ? '#2a2a2a' : '#f7f7f7', borderRadius: 10, padding: 8 }}>
+                        <div style={{ width: 38, height: 52, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flexShrink: 0 }}>
+                          {img && <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                        </div>
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div style={{ fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom || '—'}</div>
+                          <div style={{ fontSize: 10, color: textMuted }}>{[c.annee, c.marque].filter(Boolean).join(' · ')}</div>
+                          {tags.length > 0 && <div style={{ display: 'flex', gap: 4, marginTop: 3 }}>
+                            {tags.map(tag => <span key={tag} style={{ fontSize: 8, fontWeight: 900, padding: '1px 5px', borderRadius: 4, background: '#003DA6', color: '#fff' }}>{tag}</span>)}
+                          </div>}
+                        </div>
+                      </a>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </>
