@@ -1520,8 +1520,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             plus immersif qu'un fond uni, tout en gardant le contenu parfaitement lisible. */}
         <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)' }}>
           <div style={{
-            position: 'absolute', inset: 0, height: 90, borderRadius: '16px 16px 0 0',
-            background: `linear-gradient(135deg, ${accent}${dark ? '3a' : '26'}, transparent 80%)`,
+            position: 'absolute', top: 0, left: 0, right: 0, height: 100, borderRadius: '16px 16px 0 0',
+            background: `radial-gradient(ellipse 340px 100px at 12% 0%, ${accent}${dark ? '40' : '2b'}, transparent 75%)`,
             pointerEvents: 'none', overflow: 'hidden',
           }} />
           <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
