@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useTheme } from '@/lib/ThemeContext'
+import { useDebouncedValue } from '@/lib/useDebouncedValue'
 
 export interface GuideListItem {
   slug: string
@@ -22,6 +23,7 @@ export default function GuidesListClient({
 }) {
   const { dark } = useTheme()
   const [search, setSearch] = useState('')
+  const debouncedSearch = useDebouncedValue(search, 200)
   const [category, setCategory] = useState('')
 
   const categories = useMemo(
@@ -32,13 +34,13 @@ export default function GuidesListClient({
   const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
 
   const filtered = useMemo(() => {
-    const q = norm(search.trim())
+    const q = norm(debouncedSearch.trim())
     return guides.filter(g => {
       if (category && g.category !== category) return false
       if (!q) return true
       return norm(g.title).includes(q) || norm(g.excerpt || '').includes(q)
     })
-  }, [guides, search, category])
+  }, [guides, debouncedSearch, category])
 
   const chipStyle = (active: boolean): React.CSSProperties => ({
     padding: '6px 14px', borderRadius: 20, fontSize: 12, fontWeight: 800, cursor: 'pointer',
@@ -82,7 +84,7 @@ export default function GuidesListClient({
                 background: 'var(--card-bg, #fff)', height: '100%', display: 'flex', flexDirection: 'column',
               }}>
                 {g.cover_image ? (
-                  <img src={g.cover_image} alt="" style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
+                  <img src={g.cover_image} alt="" loading="lazy" style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
                 ) : (
                   <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--bg3, #f0f0f0)' }} />
                 )}

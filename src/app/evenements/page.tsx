@@ -48,10 +48,12 @@ export default function Evenements() {
 
   const loadEvents = async () => {
     setLoading(true)
-    const { data: evs } = await supabase.from('events').select('*').order('date', { ascending: true })
+    const [{ data: evs }, { data: session }] = await Promise.all([
+      supabase.from('events').select('*').order('date', { ascending: true }),
+      supabase.auth.getUser(),
+    ])
     if (!evs) { setLoading(false); return }
 
-    const { data: session } = await supabase.auth.getUser()
     const uid = session.user?.id
 
     const withStats = await Promise.all(evs.map(async (ev: any) => {

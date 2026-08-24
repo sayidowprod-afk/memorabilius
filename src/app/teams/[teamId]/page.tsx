@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
+import SkeletonBlock from '@/components/SkeletonBlock'
 
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
@@ -448,7 +449,17 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     return `${Math.floor(h / 24)}j`
   }
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>Chargement...</p>
+  if (loading) return (
+    <div style={{ maxWidth: 800, margin: '0 auto', padding: '24px 16px' }}>
+      <SkeletonBlock style={{ height: 120, borderRadius: 16, marginBottom: 20 }} />
+      <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+        {Array.from({ length: 3 }).map((_, i) => <SkeletonBlock key={i} style={{ height: 32, width: 90, borderRadius: 20 }} />)}
+      </div>
+      {Array.from({ length: 3 }).map((_, i) => (
+        <SkeletonBlock key={i} style={{ height: 80, borderRadius: 12, marginBottom: 14 }} />
+      ))}
+    </div>
+  )
 
   const tabs = [
     { key: 'feed', label: '📰 Feed' },
@@ -619,7 +630,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       <button onClick={() => setDeletePostConfirm(null)} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '3px 8px', cursor: 'pointer', fontSize: 11 }}>Non</button>
                     </div>
                   ) : (
-                    <button onClick={() => setDeletePostConfirm(post.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontSize: 16, padding: 4 }}>🗑️</button>
+                    <button onClick={() => setDeletePostConfirm(post.id)} aria-label="Supprimer la publication" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontSize: 16, padding: 4 }}>🗑️</button>
                   )
                 )}
               </div>
@@ -673,7 +684,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                         <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--text, #222)' }}>{c.content}</p>
                       </div>
                       {c.user_id === currentUser && (
-                        <button onClick={() => deleteComment(post.id, c.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ccc', fontSize: 12, padding: 2, flexShrink: 0 }}>✕</button>
+                        <button onClick={() => deleteComment(post.id, c.id)} aria-label="Supprimer le commentaire" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ccc', fontSize: 12, padding: 2, flexShrink: 0 }}>✕</button>
                       )}
                     </div>
                   ))}

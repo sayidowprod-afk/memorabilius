@@ -111,17 +111,17 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
       .from('profiles').select('lien_csv, gallery_order').eq('id', userId).single()
     if (!profile || profile.lien_csv) return empty
 
-    const { data: privateRows } = await supabase
-      .from('cartes_privees').select('card_key').eq('user_id', userId)
+    const [{ data: privateRows }, { data: rows }, { data: grailRows }] = await Promise.all([
+      supabase.from('cartes_privees').select('card_key').eq('user_id', userId),
+      supabase.from('cartes_manuelles')
+        .select('id, image_recto, is_horizontal, position')
+        .eq('user_id', userId)
+        .not('image_recto', 'is', null)
+        .order('position', { ascending: true })
+        .limit(80),
+      supabase.from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(3),
+    ])
     const privateSet = new Set((privateRows || []).map((r: any) => r.card_key))
-
-    const { data: rows } = await supabase
-      .from('cartes_manuelles')
-      .select('id, image_recto, is_horizontal, position')
-      .eq('user_id', userId)
-      .not('image_recto', 'is', null)
-      .order('position', { ascending: true })
-      .limit(80)
 
     let candidates = (rows || []).filter((r: any) => !privateSet.has(r.image_recto))
 
@@ -135,8 +135,6 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
     const cards: PreviewCard[] = candidates.slice(0, 24)
       .map((r: any) => ({ id: r.id, image_recto: r.image_recto, is_horizontal: !!r.is_horizontal }))
 
-    const { data: grailRows } = await supabase
-      .from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(3)
     const grailKeys = (grailRows || []).map((r: any) => r.card_key).filter((k: string) => !privateSet.has(k))
     let grail: PreviewCard[] = []
     if (grailKeys.length > 0) {

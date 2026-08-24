@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { SPORTS_TEAMS, getTeamById } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
 
@@ -153,8 +154,9 @@ function AnnuaireContent() {
 
   const handleSearchChange = (v: string) => {
     setSearch(v)
-    updateUrlParams({ q: v })
   }
+  const debouncedSearch = useDebouncedValue(search, 200)
+  useEffect(() => { updateUrlParams({ q: debouncedSearch }) }, [debouncedSearch])
 
   const handleNbaChange = (v: string) => {
     setNbaFilter(v)
@@ -167,7 +169,7 @@ function AnnuaireContent() {
   }
 
   const sorted = [...collectors].filter(c =>
-    (!search || (c.display_name || '').toLowerCase().includes(search.toLowerCase())) &&
+    (!debouncedSearch || (c.display_name || '').toLowerCase().includes(debouncedSearch.toLowerCase())) &&
     (!nbaFilter || (c.favorite_teams || []).includes(nbaFilter))
   ).sort((a, b) => {
     if (sortKey === 'display_name') return sortAsc ? (a.display_name || '').localeCompare(b.display_name || '') : (b.display_name || '').localeCompare(a.display_name || '')
@@ -318,7 +320,17 @@ function AnnuaireContent() {
         )}
       </div>
 
-      {loading ? <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement des collections...</p> : (
+      {loading ? (
+        <div style={{ borderRadius: 12, overflow: 'hidden', background: dark ? '#1e1e1e' : 'white', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div key={i} style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15 }}>
+              <div className="annuaire-skel-pulse" style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', background: dark ? '#333' : '#eee', flexShrink: 0 }} />
+              <div className="annuaire-skel-pulse" style={{ height: 12, borderRadius: 4, background: dark ? '#333' : '#eee', width: `${40 + (i % 4) * 10}%` }} />
+            </div>
+          ))}
+          <style>{`@keyframes annuaireSkelPulse { from{opacity:1} to{opacity:.5} } .annuaire-skel-pulse{ animation: annuaireSkelPulse 1.4s ease infinite alternate }`}</style>
+        </div>
+      ) : (
         <div style={{ borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', background: dark ? '#1e1e1e' : 'white', tableLayout: 'fixed' }}>
             <colgroup>
@@ -345,7 +357,7 @@ function AnnuaireContent() {
                 <tr key={c.id}>
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
-                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
+                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 28 : 42} height={isMobile ? 28 : 42} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0 }}>
                         <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
                         <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>

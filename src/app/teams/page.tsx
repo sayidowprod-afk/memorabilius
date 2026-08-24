@@ -27,10 +27,12 @@ export default function Teams() {
       if (!session) return
       const data = { user: session.user }
       setUserId(data.user.id)
-      const { data: memberships } = await supabase.from('team_members').select('team_id').eq('user_id', data.user.id)
+      const [{ data: memberships }, { data: cands }] = await Promise.all([
+        supabase.from('team_members').select('team_id').eq('user_id', data.user.id),
+        // Candidatures en attente
+        supabase.from('team_candidatures').select('team_id').eq('user_id', data.user.id).eq('statut', 'en_attente'),
+      ])
       if (memberships?.length) setUserTeamIds(new Set(memberships.map((m: any) => m.team_id)))
-      // Candidatures en attente
-      const { data: cands } = await supabase.from('team_candidatures').select('team_id').eq('user_id', data.user.id).eq('statut', 'en_attente')
       if (cands) setHasCandidature(new Set(cands.map((c: any) => c.team_id)))
     })
   }, [])

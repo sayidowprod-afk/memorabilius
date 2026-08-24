@@ -236,6 +236,7 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
                     <div style={{ fontSize: 10, color: 'var(--jp-muted)', marginTop: 5, display: 'flex', alignItems: 'center', gap: 4 }}>
                       <img
                         src={card.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.display_name || 'U')}&background=003DA6&color=fff&size=20`}
+                        loading="lazy" width={13} height={13}
                         style={{ width: 13, height: 13, borderRadius: '50%', flexShrink: 0 }} alt=""
                       />
                       <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.display_name}</span>

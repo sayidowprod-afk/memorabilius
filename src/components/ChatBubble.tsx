@@ -2,6 +2,7 @@
 import { toast } from '@/lib/toast'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
@@ -28,6 +29,12 @@ export default function ChatBubble() {
   }
   const { dark } = useTheme()
   const isNative = useIsNative()
+  // La page /messages a deja sa propre UI complete (et son propre canal
+  // Realtime) pour la meme donnee -- pas besoin du widget flottant en plus
+  // dessus, ca evite un abonnement Realtime + refetch redondant a chaque
+  // message recu pendant que l'utilisateur est deja sur /messages.
+  const pathname = usePathname()
+  const onMessagesPage = pathname === '/messages'
   // Sur l'app native, la bottom bar prend la place du bas d'écran.
   const navOffset = isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'
   const [userId, setUserId] = useState<string | null>(null)
@@ -69,7 +76,7 @@ export default function ChatBubble() {
   useEffect(() => { activeConvRef.current = activeConv }, [activeConv])
 
   useEffect(() => {
-    if (!userId) return
+    if (!userId || onMessagesPage) return
     const channel = supabase.channel(`chat-bubble-${userId}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `to_user_id=eq.${userId}` },
         () => {
@@ -82,7 +89,7 @@ export default function ChatBubble() {
         })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
-  }, [userId])
+  }, [userId, onMessagesPage])
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
 
@@ -227,7 +234,7 @@ export default function ChatBubble() {
 
   // Sur l'app native, l'accès au chat passe par l'icône de la topbar → /messages,
   // pas par la bulle flottante (qui reste pour le web/PWA).
-  if (!userId || isNative) return null
+  if (!userId || isNative || onMessagesPage) return null
 
   return (
     <>
@@ -455,7 +462,7 @@ export default function ChatBubble() {
           <div onClick={e => e.stopPropagation()} style={{ background: bg, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 420, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: 15, fontWeight: 800, margin: 0 }}>{t('chat_trade_offer_label')}</h3>
-              <button onClick={() => setExpandedOffer(null)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
+              <button onClick={() => setExpandedOffer(null)} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
             </div>
             {([
               { label: expandedOffer.sender_id === userId ? t('chat_you_offer') : t('chat_they_offer'), cards: expandedOffer.offered_cards, ownerId: expandedOffer.sender_id },

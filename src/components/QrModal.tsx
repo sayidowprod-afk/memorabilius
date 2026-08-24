@@ -40,7 +40,7 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h3 style={{ fontWeight: 800, fontSize: 16, margin: 0 }}>QR Code</h3>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
+          <button onClick={onClose} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
         </div>
 
         <div style={{ fontSize: 13, color: 'var(--text2, #555)', textAlign: 'center', fontWeight: 600 }}>{title}</div>

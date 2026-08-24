@@ -1757,7 +1757,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   </div>
                   <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
                   <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
-                  <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
+                  <button onClick={() => deleteBinder(selected.id)} aria-label="Supprimer le classeur" style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
                 </>
               )}
             </div>

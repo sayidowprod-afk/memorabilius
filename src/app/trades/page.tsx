@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { inferSportFromTeamName } from '@/lib/sportsTeams'
+import SkeletonBlock from '@/components/SkeletonBlock'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -304,7 +305,19 @@ export default function Trades() {
             </div>
           </div>
 
-          {loadingForum ? <p style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>Chargement...</p> : (
+          {loadingForum ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border, #eee)' }}>
+                  <SkeletonBlock style={{ width: '100%', aspectRatio: '16/9', borderRadius: 0 }} />
+                  <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <SkeletonBlock style={{ height: 14, width: '70%' }} />
+                    <SkeletonBlock style={{ height: 12, width: '45%' }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
             filteredForum.length === 0 ? (
               <div style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>
                 <p style={{ fontSize: 18, marginBottom: 12 }}>{t('trades_no_ads_yet')}</p>
@@ -524,7 +537,7 @@ export default function Trades() {
                 )}
               </div>
               <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
-                <button onClick={() => setPopup(null)} style={{ alignSelf: 'flex-end', background: 'var(--bg3, #f0f0f0)', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text, #121212)' }}>×</button>
+                <button onClick={() => setPopup(null)} aria-label="Fermer" style={{ alignSelf: 'flex-end', background: 'var(--bg3, #f0f0f0)', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text, #121212)' }}>×</button>
                 <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
                 {(popup.joueur || popup.annee || popup.marque || popup.equipe || popup.collection || popup.card_number || popup.numerotation) && (
                   <div style={{ background: 'var(--bg3, #f8f8f8)', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>

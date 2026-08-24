@@ -325,7 +325,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>{t('trademodal_title')}</h2>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
+          <button onClick={onClose} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
         </div>
 
         {/* Section : cartes du destinataire */}

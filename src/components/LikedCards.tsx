@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import SkeletonBlock from '@/components/SkeletonBlock'
 
 interface LikedCard {
   card_key: string
@@ -52,7 +53,16 @@ export default function LikedCards({ userId }: { userId: string }) {
       .eq('card_key', item.card_key).eq('gallery_user_id', item.gallery_user_id).eq('liker_user_id', userId)
   }
 
-  if (loading) return <p style={{ color: 'var(--text3, #999)', textAlign: 'center', padding: 40 }}>Chargement...</p>
+  if (loading) return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 16 }}>
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} style={{ background: 'var(--card-bg, #fff)', borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border, #f0f0f0)' }}>
+          <SkeletonBlock style={{ width: '100%', aspectRatio: '2.5/3.5', borderRadius: 0 }} />
+          <div style={{ padding: '8px 10px' }}><SkeletonBlock style={{ height: 10, width: '70%' }} /></div>
+        </div>
+      ))}
+    </div>
+  )
 
   if (items.length === 0) return (
     <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text3, #bbb)' }}>

@@ -71,7 +71,7 @@ export default function InstallBanner() {
           <div style={{ fontWeight: 800, fontSize: 14, color: 'var(--text, #111)' }}>Installer Memorabilius</div>
           <div style={{ fontSize: 12, color: 'var(--text-muted, #666)' }}>Accès rapide depuis ton écran d'accueil</div>
         </div>
-        <button onClick={dismiss} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted, #999)', fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
+        <button onClick={dismiss} aria-label="Fermer" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted, #999)', fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
       </div>
 
       {platform === 'android' && (

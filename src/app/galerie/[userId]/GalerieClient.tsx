@@ -18,6 +18,7 @@ import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
+import { useDebouncedValue } from '@/lib/useDebouncedValue'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -373,6 +374,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [fSport, setFSport] = useState(searchParams.get('sport') || '')
   const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
   const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
+  const fTeamDebounced = useDebouncedValue(fTeam, 200)
+  const fBrandDebounced = useDebouncedValue(fBrand, 200)
   const [fYear, setFYear] = useState(searchParams.get('year') || '')
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
@@ -451,6 +454,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [csvVente, setCsvVente] = useState<Map<string, boolean>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
   const [grailSearch, setGrailSearch] = useState('')
+  const grailSearchDebounced = useDebouncedValue(grailSearch, 200)
   const [expandedCollections, setExpandedCollections] = useState<Set<string>>(new Set())
   const [grailPickerOpen, setGrailPickerOpen] = useState(false)
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set())
@@ -881,8 +885,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       return (
         (d.n.toLowerCase().includes(search.toLowerCase()) || d.v.toLowerCase().includes(search.toLowerCase())) &&
         (!fSport || inferSportFromTeamName(d.t) === fSport) &&
-        (!fTeam || d.t.toLowerCase().includes(fTeam.toLowerCase())) &&
-        (!fBrand || d.s.toLowerCase().includes(fBrand.toLowerCase())) &&
+        (!fTeamDebounced || d.t.toLowerCase().includes(fTeamDebounced.toLowerCase())) &&
+        (!fBrandDebounced || d.s.toLowerCase().includes(fBrandDebounced.toLowerCase())) &&
         (!fYear || d.y === fYear) &&
         (!fCollectionTag || (d.collections || []).some(c => matchCols.has(c))) &&
         (!activeFilters.rc || d.rc) &&
@@ -940,7 +944,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       if (primary !== 0 || sortBy2 === 'none') return primary
       return applySort(sortBy2, a, b)
     })
-  }, [cards, search, fSport, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+  }, [cards, search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   const filteredStats = useMemo(() => ({
     rc:   filtered.filter(c => c.rc).length,
@@ -954,7 +958,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // pour reordonner - ca renvoyait l'utilisateur en page 1 (donc en haut)
   // a chaque deplacement de carte. On ne reinitialise la page que quand un
   // critere de filtre/tri change reellement.
-  useEffect(() => { setPage(1) }, [search, fSport, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, sortBy, sortBy2, pinTeam])
+  useEffect(() => { setPage(1) }, [search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, sortBy, sortBy2, pinTeam])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -974,8 +978,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (!loaded) return
     const sp = new URLSearchParams()
     if (search) sp.set('q', search)
-    if (fTeam) sp.set('team', fTeam)
-    if (fBrand) sp.set('brand', fBrand)
+    if (fTeamDebounced) sp.set('team', fTeamDebounced)
+    if (fBrandDebounced) sp.set('brand', fBrandDebounced)
     if (fYear) sp.set('year', fYear)
     if (fCollectionTag) sp.set('tag', fCollectionTag)
     if (sortBy !== 'default') sp.set('sort', sortBy)
@@ -985,7 +989,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (popup?.f) sp.set('card', encodeURIComponent(popup.f))
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
-  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup])
+  }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -1187,15 +1191,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }
 
   const grailSearchResults = useMemo(() => {
-    if (grailSearch.trim().length === 0) return []
-    const q = grailSearch.toLowerCase()
+    if (grailSearchDebounced.trim().length === 0) return []
+    const q = grailSearchDebounced.toLowerCase()
     return cards.filter(c => {
       if (grailCards.some(g => g.card_key === c.f)) return false
       return c.n.toLowerCase().includes(q) || c.v.toLowerCase().includes(q) ||
              c.s.toLowerCase().includes(q) || (c.t || '').toLowerCase().includes(q) ||
              (c.br || '').toLowerCase().includes(q)
     })
-  }, [grailSearch, cards, grailCards])
+  }, [grailSearchDebounced, cards, grailCards])
 
   const gridRef = useRef<HTMLDivElement>(null)
 
@@ -1736,8 +1740,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
-                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', uid).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✓</button>
-                            <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(null) }} style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✕</button>
+                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', uid).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} aria-label="Confirmer la suppression" style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✓</button>
+                            <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(null) }} aria-label="Annuler" style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✕</button>
                           </div>
                         ) : (
                           <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(card.f) }} style={{
@@ -1802,7 +1806,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16, color: dark ? '#eee' : '#121212' }}>💎 {t('gallery_choose_card')}</h3>
-                      <button onClick={() => setGrailPickerOpen(false)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
+                      <button onClick={() => setGrailPickerOpen(false)} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
                     </div>
                     <input
                       autoFocus
@@ -2472,8 +2476,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       </button>
                       {deleteCardConfirm === d.id_manuelle ? (
                         <>
-                          <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✓</button>
-                          <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(null) }} style={{ background: '#555', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✕</button>
+                          <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} aria-label="Confirmer la suppression" style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✓</button>
+                          <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(null) }} aria-label="Annuler" style={{ background: '#555', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✕</button>
                         </>
                       ) : (
                         <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(d.id_manuelle!) }} style={{

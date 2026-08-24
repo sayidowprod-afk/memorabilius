@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { subscribePush } from '@/components/PWAInstall'
+import SkeletonBlock from '@/components/SkeletonBlock'
 
 export default function Notifications() {
   const router = useRouter()
@@ -93,7 +94,20 @@ export default function Notifications() {
     return `Il y a ${days}j`
   }
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 60 }}>Chargement...</p>
+  if (loading) return (
+    <div style={{ maxWidth: 700, margin: '40px auto', padding: '0 16px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <SkeletonBlock style={{ height: 28, width: 180, marginBottom: 14 }} />
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '12px 0' }}>
+          <SkeletonBlock style={{ width: 36, height: 36, borderRadius: '50%', flexShrink: 0 }} />
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <SkeletonBlock style={{ height: 12, width: `${50 + (i % 3) * 15}%` }} />
+            <SkeletonBlock style={{ height: 10, width: '30%' }} />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 16px', boxSizing: 'border-box' }}>

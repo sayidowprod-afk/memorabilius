@@ -764,7 +764,7 @@ function MessagesContent() {
           <div onClick={e => e.stopPropagation()} style={{ background: bgPanel, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 480, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0 }}>{t('messages_trade_offer')}</h3>
-              <button onClick={() => setExpandedOffer(null)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
+              <button onClick={() => setExpandedOffer(null)} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
             </div>
             {([
               { label: expandedOffer.sender_id === userId ? 'Tu offres' : 'Il/elle offre', cards: expandedOffer.offered_cards, ownerId: expandedOffer.sender_id },
