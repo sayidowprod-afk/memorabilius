@@ -11,6 +11,8 @@ import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { useLang } from '@/lib/LangContext'
 import { fireConfetti } from '@/components/Confetti'
 import CardTagBadges from '@/components/CardTagBadges'
+import ModalCloseButton from '@/components/ModalCloseButton'
+import { TRADE_STATUS_COLOR, type TradeStatus } from '@/lib/tradeStatus'
 
 const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
@@ -20,7 +22,6 @@ const TRADE_PREFIX = '[[trade_offer:'
 const isTradeMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_PREFIX)
 const tradeIdOf = (c: string) => c.slice(TRADE_PREFIX.length, -2)
 
-const STATUS_COLOR: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
 
 export default function ChatBubble() {
   const { t } = useLang()
@@ -344,7 +345,7 @@ export default function ChatBubble() {
                         }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                             <span style={{ fontSize: 11, fontWeight: 800, color: '#003DA6' }}>{t('chat_trade_offer_label')}</span>
-                            {offer && <span style={{ fontSize: 10, fontWeight: 700, color: STATUS_COLOR[offer.status] || '#555' }}>{STATUS_LABEL[offer.status] || offer.status}</span>}
+                            {offer && <span style={{ fontSize: 10, fontWeight: 700, color: TRADE_STATUS_COLOR[offer.status as TradeStatus]?.color || '#555' }}>{STATUS_LABEL[offer.status] || offer.status}</span>}
                           </div>
                           {offer ? (
                             <>
@@ -466,7 +467,7 @@ export default function ChatBubble() {
           <div onClick={e => e.stopPropagation()} style={{ background: bg, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 420, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: 15, fontWeight: 800, margin: 0 }}>{t('chat_trade_offer_label')}</h3>
-              <button onClick={() => setExpandedOffer(null)} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
+              <ModalCloseButton onClick={() => setExpandedOffer(null)} dark={dark} />
             </div>
             {([
               { label: expandedOffer.sender_id === userId ? t('chat_you_offer') : t('chat_they_offer'), cards: expandedOffer.offered_cards, ownerId: expandedOffer.sender_id },

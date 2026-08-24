@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { useLang } from '@/lib/LangContext'
+import ModalCloseButton from '@/components/ModalCloseButton'
 
 export interface PickableCard {
   key: string
@@ -130,7 +131,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
       <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 16, padding: 20, width: '100%', maxWidth: 600, maxHeight: '86vh', display: 'flex', flexDirection: 'column', gap: 12, boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>🃏 {multi ? t('picker_title_multi') : t('gallery_choose_card')}</h3>
-          <button onClick={onClose} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text3, #999)' }}>✕</button>
+          <ModalCloseButton onClick={onClose} />
         </div>
 
         {/* Recherche + filtres */}

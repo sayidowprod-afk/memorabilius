@@ -14,6 +14,8 @@ import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { takeStagedShare, updateShareTargets } from '@/lib/shareBridge'
 import { fireConfetti } from '@/components/Confetti'
 import CardTagBadges from '@/components/CardTagBadges'
+import ModalCloseButton from '@/components/ModalCloseButton'
+import { TRADE_STATUS_COLOR, type TradeStatus } from '@/lib/tradeStatus'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
 const TOPBAR_HEIGHT_CSS = 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 40px)'
@@ -514,7 +516,6 @@ function MessagesContent() {
                     const offer = tradeOffersMap[tradeOfferIdOf(msg.contenu)]
                     const isSender = offer?.sender_id === userId
                     const isPending = offer?.status === 'pending'
-                    const statusColors: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
                     const statusLabels: Record<string, string> = { pending: t('echanges_status_pending'), accepted: `${t('echanges_status_accepted')} ✓`, refused: t('echanges_status_refused'), cancelled: t('echanges_status_cancelled') }
                     const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
                       const { data: { session } } = await supabase.auth.getSession()
@@ -532,7 +533,7 @@ function MessagesContent() {
                         <div style={{ background: dark ? '#1e2a3a' : '#f0f4ff', border: `1.5px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`, borderRadius: 14, padding: 14, width: '100%', maxWidth: 420 }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
                             <span style={{ fontSize: 12, fontWeight: 800, color: '#003DA6' }}>{t('messages_trade_offer')}</span>
-                            {offer && <span style={{ fontSize: 11, fontWeight: 700, color: statusColors[offer.status] || '#555' }}>{statusLabels[offer.status] || offer.status}</span>}
+                            {offer && <span style={{ fontSize: 11, fontWeight: 700, color: TRADE_STATUS_COLOR[offer.status as TradeStatus]?.color || '#555' }}>{statusLabels[offer.status] || offer.status}</span>}
                           </div>
                           {offer ? (
                             <>
@@ -769,7 +770,7 @@ function MessagesContent() {
           <div onClick={e => e.stopPropagation()} style={{ background: bgPanel, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 480, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0 }}>{t('messages_trade_offer')}</h3>
-              <button onClick={() => setExpandedOffer(null)} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
+              <ModalCloseButton onClick={() => setExpandedOffer(null)} dark={dark} />
             </div>
             {([
               { label: expandedOffer.sender_id === userId ? 'Tu offres' : 'Il/elle offre', cards: expandedOffer.offered_cards, ownerId: expandedOffer.sender_id },

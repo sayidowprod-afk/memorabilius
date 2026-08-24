@@ -30,6 +30,19 @@
   --input-bg: #ffffff;
   --shadow: 0 4px 20px rgba(0,0,0,0.06);
   --card-bg: #ffffff;
+
+  /* ITEM 1 : echelle de rayons — les valeurs deja majoritaires dans l'app
+     (8/14/20) sont gardees comme reference plutot que d'en inventer de
+     nouvelles, pour rester coherent avec l'existant sans tout refaire. */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* ITEM 2 : systeme d'elevation a 3 niveaux, remplace les box-shadow
+     ad hoc legerement differentes d'un composant a l'autre. */
+  --elevation-sm: 0 2px 8px rgba(0,0,0,0.07);
+  --elevation-md: 0 6px 22px rgba(0,0,0,0.10);
+  --elevation-lg: 0 16px 44px rgba(0,0,0,0.20);
 }
 
 [data-theme="dark"] {
@@ -43,6 +56,9 @@
   --input-bg: #2a2a2a;
   --shadow: 0 4px 20px rgba(0,0,0,0.5);
   --card-bg: #1e1e1e;
+  --elevation-sm: 0 2px 8px rgba(0,0,0,0.35);
+  --elevation-md: 0 6px 22px rgba(0,0,0,0.45);
+  --elevation-lg: 0 16px 44px rgba(0,0,0,0.6);
 }
 
 body {
@@ -487,8 +503,8 @@ button[style*="background"], a[style*="background"], span[style*="background"] {
    une vraie souris — le tactile simule mal :hover (etats "collants" au tap). */
 @media (hover: hover) and (pointer: fine) {
   .hover-lift { transition: transform 0.18s ease, box-shadow 0.18s ease; }
-  .hover-lift:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 28px -10px rgba(0,0,0,0.28); z-index: 2; position: relative; }
-  .card-item:hover { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 22px -8px rgba(0,0,0,0.22); z-index: 2; }
+  .hover-lift:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--elevation-lg); z-index: 2; position: relative; }
+  .card-item:hover { transform: translateY(-3px) scale(1.015); box-shadow: var(--elevation-md); z-index: 2; }
   .card-item { transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s; }
 }
 
@@ -541,3 +557,31 @@ body {
   .nav-hamburger { display: flex !important; }
   .nav-mobile-menu { display: flex !important; }
 }
+
+/* ===== BATCH 2 — selection plus visible en mode edition galerie ===== */
+@keyframes selectionCheckPop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.selection-check-pop { animation: selectionCheckPop 0.22s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ===== BATCH 2 — flash bref sur une statistique qui vient de changer ===== */
+@keyframes statFlash {
+  0%   { transform: scale(1.18); color: #003DA6; }
+  100% { transform: scale(1); }
+}
+[data-theme="dark"] .stat-flash { animation-name: statFlashDark; }
+.stat-flash { display: inline-block; animation: statFlash 0.5s ease-out; }
+@keyframes statFlashDark {
+  0%   { transform: scale(1.18); color: #5b8def; }
+  100% { transform: scale(1); }
+}
+
+/* ===== BATCH 2 — glow pulsant pour la place d'honneur du Grail Wall ===== */
+@keyframes grailGoldPulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(255,215,0,0.55); }
+  50%      { box-shadow: 0 8px 30px rgba(255,215,0,0.85); }
+}
+.grail-gold-glow { animation: grailGoldPulse 2.4s ease-in-out infinite; }
+@media (max-width: 768px) { .grail-gold-glow { animation-duration: 2.4s !important; } }

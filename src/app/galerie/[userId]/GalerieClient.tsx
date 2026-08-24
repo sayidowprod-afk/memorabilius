@@ -20,7 +20,9 @@ import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { fireConfetti } from '@/components/Confetti'
+import { useFlashOnChange } from '@/lib/useFlashOnChange'
 import CardTagBadges from '@/components/CardTagBadges'
+import ModalCloseButton from '@/components/ModalCloseButton'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -955,6 +957,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     patch: filtered.filter(c => c.patch).length,
   }), [filtered])
 
+  // Petit flash visuel quand une stat du header change (ex: carte ajoutee) —
+  // fait remarquer ce qui vient de bouger plutot que de changer silencieusement.
+  const totalFlash = useFlashOnChange(filtered.length)
+  const rcFlash = useFlashOnChange(filteredStats.rc)
+  const autoFlash = useFlashOnChange(filteredStats.auto)
+  const numFlash = useFlashOnChange(filteredStats.num)
+  const patchFlash = useFlashOnChange(filteredStats.patch)
+
   // Volontairement PAS `[filtered]` : `filtered` recalcule (nouvelle
   // référence) a chaque `setCards()`, y compris un simple glisser-deposer
   // pour reordonner - ca renvoyait l'utilisateur en page 1 (donc en haut)
@@ -1506,9 +1516,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
         )}
 
-        {/* Header profil */}
-        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
-          
+        {/* Header profil — bandeau degrade base sur la couleur d'accent du collectionneur,
+            plus immersif qu'un fond uni, tout en gardant le contenu parfaitement lisible. */}
+        <div style={{ position: 'relative', overflow: 'hidden', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)' }}>
+          <div style={{
+            position: 'absolute', inset: 0, height: 90,
+            background: `linear-gradient(135deg, ${accent}${dark ? '3a' : '26'}, transparent 80%)`,
+            pointerEvents: 'none',
+          }} />
+          <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <img
               src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
@@ -1572,14 +1589,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
               <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
-                  { val: filtered.length, label: t('gallery_cards') },
-                  { val: filteredStats.rc, label: 'RC', color: '#e67e22' },
-                  { val: filteredStats.auto, label: 'Auto', color: '#2e7d32' },
-                  { val: filteredStats.num, label: 'Num', color: '#7b1fa2' },
-                  { val: filteredStats.patch, label: 'Patch', color: '#1976d2' },
+                  { val: filtered.length, label: t('gallery_cards'), flash: totalFlash },
+                  { val: filteredStats.rc, label: 'RC', color: '#e67e22', flash: rcFlash },
+                  { val: filteredStats.auto, label: 'Auto', color: '#2e7d32', flash: autoFlash },
+                  { val: filteredStats.num, label: 'Num', color: '#7b1fa2', flash: numFlash },
+                  { val: filteredStats.patch, label: 'Patch', color: '#1976d2', flash: patchFlash },
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
-                    <div style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
+                    <div className={s.flash ? 'stat-flash' : undefined} style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
                     <div style={{ fontSize: 10, fontWeight: 700, color: '#999', textTransform: 'uppercase' }}>{s.label}</div>
                   </div>
                 ))}
@@ -1688,6 +1705,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
             </div>
           )}
+          </div>
         </div>
 
         {/* Stats de collection */}
@@ -1729,10 +1747,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               return (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontSize: i === 0 ? 26 : 20 }}>{medal.emoji}</span>
-                  <div onClick={() => setPopup(card)} style={{
+                  <div onClick={() => setPopup(card)} className={i === 0 ? 'grail-gold-glow' : undefined} style={{
                     width: medal.width, cursor: 'pointer', position: 'relative',
                     background: `linear-gradient(160deg, ${medal.color}, ${medal.color}99)`, padding: 3, borderRadius: 12,
-                    boxShadow: `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
+                    boxShadow: i === 0 ? undefined : `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
                   }}
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
@@ -1807,7 +1825,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16, color: dark ? '#eee' : '#121212' }}>💎 {t('gallery_choose_card')}</h3>
-                      <button onClick={() => setGrailPickerOpen(false)} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
+                      <ModalCloseButton onClick={() => setGrailPickerOpen(false)} dark={dark} />
                     </div>
                     <input
                       autoFocus
@@ -2449,9 +2467,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </div>
               )}
               {editMode && isOwner && selectedCards.has(getCardId(d)) && (
-                <div style={{ position: 'absolute', top: 6, left: 6, background: '#003DA6', color: 'white', fontSize: 13, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>
-                  ✓
-                </div>
+                <>
+                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,61,166,0.14)', zIndex: 1, borderRadius: 6, pointerEvents: 'none' }} />
+                  <div className="selection-check-pop" style={{ position: 'absolute', top: 6, left: 6, background: '#003DA6', color: 'white', fontSize: 13, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900, boxShadow: '0 2px 8px rgba(0,61,166,0.5)' }}>
+                    ✓
+                  </div>
+                </>
               )}
               {qrMode && qrSelected.has(getCardId(d)) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#7c3aed', color: 'white', fontSize: 11, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>

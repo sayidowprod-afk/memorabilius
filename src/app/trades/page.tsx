@@ -10,6 +10,7 @@ import { inferSportFromTeamName } from '@/lib/sportsTeams'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import { sportColor } from '@/lib/sportColors'
 import CardTagBadges from '@/components/CardTagBadges'
+import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -398,10 +399,10 @@ export default function Trades() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {shownOffers.map(trade => {
                 const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
-                  pending:   { label: t('echanges_status_pending'),   color: '#7a5500', bg: '#fff8e1' },
-                  accepted:  { label: t('echanges_status_accepted'),  color: '#1b5e20', bg: '#e8f5e9' },
-                  refused:   { label: t('echanges_status_refused'),   color: '#7f0000', bg: '#ffebee' },
-                  cancelled: { label: t('echanges_status_cancelled'), color: '#555',    bg: '#f5f5f5' },
+                  pending:   { label: t('echanges_status_pending'),   ...TRADE_STATUS_COLOR.pending },
+                  accepted:  { label: t('echanges_status_accepted'),  ...TRADE_STATUS_COLOR.accepted },
+                  refused:   { label: t('echanges_status_refused'),   ...TRADE_STATUS_COLOR.refused },
+                  cancelled: { label: t('echanges_status_cancelled'), ...TRADE_STATUS_COLOR.cancelled },
                 }
                 const isSender = trade.sender_id === userId
                 const status = STATUS_LABEL[trade.status] || STATUS_LABEL.cancelled

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import ModalCloseButton from '@/components/ModalCloseButton'
 
 interface QrModalProps {
   url: string
@@ -41,7 +42,7 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h3 style={{ fontWeight: 800, fontSize: 16, margin: 0 }}>QR Code</h3>
-          <button onClick={onClose} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--text2, #888)' }}>✕</button>
+          <ModalCloseButton onClick={onClose} />
         </div>
 
         <div style={{ fontSize: 13, color: 'var(--text2, #555)', textAlign: 'center', fontWeight: 600 }}>{title}</div>

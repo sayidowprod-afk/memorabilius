@@ -11,6 +11,7 @@ export default function LevelBadge({ userId }: { userId: string }) {
   const { t } = useLang()
   const [level, setLevel] = useState<LevelInfo | null>(null)
   const [showInfo, setShowInfo] = useState(false)
+  const [fillPct, setFillPct] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -21,6 +22,15 @@ export default function LevelBadge({ userId }: { userId: string }) {
     })
     return () => { cancelled = true }
   }, [userId])
+
+  // Anime le remplissage de 0 -> pct reel au premier affichage, plutot que
+  // d'apparaitre deja plein — petit effet "gratifiant" façon barre de jeu.
+  useEffect(() => {
+    if (!level) return
+    setFillPct(0)
+    const id = requestAnimationFrame(() => requestAnimationFrame(() => setFillPct(level.pct * 100)))
+    return () => cancelAnimationFrame(id)
+  }, [level?.level, level?.pct])
 
   useEffect(() => {
     if (!showInfo) return
@@ -52,7 +62,7 @@ export default function LevelBadge({ userId }: { userId: string }) {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ width: 58, height: 7, background: 'rgba(0,61,166,0.15)', borderRadius: 4, overflow: 'hidden', display: 'inline-block' }}>
-            <span style={{ display: 'block', height: '100%', width: `${Math.round(level.pct * 100)}%`, background: 'linear-gradient(90deg, #1E63E0, #003DA6)', borderRadius: 4 }} />
+            <span style={{ display: 'block', height: '100%', width: `${fillPct}%`, background: 'linear-gradient(90deg, #1E63E0, #003DA6)', borderRadius: 4, transition: 'width 0.9s cubic-bezier(0.22,0.61,0.36,1)' }} />
           </span>
           <span style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--text3, #888)', whiteSpace: 'nowrap' }}>
             {level.xpIntoLevel}/{level.xpForNextLevel} XP
