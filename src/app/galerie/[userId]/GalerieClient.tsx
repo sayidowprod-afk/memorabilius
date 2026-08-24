@@ -466,6 +466,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [showStats, setShowStats] = useState(false)
   const [actionMenuOpen, setActionMenuOpen] = useState(false)
   const [actionMenuUp, setActionMenuUp] = useState(false)
+  const [actionMenuRect, setActionMenuRect] = useState<{ top: number; bottom: number; right: number } | null>(null)
   const [colorPickerUp, setColorPickerUp] = useState(false)
   const [colorPickerLeft, setColorPickerLeft] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
@@ -1516,19 +1517,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
         )}
 
-        {/* Header profil — spheres degradees flottantes dans la couleur d'accent du
-            collectionneur, floutees, plutot qu'un fond uni. Le calque est clippe sur
-            lui-meme (overflow:hidden juste ici) pour ne jamais recouper le menu "···"
-            qui doit pouvoir deborder du header. */}
-        <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)' }}>
+        {/* Header profil — degrade dans la couleur d'accent du collectionneur, concentre
+            en bas a droite et qui s'estompe vers le haut a gauche. Calque plein format
+            (pas juste une bande en haut) pour que le clip coincide avec le contour reel
+            du header (coins arrondis) plutot que de couper au milieu du contenu. */}
+        <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
           <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, height: 110, borderRadius: '16px 16px 0 0',
-            overflow: 'hidden', pointerEvents: 'none',
-          }}>
-            <div className="profile-orb profile-orb-1" style={{ background: accent }} />
-            <div className="profile-orb profile-orb-2" style={{ background: accent }} />
-            <div className="profile-orb profile-orb-3" style={{ background: accent }} />
-          </div>
+            position: 'absolute', inset: 0,
+            background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
+            pointerEvents: 'none',
+          }} />
           <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
@@ -1636,16 +1634,24 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {!editMode && (
                   <div className="btn-menu" style={{ position: 'relative' }}>
                     <button
-                      onClick={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setActionMenuUp(r.bottom > window.innerHeight * 0.55); setActionMenuOpen(v => !v) }}
+                      onClick={(e) => {
+                        const r = (e.currentTarget as HTMLElement).getBoundingClientRect()
+                        setActionMenuUp(r.bottom > window.innerHeight * 0.55)
+                        setActionMenuRect({ top: r.top, bottom: r.bottom, right: window.innerWidth - r.right })
+                        setActionMenuOpen(v => !v)
+                      }}
                       style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
                     >
                       ···
                     </button>
-                    {actionMenuOpen && (
+                    {actionMenuOpen && actionMenuRect && createPortal(
                       <>
                         {/* Overlay invisible pour fermer */}
                         <div onClick={() => setActionMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 99 }} />
-                        <div style={{ position: 'absolute', ...(actionMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, background: dark ? '#1e1e1e' : '#fff', borderRadius: 12, boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,0,0,0.15)', border: dark ? '1px solid #333' : 'none', padding: 6, zIndex: 100, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        {/* Portale sur document.body : le header a `overflow:hidden` (degrade
+                            d'accent), donc un menu position:absolute a l'interieur serait
+                            recoupe des qu'il deborde -- fixed + coordonnees ecran a la place. */}
+                        <div style={{ position: 'fixed', ...(actionMenuUp ? { bottom: window.innerHeight - actionMenuRect.top + 6 } : { top: actionMenuRect.bottom + 6 }), right: actionMenuRect.right, background: dark ? '#1e1e1e' : '#fff', borderRadius: 12, boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,0,0,0.15)', border: dark ? '1px solid #333' : 'none', padding: 6, zIndex: 100000, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
                           {isOwner && (
                             <button onClick={() => { setEditMode(m => !m); setSelectedCards(new Set()); setActionMenuOpen(false) }}
                               style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
@@ -1680,7 +1686,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
                           </button>
                         </div>
-                      </>
+                      </>,
+                      document.body
                     )}
                     <CollectorCard
                       userId={uid}

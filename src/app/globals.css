@@ -586,31 +586,3 @@ body {
 .grail-gold-glow { animation: grailGoldPulse 2.4s ease-in-out infinite; }
 @media (max-width: 768px) { .grail-gold-glow { animation-duration: 2.4s !important; } }
 
-/* ===== BATCH 3 — spheres degradees flottantes sur le header de profil galerie =====
-   filter:blur() genereux + faible opacite -> effet "aurora" doux dans la couleur
-   d'accent du collectionneur, plutot qu'un aplat ou un degrade lineaire fixe. */
-.profile-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(28px);
-  opacity: 0.28;
-  will-change: transform;
-}
-[data-theme="dark"] .profile-orb { opacity: 0.4; filter: blur(32px); }
-
-.profile-orb-1 { width: 150px; height: 150px; top: -55px; left: 2%;  animation: profileOrbFloat1 16s ease-in-out infinite; }
-.profile-orb-2 { width: 110px; height: 110px; top: -30px; left: 22%; opacity: 0.2; animation: profileOrbFloat2 20s ease-in-out infinite; }
-.profile-orb-3 { width: 130px; height: 130px; top: -45px; left: 45%; opacity: 0.16; animation: profileOrbFloat3 24s ease-in-out infinite; }
-
-@keyframes profileOrbFloat1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(45px, 18px) scale(1.08); } }
-@keyframes profileOrbFloat2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px, 22px) scale(0.94); } }
-@keyframes profileOrbFloat3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(25px, -16px) scale(1.05); } }
-
-@media (max-width: 768px) {
-  .profile-orb-1 { animation-duration: 16s !important; }
-  .profile-orb-2 { animation-duration: 20s !important; }
-  .profile-orb-3 { animation-duration: 24s !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .profile-orb-1, .profile-orb-2, .profile-orb-3 { animation: none !important; }
-}
