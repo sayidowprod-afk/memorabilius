@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import QRCode from 'qrcode'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -138,8 +139,9 @@ export default function CollectorCard({ userId, url, displayName, avatarUrl, acc
   }
 
   if (!open) return null
+  if (typeof document === 'undefined') return null
 
-  return (
+  return createPortal(
     <div onClick={() => onOpenChange(false)} style={{
       position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
       zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
@@ -231,6 +233,7 @@ export default function CollectorCard({ userId, url, displayName, avatarUrl, acc
           </a>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { detectCornersYOLO, warmupYOLO, isYOLOReady, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import { useLang } from '@/lib/LangContext'
@@ -1396,7 +1397,8 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     setPan({ x: canvas.width / 2, y: canvas.height / 2 })
   }
 
-  return (
+  if (typeof document === 'undefined') return null
+  return createPortal(
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
         <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, margin: 0, textAlign: 'center' }}>
@@ -1496,6 +1498,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           {t('scanner_crop_manually')}
         </button>
       )}
-    </div>
+    </div>,
+    document.body
   )
 }

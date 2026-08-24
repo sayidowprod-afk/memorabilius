@@ -1,5 +1,6 @@
 'use client'
 import { useRef, useState, useCallback, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
@@ -412,7 +413,7 @@ export default function ScannerPage() {
         )}
 
         {/* ── QR SCAN MODE ── */}
-        {qrMode && (
+        {qrMode && createPortal(
           <div style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 1000, display: 'flex', flexDirection: 'column' }}>
             <video
               ref={videoRef}
@@ -456,7 +457,8 @@ export default function ScannerPage() {
             >
               {t('scanner_cancel')}
             </button>
-          </div>
+          </div>,
+          document.body
         )}
 
         {/* ── SEARCHING ── */}

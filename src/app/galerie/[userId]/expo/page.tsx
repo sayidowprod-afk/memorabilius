@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
@@ -179,7 +180,8 @@ export default function ExpoPage() {
 
   const current = cards[slideIdx]
 
-  return (
+  if (typeof document === 'undefined') return null
+  return createPortal(
     <div style={{ position: 'fixed', inset: 0, background: '#0a0a0a', color: '#fff', zIndex: 99999, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Barre de contrôles */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', flexShrink: 0, gap: 12 }}>
@@ -295,7 +297,8 @@ export default function ExpoPage() {
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
       `}</style>
-    </div>
+    </div>,
+    document.body
   )
 }
 

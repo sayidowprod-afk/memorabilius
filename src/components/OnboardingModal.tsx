@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
@@ -43,6 +44,7 @@ export default function OnboardingModal() {
   }
 
   if (!visible) return null
+  if (typeof document === 'undefined') return null
 
   const bg      = dark ? '#17151F' : '#ffffff'
   const bg2     = dark ? '#211E2D' : '#F3F4F8'
@@ -50,7 +52,7 @@ export default function OnboardingModal() {
   const txt2    = dark ? '#8B849E' : '#6B6480'
   const overlay = dark ? 'rgba(0,0,0,0.65)' : 'rgba(0,0,0,0.45)'
 
-  return (
+  return createPortal(
     <div
       style={{
         position: 'fixed', inset: 0, zIndex: 1000,
@@ -143,7 +145,8 @@ export default function OnboardingModal() {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

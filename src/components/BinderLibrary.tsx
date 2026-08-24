@@ -1188,7 +1188,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   })
 
   // ── Formulaire création / édition (partagé) ──
-  const binderForm = formOpen !== null && (
+  const binderForm = formOpen !== null && createPortal(
     <div onClick={() => setFormOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? t('binder_new') : t('binder_edit_title')}</h3>
@@ -1325,7 +1325,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {formOpen === 'create' ? t('binder_create_btn') : t('binder_save_btn')}
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 
   if (loading) return <p style={{ textAlign: 'center', padding: 40, color: 'var(--text3, #999)' }}>{t('binder_loading')}</p>

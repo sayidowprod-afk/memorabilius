@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { SPORTS_TEAMS, SPORT_LABELS, FOOTBALL_LEAGUE_LABELS, teamLogoUrl, type Sport, type FootballLeague } from '@/lib/sportsTeams'
 import { useLang } from '@/lib/LangContext'
 
@@ -58,7 +59,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
       </div>
 
       {/* Modal picker */}
-      {open && (
+      {open && createPortal(
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
           onClick={() => { setOpen(false); setSearch('') }}>
           <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 16, padding: 20, width: '100%', maxWidth: 520, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12, boxShadow: '0 20px 60px rgba(0,0,0,0.25)', boxSizing: 'border-box' }}>
@@ -130,7 +131,8 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
               {value.length}/{max} {t('teampicker_selected')}
             </p>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )

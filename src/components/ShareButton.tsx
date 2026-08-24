@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import QRCode from 'qrcode'
 import { useLang } from '@/lib/LangContext'
 import { useIsNative } from '@/lib/useIsNative'
@@ -172,7 +173,7 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
         </button>
       )}
 
-      {showModal && (
+      {showModal && createPortal(
         <div onClick={() => setShowModal(false)} style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
           zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
@@ -235,7 +236,8 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
               </a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )

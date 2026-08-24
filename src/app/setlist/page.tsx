@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -691,7 +692,7 @@ export default function SetlistPage() {
       </div>
 
       {/* Modal cartes galerie non placées */}
-      {showMissing && (
+      {showMissing && createPortal(
         <div
           style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
           onClick={() => setShowMissing(false)}
@@ -889,7 +890,8 @@ export default function SetlistPage() {
               </>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
 

@@ -1077,7 +1077,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       </form>
 
       {/* Modal doublon */}
-      {dupWarning && (
+      {dupWarning && createPortal(
         <div style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 1000,
           display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16,
@@ -1120,7 +1120,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Proposition de rangement en bibliothèque, juste après l'ajout de la carte
@@ -1219,7 +1220,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         />
       )}
 
-      {cropModal && (
+      {cropModal && createPortal(
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           {/* Sélecteur de format — ajuste la forme du cadre en direct (recto uniquement : le format
               détermine la forme physique de la carte, la même pour les deux faces) */}
@@ -1408,7 +1409,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )

@@ -1,6 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
@@ -170,7 +171,7 @@ export default function Evenements() {
       </div>
 
       {/* Modal proposer */}
-      {showPropose && (
+      {showPropose && createPortal(
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }} onClick={() => setShowPropose(false)}>
           <div style={{ background: card, borderRadius: 16, padding: 28, width: '100%', maxWidth: 480, maxHeight: '90vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
             <h2 style={{ color: text, margin: '0 0 20px', fontSize: 20, fontWeight: 800 }}>{t('events_propose_title')}</h2>
@@ -216,7 +217,8 @@ export default function Evenements() {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )
