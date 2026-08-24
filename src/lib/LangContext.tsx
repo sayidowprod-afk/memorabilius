@@ -1126,6 +1126,7 @@ const translations = {
 
     // Messages
     messages_trade_offer: "🔄 Offre d'échange",
+    messages_trade_view_all: "👁️ Voir tout l'échange",
 
     // Scanner
     scanner_header_title: '📷 Scanner de prix',
@@ -2328,6 +2329,7 @@ const translations = {
 
     // Messages
     messages_trade_offer: '🔄 Trade offer',
+    messages_trade_view_all: '👁️ View full trade',
 
     // Scanner
     scanner_header_title: '📷 Price scanner',
@@ -3530,6 +3532,7 @@ const translations = {
 
     // Nachrichten
     messages_trade_offer: '🔄 Tauschangebot',
+    messages_trade_view_all: '👁️ Ganzen Tausch ansehen',
 
     // Scanner
     scanner_header_title: '📷 Preis-Scanner',

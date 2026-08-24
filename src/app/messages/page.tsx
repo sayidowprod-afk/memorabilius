@@ -74,6 +74,7 @@ function MessagesContent() {
   const [newConvResults, setNewConvResults] = useState<any[]>([])
   const [uploading, setUploading] = useState(false)
   const [reactionPickerFor, setReactionPickerFor] = useState<string | null>(null)
+  const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const activeConvRef = useRef<string | null>(null)
@@ -579,6 +580,11 @@ function MessagesContent() {
                                   </div>
                                 </div>
                               </div>
+                              <button onClick={() => setExpandedOffer(offer)} style={{
+                                width: '100%', background: 'none', border: `1.5px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`,
+                                borderRadius: 8, padding: '6px', fontWeight: 700, fontSize: 11.5, cursor: 'pointer',
+                                color: '#003DA6', marginBottom: 10,
+                              }}>{t('messages_trade_view_all')}</button>
                               {offer.message && <div style={{ fontSize: 12, color: textMuted, marginBottom: 10, fontStyle: 'italic' }}>"{offer.message}"</div>}
                               {isPending && (
                                 <div style={{ display: 'flex', gap: 6 }}>
@@ -752,6 +758,49 @@ function MessagesContent() {
           )}
         </div>
       </div>
+
+      {expandedOffer && (
+        <div onClick={() => setExpandedOffer(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+          <div onClick={e => e.stopPropagation()} style={{ background: bgPanel, color: textMain, borderRadius: 18, padding: 20, width: '100%', maxWidth: 480, maxHeight: '85vh', overflowY: 'auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0 }}>{t('messages_trade_offer')}</h3>
+              <button onClick={() => setExpandedOffer(null)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: textMuted }}>✕</button>
+            </div>
+            {([
+              { label: expandedOffer.sender_id === userId ? 'Tu offres' : 'Il/elle offre', cards: expandedOffer.offered_cards, ownerId: expandedOffer.sender_id },
+              { label: expandedOffer.sender_id === userId ? 'Tu demandes' : 'Il/elle demande', cards: expandedOffer.requested_cards, ownerId: expandedOffer.receiver_id },
+            ] as const).map((section, si) => (
+              <div key={si}>
+                <div style={{ fontSize: 11, fontWeight: 800, color: textMuted, textTransform: 'uppercase', marginBottom: 8 }}>
+                  {section.label} ({section.cards.length})
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {section.cards.map((c: any, i: number) => {
+                    const img = c.image_recto || c.card_image
+                    const href = img ? `/galerie/${section.ownerId}?card=${encodeURIComponent(img)}` : null
+                    const tags = [c.rc && 'RC', c.auto && 'AUTO', c.patch && 'PATCH'].filter(Boolean)
+                    return (
+                      <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center', textDecoration: 'none', color: textMain, background: dark ? '#262626' : '#f7f7f7', borderRadius: 10, padding: 8 }}>
+                        <div style={{ width: 42, height: 58, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flexShrink: 0 }}>
+                          {img && <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                        </div>
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div style={{ fontSize: 13, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom || '—'}</div>
+                          <div style={{ fontSize: 11, color: textMuted }}>{[c.annee, c.marque].filter(Boolean).join(' · ')}</div>
+                          {tags.length > 0 && <div style={{ display: 'flex', gap: 4, marginTop: 3 }}>
+                            {tags.map(tag => <span key={tag} style={{ fontSize: 9, fontWeight: 900, padding: '1px 5px', borderRadius: 4, background: '#003DA6', color: '#fff' }}>{tag}</span>)}
+                          </div>}
+                        </div>
+                      </a>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
+            {expandedOffer.message && <div style={{ fontSize: 13, color: textMuted, fontStyle: 'italic' }}>"{expandedOffer.message}"</div>}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

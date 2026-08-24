@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { supabase } from '@/lib/supabase'
 import type { Lang } from '@/lib/LangContext'
 import { guidesI18n } from '@/lib/guidesI18n'
 import GuidesAdminBar from '@/components/GuidesAdminBar'
+import GuidesListClient, { type GuideListItem } from '@/components/GuidesListClient'
 
 export const revalidate = 300
 
@@ -30,6 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 interface Guide {
+  id: number
   slug: string
   title: string
   excerpt: string | null
@@ -41,7 +42,7 @@ interface Guide {
 async function fetchGuides(): Promise<Guide[]> {
   const { data, error } = await supabase
     .from('guides')
-    .select('slug, title, excerpt, cover_image, category, published_at')
+    .select('id, slug, title, excerpt, cover_image, category, published_at')
     .eq('published', true)
     .lte('published_at', new Date().toISOString())
     .order('published_at', { ascending: false })
@@ -49,9 +50,38 @@ async function fetchGuides(): Promise<Guide[]> {
   return data || []
 }
 
+// Pour EN/DE : n'affiche que le titre/résumé/image traduits — le fr et les
+// données non-textuelles (category, slug) restent la source de vérité. Un
+// guide sans traduction pour la langue courante garde son contenu fr (mieux
+// qu'un titre manquant) mais pointe quand même vers /guides/{slug} en fr.
+async function fetchTranslationsMap(guideIds: number[], lang: 'en' | 'de'): Promise<Record<number, { title: string; excerpt: string | null; cover_image: string | null }>> {
+  if (guideIds.length === 0) return {}
+  const { data } = await supabase
+    .from('guide_translations')
+    .select('guide_id, title, excerpt, cover_image')
+    .eq('lang', lang)
+    .in('guide_id', guideIds)
+  const map: Record<number, { title: string; excerpt: string | null; cover_image: string | null }> = {}
+  ;(data || []).forEach(r => { map[r.guide_id] = { title: r.title, excerpt: r.excerpt, cover_image: r.cover_image } })
+  return map
+}
+
 export default async function GuidesPage() {
   const [guides, lang] = await Promise.all([fetchGuides(), resolveLang()])
   const t = guidesI18n[lang]
+  const transMap = lang === 'fr' ? {} : await fetchTranslationsMap(guides.map(g => g.id), lang)
+
+  const items: GuideListItem[] = guides.map(g => {
+    const tr = transMap[g.id]
+    return {
+      slug: g.slug,
+      title: tr?.title || g.title,
+      excerpt: tr?.excerpt ?? g.excerpt,
+      cover_image: (tr?.cover_image || g.cover_image) ?? null,
+      category: g.category,
+      href: tr ? `/${lang}/guides/${g.slug}` : `/guides/${g.slug}`,
+    }
+  })
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '40px 20px' }}>
@@ -62,32 +92,15 @@ export default async function GuidesPage() {
 
       <GuidesAdminBar />
 
-      {guides.length === 0 ? (
+      {items.length === 0 ? (
         <p style={{ color: 'var(--text3, #999)' }}>{t.guides_empty}</p>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
-          {guides.map(g => (
-            <Link key={g.slug} href={`/guides/${g.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{
-                border: '1px solid var(--border, #eee)', borderRadius: 14, overflow: 'hidden',
-                background: 'var(--card-bg, #fff)', height: '100%', display: 'flex', flexDirection: 'column',
-              }}>
-                {g.cover_image ? (
-                  <img src={g.cover_image} alt="" style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
-                ) : (
-                  <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--bg3, #f0f0f0)' }} />
-                )}
-                <div style={{ padding: 16, flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {g.category && (
-                    <span style={{ fontSize: 11, fontWeight: 800, color: '#003DA6', textTransform: 'uppercase', letterSpacing: 0.5 }}>{g.category}</span>
-                  )}
-                  <h2 style={{ fontSize: 17, fontWeight: 800, margin: 0, lineHeight: 1.3 }}>{g.title}</h2>
-                  {g.excerpt && <p style={{ fontSize: 13, color: 'var(--text2, #777)', margin: 0, lineHeight: 1.5 }}>{g.excerpt}</p>}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <GuidesListClient
+          guides={items}
+          searchPlaceholder={t.guides_search_placeholder}
+          filterAllLabel={t.guides_filter_all}
+          noResultsLabel={t.guides_no_results}
+        />
       )}
     </div>
   )

@@ -85,8 +85,14 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     setUploadingCoverLang(lang)
     const url = await uploadGuideImage(file, 'covers/')
     if (url) {
-      const { error } = await supabase.from('guide_translations').update({ cover_image: url }).eq('guide_id', id).eq('lang', lang)
-      if (error) toast.error(error.message)
+      const { data: { session } } = await supabase.auth.getSession()
+      const r = await fetch('/api/admin/guide-translation-cover', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token}` },
+        body: JSON.stringify({ guideId: id, lang, coverImage: url }),
+      })
+      const body = await r.json().catch(() => ({}))
+      if (!r.ok) toast.error(body.error || 'Erreur')
       else setTranslations(prev => prev.map(t2 => t2.lang === lang ? { ...t2, cover_image: url } : t2))
     }
     setUploadingCoverLang(null)
