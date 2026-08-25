@@ -285,6 +285,14 @@ function AnnuaireContent() {
         @media (max-width: 600px) {
           .holo-name { animation: none; background-position: 30% 50%; }
         }
+        .annuaire-row { transition: transform 0.15s, box-shadow 0.15s; position: relative; }
+        @media (hover: hover) and (pointer: fine) {
+          .annuaire-row:hover { transform: translateY(-2px) scale(1.003); box-shadow: 0 4px 16px rgba(0,0,0,0.1); z-index: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .annuaire-row { transition: none; }
+          .annuaire-row:hover { transform: none; }
+        }
       `}</style>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>
         <h1 style={{ fontWeight: 900, fontSize: 32, letterSpacing: '-0.5px', margin: 0 }}>
@@ -357,7 +365,7 @@ function AnnuaireContent() {
                 <tr><td colSpan={6} style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('annuaire_no_collectors')}</td></tr>
               )}
               {sorted.map(c => (
-                <tr key={c.id}>
+                <tr key={c.id} className="annuaire-row">
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
                       <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 28 : 42} height={isMobile ? 28 : 42} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />

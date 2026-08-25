@@ -1,12 +1,8 @@
 'use client'
 import { usePathname } from 'next/navigation'
-import { useIsNative } from '@/lib/useIsNative'
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
-  const isNative = useIsNative()
   const pathname = usePathname()
-
-  if (!isNative) return <>{children}</>
 
   return (
     <>

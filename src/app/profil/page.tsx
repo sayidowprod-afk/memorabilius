@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import TeamPicker from '@/components/TeamPicker'
+import { levelFromXP } from '@/lib/leveling'
 import { subscribePush } from '@/components/PWAInstall'
 import ShowcaseWidget from '@/components/ShowcaseWidget'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
@@ -33,6 +34,7 @@ export default function Profil() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [changingPassword, setChangingPassword] = useState(false)
   const [passwordMsg, setPasswordMsg] = useState<{ ok: boolean; text: string } | null>(null)
+  const [avatarRingPct, setAvatarRingPct] = useState(0)
   const [linkedProviders, setLinkedProviders] = useState<string[]>([])
   const [linkingProvider, setLinkingProvider] = useState<string | null>(null)
   const [wrapSending, setWrapSending] = useState(false)
@@ -58,6 +60,8 @@ export default function Profil() {
       const { data: identData } = await supabase.auth.getUserIdentities()
       setLinkedProviders((identData?.identities ?? []).map(i => i.provider))
       setLoading(false)
+      const { data: xp } = await supabase.rpc('get_user_xp_total', { p_user_id: uid })
+      setAvatarRingPct(levelFromXP(xp ?? 0).pct)
     })
   }, [])
 
@@ -205,10 +209,17 @@ export default function Profil() {
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 16 }}>{t('profile_photo')}</label>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', width: 88, height: 88 }}>
+            <svg width={88} height={88} viewBox="0 0 88 88" style={{ position: 'absolute', top: 0, left: 0, transform: 'rotate(-90deg)' }}>
+              <circle cx={44} cy={44} r={41} fill="none" stroke={dark ? '#2a2a2a' : '#eee'} strokeWidth={3} />
+              <circle cx={44} cy={44} r={41} fill="none" stroke="#003DA6" strokeWidth={3} strokeLinecap="round"
+                strokeDasharray={2 * Math.PI * 41}
+                strokeDashoffset={2 * Math.PI * 41 * (1 - avatarRingPct)}
+                style={{ transition: 'stroke-dashoffset 0.9s cubic-bezier(0.22,0.61,0.36,1)' }} />
+            </svg>
             <img src={avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid #eee' }} alt="Avatar" />
-            {uploading && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: 'white', fontSize: 11 }}>...</span></div>}
+              style={{ position: 'absolute', top: 4, left: 4, width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid #eee' }} alt="Avatar" />
+            {uploading && <div style={{ position: 'absolute', top: 4, left: 4, width: 80, height: 80, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: 'white', fontSize: 11 }}>...</span></div>}
           </div>
           <div>
             <button onClick={() => fileRef.current?.click()} disabled={uploading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer', display: 'block', marginBottom: 6 }}>

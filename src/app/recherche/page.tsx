@@ -179,6 +179,9 @@ export default function Recherche() {
     <>
       <style>{`
         @keyframes spin { to { transform: rotate(360deg) } }
+        .search-input { transition: box-shadow 0.2s, transform 0.2s; }
+        .search-input:focus { box-shadow: 0 4px 28px rgba(0,61,166,0.28), 0 0 0 4px rgba(0,61,166,0.12); transform: scale(1.01); }
+        @media (prefers-reduced-motion: reduce) { .search-input { transition: none; transform: none !important; } }
         .card-item-search { transition: transform 0.15s, box-shadow 0.15s; }
         .card-item-search:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
         .tab-btn { transition: 0.15s; border: none; background: transparent; cursor: pointer; }

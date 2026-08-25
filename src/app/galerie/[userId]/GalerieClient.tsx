@@ -1,6 +1,6 @@
 'use client'
 import { toast } from '@/lib/toast'
-import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
+import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
 import { updateGalleryWidget } from '@/lib/widgetBridge'
 import { createPortal } from 'react-dom'
@@ -21,6 +21,7 @@ import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { fireConfetti } from '@/components/Confetti'
 import { useFlashOnChange } from '@/lib/useFlashOnChange'
+import { useCountUp } from '@/lib/useCountUp'
 import { useScrollReveal } from '@/lib/useScrollReveal'
 import CardTagBadges from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
@@ -256,6 +257,7 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
   return (
     <div
       ref={setNodeRef}
+      data-card-id={id}
       className={className}
       style={{ ...style, transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 999 : undefined }}
       onClick={onClick}
@@ -980,6 +982,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const autoFlash = useFlashOnChange(filteredStats.auto)
   const numFlash = useFlashOnChange(filteredStats.num)
   const patchFlash = useFlashOnChange(filteredStats.patch)
+  const totalCount = useCountUp(filtered.length)
+  const rcCount = useCountUp(filteredStats.rc)
+  const autoCount = useCountUp(filteredStats.auto)
+  const numCount = useCountUp(filteredStats.num)
+  const patchCount = useCountUp(filteredStats.patch)
 
   // Volontairement PAS `[filtered]` : `filtered` recalcule (nouvelle
   // référence) a chaque `setCards()`, y compris un simple glisser-deposer
@@ -1266,6 +1273,35 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const gridRef = useRef<HTMLDivElement>(null)
 
+  // FLIP : quand le tri/filtre change l'ordre des cartes, on les fait glisser
+  // vers leur nouvelle position au lieu d'un saut brut. Ignoré pendant un drag
+  // (dnd-kit gère déjà ses propres transforms dans ce cas) et en reduced-motion.
+  const prevCardRectsRef = useRef<Map<string, DOMRect>>(new Map())
+  useLayoutEffect(() => {
+    const container = gridRef.current
+    if (!container || activeDragId) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const els = Array.from(container.querySelectorAll<HTMLElement>('[data-card-id]'))
+    const newRects = new Map<string, DOMRect>()
+    els.forEach(el => { const id = el.dataset.cardId; if (id) newRects.set(id, el.getBoundingClientRect()) })
+    els.forEach(el => {
+      const id = el.dataset.cardId
+      if (!id) return
+      const oldRect = prevCardRectsRef.current.get(id)
+      const newRect = newRects.get(id)
+      if (!oldRect || !newRect) return
+      const dx = oldRect.left - newRect.left
+      const dy = oldRect.top - newRect.top
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return
+      el.style.transition = 'none'
+      el.style.transform = `translate(${dx}px, ${dy}px)`
+      requestAnimationFrame(() => {
+        el.style.transition = 'transform 0.28s ease'
+        el.style.transform = ''
+      })
+    })
+    prevCardRectsRef.current = newRects
+  }, [displayed, activeDragId])
 
   const getTags = (d: Card) => {
     const oon = d.num && isOneOfOne(d.num)
@@ -1643,11 +1679,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
               <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
-                  { val: filtered.length, label: t('gallery_cards'), flash: totalFlash },
-                  { val: filteredStats.rc, label: 'RC', color: '#e67e22', flash: rcFlash },
-                  { val: filteredStats.auto, label: 'Auto', color: '#2e7d32', flash: autoFlash },
-                  { val: filteredStats.num, label: 'Num', color: '#7b1fa2', flash: numFlash },
-                  { val: filteredStats.patch, label: 'Patch', color: '#1976d2', flash: patchFlash },
+                  { val: totalCount, label: t('gallery_cards'), flash: totalFlash },
+                  { val: rcCount, label: 'RC', color: '#e67e22', flash: rcFlash },
+                  { val: autoCount, label: 'Auto', color: '#2e7d32', flash: autoFlash },
+                  { val: numCount, label: 'Num', color: '#7b1fa2', flash: numFlash },
+                  { val: patchCount, label: 'Patch', color: '#1976d2', flash: patchFlash },
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
                     <div className={s.flash ? 'stat-flash' : undefined} style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
