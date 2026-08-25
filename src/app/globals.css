@@ -73,11 +73,13 @@ a { color: inherit; text-decoration: none; }
 /* Garder en phase avec NAV_TOTAL_HEIGHT_CSS dans src/lib/nativeLayout.ts (CSS ne peut pas importer du JS) */
 body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 48px)); }
 
-/* Le classeur en plein ecran est cense etre une vue immersive -- la nav
-   globale (zIndex 99999) restait visible par-dessus, dessinee au-dessus des
-   propres boutons du classeur malgre son espace de securite reserve. */
+/* Le classeur/la camera en plein ecran sont censes etre des vues immersives
+   -- la nav globale (zIndex 99999) restait visible par-dessus, dessinee
+   au-dessus de leurs propres boutons malgre l'espace de securite reserve.
+   !important necessaire : la nav fixe son display:'flex' en style inline
+   (React), qui gagne toujours face a une regle de feuille de style normale. */
 body.binder-fullscreen-active .mobile-bottom-nav-bar,
-body.camera-fullscreen-active .mobile-bottom-nav-bar { display: none; }
+body.camera-fullscreen-active .mobile-bottom-nav-bar { display: none !important; }
 
 /* Le chat natif va bord à bord (comme Insta) : plus de marge/padding du <main> autour de lui,
    mais topbar et bottom bar restent visibles par-dessus (elles ne sont pas dans <main>). */
