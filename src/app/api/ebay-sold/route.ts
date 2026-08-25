@@ -390,22 +390,6 @@ export async function GET(req: NextRequest) {
       if (getSb()) sbSet(ck, payload)  // fire-and-forget, non-bloquant
     }
 
-    // Historique de prix "maison" (voir migration card_price_history) : un point
-    // par jour et par carte, dès qu'une médiane exploitable est obtenue. `img`
-    // sert de clé stable (c'est déjà l'identifiant "card_key" utilisé ailleurs
-    // dans l'app pour cette même carte : grail wall, commentaires...).
-    if (getSb() && imgUrl) {
-      const historyMedian = soldPrices.length > 0 ? median(soldPrices) : median(active.map(i => i.price))
-      if (historyMedian > 0) {
-        getSb()!.from('card_price_history').upsert({
-          card_key: imgUrl,
-          snapshot_date: new Date().toISOString().slice(0, 10),
-          median_price: historyMedian,
-          sample_type: soldPrices.length > 0 ? 'sold' : 'active',
-        } as any, { onConflict: 'card_key,snapshot_date' }).then(() => {}, () => {})
-      }
-    }
-
     return NextResponse.json(payload)
   } catch (err) {
     console.error('[ebay-sold]', err)

@@ -452,6 +452,7 @@ const translations = {
     gallery_tab_liked: '❤️ Aimées',
     gallery_filter_memo: 'Mémo',
     gallery_advanced_filters: 'Filtres avancés',
+    gallery_numbered_hint: 'numérotée',
     gallery_view_grid: 'Grille',
     gallery_view_timeline: 'Chronologie',
     gallery_timeline_no_date: 'Date inconnue',
@@ -1187,7 +1188,6 @@ const translations = {
 
     // CardValueModule
     cardvalue_market: 'Marché',
-    cardvalue_history_title: 'Suivi du prix (relevés Memorabilius)',
     cardvalue_sold_median: 'vendu (méd.)',
     cardvalue_asked_median: 'demandé (méd.)',
     cardvalue_no_listings: 'Aucune annonce trouvée',
@@ -1672,6 +1672,7 @@ const translations = {
     gallery_tab_liked: '❤️ Liked',
     gallery_filter_memo: 'Memo',
     gallery_advanced_filters: 'Advanced filters',
+    gallery_numbered_hint: 'numbered',
     gallery_view_grid: 'Grid',
     gallery_view_timeline: 'Timeline',
     gallery_timeline_no_date: 'Unknown date',
@@ -2407,7 +2408,6 @@ const translations = {
 
     // CardValueModule
     cardvalue_market: 'Market',
-    cardvalue_history_title: 'Price tracking (Memorabilius readings)',
     cardvalue_sold_median: 'sold (med.)',
     cardvalue_asked_median: 'asked (med.)',
     cardvalue_no_listings: 'No listings found',
@@ -2892,6 +2892,7 @@ const translations = {
     gallery_tab_liked: '❤️ Gefällt mir',
     gallery_filter_memo: 'Memo',
     gallery_advanced_filters: 'Erweiterte Filter',
+    gallery_numbered_hint: 'nummeriert',
     gallery_view_grid: 'Raster',
     gallery_view_timeline: 'Zeitleiste',
     gallery_timeline_no_date: 'Unbekanntes Datum',
@@ -3627,7 +3628,6 @@ const translations = {
 
     // CardValueModule
     cardvalue_market: 'Markt',
-    cardvalue_history_title: 'Preisverlauf (Memorabilius-Messungen)',
     cardvalue_sold_median: 'verkauft (Med.)',
     cardvalue_asked_median: 'verlangt (Med.)',
     cardvalue_no_listings: 'Keine Angebote gefunden',

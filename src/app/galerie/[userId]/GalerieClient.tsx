@@ -46,6 +46,7 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
+import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
@@ -381,6 +382,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
+  const [numMax, setNumMax] = useState<number | null>(null)
+  const [nlpHint, setNlpHint] = useState<string[]>([])
   const [filterPrivate, setFilterPrivate] = useState(false)
   const [filterVente, setFilterVente] = useState(searchParams.get('vente') === '1')
   const [filterMemo, setFilterMemo] = useState(false)
@@ -923,6 +926,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         (!activeFilters.auto || d.auto) &&
         (!activeFilters.patch || d.patch) &&
         (!activeFilters.num || d.num !== '') &&
+        (numMax == null || (() => { const m = (d.num || '').match(/\/(\d+)$/); return m ? parseInt(m[1]) <= numMax : false })()) &&
         (!filterPrivate || privateCards.has(d.f)) &&
         (!filterVente || d.disponible_vente) &&
         (!filterMemo || (d.item_type && d.item_type !== 'card'))
@@ -974,7 +978,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       if (primary !== 0 || sortBy2 === 'none') return primary
       return applySort(sortBy2, a, b)
     })
-  }, [cards, search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+  }, [cards, search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, numMax, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   const filteredStats = useMemo(() => ({
     rc:   filtered.filter(c => c.rc).length,
@@ -2098,7 +2102,31 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_search_label')}</label>
-              <input value={searchInput} onChange={e => { setSearchInput(e.target.value); if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current); searchDebounceRef.current = setTimeout(() => setSearch(e.target.value), 200) }} placeholder={t('gallery_search')} /></div>
+              <input value={searchInput} onChange={e => {
+                setSearchInput(e.target.value)
+                if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
+                searchDebounceRef.current = setTimeout(() => {
+                  const parsed = parseNaturalQuery(e.target.value)
+                  const hints: string[] = []
+                  if (parsed.rc) { setActiveFilters(p => ({ ...p, rc: true })); hints.push('RC') }
+                  if (parsed.auto) { setActiveFilters(p => ({ ...p, auto: true })); hints.push('Auto') }
+                  if (parsed.patch) { setActiveFilters(p => ({ ...p, patch: true })); hints.push('Patch') }
+                  if (parsed.year) { setFYear(parsed.year); hints.push(parsed.year) }
+                  if (parsed.num) {
+                    setActiveFilters(p => ({ ...p, num: true }))
+                    setNumMax(parsed.numMax)
+                    hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
+                  }
+                  setNlpHint(hints)
+                  setSearch(parsed.text || e.target.value)
+                }, 200)
+              }} placeholder={t('gallery_search')} />
+              {nlpHint.length > 0 && (
+                <p style={{ fontSize: 10, color: '#999', margin: '3px 0 0' }}>
+                  {t('search_understood_as')} <strong style={{ color: accent }}>{nlpHint.join(' · ')}</strong>
+                </p>
+              )}
+            </div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{lang === 'fr' ? 'Sport' : 'Sport'}</label>
               <select value={fSport} onChange={e => setFSport(e.target.value)}>
                 <option value="">{t('gallery_all')}</option>
@@ -2831,7 +2859,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
                 <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{t('gallery_no_match_title')}</p>
                 <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{t('gallery_no_match_sub')}</p>
-                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false); setNumMax(null); setNlpHint([]) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
                   {t('gallery_clear_filters')}
                 </button>
               </div>
