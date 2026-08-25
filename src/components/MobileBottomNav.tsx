@@ -107,6 +107,7 @@ export default function MobileBottomNav() {
   return (
     <>
       <div
+        className="mobile-bottom-nav-bar"
         style={{
           // z-index tres eleve, deliberement : c'est la navigation GLOBALE de l'app,
           // elle ne doit jamais se retrouver sous une bannière/barre d'action propre

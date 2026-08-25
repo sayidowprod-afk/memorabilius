@@ -15,7 +15,7 @@ import { toast } from '@/lib/toast'
 import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 import { useIsNative } from '@/lib/useIsNative'
-import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import { NAV_SAFE_AREA_BOTTOM } from '@/lib/nativeLayout'
 
 // Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
 function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }) {
@@ -182,6 +182,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const pageH = Math.round(pageW * PAGE_RATIO)
   const [binderFullscreen, setBinderFullscreen] = useState(false)
   const binderFullscreenRef = useRef(false)
+
+  // Le plein ecran du classeur doit etre une vue immersive : masque la nav
+  // globale (voir globals.css) plutot que de lui laisser recouvrir les
+  // propres boutons du classeur. useEffect (pas juste dans toggleFullscreen)
+  // pour rester synchronise meme en sortant du plein ecran via Echap ou le
+  // bouton natif "retour" du systeme.
+  useEffect(() => {
+    document.body.classList.toggle('binder-fullscreen-active', binderFullscreen)
+    return () => { document.body.classList.remove('binder-fullscreen-active') }
+  }, [binderFullscreen])
 
   const [shelfRowSize, setShelfRowSize] = useState(SHELF_ROW_SIZE)
   const shelfContainerRef = useRef<HTMLDivElement>(null)
@@ -1677,11 +1687,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       position: 'fixed', inset: 0, zIndex: 9500,
       background: dark ? '#1a1a1a' : '#efede8',
       display: 'flex', flexDirection: 'column',
-      // position:fixed echappe au flux normal de <body> (et a son padding-bottom
-      // pour la nav native, zIndex 99999 > 9500) -- sans ca, la barre de
-      // pagination/boutons du bas se retrouve dessinee sous la nav native,
-      // partiellement invisible.
-      paddingBottom: isNative ? NAV_TOTAL_HEIGHT_CSS : 0,
+      // La nav globale est masquee en plein ecran (voir 'binder-fullscreen-active'
+      // dans globals.css) -- seule la zone de securite systeme (encoche/geste)
+      // reste a degager ici, pas la hauteur de la nav elle-meme (qui n'est plus la).
+      paddingBottom: isNative ? NAV_SAFE_AREA_BOTTOM : 0,
     } : {}}>
 
       {/* ── FULLSCREEN OVERLAY : nom + quitter flottants, sans barre ── */}
