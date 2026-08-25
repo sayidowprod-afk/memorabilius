@@ -41,6 +41,7 @@ export default function Profil() {
   const [wrapResult, setWrapResult] = useState<{ ok?: boolean; error?: string; month?: string; newCards?: number } | null>(null)
   const [wrapImgLoading, setWrapImgLoading] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const initialSnapshotRef = useRef<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -56,6 +57,11 @@ export default function Profil() {
         setWrapOptOut(!!p.wrap_opt_out)
         setCsvLinked(!!p.lien_csv)
         setAvatarUrl(p.avatar_url || null)
+        initialSnapshotRef.current = JSON.stringify({
+          display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '',
+          couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '',
+          favoriteTeams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [], wrapOptOut: !!p.wrap_opt_out,
+        })
       }
       const { data: identData } = await supabase.auth.getUserIdentities()
       setLinkedProviders((identData?.identities ?? []).map(i => i.provider))
@@ -64,6 +70,19 @@ export default function Profil() {
       setAvatarRingPct(levelFromXP(xp ?? 0).pct)
     })
   }, [])
+
+  // Avertit avant de fermer/recharger l'onglet si des changements n'ont pas
+  // ete enregistres -- ne couvre pas la navigation interne (Next.js ne
+  // declenche pas beforeunload sur un changement de route client-side).
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (initialSnapshotRef.current === null) return
+      const current = JSON.stringify({ ...form, favoriteTeams, wrapOptOut })
+      if (current !== initialSnapshotRef.current) { e.preventDefault(); e.returnValue = '' }
+    }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [form, favoriteTeams, wrapOptOut])
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -112,6 +131,7 @@ export default function Profil() {
           body: JSON.stringify({ userId, csvUrl: form.lien_csv }),
         })
       }
+      initialSnapshotRef.current = JSON.stringify({ ...form, favoriteTeams, wrapOptOut })
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } else { toast.error('Erreur : ' + error.message) }

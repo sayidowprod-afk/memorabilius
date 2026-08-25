@@ -457,7 +457,7 @@ export default function Trades() {
                         </div>
                         {myCards.length > 0 && <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>{myCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
                       </div>
-                      <div style={{ fontSize: 20, paddingTop: 20, color: 'var(--text3, #ccc)', flex: '0 0 auto' }}>⇄</div>
+                      <div title={t('trades_swap_title')} style={{ fontSize: 20, paddingTop: 20, color: 'var(--text3, #ccc)', flex: '0 0 auto' }}>⇄</div>
                       <div>
                         <div style={{ fontSize: 11, color: 'var(--text3, #888)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu demandes</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>

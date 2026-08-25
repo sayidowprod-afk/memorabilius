@@ -266,6 +266,12 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
 
   useEffect(() => { fetchTargetCards(); fetchMyCards() }, [fetchTargetCards, fetchMyCards])
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   const toggleTarget = (id: string) => setTargetSelected(prev => {
     const next = new Set(prev); next.has(id) ? next.delete(id) : next.add(id); return next
   })
@@ -336,7 +342,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
         {/* Section : cartes du destinataire */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {sectionLabel(`${t('trademodal_cards_of')} ${targetUserName} ${t('trademodal_target_cards')}`, targetSelected.size)}
-          <input type="text" placeholder={t('trademodal_search')} value={targetFilters.search}
+          <input type="text" autoFocus placeholder={t('trademodal_search')} value={targetFilters.search}
             onChange={e => setTargetFilters(f => ({ ...f, search: e.target.value }))}
             style={inputStyle} />
           <FilterBar cards={targetCards} filters={targetFilters} onChange={setTargetFilters} />
@@ -361,6 +367,11 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
         />
 
         {error && <div style={{ color: '#c00', fontSize: 13, fontWeight: 600 }}>{error}</div>}
+        {!error && targetSelected.size === 0 && (
+          <div style={{ color: 'var(--text3, #999)', fontSize: 12, fontWeight: 600, textAlign: 'center' }}>
+            {t('trademodal_hint_select_target')}
+          </div>
+        )}
 
         <button onClick={submit} disabled={sending || justSent || targetSelected.size === 0}
           style={{

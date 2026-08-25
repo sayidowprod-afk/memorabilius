@@ -2,6 +2,7 @@
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, Suspense } from 'react'
 import { createPortal } from 'react-dom'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -479,7 +480,13 @@ function MessagesContent() {
           )}
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {conversations.length === 0 && (
-              <p style={{ padding: 20, color: textMuted, fontSize: 13, textAlign: 'center' }}>{t('messages_none')}</p>
+              <div style={{ padding: '32px 20px', textAlign: 'center' }}>
+                <div style={{ fontSize: 32, marginBottom: 10 }}>💬</div>
+                <p style={{ color: textMuted, fontSize: 13, marginBottom: 14 }}>{t('messages_none')}</p>
+                <Link href="/annuaire" style={{ display: 'inline-block', background: '#003DA6', color: 'white', borderRadius: 20, padding: '9px 18px', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+                  {t('messages_find_collectors')}
+                </Link>
+              </div>
             )}
             {conversations.map(conv => (
               <div key={conv.id} onClick={() => selectConv(conv.id)} style={{

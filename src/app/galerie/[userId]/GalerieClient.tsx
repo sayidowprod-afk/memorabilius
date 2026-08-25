@@ -395,6 +395,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const fTeamDebounced = useDebouncedValue(fTeam, 200)
   const fBrandDebounced = useDebouncedValue(fBrand, 200)
   const [fYear, setFYear] = useState(searchParams.get('year') || '')
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
   const [teams, setTeams] = useState<string[]>([])
@@ -1084,6 +1085,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }, [popup, filtered])
 
   useEffect(() => {
+    if (!grailPickerOpen) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setGrailPickerOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [grailPickerOpen])
+
+  useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 500)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -1592,6 +1600,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const activeChildren = activeParent ? getChildren(activeParent) : []
   const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
 
+  const hasAdvancedActive = !!(fTeam || fBrand || fYear || activeFilters.rc || activeFilters.auto || activeFilters.num || activeFilters.patch || filterMemo || filterVente || filterPrivate || sortBy !== 'default')
+  const advancedVisible = showAdvancedFilters || hasAdvancedActive
+
   return (
     <>
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
@@ -1743,6 +1754,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         setActionMenuRect({ top: r.top, bottom: r.bottom, right: window.innerWidth - r.right })
                         setActionMenuOpen(v => !v)
                       }}
+                      title={t('gallery_more_actions')}
+                      aria-label={t('gallery_more_actions')}
                       style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
                     >
                       ···
@@ -2077,6 +2090,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {gallerySports.map(sp => <option key={sp} value={sp}>{SPORT_LABELS[sp]}</option>)}
               </select>
             </div>
+          </div>
+
+          <button type="button" onClick={() => setShowAdvancedFilters(v => !v)} style={{
+            display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer',
+            fontSize: 11, fontWeight: 800, color: dark ? '#aaa' : '#666', padding: '4px 0', marginBottom: advancedVisible ? 10 : 0,
+          }}>
+            <span style={{ display: 'inline-block', transition: 'transform 0.2s', transform: advancedVisible ? 'rotate(90deg)' : 'none' }}>▶</span>
+            {t('gallery_advanced_filters')}{hasAdvancedActive && !advancedVisible ? ' •' : ''}
+          </button>
+
+          {advancedVisible && <>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_team_label')}</label>
               <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_all')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
               <datalist id="gallery-teams">{teams.map(team => <option key={team} value={team} />)}</datalist>
@@ -2208,6 +2233,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </button>
             )}
           </div>
+          </>}
           {collectionTags.length > 0 && (
             <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
               <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>

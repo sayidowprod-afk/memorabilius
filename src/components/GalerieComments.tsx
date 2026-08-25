@@ -96,6 +96,7 @@ function CommentItem({
   const [replyOpen, setReplyOpen] = useState(false)
   const [replyMsg, setReplyMsg] = useState('')
   const [sending, setSending] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState(false)
 
   const send = async () => {
     if (!replyMsg.trim()) return
@@ -130,7 +131,14 @@ function CommentItem({
               <span style={{ fontSize: 11, color: textMuted }}>{timeAgo(comment.created_at, t, lang)}</span>
             </div>
             {(isOwner || currentUserId === comment.author_id) && (
-              <button onClick={() => onDelete(comment.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: textMuted, fontSize: 14, padding: '0 2px', lineHeight: 1 }}>✕</button>
+              deleteConfirm ? (
+                <span style={{ display: 'flex', gap: 4 }}>
+                  <button onClick={() => onDelete(comment.id)} aria-label={t('comments_delete_confirm_yes')} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, fontWeight: 800 }}>✓</button>
+                  <button onClick={() => setDeleteConfirm(false)} aria-label={t('comments_delete_confirm_no')} style={{ background: 'none', border: `1px solid ${border}`, borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: textMuted }}>✕</button>
+                </span>
+              ) : (
+                <button onClick={() => setDeleteConfirm(true)} title={t('comments_delete_title')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: textMuted, fontSize: 14, padding: '0 2px', lineHeight: 1 }}>✕</button>
+              )
             )}
           </div>
           <p style={{ margin: 0, fontSize: 14, color: textBody, lineHeight: 1.5, wordBreak: 'break-word' }}>{comment.message}</p>
