@@ -396,6 +396,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const fBrandDebounced = useDebouncedValue(fBrand, 200)
   const [fYear, setFYear] = useState(searchParams.get('year') || '')
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
+  const [viewMode, setViewMode] = useState<'grid' | 'timeline'>('grid')
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
   const [teams, setTeams] = useState<string[]>([])
@@ -470,6 +471,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
   const [shareModalOpen, setShareModalOpen] = useState(false)
+  const [showcaseGenerating, setShowcaseGenerating] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
   // monthlyBadges retired — remplacé par BadgeBox
@@ -982,6 +984,30 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     patch: filtered.filter(c => c.patch).length,
   }), [filtered])
 
+  // Vue chronologie : regroupe les cartes filtrees par mois d'ajout, toujours
+  // du plus recent au plus ancien (independamment du tri choisi pour la
+  // grille -- c'est le seul interet de cette vue). Les cartes sans date
+  // (import CSV ancien) rejoignent un groupe "Date inconnue" en dernier.
+  const timelineGroups = useMemo(() => {
+    const withDate = filtered.filter(c => c.created_at)
+    const withoutDate = filtered.filter(c => !c.created_at)
+    withDate.sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+    const groups: { key: string; label: string; cards: Card[] }[] = []
+    for (const c of withDate) {
+      const d = new Date(c.created_at!)
+      const key = `${d.getFullYear()}-${d.getMonth()}`
+      let g = groups.find(g => g.key === key)
+      if (!g) {
+        const label = d.toLocaleDateString(lang === 'fr' ? 'fr-FR' : lang === 'de' ? 'de-DE' : 'en-US', { month: 'long', year: 'numeric' })
+        g = { key, label: label.charAt(0).toUpperCase() + label.slice(1), cards: [] }
+        groups.push(g)
+      }
+      g.cards.push(c)
+    }
+    if (withoutDate.length > 0) groups.push({ key: 'none', label: t('gallery_timeline_no_date'), cards: withoutDate })
+    return groups
+  }, [filtered, lang, t])
+
   // Petit flash visuel quand une stat du header change (ex: carte ajoutee) —
   // fait remarquer ce qui vient de bouger plutot que de changer silencieusement.
   const totalFlash = useFlashOnChange(filtered.length)
@@ -1117,6 +1143,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       })
       return next
     })
+  }
+
+  const handleGenerateShowcase = async () => {
+    if (showcaseGenerating) return
+    setShowcaseGenerating(true)
+    try {
+      const res = await fetch(`/api/showcase-top?userId=${userId}`)
+      if (!res.ok) { toast.error(t('gallery_showcase_err')); return }
+      const blob = await res.blob()
+      await saveOrShareFile(blob, `memorabilius-top${grailCards.length}-${profile?.slug || userId}.png`)
+    } catch {
+      toast.error(t('gallery_showcase_err'))
+    } finally {
+      setShowcaseGenerating(false)
+    }
   }
 
   const downloadQrCodes = async () => {
@@ -1778,6 +1819,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ↗ Partager
                           </button>
+                          {grailCards.length > 0 && (
+                            <button onClick={() => { setActionMenuOpen(false); handleGenerateShowcase() }} disabled={showcaseGenerating}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: showcaseGenerating ? 'default' : 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: showcaseGenerating ? 0.6 : 1 }}>
+                              💎 {showcaseGenerating ? t('gallery_showcase_generating') : t('gallery_showcase_generate')}
+                            </button>
+                          )}
                           <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ⊞ Mode expo
@@ -2578,6 +2625,45 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           document.body
         )}
 
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, marginBottom: 10 }}>
+          <button type="button" onClick={() => setViewMode('grid')} title={t('gallery_view_grid')} style={{
+            border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
+            background: viewMode === 'grid' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'grid' ? 'white' : (dark ? '#ccc' : '#555'),
+          }}>▦ {t('gallery_view_grid')}</button>
+          <button type="button" onClick={() => setViewMode('timeline')} title={t('gallery_view_timeline')} style={{
+            border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
+            background: viewMode === 'timeline' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'timeline' ? 'white' : (dark ? '#ccc' : '#555'),
+          }}>📅 {t('gallery_view_timeline')}</button>
+        </div>
+
+        {viewMode === 'timeline' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+            {timelineGroups.length === 0 && (
+              <p style={{ color: '#999', textAlign: 'center', padding: 30 }}>{t('gallery_no_match_title')}</p>
+            )}
+            {timelineGroups.map(group => (
+              <div key={group.key}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                  <span style={{ fontWeight: 900, fontSize: 14, color: dark ? '#eee' : '#121212' }}>{group.label}</span>
+                  <span style={{ fontSize: 11, color: '#999', fontWeight: 700 }}>{group.cards.length} {t('gallery_cards')}</span>
+                  <div style={{ flex: 1, height: 1, background: dark ? '#2a2a2a' : '#eee' }} />
+                </div>
+                <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6 }}>
+                  {group.cards.map(c => (
+                    <div key={getCardId(c)} onClick={() => setPopup(c)} style={{
+                      flex: '0 0 auto', width: 90, cursor: 'pointer', borderRadius: 8, overflow: 'hidden',
+                      ...coloredBorder((c.collection_tag && tabSettings.get(c.collection_tag)?.color) || accent),
+                    }}>
+                      {renderCardImage(c)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {viewMode === 'grid' && (
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -2759,6 +2845,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
           </SortableContext>
         </DndContext>
+        )}
 
         {/* Scroll infini */}
         {loaded && (
