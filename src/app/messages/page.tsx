@@ -81,10 +81,14 @@ function MessagesContent() {
   const [uploading, setUploading] = useState(false)
   const [reactionPickerFor, setReactionPickerFor] = useState<string | null>(null)
   const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
+  const [otherTyping, setOtherTyping] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const activeConvRef = useRef<string | null>(null)
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const typingChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
+  const typingStopTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const lastTypingSentRef = useRef(0)
   activeConvRef.current = activeConv
 
   const REACTIONS = ['❤️', '😂', '😮', '😢', '👍', '🔥']
@@ -158,6 +162,39 @@ function MessagesContent() {
       .subscribe()
     return () => { supabase.removeChannel(channel) }
   }, [userId])
+
+  // Indicateur "en train d'écrire" — canal broadcast partagé entre les 2
+  // participants d'une conversation (nom derive des deux ids, tries pour que
+  // les deux cotes calculent le meme nom). Pas de persistance en base : un
+  // event ephemere, comme les indicateurs de frappe habituels.
+  useEffect(() => {
+    setOtherTyping(false)
+    if (typingStopTimer.current) clearTimeout(typingStopTimer.current)
+    if (!userId || !activeConv) { typingChannelRef.current = null; return }
+    const pairKey = [userId, activeConv].sort().join('-')
+    const channel = supabase.channel(`typing:${pairKey}`)
+      .on('broadcast', { event: 'typing' }, (payload: any) => {
+        if (payload.payload?.from !== activeConv) return
+        setOtherTyping(true)
+        if (typingStopTimer.current) clearTimeout(typingStopTimer.current)
+        typingStopTimer.current = setTimeout(() => setOtherTyping(false), 2500)
+      })
+      .subscribe()
+    typingChannelRef.current = channel
+    return () => {
+      supabase.removeChannel(channel)
+      typingChannelRef.current = null
+      if (typingStopTimer.current) clearTimeout(typingStopTimer.current)
+    }
+  }, [userId, activeConv])
+
+  const notifyTyping = () => {
+    if (!userId || !typingChannelRef.current) return
+    const now = Date.now()
+    if (now - lastTypingSentRef.current < 2000) return
+    lastTypingSentRef.current = now
+    typingChannelRef.current.send({ type: 'broadcast', event: 'typing', payload: { from: userId } })
+  }
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -708,6 +745,15 @@ function MessagesContent() {
                 {reactionPickerFor && (
                   <div onClick={() => setReactionPickerFor(null)} style={{ position: 'fixed', inset: 0, zIndex: 20 }} />
                 )}
+                {otherTyping && (
+                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <div style={{ padding: '10px 14px', borderRadius: '20px 20px 20px 4px', background: bubbleThemBg, display: 'flex', gap: 4, alignItems: 'center' }}>
+                      {[0, 1, 2].map(i => (
+                        <span key={i} className="typing-dot" style={{ animationDelay: `${i * 0.15}s`, background: bubbleThemText }} />
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div ref={bottomRef} />
               </div>
 
@@ -737,7 +783,7 @@ function MessagesContent() {
                   >{uploading ? '…' : '📷'}</button>
                   <input
                     value={newMsg}
-                    onChange={e => setNewMsg(e.target.value)}
+                    onChange={e => { setNewMsg(e.target.value); notifyTyping() }}
                     onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
                     placeholder={t('messages_placeholder')}
                     style={{

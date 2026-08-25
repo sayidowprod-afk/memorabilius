@@ -26,7 +26,7 @@ function PodiumColumn({ entries }: { entries: PodiumEntry[] }) {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {entries.map((entry, i) => (
-            <Link key={entry.userId} href={`/galerie/${entry.userId}`} className="podium-row">
+            <Link key={entry.userId} href={`/galerie/${entry.userId}`} className={`podium-row${i === 0 ? ' podium-row-gold' : ''}`}>
               <span className={`podium-rank ${i < 3 ? 'podium-rank-medal' : ''}`}>
                 {i < 3 ? medals[i] : i + 1}
               </span>
@@ -87,7 +87,11 @@ export default function PodiumSection({ month, week, day }: Props) {
         [data-theme="dark"] .podium-col { background: #111; border-color: #222; }
 
         .podium-empty { font-size: 12px; color: #999; text-align: center; padding: 12px 0; font-weight: 600; }
-        .podium-row { display: flex; align-items: center; gap: 7px; text-decoration: none; }
+        .podium-row { display: flex; align-items: center; gap: 7px; text-decoration: none; padding: 3px 6px; margin: -3px -6px; border-radius: 8px; transition: background 0.15s; }
+        .podium-row-gold {
+          background: linear-gradient(90deg, rgba(243,156,18,0.14), transparent);
+          box-shadow: inset 2px 0 0 #f39c12;
+        }
         .podium-rank { font-size: 11px; width: 20px; text-align: center; flex-shrink: 0; font-weight: 900; color: #bbb; }
         .podium-rank-medal { font-size: 15px; color: unset; }
         .podium-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }

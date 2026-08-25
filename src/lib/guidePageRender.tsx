@@ -6,6 +6,7 @@ import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
 import SetlistEmbedBlock from '@/components/guide-blocks/SetlistEmbedBlock'
 import TextImageBlock from '@/components/guide-blocks/TextImageBlock'
 import { buildColorVocab } from '@/lib/variationMatch'
+import ReadingProgressBar from '@/components/ReadingProgressBar'
 
 // Rendu partagé entre la version source (/guides/[slug], français) et les
 // versions traduites (/[lang]/guides/[slug], anglais/allemand — voir
@@ -254,6 +255,7 @@ export async function GuideArticle({ data }: { data: GuideArticleData }) {
 
   return (
     <article style={{ maxWidth: 760, margin: '0 auto', padding: '40px 20px' }}>
+      <ReadingProgressBar />
       <a href={data.backHref} style={{ fontSize: 13, fontWeight: 700, color: '#003DA6', textDecoration: 'none' }}>
         {data.backLabel}
       </a>

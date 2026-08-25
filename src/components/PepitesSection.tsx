@@ -12,7 +12,7 @@ interface Card {
 
 function PepiteCard({ card, eager, dark }: { card: Card; eager: boolean; dark: boolean }) {
   return (
-    <Link href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} draggable={false} style={{
+    <Link href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} draggable={false} className="pepite-tilt" style={{
       flex: '0 0 auto', width: 'clamp(118px, 15vw, 190px)',
       background: dark ? '#1e1e1e' : 'white', borderRadius: 10, overflow: 'hidden',
       border: dark ? '1px solid #2a2a2a' : '1px solid #eee', textDecoration: 'none', display: 'block',

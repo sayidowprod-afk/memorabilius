@@ -52,7 +52,7 @@ export default function Inscription() {
 
   return (
     <div style={{ maxWidth: 460, margin: '60px auto', padding: '0 16px', boxSizing: 'border-box' }}>
-      <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', maxWidth: '100%', boxSizing: 'border-box' }}>
+      <div className="auth-card-bg" style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', maxWidth: '100%', boxSizing: 'border-box' }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 8 }}>{t('register_title')}</h1>
         <p style={{ color: 'var(--text2, #666)', marginBottom: 30, fontSize: 14 }}>{t('register_sub')}</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

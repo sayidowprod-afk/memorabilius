@@ -10,6 +10,7 @@ import { inferSportFromTeamName } from '@/lib/sportsTeams'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import { sportColor } from '@/lib/sportColors'
 import CardTagBadges from '@/components/CardTagBadges'
+import TradeTypeBadge from '@/components/TradeTypeBadge'
 import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
@@ -338,10 +339,8 @@ export default function Trades() {
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
-                    <div style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: 12, fontWeight: 900, color: (trade as any)._source === 'galerie' ? '#6a1b9a' : trade.type === 'offre' ? '#2e7d32' : '#1976d2' }}>
-                        {(trade as any)._source === 'galerie' ? '🏷️ Vente/Trade' : trade.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
-                      </span>
+                    <div style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <TradeTypeBadge kind={(trade as any)._source === 'galerie' ? 'galerie' : trade.type === 'offre' ? 'offre' : 'recherche'} />
                       <span style={{ fontSize: 11, color: 'var(--text3, #999)' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                     </div>
                     {trade.image_url ? (
@@ -528,8 +527,11 @@ export default function Trades() {
                 {popup.image_url
                   ? <ImageZoom src={popupShowVerso && popup.image_verso ? popup.image_verso : popup.image_url} alt={popup.titre} key={popupShowVerso ? 'verso' : 'recto'} />
                   : <span style={{ fontSize: 80 }}>🃏</span>}
-                <div style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900 }}>
-                  {popup._source === 'galerie' ? '🏷️ Vente/Trade' : popup.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
+                <div style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px 4px 4px', borderRadius: 20, fontSize: 12, fontWeight: 900, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>
+                    {popup._source === 'galerie' ? '🏷️' : popup.type === 'offre' ? '📤' : '📥'}
+                  </span>
+                  {popup._source === 'galerie' ? 'Vente/Trade' : popup.type === 'offre' ? 'Offre' : 'Recherche'}
                 </div>
                 {popup._source === 'galerie' && popup.image_verso && (
                   <button onClick={() => setPopupShowVerso(v => !v)} style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>

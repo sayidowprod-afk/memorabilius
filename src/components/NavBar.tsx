@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
+import ThemeToggleButton from '@/components/ThemeToggleButton'
 import type { User } from '@supabase/supabase-js'
 
 const LANGS = [
@@ -25,7 +26,7 @@ export default function Navbar() {
   const langRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
   const pathname = usePathname()
-  const { dark, toggle } = useTheme()
+  const { dark } = useTheme()
   const { lang, setLang, t } = useLang()
 
   const toggleDrop = (name: 'communaute' | 'outils' | 'lang') =>
@@ -120,6 +121,18 @@ export default function Navbar() {
 
   const currentLang = LANGS.find(l => l.code === lang) ?? LANGS[0]
 
+  // Indicateur de section active — soulignement anime (transition color) plutot
+  // qu'un changement instantane, comme un onglet actif.
+  const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
+  const OUTILS_PATHS = ['/scanner', '/setlist', '/guides', '/recherche']
+  const communauteActive = COMMUNAUTE_PATHS.some(p => pathname.startsWith(p))
+  const outilsActive = OUTILS_PATHS.some(p => pathname.startsWith(p))
+  const tutoActive = pathname.startsWith('/tuto')
+  const navUnderline = (active: boolean): React.CSSProperties => ({
+    borderBottom: `2px solid ${active ? '#003DA6' : 'transparent'}`,
+    transition: 'border-color 0.2s ease',
+  })
+
   return (
     <>
       <nav style={{ background: dark ? '#1a1a1a' : 'white', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 200 }}>
@@ -134,7 +147,7 @@ export default function Navbar() {
 
           {/* Dropdown Communauté */}
           <div ref={communauteRef} style={{ position: 'relative' }}>
-            <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', ...navUnderline(communauteActive) }}>
               <DropTrigger label={t('nav_communaute')} name="communaute" />
             </div>
             {openDrop === 'communaute' && (
@@ -149,7 +162,7 @@ export default function Navbar() {
 
           {/* Dropdown Outils */}
           <div ref={outilsRef} style={{ position: 'relative' }}>
-            <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', ...navUnderline(outilsActive) }}>
               <DropTrigger label={t('nav_outils')} name="outils" />
             </div>
             {openDrop === 'outils' && (
@@ -168,7 +181,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
+          <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', ...navUnderline(tutoActive) }}>
             <Link href="/tuto" style={linkStyle}>{t('nav_tuto')}</Link>
           </div>
 
@@ -225,7 +238,7 @@ export default function Navbar() {
                 )}
               </div>
 
-              <button onClick={toggle} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '4px 12px', cursor: 'pointer', fontSize: 14 }}>{dark ? '☀️' : '🌙'}</button>
+              <ThemeToggleButton />
               <button onClick={handleLogout} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: dark ? '#ddd' : '#555' }}>{t('nav_deconnexion')}</button>
             </div>
           ) : (
@@ -257,7 +270,7 @@ export default function Navbar() {
                 )}
               </div>
 
-              <button onClick={toggle} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '4px 12px', cursor: 'pointer', fontSize: 14 }}>{dark ? '☀️' : '🌙'}</button>
+              <ThemeToggleButton />
               <Link href="/sinscrire" className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 14 }}>{t('nav_inscription')}</Link>
             </div>
           )}
@@ -302,7 +315,7 @@ export default function Navbar() {
               <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>🔔 Notifications <Badge count={notifs} /></Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
-                <button onClick={toggle} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600 }}>{dark ? '☀️' : '🌙'}</button>
+                <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
                 {LANGS.map(l => (
                   <button key={l.code} onClick={() => setLang(l.code)} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
                 ))}
@@ -315,7 +328,7 @@ export default function Navbar() {
             <>
               <Link href="/connexion" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_connexion')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
-                <button onClick={toggle} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600 }}>{dark ? '☀️' : '🌙'}</button>
+                <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
                 {LANGS.map(l => (
                   <button key={l.code} onClick={() => setLang(l.code)} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
                 ))}

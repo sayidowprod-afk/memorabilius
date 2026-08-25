@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLang } from '@/lib/LangContext'
+import EmptyState from '@/components/EmptyState'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -183,12 +184,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
     setItems(prev => prev.filter(i => i.id !== id))
   }
 
-  if (items.length === 0 && !isOwner) return (
-    <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text3, #ccc)' }}>
-      <div style={{ fontSize: 40, marginBottom: 8 }}>🎯</div>
-      <p style={{ fontWeight: 700 }}>{t('wishlist_none')}</p>
-    </div>
-  )
+  if (items.length === 0 && !isOwner) return <EmptyState icon="🎯" title={t('wishlist_none')} compact />
 
   return (
     <div style={{ paddingBottom: 20 }}>

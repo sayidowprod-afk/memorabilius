@@ -7,6 +7,7 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { subscribePush } from '@/components/PWAInstall'
 import SkeletonBlock from '@/components/SkeletonBlock'
+import EmptyState from '@/components/EmptyState'
 
 export default function Notifications() {
   const router = useRouter()
@@ -81,6 +82,17 @@ export default function Notifications() {
       team_join: '👥', team_candidature: '📋', message: '💬', trade: '🔄', system: '🔔', wishlist_match: '🎯', comment: '💬', badge: '🏆', like: '❤️'
     }
     return icons[type] || '🔔'
+  }
+
+  const dateGroupLabel = (iso: string) => {
+    const d = new Date(iso)
+    const now = new Date()
+    const startOfDay = (x: Date) => new Date(x.getFullYear(), x.getMonth(), x.getDate())
+    const diffDays = Math.round((startOfDay(now).getTime() - startOfDay(d).getTime()) / 86400000)
+    if (diffDays === 0) return 'Aujourd\'hui'
+    if (diffDays === 1) return 'Hier'
+    if (diffDays < 7) return d.toLocaleDateString('fr-FR', { weekday: 'long' })
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
   }
 
   const timeAgo = (date: string) => {
@@ -166,31 +178,43 @@ export default function Notifications() {
       </div>
 
       {notifs.length === 0 ? (
-        <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 60, textAlign: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-          <div style={{ fontSize: 48, marginBottom: 16 }}>🔔</div>
-          <p style={{ color: 'var(--text3, #bbb)', fontSize: 16 }}>{t('notif_none')}</p>
-        </div>
+        <EmptyState icon="🔔" title={t('notif_none')} />
       ) : (
         <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-          {notifs.map((n, i) => (
-            <div key={n.id} onClick={() => n.lien && router.push(n.lien)} style={{
-              padding: '16px 20px', borderBottom: i < notifs.length - 1 ? `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` : 'none',
-              display: 'flex', alignItems: 'center', gap: 16,
-              background: n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff'),
-              cursor: n.lien ? 'pointer' : 'default',
-              transition: '0.2s',
-            }}
-              onMouseEnter={e => { if (n.lien) e.currentTarget.style.background = dark ? '#1a2b57' : '#e8eeff' }}
-              onMouseLeave={e => e.currentTarget.style.background = n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff')}
-            >
-              <span style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
-              <div style={{ flex: 1 }}>
-                <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: dark ? '#f0f0f0' : '#121212' }}>{n.message}</p>
-                <p style={{ margin: '3px 0 0', fontSize: 12, color: 'var(--text3, #999)' }}>{timeAgo(n.created_at)}</p>
+          {notifs.map((n, i) => {
+            const label = dateGroupLabel(n.created_at)
+            const showHeader = i === 0 || dateGroupLabel(notifs[i - 1].created_at) !== label
+            return (
+              <div key={n.id}>
+                {showHeader && (
+                  <div style={{
+                    position: 'sticky', top: 0, zIndex: 1,
+                    padding: '8px 20px', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.4,
+                    color: 'var(--text3, #999)', background: dark ? '#161616' : '#fafafa',
+                    borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`,
+                  }}>{label}</div>
+                )}
+                <div onClick={() => n.lien && router.push(n.lien)} style={{
+                  padding: '16px 20px', borderBottom: i < notifs.length - 1 ? `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` : 'none',
+                  borderLeft: n.lu ? '4px solid transparent' : '4px solid #003DA6',
+                  display: 'flex', alignItems: 'center', gap: 16,
+                  background: n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff'),
+                  cursor: n.lien ? 'pointer' : 'default',
+                  transition: '0.2s',
+                }}
+                  onMouseEnter={e => { if (n.lien) e.currentTarget.style.background = dark ? '#1a2b57' : '#e8eeff' }}
+                  onMouseLeave={e => e.currentTarget.style.background = n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff')}
+                >
+                  <span style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: dark ? '#f0f0f0' : '#121212' }}>{n.message}</p>
+                    <p style={{ margin: '3px 0 0', fontSize: 12, color: 'var(--text3, #999)' }}>{timeAgo(n.created_at)}</p>
+                  </div>
+                  {!n.lu && <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
+                </div>
               </div>
-              {!n.lu && <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
-            </div>
-          ))}
+            )
+          })}
         </div>
       )}
     </div>

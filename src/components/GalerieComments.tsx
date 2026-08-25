@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
+import EmptyState from '@/components/EmptyState'
 
 const EMOJIS = [
   '😀','😂','🥰','😍','🤩','😎','🥳','🤯','😮','🔥',
@@ -402,11 +403,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       )}
 
       {comments.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '60px 20px', color: textMuted }}>
-          <div style={{ fontSize: 40, marginBottom: 8 }}>💬</div>
-          <p style={{ fontWeight: 700 }}>{t('comments_empty')}</p>
-          <p style={{ fontSize: 13, marginTop: 4 }}>{emptyLabel || t('comments_empty_gallery')}</p>
-        </div>
+        <EmptyState icon="💬" title={t('comments_empty')} subtitle={emptyLabel || t('comments_empty_gallery')} compact />
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {comments.map(c => (
