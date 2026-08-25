@@ -22,7 +22,12 @@ export default function GuideMiniHeader({ title, backHref, backLabel }: { title:
       <div ref={sentinelRef} style={{ height: 1 }} />
       {typeof document !== 'undefined' && createPortal(
         <div style={{
-          position: 'fixed', top: 60, left: 0, right: 0, zIndex: 240,
+          // zIndex sous 200 (pas 240) : la nav (position:sticky, zIndex:200) forme
+          // sa propre stacking context, donc son menu deroulant (zIndex:300 a
+          // l'interieur) n'est compare a un element hors de ce contexte -- comme ce
+          // bandeau portale sur document.body -- qu'a travers le 200 de la nav elle-
+          // meme. Un zIndex superieur ici passait donc par-dessus le menu ouvert.
+          position: 'fixed', top: 60, left: 0, right: 0, zIndex: 150,
           background: 'var(--card-bg, #fff)', borderBottom: '1px solid var(--border, #eee)',
           padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 12,
           boxShadow: visible ? '0 4px 16px rgba(0,0,0,0.06)' : 'none',

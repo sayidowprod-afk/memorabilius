@@ -176,7 +176,7 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
       {showModal && createPortal(
         <div onClick={() => setShowModal(false)} style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
-          zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
+          zIndex: 10000002, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
           <div onClick={e => e.stopPropagation()} style={{
             background: 'white', borderRadius: 20, padding: 32,
