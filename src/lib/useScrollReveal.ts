@@ -1,27 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
-// Ajoute .scroll-reveal-visible (voir globals.css) des qu'un element entre dans
-// le viewport, pour un fade-in + translateY au lieu d'un apparition instantanee.
+// Ajoute .scroll-reveal (voir globals.css) pour un fondu-enchaine + translateY
+// au montage. Purement CSS -- ne depend d'aucun IntersectionObserver/timer JS
+// (une version anterieure basee sur IntersectionObserver + setTimeout de secours
+// pouvait rester bloquee a opacity:0 indefiniment dans un contexte throttle :
+// app native, PWA, onglet en arriere-plan -- l'observer et le timer ne se
+// declenchaient jamais, rendant le Grail Wall / la grille de cartes invisibles).
 export function useScrollReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    if (typeof IntersectionObserver === 'undefined') { setVisible(true); return }
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    )
-    observer.observe(el)
-    // Filet de securite : certaines WebView (app native, PWA installee) ne
-    // declenchent jamais l'observer (viewport/layout pas encore stable au
-    // moment de l'observation) -- sans ca l'element reste bloque a opacity:0
-    // indefiniment (gros espace vide a la place du contenu).
-    const fallback = setTimeout(() => setVisible(true), 1500)
-    return () => { observer.disconnect(); clearTimeout(fallback) }
-  }, [])
-
-  return { ref, className: `scroll-reveal${visible ? ' scroll-reveal-visible' : ''}` }
+  return { ref, className: 'scroll-reveal' }
 }

@@ -591,10 +591,16 @@ body {
   .profile-avatar-halo:hover { box-shadow: 0 0 0 6px color-mix(in srgb, var(--avatar-accent, #003DA6) 25%, transparent); }
 }
 
-/* ===== BATCH 3 — reveal au scroll (voir useScrollReveal) ===== */
-.scroll-reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.scroll-reveal.scroll-reveal-visible { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; transition: none; } }
+/* ===== BATCH 3 — fondu au montage (voir useScrollReveal) =====
+   Anime en CSS pur a l'insertion dans le DOM -- volontairement plus base sur
+   IntersectionObserver : ce mecanisme laissait l'element bloque a opacity:0
+   indefiniment quand l'observer ne se declenchait jamais (contexte throttle :
+   app native, PWA, onglet en arriere-plan), meme avec un filet de securite en
+   setTimeout (lui-meme soumis au meme throttling). Le CSS ne depend d'aucun
+   timer/callback JS, donc ne peut pas rester bloque invisible. */
+@keyframes scrollRevealIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.scroll-reveal { animation: scrollRevealIn 0.5s ease backwards; }
+@media (prefers-reduced-motion: reduce) { .scroll-reveal { animation: none; } }
 
 /* ===== BATCH 3 — liseré lumineux au moment de l'ajout d'une carte ===== */
 @keyframes cardAddedRing {
