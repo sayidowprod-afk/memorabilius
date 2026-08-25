@@ -381,23 +381,37 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [cardsLoaded, setCardsLoaded] = useState(false)
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
-  const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
-  const [numMax, setNumMax] = useState<number | null>(null)
-  const [nlpHint, setNlpHint] = useState<string[]>([])
+  // Le param `q` de l'URL (lien partage, retour arriere, actualisation de page)
+  // doit passer par le meme parseur en langage naturel que la saisie live,
+  // sinon "iguodala rc" se retrouve utilise tel quel comme texte de recherche
+  // (aucune carte ne contient litteralement "rc" dans son nom) au lieu
+  // d'activer le filtre RC et de chercher juste "iguodala".
+  const initialParsedSearch = parseNaturalQuery(searchParams.get('q') || '')
+  const [activeFilters, setActiveFilters] = useState({ rc: initialParsedSearch.rc, auto: initialParsedSearch.auto, num: initialParsedSearch.num, patch: initialParsedSearch.patch })
+  const [numMax, setNumMax] = useState<number | null>(initialParsedSearch.numMax)
+  const [nlpHint, setNlpHint] = useState<string[]>(() => {
+    const hints: string[] = []
+    if (initialParsedSearch.rc) hints.push('RC')
+    if (initialParsedSearch.auto) hints.push('Auto')
+    if (initialParsedSearch.patch) hints.push('Patch')
+    if (initialParsedSearch.year) hints.push(initialParsedSearch.year)
+    if (initialParsedSearch.num) hints.push(initialParsedSearch.numMax != null ? `≤ /${initialParsedSearch.numMax}` : 'numérotée')
+    return hints
+  })
   const [filterPrivate, setFilterPrivate] = useState(false)
   const [filterVente, setFilterVente] = useState(searchParams.get('vente') === '1')
   const [filterMemo, setFilterMemo] = useState(false)
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
   const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
-  const [search, setSearch] = useState(searchParams.get('q') || '')
+  const [search, setSearch] = useState(initialParsedSearch.text || searchParams.get('q') || '')
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [fSport, setFSport] = useState(searchParams.get('sport') || '')
   const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
   const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
   const fTeamDebounced = useDebouncedValue(fTeam, 200)
   const fBrandDebounced = useDebouncedValue(fBrand, 200)
-  const [fYear, setFYear] = useState(searchParams.get('year') || '')
+  const [fYear, setFYear] = useState(initialParsedSearch.year || searchParams.get('year') || '')
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [viewMode, setViewMode] = useState<'grid' | 'timeline'>('grid')
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
