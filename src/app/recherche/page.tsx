@@ -115,7 +115,7 @@ export default function Recherche() {
     setNlpHint(hints)
 
     try {
-      const r = await fetch(`/api/recherche?q=${encodeURIComponent(parsed.text || q)}`)
+      const r = await fetch(`/api/recherche?q=${encodeURIComponent(parsed.text)}`)
       const data = await r.json()
       setCards(data.cards || [])
       setUsers(data.users || [])

@@ -404,7 +404,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
   const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
-  const [search, setSearch] = useState(initialParsedSearch.text || searchParams.get('q') || '')
+  const [search, setSearch] = useState(initialParsedSearch.text)
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [fSport, setFSport] = useState(searchParams.get('sport') || '')
   const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
@@ -2130,7 +2130,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   setNumMax(parsed.numMax)
                   if (parsed.num) hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
                   setNlpHint(hints)
-                  setSearch(parsed.text || e.target.value)
+                  setSearch(parsed.text)
                 }, 200)
               }} placeholder={t('gallery_search')} />
               {nlpHint.length > 0 && (
