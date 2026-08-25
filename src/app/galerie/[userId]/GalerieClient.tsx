@@ -775,7 +775,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
         setLoaded(true)
         setUsingOfflineCache(false)
-        const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
+        // searchParams.get() decode deja la valeur — un decodeURIComponent() ici
+        // double-decodait le param (symetrique au double-encode corrige plus bas).
+        const target = initialCardUrl || cardParam || null
         if (target) {
           const match = allCards.find(c => c.f === target)
           if (match) {
@@ -1042,7 +1044,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (sortBy2 !== 'none') sp.set('sort2', sortBy2)
     if (pinTeam) sp.set('pin', pinTeam)
     if (filterVente) sp.set('vente', '1')
-    if (popup?.f) sp.set('card', encodeURIComponent(popup.f))
+    // URLSearchParams.set()/.toString() encode deja la valeur — un encodeURIComponent()
+    // ici double-encodait le param (%2F devenait %252F). A chaque render qui
+    // re-declenchait cet effet, le param divergeait un peu plus de ce que la lecture
+    // attendait, ce qui pouvait faire boucler la resynchronisation popup <-> URL
+    // (carte qui apparait/disparait en boucle, notamment apres un F5 sur un viewer ouvert).
+    if (popup?.f) sp.set('card', popup.f)
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
   }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup])

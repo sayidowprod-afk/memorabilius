@@ -26,7 +26,7 @@ export default function Toaster() {
   if (!toasts.length) return null
 
   return (
-    <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
+    <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 10000004, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
       {toasts.map(t => (
         <div key={t.id} style={{
           background: t.type === 'error' ? '#e74c3c' : t.type === 'success' ? '#27ae60' : '#2c3e50',
