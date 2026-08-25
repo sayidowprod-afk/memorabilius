@@ -259,7 +259,13 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
       ref={setNodeRef}
       data-card-id={id}
       className={`${className || ''}${isDragging ? ' card-item-dragging' : ''}`}
-      style={{ ...style, transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 999 : undefined }}
+      style={{
+        ...style,
+        transform: isDragging
+          ? `${CSS.Transform.toString(transform)} rotate(-4deg) scale(1.04)`
+          : CSS.Transform.toString(transform),
+        transition, zIndex: isDragging ? 999 : undefined,
+      }}
       onClick={onClick}
       onClickCapture={handleClickCapture}
       onTouchStart={handleTouchStart}

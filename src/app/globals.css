@@ -782,8 +782,11 @@ body {
 .sport-emoji-bounce { display: inline-block; animation: sportEmojiBounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
 @media (prefers-reduced-motion: reduce) { .sport-emoji-bounce { animation: none; } }
 
-/* ===== BATCH 10 — rotation + ombre portee sur la carte en cours de glisser-deposer ===== */
-.card-item-dragging { transform: rotate(-4deg) scale(1.04) !important; box-shadow: 0 16px 32px rgba(0,0,0,0.35) !important; }
-@media (prefers-reduced-motion: reduce) { .card-item-dragging { transform: none !important; } }
+/* ===== BATCH 10 — ombre portee sur la carte en cours de glisser-deposer =====
+   La rotation est composee directement dans le transform inline (voir
+   SortableCard) plutot qu'ici : un !important sur transform ecrasait le
+   translate que dnd-kit applique pour suivre le curseur pendant le drag,
+   rendant la carte figee sur place au lieu de bouger avec la souris. */
+.card-item-dragging { box-shadow: 0 16px 32px rgba(0,0,0,0.35); }
 
 
