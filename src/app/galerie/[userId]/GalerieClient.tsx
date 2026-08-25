@@ -21,6 +21,7 @@ import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { fireConfetti } from '@/components/Confetti'
 import { useFlashOnChange } from '@/lib/useFlashOnChange'
+import { useScrollReveal } from '@/lib/useScrollReveal'
 import CardTagBadges from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
@@ -363,6 +364,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // silencieusement no-op).
   const uid = profile?.id || userId
   const [cards, setCards] = useState<Card[]>([])
+  // Liseré lumineux bref sur les cartes qui viennent d'apparaitre dans `cards`
+  // (nouvel ajout, retour de la page "ajouter") — ignore le tout premier
+  // chargement (rien ne doit clignoter a l'ouverture de la galerie).
+  const prevCardIdsRef = useRef<Set<string> | null>(null)
+  const [justAddedIds, setJustAddedIds] = useState<Set<string>>(new Set())
   const [cardsLoaded, setCardsLoaded] = useState(false)
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
@@ -444,6 +450,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [objectifsSubTab, setObjectifsSubTab] = useState<'pc' | 'wishlist'>(
     searchParams.get('tab') === 'wishlist' ? 'wishlist' : 'pc'
   )
+  // Indicateur "pilule" anime qui glisse vers l'onglet actif au lieu de
+  // chaque bouton gerant seul son propre fond/ombre.
+  const tabBtnRefs = useRef<Partial<Record<string, HTMLButtonElement>>>({})
+  const tabBarRef = useRef<HTMLDivElement>(null)
+  const [tabIndicator, setTabIndicator] = useState<{ left: number; width: number } | null>(null)
+  const grailReveal = useScrollReveal<HTMLDivElement>()
+  const cardGridReveal = useScrollReveal<HTMLDivElement>()
   const initialBinderId = searchParams.get('binder') ? parseInt(searchParams.get('binder')!, 10) : null
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
@@ -972,6 +985,36 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // a chaque deplacement de carte. On ne reinitialise la page que quand un
   // critere de filtre/tri change reellement.
   useEffect(() => { setPage(1) }, [search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, sortBy, sortBy2, pinTeam])
+
+  useEffect(() => {
+    const ids = new Set(cards.map(getCardId))
+    if (prevCardIdsRef.current) {
+      const added = [...ids].filter(id => !prevCardIdsRef.current!.has(id))
+      if (added.length > 0) {
+        setJustAddedIds(new Set(added))
+        const timer = setTimeout(() => setJustAddedIds(new Set()), 1300)
+        prevCardIdsRef.current = ids
+        return () => clearTimeout(timer)
+      }
+    }
+    prevCardIdsRef.current = ids
+  }, [cards])
+
+  // Repositionne l'indicateur d'onglet actif — au changement d'onglet et au
+  // redimensionnement (les onglets scrollent horizontalement sur mobile).
+  useEffect(() => {
+    const measure = () => {
+      const btn = tabBtnRefs.current[activeTab]
+      const bar = tabBarRef.current
+      if (!btn || !bar) return
+      const barRect = bar.getBoundingClientRect()
+      const btnRect = btn.getBoundingClientRect()
+      setTabIndicator({ left: btnRect.left - barRect.left + bar.scrollLeft, width: btnRect.width })
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [activeTab, isOwner])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -1532,7 +1575,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <img
               src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0 }}
+              className="profile-avatar-halo"
+              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
               alt={profile?.display_name}
             />
             <div style={{ minWidth: 200 }}>
@@ -1706,9 +1750,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {/* CTA principal */}
                 {isOwner && !editMode && (
                   <Link href={`/galerie/${userId}/ajouter`} className="btn-ajouter" style={{
-                    background: '#003DA6', color: 'white',
+                    background: `linear-gradient(135deg, ${accent}, color-mix(in srgb, ${accent} 70%, black))`, color: 'white',
                     border: 'none', borderRadius: 10, padding: '12px 28px',
-                    fontWeight: 800, fontSize: 15, cursor: 'pointer',
+                    fontWeight: 800, fontSize: 15, cursor: 'pointer', boxShadow: `0 4px 14px ${accent}55`,
                     textDecoration: 'none', display: 'inline-block', textAlign: 'center', whiteSpace: 'nowrap',
                   }}>
                     + {t('gallery_add')}
@@ -1819,7 +1863,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           }
 
           return (
-            <div style={{ marginBottom: 24 }}>
+            <div ref={grailReveal.ref} className={`${grailReveal.className} grail-wall-cursor`} style={{ marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
                 <span style={{ fontWeight: 900, fontSize: 15, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
@@ -1890,16 +1934,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           )
         })()}
 
-        {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile.
+            L'onglet actif est indique par une pilule qui glisse (mesuree via refs) plutot
+            que chaque bouton togglant independamment son propre fond. */}
+        <div ref={tabBarRef} style={{ position: 'relative', display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          {tabIndicator && (
+            <div style={{
+              position: 'absolute', top: 4, bottom: 4, left: tabIndicator.left, width: tabIndicator.width,
+              background: dark ? '#121212' : 'white', borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+              transition: 'left 0.25s cubic-bezier(0.22,0.61,0.36,1), width 0.25s cubic-bezier(0.22,0.61,0.36,1)',
+              pointerEvents: 'none',
+            }} />
+          )}
           {(['collection', 'library', 'objectifs', 'badges', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
-            <button key={tab} onClick={() => setActiveTab(tab as any)} style={{
-              padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
+            <button key={tab} ref={el => { if (el) tabBtnRefs.current[tab] = el }} onClick={() => setActiveTab(tab as any)} style={{
+              position: 'relative', zIndex: 1,
+              padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer', background: 'transparent',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
-              background: activeTab === tab ? (dark ? '#121212' : 'white') : 'transparent',
               color: activeTab === tab ? accent : (dark ? '#666' : '#999'),
-              boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
-              transition: '0.15s',
+              transition: 'color 0.15s',
             }}>
               {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'badges' ? '🏅 Badges' : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')}
             </button>
@@ -2437,13 +2490,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           onDragEnd={onDragEnd}
         >
           <SortableContext items={displayed.map(getCardId)} strategy={rectSortingStrategy}>
-          <div ref={gridRef} className="card-grid">
+          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}`}>
           {displayed.map((d) => (
             <SortableCard
               key={getCardId(d)}
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
-              className="card-item"
+              className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}`}
               onLongPress={!editMode && !qrMode ? () => shareCardNative(d) : undefined}
               onClick={() => {
                 if (qrMode) { toggleQrCard(d); return }

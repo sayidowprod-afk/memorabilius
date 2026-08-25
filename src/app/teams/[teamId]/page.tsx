@@ -490,9 +490,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         }
       `}</style>
 
-      {/* Header */}
-      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 28, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+      {/* Header — meme traitement que le header de profil galerie : degrade
+          d'accent en bas a droite, plutot qu'un aplat uni. */}
+      <div style={{ position: 'relative', overflow: 'hidden', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md, 0 4px 20px rgba(0,0,0,0.06))' }}>
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: `linear-gradient(to top left, ${ACCENT}${dark ? '3d' : '2b'}, transparent 70%)`,
+          pointerEvents: 'none',
+        }} />
+        <div style={{ position: 'relative', padding: 28, display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           {team.avatar_url
             ? <img src={team.avatar_url} style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${ACCENT}`, flexShrink: 0 }} alt={team.name} />
             : <div style={{ width: 70, height: 70, borderRadius: '50%', background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>{team.name.charAt(0).toUpperCase()}</div>
