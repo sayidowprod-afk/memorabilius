@@ -1803,7 +1803,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               return (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontSize: i === 0 ? 26 : 20 }}>{medal.emoji}</span>
-                  <div onClick={() => setPopup(card)} className={i === 0 ? 'grail-gold-glow' : undefined} style={{
+                  <div onClick={() => setPopup(card)} className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
                     width: medal.width, cursor: 'pointer', position: 'relative',
                     background: `linear-gradient(160deg, ${medal.color}, ${medal.color}99)`, padding: 3, borderRadius: 12,
                     boxShadow: i === 0 ? undefined : `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
@@ -1863,15 +1863,27 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           }
 
           return (
-            <div ref={grailReveal.ref} className={`${grailReveal.className} grail-wall-cursor`} style={{ marginBottom: 24 }}>
+            <div ref={grailReveal.ref} className={grailReveal.className} style={{ marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
                 <span style={{ fontWeight: 900, fontSize: 15, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
                 <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
-              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-end', justifyContent: 'center' }}>
-                {podiumOrder.map(i => renderSlot(i))}
+              {/* Panneau "vitrine" derriere le podium — sur desktop, 3 cartes seules
+                  perdues dans toute la largeur du header faisaient vide ; un cadre
+                  ajuste au contenu (pas pleine largeur) donne un aspect vitrine voulu
+                  plutot que des icones flottant dans du blanc. Sur mobile/app, deja
+                  compact naturellement, le panneau reste discret (padding reduit). */}
+              <div className="grail-showcase" style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="grail-showcase-panel" style={{
+                  display: 'flex', gap: 14, alignItems: 'flex-end', justifyContent: 'center',
+                  background: dark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                  border: `1px solid ${dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)'}`,
+                  borderRadius: 18,
+                }}>
+                  {podiumOrder.map(i => renderSlot(i))}
+                </div>
               </div>
 
               {/* Modal de recherche pour ajouter au grail */}
