@@ -4,6 +4,7 @@ import { useLang, localeFor, type Lang } from '@/lib/LangContext'
 
 interface ActiveListing { price: number; title: string; url: string; img: string }
 interface SoldListing   { price: number; title: string; url: string; img: string; soldDate: string }
+interface HistoryPoint  { snapshot_date: string; median_price: number; sample_type: 'sold' | 'active' }
 
 interface Props {
   cardName: string
@@ -31,10 +32,36 @@ function fmtDate(iso: string, lang: string) {
   return new Date(iso).toLocaleDateString(localeFor(lang as Lang), { day: 'numeric', month: 'short' })
 }
 
+function Sparkline({ points, accent }: { points: HistoryPoint[]; accent: string }) {
+  const W = 220, H = 40, PAD = 4
+  const prices = points.map(p => p.median_price)
+  const min = Math.min(...prices), max = Math.max(...prices)
+  const range = max - min || 1
+  const coords = points.map((p, i) => {
+    const x = points.length === 1 ? PAD : PAD + (i / (points.length - 1)) * (W - PAD * 2)
+    const y = H - PAD - ((p.median_price - min) / range) * (H - PAD * 2)
+    return `${x.toFixed(1)},${y.toFixed(1)}`
+  })
+  const last = points[points.length - 1]
+  const first = points[0]
+  const trendUp = last.median_price >= first.median_price
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ display: 'block', flexShrink: 0 }}>
+        <polyline points={coords.join(' ')} fill="none" stroke={trendUp ? '#2e7d32' : '#e74c3c'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <span style={{ fontSize: 10, color: 'var(--text3, #999)', fontWeight: 700, whiteSpace: 'nowrap' }}>
+        {trendUp ? '↗' : '↘'} {first.median_price.toFixed(0)}€ → {last.median_price.toFixed(0)}€
+      </span>
+    </div>
+  )
+}
+
 export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, accent, img }: Props) {
   const [active, setActive]   = useState<ActiveListing[]>([])
   const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
+  const [history, setHistory] = useState<HistoryPoint[]>([])
   const { lang, t } = useLang()
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
@@ -81,6 +108,19 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     return () => { cancelled = true; controller.abort() }
   }, [cardName, set, year, num, variant, rc, auto, patch, grade, img])
 
+  // Historique "maison" (voir CardValueModule / migration card_price_history) --
+  // ne depend pas d'un appel eBay supplementaire, juste de ce qui a deja ete
+  // enregistre au fil des visites precedentes de cette carte.
+  useEffect(() => {
+    if (!img) { setHistory([]); return }
+    let cancelled = false
+    fetch(`/api/card-price-history?cardKey=${encodeURIComponent(img)}`)
+      .then(r => r.json())
+      .then(json => { if (!cancelled) setHistory(json.points || []) })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [img])
+
   const soldMedian   = Math.round(medianOf(sold.map(i => i.price)) * 100) / 100
   const activeMedian = Math.round(medianOf(active.map(i => i.price)) * 100) / 100
 
@@ -109,6 +149,15 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         )}
         <span style={{ marginLeft: 'auto' }}>{ebayLink}</span>
       </div>
+
+      {history.length >= 2 && (
+        <div style={{ marginBottom: 12 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+            {t('cardvalue_history_title')}
+          </div>
+          <Sparkline points={history} accent={accent} />
+        </div>
+      )}
 
       {loading && (
         <div style={{ height: 4, background: 'var(--bg3, #f0f0f0)', borderRadius: 2, overflow: 'hidden', marginBottom: 10 }}>

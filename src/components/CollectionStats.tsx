@@ -70,6 +70,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
       topBrands: top(cards.map(c => c.br)),
       topYears:  top(cards.map(c => c.y)),
       topTeams:  top(cards.map(c => c.t)),
+      topPlayers: top(cards.map(c => c.n)),
       topSeries: top(cards.map(c => c.s)),
       topGrades: top(psaGrades).sort((a, b) => parseFloat(b.label) - parseFloat(a.label)),
     }
@@ -159,6 +160,18 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
             </div>
             {stats.topYears.map(y => (
               <Bar key={y.label} label={y.label} count={y.count} max={Math.max(...stats.topYears.map(x => x.count))} color="#1976d2" />
+            ))}
+          </div>
+        )}
+
+        {/* Top joueurs */}
+        {stats.topPlayers.length > 1 && (
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+              {t('stats_top_players')}
+            </div>
+            {stats.topPlayers.map(p => (
+              <Bar key={p.label} label={p.label} count={p.count} max={stats.topPlayers[0]?.count ?? 1} color="#7b1fa2" />
             ))}
           </div>
         )}

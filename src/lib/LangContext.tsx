@@ -525,7 +525,8 @@ const translations = {
     stats_psa_notes: 'Notes PSA',
     stats_brands: 'Marques',
     stats_years: 'Années',
-    stats_players_teams: 'Joueurs / Équipes',
+    stats_players_teams: 'Équipes',
+    stats_top_players: 'Joueurs les plus collectionnés',
 
     // Card Picker
     picker_title_multi: 'Choisir des cartes',
@@ -1186,6 +1187,7 @@ const translations = {
 
     // CardValueModule
     cardvalue_market: 'Marché',
+    cardvalue_history_title: 'Suivi du prix (relevés Memorabilius)',
     cardvalue_sold_median: 'vendu (méd.)',
     cardvalue_asked_median: 'demandé (méd.)',
     cardvalue_no_listings: 'Aucune annonce trouvée',
@@ -1743,7 +1745,8 @@ const translations = {
     stats_psa_notes: 'PSA grades',
     stats_brands: 'Brands',
     stats_years: 'Years',
-    stats_players_teams: 'Players / Teams',
+    stats_players_teams: 'Teams',
+    stats_top_players: 'Most collected players',
 
     // Card Picker
     picker_title_multi: 'Choose cards',
@@ -2404,6 +2407,7 @@ const translations = {
 
     // CardValueModule
     cardvalue_market: 'Market',
+    cardvalue_history_title: 'Price tracking (Memorabilius readings)',
     cardvalue_sold_median: 'sold (med.)',
     cardvalue_asked_median: 'asked (med.)',
     cardvalue_no_listings: 'No listings found',
@@ -2961,7 +2965,8 @@ const translations = {
     stats_psa_notes: 'PSA-Noten',
     stats_brands: 'Marken',
     stats_years: 'Jahre',
-    stats_players_teams: 'Spieler / Teams',
+    stats_players_teams: 'Teams',
+    stats_top_players: 'Meistgesammelte Spieler',
 
     // Card Picker
     picker_title_multi: 'Karten auswählen',
@@ -3622,6 +3627,7 @@ const translations = {
 
     // CardValueModule
     cardvalue_market: 'Markt',
+    cardvalue_history_title: 'Preisverlauf (Memorabilius-Messungen)',
     cardvalue_sold_median: 'verkauft (Med.)',
     cardvalue_asked_median: 'verlangt (Med.)',
     cardvalue_no_listings: 'Keine Angebote gefunden',
