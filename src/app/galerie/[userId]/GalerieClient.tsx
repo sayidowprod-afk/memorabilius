@@ -1870,20 +1870,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
-              {/* Panneau "vitrine" derriere le podium — sur desktop, 3 cartes seules
-                  perdues dans toute la largeur du header faisaient vide ; un cadre
-                  ajuste au contenu (pas pleine largeur) donne un aspect vitrine voulu
-                  plutot que des icones flottant dans du blanc. Sur mobile/app, deja
-                  compact naturellement, le panneau reste discret (padding reduit). */}
-              <div className="grail-showcase" style={{ display: 'flex', justifyContent: 'center' }}>
-                <div className="grail-showcase-panel" style={{
-                  display: 'flex', gap: 14, alignItems: 'flex-end', justifyContent: 'center',
-                  background: dark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-                  border: `1px solid ${dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)'}`,
-                  borderRadius: 18,
-                }}>
-                  {podiumOrder.map(i => renderSlot(i))}
-                </div>
+              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-end', justifyContent: 'center' }}>
+                {podiumOrder.map(i => renderSlot(i))}
               </div>
 
               {/* Modal de recherche pour ajouter au grail */}

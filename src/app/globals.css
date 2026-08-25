@@ -612,13 +612,4 @@ body {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath fill='%23003DA6' stroke='white' stroke-width='1' d='M6 3h12l4 6-10 12L2 9z'/%3E%3C/svg%3E") 14 14, pointer;
 }
 
-/* ===== BATCH 4 — panneau "vitrine" derriere le podium du Grail Wall =====
-   Sur desktop (large), 3 cartes seules dans toute la largeur du header
-   faisaient vide ; un cadre ajuste au contenu (pas pleine largeur) avec du
-   padding genereux donne un aspect vitrine voulu. Sur mobile/app, deja
-   compact et apprecie tel quel — panneau desactive en dessous de 700px. */
-.grail-showcase-panel { padding: 28px 40px; }
-@media (max-width: 700px) {
-  .grail-showcase-panel { padding: 0; background: none !important; border: none !important; border-radius: 0 !important; }
-}
 
