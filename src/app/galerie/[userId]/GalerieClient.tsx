@@ -23,7 +23,7 @@ import { fireConfetti } from '@/components/Confetti'
 import { useFlashOnChange } from '@/lib/useFlashOnChange'
 import { useCountUp } from '@/lib/useCountUp'
 import { useScrollReveal } from '@/lib/useScrollReveal'
-import CardTagBadges from '@/components/CardTagBadges'
+import CardTagBadges, { TAG_COLORS } from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
@@ -2066,7 +2066,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               position: 'relative', zIndex: 1,
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer', background: 'transparent',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
-              color: activeTab === tab ? accent : (dark ? '#666' : '#999'),
+              color: activeTab === tab ? accent : '#999',
               transition: 'color 0.15s',
             }}>
               {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'badges' ? '🏅 Badges' : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')}
@@ -2122,22 +2122,20 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 searchDebounceRef.current = setTimeout(() => {
                   const parsed = parseNaturalQuery(e.target.value)
                   const hints: string[] = []
-                  if (parsed.rc) { setActiveFilters(p => ({ ...p, rc: true })); hints.push('RC') }
-                  if (parsed.auto) { setActiveFilters(p => ({ ...p, auto: true })); hints.push('Auto') }
-                  if (parsed.patch) { setActiveFilters(p => ({ ...p, patch: true })); hints.push('Patch') }
-                  if (parsed.year) { setFYear(parsed.year); hints.push(parsed.year) }
-                  if (parsed.num) {
-                    setActiveFilters(p => ({ ...p, num: true }))
-                    setNumMax(parsed.numMax)
-                    hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
-                  }
+                  setActiveFilters({ rc: parsed.rc, auto: parsed.auto, num: parsed.num, patch: parsed.patch })
+                  if (parsed.rc) hints.push('RC')
+                  if (parsed.auto) hints.push('Auto')
+                  if (parsed.patch) hints.push('Patch')
+                  setFYear(parsed.year || ''); if (parsed.year) hints.push(parsed.year)
+                  setNumMax(parsed.numMax)
+                  if (parsed.num) hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
                   setNlpHint(hints)
                   setSearch(parsed.text || e.target.value)
                 }, 200)
               }} placeholder={t('gallery_search')} />
               {nlpHint.length > 0 && (
-                <p style={{ fontSize: 10, color: '#999', margin: '3px 0 0' }}>
-                  {t('search_understood_as')} <strong style={{ color: accent }}>{nlpHint.join(' · ')}</strong>
+                <p style={{ fontSize: 10, color: dark ? '#999' : '#777', margin: '3px 0 0' }}>
+                  {t('search_understood_as')} <strong style={{ color: dark ? `color-mix(in srgb, ${accent} 65%, white)` : accent }}>{nlpHint.join(' · ')}</strong>
                 </p>
               )}
             </div>
@@ -2153,7 +2151,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
+                background: activeFilters[k] ? TAG_COLORS[k] : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
               }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
           </div>

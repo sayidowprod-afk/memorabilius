@@ -103,13 +103,13 @@ export default function Recherche() {
     // filtres RC / annee 2024 / numerote <= 25 appliques automatiquement.
     const parsed = parseNaturalQuery(q)
     const hints: string[] = []
-    if (parsed.rc) { setFRc(true); hints.push('RC') }
-    if (parsed.auto) { setFAuto(true); hints.push('Auto') }
-    if (parsed.patch) { setFPatch(true); hints.push('Patch') }
-    if (parsed.year) { setFYear(parsed.year); hints.push(parsed.year) }
+    setFRc(parsed.rc); if (parsed.rc) hints.push('RC')
+    setFAuto(parsed.auto); if (parsed.auto) hints.push('Auto')
+    setFPatch(parsed.patch); if (parsed.patch) hints.push('Patch')
+    setFYear(parsed.year || ''); if (parsed.year) hints.push(parsed.year)
+    setFNum(parsed.num)
+    setNumMax(parsed.numMax)
     if (parsed.num) {
-      setFNum(true)
-      setNumMax(parsed.numMax)
       hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('search_numbered_hint'))
     }
     setNlpHint(hints)

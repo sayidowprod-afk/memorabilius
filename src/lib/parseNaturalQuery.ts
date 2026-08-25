@@ -23,7 +23,7 @@ export function parseNaturalQuery(raw: string): ParsedQuery {
     if (oneOfOne) { num = true; numMax = 1 }
   }
   if (!num) {
-    const bareNum = text.match(/\bnumerot[eé]e?s?\b|\/(\d{1,4})\b/i)
+    const bareNum = text.match(/\bnum(?:erot[eé]e?s?)?\b|\/(\d{1,4})\b/i)
     if (bareNum) { num = true; if (bareNum[1]) numMax = parseInt(bareNum[1]); text = text.replace(bareNum[0], ' ') }
   }
 
