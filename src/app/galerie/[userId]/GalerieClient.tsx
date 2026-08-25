@@ -471,7 +471,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
   const [shareModalOpen, setShareModalOpen] = useState(false)
-  const [showcaseGenerating, setShowcaseGenerating] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
   // monthlyBadges retired — remplacé par BadgeBox
@@ -1145,21 +1144,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     })
   }
 
-  const handleGenerateShowcase = async () => {
-    if (showcaseGenerating) return
-    setShowcaseGenerating(true)
-    try {
-      const res = await fetch(`/api/showcase-top?userId=${userId}`)
-      if (!res.ok) { toast.error(t('gallery_showcase_err')); return }
-      const blob = await res.blob()
-      await saveOrShareFile(blob, `memorabilius-top${grailCards.length}-${profile?.slug || userId}.png`)
-    } catch {
-      toast.error(t('gallery_showcase_err'))
-    } finally {
-      setShowcaseGenerating(false)
-    }
-  }
-
   const downloadQrCodes = async () => {
     if (qrSelected.size === 0 || qrDownloading) return
     setQrDownloading(true)
@@ -1641,7 +1625,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const activeChildren = activeParent ? getChildren(activeParent) : []
   const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
 
-  const hasAdvancedActive = !!(fTeam || fBrand || fYear || activeFilters.rc || activeFilters.auto || activeFilters.num || activeFilters.patch || filterMemo || filterVente || filterPrivate || sortBy !== 'default')
+  const hasAdvancedActive = !!(fTeam || fBrand || fYear || sortBy !== 'default')
   const advancedVisible = showAdvancedFilters || hasAdvancedActive
 
   return (
@@ -1819,12 +1803,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ↗ Partager
                           </button>
-                          {grailCards.length > 0 && (
-                            <button onClick={() => { setActionMenuOpen(false); handleGenerateShowcase() }} disabled={showcaseGenerating}
-                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: showcaseGenerating ? 'default' : 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: showcaseGenerating ? 0.6 : 1 }}>
-                              💎 {showcaseGenerating ? t('gallery_showcase_generating') : t('gallery_showcase_generate')}
-                            </button>
-                          )}
                           <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ⊞ Mode expo
@@ -1930,8 +1908,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
-                    <div style={{ borderRadius: 9, overflow: 'visible', background: 'white', position: 'relative' }}>
-                      <div style={{ borderRadius: 9, overflow: 'hidden', position: 'relative' }}>
+                    <div style={{ borderRadius: 9, overflow: 'hidden', background: 'white', position: 'relative' }}>
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
@@ -1952,15 +1929,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
                         <p style={{ fontSize: 9, color: medal.color, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
                       </div>
-                      </div>
-                      {/* Reflet flou sous la carte, façon vitrine — miroir de l'image, masqué en degradé */}
-                      <img src={cardThumb(card.f)} alt="" aria-hidden="true" style={{
-                        position: 'absolute', top: '100%', left: '10%', width: '80%', height: '45%',
-                        objectFit: 'cover', transform: 'scaleY(-1)', borderRadius: '0 0 8px 8px',
-                        filter: 'blur(4px)', opacity: 0.25, pointerEvents: 'none',
-                        WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent)',
-                        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent)',
-                      }} />
                     </div>
                   </div>
                 </div>
@@ -2139,6 +2107,31 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
           </div>
 
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 4 }}>
+            {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
+              <button key={k} onClick={() => toggleFilter(k)} style={{
+                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+                background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
+              }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
+            ))}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 10 }}>
+            <button onClick={() => setFilterMemo(p => !p)} style={{
+              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+              background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
+            }}>{filterMemo && <span className="selection-check-pop">✓ </span>}🏆 {t('gallery_filter_memo')}</button>
+            <button onClick={() => setFilterVente(p => !p)} style={{
+              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+              background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
+            }}>{filterVente && <span className="selection-check-pop">✓ </span>}🏷️ {t('gallery_filter_sale')}</button>
+            {isOwner && (
+              <button onClick={() => setFilterPrivate(p => !p)} style={{
+                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
+              }}>{filterPrivate && <span className="selection-check-pop">✓ </span>}🔒 {t('gallery_filter_private')}</button>
+            )}
+          </div>
+
           <button type="button" onClick={() => setShowAdvancedFilters(v => !v)} style={{
             display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer',
             fontSize: 11, fontWeight: 800, color: dark ? '#aaa' : '#666', padding: '4px 0', marginBottom: advancedVisible ? 10 : 0,
@@ -2161,30 +2154,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <select value={fYear} onChange={e => setFYear(e.target.value)}>
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 4 }}>
-            {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
-              <button key={k} onClick={() => toggleFilter(k)} style={{
-                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
-              }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
-            ))}
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 8 }}>
-            <button onClick={() => setFilterMemo(p => !p)} style={{
-              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-              background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
-            }}>{filterMemo && <span className="selection-check-pop">✓ </span>}🏆 {t('gallery_filter_memo')}</button>
-            <button onClick={() => setFilterVente(p => !p)} style={{
-              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-              background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
-            }}>{filterVente && <span className="selection-check-pop">✓ </span>}🏷️ {t('gallery_filter_sale')}</button>
-            {isOwner && (
-              <button onClick={() => setFilterPrivate(p => !p)} style={{
-                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>{filterPrivate && <span className="selection-check-pop">✓ </span>}🔒 {t('gallery_filter_private')}</button>
-            )}
           </div>
           <div>
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
