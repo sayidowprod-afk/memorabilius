@@ -18,6 +18,42 @@ const SPORT_EMOJI: Record<string, string> = {
 }
 function sportEmoji(sports: string[]) { return SPORT_EMOJI[sports?.[0]] ?? '🏀' }
 
+// ── Recherche en langage naturel : detecte quelques signaux frequents dans le
+// texte tape ("RC", "auto", "patch", une annee, "sous /25", "1/1"...) pour
+// appliquer automatiquement les filtres correspondants, plutot que d'obliger
+// a les cocher manuellement. Le texte reconnu est retire de la requete envoyee
+// au serveur pour ne garder que le nom recherche.
+interface ParsedQuery { text: string; rc: boolean; auto: boolean; patch: boolean; num: boolean; year: string | null; numMax: number | null }
+function parseNaturalQuery(raw: string): ParsedQuery {
+  let text = ` ${raw} `
+  const strip = (re: RegExp) => { const has = re.test(text); text = text.replace(re, ' '); return has }
+
+  const rc = strip(/\b(rc|rookie|rooky)\b/i)
+  const auto = strip(/\b(auto|autographe|autograph)\b/i)
+  const patch = strip(/\bpatch(e|es)?\b/i)
+
+  let numMax: number | null = null
+  const underMatch = text.match(/\b(?:sous|moins de|under|below)\s*\/?\s*(\d{1,4})\b/i)
+  if (underMatch) { numMax = parseInt(underMatch[1]); text = text.replace(underMatch[0], ' ') }
+
+  let num = numMax !== null
+  if (!num) {
+    const oneOfOne = strip(/\b1\s*\/\s*1\b/)
+    if (oneOfOne) { num = true; numMax = 1 }
+  }
+  if (!num) {
+    const bareNum = text.match(/\bnumerot[eé]e?s?\b|\/(\d{1,4})\b/i)
+    if (bareNum) { num = true; if (bareNum[1]) numMax = parseInt(bareNum[1]); text = text.replace(bareNum[0], ' ') }
+  }
+
+  let year: string | null = null
+  const yearMatch = text.match(/\b(19|20)\d{2}(-\d{2,4})?\b/)
+  if (yearMatch) { year = yearMatch[0]; text = text.replace(yearMatch[0], ' ') }
+
+  text = text.replace(/\s+/g, ' ').trim()
+  return { text, rc, auto, patch, num, year, numMax }
+}
+
 function NumTag({ num }: { num: string }) {
   const m = num.trim().match(/\/(\d+)$/)
   const v = m ? parseInt(m[1]) : null
@@ -50,6 +86,8 @@ export default function Recherche() {
   const [fNum, setFNum] = useState(false)
   const [fPatch, setFPatch] = useState(false)
   const [fVente, setFVente] = useState(false)
+  const [numMax, setNumMax] = useState<number | null>(null)
+  const [nlpHint, setNlpHint] = useState<string[]>([])
   const [sortCards, setSortCards] = useState<SortKey>('default')
   const [section, setSection] = useState<Section>('all')
   const [myId, setMyId] = useState<string | null>(null)
@@ -95,8 +133,24 @@ export default function Recherche() {
   const doSearch = async (q: string) => {
     setLoading(true)
     setSearched(true)
+
+    // Recherche en langage naturel : "kobe rc 2024 sous /25" -> nom "kobe" +
+    // filtres RC / annee 2024 / numerote <= 25 appliques automatiquement.
+    const parsed = parseNaturalQuery(q)
+    const hints: string[] = []
+    if (parsed.rc) { setFRc(true); hints.push('RC') }
+    if (parsed.auto) { setFAuto(true); hints.push('Auto') }
+    if (parsed.patch) { setFPatch(true); hints.push('Patch') }
+    if (parsed.year) { setFYear(parsed.year); hints.push(parsed.year) }
+    if (parsed.num) {
+      setFNum(true)
+      setNumMax(parsed.numMax)
+      hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('search_numbered_hint'))
+    }
+    setNlpHint(hints)
+
     try {
-      const r = await fetch(`/api/recherche?q=${encodeURIComponent(q)}`)
+      const r = await fetch(`/api/recherche?q=${encodeURIComponent(parsed.text || q)}`)
       const data = await r.json()
       setCards(data.cards || [])
       setUsers(data.users || [])
@@ -122,6 +176,7 @@ export default function Recherche() {
       (!fRc || c.rc) &&
       (!fAuto || c.auto) &&
       (!fNum || c.num) &&
+      (numMax == null || (() => { const m = (c.num || '').match(/\/(\d+)$/); return m ? parseInt(m[1]) <= numMax : false })()) &&
       (!fPatch || c.patch) &&
       (!fVente || c.disponible_vente) &&
       (myMode === 'all' ||
@@ -131,7 +186,7 @@ export default function Recherche() {
     else if (sortCards === 'y_asc') result = [...result].sort((a, b) => (a.year || '').localeCompare(b.year || ''))
     else if (sortCards === 'name') result = [...result].sort((a, b) => (a.name || '').localeCompare(b.name || ''))
     return result
-  }, [cards, fYear, fBrand, fRc, fAuto, fNum, fPatch, fVente, myMode, myId, sortCards])
+  }, [cards, fYear, fBrand, fRc, fAuto, fNum, fPatch, fVente, numMax, myMode, myId, sortCards])
 
   const availableYears = useMemo(() =>
     ([...new Set(cards.map((c: any) => c.year).filter(Boolean))].sort().reverse() as string[]),
@@ -144,7 +199,7 @@ export default function Recherche() {
   const clearFilters = () => {
     setFYear(''); setFBrand(''); setFRc(false); setFAuto(false)
     setFNum(false); setFPatch(false); setFVente(false); setMyMode('all')
-    setSortCards('default')
+    setSortCards('default'); setNumMax(null); setNlpHint([])
   }
   const hasActiveFilter = fYear || fBrand || fRc || fAuto || fNum || fPatch || fVente || myMode !== 'all' || sortCards !== 'default'
 
@@ -231,6 +286,11 @@ export default function Recherche() {
           </div>
           {query.length > 0 && query.length < 2 && (
             <p style={{ color: muted, fontSize: 12, marginTop: 8 }}>{t('search_min_chars')}</p>
+          )}
+          {nlpHint.length > 0 && (
+            <p style={{ color: muted, fontSize: 12, marginTop: 8 }}>
+              {t('search_understood_as')} <strong style={{ color: accent }}>{nlpHint.join(' · ')}</strong>
+            </p>
           )}
         </div>
 
