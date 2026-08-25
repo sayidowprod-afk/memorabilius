@@ -11,6 +11,14 @@ interface Props {
 }
 
 export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
+  // Vue camera censee etre immersive (position:fixed zIndex 9999) -- la nav
+  // globale (zIndex 99999) restait affichee par-dessus et recouvrait le
+  // bouton de capture en bas de l'ecran, rendant la prise de photo impossible.
+  useEffect(() => {
+    document.body.classList.add('camera-fullscreen-active')
+    return () => { document.body.classList.remove('camera-fullscreen-active') }
+  }, [])
+
   const videoRef = useRef<HTMLVideoElement>(null)
   const [ready, setReady] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -256,7 +264,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
           </div>
 
           {ready && (
-            <p style={{ position: 'absolute', top: 16, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 12, margin: 0, pointerEvents: 'none' }}>
+            <p style={{ position: 'absolute', top: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 16px)', left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 12, margin: 0, pointerEvents: 'none' }}>
               Touchez l'écran pour faire la mise au point
             </p>
           )}

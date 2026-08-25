@@ -76,7 +76,8 @@ body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-b
 /* Le classeur en plein ecran est cense etre une vue immersive -- la nav
    globale (zIndex 99999) restait visible par-dessus, dessinee au-dessus des
    propres boutons du classeur malgre son espace de securite reserve. */
-body.binder-fullscreen-active .mobile-bottom-nav-bar { display: none; }
+body.binder-fullscreen-active .mobile-bottom-nav-bar,
+body.camera-fullscreen-active .mobile-bottom-nav-bar { display: none; }
 
 /* Le chat natif va bord à bord (comme Insta) : plus de marge/padding du <main> autour de lui,
    mais topbar et bottom bar restent visibles par-dessus (elles ne sont pas dans <main>). */
