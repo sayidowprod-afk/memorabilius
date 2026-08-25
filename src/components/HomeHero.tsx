@@ -163,6 +163,13 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
           : 'radial-gradient(1000px 500px at 80% -10%, rgba(0,61,166,0.16), transparent 60%), radial-gradient(800px 500px at 0% 110%, rgba(0,180,255,0.14), transparent 55%), linear-gradient(135deg, #f4f7ff 0%, #e6ecff 100%)',
         border: dark ? '1px solid rgba(120,150,255,0.14)' : '1px solid rgba(0,61,166,0.10)',
       }} onMouseMove={onMove} onMouseLeave={onLeave}>
+        {/* Voile "aurore" tres lent en fond, purement decoratif */}
+        <div className="aurora-bg" aria-hidden="true" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: dark
+            ? 'radial-gradient(700px 400px at 20% 20%, rgba(0,150,255,0.16), transparent 60%), radial-gradient(700px 400px at 80% 80%, rgba(140,60,220,0.16), transparent 60%)'
+            : 'radial-gradient(700px 400px at 20% 20%, rgba(0,120,255,0.10), transparent 60%), radial-gradient(700px 400px at 80% 80%, rgba(0,180,255,0.10), transparent 60%)',
+        }} />
         {/* Vraies cartes de sport flottantes (décor + parallaxe) */}
         <div className="mb-hero-cards" aria-hidden="true" ref={cardsRef}>
           {[0, 1, 2, 3].map(i => (

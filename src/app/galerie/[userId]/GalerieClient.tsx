@@ -1273,6 +1273,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const gridRef = useRef<HTMLDivElement>(null)
 
+  // Cascade d'apparition des toutes premieres cartes au tout premier affichage
+  // de la grille (pas a chaque changement de filtre/tri ensuite).
+  const [initialCascadeDone, setInitialCascadeDone] = useState(false)
+  useEffect(() => {
+    if (loaded && displayed.length > 0 && !initialCascadeDone) {
+      const id = setTimeout(() => setInitialCascadeDone(true), 700)
+      return () => clearTimeout(id)
+    }
+  }, [loaded, displayed.length, initialCascadeDone])
+
   // FLIP : quand le tri/filtre change l'ordre des cartes, on les fait glisser
   // vers leur nouvelle position au lieu d'un saut brut. Ignoré pendant un drag
   // (dnd-kit gère déjà ses propres transforms dans ce cas) et en reduced-motion.
@@ -1854,7 +1864,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
-                    <div style={{ borderRadius: 9, overflow: 'hidden', background: 'white', position: 'relative' }}>
+                    <div style={{ borderRadius: 9, overflow: 'visible', background: 'white', position: 'relative' }}>
+                      <div style={{ borderRadius: 9, overflow: 'hidden', position: 'relative' }}>
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
@@ -1875,6 +1886,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
                         <p style={{ fontSize: 9, color: medal.color, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
                       </div>
+                      </div>
+                      {/* Reflet flou sous la carte, façon vitrine — miroir de l'image, masqué en degradé */}
+                      <img src={cardThumb(card.f)} alt="" aria-hidden="true" style={{
+                        position: 'absolute', top: '100%', left: '10%', width: '80%', height: '45%',
+                        objectFit: 'cover', transform: 'scaleY(-1)', borderRadius: '0 0 8px 8px',
+                        filter: 'blur(4px)', opacity: 0.25, pointerEvents: 'none',
+                        WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent)',
+                        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent)',
+                      }} />
                     </div>
                   </div>
                 </div>
@@ -2534,12 +2554,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         >
           <SortableContext items={displayed.map(getCardId)} strategy={rectSortingStrategy}>
           <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}`}>
-          {displayed.map((d) => (
+          {displayed.map((d, idx) => (
             <SortableCard
               key={getCardId(d)}
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
-              className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}`}
+              className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}${!initialCascadeDone && idx < 24 ? ' card-cascade-in' : ''}`}
               onLongPress={!editMode && !qrMode ? () => shareCardNative(d) : undefined}
               onClick={() => {
                 if (qrMode) { toggleQrCard(d); return }
@@ -2547,6 +2567,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 if (!editMode) setPopup(d)
               }}
               style={{
+              ...(!initialCascadeDone && idx < 24 ? { animationDelay: `${idx * 25}ms` } : {}),
               borderRadius: 8, padding: 8,
               background: qrSelected.has(getCardId(d)) ? '#f5f3ff' : selectedCards.has(getCardId(d)) ? '#e8f0fe' : 'white',
               outline: qrSelected.has(getCardId(d)) ? '2px solid #7c3aed' : selectedCards.has(getCardId(d)) ? '2px solid #003DA6' : 'none',

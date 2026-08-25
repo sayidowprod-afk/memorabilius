@@ -713,4 +713,39 @@ body {
 .nav-tap-bounce:active { transform: scale(0.86); }
 @media (prefers-reduced-motion: reduce) { .nav-tap-bounce:active { transform: none; } }
 
+/* ===== BATCH 9 — sceau dore "collection complete" (effet tampon) sur la setlist ===== */
+@keyframes setCompleteStamp {
+  0%   { opacity: 0; transform: scale(2.4) rotate(-18deg); }
+  60%  { opacity: 1; transform: scale(0.92) rotate(-6deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-4deg); }
+}
+.set-complete-stamp { animation: setCompleteStamp 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .set-complete-stamp { animation: none; } }
+
+/* ===== BATCH 9 — rebond de l'icone au moment ou un toast apparait ===== */
+@keyframes toastIconPop {
+  0%   { transform: scale(0.3); }
+  55%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.toast-icon-pop { animation: toastIconPop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .toast-icon-pop { animation: none; } }
+
+/* ===== BATCH 9 — cascade d'apparition des premieres cartes au chargement de la galerie ===== */
+@keyframes cardCascadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.card-cascade-in { animation: cardCascadeIn 0.35s ease backwards; }
+@media (prefers-reduced-motion: reduce) { .card-cascade-in { animation: none; } }
+
+/* ===== BATCH 9 — degrade "aurore" tres lent en fond du hero d'accueil ===== */
+@keyframes auroraDrift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.aurora-bg {
+  background-size: 200% 200%;
+  animation: auroraDrift 18s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .aurora-bg { animation: none; } }
+
 

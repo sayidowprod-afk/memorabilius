@@ -421,6 +421,16 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             <div style={{ height: 10, borderRadius: 5, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
               <div style={{ height: '100%', width: `${pct}%`, background: pct === 100 ? '#2ecc71' : 'linear-gradient(90deg, #003DA6, #0057D9)', borderRadius: 5, transition: 'width 0.4s' }} />
             </div>
+            {pct === 100 && (
+              <div className="set-complete-stamp" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 14,
+                background: 'linear-gradient(135deg, #ffd700, #f39c12)', color: '#3d2800',
+                fontWeight: 900, fontSize: 12, padding: '6px 14px', borderRadius: 20,
+                boxShadow: '0 4px 16px rgba(243,156,18,0.4)', letterSpacing: 0.3,
+              }}>
+                🏆 {t('setlistdetail_complete')}
+              </div>
+            )}
           </div>
         ) : (
           <div style={{ fontSize: 13, color: '#888' }}>

@@ -35,7 +35,7 @@ export default function Toaster() {
           display: 'flex', alignItems: 'center', gap: 10,
           animation: t.leaving ? 'mb-toast-out 0.2s ease forwards' : 'mb-toast-in 0.2s ease',
         }}>
-          <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, flexShrink: 0 }}>
+          <span className={t.leaving ? undefined : 'toast-icon-pop'} style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, flexShrink: 0 }}>
             {ICON[t.type]}
           </span>
           {t.message}

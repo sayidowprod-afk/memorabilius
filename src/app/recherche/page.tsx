@@ -188,6 +188,10 @@ export default function Recherche() {
         .tab-btn:hover { opacity: 0.8; }
         .collector-pill { transition: transform 0.15s; }
         .collector-pill:hover { transform: translateY(-2px); }
+        .player-hover-preview { opacity: 0; transform: translateX(-50%) translateY(4px); transition: opacity 0.15s, transform 0.15s; }
+        @media (hover: hover) and (pointer: fine) {
+          .player-pill-hover:hover .player-hover-preview { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
         @media (max-width: 600px) {
           .search-filters-row { flex-wrap: wrap; }
           .search-sort-row { gap: 6px !important; }
@@ -304,8 +308,8 @@ export default function Recherche() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {players.map((p, i) => (
                 <Link key={i} href={`/joueur/${playerSlug(p.name)}`} style={{ textDecoration: 'none' }}>
-                  <div className="collector-pill" style={{
-                    display: 'flex', alignItems: 'center', gap: 7,
+                  <div className="collector-pill player-pill-hover" style={{
+                    display: 'flex', alignItems: 'center', gap: 7, position: 'relative',
                     background: surface, border: `2px solid ${accent}`,
                     borderRadius: 50, padding: '5px 14px 5px 5px', cursor: 'pointer',
                   }}>
@@ -319,6 +323,21 @@ export default function Recherche() {
                         <span style={{ fontSize: 10, color: muted }}>{sportEmoji(p.sports || [])}</span>
                         {p.isRc && <span style={{ fontSize: 8, background: '#e67e22', color: 'white', padding: '1px 4px', borderRadius: 2, fontWeight: 800 }}>RC</span>}
                       </div>
+                    </div>
+
+                    {/* Aperçu au survol : photo + équipe en grand */}
+                    <div className="player-hover-preview" style={{
+                      position: 'absolute', bottom: 'calc(100% + 8px)', left: '50%',
+                      background: surface, border: `2px solid ${accent}`, borderRadius: 14, padding: 12,
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, width: 140,
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.18)', pointerEvents: 'none', zIndex: 30,
+                    }}>
+                      {p.photo
+                        ? <img src={p.photo} style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top' }} alt="" />
+                        : <span style={{ fontSize: 32 }}>{sportEmoji(p.sports || [])}</span>
+                      }
+                      <span style={{ fontWeight: 800, fontSize: 12, color: text, textAlign: 'center', lineHeight: 1.2 }}>{p.name}</span>
+                      <span style={{ fontSize: 10, color: muted, fontWeight: 700 }}>{sportEmoji(p.sports || [])} {(p.sports || [])[0]?.toUpperCase()}</span>
                     </div>
                   </div>
                 </Link>
