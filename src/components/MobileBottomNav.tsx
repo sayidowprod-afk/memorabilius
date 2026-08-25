@@ -114,6 +114,7 @@ export default function MobileBottomNav() {
       >
         <button
           onClick={() => toggle('communaute')}
+          className="nav-tap-bounce"
           style={{
             flex: 1, background: 'none', border: 'none', cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3,
@@ -128,6 +129,7 @@ export default function MobileBottomNav() {
           <Link
             href={user ? `/galerie/${user.id}` : '/connexion'}
             onClick={() => hapticTap()}
+            className="nav-tap-bounce"
             style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               textDecoration: 'none', marginTop: -20,
@@ -155,6 +157,7 @@ export default function MobileBottomNav() {
 
         <button
           onClick={() => toggle('outils')}
+          className="nav-tap-bounce"
           style={{
             position: 'relative', flex: 1, background: 'none', border: 'none', cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3,

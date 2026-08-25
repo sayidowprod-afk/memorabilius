@@ -19,6 +19,8 @@ export default function Navbar() {
   const { user } = useAuth()
   const [isAdmin, setIsAdmin] = useState(false)
   const [notifs, setNotifs] = useState(0)
+  const [bellPulse, setBellPulse] = useState(false)
+  const prevNotifsRef = useRef(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDrop, setOpenDrop] = useState<'communaute' | 'outils' | 'lang' | null>(null)
   const communauteRef = useRef<HTMLDivElement>(null)
@@ -79,7 +81,13 @@ export default function Navbar() {
 
   const loadNotifs = async (uid: string) => {
     const { count } = await supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', uid).eq('lu', false)
-    setNotifs(count || 0)
+    const next = count || 0
+    if (next > prevNotifsRef.current) {
+      setBellPulse(true)
+      setTimeout(() => setBellPulse(false), 700)
+    }
+    prevNotifsRef.current = next
+    setNotifs(next)
   }
 
   const handleLogout = async () => {
@@ -206,7 +214,7 @@ export default function Navbar() {
             <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
               <div style={{ padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
                 <Link href="/notifications" aria-label="Notifications" style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4 }}>
-                  🔔 <Badge count={notifs} />
+                  <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> <Badge count={notifs} />
                 </Link>
               </div>
               <div style={{ padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
@@ -221,7 +229,7 @@ export default function Navbar() {
                   fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
                   display: 'flex', alignItems: 'center', gap: 5,
                 }}>
-                  {currentLang.flag}
+                  <span key={lang} className="lang-flag-fade">{currentLang.flag}</span>
                   <svg width="8" height="5" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: openDrop === 'lang' ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
                     <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
                   </svg>
@@ -253,7 +261,7 @@ export default function Navbar() {
                   fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
                   display: 'flex', alignItems: 'center', gap: 5,
                 }}>
-                  {currentLang.flag}
+                  <span key={lang} className="lang-flag-fade">{currentLang.flag}</span>
                   <svg width="8" height="5" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: openDrop === 'lang' ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
                     <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
                   </svg>
@@ -312,7 +320,9 @@ export default function Navbar() {
           {user ? (
             <>
               <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_my_account')}</div>
-              <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>🔔 Notifications <Badge count={notifs} /></Link>
+              <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>
+                <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> Notifications <Badge count={notifs} />
+              </Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />

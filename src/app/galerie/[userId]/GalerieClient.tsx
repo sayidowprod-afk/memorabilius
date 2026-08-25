@@ -2026,23 +2026,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
-              }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
+              }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 8 }}>
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏆 {t('gallery_filter_memo')}</button>
+            }}>{filterMemo && <span className="selection-check-pop">✓ </span>}🏆 {t('gallery_filter_memo')}</button>
             <button onClick={() => setFilterVente(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏷️ {t('gallery_filter_sale')}</button>
+            }}>{filterVente && <span className="selection-check-pop">✓ </span>}🏷️ {t('gallery_filter_sale')}</button>
             {isOwner && (
               <button onClick={() => setFilterPrivate(p => !p)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>🔒 {t('gallery_filter_private')}</button>
+              }}>{filterPrivate && <span className="selection-check-pop">✓ </span>}🔒 {t('gallery_filter_private')}</button>
             )}
           </div>
           <div>

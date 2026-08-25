@@ -19,6 +19,13 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
   const { t } = useLang()
   const [zoomed, setZoomed] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50 })
+  // Pulse ponctuel au premier affichage pour signaler que l'image est zoomable,
+  // sans continuer a clignoter indefiniment (distrayant).
+  const [hintPulse, setHintPulse] = useState(true)
+  useEffect(() => {
+    const id = setTimeout(() => setHintPulse(false), 1600)
+    return () => clearTimeout(id)
+  }, [])
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!zoomed) return
     const rect = e.currentTarget.getBoundingClientRect()
@@ -37,7 +44,7 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
         userSelect: 'none',
       }} />
       {!zoomed && (
-        <div style={{ position: 'absolute', bottom: 10, right: 10, background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: 11, padding: '4px 8px', borderRadius: 6, fontWeight: 700, pointerEvents: 'none' }}>🔍 Zoom</div>
+        <div className={hintPulse ? 'zoom-hint-pulse' : undefined} style={{ position: 'absolute', bottom: 10, right: 10, background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: 11, padding: '4px 8px', borderRadius: 6, fontWeight: 700, pointerEvents: 'none' }}>🔍 Zoom</div>
       )}
     </div>
   )

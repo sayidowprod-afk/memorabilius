@@ -561,7 +561,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
         {recording && (
           <div style={{ margin: '0 0 16px' }}>
             <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 8, height: 6, overflow: 'hidden' }}>
-              <div style={{ background: accent, height: '100%', width: `${progress}%`, transition: '0.1s', borderRadius: 8 }} />
+              <div style={{ background: `linear-gradient(90deg, ${accent}, color-mix(in srgb, ${accent} 60%, white))`, height: '100%', width: `${progress}%`, transition: 'width 0.1s linear', borderRadius: 8 }} />
             </div>
             <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 6 }}>{progress}%</p>
           </div>
