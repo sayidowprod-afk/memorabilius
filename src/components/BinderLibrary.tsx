@@ -14,6 +14,8 @@ import CommentsModal from './CommentsModal'
 import { toast } from '@/lib/toast'
 import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
+import { useIsNative } from '@/lib/useIsNative'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 // Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
 function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }) {
@@ -123,6 +125,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 }) {
   const { dark } = useTheme()
   const { t } = useLang()
+  const isNative = useIsNative()
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -1674,6 +1677,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       position: 'fixed', inset: 0, zIndex: 9500,
       background: dark ? '#1a1a1a' : '#efede8',
       display: 'flex', flexDirection: 'column',
+      // position:fixed echappe au flux normal de <body> (et a son padding-bottom
+      // pour la nav native, zIndex 99999 > 9500) -- sans ca, la barre de
+      // pagination/boutons du bas se retrouve dessinee sous la nav native,
+      // partiellement invisible.
+      paddingBottom: isNative ? NAV_TOTAL_HEIGHT_CSS : 0,
     } : {}}>
 
       {/* ── FULLSCREEN OVERLAY : nom + quitter flottants, sans barre ── */}
@@ -1764,23 +1772,35 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             </div>
           )}
 
-          {/* Mobile : icônes compactes + menu ··· pour les actions owner */}
+          {/* Mobile : icônes compactes + menu ··· pour les actions owner.
+              Labels visibles sous chaque icone (pas juste `title`, qui ne
+              s'affiche jamais au toucher sur mobile -- signale illisible/
+              incomprehensible autrement). */}
           {isMobile && !pendingCard && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-              <button onClick={toggleFullscreen} title={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')}
-                style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+              <button onClick={toggleFullscreen} title={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')} aria-label={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                 {binderFullscreen ? '⊡' : '⛶'}
+                <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_fullscreen_title')}</span>
               </button>
-              <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
-              <button onClick={() => setShowQr(true)} title={t('binder_qrcode')} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
-              <button onClick={() => setShowComments(true)} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#666', lineHeight: 1 }}>
-                💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}
+              <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact showLabel />
+              <button onClick={() => setShowQr(true)} title={t('binder_qrcode')} aria-label={t('binder_qrcode')}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                ▦
+                <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_qrcode')}</span>
+              </button>
+              <button onClick={() => setShowComments(true)} title={t('binder_comments')} aria-label={t('binder_comments')}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#666', lineHeight: 1 }}>
+                <span>💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}</span>
+                <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_comments')}</span>
               </button>
               {isOwner && (
                 <div style={{ position: 'relative' }}>
                   <button onClick={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setOwnerMenuUp(r.bottom > window.innerHeight * 0.55); setShowOwnerMenu(v => !v) }}
-                    style={{ background: showOwnerMenu ? (dark ? '#2a2a2a' : '#f0f0f0') : 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 12px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#555', lineHeight: 1, fontWeight: 900 }}>
+                    title={t('binder_more_options')} aria-label={t('binder_more_options')}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: showOwnerMenu ? (dark ? '#2a2a2a' : '#f0f0f0') : 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#555', lineHeight: 1, fontWeight: 900 }}>
                     ···
+                    <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_more_options')}</span>
                   </button>
                   {showOwnerMenu && (
                     <>

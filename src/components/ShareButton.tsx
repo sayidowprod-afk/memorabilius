@@ -11,6 +11,10 @@ interface Props {
   title: string
   subtitle?: string
   compact?: boolean
+  // Etiquette sous l'icone en mode compact -- les tooltips `title` ne
+  // s'affichent jamais au toucher (mobile), un bouton icone seul y reste
+  // incomprehensible. Optionnel pour ne pas casser les usages existants.
+  showLabel?: boolean
   buttonStyle?: React.CSSProperties
   // Contrôle externe (ex: déclenché depuis un menu "···") — si `open` est
   // fourni, le composant devient contrôlé et n'affiche plus son propre bouton
@@ -36,7 +40,7 @@ function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h
 }
 
 
-export default function ShareButton({ url, title, subtitle, compact, buttonStyle, open, onOpenChange, hideTrigger }: Props) {
+export default function ShareButton({ url, title, subtitle, compact, showLabel, buttonStyle, open, onOpenChange, hideTrigger }: Props) {
   const [internalOpen, setInternalOpen] = useState(false)
   const showModal = open !== undefined ? open : internalOpen
   const setShowModal = (v: boolean) => {
@@ -163,13 +167,14 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
   return (
     <>
       {!hideTrigger && (
-        <button onClick={openShare} style={buttonStyle ?? {
+        <button onClick={openShare} title={t('gallery_share')} aria-label={t('gallery_share')} style={buttonStyle ?? {
           background: 'none', border: '1px solid #ddd', borderRadius: 8,
-          padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer',
+          padding: compact ? (showLabel ? '6px 8px' : '10px 10px') : '6px 12px', cursor: 'pointer',
           fontSize: compact ? 16 : 13, fontWeight: 700,
-          color: '#666', display: 'flex', alignItems: 'center', gap: 6,
+          color: '#666', display: 'flex', flexDirection: compact && showLabel ? 'column' : 'row', alignItems: 'center', gap: compact && showLabel ? 2 : 6,
         }}>
           {compact ? '🔗' : t('gallery_share')}
+          {compact && showLabel && <span style={{ fontSize: 8, fontWeight: 700, lineHeight: 1 }}>{t('gallery_share')}</span>}
         </button>
       )}
 
