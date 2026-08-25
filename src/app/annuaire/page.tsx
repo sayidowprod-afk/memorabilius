@@ -7,6 +7,8 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { SPORTS_TEAMS, getTeamById } from '@/lib/sportsTeams'
+import ClearableInput from '@/components/ClearableInput'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 import TeamBadge from '@/components/TeamBadge'
 
 interface Stats { total: number; rc: number; auto: number; num: number; patch: number }
@@ -195,6 +197,7 @@ function AnnuaireContent() {
 
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+      <ScrollToTopButton />
       <style>{`
         .sticker-badge-sm {
           position: relative;
@@ -295,11 +298,11 @@ function AnnuaireContent() {
       </div>
 
       <div style={{ display: 'flex', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-        <input
+        <ClearableInput
           value={search}
-          onChange={e => handleSearchChange(e.target.value)}
+          onChange={handleSearchChange}
           placeholder={t('directory_search_placeholder')}
-          style={{ flex: '1 1 200px', minWidth: 180 }}
+          containerStyle={{ flex: '1 1 200px', minWidth: 180, width: 'auto' }}
         />
         <select value={teamFilter} onChange={e => handleTeamChange(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
           <option value="">{t('all_teams')}</option>

@@ -304,10 +304,11 @@ function BadgeTooltip({ t: info }: { t: TooltipInfo }) {
 }
 
 // ── Badge3D — hover wrapper ───────────────────────────────────────────────
-function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip }: {
+function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip, justUnlocked }: {
   cat: BadgeCategory; tier: BadgeTier; tierIdx: number; totalTiers: number
   isEarned: boolean; statVal: number
   setTooltip: (t: TooltipInfo | null) => void
+  justUnlocked?: boolean
 }) {
   const palIdx = tierColorIdx(tierIdx, totalTiers)
   const pal = TIER[palIdx] as Pal
@@ -353,6 +354,11 @@ function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip
         }}
       >
         <BadgeSVG cat={cat} tier={tier} palIdx={palIdx} isEarned={isEarned} size={64} />
+        {justUnlocked && (
+          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: '50%', pointerEvents: 'none' }}>
+            <div className="badge-unlock-shine" />
+          </div>
+        )}
       </div>
 
       <div style={{
@@ -423,6 +429,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null)
   const [mounted, setMounted] = useState(false)
   const [celebration, setCelebration] = useState<{ label: string; emoji: string } | null>(null)
+  const [justUnlockedIds, setJustUnlockedIds] = useState<Set<string>>(new Set())
 
   useEffect(() => setMounted(true), [])
 
@@ -468,6 +475,9 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
     const newlyEarnedIds = currentIds.filter(id => !seen.has(id))
     if (newlyEarnedIds.length === 0) return
     localStorage.setItem(storageKey, JSON.stringify(currentIds))
+
+    setJustUnlockedIds(new Set(newlyEarnedIds))
+    setTimeout(() => setJustUnlockedIds(new Set()), 2200)
 
     let best: { cat: BadgeCategory; tier: BadgeTier; tierIdx: number } | null = null
     for (const cat of BADGE_CATEGORIES) {
@@ -557,6 +567,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
                         isEarned={earned.has(tier.id)}
                         statVal={statMap[cat.id] ?? 0}
                         setTooltip={setTooltip}
+                        justUnlocked={justUnlockedIds.has(tier.id)}
                       />
                     ))}
                   </div>

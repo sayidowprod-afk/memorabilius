@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useTheme } from '@/lib/ThemeContext'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
+import ClearableInput from '@/components/ClearableInput'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 
 export interface GuideListItem {
   slug: string
@@ -51,14 +53,14 @@ export default function GuidesListClient({
 
   return (
     <div>
+      <ScrollToTopButton />
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
-        <input
-          type="text"
+        <ClearableInput
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
           placeholder={searchPlaceholder}
           style={{
-            width: '100%', boxSizing: 'border-box', padding: '10px 14px', fontSize: 14,
+            padding: '10px 14px', fontSize: 14,
             borderRadius: 10, border: `1.5px solid ${dark ? '#333' : '#e0e0e0'}`,
             background: dark ? '#1e1e1e' : '#fff', color: dark ? '#eee' : '#121212', outline: 'none',
           }}

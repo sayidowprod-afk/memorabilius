@@ -1594,7 +1594,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     </span>
                   )
                 })}
-                {profile?.id && <LevelBadge userId={profile.id} />}
+                {profile?.id && <LevelBadge userId={profile.id} celebrateOnLevelUp={isOwner} />}
               </div>
 
               {profile?.bio && (
@@ -2512,7 +2512,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 ? { border: '2px solid #e74c3c' }
                 : coloredBorder((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent)),
               boxSizing: 'border-box',
-              opacity: activeDragId === getCardId(d) ? 0.4 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
+              opacity: activeDragId === getCardId(d) ? 0.35 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
+              ...(activeDragId === getCardId(d) ? { outline: '2px dashed #003DA6', outlineOffset: -2, background: dark ? '#1a2b57' : '#eef4ff' } : {}),
               position: 'relative',
               transition: 'opacity 0.15s',
               overflow: 'visible',

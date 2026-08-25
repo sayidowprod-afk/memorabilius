@@ -11,6 +11,7 @@ import SkeletonBlock from '@/components/SkeletonBlock'
 import { sportColor } from '@/lib/sportColors'
 import CardTagBadges from '@/components/CardTagBadges'
 import TradeTypeBadge from '@/components/TradeTypeBadge'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
@@ -77,6 +78,12 @@ export default function Trades() {
   const [fTags, setFTags] = useState({ rc: false, auto: false, num: false, patch: false })
   const [popup, setPopup] = useState<any | null>(null)
   const [popupShowVerso, setPopupShowVerso] = useState(false)
+  const [popupFlipping, setPopupFlipping] = useState(false)
+  const flipPopupVerso = () => {
+    setPopupFlipping(true)
+    setTimeout(() => setPopupShowVerso(v => !v), 150)
+    setTimeout(() => setPopupFlipping(false), 300)
+  }
 
   // ── État mes échanges ───────────────────────────────────────────────────────
   const [tradeOffers, setTradeOffers] = useState<any[]>([])
@@ -240,6 +247,7 @@ export default function Trades() {
 
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+      <ScrollToTopButton />
 
       {/* ── En-tête + onglets principaux ── */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
@@ -524,9 +532,15 @@ export default function Trades() {
             `}</style>
             <div className="trade-popup-inner" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', flex: 1, minHeight: 0 }}>
               <div className="trade-popup-img" style={{ background: 'var(--bg3, #f8f8f8)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
-                {popup.image_url
-                  ? <ImageZoom src={popupShowVerso && popup.image_verso ? popup.image_verso : popup.image_url} alt={popup.titre} key={popupShowVerso ? 'verso' : 'recto'} />
-                  : <span style={{ fontSize: 80 }}>🃏</span>}
+                <div style={{
+                  width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transform: popupFlipping ? 'rotateY(90deg)' : 'rotateY(0deg)',
+                  transition: 'transform 0.15s ease', transformStyle: 'preserve-3d',
+                }}>
+                  {popup.image_url
+                    ? <ImageZoom src={popupShowVerso && popup.image_verso ? popup.image_verso : popup.image_url} alt={popup.titre} key={popupShowVerso ? 'verso' : 'recto'} />
+                    : <span style={{ fontSize: 80 }}>🃏</span>}
+                </div>
                 <div style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px 4px 4px', borderRadius: 20, fontSize: 12, fontWeight: 900, display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>
                     {popup._source === 'galerie' ? '🏷️' : popup.type === 'offre' ? '📤' : '📥'}
@@ -534,7 +548,7 @@ export default function Trades() {
                   {popup._source === 'galerie' ? 'Vente/Trade' : popup.type === 'offre' ? 'Offre' : 'Recherche'}
                 </div>
                 {popup._source === 'galerie' && popup.image_verso && (
-                  <button onClick={() => setPopupShowVerso(v => !v)} style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+                  <button onClick={flipPopupVerso} style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
                     {popupShowVerso ? '↩ Recto' : '↪ Verso'}
                   </button>
                 )}

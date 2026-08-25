@@ -520,8 +520,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : 'var(--bg3, #f0f0f0)', color: copied ? '#2e7d32' : 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s' }}>
-              {copied ? t('teams_copied') : t('teams_share')}
+            <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : 'var(--bg3, #f0f0f0)', color: copied ? '#2e7d32' : 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              {copied ? <><span className="selection-check-pop">✓</span> {t('teams_copied')}</> : t('teams_share')}
             </button>
             {!isMember && !hasCandidature && currentUser && (
               <button onClick={postuler} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_join')}</button>

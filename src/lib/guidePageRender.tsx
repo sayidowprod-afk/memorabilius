@@ -7,6 +7,7 @@ import SetlistEmbedBlock from '@/components/guide-blocks/SetlistEmbedBlock'
 import TextImageBlock from '@/components/guide-blocks/TextImageBlock'
 import { buildColorVocab } from '@/lib/variationMatch'
 import ReadingProgressBar from '@/components/ReadingProgressBar'
+import GuideMiniHeader from '@/components/GuideMiniHeader'
 
 // Rendu partagé entre la version source (/guides/[slug], français) et les
 // versions traduites (/[lang]/guides/[slug], anglais/allemand — voir
@@ -266,6 +267,7 @@ export async function GuideArticle({ data }: { data: GuideArticleData }) {
         </div>
       )}
       <h1 style={{ fontSize: 32, fontWeight: 900, margin: '8px 0 8px', lineHeight: 1.2 }}>{data.title}</h1>
+      <GuideMiniHeader title={data.title} backHref={data.backHref} backLabel={data.backLabel} />
       <p style={{ fontSize: 13, color: 'var(--text3, #999)', margin: '0 0 24px' }}>{dateLabel}</p>
 
       {data.coverImage && (

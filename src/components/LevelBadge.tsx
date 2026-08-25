@@ -3,25 +3,41 @@ import { useEffect, useState, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
+import { fireConfetti } from '@/components/Confetti'
 
 // Niveau affiché à côté du pseudo sur la galerie publique — même source que
 // le dashboard perso : le total XP événementiel (xp_events, voir xp.ts),
 // public via la fonction SECURITY DEFINER get_user_xp_total.
-export default function LevelBadge({ userId }: { userId: string }) {
+export default function LevelBadge({ userId, celebrateOnLevelUp }: { userId: string; celebrateOnLevelUp?: boolean }) {
   const { t } = useLang()
   const [level, setLevel] = useState<LevelInfo | null>(null)
   const [showInfo, setShowInfo] = useState(false)
   const [fillPct, setFillPct] = useState(0)
+  const [justLeveledUp, setJustLeveledUp] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let cancelled = false
     supabase.rpc('get_user_xp_total', { p_user_id: userId }).then(({ data }) => {
       if (cancelled) return
-      setLevel(levelFromXP(data ?? 0))
+      const info = levelFromXP(data ?? 0)
+      setLevel(info)
+      // Celebration ponctuelle : uniquement sur son propre profil (celebrateOnLevelUp),
+      // comparee au dernier niveau vu localement -- pas de suivi temps reel du XP, donc
+      // ca se declenche a la prochaine visite qui suit un gain de niveau, pas en direct.
+      if (celebrateOnLevelUp && typeof window !== 'undefined') {
+        const key = `mb_last_level_${userId}`
+        const prev = Number(localStorage.getItem(key) || 0)
+        if (prev > 0 && info.level > prev) {
+          setJustLeveledUp(true)
+          fireConfetti()
+          setTimeout(() => setJustLeveledUp(false), 2600)
+        }
+        localStorage.setItem(key, String(info.level))
+      }
     })
     return () => { cancelled = true }
-  }, [userId])
+  }, [userId, celebrateOnLevelUp])
 
   // Anime le remplissage de 0 -> pct reel au premier affichage, plutot que
   // d'apparaitre deja plein — petit effet "gratifiant" façon barre de jeu.
@@ -47,6 +63,15 @@ export default function LevelBadge({ userId }: { userId: string }) {
 
   return (
     <div ref={ref} style={{ position: 'relative', display: 'inline-block', flexShrink: 0 }}>
+      {justLeveledUp && (
+        <div className="selection-check-pop" style={{
+          position: 'absolute', bottom: 'calc(100% + 6px)', left: '50%', transform: 'translateX(-50%)',
+          background: 'linear-gradient(135deg, #ffd700, #f39c12)', color: '#3d2800', fontWeight: 900, fontSize: 11,
+          padding: '4px 10px', borderRadius: 20, whiteSpace: 'nowrap', boxShadow: '0 4px 16px rgba(243,156,18,0.5)', zIndex: 51,
+        }}>
+          ⬆ Niveau supérieur !
+        </div>
+      )}
       <div style={{
         display: 'inline-flex', flexDirection: 'column', gap: 4,
         background: 'linear-gradient(135deg, rgba(0,61,166,0.1), rgba(30,99,224,0.04))',

@@ -213,8 +213,9 @@ export default function ShareButton({ url, title, subtitle, compact, buttonStyle
                 background: copied ? '#2ecc71' : BRAND, color: 'white', border: 'none',
                 borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer',
                 fontSize: 13, whiteSpace: 'nowrap', transition: 'background 0.2s',
+                display: 'flex', alignItems: 'center', gap: 5,
               }}>
-                {copied ? '✓ Copié' : 'Copier'}
+                {copied ? <><span className="selection-check-pop">✓</span> Copié</> : 'Copier'}
               </button>
             </div>
 
