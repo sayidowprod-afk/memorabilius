@@ -149,9 +149,9 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
         onWheel={onWheel}
         className="pepites-track"
         style={{
-          display: 'flex', gap: 10, overflowX: 'auto', cursor: 'grab',
+          display: 'flex', gap: 10, overflowX: 'auto', overflowY: 'hidden', cursor: 'grab',
           width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)',
-          padding: '0 16px 6px',
+          padding: '10px 16px 16px',
         }}
       >
         {cards.map((card, i) => <PepiteCard key={`a-${i}`} card={card} eager={i === 0} dark={dark} />)}
