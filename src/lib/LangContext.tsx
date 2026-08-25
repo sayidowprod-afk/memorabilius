@@ -548,6 +548,7 @@ const translations = {
     trademodal_selected_suffix: 'sélectionnée',
     trademodal_selected_suffix_plural: 'sélectionnées',
     trademodal_sending: 'Envoi…',
+    trademodal_sent: 'Envoyée !',
     trademodal_send_offer: "Envoyer l'offre",
     trademodal_cards_of: 'Cartes de',
 
@@ -1752,6 +1753,7 @@ const translations = {
     trademodal_selected_suffix: 'selected',
     trademodal_selected_suffix_plural: 'selected',
     trademodal_sending: 'Sending…',
+    trademodal_sent: 'Sent!',
     trademodal_send_offer: 'Send offer',
     trademodal_cards_of: 'Cards from',
 
@@ -2956,6 +2958,7 @@ const translations = {
     trademodal_selected_suffix: 'ausgewählt',
     trademodal_selected_suffix_plural: 'ausgewählt',
     trademodal_sending: 'Wird gesendet…',
+    trademodal_sent: 'Gesendet!',
     trademodal_send_offer: 'Angebot senden',
     trademodal_cards_of: 'Karten von',
 

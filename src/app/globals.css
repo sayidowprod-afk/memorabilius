@@ -754,4 +754,36 @@ body {
 }
 @media (prefers-reduced-motion: reduce) { .aurora-bg { animation: none; } }
 
+/* ===== BATCH 10 — confirmation "offre envoyee" dans TradeModal ===== */
+@keyframes tradeSentFly {
+  0%   { opacity: 0; transform: translateY(6px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.trade-sent-fly { animation: tradeSentFly 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .trade-sent-fly { animation: none; } }
+
+/* ===== BATCH 10 — zoom en fondu du logo d'equipe au chargement de la page ===== */
+@keyframes teamLogoZoomIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+.team-logo-zoom-in { animation: teamLogoZoomIn 0.4s cubic-bezier(0.22,0.61,0.36,1); }
+@media (prefers-reduced-motion: reduce) { .team-logo-zoom-in { animation: none; } }
+
+/* ===== BATCH 10 — la carte scannee "atterrit" avec un rebond dans la zone resultat ===== */
+@keyframes scanResultLand { 0% { opacity: 0; transform: translateY(-18px) scale(0.92); } 60% { opacity: 1; transform: translateY(4px) scale(1.02); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+.scan-result-land { animation: scanResultLand 0.45s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .scan-result-land { animation: none; } }
+
+/* ===== BATCH 10 — surlignage bref d'un commentaire qui vient d'etre poste ===== */
+@keyframes commentHighlight { 0% { background: rgba(0,61,166,0.14); } 100% { background: transparent; } }
+.comment-just-posted { animation: commentHighlight 1.8s ease; }
+@media (prefers-reduced-motion: reduce) { .comment-just-posted { animation: none; } }
+
+/* ===== BATCH 10 — rebond de l'emoji sport au clic sur un filtre ===== */
+@keyframes sportEmojiBounce { 0%,100% { transform: scale(1); } 40% { transform: scale(1.35); } 65% { transform: scale(0.92); } }
+.sport-emoji-bounce { display: inline-block; animation: sportEmojiBounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .sport-emoji-bounce { animation: none; } }
+
+/* ===== BATCH 10 — rotation + ombre portee sur la carte en cours de glisser-deposer ===== */
+.card-item-dragging { transform: rotate(-4deg) scale(1.04) !important; box-shadow: 0 16px 32px rgba(0,0,0,0.35) !important; }
+@media (prefers-reduced-motion: reduce) { .card-item-dragging { transform: none !important; } }
+
 

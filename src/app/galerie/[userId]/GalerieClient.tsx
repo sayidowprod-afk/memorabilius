@@ -258,7 +258,7 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
     <div
       ref={setNodeRef}
       data-card-id={id}
-      className={className}
+      className={`${className || ''}${isDragging ? ' card-item-dragging' : ''}`}
       style={{ ...style, transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 999 : undefined }}
       onClick={onClick}
       onClickCapture={handleClickCapture}

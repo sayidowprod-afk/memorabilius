@@ -83,6 +83,7 @@ export default function Trades() {
   const [fEquipe, setFEquipe] = useState('')
   const [fSport, setFSport] = useState('')
   const [fTags, setFTags] = useState({ rc: false, auto: false, num: false, patch: false })
+  const [sportBounceKey, setSportBounceKey] = useState<string | null>(null)
   const [popup, setPopup] = useState<any | null>(null)
   const [popupShowVerso, setPopupShowVerso] = useState(false)
   const [popupFlipping, setPopupFlipping] = useState(false)
@@ -307,11 +308,11 @@ export default function Trades() {
                 const labels: Record<string, string> = { basket: 'Basket', foot: 'Football', football_us: 'Football US', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', tcg: 'TCG' }
                 const c = sportColor(key)
                 return (
-                  <button key={key} onClick={() => setFSport(fSport === key ? '' : key)} title={labels[key]} style={{
+                  <button key={key} onClick={() => { setFSport(fSport === key ? '' : key); setSportBounceKey(key); setTimeout(() => setSportBounceKey(k => k === key ? null : k), 400) }} title={labels[key]} style={{
                     padding: '5px 12px', border: `1.5px solid ${fSport === key ? c : 'transparent'}`, borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
                     background: fSport === key ? c : 'var(--bg3, #f0f0f0)',
                     color: fSport === key ? 'white' : 'var(--text2, #333)',
-                  }}>{emoji}</button>
+                  }}><span className={sportBounceKey === key ? 'sport-emoji-bounce' : undefined}>{emoji}</span></button>
                 )
               })}
               <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', marginLeft: 8 }}>Tags :</span>

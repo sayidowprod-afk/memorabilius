@@ -135,7 +135,7 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 16px', fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 32, flexWrap: 'wrap' }}>
-        <img src={logoUrl} alt={team.name} style={{ width: 80, height: 80, objectFit: 'contain' }}
+        <img src={logoUrl} alt={team.name} className="team-logo-zoom-in" style={{ width: 80, height: 80, objectFit: 'contain' }}
           onError={undefined} />
         <div>
           <div style={{ fontSize: 11, color: teamColor, fontWeight: 700, textTransform: 'uppercase', marginBottom: 4, letterSpacing: '0.08em' }}>

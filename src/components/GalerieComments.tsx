@@ -85,13 +85,13 @@ const Avatar = ({ profile, accent, size = 36 }: { profile: Profile | null; accen
 )
 
 function CommentItem({
-  comment, accent, currentUserId, isOwner, onDelete, onLike, onReply, depth = 0, dark, t, lang
+  comment, accent, currentUserId, isOwner, onDelete, onLike, onReply, depth = 0, dark, t, lang, justPostedId
 }: {
   comment: Comment; accent: string; currentUserId: string | null
   isOwner: boolean; onDelete: (id: string) => void
   onLike: (id: string, liked: boolean) => void
   onReply: (parentId: string, message: string) => void
-  depth?: number; dark: boolean; t: (k: any) => string; lang: string
+  depth?: number; dark: boolean; t: (k: any) => string; lang: string; justPostedId?: string | null
 }) {
   const [replyOpen, setReplyOpen] = useState(false)
   const [replyMsg, setReplyMsg] = useState('')
@@ -118,7 +118,7 @@ function CommentItem({
         <Avatar profile={comment.profiles} accent={accent} size={depth > 0 ? 28 : 36} />
       </Link>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{
+        <div className={comment.id === justPostedId ? 'comment-just-posted' : undefined} style={{
           background: bg, borderRadius: 12, padding: '10px 14px',
           boxShadow: '0 1px 4px rgba(0,0,0,0.1)', border: `1px solid ${border}`,
         }}>
@@ -187,7 +187,7 @@ function CommentItem({
           <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
             {comment.replies.map(reply => (
               <CommentItem key={reply.id} comment={reply} accent={accent} currentUserId={currentUserId}
-                isOwner={isOwner} onDelete={onDelete} onLike={onLike} onReply={onReply} depth={1} dark={dark} t={t} lang={lang} />
+                isOwner={isOwner} onDelete={onDelete} onLike={onLike} onReply={onReply} depth={1} dark={dark} t={t} lang={lang} justPostedId={justPostedId} />
             ))}
           </div>
         )}
@@ -204,6 +204,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
   const [message, setMessage] = useState('')
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [sending, setSending] = useState(false)
+  const [justPostedId, setJustPostedId] = useState<string | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const { dark } = useTheme()
   const { t, lang } = useLang()
@@ -307,10 +308,14 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
   const send = async () => {
     if (!message.trim() || !currentUserId) return
     setSending(true)
-    await supabase.from('galerie_comments').insert({
+    const { data: inserted } = await supabase.from('galerie_comments').insert({
       galerie_user_id: galerieUserId, author_id: currentUserId, message: message.trim(),
       card_key: cardKey || null, binder_id: binderId || null,
-    })
+    }).select('id').single()
+    if (inserted) {
+      setJustPostedId(inserted.id)
+      setTimeout(() => setJustPostedId(null), 1800)
+    }
     // Notifier le propriétaire (pas si c'est lui qui commente)
     const target = notifyUserId ?? galerieUserId
     if (currentUserId !== target) {
@@ -346,10 +351,14 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
 
   const handleReply = async (parentId: string, msg: string) => {
     if (!currentUserId) return
-    await supabase.from('galerie_comments').insert({
+    const { data: inserted } = await supabase.from('galerie_comments').insert({
       galerie_user_id: galerieUserId, author_id: currentUserId, message: msg, parent_id: parentId,
       card_key: cardKey || null, binder_id: binderId || null,
-    })
+    }).select('id').single()
+    if (inserted) {
+      setJustPostedId(inserted.id)
+      setTimeout(() => setJustPostedId(null), 1800)
+    }
     // Notifier l'auteur du commentaire parent (pas si c'est soi-même)
     const parentComment = comments.find(c => c.id === parentId) || comments.flatMap(c => c.replies).find(c => c.id === parentId)
     if (parentComment && parentComment.author_id !== currentUserId) {
@@ -410,7 +419,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {comments.map(c => (
             <CommentItem key={c.id} comment={c} accent={accent} currentUserId={currentUserId}
-              isOwner={isOwner} onDelete={handleDelete} onLike={handleLike} onReply={handleReply} dark={dark} t={t} lang={lang} />
+              isOwner={isOwner} onDelete={handleDelete} onLike={handleLike} onReply={handleReply} dark={dark} t={t} lang={lang} justPostedId={justPostedId} />
           ))}
         </div>
       )}

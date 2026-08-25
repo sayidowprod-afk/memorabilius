@@ -39,6 +39,7 @@ export default function MobileBottomNav() {
 
   const [sheet, setSheet] = useState<'communaute' | 'outils' | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [notifs, setNotifs] = useState(0)
 
   const sheetRef = useRef(sheet)
   useEffect(() => { sheetRef.current = sheet }, [sheet])
@@ -66,6 +67,13 @@ export default function MobileBottomNav() {
     supabase.from('profiles').select('is_admin').eq('id', user.id).single()
       .then(({ data: p }) => setIsAdmin(p?.is_admin ?? false))
   }, [user?.id])
+
+  useEffect(() => {
+    if (!user) { setNotifs(0); return }
+    const load = () => supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('lu', false)
+      .then(({ count }) => setNotifs(count || 0))
+    load()
+  }, [user?.id, pathname])
 
   useEffect(() => {
     document.body.classList.toggle('native-bottom-nav', isNative)
@@ -116,12 +124,22 @@ export default function MobileBottomNav() {
           onClick={() => toggle('communaute')}
           className="nav-tap-bounce"
           style={{
-            flex: 1, background: 'none', border: 'none', cursor: 'pointer',
+            position: 'relative', flex: 1, background: 'none', border: 'none', cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3,
             padding: '4px 4px', color: tabColor(communauteActive || sheet === 'communaute'),
           }}
         >
-          <UsersIcon />
+          <span style={{ position: 'relative' }}>
+            <UsersIcon />
+            {notifs > 0 && (
+              <span style={{
+                position: 'absolute', top: -3, right: -6, background: '#e74c3c', color: 'white',
+                borderRadius: '50%', minWidth: 15, height: 15, fontSize: 9, fontWeight: 900,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 3px',
+                border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
+              }}>{notifs > 9 ? '9+' : notifs}</span>
+            )}
+          </span>
           <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }}>{t('nav_communaute')}</span>
         </button>
 

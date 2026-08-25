@@ -216,6 +216,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   const [message, setMessage] = useState('')
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const [justSent, setJustSent] = useState(false)
 
   const fetchTargetCards = useCallback(async () => {
     const [{ data: manuelles }, { data: profile }, { data: privees }] = await Promise.all([
@@ -304,8 +305,11 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       })
       const json = await res.json()
       if (!res.ok) { setError(json.error || t('trademodal_err_generic')); setSending(false); return }
-      onSuccess()
-      router.push(`/messages?to=${targetUserId}`)
+      setJustSent(true)
+      setTimeout(() => {
+        onSuccess()
+        router.push(`/messages?to=${targetUserId}`)
+      }, 650)
     } catch {
       setError(t('trademodal_err_network'))
       setSending(false)
@@ -358,14 +362,17 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
 
         {error && <div style={{ color: '#c00', fontSize: 13, fontWeight: 600 }}>{error}</div>}
 
-        <button onClick={submit} disabled={sending || targetSelected.size === 0}
+        <button onClick={submit} disabled={sending || justSent || targetSelected.size === 0}
           style={{
-            background: (sending || targetSelected.size === 0) ? '#ccc' : '#003DA6',
+            background: (sending || justSent || targetSelected.size === 0) ? '#ccc' : '#003DA6',
             color: '#fff', border: 'none', borderRadius: 50, padding: '13px 24px',
-            fontWeight: 800, fontSize: 15, cursor: (sending || targetSelected.size === 0) ? 'default' : 'pointer',
+            fontWeight: 800, fontSize: 15, cursor: (sending || justSent || targetSelected.size === 0) ? 'default' : 'pointer',
+            position: 'relative', overflow: 'hidden',
           }}
         >
-          {sending ? t('trademodal_sending') : `${t('trademodal_send_offer')} (${targetSelected.size}↔${mySelected.size})`}
+          {justSent
+            ? <span className="trade-sent-fly" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>🃏 <span style={{ fontSize: 18 }}>→</span> ✓ {t('trademodal_sent')}</span>
+            : sending ? t('trademodal_sending') : `${t('trademodal_send_offer')} (${targetSelected.size}↔${mySelected.size})`}
         </button>
       </div>
     </div>

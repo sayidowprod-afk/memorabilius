@@ -480,7 +480,7 @@ export default function ScannerPage() {
         {showResults && (
           <>
             {/* Photo miniature + info Gemini */}
-            <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
+            <div className="scan-result-land" style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                 <div style={{ flexShrink: 0, position: 'relative', width: 80 }}>
                   {imgSrc && (
