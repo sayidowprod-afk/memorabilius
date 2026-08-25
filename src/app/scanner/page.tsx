@@ -426,15 +426,16 @@ export default function ScannerPage() {
               {/* Viseur */}
               <div style={{ width: 220, height: 220, position: 'relative' }}>
                 {(['tl','tr','bl','br'] as const).map(c => (
-                  <div key={c} style={{
+                  <div key={c} className={qrFound ? 'scanner-corner-found' : 'scanner-corner-pulse'} style={{
                     position: 'absolute',
                     width: 36, height: 36,
                     ...(c.includes('t') ? { top: 0 } : { bottom: 0 }),
                     ...(c.includes('l') ? { left: 0 } : { right: 0 }),
-                    borderTop:    c.includes('t') ? '3px solid #003DA6' : 'none',
-                    borderBottom: c.includes('b') ? '3px solid #003DA6' : 'none',
-                    borderLeft:   c.includes('l') ? '3px solid #003DA6' : 'none',
-                    borderRight:  c.includes('r') ? '3px solid #003DA6' : 'none',
+                    borderTop:    c.includes('t') ? `3px solid ${qrFound ? '#2ecc71' : '#003DA6'}` : 'none',
+                    borderBottom: c.includes('b') ? `3px solid ${qrFound ? '#2ecc71' : '#003DA6'}` : 'none',
+                    borderLeft:   c.includes('l') ? `3px solid ${qrFound ? '#2ecc71' : '#003DA6'}` : 'none',
+                    borderRight:  c.includes('r') ? `3px solid ${qrFound ? '#2ecc71' : '#003DA6'}` : 'none',
+                    transition: 'border-color 0.2s',
                   }} />
                 ))}
               </div>

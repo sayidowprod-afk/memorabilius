@@ -261,6 +261,19 @@ export default function Profil() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <input type="color" value={form.couleur_bordure} onChange={e => setForm({ ...form, couleur_bordure: e.target.value })} style={{ width: 50, height: 40, padding: 2, cursor: 'pointer' }} />
               <span style={{ fontSize: 13, color: '#666' }}>{form.couleur_bordure}</span>
+              {/* Aperçu en direct — meme traitement que le header de galerie (avatar
+                  cerclé + bouton degrade) pour voir tout de suite le rendu reel. */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginLeft: 8 }}>
+                <img
+                  src={avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.display_name || 'U')}&background=003DA6&color=fff`}
+                  alt="" style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${form.couleur_bordure}`, transition: 'border-color 0.15s' }}
+                />
+                <span style={{
+                  fontSize: 11, fontWeight: 800, color: 'white', padding: '6px 12px', borderRadius: 8,
+                  background: `linear-gradient(135deg, ${form.couleur_bordure}, color-mix(in srgb, ${form.couleur_bordure} 70%, black))`,
+                  transition: 'background 0.15s',
+                }}>+ Ajouter</span>
+              </div>
             </div>
           </div>
           <div>

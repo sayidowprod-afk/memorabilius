@@ -239,17 +239,39 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
     setShowAttendees(true)
   }
 
+  // Anneau de compte a rebours — plein a 30j ou plus, se remplit au fur et
+  // a mesure que la date approche. Uniquement pour les evenements a venir.
+  const daysUntil = Math.ceil((new Date(ev.date).getTime() - Date.now()) / 86400000)
+  const COUNTDOWN_WINDOW = 30
+  const ringPct = daysUntil >= 0 ? Math.max(0, Math.min(1, 1 - daysUntil / COUNTDOWN_WINDOW)) : 0
+  const R = 18, CIRC = 2 * Math.PI * R
+
   return (
     <div style={{ background: card, border: `1px solid ${border}`, borderRadius: 14, overflow: 'hidden' }}>
       {ev.image_url && <img src={ev.image_url} style={{ width: '100%', maxHeight: 200, objectFit: 'cover', display: 'block' }} />}
       <div style={{ padding: '20px 22px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+          {daysUntil >= 0 && (
+            <div style={{ position: 'relative', width: 44, height: 44, flexShrink: 0 }}>
+              <svg width="44" height="44" viewBox="0 0 44 44" style={{ transform: 'rotate(-90deg)' }}>
+                <circle cx="22" cy="22" r={R} fill="none" stroke={dark ? '#2a2a2a' : '#eee'} strokeWidth="4" />
+                <circle cx="22" cy="22" r={R} fill="none" stroke="#003DA6" strokeWidth="4" strokeLinecap="round"
+                  strokeDasharray={CIRC} strokeDashoffset={CIRC * (1 - ringPct)}
+                  style={{ transition: 'stroke-dashoffset 0.6s ease' }} />
+              </svg>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 900, color: text }}>
+                {daysUntil}j
+              </div>
+            </div>
+          )}
+          <div style={{ flex: 1 }}>
           <h3 style={{ color: text, margin: '0 0 6px', fontSize: 17, fontWeight: 800 }}>{ev.title}</h3>
           <p style={{ color: '#003DA6', margin: '0 0 4px', fontSize: 13, fontWeight: 700 }}>📅 {formatDate(ev.date)}</p>
           <p style={{ color: sub, margin: '0 0 4px', fontSize: 13 }}>📍 {ev.location_name ? `${ev.location_name}, ` : ''}{ev.city}{ev.country !== 'France' ? `, ${ev.country}` : ''}</p>
           {ev.description && <p style={{ color: sub, margin: '6px 0 0', fontSize: 13, lineHeight: 1.5 }}>{ev.description}</p>}
           {ev.website && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, marginTop: 4, display: 'inline-block' }}>{t('events_official_site')}</a>}
+          </div>
         </div>
         {userId && (
           <button onClick={onToggle} style={{

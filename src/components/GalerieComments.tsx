@@ -145,7 +145,9 @@ function CommentItem({
             color: comment.liked ? '#e74c3c' : textMuted,
             padding: 0,
           }}>
-            {comment.liked ? '❤️' : '🤍'} {comment.likes > 0 && comment.likes}
+            <span key={comment.liked ? 'liked' : 'unliked'} className={comment.liked ? 'selection-check-pop' : undefined} style={{ display: 'inline-block' }}>
+              {comment.liked ? '❤️' : '🤍'}
+            </span> {comment.likes > 0 && comment.likes}
           </button>
           {currentUserId && depth === 0 && (
             <button onClick={() => setReplyOpen(!replyOpen)} style={{

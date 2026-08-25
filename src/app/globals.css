@@ -665,4 +665,25 @@ body {
 }
 @media (prefers-reduced-motion: reduce) { .badge-unlock-shine { display: none; } }
 
+/* ===== BATCH 7 — viseur QR du scanner : pulsation + confirmation de detection ===== */
+@keyframes scannerCornerPulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+.scanner-corner-pulse { animation: scannerCornerPulse 1.6s ease-in-out infinite; }
+@keyframes scannerCornerFound { 0% { transform: scale(1.35); } 100% { transform: scale(1); } }
+.scanner-corner-found { animation: scannerCornerFound 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .scanner-corner-pulse, .scanner-corner-found { animation: none; } }
+
+/* ===== BATCH 7 — effet "tampon" quand une carte de setlist passe a possedee ===== */
+@keyframes setlistStamp {
+  0%   { transform: scale(2.2) rotate(-18deg); opacity: 0; }
+  60%  { transform: scale(0.9) rotate(4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.setlist-stamp { animation: setlistStamp 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+@media (prefers-reduced-motion: reduce) { .setlist-stamp { animation: none; } }
+
+/* ===== BATCH 7 — entree en fondu/glissement de la banniere d'installation PWA ===== */
+@keyframes installBannerIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.install-banner-in { animation: installBannerIn 0.35s cubic-bezier(0.22,0.61,0.36,1); }
+@media (prefers-reduced-motion: reduce) { .install-banner-in { animation: none; } }
+
 

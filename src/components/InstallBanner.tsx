@@ -59,7 +59,7 @@ export default function InstallBanner() {
   if (dismissed || !platform) return null
 
   return (
-    <div style={{
+    <div className="install-banner-in" style={{
       position: 'fixed', bottom: 16, left: 16, right: 16, zIndex: 9999,
       background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #e5e7eb)',
       borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.18)',

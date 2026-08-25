@@ -592,6 +592,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
                           {userId ? (
                             <button onClick={() => toggleOwned(entry, variation.name)} disabled={saving === entry.id}
+                              key={entry.owned ? 'owned' : 'unowned'}
+                              className={entry.owned ? 'setlist-stamp' : undefined}
                               style={{ width: 34, height: 34, borderRadius: '50%', border: '2px solid', borderColor: entry.owned ? '#2ecc71' : (dark ? '#444' : '#ddd'), background: entry.owned ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: entry.owned ? 'white' : '#ccc', fontWeight: 900, fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: saving === entry.id ? 0.5 : 1 }}>
                               ✓
                             </button>
