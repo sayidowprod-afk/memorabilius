@@ -52,6 +52,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [filter, setFilter] = useState<'all' | 'owned' | 'missing'>('all')
   const [filterTeam, setFilterTeam] = useState('')
   const [saving, setSaving] = useState<number | null>(null)
+  const [justStampedIds, setJustStampedIds] = useState<Set<number>>(new Set())
   const [checkingAll, setCheckingAll] = useState<string | null>(null)
   const [openVariations, setOpenVariations] = useState<Set<string>>(new Set(['Base']))
   const [totalOwned, setTotalOwned] = useState(0)
@@ -376,6 +377,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         } : v
       ))
       setTotalOwned(p => p + 1)
+      setJustStampedIds(prev => new Set(prev).add(entry.id))
+      setTimeout(() => setJustStampedIds(prev => { const n = new Set(prev); n.delete(entry.id); return n }), 400)
     }
     setSaving(null)
   }
@@ -592,8 +595,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
                           {userId ? (
                             <button onClick={() => toggleOwned(entry, variation.name)} disabled={saving === entry.id}
-                              key={entry.owned ? 'owned' : 'unowned'}
-                              className={entry.owned ? 'setlist-stamp' : undefined}
+                              className={justStampedIds.has(entry.id) ? 'setlist-stamp' : undefined}
                               style={{ width: 34, height: 34, borderRadius: '50%', border: '2px solid', borderColor: entry.owned ? '#2ecc71' : (dark ? '#444' : '#ddd'), background: entry.owned ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: entry.owned ? 'white' : '#ccc', fontWeight: 900, fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: saving === entry.id ? 0.5 : 1 }}>
                               ✓
                             </button>
