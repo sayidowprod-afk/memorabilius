@@ -369,18 +369,16 @@ function AnnuaireContent() {
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
                       <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 28 : 42} height={isMobile ? 28 : 42} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
-                      <div style={{ minWidth: 0 }}>
-                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
-                        <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>
-                          {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
-                            <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 18 }}>
-                              <TeamBadge teamId={id} size={18} />
-                            </span>
-                          ))}
-                          {c.is_donor && (
-                            <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 18 }}>☕</span>
-                          )}
-                        </div>
+                      <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
+                          <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 26 }}>
+                            <TeamBadge teamId={id} size={26} />
+                          </span>
+                        ))}
+                        {c.is_donor && (
+                          <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 22 }}>☕</span>
+                        )}
                       </div>
                     </div>
                   </td>
