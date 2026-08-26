@@ -498,6 +498,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const initialBinderId = searchParams.get('binder') ? parseInt(searchParams.get('binder')!, 10) : null
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
+  // Aperçu agrandi au survol (desktop uniquement) : les infos texte sont déjà
+  // affichées sous chaque vignette, mais dans une grille dense les miniatures
+  // restent trop petites pour juger du visuel — pas besoin d'ouvrir le viewer
+  // complet juste pour ça.
+  const [hoverPreview, setHoverPreview] = useState<{ card: Card; rect: DOMRect } | null>(null)
   const [shareModalOpen, setShareModalOpen] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
@@ -2181,24 +2186,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         />}
 
         {activeTab === 'collection' && <>
-        {/* Barre de recherche seule en sticky — juste assez pour relancer une
-            recherche sans remonter en haut d'une longue galerie, sans river
-            tout le panneau de filtres (sport, RC/AUTO/NUM/PATCH, collections...)
-            à l'écran en permanence (signalé : ça prenait trop de place au scroll).
-            top: sous la NavBar web sticky (60px) ; sur natif MobileTopBar défile
-            avec la page sur cette route (voir GALLERY_ROOT dans MobileTopBar.tsx)
-            donc rien de sticky au-dessus à éviter — mais la barre de statut
-            Android, elle, reste bien là : sans la zone de sécurité, la barre
-            passe dessous une fois collée en haut au scroll (signalé 2 fois).
-            Bord bas plat + pas d'ombre : se fond visuellement dans le panneau
-            de filtres juste en dessous plutôt que de faire 2 blocs distincts. */}
-        <div style={{
-          background: dark ? '#1e1e1e' : '#fff',
-          padding: isNative ? 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 8px) 10px 8px' : '8px 10px',
-          borderRadius: '8px 8px 0 0', border: dark ? '1px solid #333' : '1px solid #eee', borderBottom: 'none',
-          position: 'sticky', top: isNative ? 0 : 60, zIndex: 50,
-        }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8 }}>
+        {/* Panneau de filtres — non-sticky : plusieurs tentatives de le garder
+            collé au scroll (position:sticky) ont chacune introduit un nouveau
+            bug de rendu propre au WebView Android (barre trop haute, passait
+            sous la barre de statut, cartes visibles au travers, puis un grand
+            espace vide) sans pouvoir les déboguer en direct (natif only).
+            Retour à un bloc simple et fiable — le gain de confort du sticky ne
+            valait pas l'instabilité que ça causait. */}
+        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div>
               <input value={searchInput} onChange={e => {
                 setSearchInput(e.target.value)
@@ -2229,7 +2225,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginTop: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 10 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
@@ -2237,9 +2233,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
           </div>
-        </div>
-
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: '0 0 8px 8px', marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 10 }}>
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
@@ -2609,6 +2602,24 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           }
         `}</style>
         
+        {mounted && hoverPreview && (() => {
+          const { card, rect } = hoverPreview
+          const pw = Math.min(300, window.innerWidth - 32)
+          const ph = Math.round(pw * 1.4)
+          const left = Math.max(12, Math.min(rect.left + rect.width / 2 - pw / 2, window.innerWidth - pw - 12))
+          const top = Math.max(12, Math.min(rect.top - ph - 14, window.innerHeight - ph - 12))
+          return createPortal(
+            <div style={{
+              position: 'fixed', left, top, width: pw, height: ph, zIndex: 10001, pointerEvents: 'none',
+              borderRadius: 12, overflow: 'hidden', background: '#111',
+              boxShadow: '0 20px 48px rgba(0,0,0,0.45)', animation: 'hoverPreviewIn 0.12s ease',
+            }}>
+              <img src={card.f} alt={card.n} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            </div>,
+            document.body
+          )
+        })()}
+
         {mounted && undoBanner && createPortal(
           <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
             <span style={{ flex: 1 }}>🗑️ {t('gallery_deleted_toast').replace('{nom}', undoBanner.nom)}</span>
@@ -2872,7 +2883,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               )}
-              <div style={{ width: '100%', marginBottom: 8 }}>{renderCardImage(d)}</div>
+              <div
+                style={{ width: '100%', marginBottom: 8 }}
+                onMouseEnter={!editMode && !qrMode ? e => setHoverPreview({ card: d, rect: e.currentTarget.getBoundingClientRect() }) : undefined}
+                onMouseLeave={!editMode && !qrMode ? () => setHoverPreview(prev => prev?.card === d ? null : prev) : undefined}
+              >{renderCardImage(d)}</div>
               {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>

@@ -8,6 +8,7 @@
    fallait appuyer 2 fois pour valider. */
 button, a, [role="button"] { touch-action: manipulation; }
 @keyframes spin { to { transform: rotate(360deg); } }
+@keyframes hoverPreviewIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
 
 @keyframes oon-anim {
   0%,100% { box-shadow: 0 0 6px 2px #ffd700, 0 0 12px 4px #b8860b; transform: scale(1); }
