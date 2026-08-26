@@ -38,9 +38,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
     )
   }
 
-  // 2. Fallback : logo couleur officiel dans un cercle de fond neutre (les PNG
-  // ESPN ont un fond carre quasi-opaque qu'il faut masquer ; NBA/foot/NHL sont
-  // deja transparents mais le cercle ne les gene pas).
+  // 2. Fallback : logo couleur officiel, sans fond -- pas de cercle derriere.
   const url = teamLogoUrl(team, dark)
   if (!url || colorFailed) {
     return (
@@ -49,22 +47,14 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   }
 
   return (
-    <div style={{
-      width: size, height: size, borderRadius: '50%',
-      background: '#f2f2f2',
-      border: dark ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.08)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      flexShrink: 0, overflow: 'hidden', boxSizing: 'border-box',
-    }}>
-      <img
-        src={url}
-        alt={team.name}
-        title={team.name}
-        width={Math.round(size * 0.8)}
-        height={Math.round(size * 0.8)}
-        style={{ objectFit: 'contain', display: 'block' }}
-        onError={() => setColorFailed(true)}
-      />
-    </div>
+    <img
+      src={url}
+      alt={team.name}
+      title={team.name}
+      width={size}
+      height={size}
+      style={{ objectFit: 'contain', display: 'block', flexShrink: 0 }}
+      onError={() => setColorFailed(true)}
+    />
   )
 }
