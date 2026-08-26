@@ -2186,9 +2186,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             tout le panneau de filtres (sport, RC/AUTO/NUM/PATCH, collections...)
             à l'écran en permanence (signalé : ça prenait trop de place au scroll).
             top: sous la NavBar web sticky (60px) ; sur natif MobileTopBar défile
-            avec la page sur cette route (voir GALLERY_ROOT dans MobileTopBar.tsx),
-            donc rien au-dessus à éviter → top: 0. */}
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: '8px 10px', borderRadius: 8, marginBottom: 8, border: dark ? '1px solid #333' : '1px solid #eee', position: 'sticky', top: isNative ? 0 : 60, zIndex: 50, boxShadow: dark ? '0 4px 12px rgba(0,0,0,0.4)' : '0 4px 12px rgba(0,0,0,0.08)' }}>
+            avec la page sur cette route (voir GALLERY_ROOT dans MobileTopBar.tsx)
+            donc rien de sticky au-dessus à éviter — mais la barre de statut
+            Android, elle, reste bien là : sans la zone de sécurité, la barre
+            passe dessous une fois collée en haut au scroll (signalé 2 fois).
+            Bord bas plat + pas d'ombre : se fond visuellement dans le panneau
+            de filtres juste en dessous plutôt que de faire 2 blocs distincts. */}
+        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: '8px 10px', borderRadius: '8px 8px 0 0', border: dark ? '1px solid #333' : '1px solid #eee', borderBottom: 'none', position: 'sticky', top: isNative ? 'var(--safe-area-inset-top, env(safe-area-inset-top))' : 60, zIndex: 50 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8 }}>
             <div>
               <input value={searchInput} onChange={e => {
@@ -2230,7 +2234,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
         </div>
 
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: '0 0 8px 8px', marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 10 }}>
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
