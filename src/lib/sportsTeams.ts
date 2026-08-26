@@ -11,28 +11,51 @@ export interface SportsTeam {
   logoUrl?: string  // override ESPN CDN (used for football)
 }
 
-// ESPN abbr overrides (quand notre abbr ≠ code ESPN)
+// ESPN abbr overrides (quand notre abbr ≠ code ESPN) — encore utilise en
+// fallback pour NFL/MLB/WNBA, qui n'ont pas de source transparente cablee.
 const ESPN_CODES: Record<string, string> = {
   'wnba:CON': 'conn', // Connecticut Sun
   'wnba:LVA': 'lv',   // Las Vegas Aces
   'wnba:WAS': 'wsh',  // Washington Mystics
-  'nba:WAS': 'wsh',   // Washington Wizards
-  'nba:NOP': 'no',    // New Orleans Pelicans (ESPN: no)
-  'nba:UTA': 'utah',  // Utah Jazz (ESPN: utah)
   'mlb:CWS': 'chw',   // Chicago White Sox
-  'nhl:SJS': 'sj',    // San Jose Sharks (ESPN: sj)
-  'nhl:UTA': 'utah',  // Utah Hockey Club (ESPN: utah)
-  'nhl:NJ':  'njd',   // New Jersey Devils (ESPN: njd)
   'nfl:WSH': 'wsh',   // Washington Commanders
 }
 
-export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): string {
+// cdn.nba.com — logos officiels SVG a fond transparent (vs. ESPN dont le PNG a
+// un fond carre quasi-opaque). IDs numeriques stables, un par franchise.
+const NBA_TEAM_IDS: Record<string, number> = {
+  ATL: 1610612737, BOS: 1610612738, BKN: 1610612751, CHA: 1610612766, CHI: 1610612741,
+  CLE: 1610612739, DAL: 1610612742, DEN: 1610612743, DET: 1610612765, GSW: 1610612744,
+  HOU: 1610612745, IND: 1610612754, LAC: 1610612746, LAL: 1610612747, MEM: 1610612763,
+  MIA: 1610612748, MIL: 1610612749, MIN: 1610612750, NOP: 1610612740, NYK: 1610612752,
+  OKC: 1610612760, ORL: 1610612753, PHI: 1610612755, PHX: 1610612756, POR: 1610612757,
+  SAC: 1610612758, SAS: 1610612759, TOR: 1610612761, UTA: 1610612762, WAS: 1610612764,
+}
+
+// assets.nhle.com — logos officiels SVG a fond transparent, avec variantes
+// dediees fond clair/fond sombre (contrairement au PNG ESPN unique).
+const NHL_ASSET_CODES: Record<string, string> = {
+  'nhl:NJ': 'NJD',  // New Jersey Devils
+  'nhl:LA': 'LAK',  // Los Angeles Kings
+  'nhl:TB': 'TBL',  // Tampa Bay Lightning
+}
+
+export function teamLogoUrl(teamOrSport: SportsTeam | Sport, dark?: boolean): string {
   if (typeof teamOrSport !== 'object') return ''
   const team = teamOrSport
   // Soccer/foot : logos SVG transparents via football-data.org (stockés en logoUrl)
   if (team.logoUrl) return team.logoUrl
   if (team.sport === 'football') return ''
-  // NBA / NFL / MLB / NHL : ESPN CDN — PNGs affichés dans un cercle blanc par TeamBadge
+  if (team.sport === 'nba') {
+    const nbaId = NBA_TEAM_IDS[team.abbr]
+    if (nbaId) return `https://cdn.nba.com/logos/nba/${nbaId}/global/L/logo.svg`
+  }
+  if (team.sport === 'nhl') {
+    const code = NHL_ASSET_CODES[team.id] ?? team.abbr
+    return `https://assets.nhle.com/logos/nhl/svg/${code}_${dark ? 'dark' : 'light'}.svg`
+  }
+  // WNBA / NFL / MLB : ESPN CDN — PNG a fond quasi-opaque, affiche dans un
+  // cercle neutre par TeamBadge (voir son commentaire pour le detail).
   const code = ESPN_CODES[team.id] ?? team.abbr.toLowerCase()
   return `https://a.espncdn.com/i/teamlogos/${team.sport}/500/${code}.png`
 }
