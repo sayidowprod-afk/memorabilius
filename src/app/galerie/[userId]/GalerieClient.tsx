@@ -707,6 +707,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', uid)
       if (error) throw error
 
+      // 2bis. Libérer sa pochette dans un classeur si elle y était rangée —
+      // binder_slots référence card_key en texte libre (pas de FK), donc rien
+      // ne le fait automatiquement : sans ça, la pochette restait bloquée à
+      // vie, affichant l'image d'une carte qui n'existe plus, en empêchant
+      // toute nouvelle carte d'y être placée. La policy RLS de binder_slots
+      // restreint déjà la suppression aux classeurs de l'appelant.
+      await supabase.from('binder_slots').delete().eq('card_key', cardKey)
+
       // 3. Nettoyage de sa visibilité si elle était en mode privé
       await supabase.from('cartes_privees').delete().eq('user_id', uid).eq('card_key', cardKey)
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })

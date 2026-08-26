@@ -32,11 +32,21 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   if ((action === 'accept' || action === 'refuse') && trade.receiver_id !== user.id)
     return NextResponse.json({ error: 'Seul le destinataire peut accepter/refuser' }, { status: 403 })
 
+  // .eq('status', 'pending') rend le check-then-update atomique : sans ça, deux
+  // requêtes concurrentes (double-tap, retry réseau sur mobile, ou un accept et
+  // un cancel arrivant en même temps) pouvaient toutes les deux relire
+  // status === 'pending' avant qu'aucune n'écrive, et toutes les deux passer —
+  // doublant l'XP versée à l'acceptation, ou laissant un état incohérent selon
+  // laquelle écrivait en dernier. select() vide = quelqu'un d'autre a gagné la
+  // course entre notre lecture et notre écriture.
   const statusMap: Record<string, string> = { accept: 'accepted', refuse: 'refused', cancel: 'cancelled' }
-  await supabaseAdmin
+  const { data: updated } = await supabaseAdmin
     .from('trade_offers')
     .update({ status: statusMap[action], updated_at: new Date().toISOString() })
     .eq('id', trade.id)
+    .eq('status', 'pending')
+    .select('id')
+  if (!updated || updated.length === 0) return NextResponse.json({ error: 'Échange déjà traité' }, { status: 409 })
 
   if (action === 'accept') {
     await awardXP(supabaseAdmin, trade.sender_id, 'trade_completed', XP_AWARDS.TRADE_COMPLETED)

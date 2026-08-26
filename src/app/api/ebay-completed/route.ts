@@ -8,6 +8,19 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+// Rate limit: 30 req/min per IP — même protection que ebay-sold, qui manquait
+// ici alors que les deux tapent le même quota eBay partagé (5 000/jour) : un
+// seul utilisateur connecté pouvait sinon épuiser le quota de tout le monde
+// en bouclant sur cette route.
+const RATE_MAP = new Map<string, { count: number; reset: number }>()
+function checkRate(ip: string): boolean {
+  const now = Date.now()
+  const e = RATE_MAP.get(ip)
+  if (!e || now > e.reset) { RATE_MAP.set(ip, { count: 1, reset: now + 60_000 }); return true }
+  if (e.count >= 30) return false
+  e.count++; return true
+}
+
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const GRADE_KEYWORDS = ['psa', 'bgs', 'sgc', 'cgc', 'beckett', 'graded', 'grade', 'gem', 'mint']
 
@@ -29,6 +42,9 @@ export async function GET(req: NextRequest) {
   if (!token) return NextResponse.json({ sold: [] }, { status: 401 })
   const { data: { user } } = await supabase.auth.getUser(token)
   if (!user) return NextResponse.json({ sold: [] }, { status: 401 })
+
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+  if (!checkRate(ip)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
 
   const { searchParams } = req.nextUrl
   const name    = searchParams.get('name') || ''

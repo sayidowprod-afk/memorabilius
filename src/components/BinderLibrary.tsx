@@ -461,12 +461,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       idx++
     }
     const newPageCount = Math.max(1, idx > 0 ? page : page - 1)
-    const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', binderId)
-    if (delErr) throw delErr
-    if (rows.length) {
-      const { error: insErr } = await supabase.from('binder_slots').insert(rows)
-      if (insErr) throw insErr
-    }
+    // RPC atomique (voir migration replace_binder_slots) : un delete+insert
+    // fait en 2 appels séparés perdait toutes les cartes du classeur si le
+    // 2e échouait après que le 1er ait réussi (coupure réseau entre les 2).
+    const deletes = ordered.map(s => ({ page_number: s.page_number, slot_index: s.slot_index }))
+    const { error } = await supabase.rpc('replace_binder_slots', { p_binder_id: binderId, p_deletes: deletes, p_inserts: rows })
+    if (error) throw error
     setSlots(newSlots)
     return newPageCount
   }
@@ -658,9 +658,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newPageCount } : b))
     }
 
-    // Supprimer les anciens slots puis insérer les nouveaux
-    await Promise.all(deletes.map(d => supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', d.page).eq('slot_index', d.idx)))
-    const { error: insErr } = await supabase.from('binder_slots').insert(inserts)
+    // Supprimer les anciens slots puis insérer les nouveaux, atomiquement (voir
+    // reflowSlotsForLayout) — potentiellement des dizaines de cartes décalées
+    // d'un coup ici, un échec de l'insert après des deletes réussis en aurait
+    // fait disparaître un lot entier du classeur.
+    const { error: insErr } = await supabase.rpc('replace_binder_slots', {
+      p_binder_id: selected.id,
+      p_deletes: deletes.map(d => ({ page_number: d.page, slot_index: d.idx })),
+      p_inserts: inserts,
+    })
     if (insErr) { toast.error(t('binder_insert_error_prefix') + insErr.message); openBinder(selected); return }
 
     setSlots(prev => {
@@ -801,12 +807,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       }
       // Nombre de pages effectif après tri (peut être inférieur à page_count si le classeur avait des trous)
       const newPageCount = idx > 0 ? page : page - 1
-      const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
-      if (delErr) { toast.error(t('binder_sort_delete_error_prefix') + delErr.message); return }
-      if (rows.length) {
-        const { error: insErr } = await supabase.from('binder_slots').insert(rows)
-        if (insErr) { toast.error(t('binder_sort_insert_error_prefix') + insErr.message); openBinder(selected); return }
-      }
+      // RPC atomique (voir reflowSlotsForLayout ci-dessus pour le pourquoi) —
+      // un échec du 2e appel sur un delete-puis-insert manuel vidait le classeur.
+      const sortDeletes = allSlots.map(s => ({ page_number: s.page_number, slot_index: s.slot_index }))
+      const { error: sortErr } = await supabase.rpc('replace_binder_slots', { p_binder_id: selected.id, p_deletes: sortDeletes, p_inserts: rows })
+      if (sortErr) { toast.error(t('binder_sort_insert_error_prefix') + sortErr.message); openBinder(selected); return }
       if (newPageCount !== selected.page_count) {
         await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
         setSelected(s => s ? { ...s, page_count: newPageCount } : s)
@@ -878,12 +883,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       return m
     })
 
-    // Persistance : on supprime puis réinsère les lignes concernées (contrainte unique)
-    await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', fromPage).eq('slot_index', fromIdx)
-    if (toSlot) await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', toPage).eq('slot_index', toIdx)
+    // Persistance atomique (voir reflowSlotsForLayout pour le pourquoi du RPC) :
+    // supprimer puis réinsérer en 2 appels séparés pouvait faire disparaître les
+    // 2 cartes du classeur si l'insert échouait après que les deletes aient réussi.
+    const moveDeletes: { page_number: number; slot_index: number }[] = [{ page_number: fromPage, slot_index: fromIdx }]
+    if (toSlot) moveDeletes.push({ page_number: toPage, slot_index: toIdx })
     const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom, is_horizontal: !!fromSlot.is_horizontal }]
     if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom, is_horizontal: !!toSlot.is_horizontal })
-    const { error } = await supabase.from('binder_slots').insert(rows)
+    const { error } = await supabase.rpc('replace_binder_slots', { p_binder_id: selected.id, p_deletes: moveDeletes, p_inserts: rows })
     if (error) { toast.error(t('binder_error_prefix') + error.message); openBinder(selected) }
   }
 
