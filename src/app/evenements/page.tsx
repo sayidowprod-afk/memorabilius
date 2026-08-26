@@ -270,7 +270,12 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
           <p style={{ color: '#003DA6', margin: '0 0 4px', fontSize: 13, fontWeight: 700 }}>📅 {formatDate(ev.date)}</p>
           <p style={{ color: sub, margin: '0 0 4px', fontSize: 13 }}>📍 {ev.location_name ? `${ev.location_name}, ` : ''}{ev.city}{ev.country !== 'France' ? `, ${ev.country}` : ''}</p>
           {ev.description && <p style={{ color: sub, margin: '6px 0 0', fontSize: 13, lineHeight: 1.5 }}>{ev.description}</p>}
-          {ev.website && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, marginTop: 4, display: 'inline-block' }}>{t('events_official_site')}</a>}
+          {/* website est un texte libre saisi par l'utilisateur qui propose l'événement,
+              jamais validé avant d'être stocké — sans ce garde-fou, une valeur du type
+              "javascript:..." s'exécuterait au clic dans l'origine du site (le navigateur
+              exécute un href javascript: quel que soit `rel`, qui ne protège que contre
+              window.opener). */}
+          {ev.website && /^https?:\/\//i.test(ev.website) && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, marginTop: 4, display: 'inline-block' }}>{t('events_official_site')}</a>}
           </div>
         </div>
         {userId && (
