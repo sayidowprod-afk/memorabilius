@@ -442,6 +442,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const fBrandDebounced = useDebouncedValue(fBrand, 200)
   const [fYear, setFYear] = useState(initialParsedSearch.year || searchParams.get('year') || '')
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
+  const [showAllCollectionTags, setShowAllCollectionTags] = useState(false)
   const [viewMode, setViewMode] = useState<'grid' | 'timeline'>('grid')
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
@@ -1806,6 +1807,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const activeChildren = activeParent ? getChildren(activeParent) : []
   const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
 
+  // Au-dela de 6 tags de collection, la rangee devient tres longue sur un profil
+  // avec beaucoup de sous-collections -- on replie avec un "+N" plutot que de tout
+  // afficher d'un coup, sauf si le tag actif est justement dans la partie repliee.
+  const TAG_VISIBLE_LIMIT = 6
+  const hiddenTagsCount = Math.max(0, principals.length - TAG_VISIBLE_LIMIT)
+  const activeTagIsHidden = !!activeParent && principals.indexOf(activeParent) >= TAG_VISIBLE_LIMIT
+  const tagsExpanded = showAllCollectionTags || hiddenTagsCount === 0 || activeTagIsHidden
+  const visiblePrincipals = tagsExpanded ? principals : principals.slice(0, TAG_VISIBLE_LIMIT)
+
   const hasAdvancedActive = !!(fSport || fBrand || fYear || sortBy !== 'default')
   const advancedVisible = showAdvancedFilters || hasAdvancedActive
 
@@ -1849,16 +1859,22 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
-            <img
-              src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-              className="profile-avatar-halo"
-              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
-              alt={profile?.display_name || t('gallery_default_collector')}
-            />
+            <div style={{ position: 'relative', flexShrink: 0 }}>
+              <img
+                src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                className="profile-avatar-halo"
+                style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
+                alt={profile?.display_name || t('gallery_default_collector')}
+              />
+              {/* Sur l'avatar plutot qu'a cote du nom : un seul endroit ou regarder pour
+                  savoir si le collectionneur est present, au lieu de deux signaux separes. */}
+              <div style={{ position: 'absolute', bottom: 2, right: 2 }}>
+                <OnlineIndicator lastSeen={profile?.last_seen} size={16} />
+              </div>
+            </div>
             <div style={{ minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
                 <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
-                <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
@@ -1876,7 +1892,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <FollowCounts userId={userId} onOpenList={setFollowModalTab} />
 
               {profile?.bio && (
-                <p style={{ fontSize: 13, color: dark ? '#aaa' : '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400 }}>{profile.bio}</p>
+                <p title={profile.bio} style={{
+                  fontSize: 13, color: dark ? '#aaa' : '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400,
+                  display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                }}>{profile.bio}</p>
               )}
 
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -1964,9 +1983,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       }}
                       title={t('gallery_more_actions')}
                       aria-label={t('gallery_more_actions')}
-                      style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
+                      style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 18, cursor: 'pointer', lineHeight: 1 }}
                     >
-                      ···
+                      ⋮
                     </button>
                     {actionMenuOpen && actionMenuRect && createPortal(
                       <>
@@ -2492,7 +2511,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 }}>
                   {t('gallery_all')}
                 </button>
-                {principals.map(tag => renderTagPill(tag, 0))}
+                {visiblePrincipals.map(tag => renderTagPill(tag, 0))}
+                {hiddenTagsCount > 0 && !activeTagIsHidden && (
+                  <button onClick={() => setShowAllCollectionTags(v => !v)} style={{
+                    padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
+                    fontSize: 11, fontWeight: 700, background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555',
+                  }}>
+                    {showAllCollectionTags ? t('gallery_show_less') : `+${hiddenTagsCount}`}
+                  </button>
+                )}
                 {isOwner && (
                   <button
                     onClick={async () => {
