@@ -21,11 +21,8 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   const team = getTeamById(teamId)
   if (!team) return null
 
-  // 1. Logo maison si dispo -- passe en noir (mode clair) ou blanc (mode sombre)
-  // via filtre CSS, quelle que soit la couleur d'origine du fichier source.
-  // Marche bien ici car ce sont des icones simples dessinees expres pour ca,
-  // contrairement aux logos officiels detailles qui deviennent illisibles une
-  // fois reduits en silhouette (teste sur NBA/foot -- meme resultat illisible).
+  // 1. Logo maison si dispo -- deja noir sur fond transparent, affiche tel quel
+  // en mode clair. En mode sombre, invert(1) le bascule en blanc.
   if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     return (
@@ -35,7 +32,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
         title={team.name}
         width={size}
         height={size}
-        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'brightness(0) invert(1)' : 'brightness(0)' }}
+        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'invert(1)' : 'none' }}
         onError={() => setCustomExtIndex(i => i + 1)}
       />
     )
