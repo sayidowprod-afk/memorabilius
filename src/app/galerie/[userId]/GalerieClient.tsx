@@ -715,6 +715,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       // restreint déjà la suppression aux classeurs de l'appelant.
       await supabase.from('binder_slots').delete().eq('card_key', cardKey)
 
+      // 2ter. Même chose côté checklist de set — une entrée auto-matchée sur
+      // cette carte restait marquée "possédée" pour toujours après suppression
+      // de la carte qui le prouvait (rien ne les relie par FK). Seules les
+      // entrées auto-matchées (manually_checked=false) sont revues : une
+      // coche manuelle reste une déclaration explicite de l'utilisateur,
+      // pas quelque chose à annuler automatiquement.
+      await supabase.from('user_set_completion').delete().eq('user_id', uid).eq('matched_card_key', cardKey).eq('manually_checked', false)
+      await supabase.from('entry_images').delete().eq('user_id', uid).eq('image_url', cardKey)
+
       // 3. Nettoyage de sa visibilité si elle était en mode privé
       await supabase.from('cartes_privees').delete().eq('user_id', uid).eq('card_key', cardKey)
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })

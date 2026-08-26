@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { unsubscribeAllPush } from '@/lib/pushUnsubscribe'
 import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
@@ -100,6 +101,7 @@ export default function MobileBottomNav() {
 
   const handleLogout = async () => {
     setSheet(null)
+    await unsubscribeAllPush()
     await supabase.auth.signOut()
     router.push('/')
   }

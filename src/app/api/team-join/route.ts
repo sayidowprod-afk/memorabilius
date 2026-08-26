@@ -31,6 +31,17 @@ export async function POST(req: NextRequest) {
   const { data: existingMember } = await supabase.from('team_members').select('user_id').eq('team_id', teamId).eq('user_id', user.id).maybeSingle()
   if (existingMember) return NextResponse.json({ error: 'Déjà membre de cette team' }, { status: 400 })
 
+  // Anti-spam : sans ça, un candidat refusé pouvait repostuler immédiatement en
+  // boucle — chaque tentative renvoie une vraie notif (push + in-app) aux chefs
+  // de la team, sans aucune limite de fréquence côté serveur.
+  const REAPPLY_COOLDOWN_MS = 24 * 60 * 60 * 1000
+  const { data: previousAttempt } = await supabase.from('team_candidatures')
+    .select('created_at').eq('team_id', teamId).eq('user_id', user.id).neq('statut', 'en_attente')
+    .order('created_at', { ascending: false }).limit(1).maybeSingle()
+  if (previousAttempt && Date.now() - new Date(previousAttempt.created_at).getTime() < REAPPLY_COOLDOWN_MS) {
+    return NextResponse.json({ error: 'Veuillez patienter avant de repostuler' }, { status: 429 })
+  }
+
   await supabase.from('team_candidatures').delete().eq('team_id', teamId).eq('user_id', user.id).neq('statut', 'en_attente')
   const { error: insErr } = await supabase.from('team_candidatures').insert({ team_id: teamId, user_id: user.id, statut: 'en_attente' })
   if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 })

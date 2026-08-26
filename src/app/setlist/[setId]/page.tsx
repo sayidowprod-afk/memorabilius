@@ -366,8 +366,14 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
       ))
       setTotalOwned(p => p - 1)
     } else {
+      // upsert plutôt qu'insert : une ligne peut déjà exister (posée par un
+      // auto-sync en arrière-plan juste avant ce clic) — un insert échouait
+      // alors silencieusement (contrainte unique user_id+entry_id, erreur
+      // jamais vérifiée), laissant completion_id à null en état local alors
+      // que la case affichait "coché", la rendant impossible à décocher tant
+      // que la page n'était pas rechargée.
       const { data } = await supabase.from('user_set_completion')
-        .insert({ user_id: userId, entry_id: entry.id, manually_checked: true })
+        .upsert({ user_id: userId, entry_id: entry.id, manually_checked: true }, { onConflict: 'user_id,entry_id' })
         .select('id').single()
       setVariations(prev => prev.map(v =>
         v.name === varName ? {

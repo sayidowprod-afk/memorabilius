@@ -37,6 +37,17 @@ export function sanitizeGuideHtml(html: string): string {
       '*': ['style'],
     },
     allowedIframeHostnames: ['www.youtube.com', 'youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com'],
+    // target="_blank" sans rel="noopener" laisse la page ouverte accéder à
+    // `window.opener` (reverse tabnabbing) — si un compte admin était
+    // compromis, un lien de guide malveillant pourrait rediriger l'onglet
+    // d'origine vers une page de phishing pendant que la victime regarde
+    // l'onglet qu'elle vient d'ouvrir. Forcé pour tout lien target=_blank,
+    // peu importe ce que l'éditeur a réellement enregistré comme `rel`.
+    transformTags: {
+      a: (tagName, attribs) => attribs.target === '_blank'
+        ? { tagName, attribs: { ...attribs, rel: 'noopener noreferrer' } }
+        : { tagName, attribs },
+    },
   })
 }
 

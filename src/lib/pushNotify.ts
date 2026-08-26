@@ -55,7 +55,13 @@ async function sendFcmToUser(userId: string, payload: PushPayload) {
   const invalid = tokens
     .filter((_, i) => {
       const r = results[i]
-      return r.status === 'rejected' && /registration-token-not-registered|invalid-argument/.test(String(r.reason?.errorInfo?.code || r.reason))
+      // firebase-admin met le code directement sur `err.code` (ex:
+      // "messaging/registration-token-not-registered"), pas sous
+      // `err.errorInfo.code` — cette propriété n'existe pas sur les erreurs
+      // realistes, donc ce filtre ne matchait jamais rien : les tokens morts
+      // n'étaient jamais purgés, et chaque envoi futur retentait contre eux
+      // indéfiniment pour rien.
+      return r.status === 'rejected' && /registration-token-not-registered|invalid-argument/.test(String((r.reason as any)?.code || r.reason))
     })
     .map(t => t.token)
 

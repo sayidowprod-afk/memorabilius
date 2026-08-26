@@ -93,6 +93,30 @@ export async function POST(req: NextRequest) {
   }
   if (!setId) return NextResponse.json({ error: 'Missing setId' }, { status: 400 })
 
+  // galleryCards vient entièrement du client, jamais revérifié — un utilisateur
+  // pouvait soumettre des cartes entièrement inventées pour (a) se marquer comme
+  // propriétaire d'entrées de checklist qu'il ne possède pas, et pire, (b) faire
+  // écrire une image_recto arbitraire dans card_set_entries.image_url, visible
+  // par TOUS les visiteurs du set. On revérifie ici les cartes ayant un `id`
+  // (= cartes_manuelles réelles) contre la base : seule leur vraie ligne sert de
+  // matching et d'image, jamais les valeurs déclarées par le client. Les cartes
+  // sans id (import CSV externe) restent utilisables pour le matching (moins
+  // grave : n'affecte que la complétion propre à cet utilisateur) mais jamais
+  // pour l'image publique partagée (voir plus bas, filtre sur `verified`).
+  const claimedIds = (galleryCards || []).map(c => c.id).filter(Boolean) as string[]
+  const verifiedRows = claimedIds.length
+    ? (await supabase.from('cartes_manuelles')
+        .select('id, nom, annee, marque, collection, variation, image_recto, set_entry_id')
+        .eq('user_id', user.id).in('id', claimedIds)).data || []
+    : []
+  const verifiedById = new Map(verifiedRows.map(r => [r.id, r]))
+  const safeGalleryCards: (GalleryCard & { verified: boolean })[] = (galleryCards || []).map(c => {
+    if (!c.id) return { ...c, verified: false }
+    const real = verifiedById.get(c.id)
+    if (!real) return { ...c, id: undefined, verified: false } // id inventé/pas à lui → traité comme non vérifié, sans id pour ne pas écrire dans cartes_manuelles d'un autre
+    return { ...c, ...real, verified: true }
+  })
+
   // 1. Fetch ALL entries in one query (service role bypasses the 1000-row default limit)
   const { data: allEntries } = await supabase
     .from('card_set_entries')
@@ -139,7 +163,7 @@ export async function POST(req: NextRequest) {
   const autoMatchedImages: { entry_id: number; image_url: string; user_id: string }[] = []
   const autoMatchedGalleryLinks: { gallery_id: string; entry_id: number }[] = []
 
-  if (galleryCards.length > 0 && setYear && entries.length > 0) {
+  if (safeGalleryCards.length > 0 && setYear && entries.length > 0) {
     const y = setYear
     const yearStr = String(y)
     const yearNext = `${y}-${String(y + 1).slice(2)}`
@@ -150,7 +174,7 @@ export async function POST(req: NextRequest) {
     for (const e of entries) {
       if (completedEntryIds.has(e.id)) continue
 
-      const matched = galleryCards.find(card => {
+      const matched = safeGalleryCards.find(card => {
         // Carte liée manuellement à une entrée précise → n'auto-matcher que sur cette entrée
         if (card.set_entry_id != null && card.set_entry_id !== e.id) return false
 
@@ -181,7 +205,12 @@ export async function POST(req: NextRequest) {
       if (matched) {
         completedEntryIds.add(e.id)
         autoMatchedIds.push(e.id)
-        if (matched.image_recto) {
+        // L'image publique partagée (card_set_entries.image_url, plus bas) ne
+        // reçoit que des cartes vérifiées contre la vraie base — une carte
+        // "sans id" (non vérifiable) peut toujours compter pour la complétion
+        // personnelle de cet utilisateur, mais jamais pousser une image
+        // arbitraire visible par tout le monde.
+        if (matched.image_recto && matched.verified) {
           autoMatchedImages.push({ entry_id: e.id, image_url: matched.image_recto, user_id: user.id })
         }
         if (matched.id) {

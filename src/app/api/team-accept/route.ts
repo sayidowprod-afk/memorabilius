@@ -32,17 +32,24 @@ export async function POST(req: NextRequest) {
   }
 
   if (action === 'accept') {
-    // Vérifier d'abord si l'utilisateur est déjà membre de cette team (idempotent)
+    // Le check "déjà membre" avant l'insert n'est qu'une optimisation pour le
+    // cas courant — c'est l'index unique (team_members_team_user_unique,
+    // migration 20260826) qui garantit vraiment l'unicité si deux requêtes
+    // concurrentes (double-tap sur "Accepter") passent toutes les deux le
+    // check avant qu'aucune n'écrive : l'une des deux reçoit alors une
+    // violation 23505 ici, traitée comme "déjà membre" plutôt qu'une erreur.
     const { data: alreadyMember } = await supabase.from('team_members')
       .select('user_id').eq('team_id', teamId).eq('user_id', userId).single()
 
     if (!alreadyMember) {
       const { error: memberError } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
-      if (memberError) {
+      if (memberError && memberError.code !== '23505') {
         return NextResponse.json({ error: memberError.message }, { status: 500 })
       }
-      await awardXP(supabase, userId, 'team_joined', XP_AWARDS.TEAM_JOINED)
-      await checkAndAwardBadgeXP(supabase, userId)
+      if (!memberError) {
+        await awardXP(supabase, userId, 'team_joined', XP_AWARDS.TEAM_JOINED)
+        await checkAndAwardBadgeXP(supabase, userId)
+      }
     }
 
     const { error: candError } = await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)
