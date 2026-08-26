@@ -45,7 +45,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
           if (!team) return null
           return (
             <div key={id} style={{ display: 'flex', alignItems: 'center', gap: 6, background: team.color + '14', border: `1.5px solid ${team.color}44`, borderRadius: 20, padding: '4px 10px 4px 6px' }}>
-              <img src={teamLogoUrl(team)} alt={team.abbr} width={20} height={20} style={{ borderRadius: '50%', objectFit: 'contain', background: team.color + '22' }} />
+              <img src={teamLogoUrl(team)} alt={team.abbr} width={20} height={20} style={{ objectFit: 'contain' }} />
               <span style={{ fontSize: 12, fontWeight: 800, color: team.color }}>{team.abbr}</span>
               <button onClick={() => toggle(id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#bbb', fontSize: 12, padding: 0, lineHeight: 1 }}>✕</button>
             </div>
@@ -115,7 +115,7 @@ export default function TeamPicker({ value, onChange, max = 5 }: Props) {
                     <button key={team.id} onClick={() => toggle(team.id)} disabled={disabled} style={{
                       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,
                       padding: '10px 4px', borderRadius: 10, border: selected ? `2px solid ${team.color}` : '2px solid transparent',
-                      background: selected ? team.color + '14' : 'var(--bg3, #fafafa)',
+                      background: 'none',
                       cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.4 : 1,
                       transition: '0.15s',
                     }}>
