@@ -8,34 +8,35 @@ interface Props {
   size?: number
 }
 
-// Logo monochrome maison (PNG transparent, trace en noir uni) -- voir
-// public/team-logos-mono/README.md pour le format et la liste des fichiers
-// attendus. S'il n'existe pas encore pour une equipe, bascule automatiquement
-// sur le logo couleur officiel (onError ci-dessous).
-function monoLogoPath(teamId: string): string {
-  return `/team-logos-mono/${teamId.replace(':', '-')}.png`
-}
+// Logo maison, fond transparent -- voir public/team-logos/README.md pour le
+// format et la liste des fichiers attendus. Essaie chaque extension dans
+// l'ordre (une equipe peut avoir un .svg, une autre un .webp) et bascule sur
+// le logo couleur officiel si aucune n'existe (onError ci-dessous).
+const CUSTOM_LOGO_EXTENSIONS = ['svg', 'png', 'webp']
 
 export default function TeamBadge({ teamId, size = 28 }: Props) {
   const { dark } = useTheme()
-  const [monoFailed, setMonoFailed] = useState(false)
+  const [customExtIndex, setCustomExtIndex] = useState(0)
   const [colorFailed, setColorFailed] = useState(false)
   const team = getTeamById(teamId)
   if (!team) return null
 
-  // 1. Logo monochrome maison si dispo -- trace en noir, inverse en blanc en
-  // mode sombre. Marche bien car dessine expres en silhouette simple, contrairement
-  // aux logos officiels complets qui deviennent illisibles une fois monochromes.
-  if (!monoFailed) {
+  // 1. Logo maison si dispo -- passe en noir (mode clair) ou blanc (mode sombre)
+  // via filtre CSS, quelle que soit la couleur d'origine du fichier source.
+  // Marche bien ici car ce sont des icones simples dessinees expres pour ca,
+  // contrairement aux logos officiels detailles qui deviennent illisibles une
+  // fois reduits en silhouette (teste sur NBA/foot -- meme resultat illisible).
+  if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
+    const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     return (
       <img
-        src={monoLogoPath(teamId)}
+        src={`/team-logos/${teamId.replace(':', '-')}.${ext}`}
         alt={team.name}
         title={team.name}
         width={size}
         height={size}
-        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'invert(1)' : 'none' }}
-        onError={() => setMonoFailed(true)}
+        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'brightness(0) invert(1)' : 'brightness(0)' }}
+        onError={() => setCustomExtIndex(i => i + 1)}
       />
     )
   }

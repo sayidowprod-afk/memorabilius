@@ -1,24 +1,26 @@
-# Logos d'équipes monochromes
+# Logos d'équipes (icônes maison)
 
-Ce dossier contient des logos d'équipes dessinés exprès en **silhouette noire simple**
+Ce dossier contient des logos d'équipes dessinés exprès en **icône simple**
 (pas les logos officiels détaillés — voir `src/components/TeamBadge.tsx` pour l'explication :
-un écusson complet réduit en monochrome à 28px devient illisible, mais une icône simple
+un écusson complet réduit en silhouette à 28px devient illisible, mais une icône simple
 tracée exprès pour ça fonctionne très bien).
 
 ## Format attendu
 
-- **PNG, fond transparent**
-- Logo tracé en **noir uni** (`#000000`), pas de dégradé ni de couleurs
+- **SVG, PNG ou WEBP, fond transparent** — n'importe lequel des trois, y compris un mix
+  selon les équipes (le code essaie `.svg`, puis `.png`, puis `.webp` dans cet ordre)
+- La couleur du dessin n'a pas d'importance (noir, couleur d'équipe, peu importe) :
+  le code force le rendu en **noir en mode clair** et **blanc en mode sombre** via un
+  filtre CSS (`brightness(0)`, puis `invert(1)` en mode sombre) — seule la silhouette
+  (la zone opaque vs. transparente) compte
 - Idéalement carré (ex. 128×128 ou 256×256), la silhouette centrée avec un peu de marge
-- Le code applique `filter: invert(1)` automatiquement en mode sombre — pas besoin de
-  fournir une version blanche séparée, le noir devient blanc tout seul
 
 ## Nommage
 
-Un fichier par équipe, nommé `{sport}-{ABBR}.png` (remplace le `:` de l'id par un `-`).
+Un fichier par équipe, nommé `{sport}-{ABBR}.ext` (remplace le `:` de l'id par un `-`).
 Le sport et l'abréviation viennent de `src/lib/sportsTeams.ts` (colonne `id`).
 
-Dépose les fichiers directement dans ce dossier (`public/team-logos-mono/`).
+Dépose les fichiers directement dans ce dossier (`public/team-logos/`).
 Une équipe sans fichier ici retombe automatiquement sur son logo couleur officiel —
 tu peux donc en ajouter progressivement, pas besoin de tout faire d'un coup.
 
