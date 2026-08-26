@@ -48,8 +48,9 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   if (!team) return null
 
   // 1. Logo maison si dispo -- noir sur transparent, invert(1) le bascule en
-  // blanc en mode sombre.
-  if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
+  // blanc en mode sombre. NBA exclue : revient au logo ESPN officiel en
+  // couleur, sans fond, a la demande.
+  if (team.sport !== 'nba' && customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     const src = `/team-logos/${teamId.replace(':', '-')}.${ext}?${LOGO_CACHE_BUST}`
     return (
