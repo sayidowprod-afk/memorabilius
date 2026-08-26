@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
 import sharp from 'sharp'
+import { isAllowedCsvUrl, fetchCsvCapped } from '@/lib/csvParse'
 
 export const runtime = 'nodejs'
 export const alt = 'Galerie Memorabilius'
@@ -75,9 +76,10 @@ function buildTiles(urls: string[]): Tile[] {
 export default async function OGImage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
 
-  const [{ data: profile }, { data: cards }] = await Promise.all([
+  const [{ data: profile }, { data: cards }, { data: privateRows }] = await Promise.all([
     supabase.from('profiles').select('display_name, avatar_url, couleur_bordure, lien_csv').eq('id', userId).single(),
-    supabase.from('cartes_manuelles').select('image_recto').eq('user_id', userId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(45),
+    supabase.from('cartes_manuelles').select('image_recto').eq('user_id', userId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(90),
+    supabase.from('cartes_privees').select('card_key').eq('user_id', userId),
   ])
 
   const accent    = profile?.couleur_bordure || '#003DA6'
@@ -85,14 +87,24 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
   const avatarUrl = profile?.avatar_url
     || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=200`
 
-  const manualImgs = (cards || []).map(c => c.image_recto).filter(Boolean) as string[]
+  // Une carte marquée privée par son propriétaire ne doit jamais apparaître
+  // dans l'aperçu public (partagé sur les réseaux sociaux) — même filtrage que
+  // la galerie elle-même (src/app/galerie/[userId]/page.tsx).
+  const privateSet = new Set((privateRows || []).map((r: any) => r.card_key))
+  const manualImgs = (cards || [])
+    .map(c => c.image_recto).filter(Boolean)
+    .filter(img => !privateSet.has(img as string))
+    .slice(0, 45) as string[]
   let csvImgs: string[] = []
   let csvCount = 0
-  if (profile?.lien_csv) {
+  // lien_csv est un champ texte libre saisi par l'utilisateur (aucune validation
+  // serveur à l'écriture) — sans isAllowedCsvUrl() ce fetch serveur serait un SSRF
+  // vers n'importe quelle cible (IP interne, métadonnées cloud...).
+  if (profile?.lien_csv && isAllowedCsvUrl(profile.lien_csv)) {
     try {
-      const r = await fetch(profile.lien_csv, { signal: AbortSignal.timeout(3000) })
-      if (r.ok) {
-        const all = parseCsvImages(await r.text())
+      const text = await fetchCsvCapped(profile.lien_csv, { signal: AbortSignal.timeout(3000) } as RequestInit)
+      if (text) {
+        const all = parseCsvImages(text)
         csvCount = all.length
         csvImgs = all.slice(0, Math.max(0, 45 - manualImgs.length))
       }

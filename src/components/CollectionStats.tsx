@@ -78,6 +78,9 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
 
   if (stats.total === 0) return null
 
+  // topGrades est re-trié par valeur de grade (10, 9, 8...) après top(), donc [0] n'est
+  // plus forcément l'entrée avec le plus grand count — il faut le max explicitement.
+  const maxGradeCount = Math.max(1, ...stats.topGrades.map(g => g.count))
   const gradedPct = stats.total > 0 ? Math.round((stats.graded / stats.total) * 100) : 0
 
   return (
@@ -133,7 +136,7 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
               <div style={{ marginTop: 10 }}>
                 <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #ccc)', textTransform: 'uppercase', marginBottom: 5 }}>{t('stats_psa_notes')}</div>
                 {stats.topGrades.map(g => (
-                  <Bar key={g.label} label={`PSA ${g.label}`} count={g.count} max={stats.topGrades[0]?.count ?? 1} color="#c0392b" />
+                  <Bar key={g.label} label={`PSA ${g.label}`} count={g.count} max={maxGradeCount} color="#c0392b" />
                 ))}
               </div>
             )}
