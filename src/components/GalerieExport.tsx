@@ -16,6 +16,16 @@ interface Props {
   lang: Lang
   cardValues?: Map<string, number>
   isOwner?: boolean
+  // Pré-restreint la liste à un sous-ensemble (ex: sélection multiple en cours
+  // dans la galerie) — l'utilisateur peut toujours affiner avec les filtres du
+  // popup par-dessus, mais démarre sur exactement ce lot plutôt que tout.
+  restrictToKeys?: Set<string> | null
+  // Contrôle externe de l'ouverture (ex: bouton "Partager la sélection" dans
+  // la barre d'actions groupées) — sans ces props, le composant gère son état
+  // d'ouverture lui-même via son propre bouton.
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  hideTrigger?: boolean
 }
 
 const FORMATS = {
@@ -298,9 +308,13 @@ function Toggle({ on, onChange, label }: { on: boolean; onChange: (v: boolean) =
 const SL: React.CSSProperties = { fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#888', marginBottom: 8, display: 'block' }
 
 // ─── Main ──────────────────────────────────────────────────────────────────────
-export default function GalerieExport({ cards, profileName, avatarUrl, accent, cardValues = new Map(), isOwner = false }: Props) {
+export default function GalerieExport({ cards: allCards, profileName, avatarUrl, accent, cardValues = new Map(), isOwner = false, restrictToKeys = null, open: openProp, onOpenChange, hideTrigger = false }: Props) {
   const { lang, t } = useLang()
-  const [open, setOpen] = useState(false)
+  const [openInternal, setOpenInternal] = useState(false)
+  const isControlled = openProp !== undefined
+  const open = isControlled ? openProp : openInternal
+  const setOpen = (v: boolean) => { onOpenChange?.(v); if (!isControlled) setOpenInternal(v) }
+  const cards = restrictToKeys ? allCards.filter(c => restrictToKeys.has(c.f)) : allCards
   const [exporting, setExporting] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [tableWithPhotos, setTableWithPhotos] = useState(false)
@@ -784,10 +798,12 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, c
 
   return (
     <>
-      <button onClick={() => setOpen(true)} disabled={!cards.length}
-        style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 16px', fontWeight: 700, fontSize: 13, cursor: !cards.length ? 'not-allowed' : 'pointer', flex: '1 1 auto', textAlign: 'center', minWidth: 100 }}>
-        📸 {t('export_button')}
-      </button>
+      {!hideTrigger && (
+        <button onClick={() => setOpen(true)} disabled={!allCards.length}
+          style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 16px', fontWeight: 700, fontSize: 13, cursor: !allCards.length ? 'not-allowed' : 'pointer', flex: '1 1 auto', textAlign: 'center', minWidth: 100 }}>
+          📸 {t('export_button')}
+        </button>
+      )}
       {modal}
     </>
   )

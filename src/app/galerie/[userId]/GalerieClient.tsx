@@ -503,6 +503,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // restent trop petites pour juger du visuel — pas besoin d'ouvrir le viewer
   // complet juste pour ça.
   const [hoverPreview, setHoverPreview] = useState<{ card: Card; rect: DOMRect } | null>(null)
+  // Partage d'une sélection multiple en une seule image (bouton "📤 Partager"
+  // de la barre d'actions groupées) — réutilise GalerieExport en le pré-
+  // restreignant aux cartes sélectionnées plutôt que toute la galerie.
+  const [exportSelectionOpen, setExportSelectionOpen] = useState(false)
+  const [exportSelectionKeys, setExportSelectionKeys] = useState<Set<string>>(new Set())
   const [shareModalOpen, setShareModalOpen] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
@@ -2706,6 +2711,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </>
             )}
             <button
+              onClick={() => {
+                const keys = new Set([...selectedCards].map(id => cards.find(c => getCardId(c) === id)?.f).filter(Boolean) as string[])
+                setExportSelectionKeys(keys)
+                setExportSelectionOpen(true)
+              }}
+              style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
+            >
+              📤 Partager
+            </button>
+            <button
               onClick={startBulkEdit}
               style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
             >
@@ -2717,6 +2732,20 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>,
           document.body
         )}
+
+        <GalerieExport
+          cards={cards}
+          profileName={profile?.display_name || ''}
+          avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+          accent={accent}
+          lang={lang}
+          cardValues={cardValues}
+          isOwner={isOwner}
+          restrictToKeys={exportSelectionKeys}
+          open={exportSelectionOpen}
+          onOpenChange={setExportSelectionOpen}
+          hideTrigger
+        />
 
         {mounted && qrMode && createPortal(
           <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
