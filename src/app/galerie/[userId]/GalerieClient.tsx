@@ -291,7 +291,13 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
         // (dnd-kit, voir `disabled` ci-dessus) — sans ceci, la carte ne serait
         // plus du tout activable au clavier hors du mode édition/réordonnement,
         // qui est le cas le plus courant (simple navigation).
-        if ((e.key === 'Enter' || e.key === ' ') && onClick) { e.preventDefault(); onClick() }
+        // e.target !== e.currentTarget : un bouton imbriqué (supprimer, like...)
+        // arrête bien le clic à la souris (stopPropagation dans son onClick),
+        // mais un `keydown` Entrée/Espace sur ce bouton continue de remonter
+        // jusqu'ici (c'est un événement différent du clic) — sans cette garde,
+        // valider un bouton imbriqué au clavier déclenchait AUSSI l'action de
+        // la carte (ex: supprimer une carte ouvrait son popup dans la foulée).
+        if ((e.key === 'Enter' || e.key === ' ') && onClick && e.target === e.currentTarget) { e.preventDefault(); onClick() }
       }}
     >
       {!disabled && (
@@ -675,11 +681,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // (surtout avec la confirmation à 2 taps déjà en place). Volontairement pas de
   // "vraie" annulation après coup (delete + reinsert) : ça créerait une nouvelle
   // ligne (nouvel id) et casserait les likes/commentaires déjà liés à l'ancienne.
+  const UNDO_DELETE_DELAY_MS = 5000
   const pendingDeletesRef = useRef<Map<string, { card: Card; index: number; timeoutId: ReturnType<typeof setTimeout> }>>(new Map())
   const [undoBanner, setUndoBanner] = useState<{ id: string; nom: string } | null>(null)
 
   const finalizeDeleteCard = async (idManuelle: string, cardKey: string) => {
+    const pending = pendingDeletesRef.current.get(idManuelle)
     pendingDeletesRef.current.delete(idManuelle)
+    // Le bandeau "Annuler" est effacé ici plutôt que par un 2e minuteur
+    // indépendant — les deux étaient réglés sur la même durée à la main,
+    // et un changement du délai dans un seul des deux aurait fait
+    // disparaître le bouton Annuler avant que la suppression réelle
+    // n'ait lieu (ou l'inverse), sans lien garanti entre les deux.
+    setUndoBanner(cur => cur?.id === idManuelle ? null : cur)
     try {
       // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
       const { data: { session } } = await supabase.auth.getSession()
@@ -698,6 +712,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
     } catch (e: any) {
       toast.error('Erreur lors de la suppression : ' + e.message)
+      // La carte avait déjà disparu de l'UI de façon optimiste (voir
+      // handleDeleteCard) — sans ça, un échec réseau/RLS ici la laissait
+      // manquante indéfiniment côté écran alors qu'elle existe toujours en
+      // base, jusqu'à un rechargement manuel de la page.
+      if (pending) setCards(prev => {
+        const next = [...prev]
+        next.splice(Math.min(pending.index, next.length), 0, pending.card)
+        return next
+      })
     }
   }
 
@@ -710,10 +733,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     // Mise à jour de l'état local pour faire disparaître l'élément instantanément
     setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
 
-    const timeoutId = setTimeout(() => finalizeDeleteCard(idManuelle, cardKey), 5000)
+    const timeoutId = setTimeout(() => finalizeDeleteCard(idManuelle, cardKey), UNDO_DELETE_DELAY_MS)
     pendingDeletesRef.current.set(idManuelle, { card, index, timeoutId })
     setUndoBanner({ id: idManuelle, nom: card.n })
-    setTimeout(() => setUndoBanner(cur => cur?.id === idManuelle ? null : cur), 5000)
   }
 
   const undoDeleteCard = (idManuelle: string) => {
@@ -1370,15 +1392,30 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     paintedRef.current = new Set([id])
     setSelectedCards(prev => { const next = new Set(prev); if (willSelect) next.add(id); else next.delete(id); return next })
   }
+  const paintMoveScheduledRef = useRef(false)
+  const paintMovePosRef = useRef({ x: 0, y: 0 })
   const handlePaintMove = (x: number, y: number) => {
-    const el = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest('[data-card-id]')
-    const id = el?.getAttribute('data-card-id')
-    if (!id || paintedRef.current.has(id)) return
-    paintedRef.current.add(id)
-    hapticTap()
-    setSelectedCards(prev => { const next = new Set(prev); if (paintAddModeRef.current) next.add(id); else next.delete(id); return next })
+    // touchmove peut arriver des dizaines de fois/seconde ; document.elementFromPoint
+    // force un hit-test synchrone sur le thread principal à chaque appel — sans
+    // ce throttle par frame, glisser sur les cartes saccadait sur les appareils
+    // Android bas/moyen de gamme (natif via Capacitor WebView). La position la
+    // plus récente est gardée à part pour ne traiter que le dernier point de
+    // chaque frame, pas le premier (sinon un doigt qui va vite "saute" des cartes).
+    paintMovePosRef.current = { x, y }
+    if (paintMoveScheduledRef.current) return
+    paintMoveScheduledRef.current = true
+    requestAnimationFrame(() => {
+      paintMoveScheduledRef.current = false
+      const { x, y } = paintMovePosRef.current
+      const el = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest('[data-card-id]')
+      const id = el?.getAttribute('data-card-id')
+      if (!id || paintedRef.current.has(id)) return
+      paintedRef.current.add(id)
+      hapticTap()
+      setSelectedCards(prev => { const next = new Set(prev); if (paintAddModeRef.current) next.add(id); else next.delete(id); return next })
+    })
   }
-  const handlePaintEnd = () => { paintedRef.current = new Set() }
+  const handlePaintEnd = () => { paintedRef.current = new Set(); paintMoveScheduledRef.current = false }
 
   const shareCardNative = async (d: Card) => {
     if (!isNative) return
@@ -2025,7 +2062,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontSize: i === 0 ? 26 : 20 }}>{medal.emoji}</span>
                   <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
-                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(card) } }}
+                    onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
                     className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
                     width: medal.width, cursor: 'pointer', position: 'relative',
                     background: `linear-gradient(160deg, ${medal.color}, ${medal.color}99)`, padding: 3, borderRadius: 12,
@@ -2776,8 +2813,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             )}
             <button
               onClick={() => {
-                const keys = new Set([...selectedCards].map(id => cards.find(c => getCardId(c) === id)?.f).filter(Boolean) as string[])
-                setExportSelectionKeys(keys)
+                // selectedCards contient déjà des getCardId(d) (id_manuelle ou f,
+                // voir toggleCardSelection) — matcher GalerieExport là-dessus
+                // directement plutôt que sur la seule URL photo (deux cartes sans
+                // photo, ou avec le même scan réutilisé, partageraient sinon la
+                // même clé et se retrouveraient toutes les deux dans l'export).
+                setExportSelectionKeys(new Set(selectedCards))
                 setExportSelectionOpen(true)
               }}
               style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}

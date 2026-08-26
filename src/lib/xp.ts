@@ -75,15 +75,24 @@ export async function checkAndAwardBadgeXP(supabase: SupabaseClient, userId: str
   await supabase.from('profiles').update({ xp_badges_seen: [...seen, ...newlyEarned] }).eq('id', userId)
 }
 
-// Verse la récompense du défi hebdomadaire une seule fois par semaine — la
-// clé de semaine (ex: "2026-W35") est stockée dans meta pour vérifier qu'elle
-// n'a pas déjà été versée, plutôt qu'une contrainte unique en base (même
-// logique que awardLikeXPIfUnderCap, pas de nouvelle table pour ça).
+// Verse la récompense du défi hebdomadaire une seule fois par semaine. Le
+// SELECT évite l'INSERT (et son aller-retour réseau) dans le cas courant,
+// mais ne suffit pas seul contre deux requêtes concurrentes (ex: le
+// dashboard qui rappelle cette route à chaque montage tant que le défi
+// reste complété) qui passeraient toutes les deux le SELECT avant qu'aucun
+// INSERT n'ait eu lieu — d'où l'index unique partiel côté base
+// (xp_events_weekly_challenge_unique, migration 20260826) qui rejette le
+// doublon quoi qu'il arrive, avec le code 23505 attrapé ici comme un simple
+// "déjà versé" plutôt qu'une erreur.
 export async function awardChallengeXPIfNeeded(supabase: SupabaseClient, userId: string, weekKey: string) {
   const { data: existing } = await supabase.from('xp_events')
     .select('id').eq('user_id', userId).eq('type', 'weekly_challenge').eq('meta->>week', weekKey).limit(1)
   if (existing && existing.length > 0) return false
-  await awardXP(supabase, userId, 'weekly_challenge', XP_AWARDS.WEEKLY_CHALLENGE, { week: weekKey })
+  const { error } = await supabase.from('xp_events').insert({ user_id: userId, type: 'weekly_challenge', amount: XP_AWARDS.WEEKLY_CHALLENGE, meta: { week: weekKey } })
+  if (error) {
+    if (error.code === '23505') return false
+    throw error
+  }
   return true
 }
 

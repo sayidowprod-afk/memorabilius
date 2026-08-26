@@ -27,42 +27,54 @@ export const CHALLENGE_TEMPLATES: ChallengeTemplate[] = [
   { id: 'num5', emoji: '🔢', labelKey: 'challenge_num5', unitKey: 'challenge_unit_num', target: 5, match: c => !!c.num, rewardXp: 20 },
 ]
 
-function isoWeekNumber(d: Date): number {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))
+// Tout calculé en UTC (jamais avec les getters locaux type getDay()/getHours())
+// — sinon la limite de semaine dépend du fuseau horaire de la machine qui
+// exécute le code, qui diffère entre le navigateur d'un utilisateur et le
+// serveur (Vercel = UTC) : un même moment pouvait être compté dans "cette
+// semaine" côté client (qui affiche le défi complété) mais dans la semaine
+// précédente côté serveur (qui refuse alors de verser la récompense).
+//
+// isoWeekYearAndNumber retourne aussi l'année ISO (celle du jeudi de la
+// semaine), pas l'année civile brute du jour donné — nécessaire autour du
+// nouvel an, où un lundi 30 décembre peut appartenir à la semaine 1 de
+// l'année suivante. currentWeekKey() doit utiliser cette même année pour
+// rester cohérente avec le numéro de semaine qu'elle accompagne.
+function isoWeekYearAndNumber(d: Date): { year: number; week: number } {
+  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()))
   const dayNum = date.getUTCDay() || 7
   date.setUTCDate(date.getUTCDate() + 4 - dayNum)
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1))
-  return Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7)
+  const year = date.getUTCFullYear()
+  const yearStart = new Date(Date.UTC(year, 0, 1))
+  const week = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7)
+  return { year, week }
 }
 
 export function currentChallenge(): ChallengeTemplate {
-  const week = isoWeekNumber(new Date())
+  const { week } = isoWeekYearAndNumber(new Date())
   return CHALLENGE_TEMPLATES[week % CHALLENGE_TEMPLATES.length]
 }
 
 export function startOfWeekISO(): string {
   const now = new Date()
-  const day = now.getDay() || 7
-  const monday = new Date(now)
-  monday.setHours(0, 0, 0, 0)
-  monday.setDate(now.getDate() - day + 1)
+  const day = now.getUTCDay() || 7
+  const monday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()))
+  monday.setUTCDate(monday.getUTCDate() - day + 1)
   return monday.toISOString()
 }
 
-// Lundi 00:00 suivant — moment où le défi change (voir currentChallenge, qui
-// change chaque lundi selon le numéro de semaine ISO). Utilisé pour le
+// Lundi 00:00 UTC suivant — moment où le défi change (voir currentChallenge,
+// qui change chaque lundi selon le numéro de semaine ISO). Utilisé pour le
 // countdown affiché dans le widget et, côté serveur, comme borne pour ne
 // verser la récompense qu'une fois par semaine.
 export function endOfWeekISO(): string {
   const monday = new Date(startOfWeekISO())
-  monday.setDate(monday.getDate() + 7)
+  monday.setUTCDate(monday.getUTCDate() + 7)
   return monday.toISOString()
 }
 
 // Clé stable identifiant la semaine ISO en cours (ex: "2026-W35"), utilisée
 // pour empêcher de re-verser la récompense plusieurs fois pour le même défi.
 export function currentWeekKey(): string {
-  const d = new Date()
-  const week = isoWeekNumber(d)
-  return `${d.getUTCFullYear()}-W${week}`
+  const { year, week } = isoWeekYearAndNumber(new Date())
+  return `${year}-W${week}`
 }

@@ -14,6 +14,13 @@ const IMAGE_CACHE_MAX_ENTRIES = 500
 const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
 
 function isImageRequest(request) {
+  // Avatars (profil ET équipe) sont uploadés sur un chemin fixe avec upsert
+  // (ex: `${userId}/avatar.jpg`, toujours la même URL) — un cache-first sans
+  // expiration comme celui-ci servirait l'ancien avatar indéfiniment après
+  // un changement de photo, sur tout appareil qui l'a déjà en cache. Les
+  // photos de cartes n'ont pas ce problème : chaque nouvel upload a sa
+  // propre URL (timestamp dans le chemin).
+  if (/\/avatar\.[a-z0-9]+(\?|$)/i.test(request.url)) return false
   if (request.destination === 'image') return true
   return /\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(request.url)
 }

@@ -7,6 +7,7 @@ import { useLang, localeFor, type Lang } from '@/lib/LangContext'
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
   rc: boolean; auto: boolean; patch: boolean; num: string; g: string; card_number?: string; beckett_designation?: string
+  id_manuelle?: string
 }
 interface Props {
   cards: Card[]
@@ -314,7 +315,11 @@ export default function GalerieExport({ cards: allCards, profileName, avatarUrl,
   const isControlled = openProp !== undefined
   const open = isControlled ? openProp : openInternal
   const setOpen = (v: boolean) => { onOpenChange?.(v); if (!isControlled) setOpenInternal(v) }
-  const cards = restrictToKeys ? allCards.filter(c => restrictToKeys.has(c.f)) : allCards
+  // id_manuelle || f (jamais juste f) : deux cartes différentes peuvent
+  // partager la même photo (pas de photo uploadée -> même image par défaut,
+  // ou un scan réutilisé), ce qui ferait matcher/partager la mauvaise carte
+  // si on ne filtrait que par URL de photo.
+  const cards = restrictToKeys ? allCards.filter(c => restrictToKeys.has(c.id_manuelle || c.f)) : allCards
   const [exporting, setExporting] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [tableWithPhotos, setTableWithPhotos] = useState(false)
