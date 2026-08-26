@@ -435,7 +435,13 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     }
   }
 
+  // Permet au bouton "Réessayer" (affiché après une erreur, ex: timeout côté API)
+  // de relancer exactement la même analyse sans que l'utilisateur ait à remettre
+  // la photo — signalé : obligé de réuploader le verso pour que l'analyse reparte.
+  const lastAnalyzeRetryRef = useRef<(() => void) | null>(null)
+
   const analyzeCard = async (blob: Blob, isVerso = false, rectoBase64?: string | null) => {
+    lastAnalyzeRetryRef.current = () => analyzeCard(blob, isVerso, rectoBase64)
     setScanning(true)
     setScanError(null)
     try {
@@ -489,6 +495,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   const analyzeRectoOnly = async () => {
     if (!rectoBase64Ref.current) return
+    lastAnalyzeRetryRef.current = analyzeRectoOnly
     setWaitingForVerso(false)
     setScanning(true)
     setScanError(null)
@@ -812,9 +819,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </div>
         )}
         {scanError && (
-          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ flexShrink: 0 }}>{scanError.startsWith('Trop de requêtes') ? '⏳' : '⚠️'}</span>
-            <span>{scanError}</span>
+            <span style={{ flex: 1 }}>{scanError}</span>
+            {lastAnalyzeRetryRef.current && (
+              <button type="button" onClick={() => lastAnalyzeRetryRef.current?.()}
+                style={{ flexShrink: 0, padding: '5px 12px', borderRadius: 8, border: '1.5px solid #c0392b', background: 'white', color: '#c0392b', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                {t('addcard_retry_analyze')}
+              </button>
+            )}
           </div>
         )}
 

@@ -1,4 +1,12 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Sans ça, Chrome/WebView Android attend ~300ms avant de valider un tap sur un
+   bouton (pour distinguer d'un double-tap de zoom) — et sur certains appareils
+   Android anciens ce premier tap est carrément avalé au lieu d'être juste
+   retardé, surtout juste après une interaction tactile custom sur un canvas
+   (ex: recadrage de carte). Signalé : bouton "Utiliser" du recadrage qu'il
+   fallait appuyer 2 fois pour valider. */
+button, a, [role="button"] { touch-action: manipulation; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 @keyframes oon-anim {
