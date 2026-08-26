@@ -2610,16 +2610,38 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {mounted && hoverPreview && (() => {
           const { card, rect } = hoverPreview
           const pw = Math.min(300, window.innerWidth - 32)
-          const ph = Math.round(pw * 1.4)
+          const imgH = Math.round(pw * 1.4)
+          const infoH = 96
+          const ph = imgH + infoH
           const left = Math.max(12, Math.min(rect.left + rect.width / 2 - pw / 2, window.innerWidth - pw - 12))
           const top = Math.max(12, Math.min(rect.top - ph - 14, window.innerHeight - ph - 12))
+          const badges: { label: string; color: string }[] = []
+          if (card.rc) badges.push({ label: 'RC', color: TAG_COLORS.rc })
+          if (card.auto) badges.push({ label: 'AUTO', color: TAG_COLORS.auto })
+          if (card.num) badges.push({ label: `#${card.num}`, color: TAG_COLORS.num })
+          if (card.patch) badges.push({ label: 'PATCH', color: TAG_COLORS.patch })
+          if (card.g && card.g !== 'Raw') badges.push({ label: card.g, color: accent })
           return createPortal(
             <div style={{
-              position: 'fixed', left, top, width: pw, height: ph, zIndex: 10001, pointerEvents: 'none',
+              position: 'fixed', left, top, width: pw, zIndex: 10001, pointerEvents: 'none',
               borderRadius: 12, overflow: 'hidden', background: '#111',
               boxShadow: '0 20px 48px rgba(0,0,0,0.45)', animation: 'hoverPreviewIn 0.12s ease',
             }}>
-              <img src={card.f} alt={card.n} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src={card.f} alt={card.n} style={{ width: '100%', height: imgH, objectFit: 'contain', display: 'block' }} />
+              <div style={{ padding: '10px 12px', background: '#1a1a1a' }}>
+                <div style={{ color: '#fff', fontWeight: 800, fontSize: 14, lineHeight: 1.3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</div>
+                {card.v && <div style={{ color: accent, fontSize: 11, fontWeight: 700, fontStyle: 'italic', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v}</div>}
+                <div style={{ color: '#999', fontSize: 11, marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {[card.y, card.br, card.s].filter(Boolean).join(' · ')}
+                </div>
+                {badges.length > 0 && (
+                  <div style={{ display: 'flex', gap: 4, marginTop: 6, flexWrap: 'wrap' }}>
+                    {badges.map(b => (
+                      <span key={b.label} style={{ background: b.color, color: '#fff', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4 }}>{b.label}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>,
             document.body
           )
