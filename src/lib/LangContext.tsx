@@ -180,6 +180,8 @@ const translations = {
     gallery_private: '🔒 PRIVÉ',
     gallery_make_private: '🔒 Rendre privé',
     gallery_make_public: '🔓 Rendre public',
+    gallery_deleted_toast: '{nom} supprimée',
+    gallery_undo: 'Annuler',
     gallery_total: 'carte(s) au total',
 
     // Trades
@@ -1402,6 +1404,8 @@ const translations = {
     gallery_private: '🔒 PRIVATE',
     gallery_make_private: '🔒 Make private',
     gallery_make_public: '🔓 Make public',
+    gallery_deleted_toast: '{nom} deleted',
+    gallery_undo: 'Undo',
     gallery_total: 'card(s) total',
 
     // Trades
@@ -2624,6 +2628,8 @@ const translations = {
     gallery_private: '🔒 PRIVAT',
     gallery_make_private: '🔒 Privat machen',
     gallery_make_public: '🔓 Öffentlich machen',
+    gallery_deleted_toast: '{nom} gelöscht',
+    gallery_undo: 'Rückgängig',
     gallery_total: 'Karte(n) insgesamt',
 
     // Tauschbörse

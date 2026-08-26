@@ -224,9 +224,10 @@ const TEAM_THEMES: { label: string; value: string; sport: string }[] = [
   { label: 'Commanders', value: 'linear-gradient(135deg,#5A1414,#FFB612)', sport: 'NFL' },
 ]
 
-function SortableCard({ id, disabled, children, className, style, onClick, onLongPress }: {
+function SortableCard({ id, disabled, children, className, style, onClick, onLongPress, onPaintMove, onPaintEnd }: {
   id: string; disabled: boolean; children: React.ReactNode
   className?: string; style?: React.CSSProperties; onClick?: () => void; onLongPress?: () => void
+  onPaintMove?: (x: number, y: number) => void; onPaintEnd?: () => void
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled })
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -246,10 +247,20 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
     }, 500)
   }
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!longPressTimer.current) return
-    const dx = Math.abs(e.touches[0].clientX - touchStart.current.x)
-    const dy = Math.abs(e.touches[0].clientY - touchStart.current.y)
-    if (dx > 10 || dy > 10) clearLongPress()
+    if (longPressTimer.current) {
+      const dx = Math.abs(e.touches[0].clientX - touchStart.current.x)
+      const dy = Math.abs(e.touches[0].clientY - touchStart.current.y)
+      if (dx > 10 || dy > 10) clearLongPress()
+      return
+    }
+    // Après un appui long qui a déjà déclenché onLongPress (sélection démarrée),
+    // continuer à glisser le doigt "peint" les cartes survolées — permet de
+    // sélectionner plusieurs cartes d'un seul geste plutôt qu'un tap par carte.
+    if (suppressClick.current && onPaintMove) onPaintMove(e.touches[0].clientX, e.touches[0].clientY)
+  }
+  const handleTouchEnd = () => {
+    clearLongPress()
+    if (suppressClick.current) onPaintEnd?.()
   }
   const handleClickCapture = (e: React.MouseEvent) => {
     if (suppressClick.current) { e.stopPropagation(); e.preventDefault(); suppressClick.current = false }
@@ -271,7 +282,7 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
       onClickCapture={handleClickCapture}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      onTouchEnd={clearLongPress}
+      onTouchEnd={handleTouchEnd}
       {...attributes}
     >
       {!disabled && (
@@ -638,10 +649,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     }
   }
 
-  // Nouvelle fonction pour supprimer définitivement une carte ajoutée à la main
-  const handleDeleteCard = async (idManuelle: string, cardKey: string) => {
-    if (!currentUser || currentUser !== userId) return
+  // Suppression avec délai d'annulation (5s) : la carte disparaît immédiatement de
+  // l'UI, mais la suppression réelle en base n'est déclenchée qu'après le délai
+  // (sauf annulation) — évite le côté définitif/anxiogène d'un clic malheureux
+  // (surtout avec la confirmation à 2 taps déjà en place). Volontairement pas de
+  // "vraie" annulation après coup (delete + reinsert) : ça créerait une nouvelle
+  // ligne (nouvel id) et casserait les likes/commentaires déjà liés à l'ancienne.
+  const pendingDeletesRef = useRef<Map<string, { card: Card; index: number; timeoutId: ReturnType<typeof setTimeout> }>>(new Map())
+  const [undoBanner, setUndoBanner] = useState<{ id: string; nom: string } | null>(null)
 
+  const finalizeDeleteCard = async (idManuelle: string, cardKey: string) => {
+    pendingDeletesRef.current.delete(idManuelle)
     try {
       // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
       const { data: { session } } = await supabase.auth.getSession()
@@ -657,13 +675,38 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
       // 3. Nettoyage de sa visibilité si elle était en mode privé
       await supabase.from('cartes_privees').delete().eq('user_id', uid).eq('card_key', cardKey)
-      
-      // 3. Mise à jour de l'état local pour faire disparaître l'élément instantanément
-      setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
     } catch (e: any) {
       toast.error('Erreur lors de la suppression : ' + e.message)
     }
+  }
+
+  const handleDeleteCard = (idManuelle: string, cardKey: string) => {
+    if (!currentUser || currentUser !== userId) return
+    const index = cards.findIndex(c => c.id_manuelle === idManuelle)
+    if (index === -1) return
+    const card = cards[index]
+
+    // Mise à jour de l'état local pour faire disparaître l'élément instantanément
+    setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
+
+    const timeoutId = setTimeout(() => finalizeDeleteCard(idManuelle, cardKey), 5000)
+    pendingDeletesRef.current.set(idManuelle, { card, index, timeoutId })
+    setUndoBanner({ id: idManuelle, nom: card.n })
+    setTimeout(() => setUndoBanner(cur => cur?.id === idManuelle ? null : cur), 5000)
+  }
+
+  const undoDeleteCard = (idManuelle: string) => {
+    const pending = pendingDeletesRef.current.get(idManuelle)
+    if (!pending) return
+    clearTimeout(pending.timeoutId)
+    pendingDeletesRef.current.delete(idManuelle)
+    setCards(prev => {
+      const next = [...prev]
+      next.splice(Math.min(pending.index, next.length), 0, pending.card)
+      return next
+    })
+    setUndoBanner(null)
   }
 
   // Ajoute les cartes sélectionnées à une collection (appartenance multiple)
@@ -1273,6 +1316,32 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       return next
     })
   }
+
+  // Sélection multiple par glisser (long press sur une carte puis glisser le doigt
+  // sur les autres) : évite de devoir taper chaque carte une à une pour une
+  // sélection groupée. paintedRef évite de re-traiter la même carte à chaque
+  // événement de déplacement ; paintAddModeRef fixe si on ajoute ou retire de la
+  // sélection pour tout le geste, décidé par l'état de la toute première carte.
+  const paintedRef = useRef<Set<string>>(new Set())
+  const paintAddModeRef = useRef(true)
+  const startPaintSelect = (d: Card) => {
+    hapticTap()
+    const id = getCardId(d)
+    if (!editMode) setEditMode(true)
+    const willSelect = !selectedCards.has(id)
+    paintAddModeRef.current = willSelect
+    paintedRef.current = new Set([id])
+    setSelectedCards(prev => { const next = new Set(prev); if (willSelect) next.add(id); else next.delete(id); return next })
+  }
+  const handlePaintMove = (x: number, y: number) => {
+    const el = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest('[data-card-id]')
+    const id = el?.getAttribute('data-card-id')
+    if (!id || paintedRef.current.has(id)) return
+    paintedRef.current.add(id)
+    hapticTap()
+    setSelectedCards(prev => { const next = new Set(prev); if (paintAddModeRef.current) next.add(id); else next.delete(id); return next })
+  }
+  const handlePaintEnd = () => { paintedRef.current = new Set() }
 
   const shareCardNative = async (d: Card) => {
     if (!isNative) return
@@ -2112,8 +2181,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         />}
 
         {activeTab === 'collection' && <>
-        {/* Filtres de recherche */}
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+        {/* Filtres de recherche — reste visible au scroll pour ne pas avoir à
+            remonter tout en haut d'une longue galerie pour relancer une recherche.
+            top: sous la NavBar web sticky (60px) ; sur natif MobileTopBar défile
+            avec la page sur cette route (voir GALLERY_ROOT dans MobileTopBar.tsx),
+            donc rien au-dessus à éviter → top: 0. */}
+        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee', position: 'sticky', top: isNative ? 0 : 60, zIndex: 50, boxShadow: dark ? '0 4px 12px rgba(0,0,0,0.4)' : '0 4px 12px rgba(0,0,0,0.08)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_search_label')}</label>
               <input value={searchInput} onChange={e => {
@@ -2522,6 +2595,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           }
         `}</style>
         
+        {mounted && undoBanner && createPortal(
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
+            <span style={{ flex: 1 }}>🗑️ {t('gallery_deleted_toast').replace('{nom}', undoBanner.nom)}</span>
+            <button onClick={() => undoDeleteCard(undoBanner.id)}
+              style={{ background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0 }}>
+              {t('gallery_undo')}
+            </button>
+          </div>,
+          document.body
+        )}
+
         {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
           <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
@@ -2687,7 +2771,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
               className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}${!initialCascadeDone && idx < 24 ? ' card-cascade-in' : ''}`}
-              onLongPress={!editMode && !qrMode ? () => shareCardNative(d) : undefined}
+              onLongPress={qrMode ? undefined : editMode && isOwner ? () => startPaintSelect(d) : () => shareCardNative(d)}
+              onPaintMove={handlePaintMove}
+              onPaintEnd={handlePaintEnd}
               onClick={() => {
                 if (qrMode) { toggleQrCard(d); return }
                 if (editMode && isOwner) { toggleCardSelection(getCardId(d)); return }
