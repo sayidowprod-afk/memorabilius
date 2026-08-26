@@ -1712,7 +1712,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const activeChildren = activeParent ? getChildren(activeParent) : []
   const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
 
-  const hasAdvancedActive = !!(fTeam || fBrand || fYear || sortBy !== 'default')
+  const hasAdvancedActive = !!(fSport || fBrand || fYear || sortBy !== 'default')
   const advancedVisible = showAdvancedFilters || hasAdvancedActive
 
   return (
@@ -2189,40 +2189,38 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             avec la page sur cette route (voir GALLERY_ROOT dans MobileTopBar.tsx),
             donc rien au-dessus à éviter → top: 0. */}
         <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: '8px 10px', borderRadius: 8, marginBottom: 8, border: dark ? '1px solid #333' : '1px solid #eee', position: 'sticky', top: isNative ? 0 : 60, zIndex: 50, boxShadow: dark ? '0 4px 12px rgba(0,0,0,0.4)' : '0 4px 12px rgba(0,0,0,0.08)' }}>
-          <input value={searchInput} onChange={e => {
-            setSearchInput(e.target.value)
-            if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
-            searchDebounceRef.current = setTimeout(() => {
-              const parsed = parseNaturalQuery(e.target.value)
-              const hints: string[] = []
-              setActiveFilters({ rc: parsed.rc, auto: parsed.auto, num: parsed.num, patch: parsed.patch })
-              if (parsed.rc) hints.push('RC')
-              if (parsed.auto) hints.push('Auto')
-              if (parsed.patch) hints.push('Patch')
-              setFYear(parsed.year || ''); if (parsed.year) hints.push(parsed.year)
-              setNumMax(parsed.numMax)
-              if (parsed.num) hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
-              setNlpHint(hints)
-              setSearch(parsed.text)
-            }, 200)
-          }} placeholder={t('gallery_search')} style={{ width: '100%', boxSizing: 'border-box' }} />
-          {nlpHint.length > 0 && (
-            <p style={{ fontSize: 10, color: dark ? '#999' : '#777', margin: '3px 0 0' }}>
-              {t('search_understood_as')} <strong style={{ color: dark ? `color-mix(in srgb, ${accent} 65%, white)` : accent }}>{nlpHint.join(' · ')}</strong>
-            </p>
-          )}
-        </div>
-
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
-          <div style={{ marginBottom: 10 }}>
-            <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{lang === 'fr' ? 'Sport' : 'Sport'}</label>
-            <select value={fSport} onChange={e => setFSport(e.target.value)}>
-              <option value="">{t('gallery_all')}</option>
-              {gallerySports.map(sp => <option key={sp} value={sp}>{SPORT_LABELS[sp]}</option>)}
-            </select>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8 }}>
+            <div>
+              <input value={searchInput} onChange={e => {
+                setSearchInput(e.target.value)
+                if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
+                searchDebounceRef.current = setTimeout(() => {
+                  const parsed = parseNaturalQuery(e.target.value)
+                  const hints: string[] = []
+                  setActiveFilters({ rc: parsed.rc, auto: parsed.auto, num: parsed.num, patch: parsed.patch })
+                  if (parsed.rc) hints.push('RC')
+                  if (parsed.auto) hints.push('Auto')
+                  if (parsed.patch) hints.push('Patch')
+                  setFYear(parsed.year || ''); if (parsed.year) hints.push(parsed.year)
+                  setNumMax(parsed.numMax)
+                  if (parsed.num) hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
+                  setNlpHint(hints)
+                  setSearch(parsed.text)
+                }, 200)
+              }} placeholder={t('gallery_search')} style={{ width: '100%', boxSizing: 'border-box' }} />
+              {nlpHint.length > 0 && (
+                <p style={{ fontSize: 10, color: dark ? '#999' : '#777', margin: '3px 0 0' }}>
+                  {t('search_understood_as')} <strong style={{ color: dark ? `color-mix(in srgb, ${accent} 65%, white)` : accent }}>{nlpHint.join(' · ')}</strong>
+                </p>
+              )}
+            </div>
+            <div>
+              <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_team_label')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
+              <datalist id="gallery-teams">{teams.map(team => <option key={team} value={team} />)}</datalist>
+            </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 4 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginTop: 8 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
@@ -2230,6 +2228,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
           </div>
+        </div>
+
+        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 10 }}>
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
@@ -2257,9 +2258,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
           {advancedVisible && <>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
-            <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_team_label')}</label>
-              <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_all')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
-              <datalist id="gallery-teams">{teams.map(team => <option key={team} value={team} />)}</datalist>
+            <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{lang === 'fr' ? 'Sport' : 'Sport'}</label>
+              <select value={fSport} onChange={e => setFSport(e.target.value)}>
+                <option value="">{t('gallery_all')}</option>
+                {gallerySports.map(sp => <option key={sp} value={sp}>{SPORT_LABELS[sp]}</option>)}
+              </select>
             </div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_collection_label')}</label>
               <input value={fBrand} onChange={e => setFBrand(e.target.value)} placeholder={t('gallery_all')} list="gallery-brands" style={{ width: '100%', boxSizing: 'border-box' }} />
