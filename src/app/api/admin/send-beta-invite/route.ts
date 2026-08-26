@@ -1,19 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { requireAdmin } from '@/lib/adminAuth'
 
 const admin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
-
-const ADMIN_EMAILS = new Set([
-  'kikibajkiki@gmail.com',
-  'killian.bajoni@hotmail.fr',
-  'killianbajoni@hotmail.com',
-  'sayidowprod@gmail.com',
-  ...(process.env.ADMIN_EMAIL ? [process.env.ADMIN_EMAIL] : []),
-].map(e => e.toLowerCase()))
 
 function getResend() { return new Resend(process.env.RESEND_API_KEY!) }
 
@@ -132,13 +125,8 @@ function buildBetaEmail(email: string): string {
 
 export async function POST(req: NextRequest) {
   try {
-    const token = req.headers.get('authorization')?.replace('Bearer ', '')
-    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
-    const { data: { user } } = await admin.auth.getUser(token)
-    if (!user || !ADMIN_EMAILS.has(user.email?.toLowerCase() ?? '')) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
+    if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
     const body = await req.json().catch(() => ({}))
     const sheetsUrl: string = body.sheets_url || `https://docs.google.com/spreadsheets/d/${DEFAULT_SHEET_ID}/export?format=csv`

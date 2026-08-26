@@ -946,6 +946,10 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   const imgRef            = useRef<HTMLImageElement | null>(null)
   const origImgRef        = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
   const scaleRef          = useRef(1)
+  // Incrémenté à chaque appel d'initCanvas ; permet à un appel obsolète (photo reprise
+  // ou rotation pendant qu'une détection précédente tournait encore, jusqu'à 15-25s)
+  // de détecter qu'il n'est plus le dernier et de ne pas écraser les coins affichés.
+  const initTokenRef      = useRef(0)
   const hasAdjusted       = useRef(false) // true dès que l'utilisateur bouge un coin
   const geminiCornersRef  = useRef<{ x: number; y: number }[] | null>(null) // fractions 0-1 retournées par Gemini
 
@@ -1000,6 +1004,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   }, [src])
 
   const initCanvas = async (img: HTMLImageElement) => {
+    const myToken = ++initTokenRef.current
     try {
     const canvas = canvasRef.current
     if (!canvas) { setStatus('notfound'); setCorners(defaultCorners({ width: 300, height: 420 } as HTMLCanvasElement)); return }
@@ -1085,6 +1090,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       ? [{ x: frameRect.x, y: frameRect.y }, { x: frameRect.x + frameRect.w, y: frameRect.y },
          { x: frameRect.x + frameRect.w, y: frameRect.y + frameRect.h }, { x: frameRect.x, y: frameRect.y + frameRect.h }]
       : null
+    if (myToken !== initTokenRef.current) return // une photo/rotation plus récente a pris le relais
     const naturalCorners = valid ? detectedCorners : fallbackNatural
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
@@ -1092,6 +1098,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     setCorners(display)
     setStatus(valid ? 'found' : 'notfound')
     } catch {
+      if (myToken !== initTokenRef.current) return
       // Erreur inattendue dans initCanvas → fallback visible plutôt que blocage infini
       const canvas = canvasRef.current
       setCorners(canvas ? defaultCorners(canvas) : [])

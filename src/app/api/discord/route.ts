@@ -171,8 +171,10 @@ async function cmdCarte(options: any[]) {
     .not('image_recto', 'is', null)
 
   if (tk.text) {
-    const s = tk.text.replace(/[%_]/g, '\\$&')
-    dbQuery = dbQuery.or(`nom.ilike.%${s}%,variation.ilike.%${s}%,marque.ilike.%${s}%,equipe.ilike.%${s}%,collection.ilike.%${s}%`)
+    // `,` et `()` sont les séparateurs/groupeurs de la syntaxe .or() de PostgREST —
+    // un input non filtré pourrait injecter des clauses de filtre supplémentaires.
+    const s = tk.text.replace(/[%_]/g, '\\$&').replace(/[,()]/g, ' ').trim()
+    if (s) dbQuery = dbQuery.or(`nom.ilike.%${s}%,variation.ilike.%${s}%,marque.ilike.%${s}%,equipe.ilike.%${s}%,collection.ilike.%${s}%`)
   }
   if (tk.isRc)    dbQuery = dbQuery.eq('rc', true)
   if (tk.isAuto)  dbQuery = dbQuery.eq('auto', true)

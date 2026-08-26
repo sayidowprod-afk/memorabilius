@@ -1,18 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { requireAdmin } from '@/lib/adminAuth'
 
 const admin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
-
-const ADMIN_EMAILS = new Set([
-  'kikibajkiki@gmail.com',
-  'killian.bajoni@hotmail.fr',
-  'killianbajoni@hotmail.com',
-  'sayidowprod@gmail.com',
-  ...(process.env.ADMIN_EMAIL ? [process.env.ADMIN_EMAIL] : []),
-].map(e => e.toLowerCase()))
 
 
 function daily7(counts: Record<string, number>): Array<{ day: string; count: number }> {
@@ -100,13 +93,8 @@ async function getVercelPageviews(d7Start: string): Promise<Record<string, numbe
 }
 
 export async function GET(req: NextRequest) {
-  const token = req.headers.get('authorization')?.replace('Bearer ', '')
-  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
-  const { data: { user } } = await admin.auth.getUser(token)
-  if (!user || !ADMIN_EMAILS.has(user.email?.toLowerCase() ?? '')) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
+  const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
+  if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const d7Start = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
 
