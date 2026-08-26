@@ -424,6 +424,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
   const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
+  const searchInputRef = useRef<HTMLInputElement>(null)
   const [search, setSearch] = useState(initialParsedSearch.text)
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [fSport, setFSport] = useState(searchParams.get('sport') || '')
@@ -1195,6 +1196,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [grailPickerOpen])
+
+  // Raccourci "/" pour aller directement à la recherche sans prendre la souris
+  // (courant sur les sites avec beaucoup de contenu à filtrer) — ignoré si on
+  // est déjà en train de taper ailleurs (input/textarea/contenteditable), sinon
+  // taper "/" dans un autre champ volerait le focus au milieu de la frappe.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== '/') return
+      const target = e.target as HTMLElement
+      const tag = target?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || target?.isContentEditable) return
+      e.preventDefault()
+      searchInputRef.current?.focus()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 500)
@@ -2214,7 +2232,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div>
-              <input value={searchInput} onChange={e => {
+            <div style={{ position: 'relative' }}>
+              <input ref={searchInputRef} value={searchInput} onChange={e => {
                 setSearchInput(e.target.value)
                 if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
                 searchDebounceRef.current = setTimeout(() => {
@@ -2230,7 +2249,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   setNlpHint(hints)
                   setSearch(parsed.text)
                 }, 200)
-              }} placeholder={t('gallery_search')} aria-label={t('gallery_search_label')} style={{ width: '100%', boxSizing: 'border-box' }} />
+              }} placeholder={t('gallery_search')} aria-label={t('gallery_search_label')} style={{ width: '100%', boxSizing: 'border-box', paddingRight: !isNative && !searchInput ? 26 : undefined }} />
+              {/* Indice de raccourci clavier "/" — desktop web uniquement, aucun sens sur natif (pas de clavier physique) */}
+              {!isNative && !searchInput && (
+                <kbd aria-hidden="true" style={{
+                  position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none',
+                  fontSize: 11, fontWeight: 700, color: dark ? '#777' : '#aaa', background: dark ? '#2a2a2a' : '#f0f0f0',
+                  border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 4, padding: '1px 6px', fontFamily: 'inherit',
+                }}>/</kbd>
+              )}
+            </div>
               {nlpHint.length > 0 && (
                 <p style={{ fontSize: 10, color: dark ? '#999' : '#777', margin: '3px 0 0' }}>
                   {t('search_understood_as')} <strong style={{ color: dark ? `color-mix(in srgb, ${accent} 65%, white)` : accent }}>{nlpHint.join(' · ')}</strong>
