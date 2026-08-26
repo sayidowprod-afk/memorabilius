@@ -1,4 +1,6 @@
 'use client'
+import { useState } from 'react'
+import { useTheme } from '@/lib/ThemeContext'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 
 interface Props {
@@ -7,12 +9,15 @@ interface Props {
 }
 
 export default function TeamBadge({ teamId, size = 28 }: Props) {
+  const { dark } = useTheme()
+  const [failed, setFailed] = useState(false)
   const team = getTeamById(teamId)
   if (!team) return null
   const url = teamLogoUrl(team)
 
-  if (!url) {
-    // Pas de logo (foot sans fdo, ou sport inconnu) → cercle coloré sans texte
+  if (!url || failed) {
+    // Pas de logo (foot sans crest, sport inconnu, ou logo introuvable) → pastille
+    // colorée sans texte, seul cas où la couleur d'équipe reste visible.
     return (
       <div style={{
         width: size, height: size, borderRadius: '50%',
@@ -21,32 +26,22 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
     )
   }
 
-  // Cercle blanc qui contient le logo — élimine le fond rectangulaire quelle que soit la source
+  // Monochrome (blanc en mode sombre, noir en mode clair) via filtre CSS plutôt
+  // qu'un cercle blanc plein derrière le logo original — évite le halo blanc
+  // disgracieux sur fond sombre, et fond bien la petite icône dans l'UI existante
+  // (texte/icônes) au lieu de crier en couleurs à côté du nom.
   return (
-    <div style={{
-      width: size, height: size, borderRadius: '50%',
-      background: 'white',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      flexShrink: 0, overflow: 'hidden',
-      boxShadow: '0 0 0 0.75px rgba(0,0,0,0.10)',
-    }}>
-      <img
-        src={url}
-        alt={team.name}
-        title={team.name}
-        width={Math.round(size * 0.82)}
-        height={Math.round(size * 0.82)}
-        style={{ objectFit: 'contain', display: 'block' }}
-        onError={(e) => {
-          // Logo introuvable → teinte le cercle de la couleur de l'équipe
-          const wrapper = e.currentTarget.parentElement
-          if (wrapper) {
-            wrapper.style.background = team.color
-            wrapper.style.boxShadow = 'none'
-          }
-          e.currentTarget.style.display = 'none'
-        }}
-      />
-    </div>
+    <img
+      src={url}
+      alt={team.name}
+      title={team.name}
+      width={size}
+      height={size}
+      style={{
+        objectFit: 'contain', display: 'block', flexShrink: 0,
+        filter: dark ? 'brightness(0) invert(1)' : 'brightness(0)',
+      }}
+      onError={() => setFailed(true)}
+    />
   )
 }
