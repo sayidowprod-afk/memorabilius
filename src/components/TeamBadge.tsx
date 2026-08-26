@@ -18,7 +18,7 @@ const CUSTOM_LOGO_EXTENSIONS = ['svg', 'png', 'webp']
 // images en cache-first sans jamais revalider) -- ces fichiers sont modifies
 // en place sous le meme nom, donc sans ca un fichier remplace reste servi
 // depuis le cache jusqu'a max-age (24h) ou expiration du cache d'images du SW.
-const LOGO_CACHE_BUST = 'v3'
+const LOGO_CACHE_BUST = 'v4'
 
 export default function TeamBadge({ teamId, size = 28 }: Props) {
   const { dark } = useTheme()
@@ -27,23 +27,27 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   const team = getTeamById(teamId)
   if (!team) return null
 
-  // 1. Logo maison si dispo -- affiche tel quel, SANS filtre CSS. Le filtre
-  // (brightness/invert) rendait un carre plein blanc en mode sombre au lieu du
-  // logo -- confirme par capture d'ecran reelle, pas juste par calcul. Sans
-  // filtre ca marche (meme traitement que le fallback couleur ci-dessous, qui
-  // lui n'a jamais pose probleme).
+  // 1. Logo maison si dispo -- rendu en image de fond CSS (pas une balise <img>) :
+  // un carre blanc plein apparaissait systematiquement avec <img> quelle que soit
+  // la taille source/affichage (confirme sur plusieurs captures reelles), un
+  // chemin de rendu different pour ecarter un souci de compositing sur <img>.
   if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
+    const src = `/team-logos/${teamId.replace(':', '-')}.${ext}?${LOGO_CACHE_BUST}`
     return (
-      <img
-        src={`/team-logos/${teamId.replace(':', '-')}.${ext}?${LOGO_CACHE_BUST}`}
-        alt={team.name}
-        title={team.name}
-        width={size}
-        height={size}
-        style={{ objectFit: 'contain', display: 'block', flexShrink: 0 }}
-        onError={() => setCustomExtIndex(i => i + 1)}
-      />
+      <>
+        <img src={src} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setCustomExtIndex(i => i + 1)} />
+        <div
+          role="img"
+          aria-label={team.name}
+          title={team.name}
+          style={{
+            width: size, height: size, flexShrink: 0,
+            backgroundImage: `url(${src})`,
+            backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',
+          }}
+        />
+      </>
     )
   }
 
