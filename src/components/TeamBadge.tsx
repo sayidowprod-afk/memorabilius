@@ -21,9 +21,11 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   const team = getTeamById(teamId)
   if (!team) return null
 
-  // 1. Logo maison si dispo -- brightness(0) aplati tout en noir pur (certains
-  // fichiers ont des degrades de gris, pas du noir uni), puis invert(1) en mode
-  // sombre pour passer en blanc.
+  // 1. Logo maison si dispo -- affiche tel quel, SANS filtre CSS. Le filtre
+  // (brightness/invert) rendait un carre plein blanc en mode sombre au lieu du
+  // logo -- confirme par capture d'ecran reelle, pas juste par calcul. Sans
+  // filtre ca marche (meme traitement que le fallback couleur ci-dessous, qui
+  // lui n'a jamais pose probleme).
   if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     return (
@@ -33,7 +35,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
         title={team.name}
         width={size}
         height={size}
-        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'brightness(0) invert(1)' : 'brightness(0)' }}
+        style={{ objectFit: 'contain', display: 'block', flexShrink: 0 }}
         onError={() => setCustomExtIndex(i => i + 1)}
       />
     )
