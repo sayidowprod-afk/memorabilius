@@ -18,6 +18,7 @@ export const XP_AWARDS = {
   STREAK_7: 10,
   STREAK_30: 50,
   STREAK_100: 100,
+  WEEKLY_CHALLENGE: 20,
 } as const
 
 export function xpForCard(flags: { rc?: boolean; auto?: boolean; patch?: boolean; num?: boolean | string | null }): number {
@@ -72,6 +73,18 @@ export async function checkAndAwardBadgeXP(supabase: SupabaseClient, userId: str
     await awardXP(supabase, userId, 'badge_unlocked', XP_AWARDS.BADGE_UNLOCKED, { badge_id: id })
   }
   await supabase.from('profiles').update({ xp_badges_seen: [...seen, ...newlyEarned] }).eq('id', userId)
+}
+
+// Verse la récompense du défi hebdomadaire une seule fois par semaine — la
+// clé de semaine (ex: "2026-W35") est stockée dans meta pour vérifier qu'elle
+// n'a pas déjà été versée, plutôt qu'une contrainte unique en base (même
+// logique que awardLikeXPIfUnderCap, pas de nouvelle table pour ça).
+export async function awardChallengeXPIfNeeded(supabase: SupabaseClient, userId: string, weekKey: string) {
+  const { data: existing } = await supabase.from('xp_events')
+    .select('id').eq('user_id', userId).eq('type', 'weekly_challenge').eq('meta->>week', weekKey).limit(1)
+  if (existing && existing.length > 0) return false
+  await awardXP(supabase, userId, 'weekly_challenge', XP_AWARDS.WEEKLY_CHALLENGE, { week: weekKey })
+  return true
 }
 
 // Plafonne l'XP de likes à 20 événements/jour (40 XP) pour éviter le farming

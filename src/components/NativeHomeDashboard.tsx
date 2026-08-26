@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
-import { useLang } from '@/lib/LangContext'
+import { useLang, type TranslationKey } from '@/lib/LangContext'
 import { hapticTap } from '@/lib/haptics'
 import { BADGE_CATEGORIES, type BadgeCategory, type BadgeTier } from '@/lib/badgeDefinitions'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
-import { currentChallenge, startOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
+import { currentChallenge, startOfWeekISO, endOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
 
 interface SiteStats { total: number; totalCartes: number; totalBinders: number; totalTrade: number }
 
@@ -47,9 +47,9 @@ function findNextBadge(stat: Record<string, number>): DashboardData['nextBadge']
   return best
 }
 
-function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColor, href, onIconClick, first }: {
+function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColor, href, onIconClick, first, sublabel }: {
   icon: React.ReactNode; iconBg: string; label: React.ReactNode; valueLabel: string; valueColor: string
-  pct: number; barColor: string; href: string; onIconClick?: () => void; first?: boolean
+  pct: number; barColor: string; href: string; onIconClick?: () => void; first?: boolean; sublabel?: React.ReactNode
 }) {
   const content = (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0', borderTop: first ? undefined : '1px solid var(--border, #eee)' }}>
@@ -67,10 +67,25 @@ function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColo
         <div style={{ height: 5, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 6 }}>
           <div style={{ height: '100%', width: `${Math.min(100, Math.round(pct * 100))}%`, background: barColor, borderRadius: 3 }} />
         </div>
+        {sublabel && (
+          <div style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--text3, #999)', marginTop: 4 }}>{sublabel}</div>
+        )}
       </div>
     </div>
   )
   return <Link href={href} onClick={hapticTap} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
+}
+
+// "3j 4h" / "5h" / "moins d'1h" — pas besoin de granularité seconde, le défi
+// change une fois par semaine (voir currentChallenge dans weeklyChallenge.ts).
+function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): string {
+  if (msLeft <= 0) return ''
+  const totalHours = Math.floor(msLeft / 3_600_000)
+  const days = Math.floor(totalHours / 24)
+  const hours = totalHours % 24
+  if (days > 0) return `${days}${t('dashboard_challenge_days_short')} ${hours}${t('dashboard_challenge_hours_short')}`
+  if (totalHours > 0) return `${totalHours}${t('dashboard_challenge_hours_short')}`
+  return t('dashboard_challenge_less_than_hour')
 }
 
 export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
@@ -153,6 +168,23 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     return () => { cancelled = true }
   }, [user, retryKey])
 
+  // Verse la récompense XP du défi hebdomadaire dès qu'il est complété. La
+  // route recalcule elle-même la progression côté serveur (voir
+  // /api/challenge-complete) et est idempotente — l'appeler ici à chaque fois
+  // que challengeDone passe à true (montage, ou dernière carte qui complète le
+  // défi) est donc sans risque de double versement.
+  useEffect(() => {
+    if (!data || !user) return
+    if (data.challengeProgress < data.challenge.target) return
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) return
+      fetch('/api/challenge-complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+      }).catch(() => {})
+    })
+  }, [user, data?.challenge.id, data && data.challengeProgress >= data.challenge.target])
+
   if (!data) {
     // Sans filet visible ici, un échec réseau réel (pas juste un cold start)
     // laissait l'utilisateur bloqué sur une boîte vide indéfiniment, sans
@@ -195,6 +227,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   ]
 
   const challengeDone = data.challengeProgress >= data.challenge.target
+  const challengeMsLeft = new Date(endOfWeekISO()).getTime() - Date.now()
 
   return (
     <div style={{ background: 'var(--bg, #f8f9fa)', paddingBottom: 8 }}>
@@ -292,6 +325,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           valueColor={challengeDone ? '#2e7d32' : '#003DA6'}
           pct={data.challengeProgress / data.challenge.target}
           barColor={challengeDone ? '#2e7d32' : 'linear-gradient(90deg, #1E63E0, #003DA6)'}
+          sublabel={`🎁 +${data.challenge.rewardXp} XP · ⏳ ${t('dashboard_challenge_ends_in')} ${formatCountdown(challengeMsLeft, t)}`}
         />
         {showXpInfo && (
           <div style={{
