@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useIsNative } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 const GALLERY_ROOT = /^\/galerie\/[^/]+$/
 
@@ -21,9 +22,9 @@ const ChatIcon = () => (
   </svg>
 )
 
-function IconButton({ href, badge, children, alignRight }: { href: string; badge: number; children: React.ReactNode; alignRight?: boolean }) {
+function IconButton({ href, badge, children, alignRight, ariaLabel }: { href: string; badge: number; children: React.ReactNode; alignRight?: boolean; ariaLabel: string }) {
   return (
-    <Link href={href} style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: alignRight ? 'flex-end' : 'flex-start', width: 40, height: 28 }}>
+    <Link href={href} aria-label={ariaLabel} style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: alignRight ? 'flex-end' : 'flex-start', width: 40, height: 28 }}>
       {children}
       {badge > 0 && (
         <span style={{
@@ -41,6 +42,7 @@ function IconButton({ href, badge, children, alignRight }: { href: string; badge
 export default function MobileTopBar() {
   const isNative = useIsNative()
   const { user } = useAuth()
+  const { t } = useLang()
   const pathname = usePathname()
   const [notifCount, setNotifCount] = useState(0)
   const [chatCount, setChatCount] = useState(0)
@@ -75,7 +77,7 @@ export default function MobileTopBar() {
       }}
     >
       {user ? (
-        <IconButton href="/notifications" badge={notifCount}><BellIcon /></IconButton>
+        <IconButton href="/notifications" badge={notifCount} ariaLabel={t('settings_notifications')}><BellIcon /></IconButton>
       ) : <div style={{ width: 40 }} />}
 
       <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -87,7 +89,7 @@ export default function MobileTopBar() {
       </Link>
 
       {user ? (
-        <IconButton href="/messages" badge={chatCount} alignRight><ChatIcon /></IconButton>
+        <IconButton href="/messages" badge={chatCount} alignRight ariaLabel={t('nav_messages')}><ChatIcon /></IconButton>
       ) : <div style={{ width: 40 }} />}
     </div>
   )

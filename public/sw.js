@@ -1,7 +1,48 @@
 const CACHE_NAME = 'memorabilius-v6'
 
+// Cache séparé pour les photos de cartes (Supabase Storage, ibb.co, etc.) —
+// cache-first : une fois une carte vue, sa photo reste dispo hors-ligne même
+// après redémarrage de l'app (le cache HTTP navigateur normal n'offre pas
+// cette garantie, surtout dans une WebView qui purge plus agressivement).
+// Volontairement séparé du cache HTML/statique ci-dessus, qui lui reste
+// network-first (voir commentaire plus bas sur les risques de chunks JS
+// périmés) — les photos n'ont pas ce risque, une image ne "casse" jamais.
+const IMAGE_CACHE_NAME = 'memorabilius-images-v1'
+const IMAGE_CACHE_MAX_ENTRIES = 500
+
 // Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
 const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
+
+function isImageRequest(request) {
+  if (request.destination === 'image') return true
+  return /\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(request.url)
+}
+
+async function trimImageCache() {
+  const cache = await caches.open(IMAGE_CACHE_NAME)
+  const keys = await cache.keys()
+  const overflow = keys.length - IMAGE_CACHE_MAX_ENTRIES
+  if (overflow > 0) await Promise.all(keys.slice(0, overflow).map((k) => cache.delete(k)))
+}
+
+async function handleImageFetch(request) {
+  const cache = await caches.open(IMAGE_CACHE_NAME)
+  const cached = await cache.match(request)
+  if (cached) return cached
+  try {
+    const res = await fetch(request)
+    // Beaucoup de ces images viennent d'hébergeurs tiers sans CORS (ibb.co...) —
+    // la réponse est alors "opaque" (statut illisible), mais reste tout à fait
+    // exploitable en tant que source d'une balise <img> et cachable telle quelle.
+    if (res.ok || res.type === 'opaque') {
+      cache.put(request, res.clone())
+      trimImageCache()
+    }
+    return res
+  } catch {
+    return cached || Response.error()
+  }
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -13,7 +54,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => k !== CACHE_NAME && k !== IMAGE_CACHE_NAME).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -60,7 +101,12 @@ self.addEventListener('notificationclick', (event) => {
 // même pas, donc rien ne peut se rattraper côté app). Un retry avant le fallback
 // évite ça dans l'immense majorité des cas.
 self.addEventListener('fetch', (event) => {
-  if (event.request.mode !== 'navigate') return
+  if (event.request.mode !== 'navigate') {
+    if (event.request.method === 'GET' && isImageRequest(event.request)) {
+      event.respondWith(handleImageFetch(event.request))
+    }
+    return
+  }
   event.respondWith(
     (async () => {
       for (let attempt = 0; attempt < 2; attempt++) {

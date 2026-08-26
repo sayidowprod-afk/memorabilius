@@ -223,7 +223,7 @@ export default function Navbar() {
 
               {/* Dropdown langue */}
               <div ref={langRef} style={{ position: 'relative' }}>
-                <button onClick={() => toggleDrop('lang')} style={{
+                <button onClick={() => toggleDrop('lang')} aria-label={t('settings_language')} aria-haspopup="true" aria-expanded={openDrop === 'lang'} style={{
                   background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
                   borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
                   fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
@@ -255,7 +255,7 @@ export default function Navbar() {
 
               {/* Dropdown langue (non connecté) */}
               <div ref={langRef} style={{ position: 'relative' }}>
-                <button onClick={() => toggleDrop('lang')} style={{
+                <button onClick={() => toggleDrop('lang')} aria-label={t('settings_language')} aria-haspopup="true" aria-expanded={openDrop === 'lang'} style={{
                   background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
                   borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
                   fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
@@ -292,7 +292,7 @@ export default function Navbar() {
               {t('nav_galerie')}
             </Link>
           )}
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+          <button onClick={() => setMenuOpen(!menuOpen)} aria-label={t(menuOpen ? 'nav_menu_close' : 'nav_menu_open')} aria-expanded={menuOpen} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
             <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
             <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', opacity: menuOpen ? 0 : 1 }} />
             <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
@@ -327,7 +327,7 @@ export default function Navbar() {
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
                 {LANGS.map(l => (
-                  <button key={l.code} onClick={() => setLang(l.code)} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
+                  <button key={l.code} onClick={() => setLang(l.code)} aria-label={l.label} aria-pressed={lang === l.code} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
                 ))}
               </div>
               <div style={{ padding: '16px 0' }}>
@@ -340,7 +340,7 @@ export default function Navbar() {
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
                 {LANGS.map(l => (
-                  <button key={l.code} onClick={() => setLang(l.code)} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
+                  <button key={l.code} onClick={() => setLang(l.code)} aria-label={l.label} aria-pressed={lang === l.code} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
                 ))}
               </div>
               <div style={{ padding: '16px 0' }}>

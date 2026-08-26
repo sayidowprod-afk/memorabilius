@@ -284,6 +284,15 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       {...attributes}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => {
+        // {...attributes} peut fixer tabIndex=-1 quand le drag est désactivé
+        // (dnd-kit, voir `disabled` ci-dessus) — sans ceci, la carte ne serait
+        // plus du tout activable au clavier hors du mode édition/réordonnement,
+        // qui est le cas le plus courant (simple navigation).
+        if ((e.key === 'Enter' || e.key === ' ') && onClick) { e.preventDefault(); onClick() }
+      }}
     >
       {!disabled && (
         <div
@@ -1769,7 +1778,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
               className="profile-avatar-halo"
               style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
-              alt={profile?.display_name}
+              alt={profile?.display_name || t('gallery_default_collector')}
             />
             <div style={{ minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
@@ -1997,7 +2006,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               return (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontSize: i === 0 ? 26 : 20 }}>{medal.emoji}</span>
-                  <div onClick={() => setPopup(card)} className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
+                  <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
+                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(card) } }}
+                    className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
                     width: medal.width, cursor: 'pointer', position: 'relative',
                     background: `linear-gradient(160deg, ${medal.color}, ${medal.color}99)`, padding: 3, borderRadius: 12,
                     boxShadow: i === 0 ? undefined : `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
@@ -2039,6 +2050,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {isOwner ? (
                   <div
                     onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}
+                    role="button" tabIndex={0} aria-label={t('gallery_choose_card')}
+                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setGrailPickerOpen(true); setGrailSearch('') } }}
                     style={{
                       width: medal.width, border: `2px dashed ${medal.color}66`, borderRadius: 12,
                       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -2217,7 +2230,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   setNlpHint(hints)
                   setSearch(parsed.text)
                 }, 200)
-              }} placeholder={t('gallery_search')} style={{ width: '100%', boxSizing: 'border-box' }} />
+              }} placeholder={t('gallery_search')} aria-label={t('gallery_search_label')} style={{ width: '100%', boxSizing: 'border-box' }} />
               {nlpHint.length > 0 && (
                 <p style={{ fontSize: 10, color: dark ? '#999' : '#777', margin: '3px 0 0' }}>
                   {t('search_understood_as')} <strong style={{ color: dark ? `color-mix(in srgb, ${accent} 65%, white)` : accent }}>{nlpHint.join(' · ')}</strong>
@@ -2225,7 +2238,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               )}
             </div>
             <div>
-              <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_team_label')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
+              <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_team_label')} aria-label={t('gallery_team_label')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
               <datalist id="gallery-teams">{teams.map(team => <option key={team} value={team} />)}</datalist>
             </div>
           </div>
@@ -2405,6 +2418,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       setFCollectionTag(name)
                     }}
                     title={t('gallery_new_collection_title')}
+                    aria-label={t('gallery_new_collection_title')}
                     style={{
                       width: 26, height: 26, borderRadius: '50%', border: `2px dashed ${dark ? '#444' : '#ccc'}`,
                       background: 'none', color: dark ? '#888' : '#999', fontSize: 15, fontWeight: 900, lineHeight: 1,
@@ -2819,7 +2833,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </div>
                 <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6 }}>
                   {group.cards.map(c => (
-                    <div key={getCardId(c)} onClick={() => setPopup(c)} style={{
+                    <div key={getCardId(c)} onClick={() => setPopup(c)} role="button" tabIndex={0} aria-label={c.n}
+                      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(c) } }}
+                      style={{
                       flex: '0 0 auto', width: 90, cursor: 'pointer', borderRadius: 8, overflow: 'hidden',
                       ...coloredBorder((c.collection_tag && tabSettings.get(c.collection_tag)?.color) || accent),
                     }}>
