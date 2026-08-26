@@ -198,6 +198,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     lien_vinted: '', lien_ebay: '',
   })
 
+  // Champs que l'utilisateur a modifiés à la main pendant qu'un scan IA était
+  // en cours — sans ça, taper le bon nom du joueur juste après l'upload du
+  // recto pouvait se faire écraser 1-3s plus tard par la réponse IA (souvent
+  // moins fiable qu'une correction manuelle) sans aucun signe visible du
+  // changement.
+  const touchedFieldsRef = useRef<Set<string>>(new Set())
+  const setField = (key: keyof typeof form, value: string) => {
+    touchedFieldsRef.current.add(key)
+    setForm(f => ({ ...f, [key]: value }))
+  }
+
   type Side = 'recto' | 'verso' | 'il' | 'ir'
   const [scannerModal, setScannerModal] = useState<{ side: Side; src: string; frameRect?: { x: number; y: number; w: number; h: number } } | null>(null)
   const [cameraModal, setCameraModal] = useState<Side | null>(null)
@@ -469,19 +480,22 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         return
       }
       geminiPrediction.current = card
+      // Un champ tapé à la main pendant que ce scan tournait ne doit jamais être
+      // écrasé par la réponse IA qui arrive après coup (voir touchedFieldsRef).
+      const kept = touchedFieldsRef.current
       setForm(f => ({
         ...f,
         // Verso avec recto : toujours écraser variation/collection/num (le verso fait autorité)
         // Verso seul (sans recto) : ne remplir que les champs vides
-        nom:        (isVerso && !rectoBase64 && f.nom)        ? f.nom        : card.nom        || f.nom,
-        equipe:     (isVerso && !rectoBase64 && f.equipe)     ? f.equipe     : card.equipe     || f.equipe,
-        annee:      (isVerso && !rectoBase64 && f.annee)      ? f.annee      : card.annee      || f.annee,
-        marque:     (isVerso && !rectoBase64 && f.marque)     ? f.marque     : card.marque     || f.marque,
-        collection: card.collection || f.collection,
-        variation:  card.variation  !== undefined ? card.variation : f.variation,
-        num:         card.num         || f.num,
-        card_number: card.card_number || f.card_number,
-        grade:      (isVerso && !rectoBase64 && f.grade !== 'Raw') ? f.grade : card.grade || f.grade,
+        nom:        kept.has('nom')        ? f.nom        : (isVerso && !rectoBase64 && f.nom)        ? f.nom        : card.nom        || f.nom,
+        equipe:     kept.has('equipe')     ? f.equipe     : (isVerso && !rectoBase64 && f.equipe)     ? f.equipe     : card.equipe     || f.equipe,
+        annee:      kept.has('annee')      ? f.annee      : (isVerso && !rectoBase64 && f.annee)      ? f.annee      : card.annee      || f.annee,
+        marque:     kept.has('marque')     ? f.marque     : (isVerso && !rectoBase64 && f.marque)     ? f.marque     : card.marque     || f.marque,
+        collection: kept.has('collection') ? f.collection : card.collection || f.collection,
+        variation:  kept.has('variation')  ? f.variation  : card.variation  !== undefined ? card.variation : f.variation,
+        num:         kept.has('num')        ? f.num         : card.num         || f.num,
+        card_number: kept.has('card_number') ? f.card_number : card.card_number || f.card_number,
+        grade:      kept.has('grade')      ? f.grade      : (isVerso && !rectoBase64 && f.grade !== 'Raw') ? f.grade : card.grade || f.grade,
         rc:         f.rc   || (card.rc   ?? false),
         auto:       f.auto || (card.auto ?? false),
         patch:      f.patch || (card.patch ?? false),
@@ -509,17 +523,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       const card = await resp.json()
       if (!resp.ok || card.error) { setScanError(card.error || `Erreur ${resp.status}`); return }
       geminiPrediction.current = card
+      const kept2 = touchedFieldsRef.current
       setForm(f => ({
         ...f,
-        nom:        card.nom        || f.nom,
-        equipe:     card.equipe     || f.equipe,
-        annee:      card.annee      || f.annee,
-        marque:     card.marque     || f.marque,
-        collection: card.collection || f.collection,
-        variation:  card.variation  !== undefined ? card.variation : f.variation,
-        num:         card.num         || f.num,
-        card_number: card.card_number || f.card_number,
-        grade:      card.grade      || f.grade,
+        nom:        kept2.has('nom')        ? f.nom        : card.nom        || f.nom,
+        equipe:     kept2.has('equipe')     ? f.equipe     : card.equipe     || f.equipe,
+        annee:      kept2.has('annee')      ? f.annee      : card.annee      || f.annee,
+        marque:     kept2.has('marque')     ? f.marque     : card.marque     || f.marque,
+        collection: kept2.has('collection') ? f.collection : card.collection || f.collection,
+        variation:  kept2.has('variation')  ? f.variation  : card.variation  !== undefined ? card.variation : f.variation,
+        num:         kept2.has('num')        ? f.num         : card.num         || f.num,
+        card_number: kept2.has('card_number') ? f.card_number : card.card_number || f.card_number,
+        grade:      kept2.has('grade')      ? f.grade      : card.grade      || f.grade,
         rc:         f.rc   || (card.rc   ?? false),
         auto:       f.auto || (card.auto ?? false),
         patch:      f.patch || (card.patch ?? false),
@@ -730,7 +745,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         .select('id, nom, annee, marque, num, image_recto')
         .eq('user_id', user.id)
         .ilike('nom', form.nom.trim())
-        .eq('annee', parseInt(form.annee))
+        // annee est une colonne TEXTE (peut contenir "2007-08", pas juste une année
+        // simple) — parseInt() tronquait ça à 2007 et ne matchait jamais la valeur
+        // réelle stockée, désactivant silencieusement la détection de doublon pour
+        // tout sport en format saison (hockey, basket...).
+        .eq('annee', form.annee)
         .ilike('marque', form.marque.trim())
         .eq('rc', form.rc).eq('auto', form.auto).eq('patch', form.patch)
       q = form.num.trim() ? q.eq('num', form.num.trim()) : q.is('num', null)
@@ -888,37 +907,37 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {t('addcard_player_name')}
             </label>
-            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder={t('addcard_ex_player_name')} />
+            <input required value={form.nom} onChange={e => setField('nom', e.target.value)} placeholder={t('addcard_ex_player_name')} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('gallery_team')}</label>
-              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder={t('addcard_ex_team')} />
+              <input value={form.equipe} onChange={e => setField('equipe', e.target.value)} placeholder={t('addcard_ex_team')} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('gallery_year')}</label>
-              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder={t('addcard_ex_year')} />
+              <input value={form.annee} onChange={e => setField('annee', e.target.value)} placeholder={t('addcard_ex_year')} />
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('picker_brand')}</label>
-              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={t('addcard_ex_brand')} />
+              <input value={form.marque} onChange={e => setField('marque', e.target.value)} placeholder={t('addcard_ex_brand')} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_collection')}</label>
-              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={t('addcard_ex_collection')} />
+              <input value={form.collection} onChange={e => setField('collection', e.target.value)} placeholder={t('addcard_ex_collection')} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_variation')}</label>
-              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={t('addcard_ex_variation')} />
+              <input value={form.variation} onChange={e => setField('variation', e.target.value)} placeholder={t('addcard_ex_variation')} />
             </div>
             {form.item_type === 'memorabilia' && (
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
-              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_patch_desc')} />
+              <input value={form.card_number} onChange={e => setField('card_number', e.target.value)} placeholder={t('addcard_ex_patch_desc')} />
             </div>
             )}
           </div>
@@ -928,15 +947,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
-                  <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={t('addcard_ex_grade')} />
+                  <input value={form.grade} onChange={e => setField('grade', e.target.value)} placeholder={t('addcard_ex_grade')} />
                 </div>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_card_num')}</label>
-                  <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_card_num')} />
+                  <input value={form.card_number} onChange={e => setField('card_number', e.target.value)} placeholder={t('addcard_ex_card_num')} />
                 </div>
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering')}</label>
-                  <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={t('addcard_ex_numbering')} />
+                  <input value={form.num} onChange={e => setField('num', e.target.value)} placeholder={t('addcard_ex_numbering')} />
                 </div>
               </div>
               {form.grade.trim() && form.grade.trim().toLowerCase() !== 'raw' && (
@@ -960,12 +979,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                     </button>
                   ))}
                 </div>
-                <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })}
+                <input value={form.grade} onChange={e => setField('grade', e.target.value)}
                   placeholder={t('addcard_ex_size')} />
               </div>
               <div>
                 <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering_limited')}</label>
-                <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={t('addcard_ex_numbering_limited')} />
+                <input value={form.num} onChange={e => setField('num', e.target.value)} placeholder={t('addcard_ex_numbering_limited')} />
               </div>
             </>
           )}
@@ -1127,8 +1146,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 {t('profile_cancel')}
               </button>
               <button
-                onClick={async () => { setDupWarning(null); setSaving(true); await doInsert(dupWarning.userId) }}
-                style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: 'none', background: '#003DA6', color: 'white', fontWeight: 800, fontSize: 14, cursor: 'pointer' }}>
+                disabled={saving}
+                onClick={async () => { if (saving) return; setSaving(true); setDupWarning(null); await doInsert(dupWarning.userId) }}
+                style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: 'none', background: saving ? '#7a94c2' : '#003DA6', color: 'white', fontWeight: 800, fontSize: 14, cursor: saving ? 'wait' : 'pointer' }}>
                 {t('addcard_add_anyway')}
               </button>
             </div>

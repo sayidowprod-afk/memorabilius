@@ -40,7 +40,11 @@ export function parseCardStats(text: string): CardStats {
   const stats: CardStats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
   const lines = text.split(/\r?\n/).slice(4)
   for (const line of lines) {
-    const c = line.split(',')
+    // Split conscient des guillemets (même regex que GalerieClient/expo) — un
+    // simple split(',') décalait toutes les colonnes suivantes dès qu'un champ
+    // contenait une virgule (ex: variation "Blue, Refractor"), faussant
+    // silencieusement le comptage RC/AUTO/PATCH/NUM pour cette ligne.
+    const c = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
     if (!c[0] || !c[0].includes('http')) continue
     stats.total++
     if (c[10]?.toLowerCase().includes('oui')) stats.rc++

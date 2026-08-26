@@ -47,12 +47,34 @@ export default function MobileTopBar() {
   const [notifCount, setNotifCount] = useState(0)
   const [chatCount, setChatCount] = useState(0)
 
+  const loadCounts = (uid: string) => {
+    supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', uid).eq('lu', false)
+      .then(({ count }) => setNotifCount(count || 0))
+    supabase.from('messages').select('*', { count: 'exact', head: true }).eq('to_user_id', uid).eq('lu', false)
+      .then(({ count }) => setChatCount(count || 0))
+  }
+
   useEffect(() => {
     if (!user || !isNative) { setNotifCount(0); setChatCount(0); return }
-    supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('lu', false)
-      .then(({ count }) => setNotifCount(count || 0))
-    supabase.from('messages').select('*', { count: 'exact', head: true }).eq('to_user_id', user.id).eq('lu', false)
-      .then(({ count }) => setChatCount(count || 0))
+    loadCounts(user.id)
+  }, [user?.id, isNative])
+
+  // Re-vérifie à chaque changement de page (ex: retour de /messages après avoir
+  // lu ses messages) — sans ça le badge de la barre du haut restait figé sur
+  // le nombre au lancement de l'app jusqu'à un redémarrage complet, qu'on ait
+  // lu les messages/notifs ou qu'il en arrive de nouveaux entre-temps.
+  useEffect(() => {
+    if (!user || !isNative) return
+    loadCounts(user.id)
+  }, [pathname, user?.id, isNative])
+
+  useEffect(() => {
+    if (!user || !isNative) return
+    const channel = supabase.channel(`top-bar-badges-${user.id}`)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages', filter: `to_user_id=eq.${user.id}` }, () => loadCounts(user.id))
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${user.id}` }, () => loadCounts(user.id))
+      .subscribe()
+    return () => { supabase.removeChannel(channel) }
   }, [user?.id, isNative])
 
   if (!isNative) return null
