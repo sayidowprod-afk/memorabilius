@@ -1491,7 +1491,16 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
           {t('scanner_manual')}
         </button>
-        <button onClick={applyWarp} disabled={corners.length < 4 || applying}
+        <button
+          onClick={applyWarp}
+          // Certains WebView Android avalent le prochain clic sur un bouton apres
+          // un geste de glisser ailleurs sur la page (protection anti-tap-accidentel
+          // du navigateur) -- touch-action: manipulation (globals.css) ne couvre pas
+          // ce cas. Signale : "Utiliser" du recadrage (juste apres avoir glisse un
+          // coin) demandait 2 appuis. Declenche directement au relachement du doigt
+          // au lieu d'attendre le clic synthetise, qui lui peut etre supprime.
+          onTouchEnd={e => { e.preventDefault(); applyWarp() }}
+          disabled={corners.length < 4 || applying}
           style={{ flex: 2, padding: '13px 0', background: applying ? '#666' : 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: applying ? 'wait' : 'pointer', fontSize: 14 }}>
           {applying ? t('scanner_processing') : t('scanner_use')}
         </button>
