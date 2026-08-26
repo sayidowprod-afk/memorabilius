@@ -1925,10 +1925,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </a>
                 )}
                 {profile?.discord && (
-                  <span title={profile.discord}
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: '#5865F2', background: dark ? '#1a1c33' : '#eef0ff', flexShrink: 0 }}>
+                  <button
+                    type="button"
+                    title={profile.discord}
+                    aria-label={`${t('gallery_copy_discord')} : ${profile.discord}`}
+                    onClick={() => {
+                      navigator.clipboard.writeText(profile.discord).then(
+                        () => toast.success(t('gallery_discord_copied')),
+                        () => toast.error(t('gallery_discord_copy_failed'))
+                      )
+                    }}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: '#5865F2', background: dark ? '#1a1c33' : '#eef0ff', border: 'none', cursor: 'pointer', flexShrink: 0 }}>
                     <DiscordIcon size={15} />
-                  </span>
+                  </button>
                 )}
                 {currentUser && currentUser !== userId && (
                   <Link href={`/messages?to=${userId}`} style={{
