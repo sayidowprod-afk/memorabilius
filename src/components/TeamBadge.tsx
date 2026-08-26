@@ -20,6 +20,26 @@ const CUSTOM_LOGO_EXTENSIONS = ['svg', 'png', 'webp']
 // depuis le cache jusqu'a max-age (24h) ou expiration du cache d'images du SW.
 const LOGO_CACHE_BUST = 'v4'
 
+// Rendu partage en image de fond CSS (pas une balise <img>) : un carre plein
+// apparaissait systematiquement avec <img>, quels que soient le filtre, la
+// taille source/affichage ou le cache -- confirme sur plusieurs captures
+// reelles. Le div en image de fond n'a jamais eu ce probleme.
+function LogoBox({ src, alt, size, invert }: { src: string; alt: string; size: number; invert?: boolean }) {
+  return (
+    <div
+      role="img"
+      aria-label={alt}
+      title={alt}
+      style={{
+        width: size, height: size, flexShrink: 0,
+        backgroundImage: `url(${src})`,
+        backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',
+        filter: invert ? 'invert(1)' : 'none',
+      }}
+    />
+  )
+}
+
 export default function TeamBadge({ teamId, size = 28 }: Props) {
   const { dark } = useTheme()
   const [customExtIndex, setCustomExtIndex] = useState(0)
@@ -27,26 +47,17 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   const team = getTeamById(teamId)
   if (!team) return null
 
-  // 1. Logo maison si dispo -- rendu en image de fond CSS (pas une balise <img>) :
-  // un carre blanc plein apparaissait systematiquement avec <img> quelle que soit
-  // la taille source/affichage (confirme sur plusieurs captures reelles), un
-  // chemin de rendu different pour ecarter un souci de compositing sur <img>.
+  // 1. Logo maison si dispo -- noir sur transparent, invert(1) le bascule en
+  // blanc en mode sombre.
   if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     const src = `/team-logos/${teamId.replace(':', '-')}.${ext}?${LOGO_CACHE_BUST}`
     return (
       <>
+        {/* <img> invisible en parallele juste pour detecter les 404 (onError) --
+            le rendu visible passe par LogoBox, pas cette balise. */}
         <img src={src} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setCustomExtIndex(i => i + 1)} />
-        <div
-          role="img"
-          aria-label={team.name}
-          title={team.name}
-          style={{
-            width: size, height: size, flexShrink: 0,
-            backgroundImage: `url(${src})`,
-            backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',
-          }}
-        />
+        <LogoBox src={src} alt={team.name} size={size} invert={dark} />
       </>
     )
   }
@@ -60,14 +71,9 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   }
 
   return (
-    <img
-      src={url}
-      alt={team.name}
-      title={team.name}
-      width={size}
-      height={size}
-      style={{ objectFit: 'contain', display: 'block', flexShrink: 0 }}
-      onError={() => setColorFailed(true)}
-    />
+    <>
+      <img src={url} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setColorFailed(true)} />
+      <LogoBox src={url} alt={team.name} size={size} />
+    </>
   )
 }
