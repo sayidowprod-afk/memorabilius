@@ -2192,7 +2192,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             passe dessous une fois collée en haut au scroll (signalé 2 fois).
             Bord bas plat + pas d'ombre : se fond visuellement dans le panneau
             de filtres juste en dessous plutôt que de faire 2 blocs distincts. */}
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: '8px 10px', borderRadius: '8px 8px 0 0', border: dark ? '1px solid #333' : '1px solid #eee', borderBottom: 'none', position: 'sticky', top: isNative ? 'var(--safe-area-inset-top, env(safe-area-inset-top))' : 60, zIndex: 50 }}>
+        <div style={{
+          background: dark ? '#1e1e1e' : '#fff',
+          padding: isNative ? 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 8px) 10px 8px' : '8px 10px',
+          borderRadius: '8px 8px 0 0', border: dark ? '1px solid #333' : '1px solid #eee', borderBottom: 'none',
+          position: 'sticky', top: isNative ? 0 : 60, zIndex: 50,
+        }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8 }}>
             <div>
               <input value={searchInput} onChange={e => {
