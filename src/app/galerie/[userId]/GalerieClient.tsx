@@ -1894,7 +1894,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   const team = getTeamById(id)
                   return (
                     <span key={id} className="sticker-team" data-label={team?.name ?? id}>
-                      <TeamBadge teamId={id} size={28} />
+                      <TeamBadge teamId={id} size={40} />
                     </span>
                   )
                 })}
