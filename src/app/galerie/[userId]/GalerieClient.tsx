@@ -14,6 +14,7 @@ import FollowButton from '@/components/FollowButton'
 import FollowCounts from '@/components/FollowCounts'
 import FollowListModal from '@/components/FollowListModal'
 import LevelBadge from '@/components/LevelBadge'
+import { InstagramIcon, XIcon, DiscordIcon } from '@/components/SocialIcons'
 import CollectorCard from '@/components/CollectorCard'
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
@@ -1860,14 +1861,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <div style={{ position: 'relative', flexShrink: 0 }}>
-              <img
-                src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-                className="profile-avatar-halo"
-                style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
-                alt={profile?.display_name || t('gallery_default_collector')}
-              />
-              {/* Sur l'avatar plutot qu'a cote du nom : un seul endroit ou regarder pour
-                  savoir si le collectionneur est present, au lieu de deux signaux separes. */}
+              {/* L'anneau de niveau/XP entoure directement l'avatar (LevelBadge) au lieu
+                  d'un pave separe a cote du nom -- une seule chose a regarder pour la
+                  progression, et le badge chiffre remplace l'ancien "?" d'info. */}
+              {profile?.id ? (
+                <LevelBadge userId={profile.id} celebrateOnLevelUp={isOwner} accent={accent} avatarClassName="profile-avatar-halo">
+                  <img
+                    src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                    alt={profile?.display_name || t('gallery_default_collector')}
+                  />
+                </LevelBadge>
+              ) : (
+                <img
+                  src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                  className="profile-avatar-halo"
+                  style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
+                  alt={profile?.display_name || t('gallery_default_collector')}
+                />
+              )}
               <div style={{ position: 'absolute', bottom: 2, right: 2 }}>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={16} />
               </div>
@@ -1886,7 +1898,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     </span>
                   )
                 })}
-                {profile?.id && <LevelBadge userId={profile.id} celebrateOnLevelUp={isOwner} />}
               </div>
 
               <FollowCounts userId={userId} onOpenList={setFollowModalTab} />
@@ -1898,22 +1909,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 }}>{profile.bio}</p>
               )}
 
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
                 {profile?.instagram && (
                   <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-                    style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: '#E1306C', textDecoration: 'none', background: '#fce4ec', padding: '4px 10px', borderRadius: 20 }}>
-                    <span>📸</span> {profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
+                    title={profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: '#E1306C', background: dark ? '#2a1a20' : '#fce4ec', flexShrink: 0 }}>
+                    <InstagramIcon size={15} />
                   </a>
                 )}
                 {profile?.twitter && (
                   <a href={`https://x.com/${profile.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-                    style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: dark ? '#e0e0e0' : '#121212', textDecoration: 'none', background: dark ? '#1a1a1a' : '#f0f0f0', border: dark ? '1px solid #333' : 'none', padding: '4px 10px', borderRadius: 20 }}>
-                    <span>𝕏</span> {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
+                    title={profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: dark ? '#e0e0e0' : '#121212', background: dark ? '#1a1a1a' : '#f0f0f0', border: dark ? '1px solid #333' : 'none', flexShrink: 0 }}>
+                    <XIcon size={13} />
                   </a>
                 )}
                 {profile?.discord && (
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: '#5865F2', background: '#eef0ff', padding: '4px 10px', borderRadius: 20 }}>
-                    <span>🎮</span> {profile.discord}
+                  <span title={profile.discord}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: '#5865F2', background: dark ? '#1a1c33' : '#eef0ff', flexShrink: 0 }}>
+                    <DiscordIcon size={15} />
                   </span>
                 )}
                 {currentUser && currentUser !== userId && (
