@@ -21,8 +21,10 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   const team = getTeamById(teamId)
   if (!team) return null
 
-  // 1. Logo maison si dispo -- deja noir sur fond transparent, affiche tel quel
-  // en mode clair. En mode sombre, invert(1) le bascule en blanc.
+  // 1. Logo maison si dispo -- brightness(0) aplati tout en noir pur (certains
+  // fichiers ont des degrades de gris, pas du noir uni -- verifie sur plusieurs
+  // logos NBA fournis, ex. nba-DET.png/nba-LAC.png ont 200+ nuances de gris
+  // distinctes), puis invert(1) en mode sombre pour passer en blanc.
   if (customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     return (
@@ -32,7 +34,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
         title={team.name}
         width={size}
         height={size}
-        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'invert(1)' : 'none' }}
+        style={{ objectFit: 'contain', display: 'block', flexShrink: 0, filter: dark ? 'brightness(0) invert(1)' : 'brightness(0)' }}
         onError={() => setCustomExtIndex(i => i + 1)}
       />
     )
