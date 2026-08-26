@@ -11,6 +11,8 @@ import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import FollowButton from '@/components/FollowButton'
+import FollowCounts from '@/components/FollowCounts'
+import FollowListModal from '@/components/FollowListModal'
 import LevelBadge from '@/components/LevelBadge'
 import CollectorCard from '@/components/CollectorCard'
 import { hapticTap } from '@/lib/haptics'
@@ -454,6 +456,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [teamThemeSport, setTeamThemeSport] = useState<'NBA' | 'NHL' | 'MLB' | 'NFL'>('NBA')
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
   const [commentCard, setCommentCard] = useState<Card | null>(null)
+  const [followModalTab, setFollowModalTab] = useState<'followers' | 'following' | null>(null)
   const [commentCounts, setCommentCounts] = useState<Map<string, number>>(new Map())
   const [deleteTagConfirm, setDeleteTagConfirm] = useState<string | null>(null)
   const [deleteCardConfirm, setDeleteCardConfirm] = useState<string | null>(null)
@@ -1870,6 +1873,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {profile?.id && <LevelBadge userId={profile.id} celebrateOnLevelUp={isOwner} />}
               </div>
 
+              <FollowCounts userId={userId} onOpenList={setFollowModalTab} />
+
               {profile?.bio && (
                 <p style={{ fontSize: 13, color: dark ? '#aaa' : '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400 }}>{profile.bio}</p>
               )}
@@ -3164,6 +3169,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         )}
         </>}
       </div>
+
+      {followModalTab && (
+        <FollowListModal
+          userId={userId}
+          initialTab={followModalTab}
+          onClose={() => setFollowModalTab(null)}
+          accent={accent}
+        />
+      )}
 
       {commentCard && (
         <CommentsModal
