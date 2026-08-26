@@ -14,6 +14,12 @@ interface Props {
 // le logo couleur officiel si aucune n'existe (onError ci-dessous).
 const CUSTOM_LOGO_EXTENSIONS = ['svg', 'png', 'webp']
 
+// Casse le cache (navigateur + service worker, voir public/sw.js qui met les
+// images en cache-first sans jamais revalider) -- ces fichiers sont modifies
+// en place sous le meme nom, donc sans ca un fichier remplace reste servi
+// depuis le cache jusqu'a max-age (24h) ou expiration du cache d'images du SW.
+const LOGO_CACHE_BUST = 'v3'
+
 export default function TeamBadge({ teamId, size = 28 }: Props) {
   const { dark } = useTheme()
   const [customExtIndex, setCustomExtIndex] = useState(0)
@@ -30,7 +36,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     return (
       <img
-        src={`/team-logos/${teamId.replace(':', '-')}.${ext}`}
+        src={`/team-logos/${teamId.replace(':', '-')}.${ext}?${LOGO_CACHE_BUST}`}
         alt={team.name}
         title={team.name}
         width={size}
