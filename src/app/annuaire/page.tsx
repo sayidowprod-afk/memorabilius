@@ -374,7 +374,7 @@ function AnnuaireContent() {
                         <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>
                           {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
                             <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 18 }}>
-                              <TeamBadge teamId={id} size={32} />
+                              <TeamBadge teamId={id} size={18} />
                             </span>
                           ))}
                           {c.is_donor && (
