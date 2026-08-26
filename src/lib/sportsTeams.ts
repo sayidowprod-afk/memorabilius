@@ -17,6 +17,8 @@ const ESPN_CODES: Record<string, string> = {
   'wnba:CON': 'conn', // Connecticut Sun
   'wnba:LVA': 'lv',   // Las Vegas Aces
   'wnba:WAS': 'wsh',  // Washington Mystics
+  'nba:NOP':  'no',   // New Orleans Pelicans (ESPN: no)
+  'nba:UTA':  'utah', // Utah Jazz (ESPN: utah)
   'mlb:CWS': 'chw',   // Chicago White Sox
   'nfl:WSH': 'wsh',   // Washington Commanders
 }
