@@ -24,7 +24,7 @@ function buildEmojis(): string[] {
 export default function FolderIconPicker({ onPick, onClose }: { onPick: (icon: string) => void; onClose: () => void }) {
   const { t } = useLang()
   const SPORT_LABELS: Record<Sport, string> = {
-    nba: '🏀 NBA', wnba: '🏀 WNBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: t('folder_sport_football'),
+    nba: '🏀 NBA', wnba: '🏀 WNBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: t('folder_sport_football'), ncaa: '🏈 NCAA',
   }
   const [tab, setTab] = useState<'emoji' | 'team'>('emoji')
   const [sport, setSport] = useState<Sport>('nba')
