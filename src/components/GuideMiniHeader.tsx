@@ -27,7 +27,7 @@ export default function GuideMiniHeader({ title, backHref, backLabel }: { title:
           // l'interieur) n'est compare a un element hors de ce contexte -- comme ce
           // bandeau portale sur document.body -- qu'a travers le 200 de la nav elle-
           // meme. Un zIndex superieur ici passait donc par-dessus le menu ouvert.
-          position: 'fixed', top: 60, left: 0, right: 0, zIndex: 150,
+          position: 'fixed', top: 'calc(60px + var(--safe-area-inset-top, env(safe-area-inset-top)))', left: 0, right: 0, zIndex: 150,
           background: 'var(--card-bg, #fff)', borderBottom: '1px solid var(--border, #eee)',
           padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 12,
           boxShadow: visible ? '0 4px 16px rgba(0,0,0,0.06)' : 'none',

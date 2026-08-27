@@ -16,9 +16,12 @@ export default function NativeInit() {
     document.documentElement.style.overscrollBehaviorY = 'none'
 
     import('@capacitor/status-bar').then(({ StatusBar, Style }) => {
-      StatusBar.setBackgroundColor({ color: '#003DA6' }).catch(() => {})
+      // setBackgroundColor() est depreciee sur Android 15+ (API 35, edge-to-edge
+      // impose par l'OS) -- overlay:true laisse la WebView dessiner sous la barre
+      // de statut, et le fond bleu vient desormais du CSS (MobileTopBar/
+      // MobileBottomNav), qui pad deja sur env(safe-area-inset-top/bottom).
       StatusBar.setStyle({ style: Style.Dark }).catch(() => {})
-      StatusBar.setOverlaysWebView({ overlay: false }).catch(() => {})
+      StatusBar.setOverlaysWebView({ overlay: true }).catch(() => {})
     }).catch(() => {})
 
     import('@capacitor/keyboard').then(({ Keyboard, KeyboardResize }) => {

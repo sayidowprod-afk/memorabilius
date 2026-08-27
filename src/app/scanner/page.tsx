@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
+import CameraCapture from '@/components/CameraCapture'
 
 declare const BarcodeDetector: any
 
@@ -69,13 +70,12 @@ export default function ScannerPage() {
   const { dark } = useTheme()
   const { t } = useLang()
   const router = useRouter()
-  const cameraRef  = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
-  const versoRef   = useRef<HTMLInputElement>(null)
   const videoRef   = useRef<HTMLVideoElement>(null)
   const qrAnimRef  = useRef<number | null>(null)
   const qrStreamRef = useRef<MediaStream | null>(null)
 
+  const [cameraModal,   setCameraModal]   = useState<'recto' | 'verso' | null>(null)
   const [phase,         setPhase]         = useState<Phase>('idle')
   const [imgSrc,        setImgSrc]        = useState<string | null>(null)
   const [versoSrc,      setVersoSrc]      = useState<string | null>(null)
@@ -165,7 +165,7 @@ export default function ScannerPage() {
       if (typeof BarcodeDetector === 'undefined') {
         // Fallback: invite l'utilisateur à utiliser l'appareil photo
         stopQrScan()
-        cameraRef.current?.click()
+        setCameraModal('recto')
         return
       }
 
@@ -358,7 +358,7 @@ export default function ScannerPage() {
   return (
     <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Header */}
-      <div style={{ position: 'sticky', top: 60, zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
+      <div style={{ position: 'sticky', top: 'calc(60px + var(--safe-area-inset-top, env(safe-area-inset-top)))', zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
         <span style={{ fontWeight: 900, fontSize: 16, color: text }}>{t('scanner_header_title')}</span>
         {phase !== 'idle' && (
           <button onClick={reset} style={{ marginLeft: 'auto', fontSize: 12, color: muted, background: 'none', border: `1px solid ${border}`, borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontWeight: 700 }}>
@@ -376,7 +376,7 @@ export default function ScannerPage() {
               {t('scanner_flow_desc')}<br />
               <strong style={{ color: text }}>{t('scanner_designed_card_shows')}</strong>
             </p>
-            <button onClick={() => cameraRef.current?.click()} style={{
+            <button onClick={() => setCameraModal('recto')} style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10,
               width: '100%', minHeight: 230, background: blue, border: 'none',
               borderRadius: 22, cursor: 'pointer', color: '#fff', marginBottom: 12,
@@ -407,7 +407,6 @@ export default function ScannerPage() {
               </button>
             </div>
 
-            <input ref={cameraRef}  type="file" accept="image/*" capture="environment" style={{ display: 'none' }} onChange={e => { const f = e.target.files?.[0]; if (f) handleRecto(f); e.target.value = '' }} />
             <input ref={galleryRef} type="file" accept="image/*"                        style={{ display: 'none' }} onChange={e => { const f = e.target.files?.[0]; if (f) handleRecto(f); e.target.value = '' }} />
           </div>
         )}
@@ -696,7 +695,7 @@ export default function ScannerPage() {
             {(phase === 'results' || phase === 'done') && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {!versoSrc && (
-                  <button onClick={() => versoRef.current?.click()} style={{
+                  <button onClick={() => setCameraModal('verso')} style={{
                     width: '100%', padding: '12px 0', background: 'none',
                     border: `2px dashed ${border}`, borderRadius: 14, cursor: 'pointer',
                     color: muted, fontSize: 13, fontWeight: 700,
@@ -710,8 +709,6 @@ export default function ScannerPage() {
                 }}>
                   {t('scanner_scan_another')}
                 </button>
-                <input ref={versoRef} type="file" accept="image/*" capture="environment" style={{ display: 'none' }}
-                  onChange={e => { const f = e.target.files?.[0]; if (f) handleVerso(f); e.target.value = '' }} />
               </div>
             )}
 
@@ -726,6 +723,17 @@ export default function ScannerPage() {
           </>
         )}
       </div>
+
+      {cameraModal && (
+        <CameraCapture
+          onCapture={blob => {
+            setCameraModal(null)
+            const file = new File([blob], 'photo.jpg', { type: 'image/jpeg' })
+            if (cameraModal === 'recto') handleRecto(file); else handleVerso(file)
+          }}
+          onClose={() => setCameraModal(null)}
+        />
+      )}
 
       <style>{`
         @keyframes pulse   { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
