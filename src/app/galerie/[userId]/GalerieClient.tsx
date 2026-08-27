@@ -1900,6 +1900,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <LevelBadge userId={profile.id} celebrateOnLevelUp={isOwner} accent={accent} avatarClassName="profile-avatar-halo">
                   <img
                     src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                    width={80} height={80}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                     alt={profile?.display_name || t('gallery_default_collector')}
                   />
@@ -1908,6 +1909,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <img
                   src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
                   className="profile-avatar-halo"
+                  width={80} height={80}
                   style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, transition: 'box-shadow 0.2s', ['--avatar-accent' as any]: accent }}
                   alt={profile?.display_name || t('gallery_default_collector')}
                 />

@@ -84,14 +84,39 @@ export default function Profil() {
     return () => window.removeEventListener('beforeunload', handler)
   }, [form, favoriteTeams, wrapOptOut])
 
+  // Redimensionne cote client avant upload -- une photo prise directement au
+  // telephone (souvent 3000x4000+) etait jusqu'ici stockee et servie telle
+  // quelle comme avatar 80x80 partout sur le site (nav, galerie, annuaire,
+  // commentaires...), gaspillant de la bande passante et rendant plus visible
+  // un flash de l'image a sa taille naturelle le temps qu'elle se charge et
+  // se contraigne au CSS. 512px de cote suffit largement, meme pour la
+  // version agrandie affichee dans la modale de profil.
+  const resizeAvatar = (file: File): Promise<Blob> => new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => {
+      const MAX = 512
+      const scale = Math.min(1, MAX / Math.max(img.naturalWidth, img.naturalHeight))
+      const w = Math.round(img.naturalWidth * scale)
+      const h = Math.round(img.naturalHeight * scale)
+      const canvas = document.createElement('canvas')
+      canvas.width = w
+      canvas.height = h
+      canvas.getContext('2d')!.drawImage(img, 0, 0, w, h)
+      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('toBlob failed')), 'image/jpeg', 0.87)
+    }
+    img.onerror = () => reject(new Error('image load failed'))
+    img.src = URL.createObjectURL(file)
+  })
+
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file || !userId) return
     if (file.size > 2 * 1024 * 1024) { toast.error('Image trop lourde (max 2 Mo)'); return }
     setUploading(true)
-    const ext = file.name.split('.').pop()
+    const resized = await resizeAvatar(file).catch(() => file)
+    const ext = 'jpg'
     const path = `${userId}/avatar.${ext}`
-    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    const { error: upErr } = await supabase.storage.from('avatars').upload(path, resized, { upsert: true, contentType: 'image/jpeg' })
     if (upErr) { toast.error('Erreur upload : ' + upErr.message); setUploading(false); return }
     const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(path)
     const publicUrl = urlData.publicUrl + '?t=' + Date.now()

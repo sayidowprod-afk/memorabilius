@@ -604,6 +604,13 @@ body {
 @media (max-width: 768px) { .grail-gold-glow { animation-duration: 2.4s !important; } }
 
 /* ===== BATCH 3 — halo colore au survol de l'avatar de profil ===== */
+/* max-width/height ici (regle CSS, appliquee des le parsing de la feuille de
+   style, avant toute hydratation React) -- l'avatar utilisateur peut faire
+   plusieurs centaines de px de large en resolution source, et sans borne
+   posee avant que le style inline React ne prenne effet, un flash bref de
+   l'image a sa taille naturelle (pouvant couvrir tout l'ecran sur mobile)
+   est visible au chargement de la galerie, juste apres le splash natif. */
+.profile-avatar-halo { max-width: 80px; max-height: 80px; }
 @media (hover: hover) and (pointer: fine) {
   .profile-avatar-halo:hover { box-shadow: 0 0 0 6px color-mix(in srgb, var(--avatar-accent, #003DA6) 25%, transparent); }
 }
