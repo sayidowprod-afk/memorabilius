@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silhouette de carte (contour arrondi) en vecteur, cible de la rotation
+     animee du splash (splash_card_animated.xml). Un vecteur est necessaire
+     ici, un PNG raster ne peut pas etre anime en rotation continue via un
+     AnimatedVectorDrawable. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="splash_card"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:name="card_group" android:pivotX="54" android:pivotY="54">
+        <path
+            android:name="card_outline"
+            android:pathData="M32,22 L76,22 A6,6 0 0 1 82,28 L82,80 A6,6 0 0 1 76,86 L32,86 A6,6 0 0 1 26,80 L26,28 A6,6 0 0 1 32,22 Z"
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="4" />
+        <path
+            android:name="card_m"
+            android:pathData="M40,36 L46,36 L54,52 L62,36 L68,36 L68,72 L61,72 L61,50 L54,64 L47,50 L47,72 L40,72 Z"
+            android:fillColor="#FFFFFF" />
+    </group>
+</vector>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Surcharge Android 12+ (API 31) uniquement, les appareils plus anciens
+     gardent le splash statique historique (values/styles.xml, @drawable/splash)
+     sans aucun changement. Un style de meme nom dans un dossier qualifie
+     remplace entierement la version de base pour les appareils concernes
+     (pas de fusion item par item), d'ou la reprise complete des attributs. -->
+<resources>
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground">@color/colorPrimary</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_card_animated</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+    </style>
+</resources>
