@@ -54,7 +54,7 @@ async function fetchGuides(): Promise<Guide[]> {
 // données non-textuelles (category, slug) restent la source de vérité. Un
 // guide sans traduction pour la langue courante garde son contenu fr (mieux
 // qu'un titre manquant) mais pointe quand même vers /guides/{slug} en fr.
-async function fetchTranslationsMap(guideIds: number[], lang: 'en' | 'de'): Promise<Record<number, { title: string; excerpt: string | null; cover_image: string | null }>> {
+async function fetchTranslationsMap(guideIds: number[], lang: 'en' | 'de' | 'es' | 'it'): Promise<Record<number, { title: string; excerpt: string | null; cover_image: string | null }>> {
   if (guideIds.length === 0) return {}
   const { data } = await supabase
     .from('guide_translations')

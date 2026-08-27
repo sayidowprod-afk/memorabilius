@@ -2,11 +2,19 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useAuth } from '@/lib/AuthContext'
 import { supabase } from '@/lib/supabase'
+import { es } from '@/lib/translations.es'
+import { it } from '@/lib/translations.it'
 
-export type Lang = 'fr' | 'en' | 'de'
+export type Lang = 'fr' | 'en' | 'de' | 'es' | 'it'
 
 export function localeFor(lang: Lang): string {
-  return lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : 'fr-FR'
+  switch (lang) {
+    case 'en': return 'en-US'
+    case 'de': return 'de-DE'
+    case 'es': return 'es-ES'
+    case 'it': return 'it-IT'
+    default: return 'fr-FR'
+  }
 }
 
 const translations = {
@@ -3769,6 +3777,8 @@ const translations = {
     evadmin_adding: 'Wird hinzugefügt...',
     evadmin_publish: 'Veröffentlichen',
   },
+  es,
+  it,
 }
 
 export { translations }
@@ -3788,10 +3798,15 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const saved = localStorage.getItem('lang') as Lang
     const geo = document.cookie.split(';').find(c => c.trim().startsWith('geo-lang='))?.split('=')?.[1]?.trim() as Lang | undefined
+    const VALID_LANGS: Lang[] = ['fr', 'en', 'de', 'es', 'it']
     const resolved: Lang =
-      (saved === 'fr' || saved === 'en' || saved === 'de') ? saved
-      : (geo === 'fr' || geo === 'en' || geo === 'de') ? geo
-      : navigator.language.startsWith('en') ? 'en' : navigator.language.startsWith('de') ? 'de' : 'fr'
+      (saved && VALID_LANGS.includes(saved)) ? saved
+      : (geo && VALID_LANGS.includes(geo)) ? geo
+      : navigator.language.startsWith('en') ? 'en'
+      : navigator.language.startsWith('de') ? 'de'
+      : navigator.language.startsWith('es') ? 'es'
+      : navigator.language.startsWith('it') ? 'it'
+      : 'fr'
     setLangState(resolved)
     // Resynchronise le cookie à CHAQUE chargement, pas seulement au clic explicite sur
     // le sélecteur — un visiteur qui avait déjà "en"/"de" en localStorage AVANT ce

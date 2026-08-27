@@ -12,6 +12,8 @@ const LANGS = [
   { code: 'fr' as const, flag: '🇫🇷', label: 'Français' },
   { code: 'en' as const, flag: '🇬🇧', label: 'English' },
   { code: 'de' as const, flag: '🇩🇪', label: 'Deutsch' },
+  { code: 'es' as const, flag: '🇪🇸', label: 'Español' },
+  { code: 'it' as const, flag: '🇮🇹', label: 'Italiano' },
 ]
 
 function Toggle({ on, onClick }: { on: boolean; onClick: () => void }) {

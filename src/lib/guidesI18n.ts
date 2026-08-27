@@ -35,4 +35,22 @@ export const guidesI18n: Record<Lang, {
     guides_filter_all: 'Alle',
     guides_no_results: 'Kein Guide entspricht deiner Suche.',
   },
+  es: {
+    guides_title: 'Guías',
+    guides_subtitle: 'Consejos, tutoriales y listas de verificación para coleccionistas',
+    guides_empty: 'Todavía no hay guías.',
+    guides_back: '← Todas las guías',
+    guides_search_placeholder: 'Buscar una guía…',
+    guides_filter_all: 'Todas',
+    guides_no_results: 'Ninguna guía coincide con tu búsqueda.',
+  },
+  it: {
+    guides_title: 'Guide',
+    guides_subtitle: 'Consigli, tutorial e checklist per i collezionisti',
+    guides_empty: 'Nessuna guida per il momento.',
+    guides_back: '← Tutte le guide',
+    guides_search_placeholder: 'Cerca una guida…',
+    guides_filter_all: 'Tutte',
+    guides_no_results: 'Nessuna guida corrisponde alla tua ricerca.',
+  },
 }
