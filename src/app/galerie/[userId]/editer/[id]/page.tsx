@@ -196,25 +196,33 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   // Rouvre l'outil de recadrage (CardScanner) sur la photo deja enregistree en base,
   // pour pouvoir reajuster les coins sans devoir reprendre la carte en photo.
-  const handleRecrop = async (side: 'recto' | 'verso') => {
+  // Passe par un <img> + canvas (comme l'affichage de l'apercu, qui marche toujours)
+  // plutot que fetch() -- ce dernier echouait en pratique ("Image illisible") alors
+  // que la meme URL s'affiche sans probleme en balise <img>, vraisemblablement une
+  // protection anti-bot cote CDN qui traite differemment un fetch() JS.
+  const handleRecrop = (side: 'recto' | 'verso') => {
     const url = side === 'recto' ? form.image_recto : form.image_verso
     if (!url) return
     setRecropping(side)
-    try {
-      const res = await fetch(url)
-      const blob = await res.blob()
-      const dataUrl = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader()
-        reader.onload = () => resolve(reader.result as string)
-        reader.onerror = reject
-        reader.readAsDataURL(blob)
-      })
-      setScannerModal({ side, src: dataUrl })
-    } catch {
-      toast.error(t('addcard_err_image_unreadable'))
-    } finally {
-      setRecropping(null)
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      try {
+        const c = document.createElement('canvas')
+        c.width = img.naturalWidth
+        c.height = img.naturalHeight
+        c.getContext('2d')!.drawImage(img, 0, 0)
+        const dataUrl = c.toDataURL('image/jpeg', 0.95)
+        c.width = 0; c.height = 0
+        setScannerModal({ side, src: dataUrl })
+      } catch {
+        toast.error(t('addcard_err_image_unreadable'))
+      } finally {
+        setRecropping(null)
+      }
     }
+    img.onerror = () => { toast.error(t('addcard_err_image_unreadable')); setRecropping(null) }
+    img.src = url
   }
 
   // Détecte l'orientation réelle de l'image (fiable quelle que soit la source : recadrage
