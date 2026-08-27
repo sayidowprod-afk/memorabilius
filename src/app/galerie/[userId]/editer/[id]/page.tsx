@@ -196,16 +196,16 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   // Rouvre l'outil de recadrage (CardScanner) sur la photo deja enregistree en base,
   // pour pouvoir reajuster les coins sans devoir reprendre la carte en photo.
-  // Passe par un <img> + canvas (comme l'affichage de l'apercu, qui marche toujours)
-  // plutot que fetch() -- ce dernier echouait en pratique ("Image illisible") alors
-  // que la meme URL s'affiche sans probleme en balise <img>, vraisemblablement une
-  // protection anti-bot cote CDN qui traite differemment un fetch() JS.
+  // Passe par /api/proxy-image (meme origine que le site) plutot qu'un fetch() ou un
+  // <img crossOrigin> direct vers le storage Supabase -- les deux echouaient en
+  // pratique ("Image illisible"), alors qu'un <img> simple sans CORS affiche la meme
+  // URL sans probleme : vraisemblablement une protection anti-bot cote CDN qui
+  // bloque specifiquement les requetes CORS/JS. Same-origin = jamais de souci CORS.
   const handleRecrop = (side: 'recto' | 'verso') => {
     const url = side === 'recto' ? form.image_recto : form.image_verso
     if (!url) return
     setRecropping(side)
     const img = new Image()
-    img.crossOrigin = 'anonymous'
     img.onload = () => {
       try {
         const c = document.createElement('canvas')
@@ -222,7 +222,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       }
     }
     img.onerror = () => { toast.error(t('addcard_err_image_unreadable')); setRecropping(null) }
-    img.src = url
+    img.src = `/api/proxy-image?url=${encodeURIComponent(url)}`
   }
 
   // Détecte l'orientation réelle de l'image (fiable quelle que soit la source : recadrage
