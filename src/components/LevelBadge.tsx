@@ -62,7 +62,21 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
     }
   }, [showInfo])
 
-  if (!level) return <>{children}</>
+  // Tant que le niveau (XP) n'est pas encore chargé (RPC déclenché après le
+  // montage, voir useEffect ci-dessus), on gardait jusqu'ici `children` nu
+  // sans aucun conteneur -- l'avatar (style width/height:100%) n'avait alors
+  // aucune boîte parente de taille fixée sur laquelle se baser, et se
+  // retrouvait à occuper tout l'espace flex disponible : un flash géant de
+  // l'avatar, visible à chaque montage/rechargement le temps de cet appel
+  // réseau (repéré en vidéo, ~1 frame). Le même conteneur 80x80 que l'état
+  // chargé (sans l'anneau de progression, pas encore connu) règle ça.
+  if (!level) return (
+    <div style={{ position: 'relative', width: 80, height: 80, flexShrink: 0 }}>
+      <div className={avatarClassName} style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
+        {children}
+      </div>
+    </div>
+  )
 
   const pct = Math.max(0, Math.min(100, fillPct))
 
