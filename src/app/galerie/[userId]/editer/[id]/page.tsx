@@ -192,6 +192,30 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   const [scanning, setScanning] = useState(false)
   const [scanError, setScanError] = useState<string | null>(null)
+  const [recropping, setRecropping] = useState<'recto' | 'verso' | null>(null)
+
+  // Rouvre l'outil de recadrage (CardScanner) sur la photo deja enregistree en base,
+  // pour pouvoir reajuster les coins sans devoir reprendre la carte en photo.
+  const handleRecrop = async (side: 'recto' | 'verso') => {
+    const url = side === 'recto' ? form.image_recto : form.image_verso
+    if (!url) return
+    setRecropping(side)
+    try {
+      const res = await fetch(url)
+      const blob = await res.blob()
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result as string)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+      })
+      setScannerModal({ side, src: dataUrl })
+    } catch {
+      toast.error(t('addcard_err_image_unreadable'))
+    } finally {
+      setRecropping(null)
+    }
+  }
 
   // Détecte l'orientation réelle de l'image (fiable quelle que soit la source : recadrage
   // manuel avec le toggle dédié, ou scan auto par CardScanner où les coins ajustés par
@@ -458,6 +482,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           <button type="button" onClick={() => document.getElementById(`camera-${side}`)?.click()}
             style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
             {t('addcard_take_photo')}
+          </button>
+        )}
+        {preview && !uploading && (side === 'recto' || side === 'verso') && (
+          <button type="button" onClick={() => handleRecrop(side)} disabled={recropping === side}
+            style={{ marginTop: 6, width: '100%', background: '#f0fff4', color: '#2e7d32', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: recropping === side ? 'wait' : 'pointer' }}>
+            {recropping === side ? t('addcard_uploading') : t('addcard_recrop')}
           </button>
         )}
         {preview && (
