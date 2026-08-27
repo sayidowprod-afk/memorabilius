@@ -2,11 +2,11 @@ export default function Loading() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh', perspective: 600 }}>
       <img
-        src="/icon-192.png"
+        src="/android-chrome-512x512.png"
         alt=""
         width={56}
         height={56}
-        style={{ width: 56, height: 56, borderRadius: 12, background: 'none', animation: 'mbCardSpin 1.3s linear infinite' }}
+        style={{ width: 56, height: 56, background: 'none', animation: 'mbCardSpin 1.3s linear infinite' }}
       />
       <style>{`
         @keyframes mbCardSpin {
