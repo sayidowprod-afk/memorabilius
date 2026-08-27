@@ -688,7 +688,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // ligne (nouvel id) et casserait les likes/commentaires déjà liés à l'ancienne.
   const UNDO_DELETE_DELAY_MS = 5000
   const pendingDeletesRef = useRef<Map<string, { card: Card; index: number; timeoutId: ReturnType<typeof setTimeout> }>>(new Map())
-  const [undoBanner, setUndoBanner] = useState<{ id: string; nom: string } | null>(null)
+  const [undoBanner, setUndoBanner] = useState<{ id: string; nom: string; ids?: string[] } | null>(null)
 
   const finalizeDeleteCard = async (idManuelle: string, cardKey: string) => {
     const pending = pendingDeletesRef.current.get(idManuelle)
@@ -771,6 +771,38 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       return next
     })
     setUndoBanner(null)
+  }
+
+  const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false)
+  // Repart de zéro dès que la sélection change -- sans ça, confirmer une
+  // suppression groupée puis fermer/rouvrir la sélection sur un autre lot de
+  // cartes garderait le bouton "Confirmer" affiché sans nouveau clic.
+  useEffect(() => { setBulkDeleteConfirm(false) }, [selectedCards])
+
+  // Suppression groupée : réutilise handleDeleteCard carte par carte (même délai
+  // d'annulation de 5s, même nettoyage binder_slots/checklist/visibilité par
+  // carte) plutôt que de dupliquer la logique de finalizeDeleteCard. Seule la
+  // suppression concerne les cartes manuelles (isManuelle) — les cartes
+  // communautaires n'ont pas d'id_manuelle à supprimer, comme pour le bouton
+  // de suppression individuel (voir `d.isManuelle && d.id_manuelle` plus bas).
+  const bulkDeleteSelected = () => {
+    if (!currentUser || currentUser !== userId) return
+    const targets = [...selectedCards]
+      .map(id => cards.find(c => c.isManuelle && c.id_manuelle === id))
+      .filter((c): c is Card => !!c)
+    if (targets.length === 0) { setBulkDeleteConfirm(false); return }
+    const ids = targets.map(c => c.id_manuelle!)
+    for (const card of targets) handleDeleteCard(card.id_manuelle!, card.f)
+    setSelectedCards(new Set())
+    setBulkDeleteConfirm(false)
+    // Un seul bandeau "Annuler" consolidé plutôt qu'un par carte (qui se
+    // remplaceraient les uns les autres) -- undoBulkDelete annule chaque
+    // suppression individuellement pendant la fenêtre de 5s.
+    setUndoBanner({ id: `__bulk__:${ids.join(',')}`, nom: `${targets.length} carte${targets.length > 1 ? 's' : ''}`, ids })
+  }
+
+  const undoBulkDelete = (ids: string[]) => {
+    for (const id of ids) undoDeleteCard(id)
   }
 
   // Ajoute les cartes sélectionnées à une collection (appartenance multiple)
@@ -2801,7 +2833,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {mounted && undoBanner && createPortal(
           <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
             <span style={{ flex: 1 }}>🗑️ {t('gallery_deleted_toast').replace('{nom}', undoBanner.nom)}</span>
-            <button onClick={() => undoDeleteCard(undoBanner.id)}
+            <button onClick={() => undoBanner.ids ? undoBulkDelete(undoBanner.ids) : undoDeleteCard(undoBanner.id)}
               style={{ background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0 }}>
               {t('gallery_undo')}
             </button>
@@ -2903,6 +2935,26 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             >
               ✏️ Modifier en groupe
             </button>
+            {[...selectedCards].some(id => cards.find(c => c.isManuelle && c.id_manuelle === id)) && (
+              bulkDeleteConfirm ? (
+                <>
+                  <span style={{ flexShrink: 0 }}>Supprimer définitivement ?</span>
+                  <button onClick={bulkDeleteSelected} aria-label="Confirmer la suppression groupée"
+                    style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 800, whiteSpace: 'nowrap' }}>
+                    ✓ Confirmer
+                  </button>
+                  <button onClick={() => setBulkDeleteConfirm(false)} aria-label="Annuler la suppression groupée"
+                    style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+                    ✕
+                  </button>
+                </>
+              ) : (
+                <button onClick={() => setBulkDeleteConfirm(true)} aria-label="Supprimer les cartes sélectionnées"
+                  style={{ background: 'rgba(239,68,68,0.25)', border: '1.5px solid rgba(239,68,68,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                  🗑 Supprimer
+                </button>
+              )
+            )}
             <button onClick={() => setSelectedCards(new Set())} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
               ✕ Désélectionner
             </button>

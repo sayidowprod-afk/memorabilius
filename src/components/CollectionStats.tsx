@@ -1,10 +1,10 @@
 'use client'
 import { useMemo } from 'react'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 
 interface Card {
   n: string; t: string; y: string; br: string; s: string; v: string; num: string
-  auto: boolean; rc: boolean; patch: boolean; g: string
+  auto: boolean; rc: boolean; patch: boolean; g: string; created_at?: string
 }
 
 interface Props {
@@ -40,7 +40,7 @@ function Bar({ label, count, max, color }: { label: string; count: number; max: 
 }
 
 export default function CollectionStats({ cards, accent, totalValeur }: Props) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const stats = useMemo(() => {
     const total = cards.length
     const graded = cards.filter(c => c.g && c.g !== 'Raw' && c.g !== 'Non gradée' && c.g !== '')
@@ -76,6 +76,31 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
     }
   }, [cards])
 
+  // Croissance mensuelle sur les 12 derniers mois -- calculée directement à partir
+  // des cartes déjà chargées côté client (created_at), pas besoin d'un aller-retour
+  // réseau supplémentaire : GalerieClient a déjà tout récupéré pour le propriétaire.
+  const monthlyGrowth = useMemo(() => {
+    const now = new Date()
+    const buckets: { key: string; label: string; count: number }[] = []
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
+      buckets.push({
+        key: `${d.getFullYear()}-${d.getMonth()}`,
+        label: d.toLocaleDateString(localeFor(lang), { month: 'short' }),
+        count: 0,
+      })
+    }
+    const byKey = new Map(buckets.map(b => [b.key, b]))
+    for (const c of cards) {
+      if (!c.created_at) continue
+      const d = new Date(c.created_at)
+      if (isNaN(d.getTime())) continue
+      const bucket = byKey.get(`${d.getFullYear()}-${d.getMonth()}`)
+      if (bucket) bucket.count++
+    }
+    return buckets
+  }, [cards, lang])
+
   if (stats.total === 0) return null
 
   // topGrades est re-trié par valeur de grade (10, 9, 8...) après top(), donc [0] n'est
@@ -107,6 +132,32 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
           </div>
         )}
       </div>
+
+      {/* Croissance mensuelle */}
+      {monthlyGrowth.some(m => m.count > 0) && (
+        <div style={{ marginBottom: 18, paddingBottom: 16, borderBottom: '1px solid var(--border, #f4f4f4)' }}>
+          <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 10 }}>
+            {t('stats_growth')}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 70 }}>
+            {(() => {
+              const max = Math.max(1, ...monthlyGrowth.map(m => m.count))
+              return monthlyGrowth.map(m => (
+                <div key={m.key} title={`${m.label} : ${m.count}`} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                  <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text2, #555)', minHeight: 12 }}>{m.count > 0 ? m.count : ''}</div>
+                  <div style={{
+                    width: '100%', maxWidth: 22, borderRadius: '3px 3px 0 0',
+                    height: Math.max(2, (m.count / max) * 44),
+                    background: m.count > 0 ? accent : 'var(--bg3, #f0f0f0)',
+                    transition: '0.4s',
+                  }} />
+                  <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #aaa)', textTransform: 'lowercase' }}>{m.label}</div>
+                </div>
+              ))
+            })()}
+          </div>
+        </div>
+      )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '18px 32px' }}>
 

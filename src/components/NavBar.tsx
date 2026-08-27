@@ -133,7 +133,7 @@ export default function Navbar() {
 
   // Indicateur de section active — soulignement anime (transition color) plutot
   // qu'un changement instantane, comme un onglet actif.
-  const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
+  const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements', '/activite']
   const OUTILS_PATHS = ['/scanner', '/setlist', '/guides', '/recherche']
   const communauteActive = COMMUNAUTE_PATHS.some(p => pathname.startsWith(p))
   const outilsActive = OUTILS_PATHS.some(p => pathname.startsWith(p))
@@ -166,6 +166,7 @@ export default function Navbar() {
                 <Link href="/teams" style={dropItemStyle} onClick={closeDrop}>🏆 {t('nav_teams')}</Link>
                 <Link href="/trades" style={dropItemStyle} onClick={closeDrop}>🔄 {t('nav_trades')}</Link>
                 <Link href="/evenements" style={dropItemStyle} onClick={closeDrop}>📅 {t('nav_evenements')}</Link>
+                {user && <Link href="/activite" style={dropItemStyle} onClick={closeDrop}>📰 {t('nav_activite')}</Link>}
               </div>
             )}
           </div>
@@ -310,6 +311,7 @@ export default function Navbar() {
           <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}>🏆 {t('nav_teams')}</Link>
           <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}>🔄 {t('nav_trades')}</Link>
           <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 {t('nav_evenements')}</Link>
+          {user && <Link href="/activite" style={ls} onClick={() => setMenuOpen(false)}>📰 {t('nav_activite')}</Link>}
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_outils')}</div>
           <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 {t('nav_scanner')}</Link>
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 {t('nav_setlist')}</Link>

@@ -12,7 +12,7 @@ import { hapticTap } from '@/lib/haptics'
 import BottomSheet from '@/components/BottomSheet'
 import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
-const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements']
+const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements', '/activite']
 const OUTILS_PATHS = ['/scanner', '/setlist', '/guides', '/recherche', '/profil']
 
 const UsersIcon = () => (
@@ -110,6 +110,8 @@ export default function MobileBottomNav() {
     <>
       <div
         className="mobile-bottom-nav-bar"
+        role="navigation"
+        aria-label={t('nav_communaute') + ' / ' + t('nav_galerie') + ' / ' + t('nav_outils')}
         style={{
           // z-index tres eleve, deliberement : c'est la navigation GLOBALE de l'app,
           // elle ne doit jamais se retrouver sous une bannière/barre d'action propre
@@ -126,13 +128,17 @@ export default function MobileBottomNav() {
         <button
           onClick={() => toggle('communaute')}
           className="nav-tap-bounce"
+          aria-haspopup="menu"
+          aria-expanded={sheet === 'communaute'}
+          aria-current={communauteActive ? 'page' : undefined}
+          aria-label={notifs > 0 ? `${t('nav_communaute')} (${notifs > 9 ? '9+' : notifs} notifications)` : t('nav_communaute')}
           style={{
             position: 'relative', flex: 1, background: 'none', border: 'none', cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3,
             padding: '4px 4px', color: tabColor(communauteActive || sheet === 'communaute'),
           }}
         >
-          <span style={{ position: 'relative' }}>
+          <span style={{ position: 'relative' }} aria-hidden="true">
             <UsersIcon />
             {notifs > 0 && (
               <span style={{
@@ -143,7 +149,7 @@ export default function MobileBottomNav() {
               }}>{notifs > 9 ? '9+' : notifs}</span>
             )}
           </span>
-          <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }}>{t('nav_communaute')}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }} aria-hidden="true">{t('nav_communaute')}</span>
         </button>
 
         <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -151,12 +157,13 @@ export default function MobileBottomNav() {
             href={user ? `/galerie/${user.id}` : '/connexion'}
             onClick={() => hapticTap()}
             className="nav-tap-bounce"
+            aria-label={t('nav_galerie')}
             style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               textDecoration: 'none', marginTop: -20,
             }}
           >
-            <div style={{ position: 'relative', width: 70, height: 62 }}>
+            <div style={{ position: 'relative', width: 70, height: 62 }} aria-hidden="true">
               <div style={{
                 position: 'absolute', top: 2, left: 8, width: 38, height: 52, borderRadius: 9,
                 background: 'linear-gradient(160deg,#6d97ee,#2352c9)',
@@ -172,21 +179,25 @@ export default function MobileBottomNav() {
                 border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
               }} />
             </div>
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }}>{t('nav_galerie')}</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }} aria-hidden="true">{t('nav_galerie')}</span>
           </Link>
         </div>
 
         <button
           onClick={() => toggle('outils')}
           className="nav-tap-bounce"
+          aria-haspopup="menu"
+          aria-expanded={sheet === 'outils'}
+          aria-current={outilsActive ? 'page' : undefined}
+          aria-label={t('nav_outils')}
           style={{
             position: 'relative', flex: 1, background: 'none', border: 'none', cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3,
             padding: '4px 4px', color: tabColor(outilsActive || sheet === 'outils'),
           }}
         >
-          <ToolIcon />
-          <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }}>{t('nav_outils')}</span>
+          <span aria-hidden="true"><ToolIcon /></span>
+          <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }} aria-hidden="true">{t('nav_outils')}</span>
         </button>
       </div>
 
@@ -195,6 +206,7 @@ export default function MobileBottomNav() {
         <Link href="/teams" style={dropItemStyle} onClick={() => setSheet(null)}>🏆 {t('nav_teams')}</Link>
         <Link href="/trades" style={dropItemStyle} onClick={() => setSheet(null)}>🔄 {t('nav_trades')}</Link>
         <Link href="/evenements" style={dropItemStyle} onClick={() => setSheet(null)}>📅 {t('nav_evenements')}</Link>
+        {user && <Link href="/activite" style={dropItemStyle} onClick={() => setSheet(null)}>📰 {t('nav_activite')}</Link>}
       </BottomSheet>
 
       <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>

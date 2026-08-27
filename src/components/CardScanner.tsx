@@ -1425,6 +1425,8 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       <canvas
         ref={canvasRef}
         data-no-ptr="true"
+        role="img"
+        aria-label={t('scanner_manual')}
         style={{ maxWidth: '100%', maxHeight: '50vh', borderRadius: 8, touchAction: 'none', display: 'block', cursor: dragging !== null ? 'grabbing' : isPanning.current ? 'grab' : 'crosshair' }}
         onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp}
         onWheel={onWheel}
@@ -1457,6 +1459,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           </button>
           <button onClick={handleRotate}
             title={t('scanner_rotate_45')}
+            aria-label={t('scanner_rotate_45')}
             style={{ fontSize: 18, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', color: 'rgba(255,255,255,0.7)', lineHeight: 1 }}>
             ↻
           </button>

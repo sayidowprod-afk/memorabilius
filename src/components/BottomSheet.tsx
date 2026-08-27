@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react'
 import { useTheme } from '@/lib/ThemeContext'
 
 export default function BottomSheet({
@@ -11,6 +12,14 @@ export default function BottomSheet({
   bottomOffset?: number | string
 }) {
   const { dark } = useTheme()
+
+  useEffect(() => {
+    if (!open) return
+    const onKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [open, onClose])
+
   if (!open) return null
 
   // La feuille chevauche volontairement le haut de la bottom bar de quelques px :
@@ -23,9 +32,13 @@ export default function BottomSheet({
     <>
       <div
         onClick={onClose}
+        aria-hidden="true"
         style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom, background: 'rgba(0,0,0,0.4)', zIndex: 240 }}
       />
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
         style={{
           position: 'fixed', left: 0, right: 0, bottom, zIndex: 241,
           background: dark ? '#1e1e1e' : 'white',
