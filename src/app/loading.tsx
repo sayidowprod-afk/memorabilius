@@ -6,6 +6,7 @@ export default function Loading() {
         alt=""
         width={56}
         height={56}
+        className="mb-loading-icon"
         style={{ width: 56, height: 56, background: 'none', animation: 'mbCardSpin 1.3s linear infinite' }}
       />
       <style>{`
@@ -13,8 +14,9 @@ export default function Loading() {
           0%   { transform: rotateY(0deg); }
           100% { transform: rotateY(360deg); }
         }
+        html[data-theme="dark"] .mb-loading-icon { filter: invert(1); }
         @media (prefers-reduced-motion: reduce) {
-          img { animation: none !important; opacity: 0.7 !important; transform: none !important; }
+          .mb-loading-icon { animation: none !important; opacity: 0.7 !important; transform: none !important; }
         }
       `}</style>
     </div>
