@@ -51,6 +51,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const timeoutId = setTimeout(async () => {
       if (settled) return
+
+      // Hors-ligne (cold start sans reseau notamment, signale comme "comme
+      // deconnecte" -- galerie invisible) : getSession() peut tenter une
+      // validation/rafraichissement reseau du token en interne et echouer,
+      // ecrasant une session pourtant toujours valide en local par null. On
+      // laisse alors plus de temps a onAuthStateChange (lecture localStorage
+      // pure, pas de reseau) plutot que de risquer ce faux "deconnecte".
+      try {
+        const { Network } = await import('@capacitor/network')
+        const status = await Network.getStatus()
+        if (!status.connected) {
+          await new Promise(r => setTimeout(r, 4000))
+          if (settled) return
+        }
+      } catch {}
+      if (settled) return
+
       let session: Session | null = null
       try {
         session = (await getSessionWithTimeout(3000)).data.session
