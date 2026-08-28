@@ -43,16 +43,31 @@ export async function GET(req: NextRequest) {
   const since = new Date(Date.now() - 26 * 3600 * 1000).toISOString()
   const results = { images: 0, skipped: 0, errors: 0, db: 0 }
 
-  // ── 1. Images modifiées dans les dernières 26h ──────────────────────────
-  const { data: cards } = await supabase
-    .from('cartes_manuelles')
-    .select('image_recto, image_verso')
-    .gte('updated_at', since)
-    .limit(1500)
+  // ── 1. Images des cartes créées dans les dernières 26h ──────────────────
+  // BUG CRITIQUE corrigé : filtrait sur `updated_at`, colonne qui n'existe
+  // PAS sur cartes_manuelles (seule created_at existe) -- Supabase renvoyait
+  // une erreur avalee silencieusement (data=null), donc `cards` etait
+  // TOUJOURS vide et AUCUNE image n'a jamais ete sauvegardee par ce cron.
+  // Filtre maintenant sur created_at (pas de suivi de modif sur cette table
+  // de toute facon, donc une carte editee sans etre recreee ne re-sauvegarde
+  // pas sa photo -- limitation acceptee, mais au moins les nouvelles cartes
+  // sont bien captees). Ancien .limit(1500) sans pagination remplace par la
+  // meme pagination que l'export des metadonnees juste en dessous.
+  let cards: { image_recto: string | null; image_verso: string | null }[] = []
+  for (let from = 0; ; from += 1000) {
+    const { data: batch } = await supabase
+      .from('cartes_manuelles')
+      .select('image_recto, image_verso')
+      .gte('created_at', since)
+      .range(from, from + 999)
+    if (!batch?.length) break
+    cards.push(...batch)
+    if (batch.length < 1000) break
+  }
 
   const urls = [...new Set([
-    ...(cards || []).map(c => c.image_recto).filter(Boolean),
-    ...(cards || []).map(c => c.image_verso).filter(Boolean),
+    ...cards.map(c => c.image_recto).filter(Boolean),
+    ...cards.map(c => c.image_verso).filter(Boolean),
   ])] as string[]
 
   const BATCH = 12
@@ -81,7 +96,7 @@ export async function GET(req: NextRequest) {
     for (let from = 0; ; from += 1000) {
       const { data: batch } = await supabase
         .from('cartes_manuelles')
-        .select('id, user_id, nom, annee, marque, collection, variation, rc, auto, patch, num, item_type, created_at, updated_at')
+        .select('id, user_id, nom, annee, marque, collection, variation, rc, auto, patch, num, item_type, created_at')
         .range(from, from + 999)
       if (!batch?.length) break
       allCards.push(...batch)
