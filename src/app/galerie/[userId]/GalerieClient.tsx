@@ -2804,13 +2804,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           }
           .sticker-holo:hover::after { opacity: 1; }
           @keyframes holo-glow {
-            0%   { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b6b) drop-shadow(0 0 14px #ff6b6b); }
-            16%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ffd93d) drop-shadow(0 0 14px #ffd93d); }
-            33%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #6bcb77) drop-shadow(0 0 14px #6bcb77); }
-            50%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #4d96ff) drop-shadow(0 0 14px #4d96ff); }
-            66%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #c77dff) drop-shadow(0 0 14px #c77dff); }
-            83%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b9d) drop-shadow(0 0 14px #ff6b9d); }
-            100% { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b6b) drop-shadow(0 0 14px #ff6b6b); }
+            0%   { text-shadow: 0 0 3px white, 0 0 8px #ff6b6b, 0 0 14px #ff6b6b; }
+            16%  { text-shadow: 0 0 3px white, 0 0 8px #ffd93d, 0 0 14px #ffd93d; }
+            33%  { text-shadow: 0 0 3px white, 0 0 8px #6bcb77, 0 0 14px #6bcb77; }
+            50%  { text-shadow: 0 0 3px white, 0 0 8px #4d96ff, 0 0 14px #4d96ff; }
+            66%  { text-shadow: 0 0 3px white, 0 0 8px #c77dff, 0 0 14px #c77dff; }
+            83%  { text-shadow: 0 0 3px white, 0 0 8px #ff6b9d, 0 0 14px #ff6b9d; }
+            100% { text-shadow: 0 0 3px white, 0 0 8px #ff6b6b, 0 0 14px #ff6b6b; }
           }
           .holo-name {
             background: linear-gradient(90deg,#ff0080,#ff8c00,#ffee00,#00e676,#00b0ff,#e040fb,#ff0080);
