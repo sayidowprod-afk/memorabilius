@@ -121,7 +121,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const loadMessages = async (uid: string | null) => {
     const { data: msgs } = await supabase.from('team_messages')
-      .select('*, profiles(id, display_name, avatar_url)')
+      .select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url)')
       .eq('team_id', parseInt(teamId))
       .order('created_at', { ascending: true })
     setMessages(msgs || [])
@@ -254,7 +254,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'team_messages', filter: `team_id=eq.${teamId}` },
         async (payload) => {
           const { data } = await supabase.from('team_messages')
-            .select('*, profiles(id, display_name, avatar_url)')
+            .select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url)')
             .eq('id', payload.new.id).single()
           if (data) setMessages(prev => prev.some(m => m.id === data.id) ? prev : [...prev, data])
         })
@@ -273,10 +273,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const { data, error } = await supabase.from('team_messages').insert({
       team_id: parseInt(teamId),
       user_id: currentUser,
-      contenu: newMsg.trim() || null,
+      contenu: newMsg.trim(),
       card_key: pendingCard?.card_key || null,
       card_user_id: pendingCard ? currentUser : null,
-    }).select('*, profiles(id, display_name, avatar_url)').single()
+    }).select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url)').single()
     if (error) { toast.error(t('teams_err_send')); return }
     if (data) setMessages(prev => prev.some(m => m.id === data.id) ? prev : [...prev, data])
     setNewMsg('')
