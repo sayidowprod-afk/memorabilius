@@ -123,40 +123,32 @@ export default function Trades() {
     nba: 'basket', wnba: 'basket', nfl: 'football_us', mlb: 'baseball', nhl: 'hockey', football: 'foot',
   }
 
-  const loadForum = async () => {
-    const fetchAll = async (queryFn: (from: number, to: number) => any): Promise<any[]> => {
-      const result: any[] = []
-      for (let page = 0; ; page++) {
-        const { data, error } = await queryFn(page * 1000, page * 1000 + 999)
-        if (error) break // pas d'erreur réseau silencieusement confondue avec "fin des résultats"
-        if (!data || data.length === 0) break
-        result.push(...data)
-        if (data.length < 1000) break
-      }
-      return result
-    }
+  // Nombre d'annonces recentes chargees par source au premier affichage. La
+  // page chargeait AUPARAVANT la table cartes_manuelles.disponible_vente EN
+  // ENTIER (3700+ lignes, select('*') + jointure profiles) meme si seules les
+  // plus recentes sont visibles sans filtrer -- d'ou la lenteur signalee.
+  // Un marche aux cartes n'a pas besoin de l'historique complet d'un coup ;
+  // /recherche reste dispo pour une recherche exhaustive.
+  const FORUM_PAGE_SIZE = 200
 
-    const [tradeData, carteData] = await Promise.all([
-      fetchAll((from, to) =>
-        supabase
-          .from('trades')
-          .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-          .eq('statut', 'actif')
-          .order('created_at', { ascending: false })
-          .range(from, to)
-      ),
-      fetchAll((from, to) =>
-        supabase
-          .from('cartes_manuelles')
-          .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-          .eq('disponible_vente', true)
-          .order('created_at', { ascending: false })
-          .range(from, to)
-      ),
+  const loadForum = async () => {
+    const [{ data: tradeData }, { data: carteData }] = await Promise.all([
+      supabase
+        .from('trades')
+        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+        .eq('statut', 'actif')
+        .order('created_at', { ascending: false })
+        .limit(FORUM_PAGE_SIZE),
+      supabase
+        .from('cartes_manuelles')
+        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+        .eq('disponible_vente', true)
+        .order('created_at', { ascending: false })
+        .limit(FORUM_PAGE_SIZE),
     ])
 
     // Mapper les cartes galerie en objets trade-compatibles
-    const cartesAsOffers = carteData.map(c => ({
+    const cartesAsOffers = (carteData || []).map(c => ({
       ...c,
       _source: 'galerie' as const,
       type: 'offre',
@@ -168,7 +160,7 @@ export default function Trades() {
       sport: SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null,
     }))
 
-    const merged = [...tradeData, ...cartesAsOffers]
+    const merged = [...(tradeData || []), ...cartesAsOffers]
       .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
     setTrades(merged)
@@ -287,6 +279,11 @@ export default function Trades() {
       {/* ══════════════════════════════════════════════════════════════════════ */}
       {mainTab === 'annonces' && (
         <>
+          <style>{`
+            @media (max-width: 600px) {
+              .trades-forum-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            }
+          `}</style>
           {/* Filtres */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -327,7 +324,7 @@ export default function Trades() {
           </div>
 
           {loadingForum ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+            <div className="trades-forum-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border, #eee)' }}>
                   <SkeletonBlock style={{ width: '100%', aspectRatio: '16/9', borderRadius: 0 }} />
@@ -345,7 +342,7 @@ export default function Trades() {
                 <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+              <div className="trades-forum-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
                 {filteredForum.map(trade => (
                   <div key={trade.id} onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
                     background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden',
