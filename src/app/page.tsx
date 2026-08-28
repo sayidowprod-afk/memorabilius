@@ -92,10 +92,40 @@ async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {
   return withCards.filter(g => g.topCards.length > 0)
 }
 
+// Le serveur (Vercel) tourne en UTC -- calculer "debut du jour/semaine/mois"
+// avec des Date() locales donnait des bornes UTC, decalees d'1h/2h (selon
+// heure ete/hiver) par rapport a minuit reel a Paris. Decale par cet offset
+// pour obtenir l'instant UTC qui correspond a minuit heure de Paris.
+function parisOffsetMinutes(date: Date): number {
+  const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }))
+  const paris = new Date(date.toLocaleString('en-US', { timeZone: 'Europe/Paris' }))
+  return (paris.getTime() - utc.getTime()) / 60000
+}
+function startOfParisDay(date: Date): Date {
+  const offset = parisOffsetMinutes(date)
+  const parisNow = new Date(date.getTime() + offset * 60000)
+  const midnightShifted = Date.UTC(parisNow.getUTCFullYear(), parisNow.getUTCMonth(), parisNow.getUTCDate())
+  return new Date(midnightShifted - offset * 60000)
+}
+function startOfParisWeek(date: Date): Date {
+  const offset = parisOffsetMinutes(date)
+  const parisNow = new Date(date.getTime() + offset * 60000)
+  const dow = parisNow.getUTCDay() // 0 = dimanche
+  const diffToMonday = dow === 0 ? 6 : dow - 1
+  const mondayShifted = Date.UTC(parisNow.getUTCFullYear(), parisNow.getUTCMonth(), parisNow.getUTCDate() - diffToMonday)
+  return new Date(mondayShifted - offset * 60000)
+}
+function startOfParisMonth(date: Date): Date {
+  const offset = parisOffsetMinutes(date)
+  const parisNow = new Date(date.getTime() + offset * 60000)
+  const firstShifted = Date.UTC(parisNow.getUTCFullYear(), parisNow.getUTCMonth(), 1)
+  return new Date(firstShifted - offset * 60000)
+}
+
 async function fetchPodium() {
   const now = new Date()
   const month = now.toISOString().slice(0, 7)
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
+  const startOfMonth = startOfParisMonth(now).toISOString()
 
   const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
 
@@ -141,13 +171,17 @@ async function fetchPodiumPeriod(pStart: string) {
 }
 
 async function fetchPodiumDay() {
-  // dernières 24h (évite les problèmes de timezone)
-  const start = new Date(Date.now() - 24 * 3600 * 1000).toISOString()
+  // Jour calendaire (minuit à minuit, heure de Paris) -- pas une fenêtre
+  // glissante des dernières 24h, qui faisait paraître le classement
+  // redescendre en cours de journée au fil des cartes qui "sortaient" de la
+  // fenêtre plutôt que de repartir vraiment à zéro à minuit.
+  const start = startOfParisDay(new Date()).toISOString()
   return fetchPodiumPeriod(start)
 }
 
 async function fetchPodiumWeek() {
-  const start = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString()
+  // Semaine calendaire (lundi 00:00 à dimanche 23:59, heure de Paris).
+  const start = startOfParisWeek(new Date()).toISOString()
   return fetchPodiumPeriod(start)
 }
 
