@@ -1300,6 +1300,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const getCardId = (c: Card) => c.id_manuelle || c.f
 
+  // Prepare les cartes selectionnees en mode Multi-QR pour la page d'etiquettes
+  // de vente imprimables -- reutilise la meme selection plutot que d'en creer
+  // une seconde, separee. Passe par sessionStorage (pas de limite d'URL, et le
+  // payload -- images en base ou juste des dizaines de cartes -- resterait trop
+  // gros pour un querystring) plutot qu'un aller-retour base de donnees.
+  const openSaleLabels = () => {
+    if (qrSelected.size === 0) return
+    const items = [...qrSelected.entries()].map(([cardId, { url, title, subtitle }]) => {
+      const card = cards.find(c => getCardId(c) === cardId)
+      return {
+        url, title, subtitle,
+        image: card?.f || '',
+        value: card ? cardValues.get(card.f) ?? null : null,
+      }
+    })
+    try { sessionStorage.setItem('mb_sale_labels', JSON.stringify(items)) } catch {}
+    router.push(`/galerie/${userId}/etiquettes`)
+  }
+
   const toggleQrCard = async (d: Card) => {
     const cardId = getCardId(d)
     if (qrSelected.has(cardId)) {
@@ -2347,6 +2366,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {activeTab === 'comments' && <GalerieComments galerieUserId={userId} accent={accent} isOwner={isOwner} />}
         {activeTab === 'likes' && isOwner && <LikedCards userId={userId} />}
         {activeTab === 'library' && <BinderLibrary userId={userId} isOwner={isOwner} accent={accent} initialBinderId={initialBinderId}
+          exportCards={cards}
+          cardValues={cardValues}
+          profileName={profile?.display_name || ''}
+          avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
           onOpenCard={(img) => {
             // Retrouve la carte complète de la collection par son image, pour ouvrir
             // le vrai Viewer3D de la galerie (toutes les infos + tags), pas une version minimale
@@ -2994,6 +3017,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             <button onClick={downloadQrCodes} disabled={qrSelected.size === 0 || qrDownloading}
               style={{ background: qrSelected.size > 0 && !qrDownloading ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '6px 14px', cursor: qrSelected.size > 0 && !qrDownloading ? 'pointer' : 'default', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
               {qrDownloading ? '⏳ Génération...' : `⬇ Télécharger${qrSelected.size > 0 ? ` ${qrSelected.size} QR` : ''}`}
+            </button>
+            <button onClick={openSaleLabels} disabled={qrSelected.size === 0}
+              style={{ background: qrSelected.size > 0 ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '6px 14px', cursor: qrSelected.size > 0 ? 'pointer' : 'default', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
+              🏷️ Étiquettes de vente
             </button>
             <button onClick={() => { setQrMode(false); setQrSelected(new Map()) }}
               style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>

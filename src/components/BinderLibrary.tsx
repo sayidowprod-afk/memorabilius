@@ -16,6 +16,7 @@ import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_SAFE_AREA_BOTTOM } from '@/lib/nativeLayout'
+const GalerieExport = dynamic(() => import('./GalerieExport'), { ssr: false })
 
 // Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
 function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }) {
@@ -116,15 +117,29 @@ function PlasticSheen() {
   )
 }
 
-export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard, initialBinderId }: {
+interface ExportCard {
+  f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
+  rc: boolean; auto: boolean; patch: boolean; num: string; g: string; card_number?: string; beckett_designation?: string
+  id_manuelle?: string
+}
+
+export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard, initialBinderId, exportCards, cardValues, profileName, avatarUrl }: {
   userId: string; isOwner: boolean; accent: string
   pendingCard?: PickableCard | null
   onPlaced?: () => void
   onOpenCard?: (img: string) => boolean
   initialBinderId?: number | null
+  // Pour "Exporter ce classeur" (bouton dans la barre d'outils du classeur ouvert) --
+  // reutilise GalerieExport restreint aux cartes du classeur plutot que de dupliquer
+  // la logique d'export. Optionnels : le bouton ne s'affiche pas si absents (ex:
+  // BinderLibrary utilise ailleurs sans acces a la galerie complete).
+  exportCards?: ExportCard[]
+  cardValues?: Map<string, number>
+  profileName?: string
+  avatarUrl?: string
 }) {
   const { dark } = useTheme()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const isNative = useIsNative()
   const router = useRouter()
   const pathname = usePathname()
@@ -138,6 +153,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [selected, setSelected] = useState<Binder | null>(null)
   const [showComments, setShowComments] = useState(false)
   const [showQr, setShowQr] = useState(false)
+  const [showExport, setShowExport] = useState(false)
   const [commentCount, setCommentCount] = useState(0)
   const [showSortMenu, setShowSortMenu] = useState(false)
   const [sorting, setSorting] = useState(false)
@@ -1689,6 +1705,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     transition: 'opacity 0.15s',
   })
 
+  // Cles pour "Exporter ce classeur" -- binder_slots.card_key vaut toujours card.f
+  // (recto), y compris pour les cartes manuelles ou GalerieExport/restrictToKeys
+  // attend id_manuelle||f (voir exportSelectionKeys dans GalerieClient) : on
+  // reconstruit la bonne cle depuis exportCards plutot que d'utiliser card_key tel quel.
+  const binderExportKeys = (() => {
+    if (!exportCards || !selected) return new Set<string>()
+    const slotImgs = new Set([...slots.values()].map(s => s.card_key))
+    return new Set(exportCards.filter(c => slotImgs.has(c.f)).map(c => c.id_manuelle || c.f))
+  })()
+
   const binderViewContent = (
     <div style={binderFullscreen ? {
       position: 'fixed', inset: 0, zIndex: 9500,
@@ -1742,6 +1768,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               {!pendingCard && (
                 <button onClick={() => setShowQr(true)} title={t('binder_qrcode')} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                   ▦
+                </button>
+              )}
+              {!pendingCard && exportCards && binderExportKeys.size > 0 && (
+                <button onClick={() => setShowExport(true)} title={t('binder_export')} style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                  📤
                 </button>
               )}
               {!pendingCard && (
@@ -1805,6 +1836,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 ▦
                 <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_qrcode')}</span>
               </button>
+              {exportCards && binderExportKeys.size > 0 && (
+                <button onClick={() => setShowExport(true)} title={t('binder_export')} aria-label={t('binder_export')}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                  📤
+                  <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_export')}</span>
+                </button>
+              )}
               <button onClick={() => setShowComments(true)} title={t('binder_comments')} aria-label={t('binder_comments')}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#666', lineHeight: 1 }}>
                 <span>💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}</span>
@@ -2084,6 +2122,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           accent={accent}
           isOwner={isOwner}
           emptyLabel={t('binder_comments_empty')}
+        />
+      )}
+
+      {showExport && selected && exportCards && (
+        <GalerieExport
+          cards={exportCards}
+          profileName={profileName || ''}
+          avatarUrl={avatarUrl || ''}
+          accent={accent}
+          lang={lang}
+          cardValues={cardValues}
+          isOwner={isOwner}
+          restrictToKeys={binderExportKeys}
+          open={showExport}
+          onOpenChange={setShowExport}
+          hideTrigger
         />
       )}
 
