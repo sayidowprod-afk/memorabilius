@@ -303,7 +303,13 @@ function MessagesContent() {
       }
     }
 
-    await supabase.from('messages').update({ lu: true }).eq('to_user_id', uid).eq('from_user_id', otherId)
+    // .eq('lu', false) est essentiel : sans lui, cet UPDATE touchait TOUS les
+    // messages a chaque appel de loadMessages(), meme deja lus -- declenchant
+    // un evenement realtime UPDATE, qui relance loadMessages() plus bas (voir
+    // l'abonnement postgres_changes), qui remarque tout comme lu, qui
+    // redeclenche l'evenement... boucle infinie de re-rendus, vue comme un
+    // defilement erratique/un chat qui "revient sans arret".
+    await supabase.from('messages').update({ lu: true }).eq('to_user_id', uid).eq('from_user_id', otherId).eq('lu', false)
     if (!profiles[otherId]) {
       const { data: p } = await supabase.from('profiles').select('id, display_name, avatar_url, last_seen').eq('id', otherId).single()
       if (p) setProfiles(prev => ({ ...prev, [otherId]: p }))
