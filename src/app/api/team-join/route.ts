@@ -31,6 +31,15 @@ export async function POST(req: NextRequest) {
   const { data: existingMember } = await supabase.from('team_members').select('user_id').eq('team_id', teamId).eq('user_id', user.id).maybeSingle()
   if (existingMember) return NextResponse.json({ error: 'Déjà membre de cette team' }, { status: 400 })
 
+  // Deja une candidature en attente -- reponse idempotente plutot que de
+  // tenter un INSERT voue a l'echec (contrainte unique team_id/user_id) et
+  // remonter l'erreur SQL brute au client. Peut arriver meme apres le
+  // correctif de la policy RLS "Voir ses candidatures" (ex: etat client pas
+  // encore resynchronise), donc garde-fou cote serveur dans tous les cas.
+  const { data: pending } = await supabase.from('team_candidatures')
+    .select('id').eq('team_id', teamId).eq('user_id', user.id).eq('statut', 'en_attente').maybeSingle()
+  if (pending) return NextResponse.json({ ok: true, alreadyPending: true })
+
   // Anti-spam : sans ça, un candidat refusé pouvait repostuler immédiatement en
   // boucle — chaque tentative renvoie une vraie notif (push + in-app) aux chefs
   // de la team, sans aucune limite de fréquence côté serveur.

@@ -488,6 +488,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         @media (max-width: 600px) {
           .holo-name { animation: none; background-position: 30% 50%; }
         }
+        /* Sur mobile, la description (longueur variable, jusqu'a plusieurs lignes)
+           et le bloc stats se chevauchaient quand ils se retrouvaient cote a cote
+           sur la meme ligne flex -- chacun prend toute la largeur sur sa propre
+           ligne plutot que de se disputer l'espace horizontal. */
+        @media (max-width: 640px) {
+          .team-header-row { align-items: flex-start !important; }
+          .team-header-text { flex-basis: 100% !important; min-width: 100% !important; order: 1; }
+          .team-header-stats { flex-basis: 100% !important; order: 2; }
+        }
       `}</style>
 
       {/* Header — meme traitement que le header de profil galerie : degrade
@@ -498,20 +507,20 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           background: `linear-gradient(to top left, ${ACCENT}${dark ? '3d' : '2b'}, transparent 70%)`,
           pointerEvents: 'none',
         }} />
-        <div style={{ position: 'relative', padding: 28, display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+        <div className="team-header-row" style={{ position: 'relative', padding: 28, display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           {team.avatar_url
             ? <img src={team.avatar_url} style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${ACCENT}`, flexShrink: 0 }} alt={team.name} />
             : <div style={{ width: 70, height: 70, borderRadius: '50%', background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>{team.name.charAt(0).toUpperCase()}</div>
           }
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="team-header-text" style={{ flex: 1, minWidth: 200 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <h1 style={{ fontWeight: 900, fontSize: 24, margin: 0 }}>{team.name}</h1>
               {isChef && <Link href={`/teams/${teamId}/editer`} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #444)', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>{t('teams_modify')}</Link>}
             </div>
-            {team.description && <p style={{ color: 'var(--text2, #666)', fontSize: 14, margin: '4px 0 0' }}>{team.description}</p>}
+            {team.description && <p style={{ color: 'var(--text2, #666)', fontSize: 14, margin: '4px 0 0', wordBreak: 'break-word' }}>{team.description}</p>}
             <p style={{ color: 'var(--text3, #999)', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>
           </div>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <div className="team-header-stats" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {[{ val: totalStats.total, label: 'Cartes', color: ACCENT }, { val: totalStats.rc, label: 'RC', color: '#e67e22' }, { val: totalStats.auto, label: 'Auto', color: '#2e7d32' }].map(s => (
               <div key={s.label} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 20, fontWeight: 900, color: s.color }}>{s.val}</div>
@@ -733,29 +742,29 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 const role = m.id === team.created_by ? 'chef' : (memberData?.role || 'member')
                 return (
                   <tr key={m.id}>
-                    <td style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5', fontWeight: 900, fontSize: 16, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#bbb' }}>
+                    <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)', fontWeight: 900, fontSize: 16, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#bbb' }}>
                       {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
                     </td>
-                    <td style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                    <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                         <img src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
-                        <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: m.is_donor ? undefined : '#111', textDecoration: 'none' }}>{m.display_name}</Link>
+                        <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: m.is_donor ? undefined : 'var(--text, #111)', textDecoration: 'none' }}>{m.display_name}</Link>
                         {m.is_donor && <span title="Donateur Ko-fi" style={{ fontSize: 14, lineHeight: 1 }}>☕</span>}
                       </div>
                     </td>
-                    <td style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                    <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
                       {role === 'chef' && <span style={{ fontSize: 11, background: ACCENT, color: 'white', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>👑 Chef</span>}
                       {role === 'admin' && <span style={{ fontSize: 11, background: '#e8f5e9', color: '#2e7d32', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>⭐ Admin</span>}
                       {role === 'member' && <span style={{ fontSize: 11, background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #666)', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>Membre</span>}
                     </td>
                     {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.num, m.stats?.patch].map((val, vi) => (
-                      <td key={vi} style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                      <td key={vi} style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
                         <span style={{ background: ['#f0f0f0','#e67e22','#2e7d32','#7b1fa2','#1976d2'][vi], color: vi === 0 ? '#333' : 'white', padding: '3px 8px', borderRadius: 6, fontWeight: 700, fontSize: 12 }}>{val || 0}</span>
                       </td>
                     ))}
                     {isChef && (
-                      <td style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                      <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
                         {role !== 'chef' && (
                           <div style={{ display: 'flex', gap: 6 }}>
                             <button onClick={async () => {
@@ -918,7 +927,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           {candidatures.length === 0
             ? <p style={{ textAlign: 'center', padding: 40, color: 'var(--text3, #bbb)' }}>{t('teams_no_candidatures')}</p>
             : candidatures.map(cand => (
-              <div key={cand.id} style={{ padding: '16px 20px', borderBottom: '1px solid #f5f5f5', display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div key={cand.id} style={{ padding: '16px 20px', borderBottom: '1px solid var(--border, #f5f5f5)', display: 'flex', alignItems: 'center', gap: 16 }}>
                 <img src={cand.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(cand.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                 <div style={{ flex: 1 }}>
