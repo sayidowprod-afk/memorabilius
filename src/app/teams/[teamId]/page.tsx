@@ -9,6 +9,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import EmptyState from '@/components/EmptyState'
+import CardPicker from '@/components/CardPicker'
 
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
@@ -999,18 +1000,24 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               <button onClick={() => setPendingCard(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>
             </div>
           )}
-          {/* Card picker */}
-          {showCardPicker && (
-            <div style={{ padding: '8px 16px', borderTop: '1px solid var(--border, #f0f0f0)', maxHeight: 160, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))', gap: 4 }}>
-              {myCards.map(c => (
-                <div key={c.id} onClick={() => { setPendingCard(c); setShowCardPicker(false) }}
-                  style={{ cursor: 'pointer', borderRadius: 4, overflow: 'hidden', background: 'var(--bg3, #f0f0f0)', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {c.image_recto
-                    ? <img loading="lazy" src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
-                    : <span style={{ fontSize: 9, color: 'var(--text3, #999)', textAlign: 'center', padding: 2 }}>{c.nom}</span>}
-                </div>
-              ))}
-            </div>
+          {/* Card picker -- remplace l'ancienne grille inline (limitee aux 100
+              dernieres cartes manuelles, pas de cartes CSV, pas de recherche)
+              par le selecteur partage du site (recherche/filtres, CSV incluses). */}
+          {showCardPicker && currentUser && (
+            <CardPicker
+              userId={currentUser}
+              onSelect={card => {
+                // card.key est la convention deja utilisee partout ailleurs
+                // (id_manuelle||f) pour ce que CardPreview doit chercher --
+                // l'ancien code posait pendingCard=c (la ligne brute
+                // cartes_manuelles, sans champ card_key du tout), donc
+                // card_key etait toujours null a l'envoi et la carte
+                // disparaissait silencieusement du message.
+                setPendingCard({ card_key: card.key, image_recto: card.img, nom: card.nom })
+                setShowCardPicker(false)
+              }}
+              onClose={() => setShowCardPicker(false)}
+            />
           )}
           <div style={{ padding: '10px 14px', borderTop: '1px solid var(--border, #f0f0f0)', display: 'flex', gap: 8, alignItems: 'center' }}>
             <button onClick={() => setShowCardPicker(!showCardPicker)}
@@ -1085,8 +1092,13 @@ function PostCardsPreview({ cardIds, userId }: { cardIds: number[]; userId: stri
 function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: string; compact?: boolean }) {
   const [card, setCard] = useState<any>(null)
   useEffect(() => {
+    // cartes_manuelles n'a pas de colonne "card_key" -- la convention utilisee
+    // partout ailleurs sur le site (voir GalerieClient, id_manuelle||f) est que
+    // card_key EST l'URL image_recto. Cette requete cherchait une colonne
+    // inexistante et ne renvoyait donc jamais rien : la carte partagee restait
+    // invisible silencieusement apres l'envoi.
     supabase.from('cartes_manuelles').select('nom, image_recto, annee, marque')
-      .eq('card_key', cardKey).eq('user_id', userId).single()
+      .eq('image_recto', cardKey).eq('user_id', userId).single()
       .then(({ data }) => setCard(data))
   }, [cardKey, userId])
 

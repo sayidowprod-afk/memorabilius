@@ -16,6 +16,7 @@ import { takeStagedShare, updateShareTargets } from '@/lib/shareBridge'
 import { fireConfetti } from '@/components/Confetti'
 import CardTagBadges from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
+import CardPicker from '@/components/CardPicker'
 import { TRADE_STATUS_COLOR, type TradeStatus } from '@/lib/tradeStatus'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
@@ -30,6 +31,17 @@ const imgUrlOf = (c: string) => c.slice(IMG_PREFIX.length)
 const TRADE_OFFER_PREFIX = '[[trade_offer:'
 const isTradeOfferMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_OFFER_PREFIX)
 const tradeOfferIdOf = (c: string) => c.slice(TRADE_OFFER_PREFIX.length, -2)
+
+// Préfixe marqueur pour une carte partagée depuis la collection -- les infos
+// (image, nom...) sont embarquées directement dans le message plutot que
+// stockees en base (pas de colonnes card_key/card_user_id sur `messages`,
+// contrairement a team_messages -- et ce dernier a justement un bug ou ce
+// systeme de reference ne fonctionne pas, voir CardPreview cote team).
+const CARD_PREFIX = '[[card]]'
+const isCardMsg = (c: string) => typeof c === 'string' && c.startsWith(CARD_PREFIX)
+const cardDataOf = (c: string): { img: string; nom: string; annee?: string; marque?: string } | null => {
+  try { return JSON.parse(c.slice(CARD_PREFIX.length)) } catch { return null }
+}
 
 // Réduit une image à 1200px max et l'encode en JPEG pour limiter le poids
 function compressImage(file: File): Promise<Blob> {
@@ -80,6 +92,7 @@ function MessagesContent() {
   const [newConvSearch, setNewConvSearch] = useState('')
   const [newConvResults, setNewConvResults] = useState<any[]>([])
   const [uploading, setUploading] = useState(false)
+  const [showCardPicker, setShowCardPicker] = useState(false)
   const [reactionPickerFor, setReactionPickerFor] = useState<string | null>(null)
   const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const [otherTyping, setOtherTyping] = useState(false)
@@ -250,7 +263,7 @@ function MessagesContent() {
     const convMap: Record<string, any> = {}
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
-      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : msg.contenu
+      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
       if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
@@ -740,7 +753,19 @@ function MessagesContent() {
                               <img loading="lazy" src={imgUrlOf(msg.contenu)} alt="photo"
                                 style={{ maxWidth: 220, maxHeight: 280, borderRadius: 16, display: 'block', objectFit: 'cover' }} />
                             </a>
-                          ) : (
+                          ) : isCardMsg(msg.contenu) ? (() => {
+                            const card = cardDataOf(msg.contenu)
+                            if (!card) return null
+                            return (
+                              <div style={{ background: dark ? '#262626' : '#efefef', borderRadius: 16, padding: 10, display: 'flex', gap: 10, alignItems: 'center', width: 220, boxSizing: 'border-box' }}>
+                                {card.img && <img loading="lazy" src={card.img} alt={card.nom} style={{ width: 44, height: 62, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
+                                <div style={{ minWidth: 0 }}>
+                                  <div style={{ fontWeight: 800, fontSize: 13, color: bubbleThemText, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
+                                  {(card.annee || card.marque) && <div style={{ fontSize: 11, color: textMuted, marginTop: 2 }}>{[card.annee, card.marque].filter(Boolean).join(' · ')}</div>}
+                                </div>
+                              </div>
+                            )
+                          })() : (
                             <div style={{
                               padding: '10px 14px', borderRadius: isMe ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
                               background: isMe ? 'linear-gradient(135deg,#1a56db,#003DA6)' : bubbleThemBg,
@@ -829,6 +854,15 @@ function MessagesContent() {
                       flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}
                   >{uploading ? '…' : '📷'}</button>
+                  <button
+                    onClick={() => setShowCardPicker(true)}
+                    title="Partager une carte"
+                    style={{
+                      background: 'none', border: 'none', color: dark ? '#eee' : '#333',
+                      width: 32, height: 32, borderRadius: '50%', fontSize: 16, cursor: 'pointer',
+                      flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}
+                  >🃏</button>
                   <input
                     value={newMsg}
                     onChange={e => { setNewMsg(e.target.value); notifyTyping() }}
@@ -858,6 +892,17 @@ function MessagesContent() {
           )}
         </div>
       </div>
+
+      {showCardPicker && userId && (
+        <CardPicker
+          userId={userId}
+          onSelect={card => {
+            setShowCardPicker(false)
+            sendMessage(CARD_PREFIX + JSON.stringify({ img: card.img, nom: card.nom, annee: card.year, marque: card.brand }))
+          }}
+          onClose={() => setShowCardPicker(false)}
+        />
+      )}
 
       {expandedOffer && createPortal(
         <div onClick={() => setExpandedOffer(null)} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
