@@ -197,9 +197,21 @@ function MessagesContent() {
     typingChannelRef.current.send({ type: 'broadcast', event: 'typing', payload: { from: userId } })
   }
 
+  const lastMsgKeyRef = useRef<string | null>(null)
   useEffect(() => {
+    // messages est remplace par une NOUVELLE reference a chaque loadMessages(),
+    // meme quand rien n'a change pour le fil affiche (une reaction/accuse de
+    // lecture sur un autre message, un evenement realtime parasite) -- sans
+    // garde, ca redeclenchait un scroll-to-bottom a chaque fois et ramenait
+    // l'utilisateur en bas alors qu'il essayait de remonter dans l'historique.
+    // On ne scrolle que quand le DERNIER message a reellement change (nouveau
+    // message ajoute, ou changement de conversation).
+    const last = messages[messages.length - 1]
+    const key = last ? `${activeConv}:${last.id}` : activeConv
+    if (key === lastMsgKeyRef.current) return
+    lastMsgKeyRef.current = key
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages])
+  }, [messages, activeConv])
 
   // Chat bord à bord façon Insta sur l'app native : on retire le padding du
   // <main> autour, la topbar et la bottom bar (hors de <main>) restent visibles.
