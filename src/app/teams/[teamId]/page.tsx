@@ -806,9 +806,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       </div>
                     </td>
                     <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
-                      {role === 'chef' && <span style={{ fontSize: 11, background: ACCENT, color: 'white', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>👑 Chef</span>}
-                      {role === 'admin' && <span style={{ fontSize: 11, background: '#e8f5e9', color: '#2e7d32', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>⭐ Admin</span>}
-                      {role === 'member' && <span style={{ fontSize: 11, background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #666)', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>Membre</span>}
+                      {role === 'chef' && <span style={{ fontSize: 11, background: ACCENT, color: 'white', padding: '3px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap' }}>👑 Chef</span>}
+                      {role === 'admin' && <span style={{ fontSize: 11, background: '#e8f5e9', color: '#2e7d32', padding: '3px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap' }}>⭐ Admin</span>}
+                      {role === 'member' && <span style={{ fontSize: 11, background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #666)', padding: '3px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap' }}>Membre</span>}
                     </td>
                     {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.num, m.stats?.patch].map((val, vi) => (
                       <td key={vi} style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
