@@ -478,7 +478,7 @@ function MessagesContent() {
               )}
             </div>
           )}
-          <div data-no-ptr="true" style={{ overflowY: 'auto', flex: 1 }}>
+          <div data-no-ptr="true" style={{ overflowY: 'auto', flex: 1, minHeight: 0 }}>
             {conversations.length === 0 && (
               <div style={{ padding: '32px 20px', textAlign: 'center' }}>
                 <div style={{ fontSize: 32, marginBottom: 10 }}>💬</div>
@@ -553,7 +553,7 @@ function MessagesContent() {
                   pas la fenetre (window.scrollY reste a 0), donc PullToRefresh
                   confondait systematiquement "remonter dans l'historique" avec un
                   tirer-pour-rafraichir et rechargeait l'app en plein milieu. */}
-              <div data-no-ptr="true" style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div data-no-ptr="true" style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {messages.map((msg, msgIdx) => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null

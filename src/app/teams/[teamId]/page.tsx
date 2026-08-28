@@ -893,7 +893,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {activeTab === 'chat' && isMember && (
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: 560 }}>
           <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--border, #f0f0f0)', fontWeight: 800, fontSize: 15 }}>💬 Chat en direct</div>
-          <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             {messages.length === 0 && <p style={{ textAlign: 'center', color: 'var(--text3, #bbb)', marginTop: 40 }}>{t('teams_no_message')}</p>}
             {messages.map(msg => {
               const isMe = msg.user_id === currentUser
