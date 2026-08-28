@@ -311,6 +311,8 @@ export const it = {
   search_sub: 'Cerca una carta in tutte le collezioni della comunità',
   search_placeholder: 'Nome del giocatore, squadra, variazione...',
   search_min_chars: 'Digita almeno 2 caratteri',
+  search_recent_title: 'Ricerche recenti',
+  search_recent_remove: 'Rimuovi questa ricerca',
   search_understood_as: 'Interpretato come:',
   search_numbered_hint: 'numerata',
   search_results: 'carta/e trovata/e per',

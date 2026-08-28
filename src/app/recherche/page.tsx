@@ -61,6 +61,35 @@ export default function Recherche() {
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
+  const RECENT_SEARCHES_KEY = 'recherche_recentes'
+  const RECENT_SEARCHES_MAX = 8
+  const [recentSearches, setRecentSearches] = useState<string[]>([])
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(RECENT_SEARCHES_KEY) || '[]')
+      if (Array.isArray(saved)) setRecentSearches(saved.filter((s): s is string => typeof s === 'string'))
+    } catch {}
+  }, [])
+
+  const pushRecentSearch = (q: string) => {
+    const trimmed = q.trim()
+    if (!trimmed) return
+    setRecentSearches(prev => {
+      const next = [trimmed, ...prev.filter(s => s.toLowerCase() !== trimmed.toLowerCase())].slice(0, RECENT_SEARCHES_MAX)
+      try { localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(next)) } catch {}
+      return next
+    })
+  }
+
+  const removeRecentSearch = (q: string) => {
+    setRecentSearches(prev => {
+      const next = prev.filter(s => s !== q)
+      try { localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(next)) } catch {}
+      return next
+    })
+  }
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setMyId(session?.user?.id || null))
   }, [])
@@ -98,6 +127,7 @@ export default function Recherche() {
   const doSearch = async (q: string) => {
     setLoading(true)
     setSearched(true)
+    pushRecentSearch(q)
 
     // Recherche en langage naturel : "kobe rc 2024 sous /25" -> nom "kobe" +
     // filtres RC / annee 2024 / numerote <= 25 appliques automatiquement.
@@ -256,6 +286,34 @@ export default function Recherche() {
             <p style={{ color: muted, fontSize: 12, marginTop: 8 }}>
               {t('search_understood_as')} <strong style={{ color: accent }}>{nlpHint.join(' · ')}</strong>
             </p>
+          )}
+
+          {/* Recherches recentes -- seulement tant qu'aucune recherche n'est en
+              cours, pour ne pas polluer l'affichage des resultats. */}
+          {!searched && recentSearches.length > 0 && (
+            <div style={{ maxWidth: 620, margin: '18px auto 0', textAlign: 'left' }}>
+              <div style={{ fontSize: 11, fontWeight: 800, color: muted, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>
+                {t('search_recent_title')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {recentSearches.map(term => (
+                  <span key={term} style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                    background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 20, padding: '6px 6px 6px 14px',
+                  }}>
+                    <button onClick={() => handleQuery(term)} style={{
+                      background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: text, padding: 0,
+                    }}>
+                      {term}
+                    </button>
+                    <button onClick={() => removeRecentSearch(term)} aria-label={t('search_recent_remove')} style={{
+                      background: 'none', border: 'none', cursor: 'pointer', color: muted, fontSize: 13,
+                      width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                    }}>✕</button>
+                  </span>
+                ))}
+              </div>
+            </div>
           )}
         </div>
 
