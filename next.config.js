@@ -40,15 +40,18 @@ const nextConfig = {
           // wasm-unsafe-eval + cdn.jsdelivr.net : onnxruntime-web (scanner de coins,
           // cornerDetectorYolo.ts) charge son WASM depuis ce CDN. unsafe-inline reste
           // necessaire (theme flash-guard inline script en layout.tsx, styles CSS-in-JS
-          // via <style>{`...`}</style> utilises partout). img/media en https: large car
-          // les photos de cartes CSV sont hebergees sur des domaines tiers variables.
+          // via <style>{`...`}</style> utilises partout). img/media/connect en https:
+          // large car les utilisateurs connectent des Google Sheets (ou tout autre
+          // export CSV publie) et des photos de cartes hebergees sur des domaines
+          // tiers totalement variables et non enumerable a l'avance (connect-src trop
+          // strict a deja casse le chargement CSV -> galeries vides en prod une fois).
           { key: 'Content-Security-Policy', value: [
             "default-src 'self'",
             "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net",
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data: blob: https:",
             "font-src 'self' data: https://fonts.gstatic.com",
-            "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://fonts.gstatic.com https://cdn.jsdelivr.net",
+            "connect-src 'self' https: wss://*.supabase.co",
             "media-src 'self' blob: https:",
             "worker-src 'self' blob: https://cdn.jsdelivr.net",
             "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
