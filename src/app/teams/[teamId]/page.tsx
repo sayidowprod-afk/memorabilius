@@ -61,6 +61,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [showCardPicker, setShowCardPicker] = useState(false)
   const [myCards, setMyCards] = useState<any[]>([])
   const [pendingCard, setPendingCard] = useState<any | null>(null)
+  const [replyingTo, setReplyingTo] = useState<any | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Posts
@@ -276,11 +277,13 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       contenu: newMsg.trim(),
       card_key: pendingCard?.card_key || null,
       card_user_id: pendingCard ? currentUser : null,
+      reply_to_id: replyingTo?.id || null,
     }).select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url)').single()
     if (error) { toast.error(t('teams_err_send')); return }
     if (data) setMessages(prev => prev.some(m => m.id === data.id) ? prev : [...prev, data])
     setNewMsg('')
     setPendingCard(null)
+    setReplyingTo(null)
   }
 
   const toggleMsgReaction = async (msgId: number, emoji: string) => {
@@ -852,12 +855,22 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             {messages.length === 0 && <p style={{ textAlign: 'center', color: 'var(--text3, #bbb)', marginTop: 40 }}>{t('teams_no_message')}</p>}
             {messages.map(msg => {
               const isMe = msg.user_id === currentUser
+              const repliedMsg = msg.reply_to_id ? messages.find(m => m.id === msg.reply_to_id) : null
               return (
-                <div key={msg.id} style={{ display: 'flex', gap: 8, flexDirection: isMe ? 'row-reverse' : 'row', alignItems: 'flex-end' }}>
+                <div key={msg.id} id={`team-msg-${msg.id}`} style={{ display: 'flex', gap: 8, flexDirection: isMe ? 'row-reverse' : 'row', alignItems: 'flex-end' }}>
                   <img src={msg.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                     style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                   <div style={{ maxWidth: '72%' }}>
                     {!isMe && <p style={{ fontSize: 11, color: 'var(--text3, #999)', margin: '0 0 3px', fontWeight: 700 }}>{msg.profiles?.display_name}</p>}
+                    {msg.reply_to_id && (
+                      <div onClick={() => document.getElementById(`team-msg-${msg.reply_to_id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                        style={{ borderLeft: `3px solid ${ACCENT}`, background: 'var(--bg3, #f5f5f5)', borderRadius: '6px 6px 0 0', padding: '4px 10px', marginBottom: -4, cursor: 'pointer', opacity: 0.85 }}>
+                        <p style={{ fontSize: 10, fontWeight: 700, color: ACCENT, margin: 0 }}>↩ {repliedMsg?.profiles?.display_name || '...'}</p>
+                        <p style={{ fontSize: 11, color: 'var(--text3, #999)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {repliedMsg ? (repliedMsg.contenu || '🃏 Carte partagée') : 'Message supprimé'}
+                        </p>
+                      </div>
+                    )}
                     <div style={{ background: isMe ? ACCENT : 'var(--bg3, #f0f0f0)', color: isMe ? 'white' : 'var(--text, #121212)', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: 14, lineHeight: 1.5 }}>
                       {msg.contenu && <LinkifiedText text={msg.contenu} />}
                       {msg.card_key && msg.card_user_id && <CardPreview cardKey={msg.card_key} userId={msg.card_user_id} compact />}
@@ -885,6 +898,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                           </div>
                         )}
                       </div>
+                      <button onClick={e => { e.stopPropagation(); setReplyingTo(msg) }}
+                        style={{ padding: '2px 6px', borderRadius: 12, border: '1.5px solid var(--border, #e0e0e0)', background: 'var(--card-bg, #fff)', cursor: 'pointer', fontSize: 11, color: 'var(--text3, #bbb)' }}
+                        title="Répondre">↩</button>
                     </div>
                     <p style={{ fontSize: 10, color: 'var(--text3, #bbb)', margin: '2px 0 0', textAlign: isMe ? 'right' : 'left' }}>
                       {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
@@ -895,6 +911,19 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             })}
             <div ref={messagesEndRef} />
           </div>
+          {/* Réponse en cours */}
+          {replyingTo && (
+            <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
+              <span style={{ fontSize: 12, color: ACCENT, flexShrink: 0 }}>↩</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontSize: 11, fontWeight: 700, color: ACCENT, margin: 0 }}>{replyingTo.profiles?.display_name}</p>
+                <p style={{ fontSize: 12, color: 'var(--text3, #999)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {replyingTo.contenu || '🃏 Carte partagée'}
+                </p>
+              </div>
+              <button onClick={() => setReplyingTo(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>
+            </div>
+          )}
           {/* Carte en attente */}
           {pendingCard && (
             <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
