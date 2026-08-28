@@ -848,6 +848,7 @@ function MessagesContent() {
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploading}
                     title="Envoyer une photo"
+                    aria-label="Envoyer une photo"
                     style={{
                       background: 'none', border: 'none', color: dark ? '#eee' : '#333',
                       width: 32, height: 32, borderRadius: '50%', fontSize: 17, cursor: uploading ? 'default' : 'pointer',
@@ -857,6 +858,7 @@ function MessagesContent() {
                   <button
                     onClick={() => setShowCardPicker(true)}
                     title="Partager une carte"
+                    aria-label="Partager une carte"
                     style={{
                       background: 'none', border: 'none', color: dark ? '#eee' : '#333',
                       width: 32, height: 32, borderRadius: '50%', fontSize: 16, cursor: 'pointer',

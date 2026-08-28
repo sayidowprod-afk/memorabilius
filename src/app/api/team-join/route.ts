@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { z } from 'zod'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { teamJoinRequestPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
+
+const teamJoinSchema = z.object({
+  teamId: z.union([z.string(), z.number()]),
+})
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -22,8 +27,9 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { teamId } = await req.json()
-  if (!teamId) return NextResponse.json({ error: 'Missing teamId' }, { status: 400 })
+  const parsed = teamJoinSchema.safeParse(await req.json())
+  if (!parsed.success) return NextResponse.json({ error: 'Missing teamId' }, { status: 400 })
+  const { teamId } = parsed.data
 
   const { data: team } = await supabase.from('teams').select('name, created_by').eq('id', teamId).single()
   if (!team) return NextResponse.json({ error: 'Team introuvable' }, { status: 404 })

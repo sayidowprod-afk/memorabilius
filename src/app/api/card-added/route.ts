@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { z } from 'zod'
 import { awardXP, checkAndAwardBadgeXP, xpForCard } from '@/lib/xp'
+
+const cardAddedPostSchema = z.object({
+  userId: z.string().uuid(),
+  rc: z.boolean().optional(),
+  auto: z.boolean().optional(),
+  patch: z.boolean().optional(),
+  num: z.boolean().optional(),
+})
+const cardAddedDeleteSchema = z.object({
+  userId: z.string().uuid(),
+  cardId: z.string().min(1),
+})
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,8 +33,9 @@ async function verifyOwner(req: NextRequest, userId: string) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId, rc = false, auto = false, patch = false, num = false } = await req.json()
-    if (!userId) return NextResponse.json({ error: 'Missing userId' }, { status: 400 })
+    const parsed = cardAddedPostSchema.safeParse(await req.json())
+    if (!parsed.success) return NextResponse.json({ error: 'Missing userId' }, { status: 400 })
+    const { userId, rc = false, auto = false, patch = false, num = false } = parsed.data
     if (!(await verifyOwner(req, userId))) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
     const month = new Date().toISOString().slice(0, 7)
@@ -55,8 +69,9 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   try {
-    const { userId, cardId } = await req.json()
-    if (!userId || !cardId) return NextResponse.json({ error: 'Missing params' }, { status: 400 })
+    const parsed = cardAddedDeleteSchema.safeParse(await req.json())
+    if (!parsed.success) return NextResponse.json({ error: 'Missing params' }, { status: 400 })
+    const { userId, cardId } = parsed.data
     if (!(await verifyOwner(req, userId))) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
     const month = new Date().toISOString().slice(0, 7)

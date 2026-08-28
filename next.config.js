@@ -55,14 +55,14 @@ const nextConfig = {
           // strict a deja casse le chargement CSV -> galeries vides en prod une fois).
           { key: 'Content-Security-Policy', value: [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net",
+            "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://challenges.cloudflare.com",
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data: blob: https:",
             "font-src 'self' data: https://fonts.gstatic.com",
             "connect-src 'self' https: wss://*.supabase.co",
             "media-src 'self' blob: https:",
             "worker-src 'self' blob: https://cdn.jsdelivr.net",
-            "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
+            "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://challenges.cloudflare.com",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
@@ -98,4 +98,17 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+const { withSentryConfig } = require('@sentry/nextjs')
+
+// withSentryConfig reste un no-op cote runtime si NEXT_PUBLIC_SENTRY_DSN
+// n'est pas defini (voir instrumentation.ts/instrumentation-client.ts) --
+// seul le build (source maps, upload d'artefacts) a besoin des identifiants
+// d'org/projet Sentry ci-dessous, absents tant que SENTRY_AUTH_TOKEN ne l'est
+// pas non plus (silentlyFailOnMissingAuthToken evite un echec de build).
+module.exports = withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  silent: true,
+  silentlyFailOnMissingAuthToken: true,
+  webpack: { treeshake: { removeDebugLogging: true }, automaticVercelMonitors: false },
+})

@@ -27,6 +27,7 @@
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@sentry/nextjs": "^10.72.0",
     "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
@@ -66,7 +67,8 @@
     "react-simple-maps": "^3.0.0",
     "resend": "^6.14.0",
     "sanitize-html": "^2.17.7",
-    "web-push": "^3.6.7"
+    "web-push": "^3.6.7",
+    "zod": "^4.5.1"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",

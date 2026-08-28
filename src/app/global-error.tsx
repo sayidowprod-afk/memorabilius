@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import * as Sentry from '@sentry/nextjs'
 
 // error.tsx (racine) protege chaque route mais PAS le layout racine lui-meme
 // (NavBar, providers Auth/Theme/Lang...) -- un crash a ce niveau precis
@@ -7,7 +8,7 @@ import { useEffect } from 'react'
 // seul niveau qui peut l'attraper, d'ou le <html>/<body> autonome (le layout
 // racine, potentiellement fautif, n'est plus dans l'arbre a ce stade).
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  useEffect(() => { console.error(error) }, [error])
+  useEffect(() => { console.error(error); Sentry.captureException(error) }, [error])
   return (
     <html lang="fr">
       <body style={{ margin: 0, fontFamily: 'Inter, sans-serif' }}>

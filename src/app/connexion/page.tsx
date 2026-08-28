@@ -25,12 +25,70 @@ export default function Connexion() {
   const [bioSaved, setBioSaved] = useState(false)
   const [askBiometric, setAskBiometric] = useState(false)
   const [bioLoading, setBioLoading] = useState(false)
+  const [mfaFactorId, setMfaFactorId] = useState<string | null>(null)
+  const [mfaCode, setMfaCode] = useState('')
+  const [mfaVerifying, setMfaVerifying] = useState(false)
 
   useEffect(() => {
     if (!isNative) return
     isBiometricAvailable().then(setBioAvailable)
     setBioSaved(hasSavedBiometricCredentials())
   }, [isNative])
+
+  // Journalise la connexion reussie (best-effort, ne bloque jamais la
+  // navigation si ca echoue) puis termine le flux de connexion.
+  const finishLogin = async () => {
+    const { data: { session } } = await supabase.auth.getSession()
+    fetch('/api/auth/login-history', {
+      method: 'POST', headers: { 'Authorization': `Bearer ${session?.access_token}` },
+    }).catch(() => {})
+
+    if (isNative && bioAvailable && !bioSaved && !wasBiometricPromptDismissed()) {
+      setAskBiometric(true)
+      setLoading(false)
+      setBioLoading(false)
+      return
+    }
+    router.push('/profil')
+  }
+
+  // Apres un mot de passe correct, verifie si le compte a la 2FA active
+  // (aal2 requis) -- si oui, affiche l'ecran de saisie du code TOTP au lieu
+  // de terminer directement la connexion.
+  const checkMfaThenFinish = async () => {
+    const { data } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel()
+    if (data && data.nextLevel === 'aal2' && data.currentLevel !== 'aal2') {
+      const { data: factors } = await supabase.auth.mfa.listFactors()
+      const factor = factors?.totp?.[0]
+      if (factor) {
+        setMfaFactorId(factor.id)
+        setLoading(false)
+        setBioLoading(false)
+        return
+      }
+    }
+    await finishLogin()
+  }
+
+  const handleMfaVerify = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!mfaFactorId) return
+    setMfaVerifying(true)
+    setError('')
+    const { data: challenge, error: challengeErr } = await supabase.auth.mfa.challenge({ factorId: mfaFactorId })
+    if (challengeErr || !challenge) {
+      setError(t('login_err_credentials'))
+      setMfaVerifying(false)
+      return
+    }
+    const { error: verifyErr } = await supabase.auth.mfa.verify({ factorId: mfaFactorId, challengeId: challenge.id, code: mfaCode })
+    if (verifyErr) {
+      setError(t('login_2fa_wrong_code'))
+      setMfaVerifying(false)
+      return
+    }
+    await finishLogin()
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -68,12 +126,7 @@ export default function Connexion() {
       return
     }
 
-    if (isNative && bioAvailable && !bioSaved && !wasBiometricPromptDismissed()) {
-      setAskBiometric(true)
-      setLoading(false)
-      return
-    }
-    router.push('/profil')
+    await checkMfaThenFinish()
   }
 
   const acceptBiometric = async () => {
@@ -102,11 +155,34 @@ export default function Connexion() {
         setBioLoading(false)
         return
       }
-      router.push('/profil')
+      await checkMfaThenFinish()
     } catch {
       setError(t('login_err_biometric'))
       setBioLoading(false)
     }
+  }
+
+  if (mfaFactorId) {
+    return (
+      <div style={{ maxWidth: 460, margin: '60px auto' }}>
+        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
+          <div style={{ fontSize: 40, marginBottom: 12, textAlign: 'center' }}>🔐</div>
+          <h1 style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, textAlign: 'center' }}>{t('login_2fa_title')}</h1>
+          <p style={{ color: dark ? '#aaa' : '#666', marginBottom: 24, fontSize: 14, textAlign: 'center' }}>{t('login_2fa_desc')}</p>
+          <form onSubmit={handleMfaVerify} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <input
+              value={mfaCode} onChange={e => setMfaCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              inputMode="numeric" autoComplete="one-time-code" placeholder="000000" maxLength={6}
+              style={{ textAlign: 'center', fontSize: 24, letterSpacing: 6, fontWeight: 700 }} autoFocus
+            />
+            {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
+            <button type="submit" className="btn-main btn-primary" disabled={mfaVerifying || mfaCode.length !== 6} aria-busy={mfaVerifying}>
+              {mfaVerifying ? t('login_verifying') : t('login_2fa_verify')}
+            </button>
+          </form>
+        </div>
+      </div>
+    )
   }
 
   if (askBiometric) {

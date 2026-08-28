@@ -6,6 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { isHapticsEnabled, setHapticsEnabled } from '@/lib/haptics'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
+import SecuritySettings from '@/components/SecuritySettings'
 import { supabase } from '@/lib/supabase'
 
 const LANGS = [
@@ -114,6 +115,13 @@ export default function Parametres() {
             </div>
             <Toggle on={hapticsOn} onClick={toggleHaptics} />
           </div>
+        </div>
+      )}
+
+      {userId && (
+        <div style={card}>
+          <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔒 {t('security_title')}</h3>
+          <SecuritySettings dark={dark} />
         </div>
       )}
 

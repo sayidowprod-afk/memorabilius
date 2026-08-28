@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState, useRef, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -179,6 +179,25 @@ function AnnuaireContent() {
     const bv = (b.stats?.[sortKey] || 0) as number
     return sortAsc ? av - bv : bv - av
   })
+
+  // Rendu progressif : avec jusqu'à 2000 profils, monter toutes les lignes en
+  // DOM d'un coup ralentit le scroll/tri (surtout mobile). Le tri/filtre
+  // reste sur `sorted` (liste complète, sinon le tri global casserait), seul
+  // le NOMBRE DE LIGNES AFFICHÉES est plafonné puis étendu au scroll.
+  const RENDER_STEP = 100
+  const [renderLimit, setRenderLimit] = useState(RENDER_STEP)
+  useEffect(() => { setRenderLimit(RENDER_STEP) }, [debouncedSearch, nbaFilter, teamFilter, sortKey, sortAsc])
+  const visible = sorted.slice(0, renderLimit)
+  const sentinelEl = useRef<HTMLTableRowElement | null>(null)
+  useEffect(() => {
+    const node = sentinelEl.current
+    if (!node) return
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) setRenderLimit(n => Math.min(n + RENDER_STEP, sorted.length))
+    }, { rootMargin: '400px' })
+    obs.observe(node)
+    return () => obs.disconnect()
+  }, [sorted.length])
 
   const handleSort = (k: typeof sortKey) => {
     if (sortKey === k) setSortAsc(!sortAsc)
@@ -364,7 +383,7 @@ function AnnuaireContent() {
               {sorted.length === 0 && (
                 <tr><td colSpan={6} style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('annuaire_no_collectors')}</td></tr>
               )}
-              {sorted.map(c => (
+              {visible.map(c => (
                 <tr key={c.id} className="annuaire-row">
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
@@ -389,6 +408,9 @@ function AnnuaireContent() {
                   <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
                 </tr>
               ))}
+              {renderLimit < sorted.length && (
+                <tr ref={sentinelEl}><td colSpan={6} style={{ textAlign: 'center', padding: 16, color: '#bbb', fontSize: 12 }}>…</td></tr>
+              )}
             </tbody>
           </table>
         </div>

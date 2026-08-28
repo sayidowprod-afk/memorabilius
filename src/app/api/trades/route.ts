@@ -1,7 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { z } from 'zod'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { tradeOfferPush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
+
+const cardInputSchema = z.object({
+  id: z.string().min(1).max(2000),
+  isManuelle: z.boolean(),
+  nom: z.string().max(200).optional(),
+  annee: z.string().max(20).optional(),
+  marque: z.string().max(100).optional(),
+  image: z.string().max(2000).optional(),
+})
+
+const tradePostSchema = z.object({
+  receiverId: z.string().uuid(),
+  offeredCards: z.array(cardInputSchema).max(50),
+  requestedCards: z.array(cardInputSchema).min(1).max(50),
+  message: z.string().max(1000).optional(),
+})
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,15 +27,6 @@ const supabaseAdmin = createClient(
 
 function auth(req: NextRequest) {
   return req.headers.get('authorization')?.replace('Bearer ', '') || ''
-}
-
-interface CardInput {
-  id: string
-  isManuelle: boolean
-  nom?: string
-  annee?: string
-  marque?: string
-  image?: string
 }
 
 // GET /api/trades — mes échanges (envoyés + reçus)
@@ -111,15 +119,10 @@ async function postHandler(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { receiverId, offeredCards, requestedCards, message }: {
-    receiverId: string
-    offeredCards: CardInput[]
-    requestedCards: CardInput[]
-    message?: string
-  } = await req.json()
-
-  if (!receiverId || !requestedCards?.length)
-    return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 })
+  const parsed = tradePostSchema.safeParse(await req.json())
+  if (!parsed.success)
+    return NextResponse.json({ error: 'Paramètres invalides' }, { status: 400 })
+  const { receiverId, offeredCards, requestedCards, message } = parsed.data
 
   if (receiverId === user.id)
     return NextResponse.json({ error: 'Impossible de s\'échanger avec soi-même' }, { status: 400 })
