@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
@@ -15,9 +16,15 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
   const { t } = useLang()
   const [level, setLevel] = useState<LevelInfo | null>(null)
   const [showInfo, setShowInfo] = useState(false)
+  const [infoRect, setInfoRect] = useState<DOMRect | null>(null)
+  const [mounted, setMounted] = useState(false)
   const [fillPct, setFillPct] = useState(0)
   const [justLeveledUp, setJustLeveledUp] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const btnRef = useRef<HTMLButtonElement>(null)
+  const popoverRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -53,7 +60,15 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
 
   useEffect(() => {
     if (!showInfo) return
-    const onOutside = (e: Event) => { if (ref.current && !ref.current.contains(e.target as Node)) setShowInfo(false) }
+    // Le popover est porte sur document.body (voir plus bas), donc il n'est
+    // plus un descendant DOM de `ref` -- verifier aussi popoverRef pour ne
+    // pas se refermer immediatement au clic dedans.
+    const onOutside = (e: Event) => {
+      const t = e.target as Node
+      if (ref.current?.contains(t)) return
+      if (popoverRef.current?.contains(t)) return
+      setShowInfo(false)
+    }
     document.addEventListener('mousedown', onOutside)
     document.addEventListener('touchstart', onOutside)
     return () => {
@@ -103,7 +118,11 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
       </div>
 
       <button
-        onClick={() => setShowInfo(v => !v)}
+        ref={btnRef}
+        onClick={() => {
+          if (!showInfo) setInfoRect(btnRef.current?.getBoundingClientRect() ?? null)
+          setShowInfo(v => !v)
+        }}
         aria-label={t('levelbadge_info_aria')}
         title={`${t('word_level')} ${level.level} · ${level.xpIntoLevel}/${level.xpForNextLevel} XP`}
         style={{
@@ -115,9 +134,15 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
         {level.level}
       </button>
 
-      {showInfo && (
-        <div style={{
-          position: 'absolute', top: 'calc(100% + 8px)', left: 0, zIndex: 50, width: 220,
+      {/* Porte sur document.body : le bandeau du profil a overflow:hidden
+          (coins arrondis du degrade) et recoupait ce popover en position:absolute
+          des qu'il depassait -- meme correctif deja applique au menu "Plus
+          d'actions" de la galerie pour la meme raison. */}
+      {mounted && showInfo && infoRect && createPortal(
+        <div ref={popoverRef} style={{
+          position: 'fixed', top: infoRect.bottom + 8,
+          left: Math.min(infoRect.left, window.innerWidth - 220 - 12),
+          zIndex: 100000, width: 220,
           background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12,
           boxShadow: '0 12px 32px rgba(0,0,0,0.18)', padding: 12,
           fontSize: 10.5, color: 'var(--text2, #555)', lineHeight: 1.6,
@@ -126,7 +151,8 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
             {t('word_level')} {level.level} · {level.xpIntoLevel}/{level.xpForNextLevel} XP
           </div>
           {t('xp_info_explanation')}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )
