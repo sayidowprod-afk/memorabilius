@@ -572,19 +572,17 @@ export default function Trades() {
                   {popup._source === 'galerie' ? 'Vente/Trade' : popup.type === 'offre' ? 'Offre' : 'Recherche'}
                 </div>
                 {popup._source === 'galerie' && popup.image_verso && (
-                  // En haut a droite (pas bottom-right) : le badge "Zoom" de
-                  // ImageZoom occupe deja ce coin, les deux se chevauchaient.
-                  <button onClick={flipPopupVerso} style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+                  // Bas-gauche : les 3 autres coins sont pris (badge type en
+                  // haut-gauche, fermer en haut-droite, hint Zoom en bas-droite).
+                  <button onClick={flipPopupVerso} style={{ position: 'absolute', bottom: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
                     {popupShowVerso ? '↩ Recto' : '↪ Verso'}
                   </button>
                 )}
                 {/* Croix de fermeture flottante sur l'image plutot que premier
                     element du panneau d'infos en dessous -- position plus
-                    conventionnelle pour un bouton fermer de modale, et evite
-                    qu'elle pousse le titre visuellement vers le bas. Coin bas-
-                    gauche : les 3 autres coins sont deja pris (badge type en
-                    haut-gauche, Verso en haut-droite, hint Zoom en bas-droite). */}
-                <button onClick={() => setPopup(null)} aria-label="Fermer" style={{ position: 'absolute', bottom: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+                    conventionnelle pour un bouton fermer de modale (coin
+                    haut-droite), et evite qu'elle pousse le titre vers le bas. */}
+                <button onClick={() => setPopup(null)} aria-label="Fermer" style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
               </div>
               <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
                 <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
