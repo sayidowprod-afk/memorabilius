@@ -5,6 +5,25 @@ import { useIsNative } from '@/lib/useIsNative'
 import { supabase } from '@/lib/supabase'
 import { fetchPendingShare, stagePendingShare } from '@/lib/shareBridge'
 
+// Compare le SHA inline au build du bundle deja charge (NEXT_PUBLIC_APP_VERSION,
+// fige au moment du build) au SHA actuel du serveur (/api/app-version, jamais
+// mis en cache) -- si un nouveau deploy a eu lieu, un reload "doux"
+// (router.refresh()) ne rattrape rien : le JS deja en memoire reste l'ancien
+// bundle, et ses appels au nouveau serveur peuvent echouer silencieusement
+// (payload RSC incompatible, chunk supprime...). D'ou le besoin de F5 manuel
+// signale de facon recurrente -- un vrai reload complet resout ca proprement.
+async function reloadIfStale(): Promise<boolean> {
+  try {
+    const r = await fetch('/api/app-version', { cache: 'no-store' })
+    const { version } = await r.json()
+    if (version && version !== process.env.NEXT_PUBLIC_APP_VERSION) {
+      window.location.reload()
+      return true
+    }
+  } catch {}
+  return false
+}
+
 export default function NativeInit() {
   const isNative = useIsNative()
   const router = useRouter()
@@ -14,6 +33,10 @@ export default function NativeInit() {
     if (!isNative) return
     document.body.classList.add('native-app')
     document.documentElement.style.overscrollBehaviorY = 'none'
+
+    // Cold start : verifie tout de suite si le bundle qui vient de se charger
+    // est deja perime (deploy survenu juste avant l'ouverture de l'app).
+    reloadIfStale()
 
     import('@capacitor/status-bar').then(({ StatusBar, Style }) => {
       // setBackgroundColor() est depreciee sur Android 15+ (API 35, edge-to-edge
@@ -55,7 +78,7 @@ export default function NativeInit() {
     // ne tourne plus), donc au retour la session peut être expirée et les données
     // affichées obsolètes tant que rien ne force une resynchro. C'est la cause
     // probable du "il faut faire F5 pour que ça marche" au retour dans l'app.
-    const onVisibilityChange = () => {
+    const onVisibilityChange = async () => {
       if (document.visibilityState === 'hidden') {
         backgroundedAt.current = Date.now()
         return
@@ -65,7 +88,13 @@ export default function NativeInit() {
       if (awayMs > 30 * 60 * 1000) {
         // Longue absence : session potentiellement expirée pour de bon, on repart propre.
         window.location.reload()
-      } else if (awayMs > 5000) {
+        return
+      }
+      if (awayMs > 5000) {
+        // Un deploy pendant l'absence rend router.refresh() insuffisant (bundle
+        // JS perime) -- verifie d'abord, et ne fait le refresh "doux" que si le
+        // bundle est toujours a jour.
+        if (await reloadIfStale()) return
         // Retour rapide : force le refresh du token si besoin + revalide les données de la page.
         supabase.auth.getSession()
         router.refresh()

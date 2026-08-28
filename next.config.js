@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   serverExternalPackages: ['web-push'],
+  // Inline le SHA du commit deploye dans le bundle client (voir NativeInit.tsx +
+  // /api/app-version) : sert a detecter qu'un nouveau deploy a eu lieu pendant
+  // que l'app native etait en arriere-plan, pour forcer un vrai reload plutot
+  // qu'un router.refresh() qui ne rattrape pas un bundle JS perime.
+  env: { NEXT_PUBLIC_APP_VERSION: process.env.VERCEL_GIT_COMMIT_SHA || 'dev' },
   // Permet à l'app Capacitor (chargée depuis l'IP réseau) de se connecter au HMR en dev.
   // Sans ça Next.js bloque le websocket _next/webpack-hmr et le JS crashe côté client.
   allowedDevOrigins: ['192.168.1.189'],
