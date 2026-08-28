@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-import useSWR from 'swr'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -10,22 +9,12 @@ import { subscribePush } from '@/components/PWAInstall'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import EmptyState from '@/components/EmptyState'
 
-const fetchNotifs = async (userId: string) => {
-  const { data } = await supabase.from('notifications').select('*')
-    .eq('user_id', userId).order('created_at', { ascending: false }).limit(50)
-  return data || []
-}
-
 export default function Notifications() {
   const router = useRouter()
   const { t } = useLang()
   const { dark } = useTheme()
-  const [userId, setUserId] = useState<string | null>(null)
-  // SWR reaffiche instantanement la derniere liste en cache (revisite depuis une
-  // autre page) pendant qu'il revalide en tache de fond, plutot que de repartir
-  // d'un ecran vide/skeleton a chaque fois.
-  const { data: notifs = [], isLoading, mutate } = useSWR(userId ? ['notifications', userId] : null, () => fetchNotifs(userId as string))
-  const loading = isLoading && notifs.length === 0
+  const [notifs, setNotifs] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
   const [pushPerm, setPushPerm] = useState<NotificationPermission | null>(null)
   const [pushLoading, setPushLoading] = useState(false)
   const [testResult, setTestResult] = useState<{ ok?: boolean; error?: string } | null>(null)
@@ -72,19 +61,21 @@ export default function Notifications() {
   }
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { router.replace('/connexion'); return }
-      setUserId(session.user.id)
+      const data = { user: session.user }
+      const { data: n } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('user_id', data.user.id)
+        .order('created_at', { ascending: false })
+        .limit(50)
+      setNotifs(n || [])
+      // Tout marquer comme lu
+      await supabase.from('notifications').update({ lu: true }).eq('user_id', data.user.id).eq('lu', false)
+      setLoading(false)
     })
   }, [])
-
-  useEffect(() => {
-    if (!userId) return
-    // Tout marquer comme lu, puis revalider le cache SWR pour refleter les
-    // "lu: true" a l'affichage sans re-fetch complet immediat.
-    supabase.from('notifications').update({ lu: true }).eq('user_id', userId).eq('lu', false)
-      .then(() => mutate())
-  }, [userId])
 
   const getIcon = (type: string) => {
     const icons: Record<string, string> = {
