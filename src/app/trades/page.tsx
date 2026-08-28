@@ -33,7 +33,7 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
   }
   return (
     <div onClick={() => setZoomed(!zoomed)} onMouseMove={handleMove} onMouseLeave={() => setZoomed(false)}
-      style={{ width: '100%', height: '100%', minHeight: 400, cursor: zoomed ? 'zoom-out' : 'zoom-in', overflow: 'hidden', position: 'relative' }}
+      style={{ width: '100%', height: '100%', cursor: zoomed ? 'zoom-out' : 'zoom-in', overflow: 'hidden', position: 'relative' }}
       title={zoomed ? t('events_zoom_out') : t('events_zoom_in')}
     >
       <img loading="lazy" src={src} alt={alt} draggable={false} style={{
@@ -533,13 +533,9 @@ export default function Trades() {
           // signales au scroll dans cette popup precisement.
           zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
-          {/* Sous 600px, la carte centree avec marges gardait des bandes sombres
-              inutiles sur les cotes et gachait l'espace ecran deja restreint --
-              plein ecran (feuille) plutot que carte flottante sur mobile. */}
           <style>{`
             @media (max-width: 599px) {
-              .trade-popup-overlay { padding: 0 !important; align-items: flex-end !important; }
-              .trade-popup-card { max-width: 100% !important; max-height: 100dvh !important; height: 100dvh !important; border-radius: 0 !important; }
+              .trade-popup-overlay { padding: 10px !important; }
             }
           `}</style>
           <div onClick={e => e.stopPropagation()} className="trade-popup-card" style={{
