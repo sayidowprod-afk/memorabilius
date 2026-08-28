@@ -22,7 +22,10 @@ export const dynamic = 'force-dynamic'
 
 const DEADLINE_MS = 270_000 // marge sous maxDuration=300 pour finir proprement
 const PAGE_SIZE = 500
-const CONCURRENCY = 40
+// 40 en concurrence faisait grimper les erreurs a plusieurs milliers sur un
+// seul appel (R2/le fetch source rate-limitent sous cette charge) -- redescendu,
+// avec un retry court sur echec transitoire plutot que d'abandonner tout de suite.
+const CONCURRENCY = 15
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -59,22 +62,29 @@ async function upload(key: string, body: Buffer, contentType = 'application/octe
 }
 
 async function processUrl(url: string, results: { images: number; alreadyPresent: number; skipped: number; errors: number }) {
-  try {
-    const pathMatch = url.match(/\/object\/public\/(.+)$/)
-    if (!pathMatch) { results.skipped++; return }
-    const r2Key = `storage/${pathMatch[1]}`
+  const pathMatch = url.match(/\/object\/public\/(.+)$/)
+  if (!pathMatch) { results.skipped++; return }
+  const r2Key = `storage/${pathMatch[1]}`
 
-    if (await existsInR2(r2Key)) { results.alreadyPresent++; return }
+  // Un seul retry apres une courte pause : sous charge (des milliers d'appels
+  // R2 par minute), un echec transitoire (429/timeout) est courant et ne
+  // merite pas d'etre compte comme une vraie erreur au premier coup.
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      if (await existsInR2(r2Key)) { results.alreadyPresent++; return }
 
-    const res = await fetch(url, { signal: AbortSignal.timeout(15000) })
-    if (!res.ok) { results.errors++; return }
+      const res = await fetch(url, { signal: AbortSignal.timeout(15000) })
+      if (!res.ok) throw new Error(`fetch ${res.status}`)
 
-    const buf = Buffer.from(await res.arrayBuffer())
-    await upload(r2Key, buf, res.headers.get('content-type') || 'image/jpeg')
-    results.images++
-  } catch {
-    results.errors++
+      const buf = Buffer.from(await res.arrayBuffer())
+      await upload(r2Key, buf, res.headers.get('content-type') || 'image/jpeg')
+      results.images++
+      return
+    } catch {
+      if (attempt === 0) await new Promise(r => setTimeout(r, 500))
+    }
   }
+  results.errors++
 }
 
 export async function GET(req: NextRequest) {
