@@ -37,6 +37,27 @@ const nextConfig = {
           { key: 'Referrer-Policy',               value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',            value: 'camera=(self), microphone=(), geolocation=()' },
           { key: 'Strict-Transport-Security',     value: 'max-age=31536000; includeSubDomains' },
+          // wasm-unsafe-eval + cdn.jsdelivr.net : onnxruntime-web (scanner de coins,
+          // cornerDetectorYolo.ts) charge son WASM depuis ce CDN. unsafe-inline reste
+          // necessaire (theme flash-guard inline script en layout.tsx, styles CSS-in-JS
+          // via <style>{`...`}</style> utilises partout). img/media en https: large car
+          // les photos de cartes CSV sont hebergees sur des domaines tiers variables.
+          { key: 'Content-Security-Policy', value: [
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data: blob: https:",
+            "font-src 'self' data: https://fonts.gstatic.com",
+            "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://fonts.gstatic.com https://cdn.jsdelivr.net",
+            "media-src 'self' blob: https:",
+            "worker-src 'self' blob: https://cdn.jsdelivr.net",
+            "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
+            "object-src 'none'",
+            "base-uri 'self'",
+            "form-action 'self'",
+            "frame-ancestors 'self'",
+            "manifest-src 'self'",
+          ].join('; ') },
         ],
       },
       {
