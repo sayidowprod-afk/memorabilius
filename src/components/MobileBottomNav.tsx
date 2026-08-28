@@ -41,6 +41,7 @@ export default function MobileBottomNav() {
   const [sheet, setSheet] = useState<'communaute' | 'outils' | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [notifs, setNotifs] = useState(0)
+  const [keyboardOpen, setKeyboardOpen] = useState(false)
 
   const sheetRef = useRef(sheet)
   useEffect(() => { sheetRef.current = sheet }, [sheet])
@@ -81,7 +82,22 @@ export default function MobileBottomNav() {
     return () => { document.body.classList.remove('native-bottom-nav') }
   }, [isNative])
 
-  if (!isNative) return null
+  // L'icone carte flottante (marginTop:-20, depasse au-dessus de la barre) se
+  // retrouvait par-dessus le champ de saisie quand le clavier remonte le
+  // contenu (ex: page messages) -- la barre entiere se cache tant que le
+  // clavier est ouvert, comme la plupart des apps de chat.
+  useEffect(() => {
+    if (!isNative) return
+    let removeShow: (() => void) | undefined
+    let removeHide: (() => void) | undefined
+    import('@capacitor/keyboard').then(({ Keyboard }) => {
+      Keyboard.addListener('keyboardWillShow', () => setKeyboardOpen(true)).then(l => { removeShow = () => l.remove() })
+      Keyboard.addListener('keyboardWillHide', () => setKeyboardOpen(false)).then(l => { removeHide = () => l.remove() })
+    })
+    return () => { removeShow?.(); removeHide?.() }
+  }, [isNative])
+
+  if (!isNative || keyboardOpen) return null
 
   const toggle = (name: 'communaute' | 'outils') => {
     hapticTap()
