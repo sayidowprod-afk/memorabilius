@@ -280,6 +280,14 @@ export default function Trades() {
       {mainTab === 'annonces' && (
         <>
           <style>{`
+            /* Le gridTemplateColumns etait auparavant inline (contenant la
+               chaine "minmax(260px") -- globals.css a une regle mobile qui
+               cible justement tout div[style*="minmax(260px"] pour le forcer
+               a 1 colonne (hack cible sur d'autres grilles ailleurs sur le
+               site), plus specifique que .trades-forum-grid seule et donc
+               toujours gagnante malgre le !important ici. Deplace en dehors
+               du style inline pour ne plus matcher ce selecteur. */
+            .trades-forum-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
             @media (max-width: 600px) {
               .trades-forum-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
             }
@@ -324,7 +332,7 @@ export default function Trades() {
           </div>
 
           {loadingForum ? (
-            <div className="trades-forum-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+            <div className="trades-forum-grid">
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border, #eee)' }}>
                   <SkeletonBlock style={{ width: '100%', aspectRatio: '16/9', borderRadius: 0 }} />
@@ -342,7 +350,7 @@ export default function Trades() {
                 <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>
               </div>
             ) : (
-              <div className="trades-forum-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
+              <div className="trades-forum-grid">
                 {filteredForum.map(trade => (
                   <div key={trade.id} onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
                     background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden',
