@@ -523,7 +523,7 @@ export default function Trades() {
 
       {/* ── Popup annonce forum ─────────────────────────────────────────────── */}
       {popup && createPortal(
-        <div onClick={() => setPopup(null)} style={{
+        <div onClick={() => setPopup(null)} className="trade-popup-overlay" style={{
           position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.6)',
           // z-index au-dessus de la bottom nav (99999, volontairement tres haute --
           // voir MobileBottomNav.tsx) : sinon la barre de navigation, opaque, passe
@@ -533,7 +533,16 @@ export default function Trades() {
           // signales au scroll dans cette popup precisement.
           zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
-          <div onClick={e => e.stopPropagation()} style={{
+          {/* Sous 600px, la carte centree avec marges gardait des bandes sombres
+              inutiles sur les cotes et gachait l'espace ecran deja restreint --
+              plein ecran (feuille) plutot que carte flottante sur mobile. */}
+          <style>{`
+            @media (max-width: 599px) {
+              .trade-popup-overlay { padding: 0 !important; align-items: flex-end !important; }
+              .trade-popup-card { max-width: 100% !important; max-height: 100dvh !important; height: 100dvh !important; border-radius: 0 !important; }
+            }
+          `}</style>
+          <div onClick={e => e.stopPropagation()} className="trade-popup-card" style={{
             background: 'var(--card-bg, #fff)', borderRadius: 20, overflow: 'hidden',
             maxWidth: 800, width: '100%', maxHeight: '90vh', boxSizing: 'border-box',
             display: 'flex', flexDirection: 'column',
