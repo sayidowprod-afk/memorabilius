@@ -888,24 +888,35 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     try {
       let parsed: Card[] = []
       if (url) {
-        const r = await fetch(url + '&t=' + Math.floor(Date.now() / 300000))
-        const t = await r.text()
-        const rows = t.split(/\r?\n/).slice(4)
-        parsed = rows.map(row => {
-          const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-          if (!c[0] || !c[0].includes('http')) return null
-          return {
-            f: c[0]?.trim(), b: c[1]?.trim() || c[0]?.trim(),
-            n: c[2] || '', t: c[3] || '', y: c[4] || '',
-            br: c[5] || '', s: c[6] || '', v: c[7] || '',
-            num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
-            rc: c[10]?.toLowerCase().includes('oui') || false,
-            patch: c[11]?.toLowerCase().includes('oui') || false,
-            g: c[12] || 'Raw', card_number: c[13]?.trim() || '', isManuelle: false,
-            collection_tag: (tagsMap || csvTags).get(c[0]?.trim()) || '',
-            disponible_vente: (venteMap || csvVente).get(c[0]?.trim()) || false
-          }
-        }).filter(Boolean) as Card[]
+        // Le CSV et les cartes manuelles sont deux sources independantes -- un
+        // echec du fetch CSV (Google Sheets injoignable, CSP, reseau...) ne
+        // doit jamais empecher les cartes manuelles (Supabase) de s'afficher.
+        // Avant ce try/catch dedie, une erreur ici faisait sauter tout le
+        // reste de la fonction jusqu'au catch global, qui ne recharge que le
+        // cache hors-ligne -- vu en prod : CSV bloque -> galerie "vide" alors
+        // que les cartes manuelles etaient toujours la cote serveur.
+        try {
+          const r = await fetch(url + '&t=' + Math.floor(Date.now() / 300000))
+          const t = await r.text()
+          const rows = t.split(/\r?\n/).slice(4)
+          parsed = rows.map(row => {
+            const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+            if (!c[0] || !c[0].includes('http')) return null
+            return {
+              f: c[0]?.trim(), b: c[1]?.trim() || c[0]?.trim(),
+              n: c[2] || '', t: c[3] || '', y: c[4] || '',
+              br: c[5] || '', s: c[6] || '', v: c[7] || '',
+              num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
+              rc: c[10]?.toLowerCase().includes('oui') || false,
+              patch: c[11]?.toLowerCase().includes('oui') || false,
+              g: c[12] || 'Raw', card_number: c[13]?.trim() || '', isManuelle: false,
+              collection_tag: (tagsMap || csvTags).get(c[0]?.trim()) || '',
+              disponible_vente: (venteMap || csvVente).get(c[0]?.trim()) || false
+            }
+          }).filter(Boolean) as Card[]
+        } catch (e) {
+          console.error('CSV fetch error (cartes manuelles chargees quand meme)', e)
+        }
       }
 
       const mapManuelle = (m: any): Card => ({
