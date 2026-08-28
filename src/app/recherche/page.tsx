@@ -8,6 +8,7 @@ import { playerSlug, teamSlug } from '@/lib/playerSlug'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { supabase } from '@/lib/supabase'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
+import SkeletonBlock from '@/components/SkeletonBlock'
 
 type Section = 'all' | 'cards' | 'players' | 'collectors'
 type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name'
@@ -349,6 +350,19 @@ export default function Recherche() {
           </div>
         )}
 
+        {/* ── SKELETON (premier chargement, pas de resultats a l'ecran encore) ── */}
+        {loading && cards.length === 0 && users.length === 0 && teams.length === 0 && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 14 }}>
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i}>
+                <SkeletonBlock style={{ width: '100%', aspectRatio: '2.5/3.5' }} />
+                <SkeletonBlock style={{ width: '70%', height: 10, marginTop: 8 }} />
+                <SkeletonBlock style={{ width: '45%', height: 8, marginTop: 6 }} />
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* ── EMPTY STATE ── */}
         {searched && !loading && totalResults === 0 && (
           <div style={{ textAlign: 'center', padding: '72px 20px', color: muted }}>
@@ -372,7 +386,7 @@ export default function Recherche() {
                     background: surface, border: `2px solid ${team.color}`,
                     borderRadius: 50, padding: '5px 16px 5px 5px', cursor: 'pointer',
                   }}>
-                    <img src={teamLogoUrl(team)} style={{ width: 28, height: 28, objectFit: 'contain' }} alt={team.name}
+                    <img loading="lazy" src={teamLogoUrl(team)} style={{ width: 28, height: 28, objectFit: 'contain' }} alt={team.name}
                       onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
                     <span style={{ fontWeight: 800, fontSize: 13, color: text }}>{team.name}</span>
                   </div>
@@ -397,7 +411,7 @@ export default function Recherche() {
                     borderRadius: 50, padding: '5px 14px 5px 5px', cursor: 'pointer',
                   }}>
                     {p.photo
-                      ? <img src={p.photo} style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', flexShrink: 0 }} alt={p.name} />
+                      ? <img loading="lazy" src={p.photo} style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', flexShrink: 0 }} alt={p.name} />
                       : <span style={{ width: 32, height: 32, borderRadius: '50%', background: `${accent}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{sportEmoji(p.sports || [])}</span>
                     }
                     <div style={{ minWidth: 0 }}>
@@ -416,7 +430,7 @@ export default function Recherche() {
                       boxShadow: '0 8px 24px rgba(0,0,0,0.18)', pointerEvents: 'none', zIndex: 30,
                     }}>
                       {p.photo
-                        ? <img src={p.photo} style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top' }} alt="" />
+                        ? <img loading="lazy" src={p.photo} style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top' }} alt="" />
                         : <span style={{ fontSize: 32 }}>{sportEmoji(p.sports || [])}</span>
                       }
                       <span style={{ fontWeight: 800, fontSize: 12, color: text, textAlign: 'center', lineHeight: 1.2 }}>{p.name}</span>
@@ -447,6 +461,7 @@ export default function Recherche() {
                       src={u.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.display_name || 'U')}&background=003DA6&color=fff&size=64`}
                       style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover' }}
                       alt={u.display_name}
+                      loading="lazy"
                     />
                     <span style={{ fontWeight: 800, fontSize: 14, color: text }}>{u.display_name}</span>
                   </div>
@@ -589,6 +604,7 @@ export default function Recherche() {
                             src={card.collectorAvatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.collector || 'U')}&background=003DA6&color=fff&size=32`}
                             style={{ width: 18, height: 18, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
                             alt={card.collector}
+                            loading="lazy"
                           />
                           <span style={{ fontSize: 10, fontWeight: 700, color: muted, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.collector}</span>
                         </div>

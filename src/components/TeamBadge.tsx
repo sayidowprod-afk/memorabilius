@@ -57,7 +57,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
       <>
         {/* <img> invisible en parallele juste pour detecter les 404 (onError) --
             le rendu visible passe par LogoBox, pas cette balise. */}
-        <img src={src} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setCustomExtIndex(i => i + 1)} />
+        <img loading="lazy" src={src} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setCustomExtIndex(i => i + 1)} />
         <LogoBox src={src} alt={team.name} size={size} invert={dark} />
       </>
     )
@@ -73,7 +73,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
 
   return (
     <>
-      <img src={url} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setColorFailed(true)} />
+      <img loading="lazy" src={url} alt="" width={0} height={0} style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none' }} onError={() => setColorFailed(true)} />
       <LogoBox src={url} alt={team.name} size={size} />
     </>
   )

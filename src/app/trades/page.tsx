@@ -36,7 +36,7 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
       style={{ width: '100%', height: '100%', minHeight: 400, cursor: zoomed ? 'zoom-out' : 'zoom-in', overflow: 'hidden', position: 'relative' }}
       title={zoomed ? t('events_zoom_out') : t('events_zoom_in')}
     >
-      <img src={src} alt={alt} draggable={false} style={{
+      <img loading="lazy" src={src} alt={alt} draggable={false} style={{
         width: '100%', height: '100%', objectFit: 'contain', display: 'block',
         transition: zoomed ? 'none' : 'transform 0.3s ease',
         transform: zoomed ? 'scale(2.5)' : 'scale(1)',
@@ -55,7 +55,7 @@ function CardThumb({ card }: { card: any }) {
   return (
     <div title={`${card.nom || ''} ${card.annee || ''}`} style={{ width: 48, height: 67, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flex: '0 0 auto' }}>
       {(card.card_image || card.image_recto)
-        ? <img src={card.card_image || card.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+        ? <img loading="lazy" src={card.card_image || card.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         : <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: 18 }}>🃏</div>
       }
     </div>
@@ -361,7 +361,7 @@ export default function Trades() {
                     </div>
                     {trade.image_url ? (
                       <div style={{ background: 'var(--bg3, #f4f4f4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
+                        <img loading="lazy" src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
                       </div>
                     ) : (
                       <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>
@@ -373,7 +373,7 @@ export default function Trades() {
                         <CardTagBadges rc={trade.rc} auto={trade.auto} patch={trade.patch} num={trade.num} size="md" />
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
-                        <img src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                        <img loading="lazy" src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                         <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text2, #444)' }}>{trade.profiles?.display_name}</span>
                       </div>
@@ -599,7 +599,7 @@ export default function Trades() {
                 <div style={{ borderTop: '1px solid var(--border, #eee)', paddingTop: 16 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text3, #999)', textTransform: 'uppercase', margin: '0 0 10px' }}>{t('trades_by')}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                    <img src={popup.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(popup.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                    <img loading="lazy" src={popup.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(popup.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                       style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border, #eee)' }} alt="" />
                     <Link href={`/galerie/${popup.profiles?.id}`} onClick={() => setPopup(null)} style={{ fontWeight: 800, fontSize: 15, color: 'var(--text, #121212)', textDecoration: 'none' }}>
                       {popup.profiles?.display_name}
@@ -616,7 +616,7 @@ export default function Trades() {
                           borderRadius: 10, textDecoration: 'none',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}>
-                          <img src="/vinted.png" alt="Vinted" style={{ height: 22, display: 'block', width: 'auto', background: 'transparent' }} />
+                          <img loading="lazy" src="/vinted.png" alt="Vinted" style={{ height: 22, display: 'block', width: 'auto', background: 'transparent' }} />
                         </a>
                       )}
                       {popup.lien_ebay && (

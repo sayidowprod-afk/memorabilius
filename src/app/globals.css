@@ -458,16 +458,23 @@ section { contain: layout style; }
 .binder-slot-card-enter { animation: binderCardIn 0.5s cubic-bezier(0.22,0.61,0.36,1); }
 
 /* Éviter le FOUC sur les images — effet shimmer pendant le chargement,
-   invisible une fois l'image peinte par-dessus (opaque). */
+   invisible une fois l'image peinte par-dessus (opaque).
+   Anime l'opacite plutot que background-position : cette derniere force un
+   repaint CPU a chaque frame (pas d'acceleration GPU), ce qui, multiplie par
+   des dizaines d'<img> simultanees dans une grille, saturait le rendu sur
+   WebView Android et donnait un effet de saccade/"spasme" a TOUTES les
+   animations de la page (le thread principal n'arrivait plus a suivre).
+   opacity est composite par le GPU, donc son cout ne grandit quasiment pas
+   avec le nombre d'images animees en meme temps. */
 img {
   aspect-ratio: attr(width) / attr(height);
   background: linear-gradient(90deg, #eef0f3 25%, #f8f9fb 37%, #eef0f3 63%);
   background-size: 400% 100%;
-  animation: img-shimmer 1.6s ease infinite;
+  animation: img-shimmer 1.6s ease-in-out infinite;
 }
 @keyframes img-shimmer {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
 }
 @media (prefers-reduced-motion: reduce) {
   img { animation: none; background: #f0f0f0; }

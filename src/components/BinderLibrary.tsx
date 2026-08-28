@@ -31,7 +31,7 @@ function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }
           background: 'white', verticalAlign: 'middle', flexShrink: 0,
           overflow: 'hidden', boxShadow: '0 0 0 0.75px rgba(0,0,0,0.10)',
         }}>
-          <img src={url} alt="" style={{ width: Math.round(size * 0.82), height: Math.round(size * 0.82), objectFit: 'contain', display: 'block' }} />
+          <img loading="lazy" src={url} alt="" style={{ width: Math.round(size * 0.82), height: Math.round(size * 0.82), objectFit: 'contain', display: 'block' }} />
         </span>
       )
       // Pas de logo → cercle coloré sans texte
@@ -1232,7 +1232,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         {/* Aperçu couverture */}
         <div style={{ display: 'flex', gap: 14, alignItems: 'stretch' }}>
           <div style={{ width: 90, height: 122, borderRadius: 8, overflow: 'hidden', flexShrink: 0, position: 'relative', background: fColor, boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
-            {fCover && <img src={fCover} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+            {fCover && <img loading="lazy" src={fCover} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.5))' }} />
             <div style={{ position: 'absolute', left: 4, right: 4, bottom: 6, textAlign: 'center' }}>
               <span style={{ display: 'inline-block', maxWidth: '92%', background: 'rgba(255,255,255,0.95)', color: '#111', borderRadius: 4, padding: '3px 5px', fontSize: 9, fontWeight: 900, lineHeight: 1.1, wordBreak: 'break-word' }}>{fName || 'Nom'}</span>
@@ -1412,7 +1412,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       >
         {b.cover_img && (
           <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
-            <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img loading="lazy" src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         )}
         {/* Icône verrou pour classeur privé */}
@@ -1439,7 +1439,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       <div>
         {pendingCard && (
           <div style={{ background: '#f0f4ff', border: `1px solid ${accent}44`, borderRadius: 10, padding: '10px 14px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={pendingCard.img} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 3 }} />
+            <img loading="lazy" src={pendingCard.img} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 3 }} />
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
@@ -1605,7 +1605,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // Contenu de la couverture (réutilisé pour le classeur fermé et l'animation d'ouverture)
   const coverFace = (
     <div style={{ width: '100%', height: '100%', position: 'relative', background: coverColor }}>
-      {selected.cover_img && <img src={selected.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+      {selected.cover_img && <img loading="lazy" src={selected.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.06) 35%, rgba(0,0,0,0.5))' }} />
       <div style={{ position: 'absolute', top: 12, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.8)', fontSize: 10, letterSpacing: '0.2em', fontWeight: 700 }}>MEMORABILIUS</div>
       <div style={{ position: 'absolute', left: 14, right: 14, bottom: '14%', textAlign: 'center' }}>
@@ -1908,7 +1908,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
       {!binderFullscreen && pendingCard && (
         <div style={{ background: '#f0f4ff', border: `1px solid ${accent}44`, borderRadius: 10, padding: '10px 14px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src={pendingCard.img} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 3 }} />
+          <img loading="lazy" src={pendingCard.img} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 3 }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Clique une pochette vide pour ranger « {pendingCard.nom} »</span>
         </div>
       )}
@@ -2148,7 +2148,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           transform: 'translate(-50%, -50%) rotate(-4deg)', zIndex: 3000, pointerEvents: 'none',
           boxShadow: '0 12px 28px rgba(0,0,0,0.4)', overflow: 'hidden', borderRadius: 2,
         }}>
-          <img src={cardDrag.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img loading="lazy" src={cardDrag.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>,
         document.body
       )}

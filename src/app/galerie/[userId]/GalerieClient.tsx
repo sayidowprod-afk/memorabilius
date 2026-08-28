@@ -445,6 +445,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [showAllCollectionTags, setShowAllCollectionTags] = useState(false)
   const [viewMode, setViewMode] = useState<'grid' | 'timeline'>('grid')
+  const [compactView, setCompactView] = useState(false)
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
   const [teams, setTeams] = useState<string[]>([])
@@ -560,6 +561,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const cardParam = searchParams.get('card')
 
   useEffect(() => { setMounted(true) }, [])
+
+  useEffect(() => {
+    try { if (localStorage.getItem('gallery_compact_view') === '1') setCompactView(true) } catch {}
+  }, [])
+  const toggleCompactView = () => {
+    setCompactView(p => {
+      const next = !p
+      try { localStorage.setItem('gallery_compact_view', next ? '1' : '0') } catch {}
+      return next
+    })
+  }
 
   // Sync currentUser avec l'état auth global (AuthProvider) — sans appel réseau
   useEffect(() => {
@@ -2681,7 +2693,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               ))}
-              <style>{`@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }`}</style>
+              <style>{`@keyframes shimmer { 0%, 100% { opacity: 1 } 50% { opacity: 0.55 } }`}</style>
             </div>
           )
         )}
@@ -2697,6 +2709,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             .galerie-actions .btn-menu > button { width: 100% !important; }
           }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
+          .card-grid-compact .card-item { flex: 0 0 calc(33.333% - 7px) !important; max-width: calc(33.333% - 7px) !important; }
+          @media (min-width: 900px) { .card-grid-compact .card-item { flex: 0 0 calc(12.5% - 9px) !important; max-width: calc(12.5% - 9px) !important; } }
+          .card-grid-compact .card-item p { font-size: 10px !important; }
 
           .sticker-badge {
             position: relative;
@@ -2998,6 +3013,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
             background: viewMode === 'timeline' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'timeline' ? 'white' : (dark ? '#ccc' : '#555'),
           }}>📅 {t('gallery_view_timeline')}</button>
+          {viewMode === 'grid' && (
+            <button type="button" onClick={toggleCompactView} title="Vue compacte" style={{
+              border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
+              background: compactView ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: compactView ? 'white' : (dark ? '#ccc' : '#555'),
+            }}>▪▪▪ Compact</button>
+          )}
         </div>
 
         {viewMode === 'timeline' && (
@@ -3037,7 +3058,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           onDragEnd={onDragEnd}
         >
           <SortableContext items={displayed.map(getCardId)} strategy={rectSortingStrategy}>
-          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}`}>
+          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}${compactView ? ' card-grid-compact' : ''}`}>
           {displayed.map((d, idx) => (
             <SortableCard
               key={getCardId(d)}

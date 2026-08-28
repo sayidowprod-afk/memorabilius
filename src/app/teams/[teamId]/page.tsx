@@ -62,6 +62,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [myCards, setMyCards] = useState<any[]>([])
   const [pendingCard, setPendingCard] = useState<any | null>(null)
   const [replyingTo, setReplyingTo] = useState<any | null>(null)
+  const [typingUsers, setTypingUsers] = useState<Record<string, string>>({})
+  const typingChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
+  const typingStopTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({})
+  const lastTypingSentRef = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Posts
@@ -262,6 +266,44 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .subscribe()
     return () => { supabase.removeChannel(channel) }
   }, [isMember, teamId])
+
+  // Indicateur "en train d'écrire" -- meme principe que messages/page.tsx mais
+  // en broadcast de groupe (canal partage par toute la team, pas une paire) :
+  // chaque frappeur est garde individuellement avec son propre timeout pour
+  // gerer plusieurs personnes qui écrivent en meme temps.
+  useEffect(() => {
+    setTypingUsers({})
+    Object.values(typingStopTimers.current).forEach(clearTimeout)
+    typingStopTimers.current = {}
+    if (!isMember || !currentUser) { typingChannelRef.current = null; return }
+    const channel = supabase.channel(`typing:team-${teamId}`)
+      .on('broadcast', { event: 'typing' }, (payload: any) => {
+        const { from, name } = payload.payload || {}
+        if (!from || from === currentUser) return
+        setTypingUsers(prev => ({ ...prev, [from]: name || 'Quelqu\'un' }))
+        if (typingStopTimers.current[from]) clearTimeout(typingStopTimers.current[from])
+        typingStopTimers.current[from] = setTimeout(() => {
+          setTypingUsers(prev => { const next = { ...prev }; delete next[from]; return next })
+        }, 2500)
+      })
+      .subscribe()
+    typingChannelRef.current = channel
+    return () => {
+      supabase.removeChannel(channel)
+      typingChannelRef.current = null
+      Object.values(typingStopTimers.current).forEach(clearTimeout)
+      typingStopTimers.current = {}
+    }
+  }, [isMember, currentUser, teamId])
+
+  const notifyTeamTyping = () => {
+    if (!currentUser || !typingChannelRef.current) return
+    const now = Date.now()
+    if (now - lastTypingSentRef.current < 2000) return
+    lastTypingSentRef.current = now
+    const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Quelqu\'un'
+    typingChannelRef.current.send({ type: 'broadcast', event: 'typing', payload: { from: currentUser, name: myName } })
+  }
 
   const sendMessage = async () => {
     if ((!newMsg.trim() && !pendingCard) || !currentUser) return
@@ -589,7 +631,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '8px 0' }}>
                   {postCards.map(c => (
                     <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: '#f5f8ff', borderRadius: 8 }}>
-                      {c.image_recto && <img src={c.image_recto} style={{ height: 40, borderRadius: 4, objectFit: 'cover' }} alt="" />}
+                      {c.image_recto && <img loading="lazy" src={c.image_recto} style={{ height: 40, borderRadius: 4, objectFit: 'cover' }} alt="" />}
                       <span style={{ fontSize: 12, fontWeight: 700, maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</span>
                       <button onClick={() => setPostCards(prev => prev.filter(x => x.id !== c.id))} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700, fontSize: 14, padding: 0 }}>✕</button>
                     </div>
@@ -626,7 +668,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = ACCENT}
                       onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = 'transparent'}>
                       {c.image_recto
-                        ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
+                        ? <img loading="lazy" src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
                         : <span style={{ fontSize: 10, color: 'var(--text3, #999)', textAlign: 'center', padding: 4 }}>{c.nom}</span>}
                     </div>
                   ))}
@@ -642,7 +684,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             <div key={post.id} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               {/* Header */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                <img src={post.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                <img loading="lazy" src={post.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                 <div style={{ flex: 1 }}>
                   <Link href={`/galerie/${post.user_id}`} style={{ fontWeight: 800, color: 'var(--text, #111)', textDecoration: 'none', fontSize: 14 }}>{post.profiles?.display_name || 'Membre'}</Link>
@@ -701,7 +743,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 <div style={{ marginTop: 16, borderTop: '1px solid var(--border, #f0f0f0)', paddingTop: 16 }}>
                   {(comments[post.id] || []).map(c => (
                     <div key={c.id} style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'flex-start' }}>
-                      <img src={c.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                      <img loading="lazy" src={c.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                         style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                       <div style={{ flex: 1, background: '#f5f7ff', borderRadius: 10, padding: '8px 12px' }}>
                         <span style={{ fontWeight: 800, fontSize: 12, color: ACCENT }}>{c.profiles?.display_name || 'Membre'}</span>
@@ -757,7 +799,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     </td>
                     <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <img src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
+                        <img loading="lazy" src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
                         <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: m.is_donor ? undefined : 'var(--text, #111)', textDecoration: 'none' }}>{m.display_name}</Link>
                         {m.is_donor && <span title="Donateur Ko-fi" style={{ fontSize: 14, lineHeight: 1 }}>☕</span>}
@@ -820,7 +862,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 20px rgba(0,0,0,0.14)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'none'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)' }}>
                   {card.image_recto
-                    ? <img src={card.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} alt={card.nom} />
+                    ? <img loading="lazy" src={card.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} alt={card.nom} />
                     : <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: 'linear-gradient(135deg, #f0f4ff, #e8eef8)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 8 }}>
                         <span style={{ fontSize: 11, fontWeight: 700, color: ACCENT, textAlign: 'center' }}>{card.nom}</span>
                       </div>
@@ -828,7 +870,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   <div style={{ padding: '6px 8px' }}>
                     <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text, #111)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
                     <div style={{ fontSize: 10, color: 'var(--text3, #999)', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
-                      <img src={card.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.profiles?.display_name || 'U')}&background=003DA6&color=fff&size=20`}
+                      <img loading="lazy" src={card.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.profiles?.display_name || 'U')}&background=003DA6&color=fff&size=20`}
                         style={{ width: 14, height: 14, borderRadius: '50%' }} alt="" />
                       {card.profiles?.display_name}
                     </div>
@@ -858,7 +900,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               const repliedMsg = msg.reply_to_id ? messages.find(m => m.id === msg.reply_to_id) : null
               return (
                 <div key={msg.id} id={`team-msg-${msg.id}`} style={{ display: 'flex', gap: 8, flexDirection: isMe ? 'row-reverse' : 'row', alignItems: 'flex-end' }}>
-                  <img src={msg.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                  <img loading="lazy" src={msg.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                     style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                   <div style={{ maxWidth: '72%' }}>
                     {!isMe && <p style={{ fontSize: 11, color: 'var(--text3, #999)', margin: '0 0 3px', fontWeight: 700 }}>{msg.profiles?.display_name}</p>}
@@ -911,6 +953,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             })}
             <div ref={messagesEndRef} />
           </div>
+          {Object.keys(typingUsers).length > 0 && (
+            <p style={{ padding: '2px 20px', margin: 0, fontSize: 11, fontStyle: 'italic', color: 'var(--text3, #999)' }}>
+              {Object.values(typingUsers).join(', ')} {Object.keys(typingUsers).length > 1 ? 'sont en train d\'écrire…' : 'est en train d\'écrire…'}
+            </p>
+          )}
           {/* Réponse en cours */}
           {replyingTo && (
             <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
@@ -927,7 +974,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           {/* Carte en attente */}
           {pendingCard && (
             <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
-              {pendingCard.image_recto && <img src={pendingCard.image_recto} style={{ height: 40, borderRadius: 4 }} alt="" />}
+              {pendingCard.image_recto && <img loading="lazy" src={pendingCard.image_recto} style={{ height: 40, borderRadius: 4 }} alt="" />}
               <span style={{ fontSize: 13, fontWeight: 700, flex: 1 }}>{pendingCard.nom}</span>
               <button onClick={() => setPendingCard(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>
             </div>
@@ -939,7 +986,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 <div key={c.id} onClick={() => { setPendingCard(c); setShowCardPicker(false) }}
                   style={{ cursor: 'pointer', borderRadius: 4, overflow: 'hidden', background: 'var(--bg3, #f0f0f0)', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {c.image_recto
-                    ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
+                    ? <img loading="lazy" src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
                     : <span style={{ fontSize: 9, color: 'var(--text3, #999)', textAlign: 'center', padding: 2 }}>{c.nom}</span>}
                 </div>
               ))}
@@ -948,7 +995,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           <div style={{ padding: '10px 14px', borderTop: '1px solid var(--border, #f0f0f0)', display: 'flex', gap: 8, alignItems: 'center' }}>
             <button onClick={() => setShowCardPicker(!showCardPicker)}
               style={{ background: '#f0f4ff', color: ACCENT, border: 'none', borderRadius: 8, padding: '10px 12px', fontWeight: 700, cursor: 'pointer', fontSize: 18, flexShrink: 0 }}>🃏</button>
-            <input value={newMsg} onChange={e => setNewMsg(e.target.value)}
+            <input value={newMsg} onChange={e => { setNewMsg(e.target.value); notifyTeamTyping() }}
               onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
               placeholder="Votre message..." style={{ flex: 1, padding: '10px 14px', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 8, fontSize: 14, outline: 'none' }} />
             <button onClick={sendMessage} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_send')}</button>
@@ -964,7 +1011,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             ? <p style={{ textAlign: 'center', padding: 40, color: 'var(--text3, #bbb)' }}>{t('teams_no_candidatures')}</p>
             : candidatures.map(cand => (
               <div key={cand.id} style={{ padding: '16px 20px', borderBottom: '1px solid var(--border, #f5f5f5)', display: 'flex', alignItems: 'center', gap: 16 }}>
-                <img src={cand.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(cand.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                <img loading="lazy" src={cand.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(cand.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                 <div style={{ flex: 1 }}>
                   <p style={{ fontWeight: 800, margin: 0 }}>{cand.profiles?.display_name}</p>
@@ -1002,7 +1049,7 @@ function PostCardsPreview({ cardIds, userId }: { cardIds: number[]; userId: stri
         <Link key={c.id} href={`/galerie/${userId}`} style={{ textDecoration: 'none' }}>
           <div style={{ borderRadius: 8, overflow: 'hidden', background: 'var(--bg3, #f0f0f0)', aspectRatio: '2.5/3.5' }}>
             {c.image_recto
-              ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
+              ? <img loading="lazy" src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
               : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 6 }}>
                   <span style={{ fontSize: 10, fontWeight: 700, color: '#003DA6', textAlign: 'center' }}>{c.nom}</span>
                 </div>}
@@ -1027,7 +1074,7 @@ function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: st
   return (
     <Link href={`/galerie/${userId}`} style={{ textDecoration: 'none', display: 'block', marginTop: compact ? 6 : 10 }}>
       <div style={{ background: 'rgba(0,0,0,0.06)', borderRadius: 8, padding: 8, display: 'flex', gap: 10, alignItems: 'center' }}>
-        {card.image_recto && <img src={card.image_recto} style={{ height: compact ? 48 : 64, borderRadius: 4, objectFit: 'cover' }} alt="" />}
+        {card.image_recto && <img loading="lazy" src={card.image_recto} style={{ height: compact ? 48 : 64, borderRadius: 4, objectFit: 'cover' }} alt="" />}
         <div>
           <div style={{ fontWeight: 800, fontSize: 13 }}>{card.nom}</div>
           <div style={{ fontSize: 11, opacity: 0.7 }}>{card.annee} · {card.marque}</div>

@@ -469,7 +469,7 @@ function MessagesContent() {
                 <div key={p.id} onClick={() => startConv(p.id, p)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 4px', cursor: 'pointer', borderRadius: 8 }}
                   onMouseEnter={e => (e.currentTarget.style.background = bgHover)}
                   onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-                  <img src={p.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                  <img loading="lazy" src={p.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                   <span style={{ fontSize: 13, fontWeight: 700, color: textMain }}>{p.display_name}</span>
                 </div>
               ))}
@@ -495,7 +495,7 @@ function MessagesContent() {
                 display: 'flex', alignItems: 'center', gap: 14,
               }}>
                 <div className="msg-avatar-ring" style={{ position: 'relative', flexShrink: 0, width: 46, height: 46 }}>
-                  <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
+                  <img loading="lazy" src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
                     style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', boxShadow: onlineStatusColor(profiles[conv.id]?.last_seen) ? `0 0 0 2px ${onlineStatusColor(profiles[conv.id]?.last_seen)}` : undefined }} alt="" />
                   <span style={{ position: 'absolute', bottom: 0, right: 0 }}>
                     <OnlineIndicator lastSeen={profiles[conv.id]?.last_seen} size={12} />
@@ -599,7 +599,7 @@ function MessagesContent() {
                                         <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                                           <a href={href || undefined} target="_blank" rel="noopener noreferrer"
                                             style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
-                                            {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                            {img && <img loading="lazy" src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                                           </a>
                                           {c.nom && <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(ebayQ)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 9, color: '#0064d2', fontWeight: 700, textDecoration: 'none' }}>eBay</a>}
                                         </div>
@@ -623,7 +623,7 @@ function MessagesContent() {
                                         <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                                           <a href={href || undefined} target="_blank" rel="noopener noreferrer"
                                             style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
-                                            {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                            {img && <img loading="lazy" src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                                           </a>
                                           {c.nom && <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(ebayQ)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 9, color: '#0064d2', fontWeight: 700, textDecoration: 'none' }}>eBay</a>}
                                         </div>
@@ -673,7 +673,7 @@ function MessagesContent() {
                           <a href={`/trades`} style={{ textDecoration: 'none', display: 'block', background: dark ? '#2a3a2a' : '#e8f5e9', border: `1px solid ${dark ? '#3a5a3a' : '#c8e6c9'}`, borderRadius: 10, overflow: 'hidden', width: 220 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 10px' }}>
                               {linkedTrade.image_url && (
-                                <img src={linkedTrade.image_url} alt={linkedTrade.titre} style={{ width: 40, height: 56, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
+                                <img loading="lazy" src={linkedTrade.image_url} alt={linkedTrade.titre} style={{ width: 40, height: 56, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
                               )}
                               <div style={{ minWidth: 0 }}>
                                 <div style={{ fontSize: 9, fontWeight: 900, textTransform: 'uppercase', color: linkedTrade.type === 'offre' ? '#2e7d32' : '#1976d2', marginBottom: 2 }}>
@@ -699,7 +699,7 @@ function MessagesContent() {
                         >
                           {isImageMsg(msg.contenu) ? (
                             <a href={imgUrlOf(msg.contenu)} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
-                              <img src={imgUrlOf(msg.contenu)} alt="photo"
+                              <img loading="lazy" src={imgUrlOf(msg.contenu)} alt="photo"
                                 style={{ maxWidth: 220, maxHeight: 280, borderRadius: 16, display: 'block', objectFit: 'cover' }} />
                             </a>
                           ) : (
@@ -843,7 +843,7 @@ function MessagesContent() {
                     return (
                       <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center', textDecoration: 'none', color: textMain, background: dark ? '#262626' : '#f7f7f7', borderRadius: 10, padding: 8 }}>
                         <div style={{ width: 42, height: 58, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flexShrink: 0 }}>
-                          {img && <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                          {img && <img loading="lazy" src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                         </div>
                         <div style={{ minWidth: 0, flex: 1 }}>
                           <div style={{ fontSize: 13, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom || '—'}</div>

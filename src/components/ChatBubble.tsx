@@ -284,7 +284,7 @@ export default function ChatBubble() {
                     padding: '10px 14px', cursor: 'pointer', borderBottom: `1px solid ${border}`,
                     display: 'flex', alignItems: 'center', gap: 10,
                   }}>
-                    <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
+                    <img loading="lazy" src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
                       style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <p style={{ fontWeight: 800, fontSize: 12, margin: 0, color: textMain, display: 'flex', justifyContent: 'space-between' }}>
@@ -303,7 +303,7 @@ export default function ChatBubble() {
                 <button onClick={() => setActiveConv(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, color: '#003DA6', padding: 0 }}>←</button>
                 <Link href={`/galerie/${activeConv}`} onClick={() => setOpen(false)} title={t('chat_view_gallery')}
                   style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flex: 1, minWidth: 0 }}>
-                  <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
+                  <img loading="lazy" src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
                     style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                   <span style={{ fontWeight: 800, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[activeConv]?.display_name}</span>
                 </Link>
@@ -359,7 +359,7 @@ export default function ChatBubble() {
                                       return (
                                         <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
                                           style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
-                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                          {img && <img loading="lazy" src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                                         </a>
                                       )
                                     })}
@@ -381,7 +381,7 @@ export default function ChatBubble() {
                                       return (
                                         <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
                                           style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
-                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                          {img && <img loading="lazy" src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                                         </a>
                                       )
                                     })}
@@ -426,7 +426,7 @@ export default function ChatBubble() {
                     <div key={msg.id} style={{ display: 'flex', flexDirection: 'column', alignItems: isMe ? 'flex-end' : 'flex-start' }}>
                       {isImageMsg(msg.contenu) ? (
                         <a href={imgUrlOf(msg.contenu)} target="_blank" rel="noopener noreferrer">
-                          <img src={imgUrlOf(msg.contenu)} alt="photo" style={{ maxWidth: 140, borderRadius: 10, display: 'block' }} />
+                          <img loading="lazy" src={imgUrlOf(msg.contenu)} alt="photo" style={{ maxWidth: 140, borderRadius: 10, display: 'block' }} />
                         </a>
                       ) : (
                         <div style={{
@@ -484,7 +484,7 @@ export default function ChatBubble() {
                     return (
                       <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center', textDecoration: 'none', color: textMain, background: dark ? '#2a2a2a' : '#f7f7f7', borderRadius: 10, padding: 8 }}>
                         <div style={{ width: 38, height: 52, background: '#0d1a30', borderRadius: 5, overflow: 'hidden', flexShrink: 0 }}>
-                          {img && <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                          {img && <img loading="lazy" src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
                         </div>
                         <div style={{ minWidth: 0, flex: 1 }}>
                           <div style={{ fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom || '—'}</div>
