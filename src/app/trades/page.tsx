@@ -518,9 +518,15 @@ export default function Trades() {
 
       {/* ── Popup annonce forum ─────────────────────────────────────────────── */}
       {popup && createPortal(
-        <div onClick={() => setPopup(null)} className="modal-glass-overlay" style={{
+        <div onClick={() => setPopup(null)} style={{
           position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.6)',
-          zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
+          // z-index au-dessus de la bottom nav (99999, volontairement tres haute --
+          // voir MobileBottomNav.tsx) : sinon la barre de navigation, opaque, passe
+          // par-dessus le bas de cette popup plein ecran et cache les boutons d'action.
+          // Pas de backdrop-filter (evite modal-glass-overlay) : le flou plein ecran
+          // est un cout GPU connu sur WebView Android, cause de ralentissements
+          // signales au scroll dans cette popup precisement.
+          zIndex: 100000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
           <div onClick={e => e.stopPropagation()} style={{
             background: 'var(--card-bg, #fff)', borderRadius: 20, overflow: 'hidden',
