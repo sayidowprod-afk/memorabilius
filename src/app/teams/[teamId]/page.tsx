@@ -256,7 +256,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           const { data } = await supabase.from('team_messages')
             .select('*, profiles(id, display_name, avatar_url)')
             .eq('id', payload.new.id).single()
-          if (data) setMessages(prev => [...prev, data])
+          if (data) setMessages(prev => prev.some(m => m.id === data.id) ? prev : [...prev, data])
         })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
@@ -264,14 +264,21 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const sendMessage = async () => {
     if ((!newMsg.trim() && !pendingCard) || !currentUser) return
-    const { error } = await supabase.from('team_messages').insert({
+    // Ajout optimiste local plutot que de dependre entierement du canal
+    // realtime pour que l'expediteur voie son PROPRE message -- si le temps
+    // reel a le moindre souci (config, latence, connexion), l'envoi paraissait
+    // silencieusement ne "rien faire" pour la personne qui vient d'ecrire.
+    // Garde anti-doublon (par id) des deux cotes au cas ou le canal renvoie
+    // aussi cette meme ligne.
+    const { data, error } = await supabase.from('team_messages').insert({
       team_id: parseInt(teamId),
       user_id: currentUser,
       contenu: newMsg.trim() || null,
       card_key: pendingCard?.card_key || null,
       card_user_id: pendingCard ? currentUser : null,
-    })
+    }).select('*, profiles(id, display_name, avatar_url)').single()
     if (error) { toast.error(t('teams_err_send')); return }
+    if (data) setMessages(prev => prev.some(m => m.id === data.id) ? prev : [...prev, data])
     setNewMsg('')
     setPendingCard(null)
   }
