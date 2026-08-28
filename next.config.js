@@ -10,6 +10,9 @@ const nextConfig = {
   // Sans ça Next.js bloque le websocket _next/webpack-hmr et le JS crashe côté client.
   allowedDevOrigins: ['192.168.1.189'],
   images: {
+  // Deja la valeur par defaut de Next (AVIF puis WebP selon support navigateur),
+  // mais verrouille explicitement plutot que de compter sur un defaut implicite.
+  formats: ['image/avif', 'image/webp'],
   remotePatterns: [
     { protocol: 'https', hostname: '*.supabase.co' },
     { protocol: 'https', hostname: 'a.espncdn.com' },

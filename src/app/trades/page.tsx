@@ -8,6 +8,7 @@ import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { inferSportFromTeamName } from '@/lib/sportsTeams'
 import SkeletonBlock from '@/components/SkeletonBlock'
+import EmptyState from '@/components/EmptyState'
 import { sportColor } from '@/lib/sportColors'
 import CardTagBadges from '@/components/CardTagBadges'
 import TradeTypeBadge from '@/components/TradeTypeBadge'
@@ -79,6 +80,8 @@ export default function Trades() {
   const [loadingForum, setLoadingForum] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
   const [filter, setFilter] = useState<'tous' | 'offre' | 'recherche'>('tous')
+  const [favorites, setFavorites] = useState<Set<string>>(new Set())
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   const [search, setSearch] = useState('')
   const [fEquipe, setFEquipe] = useState('')
   const [fSport, setFSport] = useState('')
@@ -104,8 +107,30 @@ export default function Trades() {
       if (!session) { router.replace('/connexion'); return }
       setUserId(session.user.id)
       loadForum()
+      supabase.from('trade_favorites').select('item_type, item_id').eq('user_id', session.user.id)
+        .then(({ data }) => setFavorites(new Set((data || []).map(f => `${f.item_type}:${f.item_id}`))))
     })
   }, [])
+
+  const favKey = (item: any) => `${item._source === 'galerie' ? 'galerie' : 'trade'}:${item.id}`
+
+  const toggleFavorite = async (item: any, e?: React.MouseEvent) => {
+    e?.stopPropagation()
+    if (!userId) return
+    const key = favKey(item)
+    const item_type = item._source === 'galerie' ? 'galerie' : 'trade'
+    const isFav = favorites.has(key)
+    setFavorites(prev => {
+      const next = new Set(prev)
+      isFav ? next.delete(key) : next.add(key)
+      return next
+    })
+    if (isFav) {
+      await supabase.from('trade_favorites').delete().eq('user_id', userId).eq('item_type', item_type).eq('item_id', String(item.id))
+    } else {
+      await supabase.from('trade_favorites').insert({ user_id: userId, item_type, item_id: String(item.id) })
+    }
+  }
 
   // Charger les échanges directs si on bascule sur cet onglet
   useEffect(() => {
@@ -205,6 +230,7 @@ export default function Trades() {
   const SPORTS: Record<string, string> = { basket: '🏀', foot: '⚽', football_us: '🏈', baseball: '⚾', hockey: '🏒', pokemon: '🟡', tcg: '🃏' }
 
   const filteredForum = trades.filter(t => {
+    if (showFavoritesOnly && !favorites.has(favKey(t))) return false
     if (filter !== 'tous' && t.type !== filter) return false
     if (search && !t.titre.toLowerCase().includes(search.toLowerCase()) && !t.joueur?.toLowerCase().includes(search.toLowerCase())) return false
     if (fEquipe && !t.equipe?.toLowerCase().includes(fEquipe.toLowerCase())) return false
@@ -305,6 +331,11 @@ export default function Trades() {
                     color: filter === f ? 'white' : 'var(--text2, #333)',
                   }}>{f === 'tous' ? t('trades_all') : f === 'offre' ? t('trades_offers') : t('trades_searches')}</button>
                 ))}
+                <button onClick={() => setShowFavoritesOnly(v => !v)} style={{
+                  padding: '8px 18px', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 700, fontSize: 13,
+                  background: showFavoritesOnly ? '#f39c12' : 'var(--bg3, #f0f0f0)',
+                  color: showFavoritesOnly ? 'white' : 'var(--text2, #333)',
+                }}>⭐ {t('trades_favorites')}</button>
               </div>
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -345,10 +376,8 @@ export default function Trades() {
             </div>
           ) : (
             filteredForum.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>
-                <p style={{ fontSize: 18, marginBottom: 12 }}>{t('trades_no_ads_yet')}</p>
-                <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>
-              </div>
+              <EmptyState icon="🔄" title={t('trades_no_ads_yet')}
+                action={<Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>} />
             ) : (
               <div className="trades-forum-grid">
                 {filteredForum.map(trade => (
@@ -360,17 +389,29 @@ export default function Trades() {
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
-                    <div style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    {/* La grille mobile est passee a 2 colonnes (voir .trades-forum-grid),
+                        rendant chaque carte bien plus etroite -- badge + date sur une
+                        seule ligne avec space-between ne laissait plus assez de place et
+                        les deux se chevauchaient. flexWrap laisse la date passer sur sa
+                        propre ligne quand ca ne rentre pas. */}
+                    <div style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
                       <TradeTypeBadge kind={(trade as any)._source === 'galerie' ? 'galerie' : trade.type === 'offre' ? 'offre' : 'recherche'} />
-                      <span style={{ fontSize: 11, color: 'var(--text3, #999)' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
+                      <span style={{ fontSize: 11, color: 'var(--text3, #999)', whiteSpace: 'nowrap' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                     </div>
-                    {trade.image_url ? (
-                      <div style={{ background: 'var(--bg3, #f4f4f4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img loading="lazy" src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
-                      </div>
-                    ) : (
-                      <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>
-                    )}
+                    <div style={{ background: 'var(--bg3, #f4f4f4)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                      <button onClick={e => toggleFavorite(trade, e)}
+                        aria-label={favorites.has(favKey(trade)) ? t('trades_unfavorite') : t('trades_favorite')}
+                        style={{
+                          position: 'absolute', top: 8, right: 8, zIndex: 1, width: 30, height: 30, borderRadius: '50%',
+                          background: 'rgba(0,0,0,0.55)', border: 'none', cursor: 'pointer', fontSize: 15,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}>
+                        {favorites.has(favKey(trade)) ? '⭐' : <span style={{ opacity: 0.7 }}>☆</span>}
+                      </button>
+                      {trade.image_url
+                        ? <img loading="lazy" src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
+                        : <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>}
+                    </div>
                     <div style={{ padding: '14px 16px' }}>
                       <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
                       {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
@@ -412,9 +453,7 @@ export default function Trades() {
           {loadingOffers ? (
             <div style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: '48px 0' }}>{t('setlist_loading')}</div>
           ) : shownOffers.length === 0 ? (
-            <div style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: '48px 0', fontSize: 15 }}>
-              {offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')}
-            </div>
+            <EmptyState icon="🔁" title={offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')} />
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {shownOffers.map(trade => {

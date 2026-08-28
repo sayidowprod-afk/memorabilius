@@ -8,6 +8,7 @@ import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import SkeletonBlock from '@/components/SkeletonBlock'
+import EmptyState from '@/components/EmptyState'
 
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
@@ -36,6 +37,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
   const [leaveConfirm, setLeaveConfirm] = useState(false)
+  const [leavePending, setLeavePending] = useState(false)
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [deletePostConfirm, setDeletePostConfirm] = useState<number | null>(null)
   const [excludeConfirm, setExcludeConfirm] = useState<string | null>(null)
   const [galerieLimit, setGalerieLimit] = useState(48)
@@ -78,6 +81,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [newComment, setNewComment] = useState<Record<number, string>>({})
 
   useEffect(() => { init() }, [teamId])
+  useEffect(() => () => { if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current) }, [])
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
 
   const init = async () => {
@@ -590,12 +594,28 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             {hasCandidature && !isMember && <span style={{ background: '#fff3e0', color: '#e67e22', padding: '10px 16px', borderRadius: 8, fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>}
             {isMember && <span style={{ color: ACCENT, fontWeight: 700 }}>✓ Membre</span>}
             {isMember && !isChef && (
-              leaveConfirm ? (
+              leavePending ? (
+                // Delai de grace avant l'action reelle (contrairement a avant, qui
+                // supprimait immediatement) -- meme logique que l'undo de suppression
+                // de carte dans la galerie, pour une action tout aussi difficile a
+                // annuler une fois faite (il faut refaire une demande d'adhesion).
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>{t('teams_leave_confirm')}</span>
+                  <button onClick={() => {
+                    if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current)
+                    setLeavePending(false)
+                  }} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Annuler</button>
+                </div>
+              ) : leaveConfirm ? (
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                   <span style={{ fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>{t('teams_leave_confirm')}</span>
-                  <button onClick={async () => {
-                    await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
-                    router.push('/teams')
+                  <button onClick={() => {
+                    setLeaveConfirm(false)
+                    setLeavePending(true)
+                    leaveTimerRef.current = setTimeout(async () => {
+                      await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
+                      router.push('/teams')
+                    }, 5000)
                   }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Oui</button>
                   <button onClick={() => setLeaveConfirm(false)} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Non</button>
                 </div>
@@ -679,7 +699,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           )}
 
           {/* Liste des posts */}
-          {posts.length === 0 && <div style={{ textAlign: 'center', padding: 60, color: 'var(--text3, #bbb)' }}>Aucun post pour l'instant.</div>}
+          {posts.length === 0 && <EmptyState icon="📰" title="Aucun post pour l'instant." />}
           {posts.map(post => (
             <div key={post.id} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               {/* Header */}

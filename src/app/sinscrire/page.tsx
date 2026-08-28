@@ -13,7 +13,16 @@ export default function Inscription() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [pseudoStatus, setPseudoStatus] = useState<PseudoStatus>('idle')
+  const [touched, setTouched] = useState({ email: false, password: false })
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Erreurs par champ affichees en direct plutot que decouvertes seulement
+  // au submit via le message generique de Supabase (ex: "Password should be
+  // at least 6 characters" en anglais brut, illisible pour un utilisateur FR).
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
+  const passwordValid = form.password.length >= 6
+  const emailError = touched.email && form.email.length > 0 && !emailValid
+  const passwordError = touched.password && form.password.length > 0 && !passwordValid
 
   useEffect(() => {
     const name = form.display_name.trim()
@@ -31,7 +40,8 @@ export default function Inscription() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (pseudoStatus === 'taken') return
+    setTouched({ email: true, password: true })
+    if (pseudoStatus === 'taken' || !emailValid || !passwordValid) return
     setLoading(true)
     setError('')
     const { error } = await supabase.auth.signUp({
@@ -71,14 +81,22 @@ export default function Inscription() {
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
-            <input type="email" required placeholder="votre@email.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+            <input type="email" required placeholder="votre@email.com" value={form.email}
+              onChange={e => setForm({ ...form, email: e.target.value })}
+              onBlur={() => setTouched(p => ({ ...p, email: true }))}
+              aria-invalid={emailError} style={{ borderColor: emailError ? '#c62828' : undefined }} />
+            {emailError && <p style={{ color: '#c62828', fontSize: 12, margin: '4px 0 0' }}>{t('signup_email_invalid')}</p>}
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input type="password" required placeholder={t('signup_password_placeholder')} value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+            <input type="password" required placeholder={t('signup_password_placeholder')} value={form.password}
+              onChange={e => setForm({ ...form, password: e.target.value })}
+              onBlur={() => setTouched(p => ({ ...p, password: true }))}
+              aria-invalid={passwordError} style={{ borderColor: passwordError ? '#c62828' : undefined }} />
+            {passwordError && <p style={{ color: '#c62828', fontSize: 12, margin: '4px 0 0' }}>{t('signup_password_too_short')}</p>}
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
-          <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking'}>
+          <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking' || emailError || passwordError}>
             {loading ? '...' : t('register_btn')}
           </button>
         </form>

@@ -70,10 +70,29 @@ export default function PWAInstall() {
       }).catch(console.error)
     }
 
-    const handler = (e: Event) => { e.preventDefault(); setPrompt(e); setShow(true) }
+    // "Plus tard" ne memorisait rien (juste un setShow(false) local) -- la
+    // bannniere revenait a chaque nouvelle session/page malgre le refus.
+    // Un cooldown de 7 jours en localStorage evite l'insistance. Le prompt
+    // s'affichait aussi instantanement des que le navigateur l'autorisait ;
+    // un court delai laisse d'abord voir un peu de contenu avant de le
+    // solliciter.
+    const DISMISS_KEY = 'pwa_install_dismissed_at'
+    const COOLDOWN_MS = 7 * 24 * 3600 * 1000
+    const handler = (e: Event) => {
+      e.preventDefault()
+      const dismissedAt = Number(localStorage.getItem(DISMISS_KEY) || 0)
+      if (dismissedAt && Date.now() - dismissedAt < COOLDOWN_MS) return
+      setPrompt(e)
+      setTimeout(() => setShow(true), 8000)
+    }
     window.addEventListener('beforeinstallprompt', handler)
     return () => window.removeEventListener('beforeinstallprompt', handler)
   }, [])
+
+  const dismiss = () => {
+    try { localStorage.setItem('pwa_install_dismissed_at', String(Date.now())) } catch {}
+    setShow(false)
+  }
 
   const install = async () => {
     if (!prompt) return
@@ -105,7 +124,7 @@ export default function PWAInstall() {
         <p style={{ fontSize: 12, margin: '2px 0 0', opacity: 0.8 }}>{t('pwa_sub')}</p>
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
-        <button onClick={() => setShow(false)} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 8, padding: '6px 12px', color: 'white', cursor: 'pointer', fontSize: 13 }}>
+        <button onClick={dismiss} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 8, padding: '6px 12px', color: 'white', cursor: 'pointer', fontSize: 13 }}>
           Plus tard
         </button>
         <button onClick={install} style={{ background: 'white', border: 'none', borderRadius: 8, padding: '6px 12px', color: '#003DA6', fontWeight: 800, cursor: 'pointer', fontSize: 13 }}>

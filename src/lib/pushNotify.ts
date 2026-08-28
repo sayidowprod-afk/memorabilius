@@ -81,7 +81,26 @@ export interface PushPayload {
   imageUrl?: string
 }
 
+const CHANNEL_PREF_COLUMN: Record<NonNullable<PushPayload['channelId']>, string> = {
+  messages: 'notif_pref_messages',
+  trades: 'notif_pref_trades',
+  wishlist: 'notif_pref_wishlist',
+  community: 'notif_pref_community',
+}
+
+// Point unique : tout appelant de sendPushToUser passe par ici, donc verifier
+// la preference du destinataire ici couvre tous les canaux sans avoir a
+// modifier chacun des appelants (messages, trades, wishlist, communaute...).
+// Pas de payload.channelId -> on envoie quand meme (canal non classifie).
+async function isChannelAllowed(userId: string, channelId?: PushPayload['channelId']): Promise<boolean> {
+  if (!channelId) return true
+  const column = CHANNEL_PREF_COLUMN[channelId]
+  const { data } = await supabaseAdmin.from('profiles').select(column).eq('id', userId).single()
+  return (data as any)?.[column] !== false
+}
+
 export async function sendPushToUser(userId: string, payload: PushPayload) {
+  if (!(await isChannelAllowed(userId, payload.channelId))) return
   await sendFcmToUser(userId, payload)
 
   const { data: subs } = await supabaseAdmin

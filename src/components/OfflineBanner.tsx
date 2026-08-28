@@ -7,7 +7,20 @@ export default function OfflineBanner() {
   const [offline, setOffline] = useState(false)
 
   useEffect(() => {
-    if (!isNative) return
+    if (!isNative) {
+      // Web/PWA : le navigateur donne deja ce signal nativement, aucune raison
+      // de se priver de ce bandeau juste parce qu'on n'est pas dans l'app.
+      setOffline(!navigator.onLine)
+      const onOnline = () => setOffline(false)
+      const onOffline = () => setOffline(true)
+      window.addEventListener('online', onOnline)
+      window.addEventListener('offline', onOffline)
+      return () => {
+        window.removeEventListener('online', onOnline)
+        window.removeEventListener('offline', onOffline)
+      }
+    }
+
     let removeListener: (() => void) | undefined
 
     import('@capacitor/network').then(async ({ Network }) => {
@@ -22,7 +35,7 @@ export default function OfflineBanner() {
     return () => removeListener?.()
   }, [isNative])
 
-  if (!isNative || !offline) return null
+  if (!offline) return null
 
   return (
     <div style={{

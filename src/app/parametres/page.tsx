@@ -40,7 +40,7 @@ export default function Parametres() {
   const isNative = useIsNative()
   const [hapticsOn, setHapticsOnState] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
-  const [notifPrefs, setNotifPrefs] = useState<{ notif_popularity_digest: boolean; notif_streak_warning: boolean; notif_winback: boolean } | null>(null)
+  const [notifPrefs, setNotifPrefs] = useState<{ notif_popularity_digest: boolean; notif_streak_warning: boolean; notif_winback: boolean; notif_pref_messages: boolean; notif_pref_trades: boolean; notif_pref_wishlist: boolean; notif_pref_community: boolean } | null>(null)
 
   useEffect(() => { setHapticsOnState(isHapticsEnabled()) }, [])
   useEffect(() => {
@@ -48,13 +48,13 @@ export default function Parametres() {
       const uid = session?.user.id ?? null
       setUserId(uid)
       if (uid) {
-        supabase.from('profiles').select('notif_popularity_digest, notif_streak_warning, notif_winback').eq('id', uid).single()
+        supabase.from('profiles').select('notif_popularity_digest, notif_streak_warning, notif_winback, notif_pref_messages, notif_pref_trades, notif_pref_wishlist, notif_pref_community').eq('id', uid).single()
           .then(({ data }) => { if (data) setNotifPrefs(data as any) })
       }
     })
   }, [])
 
-  const toggleNotifPref = (key: 'notif_popularity_digest' | 'notif_streak_warning' | 'notif_winback') => {
+  const toggleNotifPref = (key: 'notif_popularity_digest' | 'notif_streak_warning' | 'notif_winback' | 'notif_pref_messages' | 'notif_pref_trades' | 'notif_pref_wishlist' | 'notif_pref_community') => {
     if (!notifPrefs || !userId) return
     const next = { ...notifPrefs, [key]: !notifPrefs[key] }
     setNotifPrefs(next)
@@ -127,6 +127,28 @@ export default function Parametres() {
           </p>
         )}
       </div>
+
+      {userId && notifPrefs && (
+        <div style={card}>
+          <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🎛️ {t('settings_notif_channels')}</h3>
+          <div style={row}>
+            <div style={rowLabel}>{t('settings_notif_channel_messages')}</div>
+            <Toggle on={notifPrefs.notif_pref_messages} onClick={() => toggleNotifPref('notif_pref_messages')} />
+          </div>
+          <div style={row}>
+            <div style={rowLabel}>{t('settings_notif_channel_trades')}</div>
+            <Toggle on={notifPrefs.notif_pref_trades} onClick={() => toggleNotifPref('notif_pref_trades')} />
+          </div>
+          <div style={row}>
+            <div style={rowLabel}>{t('settings_notif_channel_wishlist')}</div>
+            <Toggle on={notifPrefs.notif_pref_wishlist} onClick={() => toggleNotifPref('notif_pref_wishlist')} />
+          </div>
+          <div style={row}>
+            <div style={rowLabel}>{t('settings_notif_channel_community')}</div>
+            <Toggle on={notifPrefs.notif_pref_community} onClick={() => toggleNotifPref('notif_pref_community')} />
+          </div>
+        </div>
+      )}
 
       {userId && notifPrefs && (
         <div style={card}>
