@@ -64,7 +64,7 @@ async function upload(key: string, body: Buffer, contentType = 'application/octe
   }))
 }
 
-async function processUrl(url: string, results: { images: number; alreadyPresent: number; skipped: number; errors: number }) {
+async function processUrl(url: string, results: { images: number; alreadyPresent: number; skipped: number; errors: number; sampleError?: string }) {
   const pathMatch = url.match(/\/object\/public\/(.+)$/)
   if (!pathMatch) { results.skipped++; return }
   const r2Key = `storage/${pathMatch[1]}`
@@ -72,6 +72,7 @@ async function processUrl(url: string, results: { images: number; alreadyPresent
   // Un seul retry apres une courte pause : sous charge (des milliers d'appels
   // R2 par minute), un echec transitoire (429/timeout) est courant et ne
   // merite pas d'etre compte comme une vraie erreur au premier coup.
+  let lastErr: unknown
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       if (await existsInR2(r2Key)) { results.alreadyPresent++; return }
@@ -83,11 +84,16 @@ async function processUrl(url: string, results: { images: number; alreadyPresent
       await upload(r2Key, buf, res.headers.get('content-type') || 'image/jpeg')
       results.images++
       return
-    } catch {
+    } catch (e) {
+      lastErr = e
       if (attempt === 0) await new Promise(r => setTimeout(r, 500))
     }
   }
   results.errors++
+  // Un seul exemple garde par reponse (pas un par erreur) pour diagnostiquer
+  // sans noyer le JSON -- ex: permission R2 en lecture seule (echoue en
+  // ecriture uniquement) vs lien source mort (echoue au fetch).
+  if (!results.sampleError) results.sampleError = lastErr instanceof Error ? lastErr.message : String(lastErr)
 }
 
 export async function GET(req: NextRequest) {
@@ -101,7 +107,8 @@ export async function GET(req: NextRequest) {
   let cursor = req.nextUrl.searchParams.get('cursor') || '1970-01-01T00:00:00.000Z'
   const start = Date.now()
 
-  const results = { cardsProcessed: 0, images: 0, alreadyPresent: 0, skipped: 0, errors: 0 }
+  const results: { cardsProcessed: number; images: number; alreadyPresent: number; skipped: number; errors: number; sampleError?: string } =
+    { cardsProcessed: 0, images: 0, alreadyPresent: 0, skipped: 0, errors: 0 }
   let done = false
 
   while (Date.now() - start < DEADLINE_MS) {
