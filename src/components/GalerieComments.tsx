@@ -80,7 +80,7 @@ const timeAgo = (date: string, t: (k: any) => string, lang: string) => {
 
 const Avatar = ({ profile, accent, size = 36 }: { profile: Profile | null; accent: string; size?: number }) => (
   profile?.avatar_url
-    ? <img src={profile.avatar_url} style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+    ? <img src={profile.avatar_url} alt="" style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
     : <div style={{ width: size, height: size, borderRadius: '50%', background: accent + '22', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: size * 0.44, flexShrink: 0 }}>👤</div>
 )
 

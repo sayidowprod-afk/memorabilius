@@ -195,7 +195,7 @@ export default function AdminEvenements() {
                 {events.map(ev => (
                   <div key={ev.id} style={{ background: card, border: `1px solid ${border}`, borderRadius: 10, padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      {(ev as any).image_url && <img src={(ev as any).image_url} style={{ width: 48, height: 36, objectFit: 'cover', borderRadius: 6 }} />}
+                      {(ev as any).image_url && <img src={(ev as any).image_url} alt={ev.title} style={{ width: 48, height: 36, objectFit: 'cover', borderRadius: 6 }} />}
                       <div>
                         <p style={{ color: text, margin: 0, fontWeight: 700 }}>{ev.title}</p>
                         <p style={{ color: sub, margin: '2px 0 0', fontSize: 13 }}>{formatDate(ev.date)} · {ev.city}</p>
@@ -256,7 +256,7 @@ export default function AdminEvenements() {
                 }} />
                 {editingEvent.image_url ? (
                   <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
-                    <img src={editingEvent.image_url} style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                    <img src={editingEvent.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
                     <button type="button" onClick={() => setEditingEvent(ev => ev ? { ...ev, image_url: undefined } : ev)} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
                     <button type="button" onClick={() => editImgInputRef.current?.click()} style={{ position: 'absolute', bottom: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 8, padding: '4px 10px', color: 'white', cursor: 'pointer', fontSize: 12, fontWeight: 600 }}>{t('evadmin_change')}</button>
                   </div>
@@ -301,7 +301,7 @@ export default function AdminEvenements() {
                 }} />
                 {manualForm.image_url ? (
                   <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
-                    <img src={manualForm.image_url} style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                    <img src={manualForm.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
                     <button type="button" onClick={() => setManualForm(f => ({ ...f, image_url: '' }))} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
                   </div>
                 ) : (

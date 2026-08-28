@@ -36,6 +36,19 @@ export default function Connexion() {
     e.preventDefault()
     setLoading(true)
     setError('')
+
+    // Verrouillage anti-bruteforce : verifie AVANT d'appeler Supabase pour ne
+    // pas gaspiller une tentative reseau si le compte est deja bloque.
+    try {
+      const lockRes = await fetch(`/api/auth/login-attempt?email=${encodeURIComponent(form.email)}`)
+      const lock = await lockRes.json()
+      if (lock.locked) {
+        setError(t('login_err_locked').replace('{min}', String(Math.ceil(lock.retryAfterSeconds / 60))))
+        setLoading(false)
+        return
+      }
+    } catch { /* verif indisponible -> on laisse passer, ne bloque jamais la connexion */ }
+
     let { error } = await supabase.auth.signInWithPassword({ email: form.email, password: form.password })
     if (error && isAuthRetryableFetchError(error)) {
       // Échec réseau (pas identifiants) — fréquent au tout premier lancement de
@@ -45,6 +58,11 @@ export default function Connexion() {
       ;({ error } = await supabase.auth.signInWithPassword({ email: form.email, password: form.password }))
     }
     if (error) {
+      if (!isAuthRetryableFetchError(error)) {
+        fetch('/api/auth/login-attempt', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: form.email }),
+        }).catch(() => {})
+      }
       setError(isAuthRetryableFetchError(error) ? t('login_err_network') : t('login_err_credentials'))
       setLoading(false)
       return

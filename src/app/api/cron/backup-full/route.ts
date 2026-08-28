@@ -25,10 +25,12 @@ export const dynamic = 'force-dynamic'
 // 40s : retour frequent, tout en traitant encore plusieurs pages par appel.
 const DEADLINE_MS = 40_000
 const PAGE_SIZE = 500
-// 40 en concurrence faisait grimper les erreurs a plusieurs milliers sur un
-// seul appel (R2/le fetch source rate-limitent sous cette charge) -- redescendu,
-// avec un retry court sur echec transitoire plutot que d'abandonner tout de suite.
-const CONCURRENCY = 15
+// sampleError="fetch failed" confirme que c'est le TELECHARGEMENT de l'image
+// source qui echoue en masse (pas l'envoi vers R2) -- l'hebergeur des photos
+// (Supabase Storage / divers hotes tiers pour les cartes importees par CSV)
+// limite le debit sous forte concurrence. Redescendu fortement (15 -> 5) et
+// retry avec un delai plus long.
+const CONCURRENCY = 5
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -69,15 +71,16 @@ async function processUrl(url: string, results: { images: number; alreadyPresent
   if (!pathMatch) { results.skipped++; return }
   const r2Key = `storage/${pathMatch[1]}`
 
-  // Un seul retry apres une courte pause : sous charge (des milliers d'appels
-  // R2 par minute), un echec transitoire (429/timeout) est courant et ne
-  // merite pas d'etre compte comme une vraie erreur au premier coup.
+  // Retries avec delai croissant : "fetch failed" en masse pointe vers un
+  // rate-limit de l'hebergeur des photos source (Supabase Storage ou hote
+  // tiers pour les cartes CSV) sous forte concurrence, pas un probleme R2 --
+  // un delai plus long entre essais laisse la limite se lever.
   let lastErr: unknown
-  for (let attempt = 0; attempt < 2; attempt++) {
+  for (let attempt = 0; attempt < 3; attempt++) {
     try {
       if (await existsInR2(r2Key)) { results.alreadyPresent++; return }
 
-      const res = await fetch(url, { signal: AbortSignal.timeout(15000) })
+      const res = await fetch(url, { signal: AbortSignal.timeout(20000) })
       if (!res.ok) throw new Error(`fetch ${res.status}`)
 
       const buf = Buffer.from(await res.arrayBuffer())
@@ -86,14 +89,19 @@ async function processUrl(url: string, results: { images: number; alreadyPresent
       return
     } catch (e) {
       lastErr = e
-      if (attempt === 0) await new Promise(r => setTimeout(r, 500))
+      if (attempt < 2) await new Promise(r => setTimeout(r, 800 * (attempt + 1)))
     }
   }
   results.errors++
   // Un seul exemple garde par reponse (pas un par erreur) pour diagnostiquer
-  // sans noyer le JSON -- ex: permission R2 en lecture seule (echoue en
-  // ecriture uniquement) vs lien source mort (echoue au fetch).
-  if (!results.sampleError) results.sampleError = lastErr instanceof Error ? lastErr.message : String(lastErr)
+  // sans noyer le JSON. "fetch failed" (undici) est un message generique qui
+  // masque la vraie cause reseau (ECONNRESET, ETIMEDOUT...) -- on l'inclut via
+  // .cause quand disponible.
+  if (!results.sampleError) {
+    const cause = lastErr instanceof Error && 'cause' in lastErr ? (lastErr as any).cause : undefined
+    const causeStr = cause ? ` (cause: ${cause?.code || cause?.message || String(cause)})` : ''
+    results.sampleError = (lastErr instanceof Error ? lastErr.message : String(lastErr)) + causeStr
+  }
 }
 
 export async function GET(req: NextRequest) {

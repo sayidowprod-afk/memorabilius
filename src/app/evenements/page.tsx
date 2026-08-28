@@ -199,7 +199,7 @@ export default function Evenements() {
                   }} />
                   {form.image_url ? (
                     <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
-                      <img src={form.image_url} style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                      <img src={form.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
                       <button type="button" onClick={() => setForm(f => ({ ...f, image_url: '' }))} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
                     </div>
                   ) : (
@@ -248,7 +248,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
 
   return (
     <div style={{ background: card, border: `1px solid ${border}`, borderRadius: 14, overflow: 'hidden' }}>
-      {ev.image_url && <img src={ev.image_url} style={{ width: '100%', maxHeight: 200, objectFit: 'cover', display: 'block' }} />}
+      {ev.image_url && <img src={ev.image_url} alt={ev.title} style={{ width: '100%', maxHeight: 200, objectFit: 'cover', display: 'block' }} />}
       <div style={{ padding: '20px 22px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
         <div style={{ flex: 1, display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -297,7 +297,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
             {attendees.map((p: any) => (
               <a key={p.id} href={`/galerie/${p.id}`} style={{ display: 'flex', alignItems: 'center', gap: 6, background: dark ? '#2a2a2a' : '#f5f5f5', borderRadius: 20, padding: '4px 10px 4px 4px', textDecoration: 'none' }}>
                 {p.avatar_url
-                  ? <img src={p.avatar_url} style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
+                  ? <img src={p.avatar_url} alt="" style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
                   : <div style={{ width: 22, height: 22, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: 'white', fontWeight: 700 }}>{(p.display_name || '?')[0].toUpperCase()}</div>
                 }
                 <span style={{ color: text, fontSize: 12, fontWeight: 600 }}>{p.display_name || t('directory_collector')}</span>

@@ -29,6 +29,7 @@ export default function Profil() {
   const [showDelete, setShowDelete] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
   const [deleting, setDeleting] = useState(false)
+  const [exportingData, setExportingData] = useState(false)
   const [showPasswordForm, setShowPasswordForm] = useState(false)
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -200,8 +201,31 @@ export default function Profil() {
     }
   }
 
+  const handleExportData = async () => {
+    if (!userId) return
+    setExportingData(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const r = await fetch('/api/export-data', { headers: { 'Authorization': `Bearer ${session?.access_token}` } })
+      if (!r.ok) throw new Error('export failed')
+      const blob = await r.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `memorabilius-mes-donnees-${new Date().toISOString().slice(0, 10)}.json`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch {
+      toast.error(t('profile_err_generic'))
+    } finally {
+      setExportingData(false)
+    }
+  }
+
   const handleDeleteAccount = async () => {
-    if (deleteConfirm !== 'SUPPRIMER' || !userId) return
+    if (deleteConfirm !== t('profile_delete_word') || !userId) return
     setDeleting(true)
     try {
       const { data: { session } } = await supabase.auth.getSession()
@@ -473,6 +497,15 @@ export default function Profil() {
           <p style={{ margin: '5px 0 0', fontSize: 12, color: '#666' }}>{t('profile_status_hint')}</p>
         </div>
       )}
+
+      {/* Export de mes données (RGPD) */}
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+        <h3 style={{ fontWeight: 800, marginBottom: 8 }}>{t('profile_export_title')}</h3>
+        <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>{t('profile_export_desc')}</p>
+        <button onClick={handleExportData} disabled={exportingData} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13 }}>
+          {exportingData ? t('profile_exporting') : t('profile_export_btn')}
+        </button>
+      </div>
 
       {/* Zone danger */}
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>
