@@ -35,18 +35,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // (fetchFirstBatch) et NativeHomeDashboard : un appel direct de repli après un
     // court délai plutôt que de dépendre uniquement d'un événement qui peut ne jamais
     // se déclencher.
-    const timeoutId = setTimeout(() => {
+    //
+    // getSession() lit le même client Supabase sous-jacent que onAuthStateChange --
+    // si son initialisation interne (lecture/validation du token persisté) n'est
+    // simplement pas encore terminée à ce moment (pas juste "l'événement n'a pas
+    // encore été émis"), getSession() peut lui aussi répondre session:null de façon
+    // prématurée, avant même d'avoir eu le temps de lire le vrai token. Sans second
+    // essai, ça se traduisait par "comme si je n'étais pas connecté" jusqu'à un
+    // rechargement manuel -- un seul essai retardé supplémentaire absorbe ce cas
+    // sans boucler indéfiniment.
+    const getSessionWithTimeout = (ms: number) => Promise.race([
+      supabase.auth.getSession(),
+      new Promise<{ data: { session: null } }>(resolve => setTimeout(() => resolve({ data: { session: null } }), ms)),
+    ])
+
+    const timeoutId = setTimeout(async () => {
       if (settled) return
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        if (settled) return
-        settled = true
-        setState({ session, user: session?.user ?? null, loading: false })
-        setCrashlyticsUserId(session?.user?.id ?? null)
-      }).catch(() => {
-        if (settled) return
-        settled = true
-        setState(s => ({ ...s, loading: false }))
-      })
+      let session: Session | null = null
+      try {
+        session = (await getSessionWithTimeout(3000)).data.session
+        if (!session) {
+          // Repli prématuré possible -- un seul nouvel essai après un court délai
+          // avant d'accepter definitivement l'etat deconnecte.
+          await new Promise(r => setTimeout(r, 900))
+          if (settled) return
+          session = (await getSessionWithTimeout(3000)).data.session
+        }
+      } catch {}
+      if (settled) return
+      settled = true
+      setState({ session, user: session?.user ?? null, loading: false })
+      setCrashlyticsUserId(session?.user?.id ?? null)
     }, 2500)
 
     return () => { subscription.unsubscribe(); clearTimeout(timeoutId) }

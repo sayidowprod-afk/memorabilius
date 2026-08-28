@@ -765,7 +765,7 @@ function MessagesContent() {
               </div>
 
               {/* Input façon Insta : pill avec icône appareil photo intégrée + bouton cœur d'envoi rapide */}
-              <div style={{ padding: '10px 16px', borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
+              <div style={{ padding: '10px 16px', paddingBottom: 'max(10px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))', borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
                 <input
                   ref={fileInputRef}
                   type="file"
