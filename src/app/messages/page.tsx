@@ -221,6 +221,24 @@ function MessagesContent() {
     return () => { document.body.classList.remove('msg-fullscreen') }
   }, [isNative])
 
+  // .msg-page reservait toujours la hauteur de la bottom nav (NAV_TOTAL_HEIGHT_CSS)
+  // dans son calc(100dvh - ...) -- or MobileBottomNav se cache des que le clavier
+  // s'ouvre (voir MobileBottomNav.tsx), liberant cet espace. Sans s'en rendre compte
+  // ici aussi, .msg-page restait calcule comme si la nav etait toujours la : un
+  // grand vide inutile apparaissait au clavier ouvert, a la place de la nav
+  // desormais absente.
+  const [keyboardOpen, setKeyboardOpen] = useState(false)
+  useEffect(() => {
+    if (!isNative) return
+    let removeShow: (() => void) | undefined
+    let removeHide: (() => void) | undefined
+    import('@capacitor/keyboard').then(({ Keyboard }) => {
+      Keyboard.addListener('keyboardWillShow', () => setKeyboardOpen(true)).then(l => { removeShow = () => l.remove() })
+      Keyboard.addListener('keyboardWillHide', () => setKeyboardOpen(false)).then(l => { removeHide = () => l.remove() })
+    }).catch(() => {})
+    return () => { removeShow?.(); removeHide?.() }
+  }, [isNative])
+
   const loadConversations = async (uid: string) => {
     const { data } = await supabase
       .from('messages')
@@ -445,8 +463,10 @@ function MessagesContent() {
           .msg-avatar-ring { width: 52px !important; height: 52px !important; }
         }
         ${isNative ? `
-          /* App native : chat bord à bord, topbar/bottombar restent visibles au-dessus/dessous */
-          .msg-page { margin: 0 !important; padding: 0 !important; max-width: none !important; height: calc(100dvh - ${TOPBAR_HEIGHT_CSS} - ${NAV_TOTAL_HEIGHT_CSS}) !important; }
+          /* App native : chat bord à bord, topbar/bottombar restent visibles au-dessus/dessous.
+             Clavier ouvert -> MobileBottomNav se cache, donc on ne soustrait plus sa hauteur
+             (sinon un vide correspondant a la nav desormais absente apparaissait). */
+          .msg-page { margin: 0 !important; padding: 0 !important; max-width: none !important; height: calc(100dvh - ${TOPBAR_HEIGHT_CSS}${keyboardOpen ? '' : ` - ${NAV_TOTAL_HEIGHT_CSS}`}) !important; }
           .msg-layout { max-width: none !important; margin: 0 !important; gap: 0 !important; height: 100% !important; }
           .msg-list, .msg-chat { border-radius: 0 !important; box-shadow: none !important; }
         ` : ''}
