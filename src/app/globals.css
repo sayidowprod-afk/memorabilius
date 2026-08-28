@@ -1,5 +1,21 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Filet de securite global : si l'utilisateur a active "Supprimer les
+   animations" (accessibilite Android/iOS) ou l'equivalent navigateur, on
+   coupe TOUTES les animations/transitions du site, meme celles qui n'ont pas
+   leur propre garde @media (prefers-reduced-motion) au cas par cas. Duree
+   quasi nulle plutot que "none" pour ne pas casser les etats finaux geres
+   par une animation (ex: opacity/transform qui doivent atterrir a leur
+   valeur "to"). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Sans ça, Chrome/WebView Android attend ~300ms avant de valider un tap sur un
    bouton (pour distinguer d'un double-tap de zoom) — et sur certains appareils
    Android anciens ce premier tap est carrément avalé au lieu d'être juste
