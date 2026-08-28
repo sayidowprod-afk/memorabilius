@@ -20,7 +20,10 @@ import { S3Client, PutObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s
 export const maxDuration = 300
 export const dynamic = 'force-dynamic'
 
-const DEADLINE_MS = 270_000 // marge sous maxDuration=300 pour finir proprement
+// 270s (proche de maxDuration=300) donnait un retour utilisateur trop rare
+// (plusieurs minutes de silence par appel, percu comme "rien ne se passe").
+// 40s : retour frequent, tout en traitant encore plusieurs pages par appel.
+const DEADLINE_MS = 40_000
 const PAGE_SIZE = 500
 // 40 en concurrence faisait grimper les erreurs a plusieurs milliers sur un
 // seul appel (R2/le fetch source rate-limitent sous cette charge) -- redescendu,
