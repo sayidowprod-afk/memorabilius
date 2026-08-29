@@ -193,6 +193,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
     is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
+    image_recto_hd: '', image_verso_hd: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
     item_type: 'card' as string,
     lien_vinted: '', lien_ebay: '',
@@ -388,7 +389,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     })
   }
 
-  const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir') => {
+  const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir', hdBlob?: Blob | null, geminiBlob?: Blob | null) => {
     if (side === 'recto') setUploadingRecto(true)
     else if (side === 'verso') setUploadingVerso(true)
     else if (side === 'il') setUploadingIL(true)
@@ -416,9 +417,20 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
       const { data } = supabase.storage.from('avatars').getPublicUrl(path)
       const url = data.publicUrl
+
+      // Version HD (qualité originale) en plus de la version compressée -- utilisée
+      // uniquement par le Viewer3D, upload en parallèle, jamais bloquant.
+      let hdUrl: string | null = null
+      if (hdBlob) {
+        const hdPath = `cartes/${user.id}/${Date.now()}_${side}_hd.jpg`
+        const { error: hdError } = await supabase.storage.from('avatars').upload(hdPath, new File([hdBlob], `${Date.now()}_${side}_hd.jpg`, { type: 'image/jpeg' }), { upsert: true })
+        if (!hdError) hdUrl = supabase.storage.from('avatars').getPublicUrl(hdPath).data.publicUrl
+      }
+
       if (side === 'recto') {
-        setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false)
-        const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(blob) })
+        setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url })); setPreviewRecto(url); setUploadingRecto(false)
+        // Image envoyée à Gemini : la version 1200px dédiée si dispo, sinon la compressée par défaut.
+        const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(geminiBlob || blob) })
         rectoBase64Ref.current = rectoB64
         ebayHintsRef.current = []
         const { data: { session: ebaySession } } = await supabase.auth.getSession()
@@ -434,8 +446,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       }
       else if (side === 'verso') {
         const versoHorizontal = await detectBlobOrientation(blob)
-        setForm(f => ({ ...f, image_verso: url, verso_is_horizontal: versoHorizontal }))
-        setPreviewVerso(url); setUploadingVerso(false); setWaitingForVerso(false); analyzeCard(blob, true, rectoBase64Ref.current)
+        setForm(f => ({ ...f, image_verso: url, image_verso_hd: hdUrl || url, verso_is_horizontal: versoHorizontal }))
+        setPreviewVerso(url); setUploadingVerso(false); setWaitingForVerso(false); analyzeCard(geminiBlob || blob, true, rectoBase64Ref.current)
       }
       else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: url })); setPreviewIL(url); setUploadingIL(false) }
       else { setForm(f => ({ ...f, image_interieur_droite: url })); setPreviewIR(url); setUploadingIR(false) }
@@ -612,10 +624,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const frameX = (cw - frameW) / 2
     const frameY = (ch - frameH) / 2
 
-    // pixelScale : ratio pixels naturels / pixels CSS, plafonné à 2× le final (600px max → 1200px)
+    // pixelScale : ratio pixels naturels / pixels CSS -- non plafonné, pour garder le
+    // rognage à la pleine résolution native de la photo (utilisé pour la version HD,
+    // dediee au Viewer3D). La miniature 600x840 ci-dessous est dérivée de ce même
+    // canvas par sous-échantillonnage, donc elle ne perd rien par rapport à avant.
     const cssDisplayedW = img.naturalWidth * imgTransform.scale
-    const rawPixelScale = img.naturalWidth / cssDisplayedW
-    const pixelScale = Math.min(rawPixelScale, 1200 / frameW)
+    const pixelScale = img.naturalWidth / cssDisplayedW
 
     const outCanvas = document.createElement('canvas')
     outCanvas.width = Math.round(frameW * pixelScale)
@@ -640,9 +654,37 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
     setCropModal(null)
 
+    // HD (pour le Viewer3D uniquement) seulement pour recto/verso -- inutile pour les
+    // pages intérieures de reliure (il/ir), jamais affichées en 3D. Plafonné à 1800px
+    // (largement au-dessus du 600x840 d'avant) pour éviter des fichiers énormes/lents
+    // sur les photos très haute résolution, tout en gardant une qualité proche de l'original.
+    const wantsHd = side === 'recto' || side === 'verso'
+    let hdBlob: Blob | null = null
+    if (wantsHd) {
+      const hdScale = Math.min(1, 1800 / Math.max(outCanvas.width, outCanvas.height))
+      const hdCanvas = document.createElement('canvas')
+      hdCanvas.width = Math.round(outCanvas.width * hdScale)
+      hdCanvas.height = Math.round(outCanvas.height * hdScale)
+      hdCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, hdCanvas.width, hdCanvas.height)
+      hdBlob = await new Promise(res => hdCanvas.toBlob(b => res(b), 'image/jpeg', 0.92))
+    }
+
+    // Image envoyée à Gemini pour l'identification : 1200px max (mesuré : le coût Gemini
+    // est identique jusqu'à ~1600-1920px, donc aucune raison de se limiter à 600x840 comme
+    // avant -- ça laissait le texte fin illisible pour rien). Dérivée du même canvas HD.
+    let geminiBlob: Blob | null = null
+    if (wantsHd) {
+      const geminiScale = Math.min(1, 1200 / Math.max(outCanvas.width, outCanvas.height))
+      const geminiCanvas = document.createElement('canvas')
+      geminiCanvas.width = Math.round(outCanvas.width * geminiScale)
+      geminiCanvas.height = Math.round(outCanvas.height * geminiScale)
+      geminiCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, geminiCanvas.width, geminiCanvas.height)
+      geminiBlob = await new Promise(res => geminiCanvas.toBlob(b => res(b), 'image/jpeg', 0.90))
+    }
+
     finalCanvas.toBlob(async (blob) => {
       if (!blob) { setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
-      await uploadBlob(blob, side)
+      await uploadBlob(blob, side, hdBlob, geminiBlob)
     }, 'image/jpeg', 0.88)
   }
 
@@ -652,6 +694,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
       is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
       image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
+      image_recto_hd: '', image_verso_hd: '',
       verso_is_horizontal: null, item_type: 'card',
       lien_vinted: '', lien_ebay: '',
     })
@@ -675,6 +718,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       is_horizontal: form.format === 'horizontal',
       verso_is_horizontal: form.verso_is_horizontal,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
+      image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
       collection_tag: form.collection_tag || null,

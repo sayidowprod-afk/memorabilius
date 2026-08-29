@@ -48,6 +48,7 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
         if (m) {
           setCard({
             f: m.image_recto, b: m.image_verso || m.image_recto,
+            fHd: m.image_recto_hd || undefined, bHd: m.image_verso_hd || undefined,
             n: m.nom, t: m.equipe, y: m.annee,
             br: m.marque, s: m.collection, v: m.variation,
             num: m.num, auto: m.auto, rc: m.rc, patch: m.patch, g: m.grade || 'Raw',

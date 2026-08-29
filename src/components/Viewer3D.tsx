@@ -27,7 +27,7 @@ interface SetEntryRow {
 }
 
 interface Card {
-  f: string; b: string; n: string; t: string; y: string
+  f: string; b: string; fHd?: string; bHd?: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string; item_type?: string
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
@@ -1168,7 +1168,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                         {/* Card window */}
                         <div className="slb-mid">
                           <div className="slb-window">
-                            <img src={popup.f} draggable={false} alt={popup.n} />
+                            <img src={popup.fHd || popup.f} draggable={false} alt={popup.n} />
                             <div className="slb-sheen" />
                           </div>
                         </div>
@@ -1213,10 +1213,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               }}>
                 {edge}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
-                  <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.fHd || popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                  <img src={popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
+                  <img src={popup.bHd || popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
                 </div>
               </div>
                 )

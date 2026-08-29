@@ -378,7 +378,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
 
 interface Card {
   id_manuelle?: string;
-  f: string; b: string; n: string; t: string; y: string
+  f: string; b: string; fHd?: string; bHd?: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
@@ -972,6 +972,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         id_manuelle: m.id,
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
+        fHd: m.image_recto_hd || undefined, bHd: m.image_verso_hd || undefined,
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,

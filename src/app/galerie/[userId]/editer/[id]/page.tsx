@@ -70,7 +70,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
-    image_recto: '', image_verso: '', collection_tag: '', disponible_vente: false,
+    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false,
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null,
@@ -118,6 +118,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         grade: data.grade || 'Raw', cert_number: data.cert_number || '', num: data.num || '', card_number: data.card_number || '',
         rc: data.rc || false, auto: data.auto || false, patch: data.patch || false, printing_plate: data.printing_plate || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
+        image_recto_hd: data.image_recto_hd || '', image_verso_hd: data.image_verso_hd || '',
         collection_tag: data.collection_tag || '',
         disponible_vente: data.disponible_vente || false,
         booklet: data.booklet || false,
@@ -256,7 +257,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     })
   }
 
-  const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir') => {
+  const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir', hdBlob?: Blob | null, geminiBlob?: Blob | null) => {
     if (side === 'recto') setUploadingRecto(true)
     else if (side === 'verso') setUploadingVerso(true)
     else if (side === 'il') setUploadingIL(true)
@@ -273,16 +274,24 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     const url = data.publicUrl
-    if (side === 'recto') { setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false) }
+
+    let hdUrl: string | null = null
+    if (hdBlob) {
+      const hdPath = `cartes/${user.id}/${Date.now()}_${side}_hd.jpg`
+      const { error: hdError } = await supabase.storage.from('avatars').upload(hdPath, new File([hdBlob], `${Date.now()}_${side}_hd.jpg`, { type: 'image/jpeg' }), { upsert: true })
+      if (!hdError) hdUrl = supabase.storage.from('avatars').getPublicUrl(hdPath).data.publicUrl
+    }
+
+    if (side === 'recto') { setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url })); setPreviewRecto(url); setUploadingRecto(false) }
     else if (side === 'verso') {
       const versoHorizontal = await detectBlobOrientation(blob)
-      setForm(f => ({ ...f, image_verso: url, verso_is_horizontal: versoHorizontal }))
+      setForm(f => ({ ...f, image_verso: url, image_verso_hd: hdUrl || url, verso_is_horizontal: versoHorizontal }))
       setPreviewVerso(url); setUploadingVerso(false)
     }
     else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: url })); setPreviewIL(url); setUploadingIL(false) }
     else { setForm(f => ({ ...f, image_interieur_droite: url })); setPreviewIR(url); setUploadingIR(false) }
 
-    if (side === 'recto' || side === 'verso') analyzeCard(blob, side === 'verso')
+    if (side === 'recto' || side === 'verso') analyzeCard(geminiBlob || blob, side === 'verso')
   }
 
   const analyzeCard = async (blob: Blob, fillMissingOnly = false) => {
@@ -417,9 +426,10 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const angleRad = (rotation * Math.PI) / 180
     const frameX = (cw - frameW) / 2
     const frameY = (ch - frameH) / 2
+    // Non plafonné -- même raisonnement que ajouter/page.tsx : la miniature 600x840
+    // dérive de ce même canvas, donc elle ne perd rien; le HD/Gemini en profitent.
     const cssDisplayedW = img.naturalWidth * imgTransform.scale
-    const rawPixelScale = img.naturalWidth / cssDisplayedW
-    const pixelScale = Math.min(rawPixelScale, 1200 / frameW)
+    const pixelScale = img.naturalWidth / cssDisplayedW
     const outCanvas = document.createElement('canvas')
     outCanvas.width = Math.round(frameW * pixelScale)
     outCanvas.height = Math.round(frameH * pixelScale)
@@ -436,9 +446,32 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     finalCanvas.height = isHorizontalRef.current ? 600 : 840
     finalCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
     setCropModal(null)
+
+    // Plafonné à 1800px (voir ajouter/page.tsx) -- qualité proche de l'original sans
+    // fichiers énormes/lents sur les photos très haute résolution.
+    const wantsHd = side === 'recto' || side === 'verso'
+    let hdBlob: Blob | null = null
+    if (wantsHd) {
+      const hdScale = Math.min(1, 1800 / Math.max(outCanvas.width, outCanvas.height))
+      const hdCanvas = document.createElement('canvas')
+      hdCanvas.width = Math.round(outCanvas.width * hdScale)
+      hdCanvas.height = Math.round(outCanvas.height * hdScale)
+      hdCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, hdCanvas.width, hdCanvas.height)
+      hdBlob = await new Promise(res => hdCanvas.toBlob(b => res(b), 'image/jpeg', 0.92))
+    }
+    let geminiBlob: Blob | null = null
+    if (wantsHd) {
+      const geminiScale = Math.min(1, 1200 / Math.max(outCanvas.width, outCanvas.height))
+      const geminiCanvas = document.createElement('canvas')
+      geminiCanvas.width = Math.round(outCanvas.width * geminiScale)
+      geminiCanvas.height = Math.round(outCanvas.height * geminiScale)
+      geminiCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, geminiCanvas.width, geminiCanvas.height)
+      geminiBlob = await new Promise(res => geminiCanvas.toBlob(b => res(b), 'image/jpeg', 0.90))
+    }
+
     finalCanvas.toBlob(async (blob) => {
       if (!blob) { setUploadingRecto(false); setUploadingVerso(false); return }
-      await uploadBlob(blob, side)
+      await uploadBlob(blob, side, hdBlob, geminiBlob)
     }, 'image/jpeg', 0.88)
   }
 
@@ -455,6 +488,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null, rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
+      image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
       lien_vinted: form.lien_vinted || null,
