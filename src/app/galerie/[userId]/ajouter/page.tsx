@@ -686,6 +686,23 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
     // Upload photos originales pour dataset coins YOLO — une par face scannée
     if (newCard) {
+      // gemini_output/final_output sont NOT NULL en base -- l'insert plus bas
+      // echouait silencieusement sur CHAQUE carte (l'erreur n'etait que
+      // loguee en console) car ces deux champs n'etaient jamais fournis,
+      // alors que la table a ete concue pour les recevoir (voir migration
+      // 20260729_training_data.sql). On ne peut donc inserer que si une
+      // identification Gemini a bien eu lieu pour cette carte -- sinon ces
+      // champs resteraient indefinissables et l'insert continuerait d'echouer.
+      const geminiOut = geminiPrediction.current
+      const finalOut = geminiOut ? {
+        nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque,
+        collection: form.collection, variation: form.variation, num: form.num,
+        card_number: form.card_number, grade: form.grade, rc: form.rc, auto: form.auto, patch: form.patch,
+      } : null
+      const correctedFields = geminiOut && finalOut
+        ? Object.keys(finalOut).filter(k => JSON.stringify((finalOut as any)[k] ?? '') !== JSON.stringify(geminiOut[k] ?? ''))
+        : []
+
       for (const [side, scan] of Object.entries(scannerCornersRef.current)) {
         if (!scan?.originalBlob) continue
         let imageOriginal: string | null = null
@@ -693,12 +710,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           .from('training-originals')
           .upload(`${uid}/${newCard.id}_${side}.jpg`, scan.originalBlob, { contentType: 'image/jpeg' })
         if (data) imageOriginal = data.path
+        if (!geminiOut || !finalOut) continue // pas d'identification Gemini sur cette carte -- rien a inserer (NOT NULL)
         supabase.from('training_data').insert({
           user_id: uid, carte_id: newCard.id,
           image_original: imageOriginal,
           gemini_corners: scan.gemini ?? null,
           final_corners: scan.final ?? null,
           corners_adjusted: scan.adjusted ?? false,
+          gemini_output: geminiOut,
+          final_output: finalOut,
+          corrected: correctedFields.length > 0,
+          corrected_fields: correctedFields,
           source: 'galerie',
         }).then(({ error }) => { if (error) console.error('[training_data]', error) })
       }
