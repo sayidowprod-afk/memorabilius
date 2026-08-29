@@ -63,6 +63,7 @@ export const it = {
   editor_youtube_prompt: "Incolla l'URL YouTube:",
   editor_link_prompt: 'URL del link:',
   nav_admin_stats: 'Statistiche admin',
+  nav_admin_reports: 'Segnalazioni',
   nav_my_account: 'Il mio account',
   nav_annuaire: 'Elenco',
   nav_teams: 'Teams',
@@ -315,6 +316,7 @@ export const it = {
 
   // Extras
   gallery_cards: 'Carte',
+  gallery_percentile: 'Top {n}% dei collezionisti (numero di carte)',
   gallery_search_label: 'Ricerca',
   gallery_team_label: 'Squadra',
   gallery_collection_label: 'Collezione',

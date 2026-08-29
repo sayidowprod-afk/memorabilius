@@ -83,6 +83,7 @@ const translations = {
     editor_youtube_prompt: "Colle l'URL YouTube :",
     editor_link_prompt: 'URL du lien :',
     nav_admin_stats: 'Stats admin',
+    nav_admin_reports: 'Signalements',
     nav_my_account: 'Mon compte',
     nav_annuaire: 'Annuaire',
     nav_teams: 'Teams',
@@ -335,6 +336,7 @@ const translations = {
 
     // Extras
     gallery_cards: 'Cartes',
+    gallery_percentile: 'Top {n}% des collectionneurs (nombre de cartes)',
     gallery_search_label: 'Recherche',
     gallery_team_label: 'Équipe',
     gallery_collection_label: 'Collection',
@@ -1437,6 +1439,7 @@ const translations = {
     editor_youtube_prompt: 'Paste the YouTube URL:',
     editor_link_prompt: 'Link URL:',
     nav_admin_stats: 'Admin stats',
+    nav_admin_reports: 'Reports',
     nav_my_account: 'My account',
     nav_annuaire: 'Directory',
     nav_teams: 'Teams',
@@ -1689,6 +1692,7 @@ const translations = {
 
     // Extras
     gallery_cards: 'Cards',
+    gallery_percentile: 'Top {n}% of collectors (card count)',
     gallery_search_label: 'Search',
     gallery_team_label: 'Team',
     gallery_collection_label: 'Collection',
@@ -2791,6 +2795,7 @@ const translations = {
     editor_youtube_prompt: 'Füge die YouTube-URL ein:',
     editor_link_prompt: 'Link-URL:',
     nav_admin_stats: 'Admin-Statistiken',
+    nav_admin_reports: 'Meldungen',
     nav_my_account: 'Mein Konto',
     nav_annuaire: 'Verzeichnis',
     nav_teams: 'Teams',
@@ -3043,6 +3048,7 @@ const translations = {
 
     // Extras
     gallery_cards: 'Karten',
+    gallery_percentile: 'Top {n}% der Sammler (Kartenanzahl)',
     gallery_search_label: 'Suche',
     gallery_team_label: 'Team',
     gallery_collection_label: 'Kollektion',

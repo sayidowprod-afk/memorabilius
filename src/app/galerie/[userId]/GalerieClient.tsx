@@ -1248,6 +1248,26 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const numCount = useCountUp(filteredStats.num)
   const patchCount = useCountUp(filteredStats.patch)
 
+  // "Top X% des collectionneurs" -- reutilise profiles.stats_total (deja
+  // maintenu a jour partout ailleurs, ex. annuaire) via deux COUNT legers
+  // plutot que de recuperer/comparer les stats de tous les collectionneurs
+  // cote client. Uniquement pour le proprietaire (info motivante sur sa
+  // propre collection, pas pertinente en visitant une autre galerie).
+  const [percentile, setPercentile] = useState<number | null>(null)
+  useEffect(() => {
+    if (!isOwner || !profile || profile.stats_total == null) { setPercentile(null); return }
+    let cancelled = false
+    ;(async () => {
+      const [{ count: better }, { count: total }] = await Promise.all([
+        supabase.from('profiles').select('id', { count: 'exact', head: true }).gt('stats_total', profile.stats_total),
+        supabase.from('profiles').select('id', { count: 'exact', head: true }).not('stats_total', 'is', null),
+      ])
+      if (cancelled || !total) return
+      setPercentile(Math.max(1, Math.round((((better || 0)) / total) * 100)))
+    })()
+    return () => { cancelled = true }
+  }, [isOwner, profile?.stats_total])
+
   // Volontairement PAS `[filtered]` : `filtered` recalcule (nouvelle
   // référence) a chaque `setCards()`, y compris un simple glisser-deposer
   // pour reordonner - ca renvoyait l'utilisateur en page 1 (donc en haut)
@@ -2095,6 +2115,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 ))}
               </div>
+
+              {percentile != null && (
+                <p style={{ fontSize: 11, fontWeight: 700, color: accent, margin: 0, textAlign: 'right' }}>
+                  🏆 {t('gallery_percentile').replace('{n}', String(percentile))}
+                </p>
+              )}
 
               <div className="galerie-actions" style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
 

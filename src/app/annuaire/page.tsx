@@ -48,6 +48,38 @@ function AnnuaireContent() {
   const [search, setSearch] = useState('')
   const [nbaFilter, setNbaFilter] = useState('')
 
+  // Aperçu au survol (desktop uniquement, voir @media hover:hover plus bas) --
+  // cache par collectionneur pour ne jamais refetcher au survol repété, et un
+  // court delai avant de lancer la requete pour ignorer un simple passage
+  // rapide de la souris.
+  const [hoverId, setHoverId] = useState<string | null>(null)
+  const [hoverPos, setHoverPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
+  const hoverCardsCache = useRef<Map<string, string[]>>(new Map())
+  const [hoverCards, setHoverCards] = useState<string[] | null>(null)
+  const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const scheduleHoverPreview = (id: string, x: number, y: number) => {
+    setHoverPos({ x, y })
+    if (hoverId === id) return
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
+    hoverTimerRef.current = setTimeout(async () => {
+      setHoverId(id)
+      const cached = hoverCardsCache.current.get(id)
+      if (cached) { setHoverCards(cached); return }
+      setHoverCards(null)
+      const { data } = await supabase.from('cartes_manuelles')
+        .select('image_recto').eq('user_id', id)
+        .order('created_at', { ascending: false }).limit(4)
+      const imgs = (data || []).map(d => d.image_recto).filter(Boolean) as string[]
+      hoverCardsCache.current.set(id, imgs)
+      setHoverCards(imgs)
+    }, 300)
+  }
+  const cancelHoverPreview = () => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
+    setHoverId(null)
+  }
+
   // Resynchronise l'état des filtres avec l'URL à chaque changement (y compris
   // navigation arrière/avant), pour ne pas perdre la recherche/team en revenant
   // de la page d'un collectionneur.
@@ -384,7 +416,10 @@ function AnnuaireContent() {
                 <tr><td colSpan={6} style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('annuaire_no_collectors')}</td></tr>
               )}
               {visible.map(c => (
-                <tr key={c.id} className="annuaire-row">
+                <tr key={c.id} className="annuaire-row"
+                  onMouseEnter={!isMobile ? e => scheduleHoverPreview(c.id, e.clientX, e.clientY) : undefined}
+                  onMouseMove={!isMobile ? e => scheduleHoverPreview(c.id, e.clientX, e.clientY) : undefined}
+                  onMouseLeave={!isMobile ? cancelHoverPreview : undefined}>
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
                       <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 28 : 42} height={isMobile ? 28 : 42} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
@@ -415,6 +450,38 @@ function AnnuaireContent() {
           </table>
         </div>
       )}
+
+      {hoverId && (() => {
+        const hc = visible.find(c => c.id === hoverId) || sorted.find(c => c.id === hoverId)
+        if (!hc) return null
+        return (
+          <div style={{
+            position: 'fixed', left: Math.min(hoverPos.x + 16, window.innerWidth - 240), top: Math.min(hoverPos.y + 16, window.innerHeight - 200),
+            zIndex: 500, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 12, width: 220,
+            boxShadow: '0 8px 28px rgba(0,0,0,0.25)', border: `1px solid ${dark ? '#333' : '#eee'}`, pointerEvents: 'none',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <img src={hc.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(hc.display_name || 'U')}&background=003DA6&color=fff`}
+                style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+              <span style={{ fontWeight: 800, fontSize: 13, color: dark ? '#f0f0f0' : '#121212', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{hc.display_name}</span>
+            </div>
+            <div style={{ display: 'flex', gap: 4, marginBottom: hoverCards === null || hoverCards.length > 0 ? 8 : 0 }}>
+              {[['Total', hc.stats?.total], ['RC', hc.stats?.rc], ['Auto', hc.stats?.auto]].map(([label, val]) => (
+                <span key={label as string} style={{ fontSize: 10, fontWeight: 700, color: dark ? '#aaa' : '#666', background: dark ? '#2a2a2a' : '#f5f5f5', borderRadius: 6, padding: '2px 6px' }}>{label} {val ?? 0}</span>
+              ))}
+            </div>
+            {hoverCards === null ? (
+              <div style={{ fontSize: 11, color: dark ? '#888' : '#999', textAlign: 'center', padding: 8 }}>…</div>
+            ) : hoverCards.length > 0 && (
+              <div style={{ display: 'flex', gap: 4 }}>
+                {hoverCards.map((img, i) => (
+                  <img key={i} src={img} alt="" style={{ width: 44, height: 62, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      })()}
     </div>
   )
 }
