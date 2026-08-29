@@ -1,4 +1,4 @@
-const CACHE_NAME = 'memorabilius-v6'
+const CACHE_NAME = 'memorabilius-v7'
 
 // Cache séparé pour les photos de cartes (Supabase Storage, ibb.co, etc.) —
 // cache-first : une fois une carte vue, sa photo reste dispo hors-ligne même
@@ -9,6 +9,44 @@ const CACHE_NAME = 'memorabilius-v6'
 // périmés) — les photos n'ont pas ce risque, une image ne "casse" jamais.
 const IMAGE_CACHE_NAME = 'memorabilius-images-v1'
 const IMAGE_CACHE_MAX_ENTRIES = 500
+
+// La coquille HTML seule ne sert a rien hors-ligne si ses scripts/styles ne
+// se chargent pas -- avant ca, seule la NAVIGATION (le HTML) etait mise en
+// cache (voir plus bas), jamais /_next/static/* : React ne pouvait donc
+// jamais demarrer hors-ligne (page figee sur le rendu SSR initial, aucune
+// des resiliences cote app -- cache localStorage, retry -- ne s'executait,
+// puisqu'aucun JS ne tournait). Ces fichiers sont content-hashes par build
+// (nom different a chaque changement), donc un cache-first sans expiration
+// est correct : jamais perime, jamais a invalider explicitement.
+const ASSET_CACHE_NAME = 'memorabilius-assets-v1'
+const ASSET_CACHE_MAX_ENTRIES = 200
+
+function isBuildAsset(request) {
+  return request.url.includes('/_next/static/')
+}
+
+async function trimAssetCache() {
+  const cache = await caches.open(ASSET_CACHE_NAME)
+  const keys = await cache.keys()
+  const overflow = keys.length - ASSET_CACHE_MAX_ENTRIES
+  if (overflow > 0) await Promise.all(keys.slice(0, overflow).map((k) => cache.delete(k)))
+}
+
+async function handleAssetFetch(request) {
+  const cache = await caches.open(ASSET_CACHE_NAME)
+  const cached = await cache.match(request)
+  if (cached) return cached
+  try {
+    const res = await fetch(request)
+    if (res.ok) {
+      cache.put(request, res.clone())
+      trimAssetCache()
+    }
+    return res
+  } catch {
+    return cached || Response.error()
+  }
+}
 
 // Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
 const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
@@ -61,7 +99,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME && k !== IMAGE_CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => k !== CACHE_NAME && k !== IMAGE_CACHE_NAME && k !== ASSET_CACHE_NAME).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -111,6 +149,8 @@ self.addEventListener('fetch', (event) => {
   if (event.request.mode !== 'navigate') {
     if (event.request.method === 'GET' && isImageRequest(event.request)) {
       event.respondWith(handleImageFetch(event.request))
+    } else if (event.request.method === 'GET' && isBuildAsset(event.request)) {
+      event.respondWith(handleAssetFetch(event.request))
     }
     return
   }

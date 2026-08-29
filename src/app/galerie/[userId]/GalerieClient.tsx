@@ -586,9 +586,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     // figée sur le squelette de chargement pour toujours. On retente donc
     // automatiquement, avec un timeout pour ne pas dépendre d'un rejet
     // explicite (même filet que NativeHomeDashboard).
+    let resolvedId = userId
     const init = async (attempt: number) => {
       try {
-        let resolvedId = userId
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
         const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
 
@@ -616,7 +616,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         const venteMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.disponible_vente || false]))
         setCsvVente(venteMap)
 
-        if (profileData) { setProfile(profileData); loadCSV(profileData.lien_csv ?? null, tagsMap, profileData.gallery_order || [], venteMap) }
+        if (profileData) {
+          setProfile(profileData)
+          // Nom/avatar affiches a n'importe qui (info publique, pas de risque a
+          // les garder en cache meme pour la galerie de quelqu'un d'autre,
+          // contrairement aux cartes qui restent volontairement reservees au
+          // propriétaire -- voir plus bas) : sans ca, le fallback hors-ligne
+          // en cas d'echec (voir catch ci-dessous) affiche toujours "Collectionneur"
+          // generique meme sur une galerie deja visitee avec succes avant.
+          try { localStorage.setItem(`gallery-profile-cache-${resolvedId}`, JSON.stringify(profileData)) } catch {}
+          loadCSV(profileData.lien_csv ?? null, tagsMap, profileData.gallery_order || [], venteMap)
+        }
         else setLoaded(true)
         // badges chargés dans BadgeBox à la demande
         supabase.from('collection_tab_settings').select('tag, color, position, parent').eq('user_id', resolvedId).then(({ data }) => {
@@ -655,6 +665,31 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         if (cancelled) return
         if (attempt < 2) { setTimeout(() => { if (!cancelled) init(attempt + 1) }, 1000); return }
         console.error('Gallery init error', e)
+        // Hors-ligne / requete finalement echouee : au moins afficher le vrai nom
+        // et avatar (info publique, deja vue) plutot que le "Collectionneur"
+        // generique -- meme mecanisme cote cartes juste en dessous dans loadCSV.
+        try {
+          const cachedProfile = localStorage.getItem(`gallery-profile-cache-${resolvedId}`)
+          if (cachedProfile) setProfile(JSON.parse(cachedProfile))
+        } catch {}
+        // La requete a echoue avant meme d'atteindre loadCSV (voir plus bas) --
+        // son propre filet hors-ligne (fallback sur gallery-cache-${userId})
+        // n'a donc pas eu l'occasion de s'executer. Meme repli ici, seulement
+        // pour le proprietaire (voir raison dans loadCSV).
+        if (isOwner) {
+          try {
+            const cached = localStorage.getItem(`gallery-cache-${userId}`)
+            if (cached) {
+              const allCards: Card[] = JSON.parse(cached)
+              setCards(allCards)
+              setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+              setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
+              setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
+              setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
+              setUsingOfflineCache(true)
+            }
+          } catch {}
+        }
         setLoaded(true)
       }
     }
