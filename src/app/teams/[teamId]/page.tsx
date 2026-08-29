@@ -1120,8 +1120,14 @@ function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: st
   }, [cardKey, userId])
 
   if (!card) return null
+  // /galerie/[userId]?card=<image_recto> ouvre directement le Viewer3D de
+  // cette carte precise dans la galerie de son proprietaire (meme mecanisme
+  // que la redirection SSR /galerie/[userId]/[cardSlug], voir
+  // CardPublicPage.tsx) -- un lien classique (au lieu d'un <a target="_blank">
+  // vers l'image brute) reste dans la navigation in-app plutot que de sortir
+  // vers le navigateur systeme sur l'app Android.
   return (
-    <a href={card.image_recto || undefined} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', marginTop: compact ? 6 : 10 }}>
+    <Link href={`/galerie/${userId}?card=${encodeURIComponent(card.image_recto || '')}`} style={{ textDecoration: 'none', display: 'block', marginTop: compact ? 6 : 10 }}>
       <div style={{ background: 'rgba(0,0,0,0.06)', borderRadius: 8, padding: 8, display: 'flex', gap: 10, alignItems: 'center' }}>
         {card.image_recto && <img loading="lazy" src={card.image_recto} style={{ height: compact ? 48 : 64, borderRadius: 4, objectFit: 'cover' }} alt="" />}
         <div>
@@ -1129,6 +1135,6 @@ function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: st
           <div style={{ fontSize: 11, opacity: 0.7 }}>{card.annee} · {card.marque}</div>
         </div>
       </div>
-    </a>
+    </Link>
   )
 }
