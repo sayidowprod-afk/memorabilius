@@ -30,6 +30,7 @@ export default function SecuritySettings({ dark }: Props) {
   const [verifying, setVerifying] = useState(false)
   const [error, setError] = useState('')
   const [history, setHistory] = useState<LoginEntry[]>([])
+  const [secretCopied, setSecretCopied] = useState(false)
 
   const refreshFactors = async () => {
     const { data } = await supabase.auth.mfa.listFactors()
@@ -116,7 +117,19 @@ export default function SecuritySettings({ dark }: Props) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', textAlign: 'center' }}>
             <p style={{ fontSize: 12, color: dark ? '#999' : '#888', margin: 0 }}>{t('security_2fa_scan_hint')}</p>
             {qrCode && <img src={qrCode} alt="QR code 2FA" width={160} height={160} style={{ background: 'white', padding: 8, borderRadius: 8 }} />}
-            {secret && <code style={{ fontSize: 11, wordBreak: 'break-all', color: dark ? '#999' : '#888' }}>{secret}</code>}
+            {secret && (
+              <div style={{ width: '100%', maxWidth: 260, background: dark ? '#2a2a2a' : '#f7f7f7', borderRadius: 10, padding: '10px 12px' }}>
+                <p style={{ fontSize: 11, color: dark ? '#999' : '#888', margin: '0 0 6px' }}>{t('security_2fa_manual_hint')}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <code style={{ flex: 1, fontSize: 11, wordBreak: 'break-all', color: dark ? '#ccc' : '#444', textAlign: 'left' }}>{secret}</code>
+                  <button type="button" onClick={() => {
+                    navigator.clipboard.writeText(secret).then(() => { setSecretCopied(true); setTimeout(() => setSecretCopied(false), 2000) })
+                  }} style={{ flexShrink: 0, fontSize: 11, fontWeight: 700, padding: '5px 9px', borderRadius: 6, border: `1px solid ${dark ? '#444' : '#ddd'}`, background: dark ? '#1e1e1e' : 'white', color: secretCopied ? '#2ecc71' : (dark ? '#ccc' : '#444'), cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    {secretCopied ? `✓ ${t('security_2fa_copied')}` : t('security_2fa_copy')}
+                  </button>
+                </div>
+              </div>
+            )}
             <form onSubmit={confirmEnroll} style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', maxWidth: 220 }}>
               <input
                 value={code} onChange={e => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}

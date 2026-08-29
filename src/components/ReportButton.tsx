@@ -57,12 +57,16 @@ export default function ReportButton({ reportedUserId, context, compact }: Props
         <div onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 3000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
           <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 22, width: '100%', maxWidth: 380, display: 'flex', flexDirection: 'column', gap: 12 }}>
             <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16, color: dark ? '#eee' : '#111' }}>🚩 {t('report_title')}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
               {REASONS.map(r => (
-                <label key={r} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: dark ? '#ddd' : '#333', cursor: 'pointer' }}>
-                  <input type="radio" name="report-reason" checked={reason === r} onChange={() => setReason(r)} />
+                <button key={r} type="button" onClick={() => setReason(r)} style={{
+                  padding: '9px 10px', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', textAlign: 'left',
+                  border: `1.5px solid ${reason === r ? '#003DA6' : (dark ? '#3a3a3c' : '#e0e0e0')}`,
+                  background: reason === r ? '#003DA6' : (dark ? '#2a2a2a' : '#f7f7f7'),
+                  color: reason === r ? 'white' : (dark ? '#ddd' : '#333'),
+                }}>
                   {t(`report_reason_${r}` as any)}
-                </label>
+                </button>
               ))}
             </div>
             <textarea
