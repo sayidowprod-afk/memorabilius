@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import dynamic from 'next/dynamic'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
@@ -176,6 +177,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const { userId } = use(params)
   const router = useRouter()
   const { lang, t } = useLang()
+  const { dark } = useTheme()
   const [saving, setSaving] = useState(false)
   const [showDesignation, setShowDesignation] = useState(false)
   const [designation, setDesignation] = useState('')
@@ -1228,18 +1230,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           position:fixed, voir globals.css et le fix appliqué à trades/page.tsx) */}
       {binderPrompt && !showBinderPicker && createPortal(
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 1500, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-          <div style={{ background: 'white', borderRadius: 16, padding: '28px 24px', maxWidth: 360, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.25)', textAlign: 'center' }}>
+          <div style={{ background: dark ? '#1c1c1e' : 'white', borderRadius: 16, padding: '28px 24px', maxWidth: 360, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.25)', textAlign: 'center' }}>
             <img src={binderPrompt.img} alt="" style={{ width: 90, borderRadius: 8, margin: '0 auto 14px', display: 'block' }} />
-            <h3 style={{ fontSize: 16, fontWeight: 900, color: '#111', margin: '0 0 6px' }}>
+            <h3 style={{ fontSize: 16, fontWeight: 900, color: dark ? '#eee' : '#111', margin: '0 0 6px' }}>
               {t('addcard_added_title')}
             </h3>
-            <p style={{ fontSize: 13, color: '#666', margin: '0 0 18px' }}>
+            <p style={{ fontSize: 13, color: dark ? '#999' : '#666', margin: '0 0 18px' }}>
               {t('addcard_file_prompt')}
             </p>
             <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
               <button
                 onClick={() => router.push(`/galerie/${userId}`)}
-                style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: '2px solid #e0e0e0', background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: '#333' }}>
+                style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: dark ? '2px solid #3a3a3c' : '2px solid #e0e0e0', background: dark ? '#1c1c1e' : 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#ddd' : '#333' }}>
                 {t('addcard_no_thanks')}
               </button>
               <button
@@ -1250,7 +1252,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             </div>
             <button
               onClick={resetForm}
-              style={{ width: '100%', padding: '11px 0', borderRadius: 10, border: `2px solid ${ACCENT}`, background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: ACCENT }}>
+              style={{ width: '100%', padding: '11px 0', borderRadius: 10, border: `2px solid ${ACCENT}`, background: dark ? '#1c1c1e' : 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: ACCENT }}>
               {t('addcard_add_another')}
             </button>
           </div>
