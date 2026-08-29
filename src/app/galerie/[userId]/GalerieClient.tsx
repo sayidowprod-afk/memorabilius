@@ -475,6 +475,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     }
     return { border: `${width}px solid ${color}` }
   }
+  // Couleur de bordure d'une carte : quand un onglet de collection est actif
+  // (fCollectionTag), on affiche la couleur DE CET ONGLET si la carte en fait
+  // partie -- une carte appartenant a plusieurs collections (d.collections,
+  // le tableau utilise par le filtre lui-meme) n'a pas forcement cet onglet
+  // comme premier tag (d.collection_tag), qui pointait alors vers la
+  // couleur d'une AUTRE collection de la carte (souvent la couleur par
+  // defaut/accent quand ce premier tag n'a pas de couleur enregistree).
+  const cardTagColor = (d: Card): string => {
+    if (fCollectionTag && (d.collections || []).includes(fCollectionTag)) {
+      return tabSettings.get(fCollectionTag)?.color || accent
+    }
+    return (d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent
+  }
   const [popup, setPopupRaw] = useState<Card | null>(null)
   // Ouverture/fermeture/navigation du viewer via l'API View Transitions quand
   // le navigateur la supporte : un fondu-enchaîné natif remplace le cut sec.
@@ -3085,7 +3098,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(c) } }}
                       style={{
                       flex: '0 0 auto', width: 90, cursor: 'pointer', borderRadius: 8, overflow: 'hidden',
-                      ...coloredBorder((c.collection_tag && tabSettings.get(c.collection_tag)?.color) || accent),
+                      ...coloredBorder(cardTagColor(c)),
                     }}>
                       {renderCardImage(c)}
                     </div>
@@ -3127,7 +3140,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               cursor: qrMode ? 'pointer' : (editMode && isOwner && sortBy === 'default' ? 'pointer' : editMode ? 'default' : 'pointer'),
               ...((privateCards.has(d.f) && isOwner)
                 ? { border: '2px solid #e74c3c' }
-                : coloredBorder((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent)),
+                : coloredBorder(cardTagColor(d))),
               boxSizing: 'border-box',
               opacity: activeDragId === getCardId(d) ? 0.35 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
               ...(activeDragId === getCardId(d) ? { outline: '2px dashed #003DA6', outlineOffset: -2, background: dark ? '#1a2b57' : '#eef4ff' } : {}),
