@@ -7,6 +7,7 @@ import { useIsNative } from '@/lib/useIsNative'
 import { isHapticsEnabled, setHapticsEnabled } from '@/lib/haptics'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
 import SecuritySettings from '@/components/SecuritySettings'
+import FeedbackForm from '@/components/FeedbackForm'
 import { supabase } from '@/lib/supabase'
 
 const LANGS = [
@@ -184,6 +185,14 @@ export default function Parametres() {
           </div>
         </div>
       )}
+
+      <div style={card}>
+        <h3 style={{ fontWeight: 800, marginBottom: 4 }}>💬 {t('feedback_title')}</h3>
+        <p style={rowSub}>{t('feedback_desc')}</p>
+        <div style={{ marginTop: 10 }}>
+          <FeedbackForm dark={dark} />
+        </div>
+      </div>
     </div>
   )
 }

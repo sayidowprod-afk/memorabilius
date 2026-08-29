@@ -10,6 +10,7 @@ import LinkifiedText from '@/components/LinkifiedText'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import EmptyState from '@/components/EmptyState'
 import CardPicker from '@/components/CardPicker'
+import OnlineIndicator from '@/components/OnlineIndicator'
 
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
@@ -101,7 +102,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setTeam(teamData)
 
     const { data: m } = await supabase.from('team_members')
-      .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure, is_donor)')
+      .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure, is_donor, last_seen)')
       .eq('team_id', parseInt(teamId))
     setMembers(m || [])
 
@@ -827,8 +828,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     </td>
                     <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <img loading="lazy" src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
-                          style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
+                        <div style={{ position: 'relative', flexShrink: 0 }}>
+                          <img loading="lazy" src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
+                            style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
+                          <span style={{ position: 'absolute', bottom: -1, right: -1 }}><OnlineIndicator lastSeen={m.last_seen} size={11} /></span>
+                        </div>
                         <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: m.is_donor ? undefined : 'var(--text, #111)', textDecoration: 'none' }}>{m.display_name}</Link>
                         {m.is_donor && <span title="Donateur Ko-fi" style={{ fontSize: 14, lineHeight: 1 }}>☕</span>}
                       </div>

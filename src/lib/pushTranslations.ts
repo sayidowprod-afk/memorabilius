@@ -97,6 +97,21 @@ export function messageReceivedPush(lang: PushLang, senderName: string | null) {
   }
 }
 
+// Distinct d'un message texte classique : sans ca, une carte partagee en DM
+// n'affichait qu'un "nouveau message" generique, sans indiquer qu'il s'agit
+// d'une carte tant que le destinataire n'ouvrait pas le chat.
+export function cardSharedPush(lang: PushLang, senderName: string | null, cardName: string) {
+  const fallback = { fr: 'Quelqu\'un', en: 'Someone', de: 'Jemand' }[lang]
+  return {
+    title: `🃏 ${senderName || fallback}`,
+    body: {
+      fr: `Vous a partagé une carte : ${cardName}`,
+      en: `Shared a card with you: ${cardName}`,
+      de: `Hat dir eine Karte geteilt: ${cardName}`,
+    }[lang],
+  }
+}
+
 export function popularityDigestPush(lang: PushLang, views: number, likes: number) {
   const parts: string[] = []
   if (views) parts.push({ fr: `vue ${views} fois`, en: `viewed ${views} times`, de: `${views} Mal angesehen` }[lang])

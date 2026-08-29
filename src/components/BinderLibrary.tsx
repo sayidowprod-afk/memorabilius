@@ -157,6 +157,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [commentCount, setCommentCount] = useState(0)
   const [showSortMenu, setShowSortMenu] = useState(false)
   const [sorting, setSorting] = useState(false)
+  // Meme delai d'annulation que la suppression de carte (GalerieClient) --
+  // un classeur entier est une perte plus lourde qu'une carte, il merite au
+  // moins le meme filet plutot qu'un confirm() bloquant + suppression
+  // immediate et definitive.
+  const UNDO_BINDER_DELETE_DELAY_MS = 5000
+  const pendingBinderDeleteRef = useRef<{ binder: Binder; timeoutId: ReturnType<typeof setTimeout> } | null>(null)
+  const [undoBinderBanner, setUndoBinderBanner] = useState<{ id: number; nom: string } | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [showOwnerMenu, setShowOwnerMenu] = useState(false)
   const [ownerMenuUp, setOwnerMenuUp] = useState(false)
@@ -522,11 +529,39 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
   }
 
-  const deleteBinder = async (id: number) => {
-    if (!confirm(t('binder_delete_confirm'))) return
-    await supabase.from('binders').delete().eq('id', id)
+  const finalizeDeleteBinder = async (id: number) => {
+    const pending = pendingBinderDeleteRef.current
+    pendingBinderDeleteRef.current = null
+    setUndoBinderBanner(cur => cur?.id === id ? null : cur)
+    try {
+      const { error } = await supabase.from('binders').delete().eq('id', id)
+      if (error) throw error
+    } catch {
+      toast.error(t('binder_delete_error'))
+      // La suppression optimiste avait deja retire le classeur de l'UI --
+      // sans ca, un echec reseau/RLS ici le laisserait manquant indefiniment
+      // alors qu'il existe toujours en base.
+      if (pending) setBinders(prev => [...prev, pending.binder].sort((a, b) => a.position - b.position))
+    }
+  }
+
+  const deleteBinder = (id: number) => {
+    const binder = binders.find(b => b.id === id)
+    if (!binder) return
     setBinders(prev => prev.filter(b => b.id !== id))
     closeBinder()
+    const timeoutId = setTimeout(() => finalizeDeleteBinder(id), UNDO_BINDER_DELETE_DELAY_MS)
+    pendingBinderDeleteRef.current = { binder, timeoutId }
+    setUndoBinderBanner({ id, nom: binder.name })
+  }
+
+  const undoDeleteBinder = () => {
+    const pending = pendingBinderDeleteRef.current
+    if (!pending) return
+    clearTimeout(pending.timeoutId)
+    pendingBinderDeleteRef.current = null
+    setBinders(prev => [...prev, pending.binder].sort((a, b) => a.position - b.position))
+    setUndoBinderBanner(null)
   }
 
   // Réorganisation des classeurs par glisser-déposer.
@@ -1584,6 +1619,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             onPick={(icon) => saveFolderIcon(iconPickerFolder, icon)}
             onClose={() => setIconPickerFolder(null)}
           />
+        )}
+
+        {undoBinderBanner && createPortal(
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
+            <span style={{ flex: 1 }}>🗑️ {t('binder_deleted_toast').replace('{nom}', undoBinderBanner.nom)}</span>
+            <button onClick={undoDeleteBinder}
+              style={{ background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0 }}>
+              {t('gallery_undo')}
+            </button>
+          </div>,
+          document.body
         )}
 
         {binderForm}

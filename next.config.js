@@ -44,7 +44,10 @@ const nextConfig = {
           { key: 'X-Frame-Options',               value: 'SAMEORIGIN' },
           { key: 'Referrer-Policy',               value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',            value: 'camera=(self), microphone=(), geolocation=()' },
-          { key: 'Strict-Transport-Security',     value: 'max-age=31536000; includeSubDomains' },
+          // preload : eligible a la liste de prechargement HSTS des navigateurs
+          // (soumission manuelle sur hstspreload.org apres deploiement, l'entete
+          // seul ne suffit pas a y etre inscrit).
+          { key: 'Strict-Transport-Security',     value: 'max-age=31536000; includeSubDomains; preload' },
           // wasm-unsafe-eval + cdn.jsdelivr.net : onnxruntime-web (scanner de coins,
           // cornerDetectorYolo.ts) charge son WASM depuis ce CDN. unsafe-inline reste
           // necessaire (theme flash-guard inline script en layout.tsx, styles CSS-in-JS
