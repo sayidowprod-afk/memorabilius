@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import FollowButton from '@/components/FollowButton'
+import ReportButton from '@/components/ReportButton'
 import FollowCounts from '@/components/FollowCounts'
 import FollowListModal from '@/components/FollowListModal'
 import LevelBadge from '@/components/LevelBadge'
@@ -2071,6 +2072,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </Link>
                 )}
                 <FollowButton targetUserId={userId} accent={accent} />
+                {currentUser && currentUser !== userId && (
+                  <ReportButton reportedUserId={userId} context={`Galerie de ${profile?.display_name || userId}`} />
+                )}
               </div>
             </div>
           </div>

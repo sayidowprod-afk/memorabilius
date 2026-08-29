@@ -42,6 +42,9 @@ export const metadata: Metadata = {
   creator: 'Memorabilius',
   metadataBase: new URL('https://www.memorabilius.fr'),
   manifest: '/manifest.json',
+  alternates: {
+    types: { 'application/rss+xml': '/rss.xml' },
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',

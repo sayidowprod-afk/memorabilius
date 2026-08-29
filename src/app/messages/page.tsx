@@ -9,6 +9,7 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import ReportButton from '@/components/ReportButton'
 import { onlineStatusColor } from '@/lib/onlineStatus'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
@@ -616,6 +617,9 @@ function MessagesContent() {
                     >{profiles[activeConv]?.display_name}</p>
                     {contextTrade && <p style={{ fontSize: 11, color: '#003DA6', margin: 0 }}>Re: {contextTrade.titre}</p>}
                   </div>
+                </div>
+                <div style={{ marginLeft: 'auto' }}>
+                  <ReportButton reportedUserId={activeConv} context={`Conversation avec ${profiles[activeConv]?.display_name || activeConv}`} compact />
                 </div>
               </div>
 

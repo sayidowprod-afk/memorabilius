@@ -23,6 +23,38 @@ type Event = {
 
 const emptyForm = { title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' }
 
+// Echappement RFC5545 (virgule, point-virgule, retour a la ligne, antislash).
+const escapeICS = (s: string) => s.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n')
+
+// Evenement sur une seule date (pas d'heure en base) : DTSTART;VALUE=DATE
+// suffit, pas besoin de fuseau horaire -- s'affiche comme un evenement
+// "journee entiere" dans tous les agendas (Google/Apple/Outlook).
+function downloadEventICS(ev: Event) {
+  const dt = ev.date.replace(/-/g, '')
+  const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+  const location = [ev.location_name, ev.city, ev.country].filter(Boolean).join(', ')
+  const lines = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Memorabilius//FR',
+    'BEGIN:VEVENT',
+    `UID:event-${ev.id}@memorabilius.fr`,
+    `DTSTAMP:${stamp}`,
+    `DTSTART;VALUE=DATE:${dt}`,
+    `SUMMARY:${escapeICS(ev.title)}`,
+    location && `LOCATION:${escapeICS(location)}`,
+    ev.description && `DESCRIPTION:${escapeICS(ev.description)}`,
+    'END:VEVENT', 'END:VCALENDAR',
+  ].filter(Boolean)
+  const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${ev.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60) || 'evenement'}.ics`
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  URL.revokeObjectURL(url)
+}
+
 export default function Evenements() {
   const { dark } = useTheme()
   const { t, lang } = useLang()
@@ -275,7 +307,12 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
               "javascript:..." s'exécuterait au clic dans l'origine du site (le navigateur
               exécute un href javascript: quel que soit `rel`, qui ne protège que contre
               window.opener). */}
-          {ev.website && /^https?:\/\//i.test(ev.website) && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, marginTop: 4, display: 'inline-block' }}>{t('events_official_site')}</a>}
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 4 }}>
+            {ev.website && /^https?:\/\//i.test(ev.website) && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, display: 'inline-block' }}>{t('events_official_site')}</a>}
+            <button onClick={() => downloadEventICS(ev)} style={{ background: 'none', border: 'none', color: '#003DA6', fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0 }}>
+              📅 {t('events_add_to_calendar')}
+            </button>
+          </div>
           </div>
         </div>
         {userId && (

@@ -148,13 +148,32 @@ export default function Trades() {
     nba: 'basket', wnba: 'basket', nfl: 'football_us', mlb: 'baseball', nhl: 'hockey', football: 'foot',
   }
 
-  // Nombre d'annonces recentes chargees par source au premier affichage. La
-  // page chargeait AUPARAVANT la table cartes_manuelles.disponible_vente EN
-  // ENTIER (3700+ lignes, select('*') + jointure profiles) meme si seules les
-  // plus recentes sont visibles sans filtrer -- d'ou la lenteur signalee.
-  // Un marche aux cartes n'a pas besoin de l'historique complet d'un coup ;
-  // /recherche reste dispo pour une recherche exhaustive.
-  const FORUM_PAGE_SIZE = 200
+  // Pagination reelle par lots (au lieu du plafond fixe d'avant, qui rendait
+  // certaines cartes definitivement invisibles sur le forum une fois la
+  // limite depassee) : charge un lot des DEUX sources en parallele, fusionne
+  // et retrie l'ensemble accumule -- comme chaque source est deja triee par
+  // date decroissante et les deux avancent lot par lot en meme temps, l'ordre
+  // chronologique global reste correct a chaque etape. Le rendu progressif
+  // (voir sentinelle plus bas) evite de monter des milliers de cartes en DOM
+  // d'un coup, qui restait le vrai probleme de performance signale a l'origine.
+  const FORUM_PAGE_SIZE = 60
+  const [tradesOffset, setTradesOffset] = useState(0)
+  const [ventesOffset, setVentesOffset] = useState(0)
+  const [tradesDone, setTradesDone] = useState(false)
+  const [ventesDone, setVentesDone] = useState(false)
+  const [loadingMoreForum, setLoadingMoreForum] = useState(false)
+
+  const mapCarteToOffer = (c: any) => ({
+    ...c,
+    _source: 'galerie' as const,
+    type: 'offre',
+    titre: [c.annee, c.marque, c.collection, c.nom].filter(Boolean).join(' '),
+    joueur: c.nom,
+    image_url: c.image_recto || null,
+    image_verso: c.image_verso || null,
+    statut: 'actif',
+    sport: SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null,
+  })
 
   const loadForum = async () => {
     const [{ data: tradeData }, { data: carteData }] = await Promise.all([
@@ -163,34 +182,62 @@ export default function Trades() {
         .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
         .eq('statut', 'actif')
         .order('created_at', { ascending: false })
-        .limit(FORUM_PAGE_SIZE),
+        .range(0, FORUM_PAGE_SIZE - 1),
       supabase
         .from('cartes_manuelles')
         .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
         .eq('disponible_vente', true)
         .order('created_at', { ascending: false })
-        .limit(FORUM_PAGE_SIZE),
+        .range(0, FORUM_PAGE_SIZE - 1),
     ])
 
-    // Mapper les cartes galerie en objets trade-compatibles
-    const cartesAsOffers = (carteData || []).map(c => ({
-      ...c,
-      _source: 'galerie' as const,
-      type: 'offre',
-      titre: [c.annee, c.marque, c.collection, c.nom].filter(Boolean).join(' '),
-      joueur: c.nom,
-      image_url: c.image_recto || null,
-      image_verso: c.image_verso || null,
-      statut: 'actif',
-      sport: SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null,
-    }))
-
-    const merged = [...(tradeData || []), ...cartesAsOffers]
+    const merged = [...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]
       .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
     setTrades(merged)
+    setTradesOffset(tradeData?.length || 0)
+    setVentesOffset(carteData?.length || 0)
+    setTradesDone((tradeData?.length || 0) < FORUM_PAGE_SIZE)
+    setVentesDone((carteData?.length || 0) < FORUM_PAGE_SIZE)
     setLoadingForum(false)
   }
+
+  const loadMoreForum = async () => {
+    if (loadingMoreForum || (tradesDone && ventesDone)) return
+    setLoadingMoreForum(true)
+    const [{ data: tradeData }, { data: carteData }] = await Promise.all([
+      tradesDone ? Promise.resolve({ data: [] as any[] }) : supabase
+        .from('trades')
+        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+        .eq('statut', 'actif')
+        .order('created_at', { ascending: false })
+        .range(tradesOffset, tradesOffset + FORUM_PAGE_SIZE - 1),
+      ventesDone ? Promise.resolve({ data: [] as any[] }) : supabase
+        .from('cartes_manuelles')
+        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+        .eq('disponible_vente', true)
+        .order('created_at', { ascending: false })
+        .range(ventesOffset, ventesOffset + FORUM_PAGE_SIZE - 1),
+    ])
+
+    setTrades(prev => [...prev, ...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()))
+    if (!tradesDone) { setTradesOffset(o => o + (tradeData?.length || 0)); if ((tradeData?.length || 0) < FORUM_PAGE_SIZE) setTradesDone(true) }
+    if (!ventesDone) { setVentesOffset(o => o + (carteData?.length || 0)); if ((carteData?.length || 0) < FORUM_PAGE_SIZE) setVentesDone(true) }
+    setLoadingMoreForum(false)
+  }
+
+  const forumSentinelRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    const node = forumSentinelRef.current
+    if (!node) return
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) loadMoreForum()
+    }, { rootMargin: '600px' })
+    obs.observe(node)
+    return () => obs.disconnect()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tradesDone, ventesDone, tradesOffset, ventesOffset])
 
   const loadTradeOffers = async () => {
     setLoadingOffers(true)
@@ -426,6 +473,11 @@ export default function Trades() {
                     </div>
                   </div>
                 ))}
+                {(!tradesDone || !ventesDone) && (
+                  <div ref={forumSentinelRef} style={{ gridColumn: '1/-1', textAlign: 'center', padding: 16, color: 'var(--text3, #bbb)', fontSize: 12 }}>
+                    {loadingMoreForum ? '…' : ''}
+                  </div>
+                )}
               </div>
             )
           )}
