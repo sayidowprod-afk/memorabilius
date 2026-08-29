@@ -23,5 +23,11 @@ export async function GET() {
   checks.api = true // si cette route repond, l'API elle-meme fonctionne
 
   const allOk = Object.values(checks).every(Boolean)
-  return NextResponse.json({ ok: allOk, checks, checkedAt: new Date().toISOString() })
+  return NextResponse.json({ ok: allOk, checks, checkedAt: new Date().toISOString() }, {
+    // Le client repolle deja toutes les 60s -- inutile de retaper la base a
+    // chaque appel individuel (le sien ou celui d'un autre visiteur) dans
+    // cette fenetre. stale-while-revalidate sert le cache pendant qu'un
+    // appel frais se fait en arriere-plan, sans jamais bloquer sur un visiteur.
+    headers: { 'Cache-Control': 'public, max-age=30, stale-while-revalidate=60' },
+  })
 }

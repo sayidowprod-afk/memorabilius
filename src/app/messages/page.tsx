@@ -83,6 +83,25 @@ function MessagesContent() {
   const [activeConv, setActiveConv] = useState<string | null>(toParam)
   const [messages, setMessages] = useState<any[]>([])
   const [newMsg, setNewMsg] = useState('')
+
+  // Brouillon par conversation : un message long tape puis perdu (changement
+  // de conversation, fermeture accidentelle) est frustrant a retaper.
+  useEffect(() => {
+    if (!activeConv) return
+    if (newMsg) return // ne pas ecraser un prefill deja en cours (ex: partage de carte)
+    try {
+      const draft = localStorage.getItem(`msg_draft_${activeConv}`)
+      if (draft) setNewMsg(draft)
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeConv])
+  useEffect(() => {
+    if (!activeConv) return
+    try {
+      if (newMsg) localStorage.setItem(`msg_draft_${activeConv}`, newMsg)
+      else localStorage.removeItem(`msg_draft_${activeConv}`)
+    } catch {}
+  }, [activeConv, newMsg])
   const [profiles, setProfiles] = useState<Record<string, any>>({})
   const [tradesMap, setTradesMap] = useState<Record<number, any>>({})
   const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})

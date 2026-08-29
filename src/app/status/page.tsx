@@ -81,7 +81,7 @@ export default function StatusPage() {
       )}
 
       <p style={{ fontSize: 12, color: dark ? '#777' : '#aaa', marginTop: 20, textAlign: 'center' }}>
-        Un problème persistant ? <a href="mailto:contact@memorabilius.fr" style={{ color: '#003DA6' }}>contact@memorabilius.fr</a>
+        Un problème persistant ? <a href="mailto:contact@memorabilius.fr" style={{ color: dark ? '#5b8def' : '#003DA6' }}>contact@memorabilius.fr</a>
       </p>
     </div>
   )
