@@ -263,6 +263,16 @@ nav {
   border-bottom: 1px solid var(--border) !important;
 }
 
+/* Le selecteur `nav` ci-dessus visait la barre de navigation principale mais,
+   etant un tag bare, s'appliquait aussi au <nav> du footer (liens legaux +
+   bouton Ko-fi) -- lui donnant un fond et une bordure qui n'ont jamais ete
+   voulus la, visible comme un rectangle plus clair (#1e1e1e) que le fond de
+   page (#111111) en mode sombre. */
+footer nav {
+  background: none !important;
+  border-bottom: none !important;
+}
+
 /* Popups et modals */
 [data-theme="dark"] div[style*="position:fixed"][style*="background:#fff"],
 [data-theme="dark"] div[style*="position: fixed"][style*="background: #fff"],
