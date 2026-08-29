@@ -83,7 +83,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   useEffect(() => { init() }, [teamId])
   useEffect(() => () => { if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current) }, [])
-  useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
+  // L'onglet Chat n'est monte que quand actif ({activeTab === 'chat' && ...}
+  // plus bas) -- si les messages arrivent AVANT que l'utilisateur clique sur
+  // l'onglet, cet effet se declenchait sur un ref encore null (no-op) et ne se
+  // redeclenchait jamais au changement d'onglet (le tableau `messages` ne
+  // change pas), laissant le chat fraichement monte scrolle tout en haut
+  // (premiers messages) au lieu du bas. `activeTab` en dependance corrige ca ;
+  // 'auto' au lieu de 'smooth' pour un positionnement initial instantane.
+  useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'auto' }) }, [messages, activeTab])
 
   const init = async () => {
     const { data: { user } } = await supabase.auth.getUser()
@@ -844,7 +851,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                               const newRole = role === 'admin' ? 'member' : 'admin'
                               await supabase.from('team_members').update({ role: newRole }).eq('team_id', parseInt(teamId)).eq('user_id', m.id)
                               init()
-                            }} style={{ background: role === 'admin' ? '#fff5f5' : '#e8f5e9', color: role === 'admin' ? '#e74c3c' : '#2e7d32', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>
+                            }} style={{ background: role === 'admin' ? '#e74c3c' : '#e8f5e9', color: role === 'admin' ? 'white' : '#2e7d32', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>
                               {role === 'admin' ? t('teams_demote') : t('teams_promote')}
                             </button>
                             {excludeConfirm === m.id ? (
@@ -1024,6 +1031,16 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               style={{ background: '#f0f4ff', color: ACCENT, border: 'none', borderRadius: 8, padding: '10px 12px', fontWeight: 700, cursor: 'pointer', fontSize: 18, flexShrink: 0 }}>🃏</button>
             <input value={newMsg} onChange={e => { setNewMsg(e.target.value); notifyTeamTyping() }}
               onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
+              onFocus={e => {
+                // Le bloc chat a une hauteur fixe (560px) dans le flux normal de
+                // la page -- l'ouverture du clavier (mobile/app) reduit la zone
+                // visible sans que rien ne recadre la vue, laissant l'input hors
+                // champ tant qu'on ne scrolle pas la page a la main. Le delai
+                // laisse le temps a l'animation du clavier de se terminer avant
+                // de calculer la position a atteindre.
+                const el = e.currentTarget
+                setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300)
+              }}
               placeholder="Votre message..." style={{ flex: 1, padding: '10px 14px', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 8, fontSize: 14, outline: 'none' }} />
             <button onClick={sendMessage} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_send')}</button>
           </div>
@@ -1104,7 +1121,7 @@ function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: st
 
   if (!card) return null
   return (
-    <Link href={`/galerie/${userId}`} style={{ textDecoration: 'none', display: 'block', marginTop: compact ? 6 : 10 }}>
+    <a href={card.image_recto || undefined} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', marginTop: compact ? 6 : 10 }}>
       <div style={{ background: 'rgba(0,0,0,0.06)', borderRadius: 8, padding: 8, display: 'flex', gap: 10, alignItems: 'center' }}>
         {card.image_recto && <img loading="lazy" src={card.image_recto} style={{ height: compact ? 48 : 64, borderRadius: 4, objectFit: 'cover' }} alt="" />}
         <div>
@@ -1112,6 +1129,6 @@ function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: st
           <div style={{ fontSize: 11, opacity: 0.7 }}>{card.annee} · {card.marque}</div>
         </div>
       </div>
-    </Link>
+    </a>
   )
 }
