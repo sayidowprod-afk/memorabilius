@@ -1259,8 +1259,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   })
 
   // ── Formulaire création / édition (partagé) ──
+  const closeBinderForm = () => {
+    // Seule la creation est gardee (pas l'edition, dont le "dirty" exigerait
+    // de comparer a l'etat d'origine du classeur) -- un nom deja tape est un
+    // signal suffisant de progres qu'on ne veut pas perdre a un clic hors
+    // modale par megarde.
+    if (formOpen === 'create' && fName.trim() && !confirm(t('editcard_unsaved_confirm'))) return
+    setFormOpen(null)
+  }
+
   const binderForm = formOpen !== null && createPortal(
-    <div onClick={() => setFormOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+    <div onClick={closeBinderForm} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? t('binder_new') : t('binder_edit_title')}</h3>
 

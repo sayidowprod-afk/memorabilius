@@ -37,6 +37,26 @@ export default function Inscription() {
   // at least 6 characters" en anglais brut, illisible pour un utilisateur FR).
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
   const passwordValid = form.password.length >= 6
+  // Score 0-4 : longueur, casse mixte, chiffre, symbole -- purement indicatif
+  // (le minimum requis pour s'inscrire reste 6 caracteres, inchange).
+  const passwordScore = (() => {
+    const pw = form.password
+    if (!pw) return 0
+    let s = 0
+    if (pw.length >= 8) s++
+    if (pw.length >= 12) s++
+    if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) s++
+    if (/\d/.test(pw)) s++
+    if (/[^A-Za-z0-9]/.test(pw)) s++
+    return Math.min(s, 4)
+  })()
+  const PASSWORD_LEVELS = [
+    { label: t('signup_pw_weak'), color: '#e74c3c' },
+    { label: t('signup_pw_weak'), color: '#e74c3c' },
+    { label: t('signup_pw_medium'), color: '#f39c12' },
+    { label: t('signup_pw_good'), color: '#2ecc71' },
+    { label: t('signup_pw_strong'), color: '#003DA6' },
+  ]
   const emailError = touched.email && form.email.length > 0 && !emailValid
   const passwordError = touched.password && form.password.length > 0 && !passwordValid
 
@@ -133,6 +153,22 @@ export default function Inscription() {
               onBlur={() => setTouched(p => ({ ...p, password: true }))}
               aria-invalid={passwordError} style={{ borderColor: passwordError ? '#c62828' : undefined }} />
             {passwordError && <p style={{ color: '#c62828', fontSize: 12, margin: '4px 0 0' }}>{t('signup_password_too_short')}</p>}
+            {!passwordError && form.password.length > 0 && (
+              <div style={{ marginTop: 6 }}>
+                <div style={{ display: 'flex', gap: 4 }}>
+                  {[0, 1, 2, 3].map(i => (
+                    <div key={i} style={{
+                      flex: 1, height: 4, borderRadius: 2,
+                      background: i < passwordScore ? PASSWORD_LEVELS[passwordScore].color : 'var(--border, #e0e0e0)',
+                      transition: 'background 0.15s',
+                    }} />
+                  ))}
+                </div>
+                <p style={{ fontSize: 11, color: PASSWORD_LEVELS[passwordScore].color, margin: '4px 0 0', fontWeight: 700 }}>
+                  {PASSWORD_LEVELS[passwordScore].label}
+                </p>
+              </div>
+            )}
           </div>
           {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
             <div

@@ -124,7 +124,7 @@ function MemoLinkPreview({ url }: { url: string }) {
                 : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
           <div style={{ marginTop: 8 }}>
-            <div style={{ fontWeight: 900, fontSize: 14, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{data.nom}</div>
+            <div style={{ fontWeight: 900, fontSize: 14, color: 'var(--text, #111)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{data.nom}</div>
             {data.variation && <div style={{ fontSize: 12, fontStyle: 'italic', color: ACCENT, fontWeight: 700, marginTop: 1 }}>{data.variation}</div>}
             {(data.annee || data.marque || data.collection) && (
               <div style={{ fontSize: 11, color: '#888', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

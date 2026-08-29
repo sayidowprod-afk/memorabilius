@@ -361,10 +361,13 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
           <CardGrid cards={filteredMy} selected={mySelected} onToggle={toggleMy} loading={myLoading} emptyMsg={t('trademodal_my_empty')} />
         </div>
 
-        <textarea placeholder={t('trademodal_message_placeholder')} value={message} onChange={e => setMessage(e.target.value)}
-          maxLength={300} rows={2}
-          style={{ resize: 'none', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none', background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }}
-        />
+        <div>
+          <textarea placeholder={t('trademodal_message_placeholder')} value={message} onChange={e => setMessage(e.target.value)}
+            maxLength={300} rows={2}
+            style={{ width: '100%', boxSizing: 'border-box', resize: 'none', border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none', background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }}
+          />
+          <p style={{ fontSize: 11, color: 'var(--text3, #999)', margin: '4px 0 0', textAlign: 'right' }}>{message.length}/300</p>
+        </div>
 
         {error && <div style={{ color: '#c00', fontSize: 13, fontWeight: 600 }}>{error}</div>}
         {!error && targetSelected.size === 0 && (

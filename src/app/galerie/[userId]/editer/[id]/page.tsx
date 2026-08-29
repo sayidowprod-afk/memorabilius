@@ -80,6 +80,19 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     lien_vinted: '', lien_ebay: '',
   })
 
+  const initialFormRef = useRef<string | null>(null)
+  const isDirty = () => initialFormRef.current !== null && initialFormRef.current !== JSON.stringify(form)
+
+  useEffect(() => {
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!isDirty()) return
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
+  })
+
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [cropModal, setCropModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [rotation, setRotation] = useState(0)
@@ -99,7 +112,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (!session?.user) { router.push(`/galerie/${userId}`); return }
       supabase.from('cartes_manuelles').select('*').eq('id', id).eq('user_id', session.user.id).single().then(({ data, error }) => {
       if (error || !data) { router.push(`/galerie/${userId}`); return }
-      setForm({
+      const loadedForm = {
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
         marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
         grade: data.grade || 'Raw', cert_number: data.cert_number || '', num: data.num || '', card_number: data.card_number || '',
@@ -120,11 +133,16 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         item_type: (data.item_type && data.item_type !== 'card') ? 'memorabilia' : 'card',
         lien_vinted: data.lien_vinted || '',
         lien_ebay: data.lien_ebay || '',
-      })
+      }
+      setForm(loadedForm)
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
       if (data.image_interieur_gauche) setPreviewIL(data.image_interieur_gauche)
       if (data.image_interieur_droite) setPreviewIR(data.image_interieur_droite)
+      // Cliché du formulaire tel que charge, pour detecter une sortie avec
+      // des changements non enregistres (bouton "Arreter" ou fermeture de
+      // l'onglet).
+      initialFormRef.current = JSON.stringify(loadedForm)
       setLoading(false)
     })
   })
@@ -543,7 +561,10 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </button>
             <button
               type="button"
-              onClick={() => router.push(`/galerie/${userId}`)}
+              onClick={() => {
+                if (isDirty() && !confirm(t('editcard_unsaved_confirm'))) return
+                router.push(`/galerie/${userId}`)
+              }}
               style={{ padding: '8px 14px', borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
             >
               ✕ Arrêter

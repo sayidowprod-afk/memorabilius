@@ -114,7 +114,7 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
         <span>›</span>
         {profile && <Link href={`/galerie/${userId}`} style={{ color: accent, textDecoration: 'none', fontWeight: 700 }}>{profile.display_name}</Link>}
         <span>›</span>
-        <span style={{ color: '#333', fontWeight: 600 }}>{card.n}</span>
+        <span style={{ color: 'var(--text2, #333)', fontWeight: 600 }}>{card.n}</span>
       </div>
 
       <div className="card-page-layout">

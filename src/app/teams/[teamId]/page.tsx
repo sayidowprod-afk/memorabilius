@@ -139,7 +139,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const loadMessages = async (uid: string | null) => {
     const { data: msgs } = await supabase.from('team_messages')
-      .select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url)')
+      .select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url, last_seen)')
       .eq('team_id', parseInt(teamId))
       .order('created_at', { ascending: true })
     setMessages(msgs || [])
@@ -272,7 +272,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'team_messages', filter: `team_id=eq.${teamId}` },
         async (payload) => {
           const { data } = await supabase.from('team_messages')
-            .select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url)')
+            .select('*, profiles!team_messages_user_id_fkey(id, display_name, avatar_url, last_seen)')
             .eq('id', payload.new.id).single()
           if (data) setMessages(prev => prev.some(m => m.id === data.id) ? prev : [...prev, data])
         })
@@ -932,8 +932,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               const repliedMsg = msg.reply_to_id ? messages.find(m => m.id === msg.reply_to_id) : null
               return (
                 <div key={msg.id} id={`team-msg-${msg.id}`} style={{ display: 'flex', gap: 8, flexDirection: isMe ? 'row-reverse' : 'row', alignItems: 'flex-end' }}>
-                  <img loading="lazy" src={msg.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
-                    style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
+                  <div style={{ position: 'relative', flexShrink: 0 }}>
+                    <img loading="lazy" src={msg.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                      style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                    <span style={{ position: 'absolute', bottom: -1, right: -1 }}><OnlineIndicator lastSeen={msg.profiles?.last_seen} size={9} /></span>
+                  </div>
                   <div style={{ maxWidth: '72%' }}>
                     {!isMe && <p style={{ fontSize: 11, color: 'var(--text3, #999)', margin: '0 0 3px', fontWeight: 700 }}>{msg.profiles?.display_name}</p>}
                     {msg.reply_to_id && (
