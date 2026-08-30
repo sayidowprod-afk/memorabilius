@@ -1165,6 +1165,7 @@ export const it = {
   video_generate: 'Genera',
   video_download: 'Scarica',
   video_download_error: 'Download non riuscito, riprova.',
+  video_record_error: 'Generazione del video non riuscita, riprova.',
   video_redo: 'Rifai',
   video_convert_hint: 'Converti in MP4 su cloudconvert.com',
   teams_err_send: "Errore di invio.",

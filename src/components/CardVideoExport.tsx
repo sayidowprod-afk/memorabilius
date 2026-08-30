@@ -450,53 +450,82 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     canvas.width = w; canvas.height = h
 
     setRecording(true); setProgress(0); setDone(false); setVideoUrl(null)
-    const ctx = canvas.getContext('2d')!
-    const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
+    let rafId: number | null = null
+    try {
+      const ctx = canvas.getContext('2d')!
+      const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
 
-    ctx.imageSmoothingEnabled = true
-    ctx.imageSmoothingQuality = 'high'
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
 
-    const mimeType =
-      codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
-      : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
-      : 'video/webm'
-    const HOLD = 700
-    const totalSecs = (DURATION + HOLD + 300) / 1000
-    const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5)
-    const pixels = w * h
-    const qualityBitrate = Math.round(pixels * (isMobile ? 9 : 14))
-    const stream = canvas.captureStream(FPS)
-    const recorder = new MediaRecorder(stream, {
-      mimeType,
-      videoBitsPerSecond: Math.min(sizeCap, Math.max(3_000_000, qualityBitrate)),
-    })
-    const chunks: Blob[] = []
-    recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
-    recorder.onstop = () => {
-      setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
-      setDone(true); setRecording(false)
-    }
-    recorder.start()
-
-    const frameInterval = 1000 / FPS
-    const start = performance.now()
-    let lastDraw = -1
-    await new Promise<void>(resolve => {
-      const tick = (now: number) => {
-        if (lastDraw < 0 || now - lastDraw >= frameInterval - 1) {
-          lastDraw = now
-          const elapsed = now - start
-          const p = Math.min(elapsed / DURATION, 1)
-          drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
-          setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
-          if (elapsed >= DURATION + HOLD) { resolve(); return }
+      const mimeType =
+        codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
+        : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
+        : 'video/webm'
+      const HOLD = 700
+      const totalSecs = (DURATION + HOLD + 300) / 1000
+      const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5)
+      const pixels = w * h
+      const qualityBitrate = Math.round(pixels * (isMobile ? 9 : 14))
+      // captureStream()/MediaRecorder jettent une SecurityError si le canvas a ete
+      // "tainte" par une image cross-origin chargee sans CORS (voir le repli sans
+      // crossOrigin dans loadImage) -- sans try/catch autour de toute la fonction,
+      // ca laissait l'UI bloquee indefiniment sur "enregistrement..." sans jamais
+      // remettre recording a false ni afficher d'erreur.
+      const stream = canvas.captureStream(FPS)
+      const recorder = new MediaRecorder(stream, {
+        mimeType,
+        videoBitsPerSecond: Math.min(sizeCap, Math.max(3_000_000, qualityBitrate)),
+      })
+      const chunks: Blob[] = []
+      recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
+      const stopped = new Promise<void>(resolveStop => {
+        recorder.onstop = () => {
+          setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
+          setDone(true); setRecording(false)
+          resolveStop()
         }
-        requestAnimationFrame(tick)
-      }
-      requestAnimationFrame(tick)
-    })
-    await new Promise(r => setTimeout(r, 200))
-    recorder.stop()
+      })
+      recorder.start()
+
+      const frameInterval = 1000 / FPS
+      const start = performance.now()
+      let lastDraw = -1
+      // Filet de securite : le tick s'appuie sur requestAnimationFrame, qui peut
+      // ne jamais (re)demarrer dans certains contextes (onglet en arriere-plan,
+      // webview particuliere) -- sans ca, la promesse ci-dessous ne se resout
+      // jamais et on reste bloque au meme titre qu'une exception non attrapee.
+      const animation = new Promise<void>(resolve => {
+        const tick = (now: number) => {
+          if (lastDraw < 0 || now - lastDraw >= frameInterval - 1) {
+            lastDraw = now
+            const elapsed = now - start
+            const p = Math.min(elapsed / DURATION, 1)
+            drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
+            setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
+            if (elapsed >= DURATION + HOLD) { resolve(); return }
+          }
+          rafId = requestAnimationFrame(tick)
+        }
+        rafId = requestAnimationFrame(tick)
+      })
+      const timedOut = Symbol('timeout')
+      const result = await Promise.race([
+        animation,
+        new Promise(r => setTimeout(() => r(timedOut), DURATION + HOLD + 6000)),
+      ])
+      if (rafId != null) cancelAnimationFrame(rafId)
+      if (result === timedOut) throw new Error('timeout')
+
+      await new Promise(r => setTimeout(r, 200))
+      recorder.stop()
+      await stopped
+    } catch (e) {
+      if (rafId != null) cancelAnimationFrame(rafId)
+      console.error('[CardVideoExport] startRecording', e)
+      setRecording(false); setProgress(0)
+      toast.error(t('video_record_error'))
+    }
   }
 
   const download = async () => {

@@ -1165,6 +1165,7 @@ export const es = {
   video_generate: 'Generar',
   video_download: 'Descargar',
   video_download_error: 'Error al descargar, inténtalo de nuevo.',
+  video_record_error: 'Error al generar el vídeo, inténtalo de nuevo.',
   video_redo: 'Rehacer',
   video_convert_hint: 'Convertir a MP4 en cloudconvert.com',
   teams_err_send: "Error de envío.",
