@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import { useIsNative } from '@/lib/useIsNative'
 
 type ToastItem = { id: number; message: string; type: 'error' | 'success' | 'info'; leaving?: boolean }
 
@@ -8,6 +10,11 @@ const ICON: Record<ToastItem['type'], string> = { error: '✕', success: '✓', 
 
 export default function Toaster() {
   const [toasts, setToasts] = useState<ToastItem[]>([])
+  const isNative = useIsNative()
+  // Sur l'app native, la bottom bar prend la place du bas d'écran -- un toast
+  // fixe à bottom:24 se retrouvait affiché par-dessus/dans la nav (ex: un
+  // badge débloqué qui apparaissait dans la zone "Ma galerie").
+  const bottomOffset = isNative ? `calc(${NAV_TOTAL_HEIGHT_CSS} + 12px)` : 24
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -26,7 +33,7 @@ export default function Toaster() {
   if (!toasts.length) return null
 
   return (
-    <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 10000004, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
+    <div style={{ position: 'fixed', bottom: bottomOffset, left: '50%', transform: 'translateX(-50%)', zIndex: 10000004, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
       {toasts.map(t => (
         <div key={t.id} style={{
           background: t.type === 'error' ? '#e74c3c' : t.type === 'success' ? '#27ae60' : '#2c3e50',
