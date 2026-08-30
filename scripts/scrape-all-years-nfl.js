@@ -42,25 +42,6 @@ const delayBreak = () => {
   return sleep(ms)
 }
 
-const NFL_TEAMS = new Set([
-  // Équipes actuelles (32)
-  'Arizona Cardinals','Atlanta Falcons','Baltimore Ravens','Buffalo Bills',
-  'Carolina Panthers','Chicago Bears','Cincinnati Bengals','Cleveland Browns',
-  'Dallas Cowboys','Denver Broncos','Detroit Lions','Green Bay Packers',
-  'Houston Texans','Indianapolis Colts','Jacksonville Jaguars','Kansas City Chiefs',
-  'Las Vegas Raiders','Los Angeles Chargers','Los Angeles Rams','Miami Dolphins',
-  'Minnesota Vikings','New England Patriots','New Orleans Saints','New York Giants',
-  'New York Jets','Philadelphia Eagles','Pittsburgh Steelers','San Francisco 49ers',
-  'Seattle Seahawks','Tampa Bay Buccaneers','Tennessee Titans','Washington Commanders',
-  // Noms historiques
-  'Oakland Raiders','San Diego Chargers','St. Louis Rams','Baltimore Colts',
-  'Boston Patriots','Houston Oilers','Tennessee Oilers','Washington Redskins',
-  'Washington Football Team','Phoenix Cardinals','St. Louis Cardinals',
-  'Chicago Cardinals','Los Angeles Raiders','Cleveland Browns',
-  'Portsmouth Spartans','Staten Island Stapletons','Newark Tornadoes',
-  'Minneapolis Red Jackets','Frankford Yellow Jackets',
-])
-
 const MAJOR_BRANDS = /(Panini|Topps|Upper Deck|Fleer|Donruss|Score|Bowman|Finest|Prizm|Select|Mosaic|Chronicles|Contenders|Spectra|Noir|Eminence|Obsidian|Immaculate|National Treasures|Optic|Revolution|Leaf|Sage|SP Authentic|SP|SP Legendary|SAGE|Ultra|Playoff|Pacific|Collector's Edge|Classic)/i
 
 function findChrome() {
@@ -179,8 +160,11 @@ async function fetchTeams(page, sid, year) {
     await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}/${slug}`)
     await sleep(rand(300, 700))
 
-    const teams = await page.evaluate((NFL_TEAMS_ARR) => {
-      const nflSet = new Set(NFL_TEAMS_ARR)
+    // Pas de filtre sur NFL_TEAMS : un set "spécial" (équipe hors franchise, ex:
+    // sélection Pro Bowl/All-Star) serait sinon renvoyé vide et le set entier
+    // saute silencieusement ("0 équipes — ignoré"). On veut 0 trou : toute page
+    // équipe trouvée sur la liste du set doit être scrapée, peu importe son nom.
+    const teams = await page.evaluate(() => {
       const results = []
       const seen = new Set()
       document.querySelectorAll('a[href*="/team/"]').forEach(a => {
@@ -190,8 +174,8 @@ async function fetchTeams(page, sid, year) {
         seen.add(m[1])
         results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
       })
-      return results.filter(t => nflSet.has(t.teamName))
-    }, [...NFL_TEAMS])
+      return results
+    })
 
     if (teams.length > 0) return teams
   }
@@ -199,8 +183,7 @@ async function fetchTeams(page, sid, year) {
   // Dernier recours: URL sans slug
   await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}`)
   await sleep(rand(300, 700))
-  const teams = await page.evaluate((NFL_TEAMS_ARR) => {
-    const nflSet = new Set(NFL_TEAMS_ARR)
+  const teams = await page.evaluate(() => {
     const results = []
     const seen = new Set()
     document.querySelectorAll('a[href*="/team/"]').forEach(a => {
@@ -210,8 +193,8 @@ async function fetchTeams(page, sid, year) {
       seen.add(m[1])
       results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
     })
-    return results.filter(t => nflSet.has(t.teamName))
-  }, [...NFL_TEAMS])
+    return results
+  })
   return teams
 }
 
@@ -251,7 +234,7 @@ async function fetchTeamCards(page, sid, teamId, teamSlug) {
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''
           const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isPlayerName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isPlayerName) { playerName = linkText; continue }

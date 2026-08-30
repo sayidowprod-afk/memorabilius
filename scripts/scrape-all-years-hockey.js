@@ -25,8 +25,8 @@ const args = Object.fromEntries(
     return [k, v ?? true]
   })
 )
-const FROM    = args.from  ? parseInt(args.from)  : 2026
-const TO      = args.to    ? parseInt(args.to)    : 1960
+const FROM    = args.from  ? parseInt(args.from)  : 2019
+const TO      = args.to    ? parseInt(args.to)    : 1997
 const DRY_RUN = !!args['dry-run']
 const SLOT    = args.slot ? parseInt(args.slot) : 1
 
@@ -40,24 +40,6 @@ const delayBreak = () => {
   console.log(`\n☕ Pause anti-détection ${Math.round(ms/1000)}s...\n`)
   return sleep(ms)
 }
-
-const NHL_TEAMS = new Set([
-  // Équipes actuelles (32)
-  'Anaheim Ducks','Boston Bruins','Buffalo Sabres','Calgary Flames',
-  'Carolina Hurricanes','Chicago Blackhawks','Colorado Avalanche','Columbus Blue Jackets',
-  'Dallas Stars','Detroit Red Wings','Edmonton Oilers','Florida Panthers',
-  'Los Angeles Kings','Minnesota Wild','Montreal Canadiens','Nashville Predators',
-  'New Jersey Devils','New York Islanders','New York Rangers','Ottawa Senators',
-  'Philadelphia Flyers','Pittsburgh Penguins','San Jose Sharks','Seattle Kraken',
-  'St. Louis Blues','Tampa Bay Lightning','Toronto Maple Leafs','Utah Hockey Club',
-  'Vancouver Canucks','Vegas Golden Knights','Washington Capitals','Winnipeg Jets',
-  // Noms historiques
-  'Arizona Coyotes','Phoenix Coyotes','Atlanta Thrashers','Hartford Whalers',
-  'Quebec Nordiques','Winnipeg Jets','Minnesota North Stars','Atlanta Flames',
-  'California Golden Seals','Cleveland Barons','Colorado Rockies',
-  'Kansas City Scouts','Oakland Seals','Pittsburgh Penguins',
-  'Mighty Ducks of Anaheim','Atlanta Thrashers',
-])
 
 const MAJOR_BRANDS = /(Upper Deck|Topps|Panini|O-Pee-Chee|OPC|Parkhurst|Score|Fleer|Donruss|Pinnacle|Pacific|Leaf|Bowman|Ultra|Finest|Chrome|SP Authentic|SP|The Cup|Artifacts|Trilogy|Black Diamond|Be A Player|BAP|In The Game|ITG|Certified|Contenders|National Treasures|Immaculate|Prizm|Select|Mosaic|Chronicles|Revolution|Paramount)/i
 
@@ -168,8 +150,11 @@ async function fetchTeams(page, sid, year) {
   for (const slug of slugs) {
     await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}/${slug}`)
     await sleep(rand(300, 700))
-    const teams = await page.evaluate((NHL_ARR) => {
-      const nhlSet = new Set(NHL_ARR)
+    // Pas de filtre NHL_TEAMS : un set "spécial" (équipe hors franchise, ex:
+    // sélection All-Star/Team Canada) glissée parmi de vraies équipes NHL sur la
+    // page passait à travers le filtre et disparaissait silencieusement -- le
+    // fallback existant ne se déclenchait que si le filtre videtait TOUT (0 trou visé).
+    const teams = await page.evaluate(() => {
       const results = []
       const seen = new Set()
       document.querySelectorAll('a[href*="/team/"]').forEach(a => {
@@ -179,15 +164,13 @@ async function fetchTeams(page, sid, year) {
         seen.add(m[1])
         results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
       })
-      const nhlFiltered = results.filter(t => nhlSet.has(t.teamName))
-      return nhlFiltered.length > 0 ? nhlFiltered : results
-    }, [...NHL_TEAMS])
+      return results
+    })
     if (teams.length > 0) return teams
   }
   await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}`)
   await sleep(rand(300, 700))
-  return await page.evaluate((NHL_ARR) => {
-    const nhlSet = new Set(NHL_ARR)
+  return await page.evaluate(() => {
     const results = []
     const seen = new Set()
     document.querySelectorAll('a[href*="/team/"]').forEach(a => {
@@ -197,9 +180,8 @@ async function fetchTeams(page, sid, year) {
       seen.add(m[1])
       results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
     })
-    const nhlFiltered = results.filter(t => nhlSet.has(t.teamName))
-    return nhlFiltered.length > 0 ? nhlFiltered : results
-  }, [...NHL_TEAMS])
+    return results
+  })
 }
 
 async function fetchTeamCards(page, sid, teamId, teamSlug) {
@@ -237,7 +219,7 @@ async function fetchTeamCards(page, sid, teamId, teamSlug) {
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''
           const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isPlayerName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isPlayerName) { playerName = linkText; continue }

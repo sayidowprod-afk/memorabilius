@@ -52,26 +52,6 @@ const delayBreak = () => {
   return sleep(ms)
 }
 
-const NBA_TEAMS = new Set([
-  'Atlanta Hawks','Boston Celtics','Brooklyn Nets','Charlotte Hornets','Chicago Bulls',
-  'Cleveland Cavaliers','Dallas Mavericks','Denver Nuggets','Detroit Pistons',
-  'Golden State Warriors','Houston Rockets','Indiana Pacers','Los Angeles Clippers',
-  'Los Angeles Lakers','Memphis Grizzlies','Miami Heat','Milwaukee Bucks',
-  'Minnesota Timberwolves','New Orleans Pelicans','New York Knicks',
-  'Oklahoma City Thunder','Orlando Magic','Philadelphia 76ers','Phoenix Suns',
-  'Portland Trail Blazers','Sacramento Kings','San Antonio Spurs','Toronto Raptors',
-  'Utah Jazz','Washington Wizards',
-  // Anciennes franchises (noms historiques TCDB)
-  'New Jersey Nets','New Jersey Americans','Seattle SuperSonics','Vancouver Grizzlies',
-  'New Orleans Hornets','Charlotte Bobcats','Buffalo Braves','San Diego Clippers',
-  'Kansas City Kings','Cincinnati Royals','Chicago Zephyrs','Baltimore Bullets',
-  'Washington Bullets','Capital Bullets','Fort Wayne Pistons','Milwaukee Hawks',
-  'St. Louis Hawks','Tri-Cities Blackhawks','Philadelphia Warriors','San Francisco Warriors',
-  'Chicago Packers','Anderson Packers','Sheboygan Redskins','Waterloo Hawks',
-  'Denver Nuggets','Indiana Pacers','New York Nets','San Antonio Spurs',
-  'New Orleans Jazz','Utah Jazz',
-])
-
 const MAJOR_BRANDS = /(Panini|Topps|Upper Deck|Fleer|Donruss|Hoops|SkyBox|Score|Bowman|Finest|Prizm|Select|Mosaic|Chronicles|Revolution|Obsidian|Optic|Immaculate|National Treasures|Contenders|Spectra|Noir|Eminence)/i
 
 function findChrome() {
@@ -201,7 +181,12 @@ async function fetchTeams(page, sid, year) {
     return results
   })
 
-  return teams.filter(t => NBA_TEAMS.has(t.teamName))
+  // Pas de filtre sur NBA_TEAMS : un set "spécial" (ex: 1994 Flair USA, sid:73093)
+  // liste une "équipe" hors franchise NBA (ex: "United States") -- avec le filtre,
+  // fetchTeams() renvoyait une liste vide et scrapeSet() sautait le set entier
+  // silencieusement ("0 équipes — ignoré"). On veut 0 trou : toute page équipe
+  // trouvée sur la liste du set doit être scrapée, peu importe son nom.
+  return teams
 }
 
 async function fetchTeamCards(page, sid, teamId, teamSlug) {

@@ -43,27 +43,6 @@ const delayBreak = () => {
   return sleep(ms)
 }
 
-const MLB_TEAMS = new Set([
-  // Équipes actuelles (30)
-  'Arizona Diamondbacks','Atlanta Braves','Baltimore Orioles','Boston Red Sox',
-  'Chicago Cubs','Chicago White Sox','Cincinnati Reds','Cleveland Guardians',
-  'Colorado Rockies','Detroit Tigers','Houston Astros','Kansas City Royals',
-  'Los Angeles Angels','Los Angeles Dodgers','Miami Marlins','Milwaukee Brewers',
-  'Minnesota Twins','New York Mets','New York Yankees','Oakland Athletics',
-  'Philadelphia Phillies','Pittsburgh Pirates','San Diego Padres','San Francisco Giants',
-  'Seattle Mariners','St. Louis Cardinals','Tampa Bay Rays','Texas Rangers',
-  'Toronto Blue Jays','Washington Nationals',
-  // Noms historiques
-  'Montreal Expos','Florida Marlins','Tampa Bay Devil Rays','Anaheim Angels',
-  'California Angels','Los Angeles Angels of Anaheim','Cleveland Indians',
-  'Houston Colt .45s','Washington Senators','Kansas City Athletics',
-  'Philadelphia Athletics','Seattle Pilots','Milwaukee Braves',
-  'Brooklyn Dodgers','New York Giants','St. Louis Browns',
-  'Boston Braves','Boston Bees','Cincinnati Redlegs',
-  'San Diego Padres','Texas Rangers','Washington Senators',
-  'Kansas City Royals','New York Mets',
-])
-
 const MAJOR_BRANDS = /(Topps|Bowman|Panini|Upper Deck|Fleer|Donruss|Score|Stadium Club|Ultra|Finest|Chrome|Heritage|Archives|Gypsy Queen|Allen|Ginter|Clearly Authentic|Prizm|Select|Mosaic|National Treasures|Immaculate|Contenders|Leaf|Pacific|Collector's Edge|SP Authentic|SP|Playoff)/i
 
 function findChrome() {
@@ -176,8 +155,9 @@ async function fetchTeams(page, sid, year) {
   for (const slug of slugs) {
     await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}/${slug}`)
     await sleep(rand(300, 700))
-    const teams = await page.evaluate((MLB_ARR) => {
-      const mlbSet = new Set(MLB_ARR)
+    // Pas de filtre MLB_TEAMS : un set "spécial" (équipe hors franchise) serait
+    // sinon perdu silencieusement -- on veut 0 trou.
+    const teams = await page.evaluate(() => {
       const results = []
       const seen = new Set()
       document.querySelectorAll('a[href*="/team/"]').forEach(a => {
@@ -187,14 +167,13 @@ async function fetchTeams(page, sid, year) {
         seen.add(m[1])
         results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
       })
-      return results.filter(t => mlbSet.has(t.teamName))
-    }, [...MLB_TEAMS])
+      return results
+    })
     if (teams.length > 0) return teams
   }
   await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}`)
   await sleep(rand(300, 700))
-  return await page.evaluate((MLB_ARR) => {
-    const mlbSet = new Set(MLB_ARR)
+  return await page.evaluate(() => {
     const results = []
     const seen = new Set()
     document.querySelectorAll('a[href*="/team/"]').forEach(a => {
@@ -204,8 +183,8 @@ async function fetchTeams(page, sid, year) {
       seen.add(m[1])
       results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
     })
-    return results.filter(t => mlbSet.has(t.teamName))
-  }, [...MLB_TEAMS])
+    return results
+  })
 }
 
 async function fetchTeamCards(page, sid, teamId, teamSlug) {
@@ -243,7 +222,7 @@ async function fetchTeamCards(page, sid, teamId, teamSlug) {
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''
           const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isPlayerName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isPlayerName) { playerName = linkText; continue }
