@@ -27,8 +27,14 @@ export async function saveOrShareFile(source: Blob | string, filename: string) {
     const a = document.createElement('a')
     a.href = url
     a.download = filename
+    document.body.appendChild(a)
     a.click()
-    URL.revokeObjectURL(url)
+    a.remove()
+    // Revoquer immediatement peut couper le telechargement avant que le
+    // navigateur ait fini de lire le blob (surtout pour un fichier de
+    // quelques Mo comme une video) -- observe : le clic ne semblait "rien
+    // faire" sur un export video. On laisse un delai avant de liberer l'URL.
+    setTimeout(() => URL.revokeObjectURL(url), 4000)
     return
   }
 

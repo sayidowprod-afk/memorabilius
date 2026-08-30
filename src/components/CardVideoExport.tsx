@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { toast } from '@/lib/toast'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -500,8 +501,13 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
 
   const download = async () => {
     if (!videoUrl) return
-    const blob = await (await fetch(videoUrl)).blob()
-    await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`)
+    try {
+      const blob = await (await fetch(videoUrl)).blob()
+      await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`)
+    } catch (e) {
+      console.error('[CardVideoExport] download', e)
+      toast.error(t('video_download_error'))
+    }
   }
 
   const chip = (active: boolean) => ({
