@@ -433,6 +433,22 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
 
   useEffect(() => setMounted(true), [])
 
+  // Le tooltip de badge n'a pas d'équivalent tactile de onMouseLeave (pas de
+  // "survol" au doigt) -- sans ça, un tap sur un badge sur mobile l'ouvrait
+  // pour de bon : il restait affiché, figé en position:fixed à son ancien
+  // endroit, pendant que la page défilait sous lui ("sticky partout").
+  // Ferme au premier tap/scroll suivant l'ouverture, où qu'il ait lieu.
+  useEffect(() => {
+    if (!tooltip) return
+    const close = () => setTooltip(null)
+    document.addEventListener('touchstart', close, { passive: true })
+    document.addEventListener('scroll', close, { passive: true, capture: true })
+    return () => {
+      document.removeEventListener('touchstart', close)
+      document.removeEventListener('scroll', close, true)
+    }
+  }, [tooltip])
+
   useEffect(() => {
     if (!userId) return
     setLoading(true)
