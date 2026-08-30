@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
+import { cropFrameToOriginalCorners } from '@/lib/cropToCorners'
 const CardScanner = dynamic(() => import('@/components/CardScanner'), { ssr: false })
 const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
 
@@ -653,6 +654,25 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     finalCanvas.height = isLandscape ? 600 : 840
     const finalCtx = finalCanvas.getContext('2d')!
     finalCtx.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
+
+    // Capture pour le dataset d'entraînement des coins -- jusqu'ici seul le scanner
+    // avec détection auto alimentait ce dataset (voir scannerCornersRef plus bas) ;
+    // un recadrage 100% manuel (échec de détection, ou formats qui la sautent) ne
+    // laissait donc jamais de trace, alors que ce sont les cas les plus utiles à
+    // apprendre. On calcule ici les coins finaux sur la photo d'origine à partir
+    // du cadre de recadrage (voir lib/cropToCorners.ts), comme si l'utilisateur
+    // les avait retouchés à la main -- ce qui est litteralement le cas.
+    if (side === 'recto' || side === 'verso') {
+      try {
+        const finalCorners = cropFrameToOriginalCorners({
+          outCanvasW: outCanvas.width, outCanvasH: outCanvas.height,
+          frameX, frameY, cw, ch, imgTransform, pixelScale, angleRad,
+          naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight,
+        })
+        const originalBlob = await fetch(cropModal.src).then(r => r.blob())
+        scannerCornersRef.current[side] = { gemini: null, final: finalCorners, adjusted: true, originalBlob }
+      } catch { /* pas grave si ça échoue -- ça ne doit jamais bloquer l'upload de la carte */ }
+    }
 
     setCropModal(null)
 
