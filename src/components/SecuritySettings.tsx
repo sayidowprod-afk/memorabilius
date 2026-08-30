@@ -23,6 +23,7 @@ export default function SecuritySettings({ dark }: Props) {
   const [loading, setLoading] = useState(true)
   const [enabledFactorId, setEnabledFactorId] = useState<string | null>(null)
   const [enrolling, setEnrolling] = useState(false)
+  const [starting, setStarting] = useState(false)
   const [enrollFactorId, setEnrollFactorId] = useState<string | null>(null)
   const [qrCode, setQrCode] = useState<string | null>(null)
   const [secret, setSecret] = useState<string | null>(null)
@@ -45,13 +46,21 @@ export default function SecuritySettings({ dark }: Props) {
   }, [])
 
   const startEnroll = async () => {
+    if (starting) return
+    setStarting(true)
     setError('')
-    const { data, error: err } = await supabase.auth.mfa.enroll({ factorType: 'totp' })
-    if (err || !data) { setError(t('security_2fa_err')); return }
-    setEnrollFactorId(data.id)
-    setQrCode(data.totp.qr_code)
-    setSecret(data.totp.secret)
-    setEnrolling(true)
+    try {
+      const { data, error: err } = await supabase.auth.mfa.enroll({ factorType: 'totp' })
+      if (err || !data) { setError(err?.message || t('security_2fa_err')); return }
+      setEnrollFactorId(data.id)
+      setQrCode(data.totp.qr_code)
+      setSecret(data.totp.secret)
+      setEnrolling(true)
+    } catch (e: any) {
+      setError(e?.message || t('security_2fa_err'))
+    } finally {
+      setStarting(false)
+    }
   }
 
   const cancelEnroll = async () => {
@@ -69,17 +78,22 @@ export default function SecuritySettings({ dark }: Props) {
     if (!enrollFactorId) return
     setVerifying(true)
     setError('')
-    const { data: challenge, error: challengeErr } = await supabase.auth.mfa.challenge({ factorId: enrollFactorId })
-    if (challengeErr || !challenge) { setError(t('security_2fa_err')); setVerifying(false); return }
-    const { error: verifyErr } = await supabase.auth.mfa.verify({ factorId: enrollFactorId, challengeId: challenge.id, code })
-    if (verifyErr) { setError(t('security_2fa_err')); setVerifying(false); return }
-    setEnrolling(false)
-    setEnrollFactorId(null)
-    setQrCode(null)
-    setSecret(null)
-    setCode('')
-    setVerifying(false)
-    await refreshFactors()
+    try {
+      const { data: challenge, error: challengeErr } = await supabase.auth.mfa.challenge({ factorId: enrollFactorId })
+      if (challengeErr || !challenge) { setError(challengeErr?.message || t('security_2fa_err')); return }
+      const { error: verifyErr } = await supabase.auth.mfa.verify({ factorId: enrollFactorId, challengeId: challenge.id, code })
+      if (verifyErr) { setError(verifyErr.message || t('security_2fa_err')); return }
+      setEnrolling(false)
+      setEnrollFactorId(null)
+      setQrCode(null)
+      setSecret(null)
+      setCode('')
+      await refreshFactors()
+    } catch (e: any) {
+      setError(e?.message || t('security_2fa_err'))
+    } finally {
+      setVerifying(false)
+    }
   }
 
   const disable2fa = async () => {
@@ -97,6 +111,7 @@ export default function SecuritySettings({ dark }: Props) {
       <div style={{ marginBottom: 20 }}>
         <h4 style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>{t('security_2fa_title')}</h4>
         <p style={{ fontSize: 12, color: dark ? '#999' : '#888', marginBottom: 12 }}>{t('security_2fa_desc')}</p>
+        {error && !enrolling && <p style={{ color: '#e74c3c', fontSize: 12, marginBottom: 12 }}>{error}</p>}
 
         {!enrolling && enabledFactorId && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -108,8 +123,8 @@ export default function SecuritySettings({ dark }: Props) {
         )}
 
         {!enrolling && !enabledFactorId && (
-          <button onClick={startEnroll} className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 13 }}>
-            {t('security_2fa_enable_btn')}
+          <button onClick={startEnroll} disabled={starting} className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 13, opacity: starting ? 0.6 : 1, cursor: starting ? 'default' : 'pointer' }}>
+            {starting ? '…' : t('security_2fa_enable_btn')}
           </button>
         )}
 

@@ -12,6 +12,7 @@ import { levelFromXP } from '@/lib/leveling'
 import { subscribePush } from '@/components/PWAInstall'
 import ShowcaseWidget from '@/components/ShowcaseWidget'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
+import SecuritySettings from '@/components/SecuritySettings'
 
 export default function Profil() {
   const router = useRouter()
@@ -505,6 +506,13 @@ export default function Profil() {
         <button onClick={handleExportData} disabled={exportingData} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13 }}>
           {exportingData ? t('profile_exporting') : t('profile_export_btn')}
         </button>
+      </div>
+
+      {/* Sécurité (2FA, historique des connexions) -- auparavant accessible uniquement
+          depuis /parametres, une page liée seulement dans la nav mobile (bottom nav),
+          donc invisible/inaccessible sur desktop et PWA. */}
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+        <SecuritySettings dark={dark} />
       </div>
 
       {/* Zone danger */}
