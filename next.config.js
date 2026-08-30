@@ -62,7 +62,12 @@ const nextConfig = {
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data: blob: https:",
             "font-src 'self' data: https://fonts.gstatic.com",
-            "connect-src 'self' https: wss://*.supabase.co",
+            // blob: -- necessaire pour fetch(videoUrl) lors du telechargement d'un
+            // export video (CardVideoExport.tsx) : sans lui, la CSP bloque le fetch
+            // sur l'URL blob: generee localement, et le telechargement echoue en
+            // silence (regression du 28 aout, quand cette CSP a ete ajoutee -- la
+            // fonctionnalite marchait sans probleme avant).
+            "connect-src 'self' https: blob: wss://*.supabase.co",
             "media-src 'self' blob: https:",
             "worker-src 'self' blob: https://cdn.jsdelivr.net",
             "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://challenges.cloudflare.com",
