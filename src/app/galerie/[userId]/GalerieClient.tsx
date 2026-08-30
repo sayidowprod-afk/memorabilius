@@ -2240,6 +2240,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
         </div>
 
+        {/* Regle mobile pour l'en-tete (empile "..."/"+Ajouter" en colonne) --
+            DOIT rester en dehors de tout conditionnel sur activeTab : l'en-tete
+            est affiche sur tous les onglets, mais cette regle vivait avant dans
+            le <style> du contenu de l'onglet "collection", donc elle disparaissait
+            (et les boutons revenaient cote a cote) des qu'on changeait d'onglet. */}
+        <style>{`
+          @media (max-width: 768px) {
+            .header-stats-block { width: 100% !important; align-items: center !important; }
+            .galerie-actions { flex-direction: column !important; align-items: stretch !important; }
+            .galerie-actions .btn-ajouter { font-size: 17px !important; padding: 14px 20px !important; text-align: center; width: 100%; box-sizing: border-box; }
+            .galerie-actions .btn-menu { width: 100%; }
+            .galerie-actions .btn-menu > button { width: 100% !important; }
+          }
+        `}</style>
+
         {/* Stats de collection */}
         {showStats && loaded && (
           <CollectionStats cards={cards} accent={accent} totalValeur={isOwner ? Array.from(cardValues.values()).reduce((a, b) => a + b, 0) : undefined} />
