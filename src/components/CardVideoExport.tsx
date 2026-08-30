@@ -450,7 +450,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     canvas.width = w; canvas.height = h
 
     setRecording(true); setProgress(0); setDone(false); setVideoUrl(null)
-    let rafId: number | null = null
+    let tickTimer: ReturnType<typeof setTimeout> | null = null
     try {
       const ctx = canvas.getContext('2d')!
       const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
@@ -490,38 +490,38 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
 
       const frameInterval = 1000 / FPS
       const start = performance.now()
-      let lastDraw = -1
-      // Filet de securite : le tick s'appuie sur requestAnimationFrame, qui peut
-      // ne jamais (re)demarrer dans certains contextes (onglet en arriere-plan,
-      // webview particuliere) -- sans ca, la promesse ci-dessous ne se resout
-      // jamais et on reste bloque au meme titre qu'une exception non attrapee.
+      // setTimeout plutot que requestAnimationFrame : rAF peut etre throttle/mis
+      // en pause par le navigateur des que l'onglet perd le focus ou selon des
+      // heuristiques d'economie d'energie qui ont pu evoluer cote navigateur --
+      // observe en reproduction : le tick ne redemarrait jamais, le canvas n'etait
+      // plus redessine, et canvas.captureStream() ne captait plus aucune frame
+      // (fichier exporte de 0 octet malgre un enregistrement "termine" sans erreur).
+      // setTimeout continue de s'executer meme onglet en arriere-plan.
       const animation = new Promise<void>(resolve => {
-        const tick = (now: number) => {
-          if (lastDraw < 0 || now - lastDraw >= frameInterval - 1) {
-            lastDraw = now
-            const elapsed = now - start
-            const p = Math.min(elapsed / DURATION, 1)
-            drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
-            setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
-            if (elapsed >= DURATION + HOLD) { resolve(); return }
-          }
-          rafId = requestAnimationFrame(tick)
+        const tick = () => {
+          const now = performance.now()
+          const elapsed = now - start
+          const p = Math.min(elapsed / DURATION, 1)
+          drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
+          setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
+          if (elapsed >= DURATION + HOLD) { resolve(); return }
+          tickTimer = setTimeout(tick, frameInterval)
         }
-        rafId = requestAnimationFrame(tick)
+        tickTimer = setTimeout(tick, 0)
       })
       const timedOut = Symbol('timeout')
       const result = await Promise.race([
         animation,
         new Promise(r => setTimeout(() => r(timedOut), DURATION + HOLD + 6000)),
       ])
-      if (rafId != null) cancelAnimationFrame(rafId)
+      if (tickTimer != null) clearTimeout(tickTimer)
       if (result === timedOut) throw new Error('timeout')
 
       await new Promise(r => setTimeout(r, 200))
       recorder.stop()
       await stopped
     } catch (e) {
-      if (rafId != null) cancelAnimationFrame(rafId)
+      if (tickTimer != null) clearTimeout(tickTimer)
       console.error('[CardVideoExport] startRecording', e)
       setRecording(false); setProgress(0)
       toast.error(t('video_record_error'))
