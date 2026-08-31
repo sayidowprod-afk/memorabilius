@@ -17,14 +17,26 @@ const FirebaseCrashlytics = registerPlugin<FirebaseCrashlyticsPlugin>('FirebaseC
 // voit rien de ce qui casse dans la WebView de l'app). Toute erreur JS non interceptée
 // remonte maintenant dans Firebase Crashlytics comme "non-fatal", avec le message et la
 // pile d'appel — mêmes crashes visibles côté natif et côté web dans un seul dashboard.
+// isPluginAvailable() vérifie juste que le plugin est enregistré côté JS --
+// insuffisant si le SDK natif Firebase Crashlytics est mal initialisé côté
+// Android (ex: Crashlytics pas activé dans la console Firebase), auquel cas
+// le premier appel natif peut planter tout le process avant même de retourner
+// une promesse (le .catch() JS ne protège que contre un rejet normal, pas un
+// crash natif). On vérifie quand même isPluginAvailable en amont : ça évite
+// l'appel dans les cas où le plugin n'est pas enregistré du tout, la cause la
+// plus fréquente de ce genre de crash au tout premier appel.
+function pluginReady() {
+  return Capacitor.isNativePlatform() && Capacitor.isPluginAvailable('FirebaseCrashlytics')
+}
+
 export function recordJsError(error: unknown, context?: string) {
-  if (!Capacitor.isNativePlatform()) return
+  if (!pluginReady()) return
   const message = context ? `${context}: ${errorMessage(error)}` : errorMessage(error)
   FirebaseCrashlytics.recordException({ message }).catch(() => {})
 }
 
 export function setCrashlyticsUserId(userId: string | null) {
-  if (!Capacitor.isNativePlatform()) return
+  if (!pluginReady()) return
   FirebaseCrashlytics.setUserId({ userId: userId || '' }).catch(() => {})
 }
 
