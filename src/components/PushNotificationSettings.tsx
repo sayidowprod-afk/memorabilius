@@ -31,26 +31,14 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
     }
   }, [])
 
-  // Sur l'app native, le push passe par FCM (PushInit.tsx) et non par l'API
-  // web Notification/ServiceWorker — on affiche donc l'état de permission natif.
-  useEffect(() => {
-    if (!isNative) return
-    import('@capacitor/push-notifications').then(({ PushNotifications }) => {
-      PushNotifications.checkPermissions().then(p => setNativePushPermission(p.receive as any))
-    }).catch(() => {})
-  }, [isNative])
-
-  const handleRequestNativePush = async () => {
-    setPushLoading(true)
-    try {
-      const { PushNotifications } = await import('@capacitor/push-notifications')
-      const req = await PushNotifications.requestPermissions()
-      setNativePushPermission(req.receive as any)
-      if (req.receive === 'granted') await PushNotifications.register()
-    } finally {
-      setPushLoading(false)
-    }
-  }
+  // DESACTIVE (31/08) : PushNotifications.checkPermissions()/requestPermissions()
+  // plantent tout le process natif (NullPointerException dans
+  // com.getcapacitor.d0.getPermissionStates, bug du coeur de Capacitor confirme
+  // par adb logcat sur appareil reel -- meme cause que dans PushInit.tsx et
+  // localReminders.ts). nativePushPermission reste donc toujours null tant
+  // qu'un vrai correctif (upgrade Capacitor + rebuild + test reel) n'est pas
+  // fait -- l'app doit rester utilisable avant tout.
+  const handleRequestNativePush = async () => {}
 
   const handleEnablePush = async () => {
     setPushLoading(true)
