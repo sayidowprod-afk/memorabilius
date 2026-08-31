@@ -237,6 +237,11 @@ function CumulativeChart({ data, totalToday, color }: {
 }) {
   const [zoom, setZoom]       = useState<Zoom>('3m')
   const [hovered, setHovered] = useState<number | null>(null)
+  // Zoom par selection (glisser sur le graphique) : indices dans cumulativeAll,
+  // limite a la partie historique (la projection est extrapolee, pas zoomable
+  // finement) -- prioritaire sur les boutons de plage tant qu'actif.
+  const [zoomRange, setZoomRange] = useState<[number, number] | null>(null)
+  const [drag, setDrag] = useState<{ start: number; current: number } | null>(null)
 
   const dailyAll = buildHistory(data)
   const rate7    = rollingAvg(dailyAll, 7)   // moy. 7 derniers jours
@@ -260,14 +265,18 @@ function CumulativeChart({ data, totalToday, color }: {
   })
 
   const { histDays, projDays } = ZOOM_CFG[zoom]
-  const visHist = histDays === Infinity ? cumulativeAll : cumulativeAll.slice(-histDays)
-  const visProj = projAll.slice(0, projDays)
+  const presetHist = histDays === Infinity ? cumulativeAll : cumulativeAll.slice(-histDays)
+  const presetOffset = cumulativeAll.length - presetHist.length
+  const visHist = zoomRange
+    ? cumulativeAll.slice(zoomRange[0], zoomRange[1] + 1)
+    : presetHist
+  const visProj = zoomRange ? [] : projAll.slice(0, projDays)
   const nVis    = visHist.length
   const allVis  = [...visHist, ...visProj]
   const T       = allVis.length
   const maxVal  = Math.max(1, ...allVis.map(p => p.count))
 
-  const H = 280, PL = 66, PR = 16, PT = 22, PB = 30
+  const H = 340, PL = 66, PR = 16, PT = 22, PB = 30
   const cW = W_SVG - PL - PR, cH = H - PT - PB
   const sx = (i: number) => PL + (i / Math.max(1, T - 1)) * cW
   const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
@@ -285,10 +294,30 @@ function CumulativeChart({ data, totalToday, color }: {
     Math.round(i * (T - 1) / Math.max(1, nLabels - 1))
   ).filter((v, i, arr) => arr.indexOf(v) === i)
 
+  function idxAt(e: { clientX: number }, rect: DOMRect) {
+    const mx = (e.clientX - rect.left) * (W_SVG / rect.width)
+    return Math.max(0, Math.min(T - 1, Math.round(((mx - PL) / cW) * (T - 1))))
+  }
   function onMove(e: React.MouseEvent<SVGSVGElement>) {
     const rect = e.currentTarget.getBoundingClientRect()
-    const mx   = (e.clientX - rect.left) * (W_SVG / rect.width)
-    setHovered(Math.max(0, Math.min(T - 1, Math.round(((mx - PL) / cW) * (T - 1)))))
+    const i = idxAt(e, rect)
+    setHovered(i)
+    if (drag) setDrag(d => d && { ...d, current: Math.min(i, nVis - 1) })
+  }
+  // Le zoom par selection ne porte que sur la partie historique (nVis-1 max) --
+  // la projection est extrapolee, pas des vraies donnees a zoomer finement.
+  function onDown(e: React.MouseEvent<SVGSVGElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const i = Math.min(idxAt(e, rect), nVis - 1)
+    setDrag({ start: i, current: i })
+  }
+  function onUp() {
+    if (drag && Math.abs(drag.current - drag.start) >= 2) {
+      const lo = Math.min(drag.start, drag.current), hi = Math.max(drag.start, drag.current)
+      const base = zoomRange ? zoomRange[0] : presetOffset
+      setZoomRange([base + lo, base + hi])
+    }
+    setDrag(null)
   }
 
   const hp     = hovered !== null ? allVis[hovered] : null
@@ -304,17 +333,27 @@ function CumulativeChart({ data, totalToday, color }: {
   return (
     <div style={{ userSelect: 'none' }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-        <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+          <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setZoomRange(null); setHovered(null) }} color={color} />
+          {zoomRange && (
+            <button onClick={() => setZoomRange(null)} style={{
+              background: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', borderRadius: 20,
+              padding: '5px 12px', fontSize: 11, fontWeight: 700, cursor: 'pointer',
+            }}>
+              🔍 Réinitialiser le zoom
+            </button>
+          )}
+        </div>
         <div style={{ fontSize: 12, color: '#64748b' }}>
           <span style={{ fontWeight: 600, color: trendColor }}>{trend} </span>
           moy. 7j : <span style={{ fontWeight: 600 }}>{fmt(Math.round(rate7))}/j</span>
         </div>
       </div>
 
-      <div style={{ position: 'relative' }} onMouseLeave={() => setHovered(null)}>
+      <div style={{ position: 'relative' }} onMouseLeave={() => { setHovered(null); setDrag(null) }}>
         <svg viewBox={`0 0 ${W_SVG} ${H}`}
           style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
-          onMouseMove={onMove}
+          onMouseMove={onMove} onMouseDown={onDown} onMouseUp={onUp}
         >
           {yTicks.map(t => (
             <g key={t}>
@@ -352,17 +391,23 @@ function CumulativeChart({ data, totalToday, color }: {
           ))}
 
           {/* Crosshair */}
-          {hovered !== null && hx !== null && hy !== null && (
+          {hovered !== null && hx !== null && hy !== null && !drag && (
             <>
               <line x1={hx} x2={hx} y1={PT} y2={PT+cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
               <circle cx={hx} cy={hy} r={5} fill={isProj ? '#fff' : color} stroke={color} strokeWidth={2} />
             </>
           )}
+          {/* Selection de zoom (glisser) */}
+          {drag && (
+            <rect x={sx(Math.min(drag.start, drag.current))} y={PT}
+              width={Math.max(0, sx(Math.max(drag.start, drag.current)) - sx(Math.min(drag.start, drag.current)))}
+              height={cH} fill={color} opacity={0.12} stroke={color} strokeWidth={1} strokeDasharray="3 3" />
+          )}
           <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
         </svg>
 
         {/* Tooltip */}
-        {hp && hx !== null && (
+        {hp && hx !== null && !drag && (
           <div style={{
             position: 'absolute', top: 10, left: `${tooltipPct}%`, transform: tooltipXfrm,
             background: '#0f172a', color: '#fff', padding: '7px 13px', borderRadius: 8,
@@ -379,9 +424,12 @@ function CumulativeChart({ data, totalToday, color }: {
         )}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
-        dans 1 an : <span style={{ fontWeight: 600, color: '#334155', marginLeft: 4 }}>~{fmt(proj1y)}</span>
-        <span style={{ color: '#059669', marginLeft: 6 }}>(+{fmt(gain1y)})</span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
+        <span>Glisser sur la partie historique pour zoomer sur une période</span>
+        <span>
+          dans 1 an : <span style={{ fontWeight: 600, color: '#334155', marginLeft: 4 }}>~{fmt(proj1y)}</span>
+          <span style={{ color: '#059669', marginLeft: 6 }}>(+{fmt(gain1y)})</span>
+        </span>
       </div>
     </div>
   )
@@ -392,17 +440,27 @@ function CumulativeChart({ data, totalToday, color }: {
 function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const [zoom, setZoom]       = useState<Zoom>('3m')
   const [hovered, setHovered] = useState<number | null>(null)
+  // Zoom par selection (glisser sur le graphique) : indices dans dailyAll,
+  // independant des boutons de plage -- prioritaire sur eux tant qu'actif.
+  const [zoomRange, setZoomRange] = useState<[number, number] | null>(null)
+  const [drag, setDrag] = useState<{ start: number; current: number } | null>(null)
 
   const dailyAll = buildHistory(data)
   const rate7    = rollingAvg(dailyAll, 7)
   const trend    = trendVsPrev(dailyAll)
 
   const { histDays } = ZOOM_CFG[zoom]
-  const visHist = histDays === Infinity ? dailyAll : dailyAll.slice(-histDays)
+  const presetHist = histDays === Infinity ? dailyAll : dailyAll.slice(-histDays)
+  // Offset du debut de presetHist dans dailyAll -- necessaire pour convertir les
+  // indices de selection (relatifs a dailyAll) en indices relatifs a visHist.
+  const presetOffset = dailyAll.length - presetHist.length
+  const visHist = zoomRange
+    ? dailyAll.slice(zoomRange[0], zoomRange[1] + 1)
+    : presetHist
   const T       = visHist.length
   const maxVal  = Math.max(1, ...visHist.map(p => p.count))
 
-  const H = 200, PL = 58, PR = 16, PT = 22, PB = 30
+  const H = 260, PL = 58, PR = 16, PT = 22, PB = 30
   const cW = W_SVG - PL - PR, cH = H - PT - PB
   const sx = (i: number) => PL + (i / Math.max(1, T - 1)) * cW
   const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
@@ -418,10 +476,31 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
     Math.round(i * (T - 1) / Math.max(1, nLabels - 1))
   ).filter((v, i, arr) => arr.indexOf(v) === i)
 
+  function idxAt(e: { clientX: number }, rect: DOMRect) {
+    const mx = (e.clientX - rect.left) * (W_SVG / rect.width)
+    return Math.max(0, Math.min(T - 1, Math.round(((mx - PL) / cW) * (T - 1))))
+  }
+
   function onMove(e: React.MouseEvent<SVGSVGElement>) {
     const rect = e.currentTarget.getBoundingClientRect()
-    const mx   = (e.clientX - rect.left) * (W_SVG / rect.width)
-    setHovered(Math.max(0, Math.min(T - 1, Math.round(((mx - PL) / cW) * (T - 1)))))
+    const i = idxAt(e, rect)
+    setHovered(i)
+    if (drag) setDrag(d => d && { ...d, current: i })
+  }
+  function onDown(e: React.MouseEvent<SVGSVGElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const i = idxAt(e, rect)
+    setDrag({ start: i, current: i })
+  }
+  function onUp() {
+    if (drag && Math.abs(drag.current - drag.start) >= 2) {
+      const lo = Math.min(drag.start, drag.current), hi = Math.max(drag.start, drag.current)
+      // drag.* sont relatifs a visHist -- reconvertir vers dailyAll selon la base
+      // actuelle (zoomRange existant ou preset), pour pouvoir re-zoomer en cascade.
+      const base = zoomRange ? zoomRange[0] : presetOffset
+      setZoomRange([base + lo, base + hi])
+    }
+    setDrag(null)
   }
 
   const hp    = hovered !== null ? visHist[hovered] : null
@@ -430,21 +509,33 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const tooltipPct  = hx !== null ? (hx / W_SVG) * 100 : 50
   const tooltipXfrm = tooltipPct < 10 ? 'translateX(0)' : tooltipPct > 90 ? 'translateX(-100%)' : 'translateX(-50%)'
   const trendColor  = trend === '↑' ? '#059669' : trend === '↓' ? '#ef4444' : '#94a3b8'
+  const selX1 = drag ? sx(Math.min(drag.start, drag.current)) : null
+  const selX2 = drag ? sx(Math.max(drag.start, drag.current)) : null
 
   return (
     <div style={{ userSelect: 'none' }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-        <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+          <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setZoomRange(null); setHovered(null) }} color={color} />
+          {zoomRange && (
+            <button onClick={() => setZoomRange(null)} style={{
+              background: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', borderRadius: 20,
+              padding: '5px 12px', fontSize: 11, fontWeight: 700, cursor: 'pointer',
+            }}>
+              🔍 Réinitialiser le zoom
+            </button>
+          )}
+        </div>
         <div style={{ fontSize: 12, color: '#64748b' }}>
           <span style={{ fontWeight: 600, color: trendColor }}>{trend} </span>
           moy. 7j : <span style={{ fontWeight: 600 }}>{fmt(Math.round(rate7))}/j</span>
         </div>
       </div>
 
-      <div style={{ position: 'relative' }} onMouseLeave={() => setHovered(null)}>
+      <div style={{ position: 'relative' }} onMouseLeave={() => { setHovered(null); setDrag(null) }}>
         <svg viewBox={`0 0 ${W_SVG} ${H}`}
           style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
-          onMouseMove={onMove}
+          onMouseMove={onMove} onMouseDown={onDown} onMouseUp={onUp}
         >
           {yTicks.map(t => (
             <g key={t}>
@@ -464,16 +555,19 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
             </text>
           ))}
 
-          {hovered !== null && hx !== null && hy !== null && (
+          {hovered !== null && hx !== null && hy !== null && !drag && (
             <>
               <line x1={hx} x2={hx} y1={PT} y2={PT+cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
               <circle cx={hx} cy={hy} r={4.5} fill={color} stroke={color} strokeWidth={2} />
             </>
           )}
+          {drag && selX1 !== null && selX2 !== null && (
+            <rect x={selX1} y={PT} width={Math.max(0, selX2 - selX1)} height={cH} fill={color} opacity={0.12} stroke={color} strokeWidth={1} strokeDasharray="3 3" />
+          )}
           <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
         </svg>
 
-        {hp && hx !== null && (
+        {hp && hx !== null && !drag && (
           <div style={{
             position: 'absolute', top: 10, left: `${tooltipPct}%`, transform: tooltipXfrm,
             background: '#0f172a', color: '#fff', padding: '7px 13px', borderRadius: 8,
@@ -485,6 +579,7 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
           </div>
         )}
       </div>
+      <p style={{ fontSize: 10, color: '#b0bec5', margin: '6px 0 0', textAlign: 'right' }}>Glisser sur le graphique pour zoomer sur une période</p>
     </div>
   )
 }
