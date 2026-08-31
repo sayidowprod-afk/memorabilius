@@ -16,6 +16,10 @@ export default function PushInit() {
     let cancelled = false
 
     import('@capacitor/push-notifications').then(async ({ PushNotifications }) => {
+      // Meme bug de coeur Capacitor que localReminders.ts (voir son commentaire) --
+      // checkPermissions() trop tot au cold start plante le process natif entier.
+      await new Promise(r => setTimeout(r, 1000))
+      if (cancelled) return
       const perm = await PushNotifications.checkPermissions()
       if (perm.receive !== 'granted') {
         const req = await PushNotifications.requestPermissions()

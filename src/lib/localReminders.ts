@@ -10,6 +10,12 @@ export const REMINDER_IDS = {
 async function ensurePermission(): Promise<boolean> {
   if (!Capacitor.isNativePlatform()) return false
   try {
+    // Appeler checkPermissions() trop tôt au cold start (avant que l'Activity
+    // soit pleinement rattachée au Bridge) fait planter tout le process natif
+    // avec une NullPointerException dans com.getcapacitor.d0.getPermissionStates
+    // -- bug du coeur de Capacitor, pas du plugin. Un court délai laisse le
+    // temps au Bridge de finir son init avant le premier appel natif.
+    await new Promise(r => setTimeout(r, 1000))
     const { LocalNotifications } = await import('@capacitor/local-notifications')
     const perm = await LocalNotifications.checkPermissions()
     if (perm.display === 'granted') return true
