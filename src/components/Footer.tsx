@@ -15,7 +15,23 @@ export default function Footer() {
   return (
     <footer style={{ borderTop: '1px solid #eee', marginTop: 40, padding: '24px 16px' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-        <span style={{ color: '#999', fontSize: 13 }}>© {year} Memorabilius</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ color: '#999', fontSize: 13 }}>© {year} Memorabilius</span>
+          <a
+            href="https://play.google.com/store/apps/details?id=fr.memorabilius.app&hl=fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/google-play-badge.png"
+              alt="Disponible sur Google Play"
+              height={40}
+              style={{ height: 40, width: 'auto' }}
+            />
+          </a>
+        </div>
         <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 18, alignItems: 'center' }}>
           <Link href="/mentions-legales" style={linkStyle}>Mentions légales</Link>
           <Link href="/confidentialite" style={linkStyle}>Confidentialité</Link>
