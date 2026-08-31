@@ -128,15 +128,22 @@ export async function GET(req: NextRequest) {
     pageviews: daily7(pageviewsByDay),
   }
 
-  // Snapshot quotidien — enregistré chaque fois qu'un admin charge les stats
+  // Snapshot quotidien — enregistré chaque fois qu'un admin charge les stats.
+  // Doit être attendu (pas fire-and-forget) : sur Vercel, la fonction serverless
+  // peut être gelée juste après le retour de la réponse, tuant toute requête
+  // encore "en vol" -- avec `void` (sans await) devant, cette requête n'avait
+  // jamais le temps d'atteindre Supabase en production, d'ou une table
+  // stats_snapshots toujours vide malgre des mois d'utilisation (confirme par
+  // un test direct : l'appel reussit systematiquement hors contexte serverless).
   const today = new Date().toISOString().slice(0, 10)
-  void admin.from('stats_snapshots').upsert({
+  const { error: snapshotError } = await admin.from('stats_snapshots').upsert({
     day: today,
     total_users:  rpcData.total_users        ?? 0,
     total_cards:  rpcData.total_cards        ?? 0,
     active_users: rpcData.active_users_month ?? 0,
     total_scans:  rpcData.total_scans        ?? 0,
   }, { onConflict: 'day' })
+  if (snapshotError) console.error('[admin/stats] snapshot upsert failed', snapshotError)
 
   return NextResponse.json({ ...rpcData, last_7_days })
 }
