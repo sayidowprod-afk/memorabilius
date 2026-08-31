@@ -50,21 +50,22 @@ const s3 = new S3Client({
   },
 })
 
-// ── Reprise depuis un run précédent ────────────────────────────────────────
-let progress = { done: new Set(), errors: [], lastPage: 0 }
+// ── Cache des images déjà sauvegardées (persisté sur R2 entre les runs) ───
+// Toutes les pages sont re-scannées à chaque run (nécessaire pour détecter
+// les nouvelles cartes ajoutées n'importe où) ; ce cache évite juste de
+// re-uploader ce qui est déjà sur R2 (uploadUrl() vérifie done + HEAD R2).
+let progress = { done: new Set(), errors: [] }
 if (existsSync(PROGRESS)) {
   const p = JSON.parse(readFileSync(PROGRESS, 'utf8'))
   progress.done    = new Set(p.done || [])
   progress.errors  = p.errors || []
-  progress.lastPage = p.lastPage || 0
   console.log(`↩  Reprise : ${progress.done.size} images déjà sauvegardées`)
 }
 
 function saveProgress() {
   writeFileSync(PROGRESS, JSON.stringify({
-    done:     [...progress.done],
-    errors:   progress.errors,
-    lastPage: progress.lastPage,
+    done:   [...progress.done],
+    errors: progress.errors,
   }))
 }
 
@@ -150,8 +151,6 @@ let pageNum = 0
 let totalImages = 0, uploaded = 0, skipped = 0, errors = 0
 
 while (true) {
-  if (pageNum < progress.lastPage) { pageNum++; continue }
-
   const { data: cards } = await supabase
     .from('cartes_manuelles')
     .select('image_recto, image_verso')
@@ -182,7 +181,6 @@ while (true) {
     process.stdout.write(`\r  Page ${pageNum + 1} | up:${uploaded} skip:${skipped} err:${errors}   `)
   }
 
-  progress.lastPage = pageNum + 1
   saveProgress()
   pageNum++
 }
