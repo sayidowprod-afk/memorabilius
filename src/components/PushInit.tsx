@@ -1,12 +1,63 @@
 'use client'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/lib/AuthContext'
+import { useIsNative } from '@/lib/useIsNative'
+import { supabase } from '@/lib/supabase'
+import { runGatedNativeCall } from '@/lib/nativePermissionGate'
 
-// DESACTIVE (31/08) : PushNotifications.checkPermissions() plante tout le
-// process natif (NullPointerException dans com.getcapacitor.d0.getPermissionStates,
-// bug du coeur de Capacitor confirme par adb logcat sur appareil reel -- un
-// delai de 1s avant l'appel n'a pas suffi). Coupe tant qu'un vrai correctif
-// (upgrade Capacitor + rebuild + test reel) n'est pas fait -- l'app doit
-// rester utilisable avant tout. Ancienne implementation dans l'historique git
-// (src/components/PushInit.tsx avant ce commit).
 export default function PushInit() {
+  const isNative = useIsNative()
+  const { user } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isNative || !user) return
+    let removeListeners: (() => void) | undefined
+    let cancelled = false
+
+    import('@capacitor/push-notifications').then(async ({ PushNotifications }) => {
+      const perm = await runGatedNativeCall(() => PushNotifications.checkPermissions())
+      if (cancelled) return
+      if (perm.receive !== 'granted') {
+        const req = await runGatedNativeCall(() => PushNotifications.requestPermissions())
+        if (cancelled) return
+        if (req.receive !== 'granted') return
+      }
+
+      await PushNotifications.register()
+
+      const regListener = await PushNotifications.addListener('registration', async (token) => {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session) return
+        fetch('/api/fcm-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+          body: JSON.stringify({ token: token.value }),
+        }).catch(() => {})
+      })
+
+      const actionListener = await PushNotifications.addListener('pushNotificationActionPerformed', (action) => {
+        const url = action.notification.data?.url
+        if (url) router.push(url)
+      })
+
+      const errorListener = await PushNotifications.addListener('registrationError', (err) => {
+        console.error('[push] Erreur d\'enregistrement:', err)
+      })
+
+      removeListeners = () => {
+        regListener.remove()
+        actionListener.remove()
+        errorListener.remove()
+      }
+    }).catch(() => {})
+
+    return () => {
+      cancelled = true
+      removeListeners?.()
+    }
+  }, [isNative, user?.id, router])
+
   return null
 }
