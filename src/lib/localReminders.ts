@@ -1,5 +1,4 @@
 import { Capacitor } from '@capacitor/core'
-import { runGatedNativeCall } from './nativePermissionGate'
 
 // IDs fixes réutilisés pour remplacer/annuler un rappel existant plutôt que d'en empiler.
 export const REMINDER_IDS = {
@@ -8,17 +7,14 @@ export const REMINDER_IDS = {
   wishlistNudge: 9003,
 } as const
 
+// DESACTIVE (31/08) : LocalNotifications.checkPermissions() plante tout le
+// process natif (NullPointerException dans com.getcapacitor.d0.getPermissionStates,
+// bug du coeur de Capacitor confirme par adb logcat sur appareil reel -- un
+// delai de 1s avant l'appel n'a pas suffi a l'eviter). Les rappels locaux sont
+// une fonctionnalite secondaire : on coupe l'appel natif entierement jusqu'a
+// ce qu'un vrai correctif (upgrade Capacitor + rebuild + test reel) soit fait.
 async function ensurePermission(): Promise<boolean> {
-  if (!Capacitor.isNativePlatform()) return false
-  try {
-    const { LocalNotifications } = await import('@capacitor/local-notifications')
-    const perm = await runGatedNativeCall(() => LocalNotifications.checkPermissions())
-    if (perm.display === 'granted') return true
-    const req = await runGatedNativeCall(() => LocalNotifications.requestPermissions())
-    return req.display === 'granted'
-  } catch {
-    return false
-  }
+  return false
 }
 
 // Rappel mensuel récurrent : le wrap du mois est prêt à consulter
