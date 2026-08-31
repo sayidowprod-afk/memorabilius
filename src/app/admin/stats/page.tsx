@@ -1129,6 +1129,14 @@ function HistorySection({ token, isMobile }: { token: string; isMobile: boolean 
 
 // ── Page principale ───────────────────────────────────────────────────────
 
+// Cache module (hors composant) : survit aux allers-retours entre pages admin
+// (le composant est remonte a zero a chaque navigation, sans ca) et evite le
+// double appel a /api/admin/stats au montage (load() direct + celui declenche
+// par onAuthStateChange qui se declenche systematiquement juste apres).
+let statsCache: { data: Stats; at: number } | null = null
+let statsInFlight: Promise<Stats | null> | null = null
+const STATS_CACHE_TTL_MS = 30000
+
 export default function AdminStats() {
   const [stats, setStats]         = useState<Stats | null>(null)
   const [loading, setLoading]     = useState(true)
@@ -1146,19 +1154,36 @@ export default function AdminStats() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (force = false) => {
+    if (!force && statsCache && Date.now() - statsCache.at < STATS_CACHE_TTL_MS) {
+      setStats(statsCache.data)
+      setUpdatedAt(new Date(statsCache.at))
+      setLoading(false)
+      return
+    }
     setLoading(true); setError(null)
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) { setError('Non connecté'); setLoading(false); return }
       setSessionToken(session.access_token)
-      const r = await fetch('/api/admin/stats', {
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      })
-      if (r.status === 403) { setError('Accès refusé — compte non admin'); setLoading(false); return }
-      if (!r.ok) { setError(`Erreur ${r.status}`); setLoading(false); return }
-      setStats(await r.json())
-      setUpdatedAt(new Date())
+
+      // Deduplique le double appel au montage (load() direct + celui de
+      // onAuthStateChange qui se declenche juste apres) : le 2e attend le
+      // resultat du 1er au lieu de relancer une requete identique.
+      if (!statsInFlight) {
+        statsInFlight = (async () => {
+          const r = await fetch('/api/admin/stats', {
+            headers: { Authorization: `Bearer ${session.access_token}` },
+          })
+          if (r.status === 403) { setError('Accès refusé — compte non admin'); return null }
+          if (!r.ok) { setError(`Erreur ${r.status}`); return null }
+          const data: Stats = await r.json()
+          statsCache = { data, at: Date.now() }
+          return data
+        })().finally(() => { statsInFlight = null })
+      }
+      const data = await statsInFlight
+      if (data) { setStats(data); setUpdatedAt(new Date()) }
     } catch (e: any) {
       setError(e.message)
     } finally {
@@ -1244,7 +1269,7 @@ export default function AdminStats() {
             }}>
               Export CSV
             </button>
-            <button onClick={load} style={{
+            <button onClick={() => load(true)} style={{
               background: ACCENT, color: '#fff', border: 'none', borderRadius: 8,
               padding: '9px 18px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
             }}>
