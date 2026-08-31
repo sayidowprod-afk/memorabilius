@@ -92,7 +92,7 @@
             android:value="community" />
 
         <!-- Sans ceci, FCM utilise l'icône du launcher (adaptive icon, opaque)
-             comme icône de notif -- la barre de statut Android ne garde que le
+             comme icône de notif : la barre de statut Android ne garde que le
              canal alpha pour la dessiner, donc un icône plein/opaque devient un
              simple rond/carré plein au lieu du "M". ic_stat_notify est un
              recadrage du logo avec un vrai fond transparent, prévu pour ça. -->
