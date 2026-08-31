@@ -37,8 +37,8 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
   // par adb logcat sur appareil reel -- meme cause que dans PushInit.tsx et
   // localReminders.ts). nativePushPermission reste donc toujours null tant
   // qu'un vrai correctif (upgrade Capacitor + rebuild + test reel) n'est pas
-  // fait -- l'app doit rester utilisable avant tout.
-  const handleRequestNativePush = async () => {}
+  // fait -- l'app doit rester utilisable avant tout, d'ou push_native_unavailable
+  // affiche a la place du bouton.
 
   const handleEnablePush = async () => {
     setPushLoading(true)
@@ -91,14 +91,9 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
             {t('push_blocked_native')}
           </p>
         ) : (
-          <div>
-            <p style={{ fontSize: 13, color: dark ? '#999' : '#666', marginBottom: 12 }}>
-              {t('push_pitch')}
-            </p>
-            <button onClick={handleRequestNativePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-              {pushLoading ? '...' : t('push_enable')}
-            </button>
-          </div>
+          <p style={{ fontSize: 13, color: dark ? '#999' : '#666' }}>
+            {t('push_native_unavailable')}
+          </p>
         )
       ) : !pushSupported ? (
         <p style={{ fontSize: 13, color: '#999' }}>

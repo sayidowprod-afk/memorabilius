@@ -94,6 +94,7 @@ export const it = {
   settings_login_cta: 'Accedi',
   settings_login_to_manage: 'per gestire le tue notifiche.',
   push_enabled: '✓ Notifiche attivate',
+  push_native_unavailable: 'Temporaneamente non disponibile in questa versione dell\'app — in fase di correzione.',
   push_blocked_native: "Bloccate nelle impostazioni Android dell'app. Autorizza le notifiche per Memorabilius in Impostazioni → App → Memorabilius → Notifiche.",
   push_blocked_browser: 'Bloccate nelle impostazioni del tuo browser. Autorizza le notifiche per questo sito per riceverle.',
   push_unsupported: "Non disponibile su questo browser. Su iPhone, aggiungi prima Memorabilius alla schermata Home (Condividi → Aggiungi a Home).",
