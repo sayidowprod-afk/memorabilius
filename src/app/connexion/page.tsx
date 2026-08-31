@@ -87,6 +87,11 @@ export default function Connexion() {
       setMfaVerifying(false)
       return
     }
+    // mfaFactorId doit etre efface avant finishLogin() : le rendu verifie
+    // mfaFactorId AVANT askBiometric, donc sans ca l'ecran "Verification..."
+    // reste affiche pour toujours meme apres une connexion reussie (biometrie
+    // proposee en arriere-plan, mais jamais visible).
+    setMfaFactorId(null)
     await finishLogin()
   }
 
