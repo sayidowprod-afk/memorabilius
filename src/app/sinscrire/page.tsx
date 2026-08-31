@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import OAuthButtons from '@/components/OAuthButtons'
+import { useIsNative } from '@/lib/useIsNative'
 
 type PseudoStatus = 'idle' | 'checking' | 'available' | 'taken'
 
@@ -18,6 +19,7 @@ declare global {
 
 export default function Inscription() {
   const { t } = useLang()
+  const isNative = useIsNative()
   const [form, setForm] = useState({ email: '', password: '', display_name: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -25,6 +27,14 @@ export default function Inscription() {
   const [touched, setTouched] = useState({ email: false, password: false })
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  // Sur l'app native, le widget Turnstile (iframe tiers) peut echouer a se
+  // charger/verifier dans la WebView Capacitor -- deja vu plusieurs fois
+  // aujourd'hui avec d'autres composants tiers dans ce meme contexte. Sans
+  // filet, ca bloque definitivement le bouton d'inscription sans message
+  // clair. Passer par le Play Store est deja un filtre anti-bot bien plus
+  // fort qu'un captcha, donc on le desactive simplement sur natif plutot
+  // que de deboguer un widget tiers dans une WebView qu'on ne controle pas.
+  const requireCaptcha = !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !isNative
 
   useEffect(() => {
     window.onTurnstileVerified = (token: string) => setCaptchaToken(token)
@@ -78,26 +88,28 @@ export default function Inscription() {
     e.preventDefault()
     setTouched({ email: true, password: true })
     if (pseudoStatus === 'taken' || !emailValid || !passwordValid) return
-    if (!captchaToken) { setError(t('signup_captcha_missing')); return }
+    if (requireCaptcha && !captchaToken) { setError(t('signup_captcha_missing')); return }
     setLoading(true)
     setError('')
 
-    try {
-      const r = await fetch('/api/verify-turnstile', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: captchaToken }),
-      })
-      const { success } = await r.json()
-      if (!success) {
+    if (requireCaptcha) {
+      try {
+        const r = await fetch('/api/verify-turnstile', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: captchaToken }),
+        })
+        const { success } = await r.json()
+        if (!success) {
+          setError(t('signup_captcha_failed'))
+          setLoading(false)
+          window.turnstile?.reset()
+          setCaptchaToken(null)
+          return
+        }
+      } catch {
         setError(t('signup_captcha_failed'))
         setLoading(false)
-        window.turnstile?.reset()
-        setCaptchaToken(null)
         return
       }
-    } catch {
-      setError(t('signup_captcha_failed'))
-      setLoading(false)
-      return
     }
 
     const { error } = await supabase.auth.signUp({
@@ -118,7 +130,7 @@ export default function Inscription() {
 
   return (
     <div style={{ maxWidth: 460, margin: '60px auto', padding: '0 16px', boxSizing: 'border-box' }}>
-      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+      {requireCaptcha && (
         <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
       )}
       <div className="auth-card-bg" style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', maxWidth: '100%', boxSizing: 'border-box' }}>
@@ -170,7 +182,7 @@ export default function Inscription() {
               </div>
             )}
           </div>
-          {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+          {requireCaptcha && (
             <div
               className="cf-turnstile"
               data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
@@ -179,7 +191,7 @@ export default function Inscription() {
             />
           )}
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
-          <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking' || emailError || passwordError || (!!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken)}>
+          <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking' || emailError || passwordError || (requireCaptcha && !captchaToken)}>
             {loading ? '...' : t('register_btn')}
           </button>
         </form>
