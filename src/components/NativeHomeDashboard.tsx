@@ -156,8 +156,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         })
       } catch (e) {
         if (cancelled) return
-        if (attempt < 2) {
-          setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1000)
+        // 5 tentatives avec delai croissant (~15s) au lieu de 2x1s (~2s) --
+        // meme raison que GalerieClient.tsx : sur un vrai cold start, 2s peut
+        // ne pas suffire a ce que la session/reseau soit prete, et on
+        // abandonnait trop tot (panel absent de l'accueil jusqu'a un F5).
+        if (attempt < 5) {
+          setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1000 * (attempt + 1))
         } else {
           console.error('[NativeHomeDashboard] load failed after retries', e)
           setFailed(true)

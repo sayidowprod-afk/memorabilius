@@ -677,7 +677,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         loadCommentCounts(resolvedId)
       } catch (e) {
         if (cancelled) return
-        if (attempt < 2) { setTimeout(() => { if (!cancelled) init(attempt + 1) }, 1000); return }
+        // 5 tentatives avec delai croissant (~15s au total) au lieu de 2x1s (~2s) --
+        // sur un vrai cold start (reseau/session Supabase encore en train de
+        // s'initialiser, surtout natif), 2s peut ne pas suffire et on retombait
+        // sur le "Collectionneur" generique meme quand la vraie donnee arrivait
+        // juste apres.
+        if (attempt < 5) { setTimeout(() => { if (!cancelled) init(attempt + 1) }, 1000 * (attempt + 1)); return }
         console.error('Gallery init error', e)
         // Hors-ligne / requete finalement echouee : au moins afficher le vrai nom
         // et avatar (info publique, deja vue) plutot que le "Collectionneur"
