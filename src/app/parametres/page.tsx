@@ -193,6 +193,24 @@ export default function Parametres() {
           <FeedbackForm dark={dark} />
         </div>
       </div>
+
+      <div style={card}>
+        <h3 style={{ fontWeight: 800, marginBottom: 4 }}>☕ {t('settings_support')}</h3>
+        <p style={rowSub}>{t('settings_support_desc')}</p>
+        <a
+          href="https://ko-fi.com/gknnn_cards"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 10,
+            background: '#003DA6', color: 'white',
+            padding: '9px 16px', borderRadius: 20,
+            fontSize: 13, fontWeight: 800, textDecoration: 'none',
+          }}
+        >
+          ☕ {t('settings_support_cta')}
+        </a>
+      </div>
     </div>
   )
 }

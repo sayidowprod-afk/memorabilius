@@ -1257,11 +1257,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // "Top X% des collectionneurs" -- reutilise profiles.stats_total (deja
   // maintenu a jour partout ailleurs, ex. annuaire) via deux COUNT legers
   // plutot que de recuperer/comparer les stats de tous les collectionneurs
-  // cote client. Uniquement pour le proprietaire (info motivante sur sa
-  // propre collection, pas pertinente en visitant une autre galerie).
+  // cote client. Affiche pour n'importe quel profil consulte, pas seulement
+  // le sien.
   const [percentile, setPercentile] = useState<number | null>(null)
   useEffect(() => {
-    if (!isOwner || !profile || profile.stats_total == null) { setPercentile(null); return }
+    if (!profile || profile.stats_total == null) { setPercentile(null); return }
     let cancelled = false
     ;(async () => {
       const [{ count: better }, { count: total }] = await Promise.all([
@@ -1272,7 +1272,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       setPercentile(Math.max(1, Math.round((((better || 0)) / total) * 100)))
     })()
     return () => { cancelled = true }
-  }, [isOwner, profile?.stats_total])
+  }, [profile?.stats_total])
 
   // Volontairement PAS `[filtered]` : `filtered` recalcule (nouvelle
   // référence) a chaque `setCards()`, y compris un simple glisser-deposer
