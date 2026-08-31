@@ -270,7 +270,13 @@ function CumulativeChart({ data, totalToday, color }: {
   const visHist = zoomRange
     ? cumulativeAll.slice(zoomRange[0], zoomRange[1] + 1)
     : presetHist
-  const visProj = zoomRange ? [] : projAll.slice(0, projDays)
+  // La projection ne doit jamais depasser la largeur de l'historique reel affiche
+  // (sinon elle ecrase visuellement les vraies donnees quand le site est encore
+  // jeune -- ex: en "1 an"/"Max", projDays fixe a 275/365j alors que l'historique
+  // reel peut ne faire que quelques semaines). Plancher a 14j pour rester utile
+  // meme sur un historique tres court.
+  const effectiveProjDays = zoomRange ? 0 : Math.min(projDays, Math.max(14, presetHist.length))
+  const visProj = projAll.slice(0, effectiveProjDays)
   const nVis    = visHist.length
   const allVis  = [...visHist, ...visProj]
   const T       = allVis.length
