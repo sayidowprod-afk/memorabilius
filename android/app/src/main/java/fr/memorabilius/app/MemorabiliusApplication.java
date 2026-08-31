@@ -4,36 +4,12 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
-import android.util.Log;
 
 public class MemorabiliusApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        installCapacitorThreadCrashGuard();
         createNotificationChannels();
-    }
-
-    // Filet de securite : une NullPointerException dans le coeur de Capacitor
-    // (com.getcapacitor.d0.getPermissionStates, confirme via adb logcat sur
-    // appareil reel -- persiste meme apres un fix ProGuard cible et plusieurs
-    // corrections cote JS, cause exacte non identifiee) plante tout le process
-    // via le HandlerThread interne "CapacitorPlugins", meme si l'exception ne
-    // vient que d'un appel checkPermissions() secondaire (notifs). Ce thread ne
-    // touche jamais l'UI principale -- ignorer une exception non interceptee
-    // dessus (au lieu de laisser Android tuer tout le process) est sans danger
-    // pour le reste de l'app, contrairement a masquer un crash sur le thread
-    // principal (comportement par defaut conserve pour tout le reste).
-    private void installCapacitorThreadCrashGuard() {
-        final Thread.UncaughtExceptionHandler original = Thread.getDefaultUncaughtExceptionHandler();
-        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
-            String name = thread.getName();
-            if (name != null && name.contains("Capacitor")) {
-                Log.e("Memorabilius", "Exception ignoree sur thread " + name + " pour eviter un crash total de l'app", throwable);
-                return;
-            }
-            if (original != null) original.uncaughtException(thread, throwable);
-        });
     }
 
     // Canaux créés au démarrage de l'app (pas seulement à l'ouverture de MainActivity)

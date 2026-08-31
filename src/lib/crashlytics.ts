@@ -1,4 +1,4 @@
-import { Capacitor, registerPlugin } from '@capacitor/core'
+import { registerPlugin } from '@capacitor/core'
 
 interface FirebaseCrashlyticsPlugin {
   crash(options: { message: string }): Promise<void>
@@ -13,18 +13,25 @@ interface FirebaseCrashlyticsPlugin {
 // (chaque appel est wrappé en .catch(() => {})) et Crashlytics n'a jamais rien reçu.
 const FirebaseCrashlytics = registerPlugin<FirebaseCrashlyticsPlugin>('FirebaseCrashlytics')
 
-// Aucun rapport natif ne couvrait le JS (le layer web n'a que Vercel Analytics, qui ne
-// voit rien de ce qui casse dans la WebView de l'app). Toute erreur JS non interceptée
-// remonte maintenant dans Firebase Crashlytics comme "non-fatal", avec le message et la
-// pile d'appel — mêmes crashes visibles côté natif et côté web dans un seul dashboard.
+// DESACTIVE (31/08) : le premier appel natif (setUserId, juste apres connexion)
+// plante tout le process Android sans passer par le .catch() JS -- meme avec
+// isPluginAvailable() en garde (donc le plugin EST enregistre, il plante a
+// l'interieur de l'appel natif lui-meme, probablement un souci d'init cote
+// SDK/config Firebase). La connexion passe avant le monitoring de crash : on
+// coupe l'appel natif entierement jusqu'a verification separee de la config
+// Crashlytics cote console Firebase.
+function pluginReady() {
+  return false
+}
+
 export function recordJsError(error: unknown, context?: string) {
-  if (!Capacitor.isNativePlatform()) return
+  if (!pluginReady()) return
   const message = context ? `${context}: ${errorMessage(error)}` : errorMessage(error)
   FirebaseCrashlytics.recordException({ message }).catch(() => {})
 }
 
 export function setCrashlyticsUserId(userId: string | null) {
-  if (!Capacitor.isNativePlatform()) return
+  if (!pluginReady()) return
   FirebaseCrashlytics.setUserId({ userId: userId || '' }).catch(() => {})
 }
 

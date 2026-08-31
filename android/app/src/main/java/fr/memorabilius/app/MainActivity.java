@@ -10,7 +10,6 @@ public class MainActivity extends BridgeActivity {
     public void onCreate(Bundle savedInstanceState) {
         registerPlugin(WidgetBridgePlugin.class);
         registerPlugin(ShareBridgePlugin.class);
-        registerPlugin(NotificationPermissionPlugin.class);
         super.onCreate(savedInstanceState);
         // Le CSS overscroll-behavior (NativeInit.tsx) ne supprime pas le glow
         // orange/bleu natif de la WebView Android — il faut le désactiver ici.
