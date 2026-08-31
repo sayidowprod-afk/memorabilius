@@ -25,26 +25,11 @@ async function getSession(): Promise<OrtSession> {
     // bas de gamme (peu de coeurs, cache partagé).
     ort.env.wasm.numThreads = (window as any).crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1
     console.log('[YOLO] chargement corners.onnx...')
-    // WebGPU d'abord (~9-10x plus rapide que WASM, mesuré en conditions réelles :
-    // 349ms vs 36.5ms/image) — ort retombe automatiquement sur wasm si WebGPU
-    // n'est pas supporté par le navigateur (ex: Safari en retard dessus).
     const s = await ort.InferenceSession.create('/models/corners.onnx', {
-      executionProviders: ['webgpu', 'wasm'],
+      executionProviders: ['wasm'],
     })
     console.log('[YOLO] modèle chargé ✓', s.inputNames, s.outputNames)
     _session = s
-
-    // WebGPU compile ses shaders au premier run (~3.5s mesurés), pas au chargement
-    // de la session — ce coût est payé ici en arrière-plan plutôt que sur le
-    // premier scan réel de l'utilisateur.
-    try {
-      const warmupInput = new ort.Tensor('float32', new Float32Array(3 * IMGSZ * IMGSZ), [1, 3, IMGSZ, IMGSZ])
-      await s.run({ [s.inputNames[0]]: warmupInput })
-      console.log('[YOLO] warmup inférence ✓')
-    } catch (e) {
-      console.warn('[YOLO] warmup inférence échoué (non bloquant)', e)
-    }
-
     return s
   })().catch(e => { console.error('[YOLO] ERREUR chargement:', e); _sessionPromise = null; throw e })
   return _sessionPromise
