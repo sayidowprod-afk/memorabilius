@@ -810,7 +810,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               maintenant a la suppression de carte). */}
           {!popup.booklet && (
             <button onClick={(e) => { e.stopPropagation(); toggleFlip90() }} title={t('viewer_rotate_title')} style={{
-              position: 'absolute', top: 12, right: 12, zIndex: 10,
+              position: 'absolute', bottom: 12, right: 12, zIndex: 10,
               background: flip90 ? accent : 'rgba(0,0,0,0.45)', color: 'white',
               border: 'none', borderRadius: '50%', width: 32, height: 32,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
