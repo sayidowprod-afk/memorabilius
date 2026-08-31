@@ -54,7 +54,7 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -77,6 +77,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   onValueSave?: (val: number | null) => void
   likeData?: { count: number; liked: boolean }
   onLike?: () => void
+  onDeleteCard?: () => void
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
@@ -86,6 +87,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const borderColor = dark ? '#2a2a2a' : '#eee'
   const metaColor = dark ? '#888' : '#999'
 
+  const [confirmDelete, setConfirmDelete] = useState(false)
+  useEffect(() => { setConfirmDelete(false) }, [popup.f])
   const [tagInput, setTagInput] = useState(popup.collection_tag || '')
   const [tagSaving, setTagSaving] = useState(false)
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
@@ -800,6 +803,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               transition: '0.2s',
             }}>
               {slabMode ? '🃏 Carte seule' : `🏅 Slab ${gradeInfo.company}`}
+            </button>
+          )}
+          {/* Rotation 90° — petit bouton discret directement sur le panel, a la place
+              du gros bouton dans la grille d'actions (voir plus bas : ce slot sert
+              maintenant a la suppression de carte). */}
+          {!popup.booklet && (
+            <button onClick={(e) => { e.stopPropagation(); toggleFlip90() }} title={t('viewer_rotate_title')} style={{
+              position: 'absolute', top: 12, right: 12, zIndex: 10,
+              background: flip90 ? accent : 'rgba(0,0,0,0.45)', color: 'white',
+              border: 'none', borderRadius: '50%', width: 32, height: 32,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 15, cursor: 'pointer', backdropFilter: 'blur(4px)',
+              transition: '0.2s',
+            }}>
+              🔄
             </button>
           )}
           {gradeInfo && !slabMode && !isSlabFmt && (
@@ -1664,15 +1682,32 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   {t('binder_edit')}
                 </Link>
               )}
-              {!popup.booklet && (
-                <button onClick={toggleFlip90} title={t('viewer_rotate_title')} style={{
-                  background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
-                  border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
-                  fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                  transition: '0.2s',
-                }}>
-                  🔄 {t('viewer_rotate_btn')}
-                </button>
+              {onDeleteCard && (
+                confirmDelete ? (
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <button onClick={() => { setConfirmDelete(false); onDeleteCard() }} style={{
+                      flex: 1, background: '#e74c3c', color: 'white', border: 'none', borderRadius: 10,
+                      padding: '12px 8px', boxSizing: 'border-box', fontWeight: 800, cursor: 'pointer', fontSize: 13,
+                    }}>
+                      ✓ {t('viewer_delete_confirm')}
+                    </button>
+                    <button onClick={() => setConfirmDelete(false)} style={{
+                      background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333', border: 'none',
+                      borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box', fontWeight: 800, cursor: 'pointer', fontSize: 13,
+                    }}>
+                      ✕
+                    </button>
+                  </div>
+                ) : (
+                  <button onClick={() => setConfirmDelete(true)} style={{
+                    background: '#e74c3c', color: 'white',
+                    border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
+                    fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                    transition: '0.2s',
+                  }}>
+                    🗑️ {t('viewer_delete_btn')}
+                  </button>
+                )
               )}
               {isOwner && onDisponibleVenteChange && (popup.id_manuelle || userId) && (
                 <button onClick={async () => {

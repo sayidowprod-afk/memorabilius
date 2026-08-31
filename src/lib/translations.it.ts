@@ -1178,6 +1178,8 @@ export const it = {
   teams_remaining: 'rimanenti',
   viewer_rotate_title: 'Ruota la carta di 90°',
   viewer_rotate_btn: 'Rotazione 90°',
+  viewer_delete_btn: 'Elimina',
+  viewer_delete_confirm: 'Conferma eliminazione',
   viewer_mark_sold_title: 'Segna come venduta (resta nella tua galleria)',
   viewer_mark_sold_btn: '💰 Segna venduta',
   viewer_mark_forsale_title: 'Metti in Vendita/Trade',

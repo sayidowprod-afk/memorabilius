@@ -3430,6 +3430,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, disponible_vente } : c))
             setPopup(prev => prev && prev.f === card.f ? { ...prev, disponible_vente } : prev)
           }}
+          onDeleteCard={isOwner && popup.id_manuelle ? () => {
+            handleDeleteCard(popup.id_manuelle!, popup.f)
+            setPopup(null)
+          } : undefined}
           onNext={() => {
             if (!popup) return
             const idx = filtered.findIndex(c => c.f === popup.f)
