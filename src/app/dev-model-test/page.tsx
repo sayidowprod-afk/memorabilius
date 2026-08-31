@@ -134,7 +134,6 @@ export default function DevModelTest() {
       <input
         type="file"
         accept="image/*"
-        capture="environment"
         disabled={busy}
         onChange={e => e.target.files?.[0] && onFile(e.target.files[0])}
         style={{ marginBottom: 16 }}
