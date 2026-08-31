@@ -19,3 +19,13 @@
 # Crashlytics restent lisibles une fois le code minifié.
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute SourceFile
+
+# Sans ça, R8 garde la classe du plugin (regle -keep ci-dessus) mais peut
+# supprimer les VALEURS des annotations (ex: la liste de permissions() dans
+# @CapacitorPlugin). Bridge.getPermissionStates() lit ces valeurs par
+# reflexion au runtime -- sans elles, NullPointerException. C'est ce qui
+# faisait planter LocalNotifications/PushNotifications.checkPermissions()
+# uniquement sur ce build minifie (jamais sur les runs de dev/beta non
+# minifies), confirme par adb logcat sur appareil reel le 31/08.
+-keepattributes *Annotation*
+-keepattributes InnerClasses,Signature,EnclosingMethod
