@@ -31,14 +31,26 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
     }
   }, [])
 
-  // DESACTIVE (31/08) : PushNotifications.checkPermissions()/requestPermissions()
-  // plantent tout le process natif (NullPointerException dans
-  // com.getcapacitor.d0.getPermissionStates, bug du coeur de Capacitor confirme
-  // par adb logcat sur appareil reel -- meme cause que dans PushInit.tsx et
-  // localReminders.ts). nativePushPermission reste donc toujours null tant
-  // qu'un vrai correctif (upgrade Capacitor + rebuild + test reel) n'est pas
-  // fait -- l'app doit rester utilisable avant tout, d'ou push_native_unavailable
-  // affiche a la place du bouton.
+  // Sur l'app native, le push passe par FCM (PushInit.tsx) et non par l'API
+  // web Notification/ServiceWorker — on affiche donc l'état de permission natif.
+  useEffect(() => {
+    if (!isNative) return
+    import('@capacitor/push-notifications').then(({ PushNotifications }) => {
+      PushNotifications.checkPermissions().then(p => setNativePushPermission(p.receive as any))
+    }).catch(() => {})
+  }, [isNative])
+
+  const handleRequestNativePush = async () => {
+    setPushLoading(true)
+    try {
+      const { PushNotifications } = await import('@capacitor/push-notifications')
+      const req = await PushNotifications.requestPermissions()
+      setNativePushPermission(req.receive as any)
+      if (req.receive === 'granted') await PushNotifications.register()
+    } finally {
+      setPushLoading(false)
+    }
+  }
 
   const handleEnablePush = async () => {
     setPushLoading(true)
@@ -91,9 +103,14 @@ export default function PushNotificationSettings({ dark }: { dark: boolean }) {
             {t('push_blocked_native')}
           </p>
         ) : (
-          <p style={{ fontSize: 13, color: dark ? '#999' : '#666' }}>
-            {t('push_native_unavailable')}
-          </p>
+          <div>
+            <p style={{ fontSize: 13, color: dark ? '#999' : '#666', marginBottom: 12 }}>
+              {t('push_pitch')}
+            </p>
+            <button onClick={handleRequestNativePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+              {pushLoading ? '...' : t('push_enable')}
+            </button>
+          </div>
         )
       ) : !pushSupported ? (
         <p style={{ fontSize: 13, color: '#999' }}>
