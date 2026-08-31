@@ -1,4 +1,4 @@
-import { Capacitor, registerPlugin } from '@capacitor/core'
+import { registerPlugin } from '@capacitor/core'
 
 interface FirebaseCrashlyticsPlugin {
   crash(options: { message: string }): Promise<void>
@@ -13,20 +13,15 @@ interface FirebaseCrashlyticsPlugin {
 // (chaque appel est wrappé en .catch(() => {})) et Crashlytics n'a jamais rien reçu.
 const FirebaseCrashlytics = registerPlugin<FirebaseCrashlyticsPlugin>('FirebaseCrashlytics')
 
-// Aucun rapport natif ne couvrait le JS (le layer web n'a que Vercel Analytics, qui ne
-// voit rien de ce qui casse dans la WebView de l'app). Toute erreur JS non interceptée
-// remonte maintenant dans Firebase Crashlytics comme "non-fatal", avec le message et la
-// pile d'appel — mêmes crashes visibles côté natif et côté web dans un seul dashboard.
-// isPluginAvailable() vérifie juste que le plugin est enregistré côté JS --
-// insuffisant si le SDK natif Firebase Crashlytics est mal initialisé côté
-// Android (ex: Crashlytics pas activé dans la console Firebase), auquel cas
-// le premier appel natif peut planter tout le process avant même de retourner
-// une promesse (le .catch() JS ne protège que contre un rejet normal, pas un
-// crash natif). On vérifie quand même isPluginAvailable en amont : ça évite
-// l'appel dans les cas où le plugin n'est pas enregistré du tout, la cause la
-// plus fréquente de ce genre de crash au tout premier appel.
+// DESACTIVE (31/08) : le premier appel natif (setUserId, juste apres connexion)
+// plante tout le process Android sans passer par le .catch() JS -- meme avec
+// isPluginAvailable() en garde (donc le plugin EST enregistre, il plante a
+// l'interieur de l'appel natif lui-meme, probablement un souci d'init cote
+// SDK/config Firebase). La connexion passe avant le monitoring de crash : on
+// coupe l'appel natif entierement jusqu'a verification separee de la config
+// Crashlytics cote console Firebase.
 function pluginReady() {
-  return Capacitor.isNativePlatform() && Capacitor.isPluginAvailable('FirebaseCrashlytics')
+  return false
 }
 
 export function recordJsError(error: unknown, context?: string) {
