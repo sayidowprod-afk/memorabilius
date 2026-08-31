@@ -1,7 +1,12 @@
 // Détection de coins par YOLOv8-pose en ONNX — tourne entièrement dans le navigateur.
 // Le modèle est chargé une fois depuis /models/corners.onnx et mis en cache.
 
-const IMGSZ = 1280
+// 960 -> 640 (31/08) : le meme modele (train-18) re-exporte a 640 est a la
+// fois plus rapide (~450ms vs ~1800ms mesures en WASM reel) ET plus confiant
+// (conf ~0.94 vs ~0.89) que la version 1280 -- teste sur plusieurs cartes
+// reelles avant deploiement, pas juste suppose. Le fichier ONNX en prod doit
+// correspondre a cette taille (voir public/models/corners.onnx).
+const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
 type Pt = { x: number; y: number }
