@@ -135,27 +135,11 @@ function AnnuaireContent() {
       }
     })))
     setLoading(false)
-
-    // Recalculer les stats si pas à jour depuis 24h — limité à 5 profils par chargement
-    const stale = profiles.filter(p => {
-      const lastUpdate = p.stats_updated_at ? new Date(p.stats_updated_at) : null
-      const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 24 * 60 * 60 * 1000)
-      const isCapped = (p.stats_total || 0) > 0 && (p.stats_total || 0) % 1000 === 0
-      return isStale || isCapped
-    }).slice(0, 5)
-    for (const p of stale) {
-      try {
-        const r = await fetch('/api/recalc-user', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userId: p.id }),
-        })
-        const data = await r.json()
-        if (data.stats) {
-          setCollectors(prev => prev.map(c => c.id === p.id ? { ...c, stats: data.stats } : c))
-        }
-      } catch { }
-    }
+    // Les stats affichees sont en cache (profiles.stats_total etc.) -- tenues a jour
+    // par le cron nightly /api/recalcul-stats, qui priorise desormais les profils les
+    // plus perimes. Pas de recalcul cote client ici : `recalc-user` exige d'etre
+    // authentifie en tant que le profil concerne, donc ca echouait silencieusement
+    // pour toute personne autre que soi-meme en parcourant l'annuaire.
   }
 
   const applyTeamFilter = async (tid: string) => {

@@ -48,11 +48,15 @@ export async function POST(req: NextRequest) {
     // avec "plus de cartes" — sinon on écrase stats_total en base avec un total tronqué
     // (c'est exactement ce qui est arrivé pendant la panne Supabase du 14/08 : plein
     // de profils bloqués à exactement 1000 alors qu'ils avaient 3000+ cartes).
+    // .order('id') obligatoire -- sans tri explicite, l'ordre entre deux .range()
+    // successifs n'est pas garanti par Postgres/PostgREST, ce qui peut faire sauter
+    // des lignes entre les pages et sous-compter (voir recalcul-stats/route.ts).
     for (let from = 0; ; from += 1000) {
       const { data: batch, error: batchError } = await supabase
         .from('cartes_manuelles')
         .select('rc, auto, patch, num')
         .eq('user_id', userId)
+        .order('id', { ascending: true })
         .range(from, from + 999)
       if (batchError) return NextResponse.json({ error: batchError.message }, { status: 502 })
       if (!batch || batch.length === 0) break

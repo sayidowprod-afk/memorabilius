@@ -23,10 +23,14 @@ export async function POST(req: NextRequest) {
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    // CSV en parallèle avec la première page de cartes manuelles
+    // CSV en parallèle avec la première page de cartes manuelles.
+    // .order('id') obligatoire -- sans tri explicite, l'ordre entre deux .range()
+    // successifs n'est pas garanti par Postgres/PostgREST, ce qui peut faire sauter
+    // des lignes entre les pages et sous-compter (confirme en prod sur un profil
+    // recalcule a 1022 au lieu de 4446 reelles).
     const [csvText, firstPage] = await Promise.all([
       csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
-      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).range(0, 999),
+      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).order('id', { ascending: true }).range(0, 999),
     ])
 
     if (csvText) {
@@ -40,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     const manuelles: any[] = [...(firstPage.data || [])]
     for (let page = 1; manuelles.length === page * 1000; page++) {
-      const { data } = await supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).range(page * 1000, page * 1000 + 999)
+      const { data } = await supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).order('id', { ascending: true }).range(page * 1000, page * 1000 + 999)
       if (!data || data.length === 0) break
       manuelles.push(...data)
     }

@@ -7,7 +7,17 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-export const maxDuration = 60
+export const maxDuration = 300
+
+// Avec des milliers de profils, recalculer TOUT LE MONDE chaque nuit depassait
+// systematiquement la limite de temps de la fonction serverless -- les profils
+// traites en dernier (ordre arbitraire) ne recevaient donc jamais leur mise a
+// jour et restaient bloques indefiniment sur un total obsolete (ex: annuaire
+// affichant 1022 cartes pour un profil qui en a reellement 4446). On traite
+// desormais en priorite les profils les plus perimes, avec un plafond par
+// execution pour garantir que ca termine dans les temps.
+const STALE_AFTER_H = 24
+const MAX_PER_RUN = 1500
 
 export async function GET(req: NextRequest) {
   const authHeader = req.headers.get('authorization')
@@ -15,12 +25,15 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  const staleBefore = new Date(Date.now() - STALE_AFTER_H * 3600_000).toISOString()
   const { data: profiles } = await supabase
     .from('profiles')
     .select('id, lien_csv')
     .not('display_name', 'is', null)
     .neq('display_name', '')
-    .limit(10000)
+    .or(`stats_updated_at.is.null,stats_updated_at.lt.${staleBefore}`)
+    .order('stats_updated_at', { ascending: true, nullsFirst: true })
+    .limit(MAX_PER_RUN)
 
   if (!profiles) return NextResponse.json({ error: 'No profiles' })
 
@@ -45,11 +58,17 @@ export async function GET(req: NextRequest) {
       // cartes" — sinon stats_total est écrasé en base avec un total tronqué (c'est
       // ce qui est arrivé pour de nombreux profils pendant la panne Supabase du 14/08,
       // ce cron tournant chaque nuit à 3h UTC sur tous les profils).
+      // .order('id') est OBLIGATOIRE ici : sans tri explicite, Postgres/PostgREST ne
+      // garantit aucun ordre stable entre deux appels .range() successifs -- des lignes
+      // peuvent glisser entre les pages (surtout si des cartes sont ajoutees pendant le
+      // recalcul), causant un sous-comptage silencieux (confirme en prod : un profil de
+      // 4446 cartes recalcule a 1022 a cause de ca).
       for (let from = 0; ; from += 1000) {
         const { data: batch, error: batchError } = await supabase
           .from('cartes_manuelles')
           .select('rc, auto, patch, num')
           .eq('user_id', p.id)
+          .order('id', { ascending: true })
           .range(from, from + 999)
         if (batchError) return { id: p.id, error: batchError.message }
         if (!batch || batch.length === 0) break
