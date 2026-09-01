@@ -383,8 +383,6 @@ export async function GET(req: NextRequest) {
       max: soldPrices.length ? Math.max(...soldPrices) : 0,
       items: active,
       count: active.length,
-      // TEMPORAIRE (diagnostic panne sold comps) -- a retirer une fois le vrai probleme identifie
-      ...(searchParams.get('debugkey2609') === 'x' ? { _debug: soldResult.debug } : {}),
     }
     // Ne met en cache que si on a des résultats (permet retry en cas de 429)
     if (active.length > 0 || sold.length > 0) {
