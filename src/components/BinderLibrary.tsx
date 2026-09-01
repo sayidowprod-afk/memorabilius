@@ -433,14 +433,26 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         } catch { /* CSV injoignable */ }
       }
       if (versoByRecto.size) {
+        const healed: { page_number: number; slot_index: number; img_back: string }[] = []
         setSlots(prev => {
           const m = new Map(prev)
           for (const [k, s] of m) {
             const v = versoByRecto.get(s.card_key)
-            if (!s.img_back && v) m.set(k, { ...s, img_back: v })
+            if (!s.img_back && v) {
+              m.set(k, { ...s, img_back: v })
+              healed.push({ page_number: s.page_number, slot_index: s.slot_index, img_back: v })
+            }
           }
           return m
         })
+        // Persiste le correctif en base -- sinon il ne se "reparait" que dans
+        // l'etat local de cette session (export PDF, apercu partage, etc.
+        // restent casses tant que binder_slots.img_back n'est pas mis a jour).
+        for (const h of healed) {
+          supabase.from('binder_slots').update({ img_back: h.img_back })
+            .eq('binder_id', binder.id).eq('page_number', h.page_number).eq('slot_index', h.slot_index)
+            .then(() => {})
+        }
       }
     }
   }
