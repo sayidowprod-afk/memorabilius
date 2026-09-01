@@ -7,6 +7,12 @@ const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 type Pt = { x: number; y: number }
 type RunResult = { corners: Pt[] | null; conf: number; ms: number }
 
+const MODELS = [
+  { key: 'prod', label: 'Prod (actuel)', url: '/models/corners.onnx', color: '#e74c3c' },
+  { key: 'train26', label: 'train-26 (int8, sans augmentation)', url: '/models/corners-train26.onnx', color: '#3498db' },
+  { key: 'train27', label: 'train-27 (int8, rotation/perspective/luminosité)', url: '/models/corners-train27.onnx', color: '#2ecc71' },
+] as const
+
 function letterbox(img: HTMLImageElement) {
   const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
   const newW = Math.round(img.naturalWidth * scale)
@@ -84,17 +90,14 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, corners: Pt[] | 
 
 export default function DevModelTest() {
   const [busy, setBusy] = useState(false)
-  const [prod, setProd] = useState<RunResult | null>(null)
-  const [test, setTest] = useState<RunResult | null>(null)
+  const [results, setResults] = useState<Partial<Record<typeof MODELS[number]['key'], RunResult>>>({})
   const [error, setError] = useState('')
-  const prodCanvas = useRef<HTMLCanvasElement>(null)
-  const testCanvas = useRef<HTMLCanvasElement>(null)
+  const canvasRefs = useRef<Record<string, HTMLCanvasElement | null>>({})
 
   const onFile = async (file: File) => {
     setBusy(true)
     setError('')
-    setProd(null)
-    setTest(null)
+    setResults({})
     try {
       const url = URL.createObjectURL(file)
       const img = new Image()
@@ -108,13 +111,12 @@ export default function DevModelTest() {
       ort.env.wasm.wasmPaths = ORT_CDN
       ort.env.wasm.numThreads = 1
 
-      const prodRes = await runModel(ort, '/models/corners.onnx', img)
-      setProd(prodRes)
-      if (prodCanvas.current) draw(prodCanvas.current, img, prodRes.corners, '#e74c3c')
-
-      const testRes = await runModel(ort, '/models/corners-test.onnx', img)
-      setTest(testRes)
-      if (testCanvas.current) draw(testCanvas.current, img, testRes.corners, '#2ecc71')
+      for (const m of MODELS) {
+        const res = await runModel(ort, m.url, img)
+        setResults(prev => ({ ...prev, [m.key]: res }))
+        const canvas = canvasRefs.current[m.key]
+        if (canvas) draw(canvas, img, res.corners, m.color)
+      }
 
       URL.revokeObjectURL(url)
     } catch (e: any) {
@@ -128,7 +130,7 @@ export default function DevModelTest() {
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
       <h1 style={{ fontSize: 18, fontWeight: 900, marginBottom: 4 }}>🔬 Comparatif détection de coins</h1>
       <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-        Rouge = modèle en prod &nbsp;•&nbsp; Vert = train-27 (augmentation rotation/perspective/luminosité renforcée)
+        Prod actuelle vs les 2 checkpoints candidats (tous les deux quantifiés en INT8 pour la vitesse)
       </p>
 
       <input
@@ -143,18 +145,17 @@ export default function DevModelTest() {
       {error && <p style={{ color: '#e74c3c' }}>{error}</p>}
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20, marginTop: 12 }}>
-        <div>
-          <h3 style={{ fontSize: 14, fontWeight: 800, color: '#e74c3c' }}>
-            Prod (actuel){prod && ` — conf ${prod.conf.toFixed(3)} — ${prod.ms.toFixed(0)}ms${prod.corners ? '' : ' — aucune détection'}`}
-          </h3>
-          <canvas ref={prodCanvas} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee' }} />
-        </div>
-        <div>
-          <h3 style={{ fontSize: 14, fontWeight: 800, color: '#2ecc71' }}>
-            Test (train-27){test && ` — conf ${test.conf.toFixed(3)} — ${test.ms.toFixed(0)}ms${test.corners ? '' : ' — aucune détection'}`}
-          </h3>
-          <canvas ref={testCanvas} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee' }} />
-        </div>
+        {MODELS.map(m => {
+          const res = results[m.key]
+          return (
+            <div key={m.key}>
+              <h3 style={{ fontSize: 14, fontWeight: 800, color: m.color }}>
+                {m.label}{res && ` — conf ${res.conf.toFixed(3)} — ${res.ms.toFixed(0)}ms${res.corners ? '' : ' — aucune détection'}`}
+              </h3>
+              <canvas ref={el => { canvasRefs.current[m.key] = el }} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee' }} />
+            </div>
+          )
+        })}
       </div>
     </div>
   )
