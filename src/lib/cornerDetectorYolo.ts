@@ -1,11 +1,17 @@
 // Détection de coins par YOLOv8-pose en ONNX — tourne entièrement dans le navigateur.
 // Le modèle est chargé une fois depuis /models/corners.onnx et mis en cache.
 
-// 960 -> 640 (31/08) : le meme modele (train-18) re-exporte a 640 est a la
-// fois plus rapide (~450ms vs ~1800ms mesures en WASM reel) ET plus confiant
-// (conf ~0.94 vs ~0.89) que la version 1280 -- teste sur plusieurs cartes
-// reelles avant deploiement, pas juste suppose. Le fichier ONNX en prod doit
-// correspondre a cette taille (voir public/models/corners.onnx).
+// 960 -> 640 (31/08) : re-export a 640 plus rapide (~450ms vs ~1800ms mesures
+// en WASM reel) ET plus confiant (conf ~0.94 vs ~0.89) que la version 1280 --
+// teste sur plusieurs cartes reelles avant deploiement, pas juste suppose.
+// Le fichier ONNX en prod doit correspondre a cette taille (voir public/models/corners.onnx).
+//
+// 01/09 : modele remplace par le checkpoint train-28 (meme archi yolov8n-pose,
+// dataset identique, mais sigma OKS d'entrainement/validation resserre --
+// force une localisation de coins plus precise au lieu du sigma par defaut
+// trop tolerant pour un modele a 4 keypoints, voir scripts/train_corners_tight_sigma.py)
+// + quantification INT8 dynamique pour la vitesse (meme demarche que
+// precedemment identifiee comme le meilleur compromis vitesse/precision).
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
