@@ -128,7 +128,7 @@ export default function DevModelTest() {
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
       <h1 style={{ fontSize: 18, fontWeight: 900, marginBottom: 4 }}>🔬 Comparatif détection de coins</h1>
       <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-        Rouge = modèle en prod &nbsp;•&nbsp; Vert = checkpoint en cours d'entraînement (train-26)
+        Rouge = modèle en prod &nbsp;•&nbsp; Vert = train-27 (augmentation rotation/perspective/luminosité renforcée)
       </p>
 
       <input
@@ -151,7 +151,7 @@ export default function DevModelTest() {
         </div>
         <div>
           <h3 style={{ fontSize: 14, fontWeight: 800, color: '#2ecc71' }}>
-            En entraînement (train-26){test && ` — conf ${test.conf.toFixed(3)} — ${test.ms.toFixed(0)}ms${test.corners ? '' : ' — aucune détection'}`}
+            Test (train-27){test && ` — conf ${test.conf.toFixed(3)} — ${test.ms.toFixed(0)}ms${test.corners ? '' : ' — aucune détection'}`}
           </h3>
           <canvas ref={testCanvas} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee' }} />
         </div>
