@@ -1050,20 +1050,32 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
         if (jsCorners) return { corners: jsCorners, geminiRaw: null }
       }
 
-      // Étape 2 : OpenCV
-      await yieldThread()
-      try {
-        const cv = await Promise.race([
-          loadOpenCV(),
-          new Promise<null>(r => setTimeout(() => r(null), 2000)),
-        ])
-        if (cv) {
-          await yieldThread()
-          const result = await detectCardOpenCV(img, cv)
-          await yieldThread()
-          if (result) return { corners: result, geminiRaw: null }
-        }
-      } catch { /* rien */ }
+      // Étape 2 : OpenCV -- uniquement pour la capture caméra (frameRect présent).
+      // Charge un script WASM de ~8-10 Mo depuis un CDN ; en upload de fichier
+      // (frameRect absent), la course de 2s contre ce chargement la perdait presque
+      // toujours (script trop volumineux) mais le declenchait quand meme -- le
+      // téléchargement/l'instanciation WASM continuaient alors en arrière-plan,
+      // abandonnés (résultat jamais utilisé), pour chaque photo où YOLO échouait.
+      // Accumulé sur plusieurs cartes ajoutées dans la même session, cette pression
+      // mémoire orpheline est la cause probable de rechargements de page sur iPad
+      // (Safari/iPadOS reload un onglet pour libérer de la RAM), signalés par un
+      // utilisateur -- l'upload de fichier n'utilise jamais OpenCV de toute façon
+      // (seule la capture caméra passe par detectCardFromFrame/detectCardOpenCV).
+      if (frameRect) {
+        await yieldThread()
+        try {
+          const cv = await Promise.race([
+            loadOpenCV(),
+            new Promise<null>(r => setTimeout(() => r(null), 2000)),
+          ])
+          if (cv) {
+            await yieldThread()
+            const result = await detectCardOpenCV(img, cv)
+            await yieldThread()
+            if (result) return { corners: result, geminiRaw: null }
+          }
+        } catch { /* rien */ }
+      }
 
       // Étape 3 : JS pur (dernier recours)
       return { corners: detectCardPureJS(img), geminiRaw: null }
