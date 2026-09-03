@@ -357,32 +357,32 @@ export default function Profil() {
 
       {/* Test wrap mensuel */}
       <div id="wrap-telecharger" style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
-        <h3 style={{ fontWeight: 800, marginBottom: 6 }}>📊 Wrap mensuel — test</h3>
+        <h3 style={{ fontWeight: 800, marginBottom: 6 }}>📊 {t('profile_wrap_test_title')}</h3>
         <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>
-          Envoie un email de test du wrap mensuel à ton adresse pour vérifier le rendu et les données.
+          {t('profile_wrap_test_desc')}
         </p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           <button onClick={() => handleWrapPreview('last')} disabled={wrapSending}
             style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 700, fontSize: 13, cursor: wrapSending ? 'not-allowed' : 'pointer', opacity: wrapSending ? 0.6 : 1 }}>
-            {wrapSending ? '⏳ Envoi…' : '📨 Mois précédent'}
+            {wrapSending ? `⏳ ${t('profile_wrap_sending')}` : `📨 ${t('profile_wrap_prev_month')}`}
           </button>
           <button onClick={() => handleWrapPreview('current')} disabled={wrapSending}
             style={{ background: '#f0f4ff', color: '#003DA6', border: '2px solid #003DA6', borderRadius: 8, padding: '10px 18px', fontWeight: 700, fontSize: 13, cursor: wrapSending ? 'not-allowed' : 'pointer', opacity: wrapSending ? 0.6 : 1 }}>
-            {wrapSending ? '⏳ Envoi…' : '📨 Mois en cours'}
+            {wrapSending ? `⏳ ${t('profile_wrap_sending')}` : `📨 ${t('profile_wrap_current_month')}`}
           </button>
         </div>
         {wrapResult && (
           <div style={{ marginTop: 14, padding: '10px 14px', borderRadius: 8, background: wrapResult.ok ? '#eafaf1' : '#fff5f5', border: `1px solid ${wrapResult.ok ? '#a9dfbf' : '#f5c6c6'}` }}>
             {wrapResult.ok
-              ? <p style={{ fontSize: 13, color: '#1e8449', fontWeight: 700 }}>✓ Email envoyé — {wrapResult.month} · {wrapResult.newCards} carte{(wrapResult.newCards ?? 0) > 1 ? 's' : ''} ajoutée{(wrapResult.newCards ?? 0) > 1 ? 's' : ''}</p>
-              : <p style={{ fontSize: 13, color: '#c0392b', fontWeight: 700 }}>Erreur : {wrapResult.error}</p>
+              ? <p style={{ fontSize: 13, color: '#1e8449', fontWeight: 700 }}>✓ {t('profile_wrap_email_sent').replace('{month}', String(wrapResult.month)).replace('{n}', String(wrapResult.newCards ?? 0))}</p>
+              : <p style={{ fontSize: 13, color: '#c0392b', fontWeight: 700 }}>{t('profile_wrap_email_error')} {wrapResult.error}</p>
             }
           </div>
         )}
 
         <div style={{ marginTop: 20, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
           <p style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#aaa', marginBottom: 10 }}>
-            📸 Image pour Instagram / Story
+            📸 {t('profile_wrap_img_title')}
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {(['square', 'story'] as const).map(fmt => (
@@ -394,7 +394,7 @@ export default function Profil() {
                     onClick={() => handleDownloadWrapImage(fmt, period as 'current' | 'last')}
                     disabled={!!wrapImgLoading}
                     style={{ background: loading ? '#eee' : fmt === 'square' ? '#f0f4ff' : '#f5f0ff', color: fmt === 'square' ? '#003DA6' : '#7b1fa2', border: `2px solid ${fmt === 'square' ? '#003DA6' : '#7b1fa2'}`, borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 12, cursor: wrapImgLoading ? 'not-allowed' : 'pointer', opacity: wrapImgLoading && !loading ? 0.5 : 1 }}>
-                    {loading ? '⏳ Génération…' : `${fmt === 'square' ? '⬜ Carré' : '📱 Story'} — ${period === 'last' ? 'mois précédent' : 'mois en cours'}`}
+                    {loading ? `⏳ ${t('profile_wrap_generating')}` : `${fmt === 'square' ? `⬜ ${t('profile_wrap_square')}` : `📱 ${t('profile_wrap_story')}`} — ${period === 'last' ? t('profile_wrap_prev_month_short') : t('profile_wrap_current_month_short')}`}
                   </button>
                 )
               })
@@ -405,8 +405,8 @@ export default function Profil() {
 
       {/* Comptes liés */}
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
-        <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🔗 Comptes liés</h3>
-        <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>Liez un compte social pour pouvoir vous connecter avec celui-ci.</p>
+        <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🔗 {t('profile_linked_accounts_title')}</h3>
+        <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>{t('profile_linked_accounts_desc')}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {([
             {
@@ -445,7 +445,7 @@ export default function Profil() {
                     ? <span style={{ width: 18, height: 18, border: `2px solid ${color}`, borderTopColor: 'transparent', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.7s linear infinite' }} />
                     : linked ? '✓' : logo
                   }
-                  {isLoading ? 'Redirection…' : linked ? `${label} lié` : `Lier avec ${label}`}
+                  {isLoading ? t('profile_linked_redirecting') : linked ? `${label} ${t('profile_linked_linked')}` : `${t('profile_linked_link_with')} ${label}`}
                 </button>
               </div>
             )
