@@ -257,8 +257,6 @@ export default function Navbar() {
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <Link href="/sinscrire" style={linkStyle}>{t('nav_inscription')}</Link>
-
               {/* Dropdown langue (non connecté) */}
               <div ref={langRef} style={{ position: 'relative' }}>
                 <button onClick={() => toggleDrop('lang')} aria-label={t('settings_language')} aria-haspopup="true" aria-expanded={openDrop === 'lang'} style={{
@@ -346,7 +344,6 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/sinscrire" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_inscription')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
                 {LANGS.map(l => (
