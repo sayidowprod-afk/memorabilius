@@ -368,6 +368,16 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const rectoBase64Ref    = useRef<string | null>(null)
   const geminiPrediction  = useRef<Record<string, any> | null>(null)
   const ebayHintsRef      = useRef<string[]>([])
+  // Incremente a chaque nouveau recto uploade -- la recherche eBay par image
+  // qui alimente ebayHintsRef part en arriere-plan avec un timeout de 3s cote
+  // UI, mais le fetch sous-jacent n'est jamais annule s'il depasse ce delai.
+  // Sans ce garde-fou, une reponse en retard (carte precedente) ecrasait
+  // ebayHintsRef.current avec les indices eBay d'une AUTRE carte -- les
+  // indices sont pourtant traites comme "autoritaires" par le prompt Gemini,
+  // donc ca faussait silencieusement variation/numerotation sur la carte
+  // suivante (signale par un utilisateur : "marche les 2-3 premieres cartes,
+  // plus jamais ensuite").
+  const ebayHintsGenRef   = useRef(0)
   const [waitingForVerso, setWaitingForVerso] = useState(false)
   const scannerCornersRef = useRef<Record<string, { gemini: any; final: any; adjusted: boolean; originalBlob: Blob | null }>>({})
   // Après l'insertion : propose de ranger la carte dans un classeur de la bibliothèque
@@ -436,12 +446,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(geminiBlob || blob) })
         rectoBase64Ref.current = rectoB64
         ebayHintsRef.current = []
+        const myGen = ++ebayHintsGenRef.current
         const { data: { session: ebaySession } } = await supabase.auth.getSession()
         if (ebaySession) {
           Promise.race([
             fetch('/api/ebay-image-search', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${ebaySession.access_token}` }, body: JSON.stringify({ imageBase64: rectoB64 }) }).then(r => r.json()),
             new Promise<null>(r => setTimeout(() => r(null), 3000)),
           ]).then((ebayRes: any) => {
+            // Ignore une reponse en retard qui ne correspond plus a la carte en cours.
+            if (myGen !== ebayHintsGenRef.current) return
             if (ebayRes?.items?.length) ebayHintsRef.current = (ebayRes.items as { title: string }[]).slice(0, 5).map((i: { title: string }) => i.title).filter(Boolean)
           }).catch(() => {})
         }
@@ -723,7 +736,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
     setDesignation(''); setDesignationDone(false); setShowDesignation(false)
-    setScanError(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; geminiPrediction.current = null; scannerCornersRef.current = {}
+    setScanError(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; ebayHintsGenRef.current++; geminiPrediction.current = null; scannerCornersRef.current = {}
     // "Ajouter une autre carte" repart du formulaire vide, mais la page restait
     // scrollée là où l'utilisateur avait fini (confirmation d'ajout, en bas) — le
     // formulaire ré-affiché en haut n'était pas visible sans scroller manuellement.
@@ -890,7 +903,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       <form onSubmit={handleSubmit}>
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
-          <ImageUploader side="recto" label={form.booklet ? t('addcard_front_cover_booklet') : t('addcard_front_photo')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} lang={lang} onClear={() => { setForm(f => ({ ...f, image_recto: '' })); setPreviewRecto(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = [] }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+          <ImageUploader side="recto" label={form.booklet ? t('addcard_front_cover_booklet') : t('addcard_front_photo')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} lang={lang} onClear={() => { setForm(f => ({ ...f, image_recto: '' })); setPreviewRecto(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; ebayHintsGenRef.current++ }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
           <ImageUploader side="verso" label={form.booklet ? t('addcard_back_cover_booklet') : t('addcard_back_photo')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? (form.format === 'horizontal' || form.is_horizontal)) ? '3.5/2.5' : (getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined)} lang={lang} onClear={() => { setForm(f => ({ ...f, image_verso: '' })); setPreviewVerso(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
         </div>
 
