@@ -2012,7 +2012,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               {/* L'anneau de niveau/XP entoure directement l'avatar (LevelBadge) au lieu
                   d'un pave separe a cote du nom -- une seule chose a regarder pour la
                   progression, et le badge chiffre remplace l'ancien "?" d'info. */}
-              {profile?.id ? (
+              {!loaded && !profile ? (
+                // Encore en train de charger (cold start reseau/session lent -- voir
+                // init() plus haut, jusqu'a ~15s de retries) : un vrai indicateur de
+                // chargement plutot que l'avatar/nom generique "Collectionneur", qui
+                // a l'air d'un etat fini-mais-casse et pousse a un F5 manuel inutile
+                // alors que la vraie donnee arrive presque toujours d'elle-meme.
+                <div style={{ width: 80, height: 80, borderRadius: '50%', background: dark ? '#333' : '#e5e7eb', animation: 'shimmer 1.4s ease-in-out infinite' }} />
+              ) : profile?.id ? (
                 <LevelBadge userId={profile.id} celebrateOnLevelUp={isOwner} accent={accent} avatarClassName="profile-avatar-halo">
                   <img
                     src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
@@ -2036,7 +2043,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
             <div style={{ minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
-                <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
+                {!loaded && !profile ? (
+                  <div style={{ width: 140, height: 24, borderRadius: 6, background: dark ? '#333' : '#e5e7eb', animation: 'shimmer 1.4s ease-in-out infinite' }} />
+                ) : (
+                  <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
+                )}
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
