@@ -30,10 +30,17 @@ export async function POST(req: NextRequest) {
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    const csvText = profile.lien_csv && isAllowedCsvUrl(profile.lien_csv)
+    const hasCsv = !!(profile.lien_csv && isAllowedCsvUrl(profile.lien_csv))
+    const csvText = hasCsv
       ? await fetchCsvCapped(profile.lien_csv, { cache: 'no-store', signal: AbortSignal.timeout(12000) })
       : null
 
+    // Un CSV configure dont la recuperation echoue ne doit jamais etre traite comme
+    // "pas de CSV" -- sinon stats_total est ecrase avec un total tronque (voir
+    // recalcul-stats/route.ts pour le detail, meme bug confirme en prod).
+    if (hasCsv && !csvText) {
+      return NextResponse.json({ error: 'CSV fetch failed, stats not updated' }, { status: 502 })
+    }
     if (csvText) {
       const s = parseCardStats(csvText)
       stats.total += s.total

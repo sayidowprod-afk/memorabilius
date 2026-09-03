@@ -41,16 +41,22 @@ export async function GET(req: NextRequest) {
     try {
       const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
+      // Un CSV configure dont la recuperation echoue (Google Sheets qui repond mal
+      // sous la charge de dizaines de fetch paralleles, timeout...) ne doit JAMAIS
+      // etre traite comme "pas de CSV" -- sinon stats_total est ecrase avec un total
+      // tronque (uniquement les cartes manuelles), perdant potentiellement des
+      // centaines de cartes CSV (confirme en prod). On saute ce profil pour cette
+      // execution plutot que d'ecrire un chiffre faux ; il sera retente au prochain
+      // passage (toujours priorise car son stats_updated_at ne bouge pas).
       if (p.lien_csv && isAllowedCsvUrl(p.lien_csv)) {
         const text = await fetchCsvCapped(p.lien_csv)
-        if (text) {
-          const csvStats = parseCardStats(text)
-          stats.total += csvStats.total
-          stats.rc += csvStats.rc
-          stats.auto += csvStats.auto
-          stats.num += csvStats.num
-          stats.patch += csvStats.patch
-        }
+        if (!text) return { id: p.id, error: 'csv fetch failed, skipped' }
+        const csvStats = parseCardStats(text)
+        stats.total += csvStats.total
+        stats.rc += csvStats.rc
+        stats.auto += csvStats.auto
+        stats.num += csvStats.num
+        stats.patch += csvStats.patch
       }
 
       // Pagination pour bypasser le max_rows=1000 de Supabase. Une page en erreur

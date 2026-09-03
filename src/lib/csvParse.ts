@@ -11,7 +11,7 @@ export function isAllowedCsvUrl(url: string): boolean {
   } catch { return false }
 }
 
-export async function fetchCsvCapped(url: string, init?: RequestInit): Promise<string | null> {
+async function fetchCsvOnce(url: string, init?: RequestInit): Promise<string | null> {
   try {
     const res = await fetch(url, init ?? { cache: 'no-store' })
     if (!res.ok || !res.body) return res.ok ? await res.text() : null
@@ -32,6 +32,16 @@ export async function fetchCsvCapped(url: string, init?: RequestInit): Promise<s
   } catch {
     return null
   }
+}
+
+// Un seul retry sur echec -- Google Sheets repond parfois mal (429/hoquet reseau)
+// quand beaucoup de profils sont recalcules en parallele (voir recalcul-stats),
+// et un CSV en echec ne doit jamais etre confondu avec "pas de CSV" par l'appelant.
+export async function fetchCsvCapped(url: string, init?: RequestInit): Promise<string | null> {
+  const first = await fetchCsvOnce(url, init)
+  if (first) return first
+  await new Promise(r => setTimeout(r, 500))
+  return fetchCsvOnce(url, init)
 }
 
 export interface CardStats { total: number; rc: number; auto: number; num: number; patch: number }
