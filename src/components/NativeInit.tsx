@@ -63,6 +63,32 @@ export default function NativeInit() {
       } catch {}
     }
 
+    // Retour du login OAuth (voir OAuthButtons.tsx) : Google est ouvert dans
+    // l'onglet in-app @capacitor/browser, qui redirige au final vers
+    // /auth/callback?code=... -- cette URL DOIT être traitée à part d'un deep
+    // link classique. router.push() (goToPath) ne fait qu'une navigation SPA
+    // côté client, qui ne déclenche jamais le parsing automatique de l'URL par
+    // le SDK Supabase (detectSessionInUrl ne s'exécute qu'au chargement) : le
+    // code PKCE ne serait jamais échangé et la page resterait bloquée sur son
+    // spinner jusqu'au timeout de secours. On échange donc le code ici,
+    // directement dans la session de l'app, puis on ferme l'onglet in-app.
+    const handleOAuthCallback = async (url: string): Promise<boolean> => {
+      if (!url.includes('/auth/callback')) return false
+      const code = new URL(url).searchParams.get('code')
+      if (!code) return false
+      try {
+        const { Browser } = await import('@capacitor/browser')
+        Browser.close().catch(() => {})
+      } catch {}
+      try {
+        await supabase.auth.exchangeCodeForSession(code)
+      } catch (e) {
+        console.error('[oauth] échange du code échoué', e)
+      }
+      router.push('/profil')
+      return true
+    }
+
     // Partage reçu d'une autre app (texte/image), éventuellement ciblé sur un contact
     // précis si lancé depuis un raccourci Partage direct — voir ShareBridgePlugin.java.
     const checkPendingShare = async () => {
@@ -107,9 +133,12 @@ export default function NativeInit() {
     let removeStateListener: (() => void) | undefined
     import('@capacitor/app').then(async ({ App }) => {
       const launch = await App.getLaunchUrl().catch(() => null)
-      if (launch?.url) goToPath(launch.url)
+      if (launch?.url && !(await handleOAuthCallback(launch.url))) goToPath(launch.url)
 
-      const listener = await App.addListener('appUrlOpen', (data) => goToPath(data.url))
+      const listener = await App.addListener('appUrlOpen', async (data) => {
+        if (await handleOAuthCallback(data.url)) return
+        goToPath(data.url)
+      })
       removeListener = () => listener.remove()
 
       // Filet de sécurité en plus de visibilitychange : certains OEM Android ne

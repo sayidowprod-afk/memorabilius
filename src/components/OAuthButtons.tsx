@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useIsNative } from '@/lib/useIsNative'
 
 type Provider = 'google' | 'twitter' | 'discord'
 
@@ -54,10 +55,44 @@ interface OAuthButtonsProps {
 
 export default function OAuthButtons({ mode }: OAuthButtonsProps) {
   const { dark } = useTheme()
+  const isNative = useIsNative()
   const [loading, setLoading] = useState<Provider | null>(null)
 
   async function signIn(provider: Provider) {
     setLoading(provider)
+
+    if (isNative) {
+      // Sur l'app, une redirection classique navigue la WebView elle-même vers
+      // Google -- politique que Google bloque désormais pour toute WebView
+      // "embarquée" ("This browser or app may not be secure"), qui bascule
+      // alors vers le navigateur système. Le login s'y termine bien, mais
+      // cette session vit dans le navigateur externe, jamais dans l'app : vue
+      // par l'utilisateur comme "ça m'ouvre le site au lieu de me connecter
+      // dans l'app". skipBrowserRedirect + Browser.open() ouvre Google dans un
+      // onglet in-app (Custom Tabs/SFSafariViewController, autorisé par Google)
+      // que NativeInit.tsx referme lui-même via appUrlOpen une fois le retour
+      // vers /auth/callback détecté, en échangeant le code dans la session de
+      // l'app plutôt que dans celle du navigateur.
+      const { data } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+          skipBrowserRedirect: true,
+        },
+      })
+      if (!data?.url) { setLoading(null); return }
+      try {
+        const { Browser } = await import('@capacitor/browser')
+        await Browser.open({ url: data.url })
+      } catch {
+        // Plugin natif pas encore present (ancienne version de l'app pas a
+        // jour) -- repli sur l'ancien comportement plutot que de rester
+        // bloque sur "Redirection..." indefiniment.
+        window.location.href = data.url
+      }
+      return
+    }
+
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
