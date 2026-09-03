@@ -257,7 +257,7 @@ export default function Navbar() {
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <Link href="/connexion" style={linkStyle}>{t('nav_connexion')}</Link>
+              <Link href="/sinscrire" style={linkStyle}>{t('nav_inscription')}</Link>
 
               {/* Dropdown langue (non connecté) */}
               <div ref={langRef} style={{ position: 'relative' }}>
@@ -285,7 +285,7 @@ export default function Navbar() {
               </div>
 
               <ThemeToggleButton />
-              <Link href="/sinscrire" className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 14 }}>{t('nav_inscription')}</Link>
+              <Link href="/connexion" className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 14 }}>{t('nav_connexion')}</Link>
             </div>
           )}
         </div>
@@ -346,7 +346,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/connexion" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_connexion')}</Link>
+              <Link href="/sinscrire" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_inscription')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
                 {LANGS.map(l => (
@@ -354,7 +354,7 @@ export default function Navbar() {
                 ))}
               </div>
               <div style={{ padding: '16px 0' }}>
-                <Link href="/sinscrire" style={{ display: 'block', background: '#003DA6', color: 'white', borderRadius: 8, padding: '12px', fontWeight: 700, fontSize: 15, textAlign: 'center', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>{t('nav_inscription')}</Link>
+                <Link href="/connexion" style={{ display: 'block', background: '#003DA6', color: 'white', borderRadius: 8, padding: '12px', fontWeight: 700, fontSize: 15, textAlign: 'center', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>{t('nav_connexion')}</Link>
               </div>
             </>
           )}
