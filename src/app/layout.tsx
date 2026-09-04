@@ -8,6 +8,7 @@ import OnboardingTooltip from '@/components/OnboardingTooltip'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { AuthProvider } from '@/lib/AuthContext'
+import { NativeProvider } from '@/lib/useIsNative'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import TrackView from '@/components/TrackView'
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
+        <NativeProvider>
         <AuthProvider>
         <ThemeProvider>
           <LangProvider>
@@ -119,6 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </LangProvider>
         </ThemeProvider>
         </AuthProvider>
+        </NativeProvider>
         <Analytics />
         <SpeedInsights />
         <TrackView />
