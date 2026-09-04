@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import LiveNumber from '@/components/LiveNumber'
 
 // Bannière d'accueil : halos + éventail de cartes holographiques flottantes.
 const heroCSS = `
@@ -99,6 +100,25 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
   const { dark } = useTheme()
   const [cardImgs, setCardImgs] = useState<string[]>([])
   const cardsRef = useRef<HTMLDivElement>(null)
+
+  // Compteurs "en direct" -- partent des valeurs rendues serveur (déjà à
+  // jour à quelques minutes près via l'ISR de la page), puis se resynchronisent
+  // en polling léger pour donner l'effet compteur live façon livecounts.io
+  // (l'animation de transition est gérée par LiveNumber).
+  const [liveStats, setLiveStats] = useState({ total, totalCartes, totalBinders, totalTrade })
+  useEffect(() => {
+    let cancelled = false
+    const poll = async () => {
+      try {
+        const res = await fetch('/api/site-stats')
+        if (!res.ok) return
+        const data = await res.json()
+        if (!cancelled) setLiveStats(data)
+      } catch {}
+    }
+    const id = setInterval(poll, 20000)
+    return () => { cancelled = true; clearInterval(id) }
+  }, [])
 
   // Récupère quelques vraies cartes récentes (recto) pour décorer le hero
   useEffect(() => {
@@ -299,16 +319,29 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
         </section>
       )}
 
-      <div className="section-title">{t('home_by_the_numbers')}</div>
+      <div className="section-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+        {t('home_by_the_numbers')}
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 10, fontWeight: 800, letterSpacing: 0.5, color: '#e74c3c', textTransform: 'uppercase' }}>
+          <span className="mb-live-dot" style={{ width: 7, height: 7, borderRadius: '50%', background: '#e74c3c', display: 'inline-block' }} />
+          {t('home_live')}
+        </span>
+      </div>
+      <style>{`
+        @keyframes mbLivePulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.75); } }
+        .mb-live-dot { animation: mbLivePulse 1.8s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .mb-live-dot { animation: none; } }
+      `}</style>
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 20, marginBottom: 50 }}>
         {[
-          { val: total, label: t('home_collectors') },
-          { val: totalCartes.toLocaleString(localeFor(lang)), label: t('home_cards') },
-          { val: totalBinders.toLocaleString(localeFor(lang)), label: t('home_binders') },
-          { val: totalTrade.toLocaleString(localeFor(lang)), label: t('home_trade') },
+          { val: liveStats.total, label: t('home_collectors') },
+          { val: liveStats.totalCartes, label: t('home_cards') },
+          { val: liveStats.totalBinders, label: t('home_binders') },
+          { val: liveStats.totalTrade, label: t('home_trade') },
         ].map(s => (
           <div key={s.label} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.3)' : '0 10px 30px rgba(0,0,0,0.05)', border: dark ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
-            <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6' }}>{s.val}</h3>
+            <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6', fontVariantNumeric: 'tabular-nums' }}>
+              <LiveNumber value={s.val} locale={localeFor(lang)} />
+            </h3>
             <p style={{ color: dark ? 'rgba(255,255,255,0.5)' : '#999', textTransform: 'uppercase', fontSize: 12, fontWeight: 700, marginTop: 5 }}>{s.label}</p>
           </div>
         ))}

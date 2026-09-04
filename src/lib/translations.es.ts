@@ -1179,6 +1179,7 @@ export const es = {
   home_view_gallery_arrow: 'Ver la galería →',
   home_create_gallery_free: "🚀 Crear mi galería — es gratis",
   home_by_the_numbers: 'En cifras',
+  home_live: 'En vivo',
   home_random_binder: 'Clasificador aleatorio',
   video_export_title: 'Exportar en vídeo',
   video_theme: 'Tema',
