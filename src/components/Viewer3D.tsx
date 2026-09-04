@@ -6,6 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { playerSlug, cardSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
+import CardPhotoExport from '@/components/CardPhotoExport'
 import CardValueModule from '@/components/CardValueModule'
 import SameCardCollectors from '@/components/SameCardCollectors'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
@@ -475,6 +476,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const idleWobbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const idleWobbleActive = useRef(false)
   const [showVideo, setShowVideo] = useState(false)
+  const [showPhoto, setShowPhoto] = useState(false)
 
   const [slabMode, setSlabMode] = useState(false)
   const [flip90, setFlip90] = useState(false)
@@ -1762,6 +1764,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               }}>
                 🎬 {t('video_export_title')}
               </button>
+              <button onClick={() => setShowPhoto(true)} style={{
+                background: '#0d0d1f', color: 'white', border: 'none', boxSizing: 'border-box',
+                borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
+              }}>
+                📸 {t('photo_export_title')}
+              </button>
             </div>
             {(popup.lien_vinted || popup.lien_ebay) && (
               <div style={{ display: 'flex', gap: 8 }}>
@@ -1963,6 +1971,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           )}
 
           {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} />}
+          {showPhoto && <CardPhotoExport card={popup} accent={accent} onClose={() => setShowPhoto(false)} />}
         </div>
       </div>
     </div>,
