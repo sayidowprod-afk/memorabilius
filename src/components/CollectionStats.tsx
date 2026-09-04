@@ -13,13 +13,31 @@ interface Props {
   totalValeur?: number
 }
 
+// Deux graphies du meme nom (ex: "Nikola Jokic" vs "Nikola Jokić") ne
+// doivent pas compter comme 2 entrees distinctes -- on regroupe par forme
+// normalisee (accents retires, casse ignoree) et on affiche la graphie la
+// plus frequente parmi les variantes.
+function normalizeKey(v: string): string {
+  return v.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
+}
+
 function top<T extends string>(arr: T[], n = 6): { label: T; count: number }[] {
-  const map = new Map<T, number>()
-  arr.forEach(v => { if (v) map.set(v, (map.get(v) ?? 0) + 1) })
-  return [...map.entries()]
-    .sort((a, b) => b[1] - a[1])
+  const groups = new Map<string, Map<T, number>>()
+  arr.forEach(v => {
+    if (!v) return
+    const key = normalizeKey(v)
+    const variants = groups.get(key) ?? new Map<T, number>()
+    variants.set(v, (variants.get(v) ?? 0) + 1)
+    groups.set(key, variants)
+  })
+  return [...groups.values()]
+    .map(variants => {
+      const [label, count] = [...variants.entries()].sort((a, b) => b[1] - a[1])[0]
+      const total = [...variants.values()].reduce((s, c) => s + c, 0)
+      return { label, count: total }
+    })
+    .sort((a, b) => b.count - a.count)
     .slice(0, n)
-    .map(([label, count]) => ({ label, count }))
 }
 
 function Bar({ label, count, max, color }: { label: string; count: number; max: number; color: string }) {
