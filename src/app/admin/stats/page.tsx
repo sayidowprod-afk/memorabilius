@@ -1247,6 +1247,8 @@ export default function AdminStats() {
   const [sessionToken, setSessionToken] = useState<string | null>(null)
   const [reengaging, setReengaging] = useState(false)
   const [reengageResult, setReengageResult] = useState<{ sent?: number; total?: number; errors?: string[]; message?: string; error?: string } | null>(null)
+  const [recalcing, setRecalcing] = useState(false)
+  const [recalcResult, setRecalcResult] = useState<{ total?: number; changed?: number; errors?: { display_name: string; error: string }[]; error?: string } | null>(null)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -1351,6 +1353,23 @@ export default function AdminStats() {
     await saveOrShareFile(blob, `memorabilius_stats_${new Date().toISOString().slice(0,10)}.csv`)
   }
 
+  async function recalcStats() {
+    if (!sessionToken || recalcing) return
+    setRecalcing(true); setRecalcResult(null)
+    try {
+      const r = await fetch('/api/admin/recalc-stats', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${sessionToken}` },
+      })
+      const data = await r.json()
+      setRecalcResult(r.ok ? data : { error: data.error || `Erreur ${r.status}` })
+    } catch (e: any) {
+      setRecalcResult({ error: e.message })
+    } finally {
+      setRecalcing(false)
+    }
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', padding: isMobile ? '20px 12px' : '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
@@ -1363,12 +1382,18 @@ export default function AdminStats() {
               {updatedAt ? `Mis à jour ${updatedAt.toLocaleTimeString('fr-FR')}` : ''}
             </div>
           </div>
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <button onClick={exportCsv} style={{
               background: '#fff', color: '#334155', border: '1px solid #e2e8f0', borderRadius: 8,
               padding: '9px 16px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
             }}>
               Export CSV
+            </button>
+            <button onClick={recalcStats} disabled={recalcing} title="Recompte les stats (cartes, RC, auto...) de TOUS les profils depuis la vraie base -- corrige les compteurs faux/bloques sans attendre le cron nightly" style={{
+              background: '#fff', color: recalcing ? '#94a3b8' : '#334155', border: '1px solid #e2e8f0', borderRadius: 8,
+              padding: '9px 16px', fontSize: 13, fontWeight: 600, cursor: recalcing ? 'default' : 'pointer',
+            }}>
+              {recalcing ? '⏳ Recalcul...' : '🔄 Recalculer les stats'}
             </button>
             <button onClick={() => load(true)} style={{
               background: ACCENT, color: '#fff', border: 'none', borderRadius: 8,
@@ -1378,6 +1403,24 @@ export default function AdminStats() {
             </button>
           </div>
         </div>
+
+        {recalcResult && (
+          <div style={{
+            marginBottom: 20, padding: '12px 16px', borderRadius: 10, fontSize: 13,
+            background: recalcResult.error ? '#fef2f2' : '#f0fdf4',
+            color: recalcResult.error ? '#991b1b' : '#065f46',
+            border: `1px solid ${recalcResult.error ? '#fecaca' : '#bbf7d0'}`,
+          }}>
+            {recalcResult.error
+              ? `Échec du recalcul : ${recalcResult.error}`
+              : `✅ ${recalcResult.total} profils vérifiés, ${recalcResult.changed} corrigés.`}
+            {!!recalcResult.errors?.length && (
+              <div style={{ marginTop: 6, fontSize: 12, opacity: 0.85 }}>
+                {recalcResult.errors.length} profil(s) non recalculé(s) (CSV injoignable) : {recalcResult.errors.map(e => e.display_name).join(', ')}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Health Score */}
         <div style={{
