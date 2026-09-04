@@ -9,7 +9,7 @@ type RunResult = { corners: Pt[] | null; conf: number; ms: number }
 
 const MODELS = [
   { key: 'prod', label: 'Prod (actuel)', url: '/models/corners.onnx', color: '#e74c3c' },
-  { key: 'train29', label: 'train-29 (int8, checkpoint epoch 185, EN COURS D\'ENTRAINEMENT -- dataset x3.7 + sur-echantillonnage)', url: '/models/corners-train29-inprogress.onnx', color: '#27ae60' },
+  { key: 'train29', label: 'train-29 (int8, checkpoint epoch 192, entrainement stoppe par coupure de courant -- dataset x3.7 + sur-echantillonnage)', url: '/models/corners-train29-inprogress.onnx', color: '#27ae60' },
 ] as const
 
 function letterbox(img: HTMLImageElement) {
