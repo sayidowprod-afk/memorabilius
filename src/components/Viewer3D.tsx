@@ -478,6 +478,23 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [showVideo, setShowVideo] = useState(false)
   const [showPhoto, setShowPhoto] = useState(false)
   const [showExportChoice, setShowExportChoice] = useState(false)
+  const exportMenuRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!showExportChoice) return
+    // Ferme au clic/tap en dehors -- pas d'overlay plein ecran ici : un tel
+    // overlay "invisible" capte quand meme le scroll tactile sur mobile et
+    // bloquait le panel d'infos derriere le menu tant qu'il restait ouvert.
+    const onOutside = (e: Event) => {
+      if (exportMenuRef.current?.contains(e.target as Node)) return
+      setShowExportChoice(false)
+    }
+    document.addEventListener('mousedown', onOutside)
+    document.addEventListener('touchstart', onOutside)
+    return () => {
+      document.removeEventListener('mousedown', onOutside)
+      document.removeEventListener('touchstart', onOutside)
+    }
+  }, [showExportChoice])
 
   const [slabMode, setSlabMode] = useState(false)
   const [flip90, setFlip90] = useState(false)
@@ -1759,7 +1776,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   }}
                 />
               )}
-              <div style={{ position: 'relative' }}>
+              <div ref={exportMenuRef} style={{ position: 'relative' }}>
                 <button onClick={() => setShowExportChoice(v => !v)} style={{
                   background: '#0d0d1f', color: 'white', border: 'none', boxSizing: 'border-box',
                   borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14, width: '100%',
@@ -1767,28 +1784,25 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   ⬇️ {t('export_button')}
                 </button>
                 {showExportChoice && (
-                  <>
-                    <div onClick={() => setShowExportChoice(false)} style={{ position: 'fixed', inset: 0, zIndex: 1 }} />
-                    <div style={{
-                      position: 'absolute', bottom: '100%', left: 0, right: 0, marginBottom: 6,
-                      background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`,
-                      borderRadius: 10, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.25)', zIndex: 2,
+                  <div style={{
+                    position: 'absolute', bottom: '100%', left: 0, right: 0, marginBottom: 6,
+                    background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`,
+                    borderRadius: 10, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.25)', zIndex: 2,
+                  }}>
+                    <button onClick={() => { setShowExportChoice(false); setShowVideo(true) }} style={{
+                      display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
+                      padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
                     }}>
-                      <button onClick={() => { setShowExportChoice(false); setShowVideo(true) }} style={{
-                        display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
-                        padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
-                      }}>
-                        🎬 {t('video_export_title')}
-                      </button>
-                      <button onClick={() => { setShowExportChoice(false); setShowPhoto(true) }} style={{
-                        display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
-                        borderTop: `1px solid ${dark ? '#333' : '#eee'}`,
-                        padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
-                      }}>
-                        📸 {t('photo_export_title')}
-                      </button>
-                    </div>
-                  </>
+                      🎬 {t('video_export_title')}
+                    </button>
+                    <button onClick={() => { setShowExportChoice(false); setShowPhoto(true) }} style={{
+                      display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
+                      borderTop: `1px solid ${dark ? '#333' : '#eee'}`,
+                      padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
+                    }}>
+                      📸 {t('photo_export_title')}
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
