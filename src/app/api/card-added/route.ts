@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 import { awardXP, checkAndAwardBadgeXP, xpForCard } from '@/lib/xp'
+import { recalcAndSaveUserStats } from '@/lib/recalcStats'
 
 const cardAddedPostSchema = z.object({
   userId: z.string().uuid(),
@@ -13,6 +14,7 @@ const cardAddedPostSchema = z.object({
 const cardAddedDeleteSchema = z.object({
   userId: z.string().uuid(),
   cardId: z.string().min(1),
+  createdAt: z.string().nullable().optional(),
 })
 
 const supabase = createClient(
@@ -49,14 +51,15 @@ export async function POST(req: NextRequest) {
       { onConflict: 'user_id,month' }
     )
 
-    await supabase.rpc('increment_stats', {
-      p_user_id: userId,
-      p_delta:   1,
-      p_rc:      rc    ? 1 : 0,
-      p_auto:    auto  ? 1 : 0,
-      p_patch:   patch ? 1 : 0,
-      p_num:     num   ? 1 : 0,
-    })
+    // Recompte complet plutot qu'un increment delta -- un delta qui echoue
+    // silencieusement (timeout, erreur reseau cote client sur ce fetch fire-
+    // and-forget) cree une derive permanente entre le vrai nombre de cartes
+    // et stats_total, jamais corrigee toute seule. Un recompte est
+    // auto-reparant : meme si CET appel echoue, le prochain ajout/suppression
+    // ou le cron nightly remet le bon chiffre.
+    const { data: profile } = await supabase.from('profiles').select('lien_csv').eq('id', userId).single()
+    const recalc = await recalcAndSaveUserStats(supabase, userId, profile?.lien_csv, { csvTimeoutMs: 8000 })
+    if ('error' in recalc) console.error('[card-added POST] recalc failed:', recalc.error)
 
     await awardXP(supabase, userId, 'card_added', xpForCard({ rc, auto, patch, num }))
     await checkAndAwardBadgeXP(supabase, userId)
@@ -71,21 +74,21 @@ export async function DELETE(req: NextRequest) {
   try {
     const parsed = cardAddedDeleteSchema.safeParse(await req.json())
     if (!parsed.success) return NextResponse.json({ error: 'Missing params' }, { status: 400 })
-    const { userId, cardId } = parsed.data
+    const { userId, createdAt } = parsed.data
     if (!(await verifyOwner(req, userId))) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
     const month = new Date().toISOString().slice(0, 7)
     const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
 
-    // Fetch card info + monthly count in parallel (independent queries)
-    const [{ data: card }, { data: ma }] = await Promise.all([
-      supabase.from('cartes_manuelles').select('created_at, rc, auto, patch, num')
-        .eq('id', cardId).eq('user_id', userId).single(),
-      supabase.from('monthly_additions').select('count')
-        .eq('user_id', userId).eq('month', month).maybeSingle(),
-    ])
+    // createdAt vient du caller (etat local, avant suppression) plutot que
+    // d'un fetch serveur ici -- la carte a deja ete supprimee de
+    // cartes_manuelles au moment ou ce endpoint est appele (voir GalerieClient),
+    // donc un SELECT par id ne la trouverait plus.
+    const { data: ma } = await supabase
+      .from('monthly_additions').select('count')
+      .eq('user_id', userId).eq('month', month).maybeSingle()
 
-    if (card?.created_at && card.created_at >= startOfMonth) {
+    if (createdAt && createdAt >= startOfMonth) {
       const newCount = Math.max(0, (ma?.count || 0) - 1)
       await supabase.from('monthly_additions').upsert(
         { user_id: userId, month, count: newCount },
@@ -93,15 +96,13 @@ export async function DELETE(req: NextRequest) {
       )
     }
 
-    // Décrémente stats_total + sous-stats de la carte supprimée
-    await supabase.rpc('increment_stats', {
-      p_user_id: userId,
-      p_delta:   -1,
-      p_rc:      card?.rc    ? -1 : 0,
-      p_auto:    card?.auto  ? -1 : 0,
-      p_patch:   card?.patch ? -1 : 0,
-      p_num:     (card?.num && card.num !== '') ? -1 : 0,
-    })
+    // Recompte complet plutot qu'un decrement delta -- voir le meme
+    // commentaire dans POST. Le caller (GalerieClient) attend que la carte
+    // soit bien supprimee de cartes_manuelles avant d'appeler ce endpoint,
+    // donc le recompte ci-dessous ne la voit plus.
+    const { data: profile } = await supabase.from('profiles').select('lien_csv').eq('id', userId).single()
+    const recalc = await recalcAndSaveUserStats(supabase, userId, profile?.lien_csv, { csvTimeoutMs: 8000 })
+    if ('error' in recalc) console.error('[card-added DELETE] recalc failed:', recalc.error)
 
     return NextResponse.json({ ok: true })
   } catch (err) {

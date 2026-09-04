@@ -765,17 +765,20 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     // n'ait lieu (ou l'inverse), sans lien garanti entre les deux.
     setUndoBanner(cur => cur?.id === idManuelle ? null : cur)
     try {
-      // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
+      // 1. Suppression de la table des cartes manuelles
+      const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', uid)
+      if (error) throw error
+
+      // 1bis. Mise à jour classement mensuel + recompte complet de stats_total --
+      // appelé APRÈS la suppression (et non avant) : ce endpoint recompte les
+      // cartes restantes en base, donc il doit voir la carte déjà partie pour
+      // ne pas la recompter par erreur.
       const { data: { session } } = await supabase.auth.getSession()
       fetch('/api/card-added', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
-        body: JSON.stringify({ userId, cardId: idManuelle }),
+        body: JSON.stringify({ userId, cardId: idManuelle, createdAt: pending?.card.created_at || null }),
       }).catch(e => console.error('[card-added DELETE] stats divergence:', e))
-
-      // 2. Suppression de la table des cartes manuelles
-      const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', uid)
-      if (error) throw error
 
       // 2bis. Libérer sa pochette dans un classeur si elle y était rangée —
       // binder_slots référence card_key en texte libre (pas de FK), donc rien
