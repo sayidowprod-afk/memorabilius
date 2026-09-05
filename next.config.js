@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['web-push'],
+  // @napi-rs/canvas embarque des binaires natifs .node par plateforme --
+  // sans ça webpack essaie de les parser comme du JS et le build casse
+  // ("Module parse failed: Unexpected character") sur /api/discord
+  // (voir src/lib/discordCardGif.ts, generation du GIF /carte-gif).
+  serverExternalPackages: ['web-push', '@napi-rs/canvas', 'gifenc'],
   // Inline le SHA du commit deploye dans le bundle client (voir NativeInit.tsx +
   // /api/app-version) : sert a detecter qu'un nouveau deploy a eu lieu pendant
   // que l'app native etait en arriere-plan, pour forcer un vrai reload plutot
