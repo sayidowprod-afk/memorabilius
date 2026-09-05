@@ -11,8 +11,8 @@ import { GIFEncoder, quantize, applyPalette } from 'gifenc'
 
 const W = 360
 const H = Math.round(W * 3.5 / 2.5) // ratio carte a collectionner standard
-const FRAMES = 36
-const DELAY_MS = 80  // ~2,9s par rotation complete -- 45ms/28 frames rendait un tour en 1,26s, trop rapide
+const FRAMES = 60
+const DELAY_MS = 48  // ~2,9s par rotation complete (meme vitesse), plus de frames pour fluidifier -- 36 frames donnait un effet saccade
 
 async function fetchImage(url: string): Promise<Image> {
   const res = await fetch(url)
