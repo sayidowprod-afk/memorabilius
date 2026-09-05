@@ -42,6 +42,24 @@ const commands = [
       },
     ],
   },
+  {
+    name: 'carte-gif',
+    description: 'Affiche une carte qui tourne en boucle (GIF animé)',
+    options: [
+      {
+        name: 'nom',
+        description: 'Nom du joueur ou de la carte (ex: Wembanyama)',
+        type: 3,
+        required: true,
+      },
+      {
+        name: 'utilisateur',
+        description: 'Filtrer par collectionneur (optionnel)',
+        type: 3,
+        required: false,
+      },
+    ],
+  },
 ]
 
 async function register(url, label) {

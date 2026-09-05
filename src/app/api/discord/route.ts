@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { createPublicKey, verify as cryptoVerify } from 'crypto'
 import { isAllowedCsvUrl } from '@/lib/csvParse'
+import { waitUntil } from '@vercel/functions'
+import { renderCardSpinGif } from '@/lib/discordCardGif'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
+export const maxDuration = 60
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -148,10 +151,17 @@ async function searchCsv(profiles: any[], tk: ReturnType<typeof parseTokens>) {
   }
 }
 
-async function cmdCarte(options: any[]) {
+interface CardData {
+  nom: string; img: string; imgBack: string | null; desc: string; badges: string[]
+  profileId: string | null; profileName: string | null; cardUrl: string
+}
+
+// Partagé par /carte et /carte-gif -- même recherche (DB puis CSV en repli),
+// juste le format de reponse (embed statique vs GIF differe).
+async function findCardData(options: any[]): Promise<{ error: string } | { data: CardData }> {
   const input = (options.find((o: any) => o.name === 'nom')?.value || '') as string
   const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
-  if (!input) return reply({ content: "❌ Précise le nom d'une carte.", flags: 64 })
+  if (!input) return { error: "❌ Précise le nom d'une carte." }
 
   const tk = parseTokens(input)
 
@@ -160,14 +170,14 @@ async function cmdCarte(options: any[]) {
   if (utilisateur) {
     const { data: prof } = await supabase
       .from('profiles').select('id, display_name, lien_csv').ilike('display_name', `%${utilisateur}%`).limit(1)
-    if (!prof?.[0]) return reply({ content: `❌ Collectionneur \`${utilisateur}\` introuvable.`, flags: 64 })
+    if (!prof?.[0]) return { error: `❌ Collectionneur \`${utilisateur}\` introuvable.` }
     targetProfile = prof[0]
   }
 
   // Recherche DB (cartes_manuelles) et CSV en parallèle
   let dbQuery = supabase
     .from('cartes_manuelles')
-    .select('nom, image_recto, equipe, annee, marque, variation, collection, rc, auto, num, patch, user_id, profiles(id, display_name)')
+    .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, user_id, profiles(id, display_name)')
     .not('image_recto', 'is', null)
 
   if (tk.text) {
@@ -196,27 +206,29 @@ async function cmdCarte(options: any[]) {
   const csvResult = dbCard ? null : await searchCsv(csvProfiles, tk)
 
   if (!dbCard && !csvResult) {
-    return reply({ content: `❌ Aucune carte trouvée pour \`${input}\`${utilisateur ? ` chez \`${utilisateur}\`` : ''}.`, flags: 64 })
+    return { error: `❌ Aucune carte trouvée pour \`${input}\`${utilisateur ? ` chez \`${utilisateur}\`` : ''}.` }
   }
 
-  // Construire la réponse
-  let nom: string, img: string, desc: string, badges: string[], profileId: string, profileName: string, cardUrl: string
+  let nom: string, img: string, imgBack: string | null, desc: string, badges: string[]
+  let profileId: string | null, profileName: string | null
 
   if (dbCard) {
     const p = dbCard.profiles
     nom = dbCard.nom
     img = dbCard.image_recto
+    imgBack = dbCard.image_verso || null
     desc = [dbCard.variation, dbCard.annee, dbCard.marque, dbCard.equipe].filter(Boolean).join(' · ')
     badges = []
     if (dbCard.rc)    badges.push('🌟 RC')
     if (dbCard.auto)  badges.push('✍️ Auto')
     if (dbCard.patch) badges.push('🪡 Patch')
     if (dbCard.num)   badges.push(`🔢 ${dbCard.num}`)
-    profileId = p?.id; profileName = p?.display_name
+    profileId = p?.id || null; profileName = p?.display_name || null
   } else {
     const { card, profile: p } = csvResult!
     nom = card.name
     img = card.img
+    imgBack = null
     desc = [card.variant, card.year, card.brand, card.team].filter(Boolean).join(' · ')
     badges = []
     if (card.rc)    badges.push('🌟 RC')
@@ -226,25 +238,62 @@ async function cmdCarte(options: any[]) {
     profileId = p.id; profileName = p.display_name
   }
 
-  cardUrl = profileId
+  const cardUrl = profileId
     ? `https://memorabilius.fr/galerie/${profileId}?card=${encodeURIComponent(img)}`
     : 'https://memorabilius.fr'
 
-  return reply({
-    embeds: [{
-      title: nom,
-      url: cardUrl,
-      description: desc || undefined,
-      color: 0x003DA6,
-      image: { url: img },
-      fields: badges.length ? [{ name: 'Badges', value: badges.join('  '), inline: false }] : [],
-      author: profileName ? {
-        name: profileName,
-        url: `https://memorabilius.fr/galerie/${profileId}`,
-      } : undefined,
-      footer: { text: 'memorabilius.fr' },
-    }],
-  })
+  return { data: { nom, img, imgBack, desc, badges, profileId, profileName, cardUrl } }
+}
+
+function cardEmbed(d: CardData, imageUrl: string) {
+  return {
+    title: d.nom,
+    url: d.cardUrl,
+    description: d.desc || undefined,
+    color: 0x003DA6,
+    image: { url: imageUrl },
+    fields: d.badges.length ? [{ name: 'Badges', value: d.badges.join('  '), inline: false }] : [],
+    author: d.profileName ? {
+      name: d.profileName,
+      url: `https://memorabilius.fr/galerie/${d.profileId}`,
+    } : undefined,
+    footer: { text: 'memorabilius.fr' },
+  }
+}
+
+async function cmdCarte(options: any[]) {
+  const result = await findCardData(options)
+  if ('error' in result) return reply({ content: result.error, flags: 64 })
+  return reply({ embeds: [cardEmbed(result.data, result.data.img)] })
+}
+
+// Genere le GIF et edite la reponse differee une fois pret -- appele en
+// arriere-plan (waitUntil) apres l'ACK immediat de type 5, car le rendu
+// (plusieurs frames canvas + encodage GIF) depasse largement la limite de
+// 3s de Discord pour une reponse initiale. Le follow-up webhook, lui,
+// tolere jusqu'a 15 minutes.
+async function sendCarteGifFollowup(applicationId: string, token: string, d: CardData) {
+  const editUrl = `https://discord.com/api/v10/webhooks/${applicationId}/${token}/messages/@original`
+  try {
+    const gifBuffer = await renderCardSpinGif(d.img, d.imgBack)
+    const form = new FormData()
+    form.append('payload_json', JSON.stringify({ embeds: [cardEmbed(d, 'attachment://carte.gif')] }))
+    form.append('files[0]', new Blob([new Uint8Array(gifBuffer)], { type: 'image/gif' }), 'carte.gif')
+    await fetch(editUrl, { method: 'PATCH', body: form })
+  } catch (e) {
+    await fetch(editUrl, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: `❌ Échec de génération du GIF : ${e instanceof Error ? e.message : String(e)}` }),
+    }).catch(() => {})
+  }
+}
+
+async function cmdCarteGif(options: any[], applicationId: string, token: string) {
+  const result = await findCardData(options)
+  if ('error' in result) return reply({ content: result.error, flags: 64 })
+  waitUntil(sendCarteGifFollowup(applicationId, token, result.data))
+  return { type: 5 } // DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE -- "Memorabilius Bot réfléchit…"
 }
 
 export async function POST(req: NextRequest) {
@@ -265,6 +314,7 @@ export async function POST(req: NextRequest) {
     if (name === 'collection') result = await cmdCollection(options)
     else if (name === 'top')   result = await cmdTop()
     else if (name === 'carte') result = await cmdCarte(options)
+    else if (name === 'carte-gif') result = await cmdCarteGif(options, body.application_id, body.token)
     return NextResponse.json(result)
   }
 
