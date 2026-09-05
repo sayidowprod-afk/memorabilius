@@ -65,7 +65,12 @@ export default function OnboardingTooltip() {
 
   // ── Auth + carte count ─────────────────────────────────────────────────────
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) return
+    // localStorage peut lever (WebView Android avec stockage restreint/desactive
+    // selon config OEM) -- sans ce filet, l'exception non rattrapee ici (au sein
+    // d'un useEffect) remonte jusqu'a l'error boundary racine et casse TOUTE la
+    // page pour un compte neuf (0 carte, seul cas ou ce composant s'active),
+    // juste apres la connexion -- signale en prod sur l'app Android.
+    try { if (localStorage.getItem(STORAGE_KEY)) return } catch {}
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_e, session) => {
       if (!session?.user || authChecked.current) return
@@ -128,7 +133,7 @@ export default function OnboardingTooltip() {
     setAnimOut(true)
     setTimeout(() => {
       setVisible(false)
-      localStorage.setItem(STORAGE_KEY, '1')
+      try { localStorage.setItem(STORAGE_KEY, '1') } catch {}
     }, 280)
   }
 
