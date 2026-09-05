@@ -33,8 +33,15 @@ export async function renderCardSpinGif(frontUrl: string, backUrl: string | null
 
   const gif = GIFEncoder()
 
-  const CARD_W = Math.round(W * 0.72)
-  const CARD_H = Math.round(CARD_W * 3.5 / 2.5)
+  // Certaines cartes sont horizontales (format paysage) -- une taille de boite
+  // fixe en portrait (3.5/2.5) les etirait/coupait. On se cale sur le vrai
+  // ratio de l'image chargee plutot que de supposer portrait partout.
+  const MAX_CARD_W = W * 0.8
+  const MAX_CARD_H = H * 0.8
+  const imgRatio = front.width / front.height
+  const boxRatio = MAX_CARD_W / MAX_CARD_H
+  const CARD_W = imgRatio > boxRatio ? MAX_CARD_W : MAX_CARD_H * imgRatio
+  const CARD_H = imgRatio > boxRatio ? MAX_CARD_W / imgRatio : MAX_CARD_H
   const cx = W / 2
   const cy = H / 2
 
