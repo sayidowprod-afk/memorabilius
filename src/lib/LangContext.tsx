@@ -4210,7 +4210,8 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>('fr')
 
   useEffect(() => {
-    const saved = localStorage.getItem('lang') as Lang
+    let saved: Lang | null = null
+    try { saved = localStorage.getItem('lang') as Lang } catch {}
     const geo = document.cookie.split(';').find(c => c.trim().startsWith('geo-lang='))?.split('=')?.[1]?.trim() as Lang | undefined
     const VALID_LANGS: Lang[] = ['fr', 'en', 'de', 'es', 'it']
     const resolved: Lang =
@@ -4240,7 +4241,7 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = (l: Lang) => {
     setLangState(l)
-    localStorage.setItem('lang', l)
+    try { localStorage.setItem('lang', l) } catch {}
     // Garde le cookie geo-lang synchronisé sur le choix explicite — sans ça, ce
     // cookie ne reflétait que la détection géo initiale, jamais un changement
     // manuel via le sélecteur, donc les pages rendues côté serveur (ex: guides
