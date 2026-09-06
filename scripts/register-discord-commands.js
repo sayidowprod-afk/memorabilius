@@ -32,11 +32,17 @@ const commands = [
         name: 'nom',
         description: 'Nom du joueur ou de la carte (ex: Wembanyama)',
         type: 3,
-        required: true,
+        required: false,
       },
       {
         name: 'utilisateur',
         description: 'Filtrer par collectionneur (optionnel)',
+        type: 3,
+        required: false,
+      },
+      {
+        name: 'lien',
+        description: 'Lien direct vers une carte Memorabilius (memorabilius.fr/galerie/...)',
         type: 3,
         required: false,
       },
@@ -50,11 +56,17 @@ const commands = [
         name: 'nom',
         description: 'Nom du joueur ou de la carte (ex: Wembanyama)',
         type: 3,
-        required: true,
+        required: false,
       },
       {
         name: 'utilisateur',
         description: 'Filtrer par collectionneur (optionnel)',
+        type: 3,
+        required: false,
+      },
+      {
+        name: 'lien',
+        description: 'Lien direct vers une carte Memorabilius (memorabilius.fr/galerie/...)',
         type: 3,
         required: false,
       },
@@ -66,7 +78,7 @@ const commands = [
     options: [
       {
         name: 'image',
-        description: 'Photo de ta carte (si tu ne joues pas via `nom`)',
+        description: 'Photo de ta carte (si tu ne joues pas via `nom`/`lien`)',
         type: 11,
         required: false,
       },
@@ -79,6 +91,12 @@ const commands = [
       {
         name: 'utilisateur',
         description: 'Ton nom de collectionneur (si tu utilises `nom`)',
+        type: 3,
+        required: false,
+      },
+      {
+        name: 'lien',
+        description: 'Lien direct vers une carte Memorabilius (memorabilius.fr/galerie/...)',
         type: 3,
         required: false,
       },

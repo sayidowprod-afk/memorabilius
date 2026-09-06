@@ -66,12 +66,12 @@ async function cmdConcoursParticiper(body: any) {
   if (attachmentOpt) {
     imageUrl = body.data?.resolved?.attachments?.[attachmentOpt.value]?.url || null
   }
-  if (!imageUrl && options.find((o: any) => o.name === 'nom')) {
+  if (!imageUrl && (options.find((o: any) => o.name === 'nom') || options.find((o: any) => o.name === 'lien'))) {
     const result = await findCardData(options)
     if ('error' in result) return reply({ content: result.error, flags: 64 })
     imageUrl = result.data.img
   }
-  if (!imageUrl) return reply({ content: '❌ Joins une image, ou précise `nom` (comme pour /carte) pour utiliser une carte de ta galerie.', flags: 64 })
+  if (!imageUrl) return reply({ content: '❌ Joins une image, précise `nom` ou colle un `lien` Memorabilius (comme pour /carte).', flags: 64 })
 
   const { error } = await supabase.from('discord_contest_entries').upsert(
     { week_id: week.id, discord_user_id: discordUser.id, discord_username: discordUser.username, image_url: imageUrl },
@@ -267,12 +267,59 @@ interface CardData {
   profileId: string | null; profileName: string | null; cardUrl: string
 }
 
-// Partagé par /carte et /carte-gif -- même recherche (DB puis CSV en repli),
-// juste le format de reponse (embed statique vs GIF differe).
+// Un lien de carte est de la forme https://memorabilius.fr/galerie/{profileId}?card={image}
+// (voir la construction de cardUrl plus bas) -- on extrait les deux pour retrouver
+// directement la ligne exacte plutot que de repasser par une recherche floue.
+function parseCardLink(link: string): { profileId: string; img: string } | null {
+  try {
+    const url = new URL(link)
+    const m = url.pathname.match(/\/galerie\/([^/?]+)/)
+    const img = url.searchParams.get('card')
+    if (!m || !img) return null
+    return { profileId: m[1], img }
+  } catch { return null }
+}
+
+async function findCardByLink(link: string): Promise<CardData | null> {
+  const parsed = parseCardLink(link)
+  if (!parsed) return null
+
+  const { data: dbCard } = await supabase
+    .from('cartes_manuelles')
+    .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, profiles(id, display_name)')
+    .eq('user_id', parsed.profileId)
+    .eq('image_recto', parsed.img)
+    .limit(1)
+    .maybeSingle()
+  if (!dbCard) return null
+
+  const p = (dbCard as any).profiles
+  const desc = [dbCard.variation, dbCard.annee, dbCard.marque, dbCard.equipe].filter(Boolean).join(' · ')
+  const badges: string[] = []
+  if (dbCard.rc)    badges.push('🌟 RC')
+  if (dbCard.auto)  badges.push('✍️ Auto')
+  if (dbCard.patch) badges.push('🪡 Patch')
+  if (dbCard.num)   badges.push(`🔢 ${dbCard.num}`)
+
+  return {
+    nom: dbCard.nom, img: dbCard.image_recto, imgBack: dbCard.image_verso || null, desc, badges,
+    profileId: p?.id || parsed.profileId, profileName: p?.display_name || null, cardUrl: link,
+  }
+}
+
+// Partagé par /carte, /carte-gif et /concours-participer -- même recherche
+// (lien direct, puis DB, puis CSV en repli), juste le format de reponse differe.
 async function findCardData(options: any[]): Promise<{ error: string } | { data: CardData }> {
+  const lien = (options.find((o: any) => o.name === 'lien')?.value || '') as string
+  if (lien) {
+    const byLink = await findCardByLink(lien)
+    if (byLink) return { data: byLink }
+    return { error: '❌ Impossible de retrouver une carte depuis ce lien.' }
+  }
+
   const input = (options.find((o: any) => o.name === 'nom')?.value || '') as string
   const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
-  if (!input) return { error: "❌ Précise le nom d'une carte." }
+  if (!input) return { error: "❌ Précise le nom d'une carte ou un lien Memorabilius (`lien`)." }
 
   const tk = parseTokens(input)
 
