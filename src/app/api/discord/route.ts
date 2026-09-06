@@ -4,6 +4,7 @@ import { createPublicKey, verify as cryptoVerify } from 'crypto'
 import { isAllowedCsvUrl } from '@/lib/csvParse'
 import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
+import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
 
 // ── Concours hebdomadaire ─────────────────────────────────────────────────────
 
@@ -302,6 +303,43 @@ function cardDataFromRow(dbCard: any, link: string, fallbackProfileId: string | 
 // "partager" dans GalerieClient.tsx/Viewer3D.tsx). On garde en repli l'ancien
 // format /galerie/{userId}?card={image} (celui construit pour l'embed Discord
 // lui-meme), au cas ou quelqu'un colle ce lien-la plutot que le lien de partage.
+// Carte CSV (pas de ligne cartes_manuelles) retrouvee par correspondance
+// exacte d'URL d'image, plutot que la recherche floue de searchCsv/parseTokens
+// (on a deja LA bonne image, pas besoin de deviner).
+async function csvCardByImage(profile: { id: string; display_name: string; lien_csv?: string | null }, imageUrl: string): Promise<CardData | null> {
+  if (!profile.lien_csv || !isAllowedCsvUrl(profile.lien_csv)) return null
+  try {
+    const res = await fetch(profile.lien_csv, { signal: AbortSignal.timeout(3000) })
+    if (!res.ok) return null
+    const text = await res.text()
+    for (const row of text.split(/\r?\n/).slice(4)) {
+      const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+      const img = c[0]?.trim()
+      if (!img || img !== imageUrl) continue
+      const unq = (s: string) => (s || '').replace(/^"|"$/g, '')
+      const name = unq(c[2]), team = unq(c[3]), year = unq(c[4]), brand = unq(c[5]), variant = unq(c[7]), num = unq(c[8])
+      const badges: string[] = []
+      if ((c[10] || '').toLowerCase().includes('oui')) badges.push('🌟 RC')
+      if ((c[9]  || '').toLowerCase().includes('oui')) badges.push('✍️ Auto')
+      if ((c[11] || '').toLowerCase().includes('oui')) badges.push('🪡 Patch')
+      if (num) badges.push(`🔢 ${num}`)
+      return {
+        nom: name || 'Carte', img, imgBack: null,
+        desc: [variant, year, brand, team].filter(Boolean).join(' · '),
+        badges, profileId: profile.id, profileName: profile.display_name, cardUrl: '',
+      }
+    }
+  } catch { /* CSV inaccessible */ }
+  return null
+}
+
+// Trois formats de lien "carte" coexistent sur le site (voir GalerieClient.tsx/
+// Viewer3D.tsx pour ou chacun est genere) :
+//  - /s/{cardId}            : carte ajoutee manuellement, cartes_manuelles.id
+//  - /c/{shortId}           : lien court pour une carte CSV, table csv_card_links
+//  - /galerie/{slug|uuid}?card={image} : ancien format long -- le segment
+//    peut etre le slug pseudo-lisible du profil, pas force son UUID brut
+//    (voir resolveProfileSlug.ts), et la carte peut elle-meme etre CSV.
 async function findCardByLink(rawLink: string): Promise<CardData | null> {
   // Tolère un lien colle avec du texte autour ("voici ma carte : https://...")
   // -- on extrait la premiere sous-chaine qui ressemble a une URL plutot que
@@ -310,6 +348,19 @@ async function findCardByLink(rawLink: string): Promise<CardData | null> {
   const urlMatch = rawLink.match(/https?:\/\/\S+/)
   let url: URL
   try { url = new URL(urlMatch ? urlMatch[0] : rawLink) } catch { return null }
+
+  const shortMatch = url.pathname.match(/\/c\/([^/?]+)/)
+  if (shortMatch) {
+    const { data: linkRow } = await supabase.from('csv_card_links').select('user_id, image_url').eq('id', shortMatch[1]).maybeSingle()
+    if (linkRow) {
+      const { data: profile } = await supabase.from('profiles').select('id, display_name, lien_csv').eq('id', linkRow.user_id).maybeSingle()
+      if (profile) {
+        const csvCard = await csvCardByImage(profile, linkRow.image_url)
+        if (csvCard) return { ...csvCard, cardUrl: url.toString() }
+        return { nom: 'Carte', img: linkRow.image_url, imgBack: null, desc: '', badges: [], profileId: profile.id, profileName: profile.display_name, cardUrl: url.toString() }
+      }
+    }
+  }
 
   const shareMatch = url.pathname.match(/\/s\/([^/?]+)/)
   if (shareMatch) {
@@ -324,14 +375,23 @@ async function findCardByLink(rawLink: string): Promise<CardData | null> {
   const galerieMatch = url.pathname.match(/\/galerie\/([^/?]+)/)
   const img = url.searchParams.get('card')
   if (galerieMatch && img) {
+    const profile = await resolveProfileBySlugParam(supabase, galerieMatch[1])
+    const profileId = profile?.id || galerieMatch[1]
+
     const { data: dbCard } = await supabase
       .from('cartes_manuelles')
       .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, profiles(id, display_name)')
-      .eq('user_id', galerieMatch[1])
+      .eq('user_id', profileId)
       .eq('image_recto', img)
       .limit(1)
       .maybeSingle()
-    if (dbCard) return cardDataFromRow(dbCard, url.toString(), galerieMatch[1])
+    if (dbCard) return cardDataFromRow(dbCard, url.toString(), profileId)
+
+    const { data: fullProfile } = await supabase.from('profiles').select('id, display_name, lien_csv').eq('id', profileId).maybeSingle()
+    if (fullProfile) {
+      const csvCard = await csvCardByImage(fullProfile, img)
+      if (csvCard) return { ...csvCard, cardUrl: url.toString() }
+    }
   }
 
   return null
