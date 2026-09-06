@@ -25,22 +25,22 @@ export async function GET(req: NextRequest) {
   const actions: string[] = []
 
   if (weekday === 'Mon' && hour >= 8 && hour < 12) {
-    const { data: existing } = await supabase.from('contest_weeks').select('id').eq('week_start', weekStart).maybeSingle()
+    const { data: existing } = await supabase.from('discord_contest_weeks').select('id').eq('week_start', weekStart).maybeSingle()
     if (!existing) { await openThemeVote(weekStart); actions.push('theme_vote_opened') }
   }
 
   if (weekday === 'Mon' && hour >= 18 && hour < 22) {
-    const { data: week } = await supabase.from('contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'theme_voting').maybeSingle()
+    const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'theme_voting').maybeSingle()
     if (week) { await closeThemeVote(week); actions.push('theme_vote_closed') }
   }
 
   if (weekday === 'Fri' && hour >= 8 && hour < 12) {
-    const { data: week } = await supabase.from('contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'submission_open').maybeSingle()
+    const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'submission_open').maybeSingle()
     if (week) { await openEntryVote(week); actions.push('entry_vote_opened') }
   }
 
   if (weekday === 'Fri' && hour >= 18 && hour < 22) {
-    const { data: week } = await supabase.from('contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'entry_voting').maybeSingle()
+    const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'entry_voting').maybeSingle()
     if (week) { await closeEntryVote(week); actions.push('entry_vote_closed') }
   }
 
@@ -51,7 +51,7 @@ async function openThemeVote(weekStart: string) {
   const themes = await pickThemes(supabase, 4)
   if (themes.length < 2) return // pool trop petit pour un vote, on attend d'en ajouter
 
-  const { data: week } = await supabase.from('contest_weeks')
+  const { data: week } = await supabase.from('discord_contest_weeks')
     .insert({ week_start: weekStart, status: 'theme_voting', theme_option_ids: themes.map(t => t.id), theme_vote_channel_id: contestChannelId() })
     .select().single()
   if (!week) return
@@ -68,11 +68,11 @@ async function openThemeVote(weekStart: string) {
     }),
   })
 
-  await supabase.from('contest_weeks').update({ theme_vote_message_id: msg.id }).eq('id', week.id)
+  await supabase.from('discord_contest_weeks').update({ theme_vote_message_id: msg.id }).eq('id', week.id)
 }
 
 async function closeThemeVote(week: any) {
-  const { data: votes } = await supabase.from('contest_theme_votes').select('theme_id').eq('week_id', week.id)
+  const { data: votes } = await supabase.from('discord_contest_theme_votes').select('theme_id').eq('week_id', week.id)
   const tally = new Map<string, number>()
   for (const v of votes || []) tally.set(v.theme_id, (tally.get(v.theme_id) || 0) + 1)
 
@@ -84,9 +84,9 @@ async function closeThemeVote(week: any) {
     if (c > winnerCount) { winnerCount = c; winnerId = id }
   }
 
-  const { data: winnerTheme } = await supabase.from('contest_themes').select('*').eq('id', winnerId).single()
-  await supabase.from('contest_themes').update({ active: true, times_used: (winnerTheme?.times_used || 0) + 1, last_used_at: new Date().toISOString() }).eq('id', winnerId)
-  await supabase.from('contest_weeks').update({ status: 'submission_open', winning_theme_id: winnerId }).eq('id', week.id)
+  const { data: winnerTheme } = await supabase.from('discord_contest_themes').select('*').eq('id', winnerId).single()
+  await supabase.from('discord_contest_themes').update({ active: true, times_used: (winnerTheme?.times_used || 0) + 1, last_used_at: new Date().toISOString() }).eq('id', winnerId)
+  await supabase.from('discord_contest_weeks').update({ status: 'submission_open', winning_theme_id: winnerId }).eq('id', week.id)
 
   if (week.theme_vote_message_id) {
     await discordFetch(`/channels/${contestChannelId()}/messages/${week.theme_vote_message_id}`, {
@@ -108,10 +108,10 @@ async function closeThemeVote(week: any) {
 }
 
 async function openEntryVote(week: any) {
-  const { data: entries } = await supabase.from('contest_entries').select('*').eq('week_id', week.id)
+  const { data: entries } = await supabase.from('discord_contest_entries').select('*').eq('week_id', week.id)
 
   if (!entries?.length) {
-    await supabase.from('contest_weeks').update({ status: 'closed' }).eq('id', week.id)
+    await supabase.from('discord_contest_weeks').update({ status: 'closed' }).eq('id', week.id)
     await discordFetch(`/channels/${contestChannelId()}/messages`, {
       method: 'POST',
       body: JSON.stringify({ content: '😢 Aucune participation cette semaine — on retente la semaine prochaine !' }),
@@ -136,15 +136,15 @@ async function openEntryVote(week: any) {
         components: entryVoteButton(week.id, entry.id),
       }),
     })
-    await supabase.from('contest_entries').update({ message_id: msg.id }).eq('id', entry.id)
+    await supabase.from('discord_contest_entries').update({ message_id: msg.id }).eq('id', entry.id)
   }
 
-  await supabase.from('contest_weeks').update({ status: 'entry_voting', entry_vote_started_at: new Date().toISOString() }).eq('id', week.id)
+  await supabase.from('discord_contest_weeks').update({ status: 'entry_voting', entry_vote_started_at: new Date().toISOString() }).eq('id', week.id)
 }
 
 async function closeEntryVote(week: any) {
-  const { data: entries } = await supabase.from('contest_entries').select('*').eq('week_id', week.id)
-  const { data: votes } = await supabase.from('contest_entry_votes').select('entry_id').eq('week_id', week.id)
+  const { data: entries } = await supabase.from('discord_contest_entries').select('*').eq('week_id', week.id)
+  const { data: votes } = await supabase.from('discord_contest_entry_votes').select('entry_id').eq('week_id', week.id)
 
   const tally = new Map<string, number>()
   for (const v of votes || []) tally.set(v.entry_id, (tally.get(v.entry_id) || 0) + 1)
@@ -156,7 +156,7 @@ async function closeEntryVote(week: any) {
     if (c > winnerCount) { winnerCount = c; winner = e }
   }
 
-  await supabase.from('contest_weeks').update({ status: 'closed', winning_entry_id: winner?.id || null }).eq('id', week.id)
+  await supabase.from('discord_contest_weeks').update({ status: 'closed', winning_entry_id: winner?.id || null }).eq('id', week.id)
 
   const ranking = (entries || [])
     .map(e => ({ e, c: tally.get(e.id) || 0 }))

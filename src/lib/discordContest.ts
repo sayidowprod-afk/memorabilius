@@ -22,7 +22,7 @@ export function contestChannelId(): string {
 }
 
 // Semaine courante (lundi, en heure de Paris) -- sert de cle unique pour
-// contest_weeks.week_start, insensible au fuseau du serveur qui execute le code.
+// discord_contest_weeks.week_start, insensible au fuseau du serveur qui execute le code.
 export function parisWeekStart(d: Date = new Date()): string {
   const parisDateStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d)
   const [y, m, day] = parisDateStr.split('-').map(Number)
@@ -46,7 +46,7 @@ export function parisNow(d: Date = new Date()): { weekday: string; hour: number 
 // meme avec les themes les moins recemment utilises plutot que de bloquer.
 export async function pickThemes(supabase: SupabaseClient, count: number, excludeWeeksWindow = 8) {
   const { data: themes } = await supabase
-    .from('contest_themes')
+    .from('discord_contest_themes')
     .select('id, label, last_used_at')
     .eq('active', true)
 
