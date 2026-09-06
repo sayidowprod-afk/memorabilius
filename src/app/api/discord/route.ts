@@ -5,6 +5,7 @@ import { isAllowedCsvUrl } from '@/lib/csvParse'
 import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
 import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
+import { discordFetch, contestChannelId, parisWeekStart } from '@/lib/discordContest'
 
 // ── Concours hebdomadaire ─────────────────────────────────────────────────────
 
@@ -24,6 +25,53 @@ async function cmdConcoursThemeSupprimer(options: any[]) {
   if (!t) return reply({ content: `❌ Aucun thème actif ne correspond à \`${label}\`.`, flags: 64 })
   await supabase.from('discord_contest_themes').update({ active: false }).eq('id', t.id)
   return reply({ content: `🗑️ Thème retiré du pool : **${t.label}**`, flags: 64 })
+}
+
+// Permet a un admin d'imposer directement le theme de la semaine (evenements
+// speciaux) au lieu d'attendre le vote automatique du lundi. Fonctionne aussi
+// bien avant que la semaine n'existe encore (avant lundi 8h) que pendant un
+// vote de theme deja en cours (auquel cas le vote est annule et remplace).
+async function cmdConcoursThemeForcer(options: any[]) {
+  const label = (options.find((o: any) => o.name === 'texte')?.value || '').trim()
+  if (!label) return reply({ content: '❌ Précise le thème à imposer.', flags: 64 })
+
+  const weekStart = parisWeekStart()
+  const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).maybeSingle()
+
+  if (week && (week.status === 'entry_voting' || week.status === 'closed')) {
+    return reply({ content: `❌ Le concours de cette semaine est déjà à l'étape "${week.status}" — trop tard pour changer de thème.`, flags: 64 })
+  }
+
+  let { data: theme } = await supabase.from('discord_contest_themes').select('*').ilike('label', label).maybeSingle()
+  if (!theme) {
+    const { data: created } = await supabase.from('discord_contest_themes').insert({ label }).select().single()
+    theme = created
+  }
+  if (!theme) return reply({ content: "❌ Impossible de créer ce thème.", flags: 64 })
+
+  await supabase.from('discord_contest_themes').update({ active: true, times_used: (theme.times_used || 0) + 1, last_used_at: new Date().toISOString() }).eq('id', theme.id)
+
+  if (week) {
+    if (week.theme_vote_message_id) {
+      await discordFetch(`/channels/${contestChannelId()}/messages/${week.theme_vote_message_id}`, { method: 'PATCH', body: JSON.stringify({ components: [] }) }).catch(() => {})
+    }
+    await supabase.from('discord_contest_weeks').update({ status: 'submission_open', winning_theme_id: theme.id }).eq('id', week.id)
+  } else {
+    await supabase.from('discord_contest_weeks').insert({ week_start: weekStart, status: 'submission_open', winning_theme_id: theme.id, theme_option_ids: [] })
+  }
+
+  await discordFetch(`/channels/${contestChannelId()}/messages`, {
+    method: 'POST',
+    body: JSON.stringify({
+      embeds: [{
+        title: '📌 Thème imposé pour cette semaine',
+        description: `**${theme.label}**\n\nPostez votre carte avec \`/concours-participer\` avant jeudi soir !`,
+        color: 0xf39c12,
+      }],
+    }),
+  })
+
+  return reply({ content: `✅ Thème forcé : **${theme.label}** — annoncé dans le salon, participations ouvertes.`, flags: 64 })
 }
 
 async function cmdConcoursThemes() {
@@ -567,6 +615,7 @@ export async function POST(req: NextRequest) {
     else if (name === 'carte-gif') result = await cmdCarteGif(options, body.application_id, body.token)
     else if (name === 'concours-theme-ajouter') result = await cmdConcoursThemeAjouter(options)
     else if (name === 'concours-theme-supprimer') result = await cmdConcoursThemeSupprimer(options)
+    else if (name === 'concours-theme-forcer') result = await cmdConcoursThemeForcer(options)
     else if (name === 'concours-themes') result = await cmdConcoursThemes()
     else if (name === 'concours-gagnants') result = await cmdConcoursGagnants()
     else if (name === 'concours-participer') result = await cmdConcoursParticiper(body)

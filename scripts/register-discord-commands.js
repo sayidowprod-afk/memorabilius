@@ -136,6 +136,17 @@ const commands = [
       required: true,
     }],
   },
+  {
+    name: 'concours-theme-forcer',
+    description: '[Admin] Impose le thème de la semaine (evenement special), sans passer par le vote',
+    default_member_permissions: '32',
+    options: [{
+      name: 'texte',
+      description: 'Le thème à imposer pour cette semaine',
+      type: 3,
+      required: true,
+    }],
+  },
 ]
 
 async function register(url, label) {
