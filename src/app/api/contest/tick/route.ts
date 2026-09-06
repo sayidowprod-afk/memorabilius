@@ -24,27 +24,33 @@ export async function GET(req: NextRequest) {
   const weekStart = parisWeekStart()
   const actions: string[] = []
 
-  if (weekday === 'Mon' && hour >= 8 && hour < 12) {
+  // Bypass du jour/heure pour tester manuellement chaque etape sans attendre
+  // lundi/vendredi -- toujours protege par le meme secret, et chaque etape
+  // reste gardee par le statut en base (impossible de sauter une etape ou
+  // d'en rejouer une deja passee).
+  const force = req.nextUrl.searchParams.get('force')
+
+  if (force === 'open_theme' || (weekday === 'Mon' && hour >= 8 && hour < 12)) {
     const { data: existing } = await supabase.from('discord_contest_weeks').select('id').eq('week_start', weekStart).maybeSingle()
     if (!existing) { await openThemeVote(weekStart); actions.push('theme_vote_opened') }
   }
 
-  if (weekday === 'Mon' && hour >= 18 && hour < 22) {
+  if (force === 'close_theme' || (weekday === 'Mon' && hour >= 18 && hour < 22)) {
     const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'theme_voting').maybeSingle()
     if (week) { await closeThemeVote(week); actions.push('theme_vote_closed') }
   }
 
-  if (weekday === 'Fri' && hour >= 8 && hour < 12) {
+  if (force === 'open_entries' || (weekday === 'Fri' && hour >= 8 && hour < 12)) {
     const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'submission_open').maybeSingle()
     if (week) { await openEntryVote(week); actions.push('entry_vote_opened') }
   }
 
-  if (weekday === 'Fri' && hour >= 18 && hour < 22) {
+  if (force === 'close_entries' || (weekday === 'Fri' && hour >= 18 && hour < 22)) {
     const { data: week } = await supabase.from('discord_contest_weeks').select('*').eq('week_start', weekStart).eq('status', 'entry_voting').maybeSingle()
     if (week) { await closeEntryVote(week); actions.push('entry_vote_closed') }
   }
 
-  return NextResponse.json({ ok: true, weekday, hour, weekStart, actions })
+  return NextResponse.json({ ok: true, weekday, hour, weekStart, force, actions })
 }
 
 async function openThemeVote(weekStart: string) {
