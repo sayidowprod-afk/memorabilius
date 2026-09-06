@@ -253,7 +253,7 @@ async function searchCsv(profiles: any[], tk: ReturnType<typeof parseTokens>) {
         const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
         if (!c[0]?.includes('http')) continue
         const card = {
-          img: c[0]?.trim(), name: (c[2] || '').replace(/^"|"$/g, ''),
+          img: c[0]?.trim(), imgBack: c[1]?.trim() || c[0]?.trim(), name: (c[2] || '').replace(/^"|"$/g, ''),
           team: (c[3] || '').replace(/^"|"$/g, ''), year: (c[4] || '').replace(/^"|"$/g, ''),
           brand: (c[5] || '').replace(/^"|"$/g, ''), serie: (c[6] || '').replace(/^"|"$/g, ''),
           variant: (c[7] || '').replace(/^"|"$/g, ''), num: (c[8] || '').replace(/^"|"$/g, ''),
@@ -318,13 +318,14 @@ async function csvCardByImage(profile: { id: string; display_name: string; lien_
       if (!img || img !== imageUrl) continue
       const unq = (s: string) => (s || '').replace(/^"|"$/g, '')
       const name = unq(c[2]), team = unq(c[3]), year = unq(c[4]), brand = unq(c[5]), variant = unq(c[7]), num = unq(c[8])
+      const back = c[1]?.trim()
       const badges: string[] = []
       if ((c[10] || '').toLowerCase().includes('oui')) badges.push('🌟 RC')
       if ((c[9]  || '').toLowerCase().includes('oui')) badges.push('✍️ Auto')
       if ((c[11] || '').toLowerCase().includes('oui')) badges.push('🪡 Patch')
       if (num) badges.push(`🔢 ${num}`)
       return {
-        nom: name || 'Carte', img, imgBack: null,
+        nom: name || 'Carte', img, imgBack: back && back !== img ? back : null,
         desc: [variant, year, brand, team].filter(Boolean).join(' · '),
         badges, profileId: profile.id, profileName: profile.display_name, cardUrl: '',
       }
@@ -477,7 +478,7 @@ async function findCardData(options: any[]): Promise<{ error: string } | { data:
     const { card, profile: p } = csvResult!
     nom = card.name
     img = card.img
-    imgBack = null
+    imgBack = card.imgBack !== card.img ? card.imgBack : null
     desc = [card.variant, card.year, card.brand, card.team].filter(Boolean).join(' · ')
     badges = []
     if (card.rc)    badges.push('🌟 RC')
