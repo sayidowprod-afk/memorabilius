@@ -5,6 +5,117 @@ import { isAllowedCsvUrl } from '@/lib/csvParse'
 import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
 
+// ── Concours hebdomadaire ─────────────────────────────────────────────────────
+
+async function cmdConcoursThemeAjouter(options: any[]) {
+  const label = (options.find((o: any) => o.name === 'texte')?.value || '').trim()
+  if (!label) return reply({ content: '❌ Précise un thème.', flags: 64 })
+  const { error } = await supabase.from('contest_themes').insert({ label })
+  if (error) return reply({ content: `❌ Erreur : ${error.message}`, flags: 64 })
+  return reply({ content: `✅ Thème ajouté au pool : **${label}**`, flags: 64 })
+}
+
+async function cmdConcoursThemeSupprimer(options: any[]) {
+  const label = (options.find((o: any) => o.name === 'texte')?.value || '').trim()
+  if (!label) return reply({ content: '❌ Précise le thème à retirer.', flags: 64 })
+  const { data } = await supabase.from('contest_themes').select('id, label').ilike('label', `%${label}%`).eq('active', true).limit(1)
+  const t = data?.[0]
+  if (!t) return reply({ content: `❌ Aucun thème actif ne correspond à \`${label}\`.`, flags: 64 })
+  await supabase.from('contest_themes').update({ active: false }).eq('id', t.id)
+  return reply({ content: `🗑️ Thème retiré du pool : **${t.label}**`, flags: 64 })
+}
+
+async function cmdConcoursThemes() {
+  const { data } = await supabase.from('contest_themes').select('label').eq('active', true).order('label')
+  if (!data?.length) return reply({ content: "📭 Aucun thème dans le pool pour l'instant.", flags: 64 })
+  return reply({
+    embeds: [{ title: `🎨 Pool de thèmes (${data.length})`, description: data.map((t: any) => `• ${t.label}`).join('\n').slice(0, 4000), color: 0x003DA6 }],
+    flags: 64,
+  })
+}
+
+async function cmdConcoursGagnants() {
+  const { data } = await supabase
+    .from('contest_weeks')
+    .select('week_start, contest_themes(label), contest_entries(discord_username)')
+    .eq('status', 'closed')
+    .not('winning_entry_id', 'is', null)
+    .order('week_start', { ascending: false })
+    .limit(10)
+
+  if (!data?.length) return reply({ content: "📭 Pas encore d'historique de gagnants.", flags: 64 })
+
+  const lines = (data as any[]).map(w => {
+    const date = new Date(w.week_start).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })
+    return `**${date}** — *${w.contest_themes?.label || '?'}* : 🏆 ${w.contest_entries?.discord_username || '?'}`
+  })
+
+  return reply({ embeds: [{ title: '📜 Historique des gagnants', description: lines.join('\n'), color: 0xf39c12 }], flags: 64 })
+}
+
+async function cmdConcoursParticiper(body: any) {
+  const options = body.data?.options || []
+  const discordUser = body.member?.user || body.user
+  if (!discordUser) return reply({ content: '❌ Utilisateur introuvable.', flags: 64 })
+
+  const { data: week } = await supabase.from('contest_weeks').select('id').eq('status', 'submission_open').order('week_start', { ascending: false }).limit(1).maybeSingle()
+  if (!week) return reply({ content: "❌ Aucun concours n'accepte de participations en ce moment.", flags: 64 })
+
+  const attachmentOpt = options.find((o: any) => o.name === 'image')
+  let imageUrl: string | null = null
+  if (attachmentOpt) {
+    imageUrl = body.data?.resolved?.attachments?.[attachmentOpt.value]?.url || null
+  }
+  if (!imageUrl && options.find((o: any) => o.name === 'nom')) {
+    const result = await findCardData(options)
+    if ('error' in result) return reply({ content: result.error, flags: 64 })
+    imageUrl = result.data.img
+  }
+  if (!imageUrl) return reply({ content: '❌ Joins une image, ou précise `nom` (comme pour /carte) pour utiliser une carte de ta galerie.', flags: 64 })
+
+  const { error } = await supabase.from('contest_entries').upsert(
+    { week_id: week.id, discord_user_id: discordUser.id, discord_username: discordUser.username, image_url: imageUrl },
+    { onConflict: 'week_id,discord_user_id' }
+  )
+  if (error) return reply({ content: `❌ Erreur : ${error.message}`, flags: 64 })
+
+  return reply({ content: '✅ Ta participation a été enregistrée ! Le vote démarre vendredi 8h.', flags: 64 })
+}
+
+async function handleContestComponent(body: any) {
+  const customId: string = body.data?.custom_id || ''
+  const discordUserId = body.member?.user?.id || body.user?.id
+  if (!discordUserId) return reply({ content: '❌ Utilisateur introuvable.', flags: 64 })
+
+  if (customId.startsWith('cvote:')) {
+    const [, weekId, themeId] = customId.split(':')
+    const { data: week } = await supabase.from('contest_weeks').select('status').eq('id', weekId).single()
+    if (week?.status !== 'theme_voting') return reply({ content: '⏱️ Le vote des thèmes est terminé.', flags: 64 })
+    const { error } = await supabase.from('contest_theme_votes').upsert(
+      { week_id: weekId, theme_id: themeId, discord_user_id: discordUserId },
+      { onConflict: 'week_id,discord_user_id' }
+    )
+    if (error) return reply({ content: `❌ ${error.message}`, flags: 64 })
+    return reply({ content: '✅ Ton vote a été pris en compte !', flags: 64 })
+  }
+
+  if (customId.startsWith('evote:')) {
+    const [, weekId, entryId] = customId.split(':')
+    const { data: week } = await supabase.from('contest_weeks').select('status').eq('id', weekId).single()
+    if (week?.status !== 'entry_voting') return reply({ content: '⏱️ Le vote des participations est terminé.', flags: 64 })
+    const { data: entry } = await supabase.from('contest_entries').select('discord_user_id').eq('id', entryId).single()
+    if (entry?.discord_user_id === discordUserId) return reply({ content: '❌ Tu ne peux pas voter pour ta propre carte 😉', flags: 64 })
+    const { error } = await supabase.from('contest_entry_votes').upsert(
+      { week_id: weekId, entry_id: entryId, discord_user_id: discordUserId },
+      { onConflict: 'week_id,discord_user_id' }
+    )
+    if (error) return reply({ content: `❌ ${error.message}`, flags: 64 })
+    return reply({ content: '✅ Ton vote a été enregistré !', flags: 64 })
+  }
+
+  return reply({ content: '❌ Action inconnue.', flags: 64 })
+}
+
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -315,7 +426,16 @@ export async function POST(req: NextRequest) {
     else if (name === 'top')   result = await cmdTop()
     else if (name === 'carte') result = await cmdCarte(options)
     else if (name === 'carte-gif') result = await cmdCarteGif(options, body.application_id, body.token)
+    else if (name === 'concours-theme-ajouter') result = await cmdConcoursThemeAjouter(options)
+    else if (name === 'concours-theme-supprimer') result = await cmdConcoursThemeSupprimer(options)
+    else if (name === 'concours-themes') result = await cmdConcoursThemes()
+    else if (name === 'concours-gagnants') result = await cmdConcoursGagnants()
+    else if (name === 'concours-participer') result = await cmdConcoursParticiper(body)
     return NextResponse.json(result)
+  }
+
+  if (body.type === 3) {
+    return NextResponse.json(await handleContestComponent(body))
   }
 
   return NextResponse.json({ type: 1 })

@@ -60,6 +60,64 @@ const commands = [
       },
     ],
   },
+  {
+    name: 'concours-participer',
+    description: 'Soumets une carte pour le concours de la semaine',
+    options: [
+      {
+        name: 'image',
+        description: 'Photo de ta carte (si tu ne joues pas via `nom`)',
+        type: 11,
+        required: false,
+      },
+      {
+        name: 'nom',
+        description: 'Nom d\'une carte de ta galerie Memorabilius (comme /carte)',
+        type: 3,
+        required: false,
+      },
+      {
+        name: 'utilisateur',
+        description: 'Ton nom de collectionneur (si tu utilises `nom`)',
+        type: 3,
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'concours-themes',
+    description: 'Liste les thèmes disponibles dans le pool du concours',
+  },
+  {
+    name: 'concours-gagnants',
+    description: 'Historique des gagnants du concours hebdomadaire',
+  },
+  {
+    name: 'concours-theme-ajouter',
+    description: '[Admin] Ajoute un thème au pool du concours',
+    // Reserve par defaut aux membres avec la permission "Gerer le serveur" --
+    // ajustable ensuite librement par un admin depuis Discord (Parametres du
+    // serveur > Integrations > Memorabilius Bot > Permissions des commandes),
+    // sans avoir besoin de redeployer le bot.
+    default_member_permissions: '32',
+    options: [{
+      name: 'texte',
+      description: 'Le thème à ajouter (ex: "Rookies 2024-25")',
+      type: 3,
+      required: true,
+    }],
+  },
+  {
+    name: 'concours-theme-supprimer',
+    description: '[Admin] Retire un thème du pool du concours',
+    default_member_permissions: '32',
+    options: [{
+      name: 'texte',
+      description: 'Le thème à retirer (recherche approximative)',
+      type: 3,
+      required: true,
+    }],
+  },
 ]
 
 async function register(url, label) {

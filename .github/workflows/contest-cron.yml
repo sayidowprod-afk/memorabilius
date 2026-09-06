@@ -1,0 +1,18 @@
+name: Concours Discord hebdomadaire
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # toutes les heures -- le endpoint decide lui-meme quoi faire (heure de Paris geree cote serveur, DST inclus)
+  workflow_dispatch:        # déclenchement manuel possible pour tester
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Appeler le endpoint de tick du concours
+        run: |
+          curl -sf -X GET "https://memorabilius.fr/api/contest/tick" \
+            -H "Authorization: Bearer ${{ secrets.CONTEST_CRON_SECRET }}" \
+            -w "\nHTTP %{http_code}\n"
