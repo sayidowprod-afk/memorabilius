@@ -290,9 +290,14 @@ function cardDataFromRow(dbCard: any, link: string, fallbackProfileId: string | 
 // "partager" dans GalerieClient.tsx/Viewer3D.tsx). On garde en repli l'ancien
 // format /galerie/{userId}?card={image} (celui construit pour l'embed Discord
 // lui-meme), au cas ou quelqu'un colle ce lien-la plutot que le lien de partage.
-async function findCardByLink(link: string): Promise<CardData | null> {
+async function findCardByLink(rawLink: string): Promise<CardData | null> {
+  // Tolère un lien colle avec du texte autour ("voici ma carte : https://...")
+  // -- on extrait la premiere sous-chaine qui ressemble a une URL plutot que
+  // d'exiger que tout le champ en soit une, sinon new URL() leve et on perd
+  // silencieusement une saisie par ailleurs valide.
+  const urlMatch = rawLink.match(/https?:\/\/\S+/)
   let url: URL
-  try { url = new URL(link) } catch { return null }
+  try { url = new URL(urlMatch ? urlMatch[0] : rawLink) } catch { return null }
 
   const shareMatch = url.pathname.match(/\/s\/([^/?]+)/)
   if (shareMatch) {
@@ -301,7 +306,7 @@ async function findCardByLink(link: string): Promise<CardData | null> {
       .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, profiles(id, display_name)')
       .eq('id', shareMatch[1])
       .maybeSingle()
-    if (dbCard) return cardDataFromRow(dbCard, link)
+    if (dbCard) return cardDataFromRow(dbCard, url.toString())
   }
 
   const galerieMatch = url.pathname.match(/\/galerie\/([^/?]+)/)
@@ -314,7 +319,7 @@ async function findCardByLink(link: string): Promise<CardData | null> {
       .eq('image_recto', img)
       .limit(1)
       .maybeSingle()
-    if (dbCard) return cardDataFromRow(dbCard, link, galerieMatch[1])
+    if (dbCard) return cardDataFromRow(dbCard, url.toString(), galerieMatch[1])
   }
 
   return null
@@ -327,6 +332,7 @@ async function findCardData(options: any[]): Promise<{ error: string } | { data:
   if (lien) {
     const byLink = await findCardByLink(lien)
     if (byLink) return { data: byLink }
+    console.error('[concours/lien] echec de resolution, lien recu:', JSON.stringify(lien))
     return { error: '❌ Impossible de retrouver une carte depuis ce lien.' }
   }
 
