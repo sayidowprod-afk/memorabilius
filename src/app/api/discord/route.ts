@@ -73,13 +73,25 @@ async function cmdConcoursParticiper(body: any) {
   }
   if (!imageUrl) return reply({ content: '❌ Joins une image, précise `nom` ou colle un `lien` Memorabilius (comme pour /carte).', flags: 64 })
 
+  // Une seule participation par personne et par semaine (contrainte unique
+  // week_id+discord_user_id) -- un second /concours-participer REMPLACE la
+  // precedente plutot que d'echouer, pour permettre de se corriger.
+  const { data: existing } = await supabase.from('discord_contest_entries')
+    .select('id').eq('week_id', week.id).eq('discord_user_id', discordUser.id).maybeSingle()
+
   const { error } = await supabase.from('discord_contest_entries').upsert(
     { week_id: week.id, discord_user_id: discordUser.id, discord_username: discordUser.username, image_url: imageUrl },
     { onConflict: 'week_id,discord_user_id' }
   )
   if (error) return reply({ content: `❌ Erreur : ${error.message}`, flags: 64 })
 
-  return reply({ content: '✅ Ta participation a été enregistrée ! Le vote démarre vendredi 8h.', flags: 64 })
+  return reply({
+    content: existing
+      ? '🔄 Ta participation précédente a été remplacée par celle-ci :'
+      : '✅ Ta participation a été enregistrée ! Le vote démarre vendredi 8h.',
+    embeds: [{ image: { url: imageUrl }, color: 0x003DA6 }],
+    flags: 64,
+  })
 }
 
 async function handleContestComponent(body: any) {
