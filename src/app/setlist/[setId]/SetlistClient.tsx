@@ -60,6 +60,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
   const [mySetCards, setMySetCards] = useState<{ id: string; image: string; nom: string; variation: string }[]>([])
   const [previewCard, setPreviewCard] = useState<{ image: string; nom: string; variation: string } | null>(null)
   const [copied, setCopied] = useState(false)
+  const [wishlistKeys, setWishlistKeys] = useState<Set<string>>(new Set())
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 600)
@@ -75,6 +76,36 @@ export default function SetlistClient({ setId }: { setId: string }) {
   }, [])
 
   useEffect(() => { loadSet() }, [setId, userId])
+
+  const wishKey = (nom: string, collection: string, variation: string) => `${nom}|${collection}|${variation}`
+
+  useEffect(() => {
+    if (!userId) { setWishlistKeys(new Set()); return }
+    supabase.from('wishlist').select('nom, collection, variation').eq('user_id', userId)
+      .then(({ data }) => setWishlistKeys(new Set((data || []).map(w => wishKey(w.nom, w.collection, w.variation || '')))))
+  }, [userId])
+
+  async function addToWishlist(entry: Entry, ev: React.MouseEvent) {
+    ev.stopPropagation()
+    if (!userId || !set) return
+    const key = wishKey(entry.player_name, set.name, entry.variation || '')
+    if (wishlistKeys.has(key)) return
+    setWishlistKeys(prev => new Set(prev).add(key))
+    const { error } = await supabase.from('wishlist').insert({
+      user_id: userId,
+      nom: entry.player_name,
+      annee: set.year ? String(set.year) : '',
+      marque: set.brand || '',
+      collection: set.name,
+      variation: entry.variation || '',
+      num: '',
+      rc: entry.is_rc,
+      auto: false,
+      patch: false,
+      notes: [entry.card_number ? `#${entry.card_number}` : '', entry.team || ''].filter(Boolean).join(' · '),
+    })
+    if (error) setWishlistKeys(prev => { const n = new Set(prev); n.delete(key); return n })
+  }
 
   async function loadSet() {
     setLoading(true)
@@ -590,6 +621,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
                       ) : displayEntries.map(entry => {
                         // Priorité : carte choisie explicitement → image site → fallback API
                         const communityImg = matchedCardImagesRef.current.get(entry.id) || entry.image_url || communityImages.get(entry.id)
+                        const inWishlist = set ? wishlistKeys.has(wishKey(entry.player_name, set.name, entry.variation || '')) : false
                         return (
                         <div key={entry.id}
                           style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: isMobile ? '6px 12px' : '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
@@ -606,6 +638,13 @@ export default function SetlistClient({ setId }: { setId: string }) {
                             <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? (dark ? '#eee' : '#111') : (dark ? '#999' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
                             {entry.is_rc && <span style={{ fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px', flexShrink: 0 }}>RC</span>}
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
+                            {userId && (
+                              <button onClick={ev => addToWishlist(entry, ev)} disabled={inWishlist}
+                                title={inWishlist ? 'Déjà dans la wishlist' : 'Ajouter à la wishlist'}
+                                style={{ background: 'none', border: 'none', padding: 0, fontSize: 14, lineHeight: 1, flexShrink: 0, cursor: inWishlist ? 'default' : 'pointer', color: inWishlist ? '#f39c12' : (dark ? '#555' : '#ccc') }}>
+                                {inWishlist ? '⭐' : '☆'}
+                              </button>
+                            )}
                           </div>
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
                           {userId ? (

@@ -17,8 +17,7 @@ Usage :
 
 import os
 import json
-import math
-import random
+import hashlib
 import argparse
 from pathlib import Path
 from typing import Optional
@@ -111,19 +110,49 @@ def corners_to_yolo(corners: list[dict]) -> str:
     return f'0 {cx:.6f} {cy:.6f} {bw:.6f} {bh:.6f}  {kps}\n'
 
 
+def corners_valid(corners: list[dict]) -> bool:
+    """Ecarte les annotations manifestement fausses (coordonnees loin hors de
+    l'image, quad degenere) avant meme de telecharger l'image -- ca economise
+    de la bande passante ET evite que YOLO les ignore silencieusement plus
+    tard (perte de temps identique, juste decouverte plus tard)."""
+    if not corners or len(corners) != 4:
+        return False
+    xs = [c.get('x') for c in corners]
+    ys = [c.get('y') for c in corners]
+    if any(v is None for v in xs + ys):
+        return False
+    # Tolerance de 5% hors cadre (coin legerement coupe par le bord de la
+    # photo, cas legitime) -- au-dela, l'annotation est probablement fausse.
+    if any(v < -0.05 or v > 1.05 for v in xs + ys):
+        return False
+    bw = max(xs) - min(xs)
+    bh = max(ys) - min(ys)
+    return bw > 0.02 and bh > 0.02
+
+
 def split_rows(rows: list[dict], val_ratio: float, seed: int):
-    rows = list(rows)
-    random.seed(seed)
-    random.shuffle(rows)
-    n_val = max(1, math.floor(len(rows) * val_ratio))
-    return {'val': rows[:n_val], 'train': rows[n_val:]}
+    # Split déterministe par id (hash stable), pas par shuffle de la liste entière :
+    # un export incrémental (dataset qui grossit) ne doit jamais faire changer
+    # de split une carte déjà exportée, sinon elle finit dupliquée dans train+val
+    # (l'ancienne copie n'est jamais supprimée par les exports suivants).
+    val, train = [], []
+    threshold = int(val_ratio * 2**32)
+    for row in rows:
+        digest = hashlib.md5(f'{seed}:{row["id"]}'.encode()).hexdigest()
+        bucket = int(digest[:8], 16)
+        (val if bucket < threshold else train).append(row)
+    return {'val': val, 'train': train}
 
 
 # ── Export coins (YOLO-pose) ──────────────────────────────────────────────────
 
 def export_corners(rows: list[dict], client: SupabaseClient, out: Path):
-    valid = [r for r in rows if r.get('final_corners') and r.get('image_original')]
+    candidates = [r for r in rows if r.get('final_corners') and r.get('image_original')]
+    valid = [r for r in candidates if corners_valid(r['final_corners'])]
+    n_bad = len(candidates) - len(valid)
     print(f'  {len(valid)} lignes avec coins + image_original', end='')
+    if n_bad:
+        print(f'  ({n_bad} annotations hors-limites/degenerees ecartees)', end='')
 
     if not valid:
         print()
@@ -138,6 +167,29 @@ def export_corners(rows: list[dict], client: SupabaseClient, out: Path):
         print()
 
     splits = split_rows(valid, VAL_RATIO, RANDOM_SEED)
+
+    # Sur-echantillonnage des cas ou l'utilisateur a du corriger manuellement les
+    # coins detectes (corners_adjusted=true) : c'est le signal le plus direct
+    # possible de "l'IA s'est trompee ici en conditions reelles" (sleeve/toploader,
+    # reflet, angle inhabituel...), bien plus precieux qu'un cas ou la detection
+    # initiale etait deja bonne. Releve de x3 a x5 apres train-31 : l'augmentation
+    # synthetique agressive (rotation/perspective/shear pousses) a fait BAISSER le
+    # fitness de validation par rapport a train-30 (1.850 vs 1.905, tendance
+    # monotone confirmee par train-29 sans augmentation a 1.948) -- signe que le
+    # modele nano (3M params) n'absorbe pas bien une distorsion synthetique trop
+    # dure. On mise plutot sur plus de poids sur les vraies corrections
+    # utilisateur (signal reel, pas synthetique) pour ameliorer la robustesse.
+    # On duplique ces lignes dans le SPLIT TRAIN uniquement (jamais val, pour ne
+    # pas dupliquer une image quasi-identique entre train et val).
+    ADJUSTED_OVERSAMPLE = 5
+    train_adjusted = [r for r in splits['train'] if r.get('corners_adjusted')]
+    for r in train_adjusted:
+        for i in range(1, ADJUSTED_OVERSAMPLE):
+            dup = dict(r)
+            dup['id'] = f"{r['id']}_dup{i}"
+            splits['train'].append(dup)
+    if train_adjusted:
+        print(f"  ↑ {len(train_adjusted)} lignes 'coins corriges manuellement' sur-echantillonnees x{ADJUSTED_OVERSAMPLE} (train uniquement)")
 
     for split, split_rows_ in splits.items():
         img_dir = out / 'images' / split

@@ -1,12 +1,27 @@
 """
-Meme sigma OKS resserre que train_corners_tight_sigma.py, combine cette fois
-avec l'augmentation rotation/perspective/luminosite (testee separement dans
-train-27, jamais combinee avec le sigma resserre) -- vise a la fois la
-precision (sigma) et la robustesse sur les cas difficiles type sleeve/
-toploader/reflet (augmentation), sur le dataset enrichi + sur-echantillonne
-deja sur le disque (voir scripts/export_training_data.py).
+train-32 : meme base que train-30 (sigma OKS resserre + patch epoch ceiling +
+patch persistance EarlyStopping), MAIS revient a l'augmentation de train-30
+plutot que celle, trop agressive, de train-31.
 
-Voir train_corners_tight_sigma.py pour le detail du patch de sigma.
+Constat sur les 3 runs precedents (fitness = mAP50-95(B)+mAP50-95(P), formule
+exacte Ultralytics) :
+  train-29 (aucune augmentation)         : 1.948 @ epoch 216
+  train-30 (augmentation moderee)        : 1.905 @ epoch 63
+  train-31 (augmentation agressive x2)   : 1.850 @ epoch 84
+Tendance monotone : plus l'augmentation synthetique est forte, plus le fitness
+de validation baisse. Le modele nano (3M params) n'a probablement pas la
+capacite d'absorber une distorsion synthetique trop dure en si peu d'epochs.
+
+Plutot que de pousser encore l'augmentation synthetique (qui degrade le score
+sans preuve concrete de gain de robustesse sur les cas difficiles), train-32
+mise sur un signal REEL plus fort : le dataset est ré-exporté avec les
+corrections utilisateur les plus recentes (scripts/export_training_data.py),
+et leur sur-echantillonnage est releve de x3 a x5 (ADJUSTED_OVERSAMPLE dans le
+script d'export) -- plus de poids sur les vrais cas ou l'IA s'est trompee en
+conditions reelles, sans distordre artificiellement le reste du dataset.
+
+Voir train_corners_tight_sigma.py pour le detail du patch de sigma et
+train_corners_tight_sigma_aug.py pour le detail des patchs epoch/EarlyStopping.
 """
 import csv
 import os
@@ -34,16 +49,11 @@ def _patched_init_metrics(self, model):
     self.sigma = np.full(nkpt, CUSTOM_SIGMA)
 PoseValidator.init_metrics = _patched_init_metrics
 
-RUN_DIR = 'runs/pose/train-30-tight-sigma-aug'
+RUN_DIR = 'runs/pose/train-32-tight-sigma-refresh'
 LAST_CKPT = os.path.join(RUN_DIR, 'weights', 'last.pt')
 RESULTS_CSV = os.path.join(RUN_DIR, 'results.csv')
-MAX_EPOCHS = 500  # plafond haut -- patience=30 decide seul quand ca s'arrete vraiment,
-                   # jamais coupe artificiellement si le modele s'ameliore encore a 300
+MAX_EPOCHS = 500
 
-# Ultralytics ignore le kwarg epochs quand resume=True (check_resume ne reprend
-# que quelques champs whitelistes depuis le checkpoint, epochs n'en fait pas
-# partie) -- sans ce patch, une reprise resterait bloquee au plafond d'origine
-# (300) meme si le modele progresse encore.
 _orig_check_resume = BaseTrainer.check_resume
 def _patched_check_resume(self, overrides):
     _orig_check_resume(self, overrides)
@@ -51,17 +61,6 @@ def _patched_check_resume(self, overrides):
         self.args.epochs = max(self.args.epochs, MAX_EPOCHS)
 BaseTrainer.check_resume = _patched_check_resume
 
-# Bug decouvert sur train-29 : Ultralytics ne persiste JAMAIS l'etat de
-# l'EarlyStopping (best_fitness/best_epoch) dans le checkpoint -- seul
-# self.best_fitness (utilise pour savoir quoi sauver comme best.pt) est
-# restaure, pas self.stopper. Resultat : chaque pause/reprise manuelle fait
-# repartir le compteur de patience a zero a partir de l'epoch de reprise,
-# et l'arret automatique ne se declenche (quasi) plus jamais si on met en
-# pause de temps en temps. On restaure l'etat reel de l'EarlyStopping en
-# relisant results.csv et en recalculant la vraie meilleure epoch avec la
-# formule de fitness exacte d'Ultralytics pour les modeles pose
-# (mAP50-95(B) + mAP50-95(P) -- voir PoseMetrics.fitness / DetMetrics.fitness
-# dans ultralytics/utils/metrics.py).
 _orig_resume_training = BaseTrainer.resume_training
 def _patched_resume_training(self, ckpt):
     _orig_resume_training(self, ckpt)
@@ -97,10 +96,12 @@ if __name__ == '__main__':
             batch=-1,
             device=0,
             pose=20.0,
+            # Meme niveau d'augmentation que train-30 (le meilleur des 3 runs
+            # augmentes) -- pas celui, trop agressif, de train-31.
             degrees=12,
             perspective=0.0006,
             shear=3,
             hsv_v=0.5,
             hsv_s=0.8,
-            name='train-30-tight-sigma-aug',
+            name='train-32-tight-sigma-refresh',
         )
