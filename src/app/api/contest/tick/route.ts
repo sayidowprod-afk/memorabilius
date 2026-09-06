@@ -128,12 +128,20 @@ async function openEntryVote(week: any) {
     return
   }
 
-  await discordFetch(`/channels/${contestChannelId()}/messages`, {
-    method: 'POST',
-    body: JSON.stringify({ content: `🗳️ **Vote des participations !** ${entries.length} carte${entries.length > 1 ? 's' : ''} en lice — votez ci-dessous avant 18h.` }),
-  })
+  // Idempotent si un appel precedent a plante en cours de route (429 Discord,
+  // timeout...) : ne reposte ni le message d'intro ni les entrees deja
+  // publiees (message_id deja renseigne).
+  const alreadyPosted = entries.filter(e => e.message_id)
+  const remaining = entries.filter(e => !e.message_id)
 
-  for (const entry of entries) {
+  if (alreadyPosted.length === 0) {
+    await discordFetch(`/channels/${contestChannelId()}/messages`, {
+      method: 'POST',
+      body: JSON.stringify({ content: `🗳️ **Vote des participations !** ${entries.length} carte${entries.length > 1 ? 's' : ''} en lice — votez ci-dessous avant 18h.` }),
+    })
+  }
+
+  for (const entry of remaining) {
     const msg = await discordFetch(`/channels/${contestChannelId()}/messages`, {
       method: 'POST',
       body: JSON.stringify({
