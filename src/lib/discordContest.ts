@@ -2,7 +2,12 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 
 const API = 'https://discord.com/api/v10'
 
-export async function discordFetch(path: string, init?: RequestInit) {
+const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
+
+// Poster beaucoup de messages d'affilee (une entree = un message, voir
+// openEntryVote) declenche vite le rate limit Discord (429) -- retry avec le
+// retry_after indique par Discord au lieu de laisser planter tout le tick.
+export async function discordFetch(path: string, init?: RequestInit, attempt = 0): Promise<any> {
   const res = await fetch(`${API}${path}`, {
     ...init,
     headers: {
@@ -11,6 +16,12 @@ export async function discordFetch(path: string, init?: RequestInit) {
       ...(init?.headers || {}),
     },
   })
+  if (res.status === 429 && attempt < 5) {
+    const body = await res.json().catch(() => ({}))
+    const retryAfterMs = Math.ceil((body.retry_after ?? 1) * 1000) + 50
+    await sleep(retryAfterMs)
+    return discordFetch(path, init, attempt + 1)
+  }
   if (!res.ok) throw new Error(`Discord API ${path} -> ${res.status}: ${await res.text()}`)
   return res.status === 204 ? null : res.json()
 }

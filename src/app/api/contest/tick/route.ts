@@ -4,7 +4,10 @@ import { discordFetch, contestChannelId, parisWeekStart, parisNow, pickThemes, t
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
-export const maxDuration = 60
+// Poster une participation par message (throttlé a ~3/s pour Discord) peut
+// prendre du temps si le concours a beaucoup d'entrees -- marge au-dela de
+// la limite par defaut plutot que de risquer un timeout sur une grosse semaine.
+export const maxDuration = 120
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -143,6 +146,10 @@ async function openEntryVote(week: any) {
       }),
     })
     await supabase.from('discord_contest_entries').update({ message_id: msg.id }).eq('id', entry.id)
+    // Petite pause entre chaque post -- Discord rate-limite un channel a
+    // quelques messages/seconde, sans ca discordFetch enchaine les retry 429
+    // des la ~5e participation (constate en test avec 30 entrees).
+    await new Promise(r => setTimeout(r, 350))
   }
 
   await supabase.from('discord_contest_weeks').update({ status: 'entry_voting', entry_vote_started_at: new Date().toISOString() }).eq('id', week.id)
