@@ -270,30 +270,8 @@ interface CardData {
 // Un lien de carte est de la forme https://memorabilius.fr/galerie/{profileId}?card={image}
 // (voir la construction de cardUrl plus bas) -- on extrait les deux pour retrouver
 // directement la ligne exacte plutot que de repasser par une recherche floue.
-function parseCardLink(link: string): { profileId: string; img: string } | null {
-  try {
-    const url = new URL(link)
-    const m = url.pathname.match(/\/galerie\/([^/?]+)/)
-    const img = url.searchParams.get('card')
-    if (!m || !img) return null
-    return { profileId: m[1], img }
-  } catch { return null }
-}
-
-async function findCardByLink(link: string): Promise<CardData | null> {
-  const parsed = parseCardLink(link)
-  if (!parsed) return null
-
-  const { data: dbCard } = await supabase
-    .from('cartes_manuelles')
-    .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, profiles(id, display_name)')
-    .eq('user_id', parsed.profileId)
-    .eq('image_recto', parsed.img)
-    .limit(1)
-    .maybeSingle()
-  if (!dbCard) return null
-
-  const p = (dbCard as any).profiles
+function cardDataFromRow(dbCard: any, link: string, fallbackProfileId: string | null = null): CardData {
+  const p = dbCard.profiles
   const desc = [dbCard.variation, dbCard.annee, dbCard.marque, dbCard.equipe].filter(Boolean).join(' · ')
   const badges: string[] = []
   if (dbCard.rc)    badges.push('🌟 RC')
@@ -303,8 +281,43 @@ async function findCardByLink(link: string): Promise<CardData | null> {
 
   return {
     nom: dbCard.nom, img: dbCard.image_recto, imgBack: dbCard.image_verso || null, desc, badges,
-    profileId: p?.id || parsed.profileId, profileName: p?.display_name || null, cardUrl: link,
+    profileId: p?.id || fallbackProfileId, profileName: p?.display_name || null, cardUrl: link,
   }
+}
+
+// Format le plus courant : lien de partage genere par l'appli, /s/{cardId}
+// (cartes_manuelles.id -- voir src/app/s/[cardId]/page.tsx et les boutons
+// "partager" dans GalerieClient.tsx/Viewer3D.tsx). On garde en repli l'ancien
+// format /galerie/{userId}?card={image} (celui construit pour l'embed Discord
+// lui-meme), au cas ou quelqu'un colle ce lien-la plutot que le lien de partage.
+async function findCardByLink(link: string): Promise<CardData | null> {
+  let url: URL
+  try { url = new URL(link) } catch { return null }
+
+  const shareMatch = url.pathname.match(/\/s\/([^/?]+)/)
+  if (shareMatch) {
+    const { data: dbCard } = await supabase
+      .from('cartes_manuelles')
+      .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, profiles(id, display_name)')
+      .eq('id', shareMatch[1])
+      .maybeSingle()
+    if (dbCard) return cardDataFromRow(dbCard, link)
+  }
+
+  const galerieMatch = url.pathname.match(/\/galerie\/([^/?]+)/)
+  const img = url.searchParams.get('card')
+  if (galerieMatch && img) {
+    const { data: dbCard } = await supabase
+      .from('cartes_manuelles')
+      .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, profiles(id, display_name)')
+      .eq('user_id', galerieMatch[1])
+      .eq('image_recto', img)
+      .limit(1)
+      .maybeSingle()
+    if (dbCard) return cardDataFromRow(dbCard, link, galerieMatch[1])
+  }
+
+  return null
 }
 
 // Partagé par /carte, /carte-gif et /concours-participer -- même recherche
