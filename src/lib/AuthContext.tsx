@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import type { Session, User } from '@supabase/supabase-js'
 import { setCrashlyticsUserId } from '@/lib/crashlytics'
@@ -14,6 +15,7 @@ const AuthContext = createContext<AuthState>({ session: null, user: null, loadin
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AuthState>({ session: null, user: null, loading: true })
+  const router = useRouter()
 
   useEffect(() => {
     let settled = false
@@ -25,6 +27,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       settled = true
       setState({ session, user: session?.user ?? null, loading: false })
       setCrashlyticsUserId(session?.user?.id ?? null)
+
+      // Un lien de recuperation envoye depuis le dashboard Supabase (bouton
+      // admin "Send password recovery") n'a pas de redirectTo personnalise --
+      // contrairement a /mot-de-passe-oublie qui pointe explicitement vers
+      // /reset-password, il retombe sur l'URL du site par defaut (accueil).
+      // L'evenement PASSWORD_RECOVERY se declenche malgre tout ici (le SDK
+      // Supabase detecte le hash de recuperation sur N'IMPORTE QUELLE page),
+      // donc on rattrape en redirigeant vers /reset-password peu importe ou
+      // le lien a atterri, plutot que de devoir configurer Supabase.
+      if (_event === 'PASSWORD_RECOVERY' && !window.location.pathname.startsWith('/reset-password')) {
+        router.replace('/reset-password')
+      }
     })
 
     // Filet de sécurité : sur certains cold starts (surtout natif/PWA), l'événement
