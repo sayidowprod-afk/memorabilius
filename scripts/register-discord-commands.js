@@ -151,12 +151,18 @@ async function register(url, label) {
   return true
 }
 
+// Bot prive, utilise uniquement sur des serveurs precis -- on enregistre les
+// commandes par guilde (propagation instantanee) et jamais en global. Un
+// enregistrement global EN PLUS du guild-specifique fait apparaitre chaque
+// commande en double partout (palette de saisie "/", page Integrations...),
+// puisque Discord les traite comme deux enregistrements distincts meme si un
+// seul repond reellement. Ajoute chaque nouveau serveur ici.
+const GUILD_IDS = (process.env.DISCORD_GUILD_ID || '1525208040221970582,722440375280599164').split(',')
+
 async function main() {
-  const GUILD_ID = process.env.DISCORD_GUILD_ID || '1525208040221970582'
-  // Guild : propagation instantanée (test + serveur principal)
-  await register(`https://discord.com/api/v10/applications/${APP_ID}/guilds/${GUILD_ID}/commands`, `Guild ${GUILD_ID}`)
-  // Global : propagation ~1h, disponible sur tous les serveurs
-  await register(`https://discord.com/api/v10/applications/${APP_ID}/commands`, 'Global (tous les serveurs)')
+  for (const guildId of GUILD_IDS) {
+    await register(`https://discord.com/api/v10/applications/${APP_ID}/guilds/${guildId}/commands`, `Guild ${guildId}`)
+  }
 }
 
 main().catch(err => { console.error(err); process.exit(1) })
