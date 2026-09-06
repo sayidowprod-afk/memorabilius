@@ -269,18 +269,23 @@ function parseTokens(input: string) {
   const isPatch = tokens.includes('patch')
   const yearTok = tokens.find(t => /^\d{4}(-\d{2})?$/.test(t))
   const numTok  = tokens.find(t => /^\/?\d+$/.test(t) && t !== yearTok)
-  const text    = tokens.filter(t =>
+  // Mots gardes separement (pas rejoints en une seule phrase) : un joueur et
+  // sa collection ("dario saric flawless") vivent dans deux colonnes
+  // differentes -- aucune des deux ne contient la phrase complete, donc
+  // chaque mot doit pouvoir matcher independamment, dans n'importe quelle
+  // colonne (l'appelant fait l'equivalent d'un ET entre mots, OU entre colonnes).
+  const textWords = tokens.filter(t =>
     !['rc', 'auto', 'patch'].includes(t) &&
     !/^\d{4}(-\d{2})?$/.test(t) &&
     t !== numTok
-  ).join(' ').trim()
-  return { isRc, isAuto, isPatch, yearTok, numTok, text }
+  ).filter(Boolean)
+  return { isRc, isAuto, isPatch, yearTok, numTok, textWords }
 }
 
 function matchesCsvCard(card: any, tk: ReturnType<typeof parseTokens>): boolean {
   const norm = (s: string) => (s || '').toLowerCase()
   const haystack = [card.name, card.variant, card.brand, card.serie, card.team].map(norm).join(' ')
-  if (tk.text && !haystack.includes(tk.text)) return false
+  if (tk.textWords.length && !tk.textWords.every(w => haystack.includes(w))) return false
   if (tk.isRc    && !card.rc)    return false
   if (tk.isAuto  && !card.auto)  return false
   if (tk.isPatch && !card.patch) return false
@@ -478,10 +483,15 @@ async function findCardData(options: any[]): Promise<{ error: string } | { data:
     .select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection, rc, auto, num, patch, user_id, profiles(id, display_name)')
     .not('image_recto', 'is', null)
 
-  if (tk.text) {
+  // Un filtre .or() par mot, chaine -- supabase-js ET-combine des appels .or()
+  // successifs, donc chaque mot doit matcher une colonne (n'importe laquelle),
+  // independamment des autres mots. Necessaire pour "dario saric flawless" :
+  // "dario"/"saric" ne matchent que nom, "flawless" ne matche que collection --
+  // aucune des deux colonnes ne contient la phrase complete.
+  for (const word of tk.textWords) {
     // `,` et `()` sont les séparateurs/groupeurs de la syntaxe .or() de PostgREST —
     // un input non filtré pourrait injecter des clauses de filtre supplémentaires.
-    const s = tk.text.replace(/[%_]/g, '\\$&').replace(/[,()]/g, ' ').trim()
+    const s = word.replace(/[%_]/g, '\\$&').replace(/[,()]/g, ' ').trim()
     if (s) dbQuery = dbQuery.or(`nom.ilike.%${s}%,variation.ilike.%${s}%,marque.ilike.%${s}%,equipe.ilike.%${s}%,collection.ilike.%${s}%`)
   }
   if (tk.isRc)    dbQuery = dbQuery.eq('rc', true)
