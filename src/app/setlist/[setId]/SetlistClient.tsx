@@ -613,8 +613,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
                     <div style={{ padding: '20px', textAlign: 'center', color: '#aaa', fontSize: 13 }}>Chargement...</div>
                   ) : (
                     <>
-                      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
-                        <span>#</span><span></span><span>{t('setlistdetail_player')}</span>{!isMobile && <span>{t('setlistdetail_team')}</span>}<span></span>
+                      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px 36px' : '52px 44px 1fr 140px 36px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
+                        <span>#</span><span></span><span>{t('setlistdetail_player')}</span>{!isMobile && <span>{t('setlistdetail_team')}</span>}<span></span><span></span>
                       </div>
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>{t('setlistdetail_no_cards')}</div>
@@ -624,7 +624,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
                         const inWishlist = set ? wishlistKeys.has(wishKey(entry.player_name, set.name, entry.variation || '')) : false
                         return (
                         <div key={entry.id}
-                          style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px' : '52px 44px 1fr 140px 36px', padding: isMobile ? '6px 12px' : '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
+                          style={{ display: 'grid', gridTemplateColumns: isMobile ? '44px 36px 1fr 36px 36px' : '52px 44px 1fr 140px 36px 36px', padding: isMobile ? '6px 12px' : '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
                           <span style={{ fontSize: 12, color: '#bbb', fontWeight: 700 }}>{entry.card_number || '—'}</span>
                           <div style={{ width: 36, height: 50, flexShrink: 0 }}>
                             {communityImg ? (
@@ -638,15 +638,15 @@ export default function SetlistClient({ setId }: { setId: string }) {
                             <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? (dark ? '#eee' : '#111') : (dark ? '#999' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
                             {entry.is_rc && <span style={{ fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px', flexShrink: 0 }}>RC</span>}
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
-                            {userId && (
-                              <button onClick={ev => addToWishlist(entry, ev)} disabled={inWishlist}
-                                title={inWishlist ? 'Déjà dans la wishlist' : 'Ajouter à la wishlist'}
-                                style={{ background: 'none', border: 'none', padding: 0, fontSize: 14, lineHeight: 1, flexShrink: 0, cursor: inWishlist ? 'default' : 'pointer', color: inWishlist ? '#f39c12' : (dark ? '#555' : '#ccc') }}>
-                                {inWishlist ? '⭐' : '☆'}
-                              </button>
-                            )}
                           </div>
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
+                          {userId ? (
+                            <button onClick={ev => addToWishlist(entry, ev)} disabled={inWishlist}
+                              title={inWishlist ? 'Déjà dans la wishlist' : 'Ajouter à la wishlist'}
+                              style={{ width: 34, height: 34, borderRadius: '50%', border: '2px solid', borderColor: inWishlist ? '#f39c12' : (dark ? '#444' : '#ddd'), background: inWishlist ? '#f39c12' : (dark ? '#2a2a2a' : 'white'), color: 'white', fontWeight: 900, fontSize: 14, cursor: inWishlist ? 'default' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <span style={{ color: inWishlist ? 'white' : '#ccc' }}>★</span>
+                            </button>
+                          ) : <span />}
                           {userId ? (
                             <button onClick={() => toggleOwned(entry, variation.name)} disabled={saving === entry.id}
                               className={justStampedIds.has(entry.id) ? 'setlist-stamp' : undefined}
