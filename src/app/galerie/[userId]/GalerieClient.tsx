@@ -54,6 +54,8 @@ import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
+import FederationLogo from '@/components/FederationLogo'
+import PageCustomizer from '@/components/PageCustomizer'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
 const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
@@ -513,6 +515,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
   const [qrMode, setQrMode] = useState(false)
+  const [isFederation, setIsFederation] = useState(false)
+  const [customizeOpen, setCustomizeOpen] = useState(false)
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
   const [qrDownloading, setQrDownloading] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -572,6 +576,33 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const isNative = useIsNative()
+
+  // Personnalisation de page (membres Fédération) : fond appliqué au body
+  useEffect(() => {
+    const bg = profile?.page_bg
+    if (!bg) return
+    const prev = document.body.style.background
+    document.body.style.background = bg
+    return () => { document.body.style.background = prev }
+  }, [profile?.page_bg])
+
+  // Motif de logos en fond : semis aléatoire (positions stables via PRNG seedé par l'user)
+  const logoScatter = useMemo(() => {
+    const raw = profile?.page_pattern
+    if (!raw) return [] as { url: string; left: number; top: number; size: number; rot: number }[]
+    let logos: string[]
+    try { const a = JSON.parse(raw); logos = Array.isArray(a) ? a : [raw] } catch { logos = [raw] }
+    if (!logos.length) return []
+    let seed = 0; for (const c of (userId || 'x')) seed = (seed * 31 + c.charCodeAt(0)) >>> 0
+    const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296 }
+    return Array.from({ length: 64 }).map(() => ({
+      url: logos[Math.floor(rnd() * logos.length)],
+      left: rnd() * 100,
+      top: rnd() * 100,
+      size: 34 + rnd() * 36,
+      rot: rnd() * 50 - 25,
+    }))
+  }, [profile?.page_pattern, userId])
   const cardParam = searchParams.get('card')
 
   useEffect(() => { setMounted(true) }, [])
@@ -648,6 +679,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         })
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
           if (data) setGrailCards(data)
+        })
+        // Membre de la team « Fédération de la carte » ? (badge + personnalisation de page)
+        supabase.from('teams').select('id').ilike('name', 'Fédération de la carte').limit(1).then(async ({ data: fed }) => {
+          const fedId = fed?.[0]?.id
+          if (!fedId) return
+          const { data: mem } = await supabase.from('team_members').select('user_id').eq('team_id', fedId).eq('user_id', resolvedId).limit(1)
+          setIsFederation(!!mem?.length)
         })
         ;(async () => {
           // PostgREST plafonne chaque réponse à 1000 lignes (max_rows) même avec un
@@ -1973,6 +2011,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   return (
     <>
+      {/* Motif de logos en fond (par-dessus la couleur --bg), personnalisation Fédération */}
+      {logoScatter.length > 0 && (
+        <div aria-hidden style={{ position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none', overflow: 'hidden' }}>
+          {logoScatter.map((s, i) => (
+            <img key={i} src={s.url} alt="" loading="lazy" style={{ position: 'absolute', left: `${s.left}%`, top: `${s.top}%`, width: s.size, height: s.size, objectFit: 'contain', opacity: 0.13, transform: `translate(-50%,-50%) rotate(${s.rot}deg)` }} />
+          ))}
+        </div>
+      )}
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
         {usingOfflineCache && (
@@ -2049,10 +2095,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {!loaded && !profile ? (
                   <div style={{ width: 140, height: 24, borderRadius: 6, background: dark ? '#333' : '#e5e7eb', animation: 'shimmer 1.4s ease-in-out infinite' }} />
                 ) : (
-                  <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
+                  <h1 className={(profile?.is_donor && !profile?.page_name_color) ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.page_name_color || undefined, textShadow: profile?.page_name_color ? '0 1px 2px rgba(0,0,0,0.35)' : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
                 )}
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
+                )}
+                {isFederation && (
+                  <span className="sticker-team" data-label="Fédération de la carte">
+                    <FederationLogo variant="emblem" height={28} />
+                  </span>
                 )}
                 {(Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []).map((id: string) => {
                   const team = getTeamById(id)
@@ -2224,6 +2275,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
                           </button>
+                          {/* Personnalisation de page — reservee aux membres Federation de la carte */}
+                          {isOwner && isFederation && (
+                            <button onClick={() => { setCustomizeOpen(true); setActionMenuOpen(false) }}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                              🎨 Personnaliser ma page
+                            </button>
+                          )}
                         </div>
                       </>,
                       document.body
@@ -3200,7 +3258,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               style={{
               ...(!initialCascadeDone && idx < 24 ? { animationDelay: `${idx * 25}ms` } : {}),
               borderRadius: 8, padding: 8,
-              background: qrSelected.has(getCardId(d)) ? '#f5f3ff' : selectedCards.has(getCardId(d)) ? '#e8f0fe' : 'white',
+              background: qrSelected.has(getCardId(d)) ? '#f5f3ff' : selectedCards.has(getCardId(d)) ? '#e8f0fe' : (profile?.page_frame_color || 'white'),
               outline: qrSelected.has(getCardId(d)) ? '2px solid #7c3aed' : selectedCards.has(getCardId(d)) ? '2px solid #003DA6' : 'none',
               cursor: qrMode ? 'pointer' : (editMode && isOwner && sortBy === 'default' ? 'pointer' : editMode ? 'default' : 'pointer'),
               ...((privateCards.has(d.f) && isOwner)
@@ -3419,6 +3477,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           accent={accent}
           isOwner={isOwner}
           emptyLabel="Soyez le premier à commenter cette carte"
+        />
+      )}
+
+      {customizeOpen && isOwner && isFederation && (
+        <PageCustomizer
+          userId={userId}
+          initialBg={profile?.page_bg ?? null}
+          initialNameColor={profile?.page_name_color ?? null}
+          initialFrameColor={profile?.page_frame_color ?? null}
+          initialPattern={profile?.page_pattern ?? null}
+          onClose={() => setCustomizeOpen(false)}
+          onSaved={(bg, nameColor, frameColor, pattern) => setProfile((p: any) => p ? { ...p, page_bg: bg, page_name_color: nameColor, page_frame_color: frameColor, page_pattern: pattern } : p)}
         />
       )}
 

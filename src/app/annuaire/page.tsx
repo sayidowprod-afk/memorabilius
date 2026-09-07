@@ -10,9 +10,10 @@ import { SPORTS_TEAMS, getTeamById } from '@/lib/sportsTeams'
 import ClearableInput from '@/components/ClearableInput'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import TeamBadge from '@/components/TeamBadge'
+import FederationLogo from '@/components/FederationLogo'
 
 interface Stats { total: number; rc: number; auto: number; num: number; patch: number }
-interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats; favorite_teams?: string[]; is_donor?: boolean }
+interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats; favorite_teams?: string[]; is_donor?: boolean; page_name_color?: string | null }
 
 export default function Annuaire() {
   return (
@@ -47,6 +48,7 @@ function AnnuaireContent() {
   const [teamName, setTeamName] = useState<string>('')
   const [search, setSearch] = useState('')
   const [nbaFilter, setNbaFilter] = useState('')
+  const [fedMembers, setFedMembers] = useState<Set<string>>(new Set())
 
   // Aperçu au survol (desktop uniquement, voir @media hover:hover plus bas) --
   // cache par collectionneur pour ne jamais refetcher au survol repété, et un
@@ -96,11 +98,17 @@ function AnnuaireContent() {
   }, [teamFilter, teams])
 
   useEffect(() => {
-    supabase.from('teams').select('id, name').then(({ data }) => {
+    supabase.from('teams').select('id, name').then(async ({ data }) => {
       setTeams(data || [])
       if (teamIdFromUrl && data) {
         const t = data.find((t: any) => String(t.id) === teamIdFromUrl)
         if (t) setTeamName(t.name)
+      }
+      // Membres de la Fédération de la carte → badge en premier dans l'annuaire
+      const fed = (data || []).find((t: any) => (t.name || '').toLowerCase() === 'fédération de la carte')
+      if (fed) {
+        const { data: mem } = await supabase.from('team_members').select('user_id').eq('team_id', fed.id)
+        if (mem) setFedMembers(new Set(mem.map((m: any) => m.user_id)))
       }
     })
     loadData()
@@ -114,7 +122,7 @@ function AnnuaireContent() {
   const loadData = async () => {
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams, is_donor')
+      .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams, is_donor, page_name_color')
       .not('display_name', 'is', null)
       .neq('display_name', '')
       .order('stats_total', { ascending: false, nullsFirst: false })
@@ -408,7 +416,12 @@ function AnnuaireContent() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
                       <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 28 : 42} height={isMobile ? 28 : 42} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        <Link href={`/galerie/${c.id}`} className={(c.is_donor && !c.page_name_color) ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.page_name_color || (c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212')), textShadow: c.page_name_color ? '0 1px 2px rgba(0,0,0,0.4)' : undefined, fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        {fedMembers.has(c.id) && (
+                          <span className="sticker-badge-sm" data-label="Fédération de la carte" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                            <FederationLogo variant="emblem" height={22} />
+                          </span>
+                        )}
                         {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
                           <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 26 }}>
                             <TeamBadge teamId={id} size={26} />
