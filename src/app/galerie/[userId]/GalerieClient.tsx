@@ -577,13 +577,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const { dark } = useTheme()
   const isNative = useIsNative()
 
-  // Personnalisation de page (membres Fédération) : fond appliqué au body
+  // Personnalisation de page (membres Fédération) : fond appliqué au body.
+  // setProperty(..., 'important') est nécessaire : globals.css a
+  // `body { background: var(--bg) !important }` (pour le theme clair/sombre),
+  // qu'un simple style.background = ... ne peut jamais surclasser -- seul un
+  // !important inline gagne sur un !important de feuille de style.
   useEffect(() => {
     const bg = profile?.page_bg
     if (!bg) return
-    const prev = document.body.style.background
-    document.body.style.background = bg
-    return () => { document.body.style.background = prev }
+    document.body.style.setProperty('background', bg, 'important')
+    return () => { document.body.style.removeProperty('background') }
   }, [profile?.page_bg])
 
   // Motif de logos en fond : semis aléatoire (positions stables via PRNG seedé par l'user)
@@ -2015,7 +2018,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       {logoScatter.length > 0 && (
         <div aria-hidden style={{ position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none', overflow: 'hidden' }}>
           {logoScatter.map((s, i) => (
-            <img key={i} src={s.url} alt="" loading="lazy" style={{ position: 'absolute', left: `${s.left}%`, top: `${s.top}%`, width: s.size, height: s.size, objectFit: 'contain', opacity: 0.13, transform: `translate(-50%,-50%) rotate(${s.rot}deg)` }} />
+            // Image de fond CSS, pas <img> -- meme fix que TeamBadge/LogoBox et le
+            // badge Google Play du footer : un <img> fait apparaitre un carre de
+            // fond derriere un logo a fond transparent, un div en background-image
+            // n'a jamais ce souci.
+            <div key={i} role="img" aria-label="" style={{
+              position: 'absolute', left: `${s.left}%`, top: `${s.top}%`, width: s.size, height: s.size,
+              backgroundImage: `url(${s.url})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',
+              opacity: 0.13, transform: `translate(-50%,-50%) rotate(${s.rot}deg)`,
+            }} />
           ))}
         </div>
       )}
