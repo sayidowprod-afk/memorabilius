@@ -1,9 +1,11 @@
 name: Concours Discord hebdomadaire
 
 on:
-  schedule:
-    - cron: '0 * * * *'   # toutes les heures -- le endpoint decide lui-meme quoi faire (heure de Paris geree cote serveur, DST inclus)
-  workflow_dispatch:        # déclenchement manuel possible pour tester
+  # Declenchement automatique deplace vers Vercel Cron (voir vercel.json) --
+  # plus ponctuel que GitHub Actions, qui met en file d'attente les jobs
+  # programmes pile a l'heure ronde en cas de forte charge (retards constates
+  # de plusieurs heures en prod). Garde ici uniquement pour un test manuel.
+  workflow_dispatch:
 
 jobs:
   tick:

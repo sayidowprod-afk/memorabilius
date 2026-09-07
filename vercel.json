@@ -31,6 +31,10 @@
     {
       "path": "/api/cron/weekly-recap",
       "schedule": "0 7 * * 1"
+    },
+    {
+      "path": "/api/contest/tick",
+      "schedule": "0 * * * *"
     }
   ],
   "headers": [

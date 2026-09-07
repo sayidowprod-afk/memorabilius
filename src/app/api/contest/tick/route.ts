@@ -14,12 +14,15 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-// Appele par un cron externe (GitHub Actions, voir .github/workflows/contest-cron.yml)
-// toutes les heures -- chaque etape est gardee par le statut en base, donc un
-// appel repete dans la meme fenetre horaire ne refait rien (idempotent).
+// Appele par Vercel Cron (voir vercel.json, header Authorization injecte
+// automatiquement avec CRON_SECRET) toutes les heures -- chaque etape est
+// gardee par le statut en base, donc un appel repete dans la meme fenetre
+// horaire ne refait rien (idempotent). CONTEST_CRON_SECRET reste accepte
+// pour les appels manuels de test (curl, ancien workflow_dispatch GitHub).
 export async function GET(req: NextRequest) {
   const auth = req.headers.get('authorization')
-  if (auth !== `Bearer ${process.env.CONTEST_CRON_SECRET}`) {
+  const validAuth = auth === `Bearer ${process.env.CRON_SECRET}` || auth === `Bearer ${process.env.CONTEST_CRON_SECRET}`
+  if (!validAuth) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 

@@ -2,7 +2,7 @@ name: Backup quotidien Memorabilius → R2
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # 3h UTC = 4h Paris (hiver) / 5h (été)
+    - cron: '17 3 * * *'   # decale de l'heure ronde pour eviter la file d'attente GitHub Actions -- 3h17 UTC = 4h17 Paris (hiver) / 5h17 (été)
   workflow_dispatch:        # déclenchement manuel possible
 
 jobs:
