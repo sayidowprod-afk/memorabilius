@@ -167,6 +167,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [isMobile, setIsMobile] = useState(false)
   const [showOwnerMenu, setShowOwnerMenu] = useState(false)
   const [ownerMenuUp, setOwnerMenuUp] = useState(false)
+  const [ownerMenuRect, setOwnerMenuRect] = useState<{ top: number; bottom: number; right: number } | null>(null)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -1899,7 +1900,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               s'affiche jamais au toucher sur mobile -- signale illisible/
               incomprehensible autrement). */}
           {isMobile && !pendingCard && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+            // flex:'1 1 auto'+minWidth:0 permet a cette rangee de se retrecir dans le
+            // parent nowrap au lieu de deborder tel quel (ce qui faisait scroller TOUTE
+            // la page horizontalement -- signale en prod, "il faut aller vers la droite").
+            // overflowX:'auto' fait defiler seulement cette rangee, en contenu.
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flex: '1 1 auto', minWidth: 0, overflowX: 'auto', WebkitOverflowScrolling: 'touch' as any }}>
               <button onClick={toggleFullscreen} title={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')} aria-label={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                 {binderFullscreen ? '⊡' : '⛶'}
@@ -1925,22 +1930,37 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               </button>
               {isOwner && (
                 <div style={{ position: 'relative' }}>
-                  <button onClick={(e) => { const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setOwnerMenuUp(r.bottom > window.innerHeight * 0.55); setShowOwnerMenu(v => !v) }}
+                  <button onClick={(e) => {
+                    const r = (e.currentTarget as HTMLElement).getBoundingClientRect()
+                    setOwnerMenuUp(r.bottom > window.innerHeight * 0.55)
+                    setOwnerMenuRect({ top: r.top, bottom: r.bottom, right: window.innerWidth - r.right })
+                    setShowOwnerMenu(v => !v)
+                  }}
                     title={t('binder_more_options')} aria-label={t('binder_more_options')}
                     style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: showOwnerMenu ? (dark ? '#2a2a2a' : '#f0f0f0') : 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, color: dark ? '#ccc' : '#555', lineHeight: 1, fontWeight: 900 }}>
                     ···
                     <span style={{ fontSize: 8, fontWeight: 700 }}>{t('binder_more_options')}</span>
                   </button>
-                  {showOwnerMenu && (
+                  {showOwnerMenu && ownerMenuRect && createPortal(
                     <>
-                      <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
+                      <div style={{ position: 'fixed', inset: 0, zIndex: 99998 }} onClick={() => setShowOwnerMenu(false)} />
+                      {/* Portale sur document.body avec position fixed calculee depuis le
+                          bouton, comme le reste des menus deroulants mobiles du site (voir
+                          GalerieClient.tsx) -- une simple position:absolute ne suffisait pas :
+                          la rangee d'actions (overflowX:auto juste au-dessus) et/ou la bottom
+                          bar native (z-index tres eleve) le coupaient selon la position du
+                          declencheur a l'ecran, rendant "Modifier le classeur"/"Supprimer"
+                          invisibles (signale en prod). Le max-height est calcule depuis
+                          l'espace REELLEMENT disponible (pas juste la hauteur d'ecran totale),
+                          donc le menu ne peut plus jamais deborder, quelle que soit la position
+                          du bouton -- juste scroller en interne si besoin. */}
                       <div style={{
-                        position: 'absolute', ...(ownerMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, zIndex: 300,
+                        position: 'fixed', zIndex: 99999,
+                        ...(ownerMenuUp
+                          ? { bottom: window.innerHeight - ownerMenuRect.top + 6, maxHeight: ownerMenuRect.top - 18 }
+                          : { top: ownerMenuRect.bottom + 6, maxHeight: `calc(100vh - ${ownerMenuRect.bottom + 6}px - ${isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'} - 12px)` }),
+                        right: ownerMenuRect.right,
                         background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6,
-                        // Sans ca, avec ~10 lignes (tri + actions), le menu debordait sous la
-                        // bottom bar native (fixed, z-index tres eleve) -- "Modifier le classeur"
-                        // et "Supprimer" devenaient invisibles/inaccessibles (signale en prod).
-                        maxHeight: isNative ? `calc(100vh - ${NAV_TOTAL_HEIGHT_CSS} - 24px)` : '70vh',
                         overflowY: 'auto',
                       }}>
                         <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: dark ? '#666' : '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{t('binder_sort_cards_header')}</div>
@@ -1979,7 +1999,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                           🗑️ Supprimer
                         </button>
                       </div>
-                    </>
+                    </>,
+                    document.body
                   )}
                 </div>
               )}
