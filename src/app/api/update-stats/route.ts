@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
+import { fetchCsvCapped, parseCardStats, isAllowedCsvUrl } from '@/lib/csvParse'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
     }
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
+    const hasCsv = !!(csvUrl && isAllowedCsvUrl(csvUrl))
 
     // CSV en parallèle avec la première page de cartes manuelles.
     // .order('id') obligatoire -- sans tri explicite, l'ordre entre deux .range()
@@ -29,9 +30,20 @@ export async function POST(req: NextRequest) {
     // des lignes entre les pages et sous-compter (confirme en prod sur un profil
     // recalcule a 1022 au lieu de 4446 reelles).
     const [csvText, firstPage] = await Promise.all([
-      csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
+      hasCsv ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
       supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).order('id', { ascending: true }).range(0, 999),
     ])
+
+    // Un CSV configure dont la recuperation echoue (timeout, rate-limit Google
+    // Sheets...) ne doit jamais etre traite comme "pas de CSV" -- sinon
+    // stats_total est ecrase avec le seul compte de cartes manuelles, et cet
+    // endpoint etant appele a CHAQUE sauvegarde de profil (pas seulement un
+    // changement de lien CSV, voir profil/page.tsx), la valeur fausse repart
+    // avec un stats_updated_at frais qui bloque le cron de rattrapage pendant
+    // 24h (meme bug que celui deja corrige dans recalcStats.ts/recalcul-stats).
+    if (hasCsv && !csvText) {
+      return NextResponse.json({ error: 'csv fetch failed' }, { status: 502 })
+    }
 
     if (csvText) {
       const csvStats = parseCardStats(csvText)
