@@ -15,7 +15,7 @@ import { toast } from '@/lib/toast'
 import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 import { useIsNative } from '@/lib/useIsNative'
-import { NAV_SAFE_AREA_BOTTOM } from '@/lib/nativeLayout'
+import { NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 const GalerieExport = dynamic(() => import('./GalerieExport'), { ssr: false })
 
 // Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
@@ -1281,8 +1281,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const binderForm = formOpen !== null && createPortal(
-    <div onClick={closeBinderForm} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+    <div onClick={closeBinderForm} style={{
+      position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 16,
+      // La bottom bar native est fixed avec un z-index tres eleve (navigation
+      // globale, voir MobileBottomNav.tsx) -- sans cette marge, le bas de la
+      // modale (bouton Creer/Enregistrer) se retrouvait sous elle, invisible
+      // et inaccessible sur l'app native (bouton "cache", signale en prod).
+      paddingBottom: isNative ? `calc(16px + ${NAV_TOTAL_HEIGHT_CSS})` : 16,
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: isNative ? '78vh' : '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? t('binder_new') : t('binder_edit_title')}</h3>
 
         {/* Aperçu couverture */}
@@ -1926,7 +1934,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   {showOwnerMenu && (
                     <>
                       <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
-                      <div style={{ position: 'absolute', ...(ownerMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, zIndex: 300, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
+                      <div style={{
+                        position: 'absolute', ...(ownerMenuUp ? { bottom: 'calc(100% + 6px)' } : { top: 'calc(100% + 6px)' }), right: 0, zIndex: 300,
+                        background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6,
+                        // Sans ca, avec ~10 lignes (tri + actions), le menu debordait sous la
+                        // bottom bar native (fixed, z-index tres eleve) -- "Modifier le classeur"
+                        // et "Supprimer" devenaient invisibles/inaccessibles (signale en prod).
+                        maxHeight: isNative ? `calc(100vh - ${NAV_TOTAL_HEIGHT_CSS} - 24px)` : '70vh',
+                        overflowY: 'auto',
+                      }}>
                         <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: dark ? '#666' : '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{t('binder_sort_cards_header')}</div>
                         {sorting ? (
                           <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>{t('binder_sorting_progress')}</div>
