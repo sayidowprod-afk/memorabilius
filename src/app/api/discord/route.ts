@@ -143,6 +143,41 @@ async function cmdConcoursParticiper(body: any) {
   })
 }
 
+// Recompte les votes et remet a jour l'embed du message de vote (compteurs en
+// direct par thème + total de votants) -- appele en arriere-plan (waitUntil)
+// apres chaque vote pour ne pas retarder l'ACK Discord (limite de 3s).
+async function updateThemeVoteMessage(weekId: string) {
+  const { data: week } = await supabase.from('discord_contest_weeks')
+    .select('theme_option_ids, theme_vote_channel_id, theme_vote_message_id').eq('id', weekId).single()
+  if (!week?.theme_vote_message_id) return
+
+  const themeIds: string[] = week.theme_option_ids || []
+  const [{ data: themes }, { data: votes }] = await Promise.all([
+    supabase.from('discord_contest_themes').select('id, label').in('id', themeIds),
+    supabase.from('discord_contest_theme_votes').select('theme_id').eq('week_id', weekId),
+  ])
+  const labelMap = new Map((themes || []).map((t: any) => [t.id, t.label]))
+  const tally = new Map<string, number>()
+  for (const v of votes || []) tally.set(v.theme_id, (tally.get(v.theme_id) || 0) + 1)
+  const total = votes?.length || 0
+
+  const lines = themeIds.map((id, i) => {
+    const count = tally.get(id) || 0
+    return `**${i + 1}.** ${labelMap.get(id) || '?'} — **${count}** vote${count > 1 ? 's' : ''}`
+  })
+
+  await discordFetch(`/channels/${week.theme_vote_channel_id}/messages/${week.theme_vote_message_id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      embeds: [{
+        title: '🗳️ Vote du thème de la semaine',
+        description: lines.join('\n') + `\n\nVotez avant 18h ! (1 vote par personne, changeable)\n👥 **${total}** votant${total > 1 ? 's' : ''} au total`,
+        color: 0x003DA6,
+      }],
+    }),
+  })
+}
+
 async function handleContestComponent(body: any) {
   const customId: string = body.data?.custom_id || ''
   const discordUserId = body.member?.user?.id || body.user?.id
@@ -157,6 +192,7 @@ async function handleContestComponent(body: any) {
       { onConflict: 'week_id,discord_user_id' }
     )
     if (error) return reply({ content: `❌ ${error.message}`, flags: 64 })
+    waitUntil(updateThemeVoteMessage(weekId))
     return reply({ content: '✅ Ton vote a été pris en compte !', flags: 64 })
   }
 
