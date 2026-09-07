@@ -2049,6 +2049,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             (pas juste une bande en haut) pour que le clip coincide avec le contour reel
             du header (coins arrondis) plutot que de couper au milieu du contenu. */}
         <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
+          {/* Bannière personnalisée (membres Fédération) — distincte du fond de page
+              (profile.page_bg), bande fixe au-dessus de l'en-tête. Valeur CSS
+              directe (couleur/degrade) ou URL d'image selon le prefixe. */}
+          {profile?.page_banner && (
+            <div style={{
+              height: 130,
+              background: (profile.page_banner as string).startsWith('http') || (profile.page_banner as string).startsWith('/')
+                ? `url(${profile.page_banner}) center/cover`
+                : profile.page_banner,
+            }} />
+          )}
           <div style={{
             position: 'absolute', inset: 0,
             background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
@@ -3487,8 +3498,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           initialNameColor={profile?.page_name_color ?? null}
           initialFrameColor={profile?.page_frame_color ?? null}
           initialPattern={profile?.page_pattern ?? null}
+          initialBanner={profile?.page_banner ?? null}
           onClose={() => setCustomizeOpen(false)}
-          onSaved={(bg, nameColor, frameColor, pattern) => setProfile((p: any) => p ? { ...p, page_bg: bg, page_name_color: nameColor, page_frame_color: frameColor, page_pattern: pattern } : p)}
+          onSaved={(bg, nameColor, frameColor, pattern, banner) => setProfile((p: any) => p ? { ...p, page_bg: bg, page_name_color: nameColor, page_frame_color: frameColor, page_pattern: pattern, page_banner: banner } : p)}
         />
       )}
 

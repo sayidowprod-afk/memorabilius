@@ -23,14 +23,15 @@ const GRADIENT_PRESETS = [
 const SOLID_PRESETS = ['#0e1116', '#1D3F8B', '#C8102E', '#2e7d32', '#6b2737', '#111111', '#f5f5f5']
 
 // Éditeur de personnalisation de page (fond + couleur du pseudo).
-export default function PageCustomizer({ userId, initialBg, initialNameColor, initialFrameColor, initialPattern, onClose, onSaved }: {
+export default function PageCustomizer({ userId, initialBg, initialNameColor, initialFrameColor, initialPattern, initialBanner, onClose, onSaved }: {
   userId: string
   initialBg: string | null
   initialNameColor: string | null
   initialFrameColor: string | null
   initialPattern: string | null
+  initialBanner: string | null
   onClose: () => void
-  onSaved: (bg: string | null, nameColor: string | null, frameColor: string | null, pattern: string | null) => void
+  onSaved: (bg: string | null, nameColor: string | null, frameColor: string | null, pattern: string | null, banner: string | null) => void
 }) {
   const startsGrad = !!initialBg && initialBg.includes('gradient')
   const [mode, setMode] = useState<'solid' | 'gradient'>(startsGrad ? 'gradient' : 'solid')
@@ -55,20 +56,44 @@ export default function PageCustomizer({ userId, initialBg, initialNameColor, in
     ? solid
     : (preset || `linear-gradient(${angle}deg, ${gA}, ${gB})`)
 
+  // Bannière : distincte du fond de page -- une bande au-dessus de l'en-tête
+  // de profil, en couleur/dégradé ou en image uploadée. Le champ stocke soit
+  // une valeur CSS background (couleur/degrade), soit une URL d'image -- le
+  // rendu (GalerieClient) distingue les deux par prefixe http/chemin.
+  const isImageValue = (v: string | null) => !!v && (v.startsWith('http') || v.startsWith('/'))
+  const [bannerMode, setBannerMode] = useState<'none' | 'color' | 'image'>(
+    !initialBanner ? 'none' : isImageValue(initialBanner) ? 'image' : 'color'
+  )
+  const [bannerColor, setBannerColor] = useState(!isImageValue(initialBanner) ? (initialBanner || '#1D3F8B') : '#1D3F8B')
+  const [bannerImage, setBannerImage] = useState<string | null>(isImageValue(initialBanner) ? initialBanner : null)
+  const [uploadingBanner, setUploadingBanner] = useState(false)
+  const bannerValue = bannerMode === 'none' ? null : bannerMode === 'image' ? bannerImage : bannerColor
+
+  const uploadBanner = async (file: File) => {
+    setUploadingBanner(true)
+    const ext = file.name.split('.').pop() || 'jpg'
+    const path = `banners/${userId}.${ext}`
+    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    if (upErr) { alert('Erreur upload : ' + upErr.message); setUploadingBanner(false); return }
+    const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+    setBannerImage(data.publicUrl + '?t=' + Date.now())
+    setUploadingBanner(false)
+  }
+
   const save = async () => {
     setSaving(true)
-    const { error } = await supabase.from('profiles').update({ page_bg: bgValue, page_name_color: nameColor, page_frame_color: frameColor, page_pattern: patternValue }).eq('id', userId)
+    const { error } = await supabase.from('profiles').update({ page_bg: bgValue, page_name_color: nameColor, page_frame_color: frameColor, page_pattern: patternValue, page_banner: bannerValue }).eq('id', userId)
     setSaving(false)
     if (error) { alert('Erreur : ' + error.message); return }
-    onSaved(bgValue, nameColor, frameColor, patternValue)
+    onSaved(bgValue, nameColor, frameColor, patternValue, bannerValue)
     onClose()
   }
 
   const reset = async () => {
     setSaving(true)
-    await supabase.from('profiles').update({ page_bg: null, page_name_color: null, page_frame_color: null, page_pattern: null }).eq('id', userId)
+    await supabase.from('profiles').update({ page_bg: null, page_name_color: null, page_frame_color: null, page_pattern: null, page_banner: null }).eq('id', userId)
     setSaving(false)
-    onSaved(null, null, null, null)
+    onSaved(null, null, null, null, null)
     onClose()
   }
 
@@ -123,6 +148,41 @@ export default function PageCustomizer({ userId, initialBg, initialNameColor, in
             </div>
           </div>
         )}
+
+        {/* Bannière — distincte du fond de page, bande au-dessus de l'en-tête */}
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 8 }}>Bannière (au-dessus de l'en-tête, distincte du fond)</label>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+            {([['none', 'Aucune'], ['color', 'Couleur'], ['image', 'Image']] as const).map(([m, label]) => (
+              <button key={m} onClick={() => setBannerMode(m)} style={{ flex: 1, padding: '8px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 800, fontSize: 12, border: bannerMode === m ? '2px solid #003DA6' : '2px solid #e0e0e0', background: bannerMode === m ? '#003DA610' : 'white' }}>
+                {label}
+              </button>
+            ))}
+          </div>
+          {bannerMode === 'color' && (
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+              {[...SOLID_PRESETS, ...GRADIENT_PRESETS].map(c => swatch(c, bannerColor === c, () => setBannerColor(c)))}
+              <input type="color" value={bannerColor.startsWith('#') ? bannerColor : '#000000'} onChange={e => setBannerColor(e.target.value)} style={{ width: 40, height: 40, border: 'none', background: 'none', cursor: 'pointer' }} />
+            </div>
+          )}
+          {bannerMode === 'image' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {bannerImage && (
+                <div style={{ height: 70, borderRadius: 8, backgroundImage: `url(${bannerImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              )}
+              <label style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                padding: '9px 14px', borderRadius: 8, border: '2px solid #e0e0e0', cursor: 'pointer',
+                fontWeight: 700, fontSize: 12, color: '#333',
+              }}>
+                {uploadingBanner ? 'Envoi...' : (bannerImage ? '🖼️ Changer l\'image' : '🖼️ Choisir une image')}
+                <input type="file" accept="image/*" hidden disabled={uploadingBanner}
+                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadBanner(f) }} />
+              </label>
+              <div style={{ fontSize: 11, color: '#aaa' }}>Recommandé : format large (bannière ~1200×300px).</div>
+            </div>
+          )}
+        </div>
 
         {/* Couleur du pseudo */}
         <div>
