@@ -46,7 +46,7 @@ export default function Footer() {
             <li>Badge de Membre</li>
             <li>Personnalisation complète de la galerie</li>
             <li>Export CSV/Sheets/PDF/Scans</li>
-            <li>Concours Spéciaux</li>
+            <li>Scanner de prix illimité</li>
           </ul>
         </div>
 
