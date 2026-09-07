@@ -51,35 +51,39 @@ export default function Footer() {
         </div>
 
         {/* ── Devenir adhérent ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
           <span style={{ fontWeight: 900, fontSize: 16, fontStyle: 'italic' }}>Devenir adhérent →</span>
           <div style={{ display: 'flex', gap: 10 }}>
             <a href="https://x.com/Fededelacarte" target="_blank" rel="noopener noreferrer" aria-label="X" style={social}><XIcon /></a>
             <a href="https://discord.gg/6anaAXA3VK" target="_blank" rel="noopener noreferrer" aria-label="Discord" style={social}><DiscordIcon /></a>
           </div>
         </div>
-
-        {/* ── Google Play ── */}
-        <a
-          href="https://play.google.com/store/apps/details?id=fr.memorabilius.app&hl=fr"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'inline-flex', alignItems: 'center' }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/google-play-badge.png"
-            alt="Disponible sur Google Play"
-            height={40}
-            style={{ height: 40, width: 'auto' }}
-          />
-        </a>
       </div>
 
       {/* ── Barre légale ── */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.25)' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: '12px 20px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-          <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13 }}>© {year} Memorabilius</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13 }}>© {year} Memorabilius</span>
+            {/* mixBlendMode: multiply -- le badge a un fin lisere gris integre aux
+                pixels du PNG (visible/tranchant sur fond rouge). Le multiplier avec
+                le rouge en dessous fond ce lisere dans le fond au lieu de le decouper
+                en CSS (qui rognerait aussi les coins arrondis du badge). */}
+            <a
+              href="https://play.google.com/store/apps/details?id=fr.memorabilius.app&hl=fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center' }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/google-play-badge.png"
+                alt="Disponible sur Google Play"
+                height={28}
+                style={{ height: 28, width: 'auto', mixBlendMode: 'multiply' }}
+              />
+            </a>
+          </div>
           {/* div (pas <nav>) : globals.css force un fond blanc !important sur tous les <nav> */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18, alignItems: 'center' }}>
             <Link href="/mentions-legales" style={legalLink}>Mentions légales</Link>
