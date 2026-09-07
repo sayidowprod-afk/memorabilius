@@ -92,8 +92,13 @@ export default function Teams() {
     setLoading(false)
   }
 
-  // Trier par nombre de cartes total
+  const isFederation = (name: string) => (name || '').toLowerCase() === 'fédération de la carte'
+
+  // Trier par nombre de cartes total -- Fédération de la carte toujours en
+  // premier, quel que soit son total (identite de la plateforme, pas une
+  // team comme les autres).
   const sorted = [...teams].sort((a, b) => {
+    if (isFederation(a.name) !== isFederation(b.name)) return isFederation(a.name) ? -1 : 1
     const aStats = teamsStats.find(s => s.teamId === a.id)?.total || 0
     const bStats = teamsStats.find(s => s.teamId === b.id)?.total || 0
     return bStats - aStats
@@ -164,7 +169,7 @@ export default function Teams() {
                         </div>
                       )}
                       <div>
-                        <Link href={`/teams/${team.id}`} style={{ fontWeight: 800, color: dark ? '#f0f0f0' : '#121212', display: 'block' }}>{team.name}</Link>
+                        <Link href={`/teams/${team.id}`} style={{ fontWeight: 800, color: isFederation(team.name) ? '#C8102E' : (dark ? '#f0f0f0' : '#121212'), display: 'block' }}>{team.name}</Link>
                         {team.description && <p style={{ fontSize: 11, color: '#999', margin: 0 }}>{team.description}</p>}
                       </div>
                     </div>
