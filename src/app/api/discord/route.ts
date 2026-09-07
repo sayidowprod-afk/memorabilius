@@ -261,7 +261,12 @@ async function handleContestComponent(body: any) {
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
-export const maxDuration = 60
+// /concours-participer fait maintenant, en plus du reste (deja proche de la
+// limite avec /carte-gif seul), un rendu GIF + upload Discord en arriere-plan
+// (waitUntil) apres l'ACK -- 60s ne suffisait plus, la fonction etait tuee
+// avant la fin de l'annonce publique (confirme en prod : "Task timed out
+// after 60 seconds", aucun message poste dans le salon).
+export const maxDuration = 120
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
