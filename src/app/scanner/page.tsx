@@ -96,6 +96,7 @@ export default function ScannerPage() {
   const [collectionLoaded, setCollectionLoaded] = useState(false)
   const [qrMode, setQrMode] = useState(false)
   const [qrFound, setQrFound] = useState<string | null>(null)
+  const [quotaBlocked, setQuotaBlocked] = useState(false)
 
   const bg     = dark ? '#0a0a0a' : '#f0f2f7'
   const cardBg = dark ? '#161616' : '#ffffff'
@@ -227,6 +228,25 @@ export default function ScannerPage() {
   const loadSoldComps = useCallback(async (query: string, c?: CardInfo | null) => {
     setEbay(null)
     setPhase('loading-sold')
+    // Quota hebdomadaire (10/semaine hors membres Federation de la carte) --
+    // uniquement pour cet outil dedie, pas pour le prix affiche sur une carte
+    // en galerie ailleurs dans l'app (CardValueModule), qui reste illimite.
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session) {
+      try {
+        const q = await fetch('/api/price-scan-quota', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        })
+        if (!q.ok) {
+          setQuotaBlocked(true)
+          setPhase('error')
+          setErr(t('scanner_quota_reached'))
+          return
+        }
+        setQuotaBlocked(false)
+      } catch { /* si la verification echoue, on laisse passer plutot que de bloquer */ }
+    }
     try {
       const params = query
         ? new URLSearchParams({ q: query })

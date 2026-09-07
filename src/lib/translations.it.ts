@@ -1294,6 +1294,7 @@ export const it = {
   scanner_card_selected: '✓ Carta selezionata',
   scanner_market_value: 'Valore di mercato',
   scanner_sold_count_suffix: 'vendite eBay US',
+  scanner_quota_reached: 'Limite settimanale dello scanner prezzi raggiunto (10/settimana). I membri della Fédération de la carte hanno accesso illimitato.',
   scanner_median_sales: 'Mediana delle vendite',
   scanner_min: 'Min',
   scanner_max: 'Max',

@@ -516,6 +516,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [editMode, setEditMode] = useState(false)
   const [qrMode, setQrMode] = useState(false)
   const [isFederation, setIsFederation] = useState(false)
+  // Appartenance Fédération de la personne qui VISITE (pas du profil affiché) --
+  // distinct de isFederation ci-dessus, sert a reserver des actions (export...)
+  // aux membres quelle que soit la galerie qu'ils regardent.
+  const [viewerIsFederation, setViewerIsFederation] = useState(false)
   const [customizeOpen, setCustomizeOpen] = useState(false)
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
   const [qrDownloading, setQrDownloading] = useState(false)
@@ -625,6 +629,20 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   useEffect(() => {
     setCurrentUser(authUser?.id || null)
   }, [authUser])
+
+  // Appartenance Fédération du visiteur -- pour reserver l'export (CSV/PDF/
+  // images) aux membres, quelle que soit la galerie regardee.
+  useEffect(() => {
+    if (!currentUser) { setViewerIsFederation(false); return }
+    let cancelled = false
+    supabase.from('teams').select('id').ilike('name', 'Fédération de la carte').limit(1).then(async ({ data: fed }) => {
+      const fedId = fed?.[0]?.id
+      if (!fedId || cancelled) return
+      const { data: mem } = await supabase.from('team_members').select('user_id').eq('team_id', fedId).eq('user_id', currentUser).limit(1)
+      if (!cancelled) setViewerIsFederation(!!mem?.length)
+    })
+    return () => { cancelled = true }
+  }, [currentUser])
 
   useEffect(() => {
     let cancelled = false
@@ -2278,17 +2296,27 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ⊞ Mode expo
                           </button>
-                          <div style={{ padding: '0 4px' }}>
-                            <GalerieExport
-                              cards={cards}
-                              profileName={profile?.display_name || ''}
-                              avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-                              accent={accent}
-                              lang={lang}
-                              cardValues={cardValues}
-                              isOwner={isOwner}
-                            />
-                          </div>
+                          {/* Export (CSV/Excel/PDF/images) — reserve aux membres Federation
+                              de la carte (celui qui clique, pas le proprietaire de la galerie). */}
+                          {viewerIsFederation ? (
+                            <div style={{ padding: '0 4px' }}>
+                              <GalerieExport
+                                cards={cards}
+                                profileName={profile?.display_name || ''}
+                                avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                                accent={accent}
+                                lang={lang}
+                                cardValues={cardValues}
+                                isOwner={isOwner}
+                              />
+                            </div>
+                          ) : (
+                            <Link href="/teams" onClick={() => setActionMenuOpen(false)}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, textAlign: 'left', color: dark ? '#777' : '#aaa', width: '100%', display: 'block' }}
+                              title="Réservé aux membres Fédération de la carte">
+                              🔒 Export (Fédération)
+                            </Link>
+                          )}
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? t('gallery_hide_stats') : t('gallery_show_stats')}
@@ -3118,20 +3146,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 })()}
               </>
             )}
-            <button
-              onClick={() => {
-                // selectedCards contient déjà des getCardId(d) (id_manuelle ou f,
-                // voir toggleCardSelection) — matcher GalerieExport là-dessus
-                // directement plutôt que sur la seule URL photo (deux cartes sans
-                // photo, ou avec le même scan réutilisé, partageraient sinon la
-                // même clé et se retrouveraient toutes les deux dans l'export).
-                setExportSelectionKeys(new Set(selectedCards))
-                setExportSelectionOpen(true)
-              }}
-              style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
-            >
-              📤 Partager
-            </button>
+            {/* Export (meme GalerieExport que le menu "...") — reserve aux membres Federation */}
+            {viewerIsFederation && (
+              <button
+                onClick={() => {
+                  // selectedCards contient déjà des getCardId(d) (id_manuelle ou f,
+                  // voir toggleCardSelection) — matcher GalerieExport là-dessus
+                  // directement plutôt que sur la seule URL photo (deux cartes sans
+                  // photo, ou avec le même scan réutilisé, partageraient sinon la
+                  // même clé et se retrouveraient toutes les deux dans l'export).
+                  setExportSelectionKeys(new Set(selectedCards))
+                  setExportSelectionOpen(true)
+                }}
+                style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
+              >
+                📤 Partager
+              </button>
+            )}
             <button
               onClick={startBulkEdit}
               style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
