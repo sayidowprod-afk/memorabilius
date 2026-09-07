@@ -102,6 +102,48 @@ async function cmdConcoursGagnants() {
   return reply({ embeds: [{ title: '📜 Historique des gagnants', description: lines.join('\n'), color: 0xf39c12 }], flags: 64 })
 }
 
+// Annonce publique dans le salon concours a chaque nouvelle participation --
+// pour faire vivre le salon (sinon rien n'y est visible avant le vote du
+// vendredi). Postee en arriere-plan (waitUntil) apres la confirmation
+// ephemere, jamais bloquante pour l'ACK Discord (limite 3s). GIF spin recto/
+// verso quand les deux images sont connues (carte trouvee via nom/lien),
+// repli sur une simple image fixe pour un upload manuel (une seule photo,
+// rien a animer) ou si la generation du GIF echoue.
+async function postConcoursParticipationPublic(cardInfo: CardData | null, imageUrl: string, discordUser: any, isReplace: boolean) {
+  const title = isReplace ? '🔄 Participation mise à jour' : '🆕 Nouvelle participation au concours !'
+  const descLines = [`Par **${discordUser.username}**`]
+  if (cardInfo?.nom) descLines.push(cardInfo.nom)
+  if (cardInfo?.desc) descLines.push(cardInfo.desc)
+  const embedBase = {
+    title,
+    description: descLines.join('\n'),
+    color: 0x003DA6,
+    fields: cardInfo?.badges?.length ? [{ name: 'Badges', value: cardInfo.badges.join('  '), inline: false }] : [],
+  }
+
+  if (cardInfo?.img && cardInfo?.imgBack) {
+    try {
+      const gifBuffer = await renderCardSpinGif(cardInfo.img, cardInfo.imgBack)
+      const form = new FormData()
+      form.append('payload_json', JSON.stringify({ embeds: [{ ...embedBase, image: { url: 'attachment://participation.gif' } }] }))
+      form.append('files[0]', new Blob([new Uint8Array(gifBuffer)], { type: 'image/gif' }), 'participation.gif')
+      const res = await fetch(`https://discord.com/api/v10/channels/${contestChannelId()}/messages`, {
+        method: 'POST',
+        headers: { Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}` },
+        body: form,
+      })
+      if (res.ok) return
+    } catch (e) {
+      console.error('[postConcoursParticipationPublic] gif failed, repli sur image fixe:', e)
+    }
+  }
+
+  await discordFetch(`/channels/${contestChannelId()}/messages`, {
+    method: 'POST',
+    body: JSON.stringify({ embeds: [{ ...embedBase, image: { url: imageUrl } }] }),
+  }).catch(e => console.error('[postConcoursParticipationPublic] echec annonce publique:', e))
+}
+
 async function cmdConcoursParticiper(body: any) {
   const options = body.data?.options || []
   const discordUser = body.member?.user || body.user
@@ -112,6 +154,7 @@ async function cmdConcoursParticiper(body: any) {
 
   const attachmentOpt = options.find((o: any) => o.name === 'image')
   let imageUrl: string | null = null
+  let cardInfo: CardData | null = null
   if (attachmentOpt) {
     imageUrl = body.data?.resolved?.attachments?.[attachmentOpt.value]?.url || null
   }
@@ -119,6 +162,7 @@ async function cmdConcoursParticiper(body: any) {
     const result = await findCardData(options)
     if ('error' in result) return reply({ content: result.error, flags: 64 })
     imageUrl = result.data.img
+    cardInfo = result.data
   }
   if (!imageUrl) return reply({ content: '❌ Joins une image, précise `nom` ou colle un `lien` Memorabilius (comme pour /carte).', flags: 64 })
 
@@ -133,6 +177,8 @@ async function cmdConcoursParticiper(body: any) {
     { onConflict: 'week_id,discord_user_id' }
   )
   if (error) return reply({ content: `❌ Erreur : ${error.message}`, flags: 64 })
+
+  waitUntil(postConcoursParticipationPublic(cardInfo, imageUrl, discordUser, !!existing))
 
   return reply({
     content: existing
