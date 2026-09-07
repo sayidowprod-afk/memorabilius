@@ -38,7 +38,7 @@ export default function Footer() {
         <FederationLogo variant="footer" height={110} />
 
         {/* ── Avantages adhérents ── */}
-        <div>
+        <div style={{ marginLeft: 30 }}>
           <div style={{ fontWeight: 900, fontSize: 12, letterSpacing: '0.06em', marginBottom: 8, opacity: 0.95 }}>
             FONCTIONNALITÉS POUR LES ADHÉRENTS :
           </div>
@@ -65,24 +65,22 @@ export default function Footer() {
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: '12px 20px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13 }}>© {year} Memorabilius</span>
-            {/* mixBlendMode: multiply -- le badge a un fin lisere gris integre aux
-                pixels du PNG (visible/tranchant sur fond rouge). Le multiplier avec
-                le rouge en dessous fond ce lisere dans le fond au lieu de le decouper
-                en CSS (qui rognerait aussi les coins arrondis du badge). */}
+            {/* Image de fond CSS sur un div, pas une balise <img> -- meme fix que
+                TeamBadge/LogoBox : un <img> fait systematiquement apparaitre son
+                fond (ici le lisere gris integre au PNG) quel que soit le filtre
+                applique, alors qu'un div en background-image n'a jamais ce souci. */}
             <a
               href="https://play.google.com/store/apps/details?id=fr.memorabilius.app&hl=fr"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center' }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/google-play-badge.png"
-                alt="Disponible sur Google Play"
-                height={28}
-                style={{ height: 28, width: 'auto', mixBlendMode: 'multiply' }}
-              />
-            </a>
+              role="img"
+              aria-label="Disponible sur Google Play"
+              style={{
+                display: 'inline-block', width: 72, height: 28, flexShrink: 0,
+                backgroundImage: 'url(/google-play-badge.png)',
+                backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',
+              }}
+            />
           </div>
           {/* div (pas <nav>) : globals.css force un fond blanc !important sur tous les <nav> */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18, alignItems: 'center' }}>
