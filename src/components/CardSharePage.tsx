@@ -72,7 +72,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
   ].filter(([, v]) => v) as [string, string][]
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f1f5f9', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: '#f1f5f9', fontFamily: 'system-ui, sans-serif', colorScheme: 'light' }}>
       <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
 
       {/* Header */}

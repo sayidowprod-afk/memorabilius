@@ -17,7 +17,7 @@ export async function generateMetadata(
     .eq('id', cardId)
     .single()
 
-  if (!card) return { title: 'Carte | Memorabilius' }
+  if (!card) return { title: 'Carte | Memorabilius', colorScheme: 'light' }
 
   const { data: profile } = await supabase
     .from('profiles')
@@ -31,6 +31,12 @@ export async function generateMetadata(
   return {
     title,
     description: desc,
+    // Cette page est entierement codee en dur pour un fond clair (jamais liee
+    // au theme sombre de l'app) -- sans ce meta, le "force dark" de la WebView
+    // Android tentait d'assombrir automatiquement le fond blanc en gardant le
+    // texte fonce d'origine, illisible (signale en prod, arrivee via un lien
+    // de notification "carte aimee").
+    colorScheme: 'light',
     openGraph: {
       title, description: desc,
       images: card.image_recto ? [{ url: card.image_recto, width: 400, height: 560 }] : [],
