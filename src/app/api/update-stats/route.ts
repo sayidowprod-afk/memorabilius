@@ -54,9 +54,18 @@ export async function POST(req: NextRequest) {
       stats.patch += csvStats.patch
     }
 
+    // Une page en erreur (reseau/instabilite Supabase) ne doit jamais etre
+    // confondue avec "plus de cartes" -- sinon stats_total est ecrase avec un
+    // total tronque a un multiple de 1000 (bug distinct de celui du CSV
+    // ci-dessus, touche aussi les comptes sans CSV des qu'ils depassent 1000
+    // cartes manuelles). Meme protection que recalcStats.ts/recalcul-stats.ts.
+    if (firstPage.error) {
+      return NextResponse.json({ error: firstPage.error.message }, { status: 502 })
+    }
     const manuelles: any[] = [...(firstPage.data || [])]
     for (let page = 1; manuelles.length === page * 1000; page++) {
-      const { data } = await supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).order('id', { ascending: true }).range(page * 1000, page * 1000 + 999)
+      const { data, error } = await supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).order('id', { ascending: true }).range(page * 1000, page * 1000 + 999)
+      if (error) return NextResponse.json({ error: error.message }, { status: 502 })
       if (!data || data.length === 0) break
       manuelles.push(...data)
     }
