@@ -112,13 +112,22 @@ export default function Inscription() {
       }
     }
 
-    const { error } = await supabase.auth.signUp({
-      email: form.email,
-      password: form.password,
-      options: { data: { display_name: form.display_name } }
-    })
-    if (error) { setError(error.message); setLoading(false); return }
-    window.location.href = '/confirm?email=' + encodeURIComponent(form.email)
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+        options: { data: { display_name: form.display_name } }
+      })
+      if (error) { setError(error.message); setLoading(false); return }
+      window.location.href = '/confirm?email=' + encodeURIComponent(form.email)
+    } catch (e: any) {
+      // Sans ce filet, une exception ici (reseau, reponse inattendue de
+      // Supabase) faisait crasher toute la page sur l'ecran d'erreur generique
+      // au lieu d'afficher un message -- constate en prod juste apres un clic
+      // sur "Creer le compte".
+      setError(e?.message || t('signup_generic_error'))
+      setLoading(false)
+    }
   }
 
   const pseudoHint = {

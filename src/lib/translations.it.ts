@@ -1107,6 +1107,7 @@ export const it = {
   signup_pw_strong: 'Forte',
   signup_captcha_missing: 'Completa la verifica anti-bot',
   signup_captcha_failed: 'Verifica anti-bot fallita, riprova',
+  signup_generic_error: 'Si è verificato un errore, riprova tra un momento',
   login_err_credentials: 'Email o password errati',
   login_err_network: 'Problema di connessione di rete — controlla la tua connessione e riprova',
   login_err_biometric: 'Autenticazione biometrica non riuscita',
