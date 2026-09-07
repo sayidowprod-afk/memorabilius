@@ -1,42 +1,5 @@
 {
-  "crons": [
-    {
-      "path": "/api/recalcul-stats",
-      "schedule": "0 3 * * *"
-    },
-    {
-      "path": "/api/cron/monthly-badge",
-      "schedule": "0 6 1 * *"
-    },
-    {
-      "path": "/api/cron/wrap-mensuel",
-      "schedule": "0 9 2 * *"
-    },
-    {
-      "path": "/api/cron/backup",
-      "schedule": "0 3 * * *"
-    },
-    {
-      "path": "/api/cron/streak-warning",
-      "schedule": "0 19 * * *"
-    },
-    {
-      "path": "/api/cron/popularity-digest",
-      "schedule": "0 18 * * 0"
-    },
-    {
-      "path": "/api/cron/winback",
-      "schedule": "0 10 * * 1"
-    },
-    {
-      "path": "/api/cron/weekly-recap",
-      "schedule": "0 7 * * 1"
-    },
-    {
-      "path": "/api/contest/tick",
-      "schedule": "0 * * * *"
-    }
-  ],
+  "_comment_crons": "Volontairement AUCUN cron sur cette branche (staging) -- ce deploiement de test partage la meme base Supabase que la prod (main). Des crons actifs ici s'executeraient EN PLUS de ceux de la prod sur les memes vraies donnees (backups en double, emails envoyes 2x, tick concours Discord double-declenche...). Seule la branche main doit avoir un bloc 'crons'.",
   "headers": [
     {
       "source": "/fonts/(.*)",
