@@ -1,5 +1,4 @@
 {
-  "_comment_crons": "Volontairement AUCUN cron sur cette branche (staging) -- ce deploiement de test partage la meme base Supabase que la prod (main). Des crons actifs ici s'executeraient EN PLUS de ceux de la prod sur les memes vraies donnees (backups en double, emails envoyes 2x, tick concours Discord double-declenche...). Seule la branche main doit avoir un bloc 'crons'.",
   "headers": [
     {
       "source": "/fonts/(.*)",
