@@ -22,7 +22,30 @@ const ACCENT = '#003DA6'
 // téléphone (12 Mpx) décodée en plusieurs bitmaps pleine résolution (scanner +
 // OpenCV + Gemini) saturait la mémoire et faisait crasher le navigateur mobile
 // vers la 3e photo. 1600px suffit largement pour la détection et le recadrage.
-function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
+async function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
+  // Les photos tres haute resolution (12000x9000+ px, capteurs recents) echouaient
+  // parfois au decodage via <img> sur la WebView Android ("Image illisible,
+  // reessayez") -- createImageBitmap emprunte un chemin de decodage different,
+  // generalement plus robuste et moins gourmand en memoire (pas de layout DOM),
+  // donc tente d'abord cette voie avant de retomber sur l'ancienne methode
+  // <img>+canvas si indisponible ou en echec. imageOrientation: 'from-image'
+  // reproduit l'auto-rotation EXIF qu'<img> applique nativement -- sans ca,
+  // certaines photos portrait ressortiraient pivotees.
+  if (typeof createImageBitmap === 'function') {
+    try {
+      const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' })
+      const scale = Math.min(1, maxDim / Math.max(bitmap.width, bitmap.height))
+      const w = Math.max(1, Math.round(bitmap.width * scale))
+      const h = Math.max(1, Math.round(bitmap.height * scale))
+      const c = document.createElement('canvas')
+      c.width = w; c.height = h
+      c.getContext('2d')!.drawImage(bitmap, 0, 0, w, h)
+      bitmap.close()
+      const dataUrl = c.toDataURL('image/jpeg', 0.9)
+      c.width = 0; c.height = 0
+      return dataUrl
+    } catch { /* repli ci-dessous */ }
+  }
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file)
     const img = new Image()
