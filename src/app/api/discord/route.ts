@@ -6,6 +6,7 @@ import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
 import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
 import { discordFetch, contestChannelId, parisWeekStart } from '@/lib/discordContest'
+import { postPublicBirthday, type BirthdayPlayer } from '@/lib/discordBirthday'
 
 // ── Concours hebdomadaire ─────────────────────────────────────────────────────
 
@@ -256,7 +257,35 @@ async function handleContestComponent(body: any) {
     return reply({ content: '✅ Ton vote a été enregistré !', flags: 64 })
   }
 
+  if (customId.startsWith('bday:')) return handleBirthdayComponent(customId)
+
   return reply({ content: '❌ Action inconnue.', flags: 64 })
+}
+
+// Clic admin dans le thread prive (plusieurs anniversaires marquants le meme
+// jour, voir api/cron/nba-birthday) -- l'update conditionne sur
+// status='awaiting_admin' sert de verrou atomique : si deux admins cliquent
+// des boutons differents en meme temps, un seul touche une ligne (0 ligne
+// modifiee pour l'autre => on lui indique qu'un choix a deja ete fait,
+// plutot que de publier deux annonces pour le meme jour).
+async function handleBirthdayComponent(customId: string) {
+  const [, postDate, playerId] = customId.split(':')
+
+  const { data: claimed } = await supabase.from('nba_birthday_posts')
+    .update({ status: 'posted' })
+    .eq('post_date', postDate)
+    .eq('status', 'awaiting_admin')
+    .select()
+  if (!claimed || claimed.length === 0) {
+    return reply({ content: '⏱️ Un choix a déjà été fait pour ce jour.', flags: 64 })
+  }
+
+  const { data: player } = await supabase.from('nba_allstar_birthdays')
+    .select('id, player_name, birth_date, headshot_url').eq('id', playerId).single()
+  if (!player) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
+
+  await postPublicBirthday(supabase, player as BirthdayPlayer, postDate)
+  return reply({ content: `✅ Annonce publiée pour **${player.player_name}**.`, flags: 64 })
 }
 
 export const dynamic = 'force-dynamic'

@@ -35,6 +35,10 @@
     {
       "path": "/api/contest/tick",
       "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/nba-birthday",
+      "schedule": "0 7 * * *"
     }
   ],
   "headers": [
