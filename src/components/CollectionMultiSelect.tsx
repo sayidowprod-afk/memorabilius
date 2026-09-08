@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { toast } from '@/lib/toast'
 
 interface Props {
   userId: string
@@ -28,12 +29,18 @@ export default function CollectionMultiSelect({ userId, cardKey, value, allTags,
     const has = value.includes(tag)
     try {
       if (has) {
-        await supabase.from('card_collections').delete()
+        const { error } = await supabase.from('card_collections').delete()
           .eq('user_id', userId).eq('card_key', cardKey).eq('collection', tag)
+        // Sans cette verification, une erreur silencieuse (RLS, contrainte...)
+        // laissait quand meme l'UI se mettre a jour comme si ca avait marche --
+        // la carte "disparaissait" de la collection seulement au rechargement
+        // suivant, quand le vrai etat (jamais ecrit) reapparaissait. Signale en prod.
+        if (error) { toast.error('Erreur : ' + error.message); return }
         onChange(value.filter(t => t !== tag))
       } else {
-        await supabase.from('card_collections')
+        const { error } = await supabase.from('card_collections')
           .upsert({ user_id: userId, card_key: cardKey, collection: tag }, { onConflict: 'user_id,card_key,collection' })
+        if (error) { toast.error('Erreur : ' + error.message); return }
         onChange([...value, tag])
       }
     } finally { setBusy(false) }
