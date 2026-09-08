@@ -464,9 +464,14 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     outCtx.rotate(angleRad)
     outCtx.scale(imgTransform.scale * pixelScale, imgTransform.scale * pixelScale)
     outCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
+    // Derive de la taille reelle de outCanvas (deja rogne au bon ratio du format)
+    // plutot qu'une taille fixe 600x840/840x600 -- voir le meme fix dans
+    // ajouter/page.tsx ("l'image est deformee dans la galerie" pour les formats
+    // non-standards, slab en particulier).
     const finalCanvas = document.createElement('canvas')
-    finalCanvas.width = isHorizontalRef.current ? 840 : 600
-    finalCanvas.height = isHorizontalRef.current ? 600 : 840
+    const thumbScale = Math.min(1, 840 / Math.max(outCanvas.width, outCanvas.height))
+    finalCanvas.width = Math.round(outCanvas.width * thumbScale)
+    finalCanvas.height = Math.round(outCanvas.height * thumbScale)
     finalCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
     setCropModal(null)
 

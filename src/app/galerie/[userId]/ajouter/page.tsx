@@ -684,10 +684,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     outCtx.scale(imgTransform.scale * pixelScale, imgTransform.scale * pixelScale)
     outCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
 
+    // Derive de la taille reelle de outCanvas (deja rogne au bon ratio du format
+    // choisi -- standard, slab, carre, panorama...) plutot qu'une taille fixe
+    // 600x840/840x600 qui supposait toujours un ratio carte standard. Une taille
+    // fixe etirait/ecrasait tout format dont le vrai ratio differe (slab en
+    // particulier, bien plus elance qu'une carte standard) -- signale en prod
+    // ("l'image est deformee dans la galerie"). Meme logique de mise a l'echelle
+    // que hdCanvas ci-dessous, plafonnee a 840px sur le plus grand cote (taille
+    // de la miniature d'avant).
     const finalCanvas = document.createElement('canvas')
-    const isLandscape = side === 'il' || side === 'ir' || isHorizontalRef.current
-    finalCanvas.width = isLandscape ? 840 : 600
-    finalCanvas.height = isLandscape ? 600 : 840
+    const thumbScale = Math.min(1, 840 / Math.max(outCanvas.width, outCanvas.height))
+    finalCanvas.width = Math.round(outCanvas.width * thumbScale)
+    finalCanvas.height = Math.round(outCanvas.height * thumbScale)
     const finalCtx = finalCanvas.getContext('2d')!
     finalCtx.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
 
