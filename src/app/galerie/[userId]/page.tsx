@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
+import { cache, Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import GalerieClient from './GalerieClient'
 import { resolveProfileBySlugParam, canonicalProfileSlug } from '@/lib/resolveProfileSlug'
@@ -22,10 +22,18 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 // bascule privé, renommage de tag...) silencieusement no-op. En résolvant
 // ici et en ne passant que l'UUID en aval, tout le composant redevient
 // correct sans devoir traquer chaque usage individuellement.
-async function resolveUserId(rawUserId: string): Promise<string> {
+//
+// Enveloppé avec React cache() : generateMetadata() et GaleriePage() appellent
+// tous les deux resolveUserId() pour la MÊME visite, ce qui refaisait la même
+// requête DB deux fois par chargement de page. cache() ne mémorise le résultat
+// que pour la durée de cette unique requête (pas de persistance entre deux
+// visites, pas d'ISR) -- aucune donnée n'est jamais réutilisée d'un chargement
+// à l'autre, la page reste aussi réactive/à jour qu'avant. Ça élimine juste
+// l'aller-retour DB en double.
+const resolveUserId = cache(async (rawUserId: string): Promise<string> => {
   const profile = await resolveProfileBySlugParam(supabase, rawUserId)
   return profile?.id || rawUserId
-}
+})
 
 export async function generateMetadata({
   params,

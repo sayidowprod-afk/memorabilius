@@ -7,6 +7,13 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
+// Seule la métadonnée du set (nom, année, marque...) est rendue côté serveur
+// ici — donnée de référence quasi-immuable, jamais personnalisée (la
+// progression de checklist par utilisateur est chargée côté client dans
+// SetlistClient, donc pas concernée par ce cache). ISR 1h : gros volume
+// d'appels (8K/jour) pour un contenu qui ne justifie pas un recalcul par visite.
+export const revalidate = 3600
+
 const SPORT_LABELS: Record<string, string> = {
   nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', mtg: 'MTG',
 }
