@@ -13,8 +13,44 @@ interface AuthState {
 
 const AuthContext = createContext<AuthState>({ session: null, user: null, loading: true })
 
+// Clé localStorage par défaut de supabase-js (storageKey non surchargé dans
+// supabase.ts) : `sb-<project-ref>-auth-token`, contenant directement l'objet
+// Session tel quel (access_token, refresh_token, expires_at, user...).
+function readPersistedSession(): Session | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const ref = url ? new URL(url).hostname.split('.')[0] : null
+    if (!ref) return null
+    const raw = window.localStorage.getItem(`sb-${ref}-auth-token`)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    return parsed?.access_token ? (parsed as Session) : null
+  } catch {
+    return null
+  }
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<AuthState>({ session: null, user: null, loading: true })
+  // Le problème signalé ("je dois presque toujours F5") ne venait pas d'une
+  // simple lenteur -- meme le filet de secours (getSession() avec timeout)
+  // ne se declenchait pas toujours a temps, et surtout l'UI restait bloquee
+  // sur `loading` en attendant une resolution ASYNC (onAuthStateChange ou
+  // getSession) qui pouvait ne jamais arriver a temps sur certains cold
+  // starts (WebView native en arriere-plan, timers throttles, etc.). Plutot
+  // que d'essayer d'accelerer encore cette resolution async, on court-circuite
+  // completement l'attente pour le premier rendu : la session persistee est
+  // lue directement et SYNCHRONEMENT depuis localStorage dans l'initialiseur
+  // de useState (qui s'execute pendant le tout premier rendu, avant meme le
+  // premier effet) -- si un token existe, l'utilisateur voit son panel/
+  // dashboard immediatement, sans jamais dependre d'une promesse Supabase.
+  // onAuthStateChange/getSession continuent de tourner ensuite en arriere-plan
+  // pour corriger l'etat (token expire, deconnexion ailleurs, etc.) via
+  // setState, mais ne bloquent plus le premier affichage.
+  const [state, setState] = useState<AuthState>(() => {
+    const session = readPersistedSession()
+    return { session, user: session?.user ?? null, loading: !session }
+  })
   const router = useRouter()
 
   useEffect(() => {
@@ -88,7 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!session) {
           // Repli prématuré possible -- un seul nouvel essai après un court délai
           // avant d'accepter definitivement l'etat deconnecte.
-          await new Promise(r => setTimeout(r, 900))
+          await new Promise(r => setTimeout(r, 400))
           if (settled) return
           session = (await getSessionWithTimeout(3000)).data.session
         }
@@ -97,7 +133,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       settled = true
       setState({ session, user: session?.user ?? null, loading: false })
       setCrashlyticsUserId(session?.user?.id ?? null)
-    }, 2500)
+      // Délai initial raccourci (1200ms, avant 2500ms) : ne change rien au cas
+      // rapide/courant (onAuthStateChange court-circuite ce filet via `settled`
+      // des qu'il se declenche, quelle que soit la duree de ce delai), mais
+      // reduit d'autant l'attente pour le cas signale en prod ou INITIAL_SESSION
+      // ne se declenche pas promptement -- l'utilisateur devait presque toujours
+      // faire F5 avant que ce filet (qui prenait jusqu'a ~9s au pire cas) n'ait
+      // eu le temps de resoudre lui-meme.
+    }, 1200)
 
     return () => { subscription.unsubscribe(); clearTimeout(timeoutId) }
   }, [])
