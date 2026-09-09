@@ -971,8 +971,10 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
       .finally(() => setUserLoad(false))
   }
 
-  const top10  = geoCntrs.slice(0, 10)
-  const topMax = top10.length ? Math.max(...top10.map(c => c.visitors)) : 1
+  // Tous les pays, pas seulement les 10 premiers -- get_users_country_breakdown
+  // (RPC) les retourne deja tries par nombre de comptes decroissant.
+  const allCountries = geoCntrs
+  const topMax = allCountries.length ? Math.max(...allCountries.map(c => c.visitors)) : 1
 
   return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
@@ -1050,10 +1052,10 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
           </div>
 
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
-            Top {top10.length} pays · cliquer pour voir les comptes
+            {allCountries.length} pays · cliquer pour voir les comptes
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {top10.map(({ code, visitors }, i) => (
+            {allCountries.map(({ code, visitors }, i) => (
               <div key={code}>
                 <button
                   onClick={() => toggleCountry(code)}
