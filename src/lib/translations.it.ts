@@ -880,9 +880,6 @@ export const it = {
   badge_new_unlocked_prefix: 'Nuovo badge sbloccato:',
   badge_loading: 'Caricamento dei badge…',
   badge_progress_unlocked: 'sbloccati',
-  badge_filter_unlocked_only: 'Sbloccati',
-  badge_filter_show_all: 'Mostra tutto',
-  badge_none_unlocked_yet: 'Nessun badge sbloccato per ora.',
 
   // Setlist Detail
   setlistdetail_loading: 'Caricamento...',

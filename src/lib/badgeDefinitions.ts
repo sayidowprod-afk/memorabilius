@@ -100,6 +100,11 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'views_100',  threshold: 100,  label: '100'   },
       { id: 'views_500',  threshold: 500,  label: '500'   },
       { id: 'views_1000', threshold: 1000, label: '1 000' },
+      { id: 'views_1500', threshold: 1500, label: '1 500' },
+      { id: 'views_2000', threshold: 2000, label: '2 000' },
+      { id: 'views_3000', threshold: 3000, label: '3 000' },
+      { id: 'views_4000', threshold: 4000, label: '4 000' },
+      { id: 'views_5000', threshold: 5000, label: '5 000' },
     ],
   },
   {

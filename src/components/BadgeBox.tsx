@@ -447,7 +447,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   const [mounted, setMounted] = useState(false)
   const [celebration, setCelebration] = useState<{ label: string; emoji: string } | null>(null)
   const [justUnlockedIds, setJustUnlockedIds] = useState<Set<string>>(new Set())
-  const [showUnlockedOnly, setShowUnlockedOnly] = useState(false)
+  const [expandedCat, setExpandedCat] = useState<string | null>(null)
 
   useEffect(() => setMounted(true), [])
 
@@ -498,6 +498,15 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   for (const cat of BADGE_CATEGORIES) {
     const next = cat.tiers.find(t => !earned.has(t.id))
     if (next) nextTierByCategory.set(cat.id, next.id)
+  }
+
+  // Badges deja debloques par categorie -- affiches directement comme de
+  // vrais badges brillants (pas resumes en barre de progression), pour
+  // garder l'effet "vitrine de trophees" plutot qu'une liste de reglages.
+  // Seuls les paliers encore verrouilles se replient (voir tiersByCategory).
+  const earnedTiersByCategory = new Map<string, BadgeTier[]>()
+  for (const cat of BADGE_CATEGORIES) {
+    earnedTiersByCategory.set(cat.id, cat.tiers.filter(t => earned.has(t.id)))
   }
 
   // Détecte les badges nouvellement débloqués (uniquement sur sa propre galerie)
@@ -551,12 +560,6 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   )
   if (!data) return null
 
-  const visibleCategories = showUnlockedOnly
-    ? BADGE_CATEGORIES
-        .map(cat => ({ cat, tiers: cat.tiers.filter(t => earned.has(t.id)) }))
-        .filter(c => c.tiers.length > 0)
-    : BADGE_CATEGORIES.map(cat => ({ cat, tiers: cat.tiers }))
-
   return (
     <div>
       {celebration && <ConfettiBurst label={celebration.label} emoji={celebration.emoji} />}
@@ -570,10 +573,9 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
           from { opacity:0; transform:translate(-50%,-88%) }
           to   { opacity:1; transform:translate(-50%,-100%) }
         }
-        .badge-cat-label { width: 60px; }
+        .badge-cat-row:hover { background: rgba(255,255,255,.05); }
         .badge-row-gap { gap: 14px; }
         @media (max-width: 480px) {
-          .badge-cat-label { width: 44px; }
           .badge-row-gap { gap: 9px; }
         }
       `}</style>
@@ -590,75 +592,82 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
           <div style={{ position: 'absolute', inset: 0, borderRadius: 18, backgroundImage: 'repeating-linear-gradient(87deg,transparent 0px,rgba(0,0,0,.06) 1px,transparent 3px,transparent 12px)', pointerEvents: 'none' }} />
 
           {/* Moulure */}
-          <div style={{ minHeight: 28, background: 'linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(0,0,0,.15) 100%)', borderRadius: '18px 18px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5px 10px', gap: 3 }}>
+          <div style={{ minHeight: 28, background: 'linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(0,0,0,.15) 100%)', borderRadius: '18px 18px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5px 10px', gap: 2 }}>
             <span style={{ fontWeight: 900, fontSize: 11, color: '#6b3c00', letterSpacing: '.18em', textTransform: 'uppercase', textShadow: '0 1px 0 rgba(255,255,255,.25)' }}>{t('badge_case_label')}</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ fontSize: 10.5, fontWeight: 800, color: '#5a3200', textShadow: '0 1px 0 rgba(255,255,255,.2)' }}>
-                {earned.size}/{TOTAL_BADGES} {t('badge_progress_unlocked')}
-              </span>
-              <button
-                onClick={() => setShowUnlockedOnly(v => !v)}
-                style={{
-                  fontSize: 9.5, fontWeight: 800, padding: '2px 9px', borderRadius: 20, cursor: 'pointer',
-                  border: '1px solid rgba(90,50,0,.35)',
-                  background: showUnlockedOnly ? '#6b3c00' : 'rgba(255,255,255,.35)',
-                  color: showUnlockedOnly ? '#f0cc70' : '#5a3200',
-                }}
-              >
-                {showUnlockedOnly ? `✓ ${t('badge_filter_unlocked_only')}` : t('badge_filter_show_all')}
-              </button>
-            </div>
+            <span style={{ fontSize: 10.5, fontWeight: 800, color: '#5a3200', textShadow: '0 1px 0 rgba(255,255,255,.2)' }}>
+              {earned.size}/{TOTAL_BADGES} {t('badge_progress_unlocked')}
+            </span>
           </div>
 
-          {/* Velours */}
+          {/* Velours -- une ligne compacte par categorie (avatar + barre de
+              progression + compte), depliee au clic pour voir tous les
+              paliers. Evite d'afficher d'un coup toutes les rangees a leur
+              pleine largeur (le probleme "trop plein mais vide" -- les
+              categories a peu de paliers laissaient un grand vide a droite
+              des categories a 9 paliers). */}
           <div style={{
             margin: '0 10px',
             background: 'linear-gradient(170deg,#50124a 0%,#38083a 50%,#50124a 100%)',
-            borderRadius: 8, padding: '16px 10px 24px',
+            borderRadius: 8, padding: '10px 8px 16px',
             boxShadow: 'inset 0 6px 24px rgba(0,0,0,.75),inset 0 0 50px rgba(90,0,90,.4)',
-            position: 'relative', overflowX: 'auto', WebkitOverflowScrolling: 'touch',
+            position: 'relative',
           }}>
             <div style={{ position: 'absolute', inset: 0, borderRadius: 8, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize: '6px 6px', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 0, left: '5%', right: '5%', height: 40, background: 'radial-gradient(ellipse at 50% 100%,rgba(180,20,220,.55) 0%,transparent 70%)', pointerEvents: 'none' }} />
 
-            {visibleCategories.length === 0 ? (
-              <div style={{ padding: '24px 8px', textAlign: 'center', fontSize: 12, color: 'rgba(255,255,255,.55)', position: 'relative' }}>
-                {t('badge_none_unlocked_yet')}
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 20, minWidth: 340, position: 'relative' }}>
-                {visibleCategories.map(({ cat, tiers }) => (
-                  <div key={cat.id} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div className="badge-cat-label" style={{ textAlign: 'center', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                      <span style={{ fontSize: 17, filter: 'drop-shadow(0 1px 3px rgba(0,0,0,.6))' }}>{cat.emoji}</span>
-                      <span style={{
-                        fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,.55)', lineHeight: 1.1,
-                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%',
-                      }}>{cat.label}</span>
-                    </div>
-                    <div className="badge-row-gap" style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap' }}>
-                      {tiers.map((tier) => {
-                        const ti = cat.tiers.indexOf(tier)
-                        return (
-                          <Badge3D
-                            key={tier.id}
-                            cat={cat}
-                            tier={tier}
-                            tierIdx={ti}
-                            totalTiers={cat.tiers.length}
-                            isEarned={earned.has(tier.id)}
-                            statVal={statMap[cat.id] ?? 0}
-                            setTooltip={setTooltip}
-                            justUnlocked={justUnlockedIds.has(tier.id)}
-                            isNext={nextTierByCategory.get(cat.id) === tier.id}
-                          />
-                        )
-                      })}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, position: 'relative' }}>
+              {BADGE_CATEGORIES.map(cat => {
+                const earnedTiers = earnedTiersByCategory.get(cat.id)!
+                const isOpen = expandedCat === cat.id
+                // Replie : uniquement les vrais badges deja debloques (vitrine
+                // de trophees, pas une liste de reglages) -- si aucun encore,
+                // un seul apercu verrouille (1er palier, avec l'anneau pulsant)
+                // pour que la ligne ne soit jamais totalement vide.
+                const tiersToShow = isOpen ? cat.tiers : (earnedTiers.length > 0 ? earnedTiers : [cat.tiers[0]])
+                return (
+                  <div key={cat.id}>
+                    <div
+                      className="badge-cat-row"
+                      onClick={() => setExpandedCat(v => v === cat.id ? null : cat.id)}
+                      style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px', borderRadius: 10, cursor: 'pointer', transition: 'background .15s' }}
+                    >
+                      <div style={{ width: 56, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <span style={{ fontSize: 15 }}>{cat.emoji}</span>
+                        <span style={{
+                          fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,.55)', lineHeight: 1.1,
+                          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%',
+                        }}>{cat.label}</span>
+                      </div>
+
+                      <div className="badge-row-gap" style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap', overflowX: isOpen ? 'auto' : 'hidden', WebkitOverflowScrolling: 'touch', flex: 1, minWidth: 0 }}>
+                        {tiersToShow.map((tier) => {
+                          const ti = cat.tiers.indexOf(tier)
+                          return (
+                            <Badge3D
+                              key={tier.id}
+                              cat={cat}
+                              tier={tier}
+                              tierIdx={ti}
+                              totalTiers={cat.tiers.length}
+                              isEarned={earned.has(tier.id)}
+                              statVal={statMap[cat.id] ?? 0}
+                              setTooltip={setTooltip}
+                              justUnlocked={justUnlockedIds.has(tier.id)}
+                              isNext={nextTierByCategory.get(cat.id) === tier.id}
+                            />
+                          )
+                        })}
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, marginLeft: 'auto', paddingLeft: 8 }}>
+                        <span style={{ fontSize: 10, fontWeight: 800, color: 'rgba(255,255,255,.6)' }}>{earnedTiers.length}/{cat.tiers.length}</span>
+                        <span style={{ fontSize: 9, color: 'rgba(255,255,255,.45)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }}>▼</span>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
+                )
+              })}
+            </div>
           </div>
 
           {/* Pied */}

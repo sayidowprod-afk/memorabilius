@@ -932,9 +932,6 @@ const translations = {
     badge_new_unlocked_prefix: 'Nouveau badge débloqué :',
     badge_loading: 'Chargement des badges…',
     badge_progress_unlocked: 'débloqués',
-    badge_filter_unlocked_only: 'Débloqués',
-    badge_filter_show_all: 'Tout afficher',
-    badge_none_unlocked_yet: 'Aucun badge débloqué pour l\'instant.',
 
     // Setlist Detail
     setlistdetail_loading: 'Chargement...',
@@ -2328,9 +2325,6 @@ const translations = {
     badge_new_unlocked_prefix: 'New badge unlocked:',
     badge_loading: 'Loading badges…',
     badge_progress_unlocked: 'unlocked',
-    badge_filter_unlocked_only: 'Unlocked',
-    badge_filter_show_all: 'Show all',
-    badge_none_unlocked_yet: 'No badges unlocked yet.',
 
     // Setlist Detail
     setlistdetail_loading: 'Loading...',
@@ -3724,9 +3718,6 @@ const translations = {
     badge_new_unlocked_prefix: 'Neues Abzeichen freigeschaltet:',
     badge_loading: 'Abzeichen werden geladen…',
     badge_progress_unlocked: 'freigeschaltet',
-    badge_filter_unlocked_only: 'Freigeschaltet',
-    badge_filter_show_all: 'Alle anzeigen',
-    badge_none_unlocked_yet: 'Noch keine Abzeichen freigeschaltet.',
 
     // Setlist Detail
     setlistdetail_loading: 'Wird geladen...',

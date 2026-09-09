@@ -1,49 +1,7 @@
--- Ajoute la categorie de badges "Autographes" (stat_auto, deja alimentee
--- chaque nuit par /api/recalcul-stats -- voir profiles.stats_auto, deja
--- utilisee par NativeHomeDashboard) + un palier 1500 pour RC/Patch/Num/Autos,
--- en miroir de src/lib/badgeDefinitions.ts.
---
--- get_user_badge_data() doit retourner stat_auto : sans ca, la nouvelle
--- categorie resterait bloquee a 0 pour tout le monde cote client (BadgeBox
--- et xp.ts lisent tous les deux ce RPC, pas la table profiles directement).
---
--- DROP necessaire avant le CREATE OR REPLACE : Postgres refuse de changer le
--- type de retour (RETURNS TABLE) d'une fonction existante autrement
--- (erreur 42P13 "cannot change return type of existing function").
-DROP FUNCTION IF EXISTS get_user_badge_data(uuid);
+-- Ajoute les paliers 1500/2000/3000/4000/5000 a la categorie "Populaire" (vues),
+-- en miroir de src/lib/badgeDefinitions.ts. Additive uniquement (le type de
+-- retour de compute_user_badges, void, ne change pas) -- pas besoin de DROP.
 
-CREATE FUNCTION get_user_badge_data(p_user_id uuid)
-RETURNS TABLE(
-  earned_badges text[],
-  stat_total    int,
-  stat_rc       int,
-  stat_auto     int,
-  stat_patch    int,
-  stat_num      int,
-  mois_count    int,
-  views_count   bigint,
-  teams_count   int
-)
-LANGUAGE sql SECURITY DEFINER AS $$
-  SELECT
-    ARRAY(SELECT badge_id FROM user_badges WHERE user_id = p_user_id),
-    COALESCE(p.stats_total,  0)::int,
-    COALESCE(p.stats_rc,     0)::int,
-    COALESCE(p.stats_auto,   0)::int,
-    COALESCE(p.stats_patch,  0)::int,
-    COALESCE(p.stats_num,    0)::int,
-    (SELECT COUNT(*)::int  FROM badges      WHERE user_id = p_user_id AND type = 'collectionneur_du_mois'),
-    (SELECT COUNT(*)       FROM page_views  WHERE path LIKE '/galerie/' || p_user_id::text || '%'),
-    (SELECT COUNT(*)::int  FROM team_members WHERE user_id = p_user_id)
-  FROM profiles p WHERE p.id = p_user_id;
-$$;
-
-GRANT EXECUTE ON FUNCTION get_user_badge_data(uuid) TO anon, authenticated;
-
--- compute_user_badges() : persiste les badges debloques dans user_badges
--- (pas lu par l'affichage actuel, qui calcule "earned" cote client depuis
--- get_user_badge_data -- garde quand meme cette table a jour pour toute
--- future feature qui s'appuierait dessus).
 CREATE OR REPLACE FUNCTION compute_user_badges(p_user_id uuid)
 RETURNS void LANGUAGE plpgsql SECURITY DEFINER AS $$
 DECLARE
@@ -128,6 +86,11 @@ BEGIN
   IF v_views >= 100  THEN v_new := v_new || 'views_100';  END IF;
   IF v_views >= 500  THEN v_new := v_new || 'views_500';  END IF;
   IF v_views >= 1000 THEN v_new := v_new || 'views_1000'; END IF;
+  IF v_views >= 1500 THEN v_new := v_new || 'views_1500'; END IF;
+  IF v_views >= 2000 THEN v_new := v_new || 'views_2000'; END IF;
+  IF v_views >= 3000 THEN v_new := v_new || 'views_3000'; END IF;
+  IF v_views >= 4000 THEN v_new := v_new || 'views_4000'; END IF;
+  IF v_views >= 5000 THEN v_new := v_new || 'views_5000'; END IF;
   -- Communauté
   IF v_teams >= 1 THEN v_new := v_new || 'teams_1'; END IF;
 
