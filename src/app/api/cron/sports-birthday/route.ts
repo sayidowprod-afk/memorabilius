@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { discordFetch } from '@/lib/discordContest'
-import { birthdayChannelId, parisToday, postPublicBirthday, birthdayPickButtons, type BirthdayPlayer } from '@/lib/discordBirthday'
+import { birthdayChannelId, parisToday, postPublicBirthday, birthdayPickButtons, groupCandidatesBySport, type BirthdayPlayer } from '@/lib/discordBirthday'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -72,7 +72,7 @@ export async function GET(req: NextRequest) {
   await discordFetch(`/channels/${thread.id}/messages`, {
     method: 'POST',
     body: JSON.stringify({
-      content: `🎂 Plusieurs anniversaires marquants aujourd'hui — choisis lequel publier :\n${list.map(p => `• ${p.player_name} (${p.sport})`).join('\n')}`,
+      content: `🎂 Plusieurs anniversaires marquants aujourd'hui — choisis lequel publier :\n\n${groupCandidatesBySport(list)}`,
       components: birthdayPickButtons(dateStr, list),
     }),
   })
