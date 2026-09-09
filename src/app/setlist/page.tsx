@@ -417,7 +417,12 @@ export default function SetlistPage() {
         // parce que son nom contient "hoops". Les alias legitimes (Optic ↔
         // Donruss Optic, Hoops ↔ NBA Hoops...) restent geres via COLL_ALIASES
         // ci-dessus, qui enrichit deja `uw` avant ce test.
-        const setSignificantWords = words(set.name).filter(w => w.length > 3 && !GENERIC_WORDS.has(w))
+        // Exclut les nombres purs (annee en prefixe : "2025-26 Bowman", "1996
+        // Pinnacle"...) -- l'annee est deja validee separement par yearOk()
+        // juste au-dessus, et ne fait jamais partie du champ collection de la
+        // carte. Sans cette exclusion, TOUT set matchait comme "en trop" a
+        // cause de son annee, rejetant quasiment tous les matchs valides.
+        const setSignificantWords = words(set.name).filter(w => w.length > 3 && !GENERIC_WORDS.has(w) && !/^\d+$/.test(w))
         if (setSignificantWords.some(w => !uw.includes(w))) continue
 
         // Brand optionnel — avec résolution des sous-marques (Hoops→Panini, Flagship→Topps…)
