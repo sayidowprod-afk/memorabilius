@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang, TranslationKey } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { toast } from '@/lib/toast'
 
 interface Entry {
   id: number
@@ -378,6 +379,13 @@ export default function SetPrintPage({ params }: { params: Promise<{ setId: stri
         }
         await saveOrShareFile(pdf.output('blob'), `${filename}.pdf`)
       }
+    } catch (e) {
+      // Aucun catch n'existait avant -- un echec (ex: pont natif qui ne
+      // repond jamais, voir timeout dans saveOrShareFile) laissait le bouton
+      // bloque sur "Generation..." sans aucun message, indistinguable d'un
+      // simple traitement lent.
+      toast.error(t('setlistprint_export_error'))
+      console.error('setlist export failed:', e)
     } finally {
       setExportPhase('idle')
       setExportPages([])

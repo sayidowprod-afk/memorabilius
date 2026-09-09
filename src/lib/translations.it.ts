@@ -920,6 +920,7 @@ export const it = {
   setlistprint_download_pdf: 'Scarica in PDF',
   setlistprint_download_jpg: 'Scarica in JPG',
   setlistprint_generating: 'Generazione...',
+  setlistprint_export_error: 'Esportazione non riuscita — riprova, oppure usa il pulsante Stampa/PDF.',
   setlistprint_pick_hint: 'Seleziona almeno una variazione qui sopra per visualizzare la checklist.',
 
   // Galerie Export

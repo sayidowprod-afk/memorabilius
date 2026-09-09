@@ -972,6 +972,7 @@ const translations = {
     setlistprint_download_pdf: 'Télécharger en PDF',
     setlistprint_download_jpg: 'Télécharger en JPG',
     setlistprint_generating: 'Génération...',
+    setlistprint_export_error: "Échec de l'export — réessaie, ou utilise le bouton Imprimer/PDF.",
     setlistprint_pick_hint: 'Sélectionne au moins une variation ci-dessus pour afficher la checklist.',
 
     // Galerie Export
@@ -2365,6 +2366,7 @@ const translations = {
     setlistprint_download_pdf: 'Download as PDF',
     setlistprint_download_jpg: 'Download as JPG',
     setlistprint_generating: 'Generating...',
+    setlistprint_export_error: 'Export failed — try again, or use the Print/PDF button.',
     setlistprint_pick_hint: 'Select at least one variation above to show the checklist.',
 
     // Galerie Export
@@ -3758,6 +3760,7 @@ const translations = {
     setlistprint_download_pdf: 'Als PDF herunterladen',
     setlistprint_download_jpg: 'Als JPG herunterladen',
     setlistprint_generating: 'Wird erstellt...',
+    setlistprint_export_error: 'Export fehlgeschlagen — versuche es erneut oder nutze den Drucken/PDF-Button.',
     setlistprint_pick_hint: 'Wähle oben mindestens eine Variante aus, um die Checkliste anzuzeigen.',
 
     // Galerie Export

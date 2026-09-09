@@ -41,6 +41,16 @@ export async function saveOrShareFile(source: Blob | string, filename: string) {
   const { Filesystem, Directory } = await import('@capacitor/filesystem')
   const { Share } = await import('@capacitor/share')
   const base64 = await blobToBase64(blob)
-  const { uri } = await Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache })
+  // Un pont Capacitor natif qui ne repond jamais (observe en prod sur l'export
+  // setlist : le bouton restait bloque sur "Generation..." sans fin ni erreur)
+  // laissait l'appelant en attente indefinie -- un timeout transforme ce cas
+  // en echec explicite plutot qu'un blocage silencieux. Uniquement sur
+  // l'ecriture (pure I/O, doit etre rapide) -- jamais sur Share.share(), qui
+  // attend legitimement le choix de l'utilisateur dans la feuille de partage
+  // native (peut prendre du temps sans que ce soit un bug).
+  const { uri } = await Promise.race([
+    Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache }),
+    new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), 15000)),
+  ])
   await Share.share({ url: uri, title: filename })
 }
