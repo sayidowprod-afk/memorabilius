@@ -82,6 +82,19 @@ export async function postPublicBirthday(supabase: SupabaseClient, player: Birth
   return msg
 }
 
+// Variante test (?channelId= sur le cron, voir sports-birthday/route.ts) :
+// post_date est une colonne SQL `date`, donc un test ne peut jamais y ecrire
+// une cle propre (essaye avec un suffixe "-test" -> echec silencieux, le test
+// entier ne faisait plus rien) -- et ecrire la vraie date corromprait la ligne
+// de production du jour. Poste donc sur Discord sans jamais toucher
+// nba_birthday_posts.
+export async function postTestBirthday(player: BirthdayPlayer, dateStr: string, channelId: string) {
+  return discordFetch(`/channels/${channelId}/messages`, {
+    method: 'POST',
+    body: JSON.stringify(birthdayEmbed(player, dateStr)),
+  })
+}
+
 // Discord limite a 5 boutons par action row et 5 rows par message (25 max) --
 // largement suffisant. Avec 5 sports desormais confondus dans le meme pool
 // quotidien, prefixer le sport sur chaque bouton evite toute ambiguite pour
@@ -93,10 +106,15 @@ export async function postPublicBirthday(supabase: SupabaseClient, player: Birth
 // constate en test : Hockey/Football absents des boutons alors que presents
 // dans le texte). Une row peut donc melanger 2 sports adjacents en frontiere,
 // c'est un compromis acceptable face a des boutons manquants.
-export function birthdayPickButtons(dateStr: string, candidates: BirthdayPlayer[]) {
+//
+// customIdBase : "bday:<dateStr>" en prod (voir handleBirthdayComponent), ou
+// "bdaytest:<channelId>" en test (voir handleBirthdayTestComponent) -- aucune
+// des deux variantes ne re-parse dateStr comme une date SQL, seulement comme
+// une cle de matching/routing texte.
+export function birthdayPickButtons(customIdBase: string, candidates: BirthdayPlayer[]) {
   const sorted = [...candidates].sort((a, b) => SPORT_ORDER.indexOf(a.sport) - SPORT_ORDER.indexOf(b.sport)).slice(0, 25)
   const buttons = sorted.map(p => ({
-    type: 2, style: 1, label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 80), custom_id: `bday:${dateStr}:${p.id}`,
+    type: 2, style: 1, label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 80), custom_id: `${customIdBase}:${p.id}`,
   }))
   const rows = []
   for (let i = 0; i < buttons.length; i += 5) rows.push({ type: 1, components: buttons.slice(i, i + 5) })

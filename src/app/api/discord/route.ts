@@ -6,7 +6,7 @@ import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
 import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
 import { discordFetch, contestChannelId, parisWeekStart } from '@/lib/discordContest'
-import { postPublicBirthday, type BirthdayPlayer } from '@/lib/discordBirthday'
+import { postPublicBirthday, postTestBirthday, parisToday, type BirthdayPlayer } from '@/lib/discordBirthday'
 
 // ── Concours hebdomadaire ─────────────────────────────────────────────────────
 
@@ -258,6 +258,7 @@ async function handleContestComponent(body: any) {
   }
 
   if (customId.startsWith('bday:')) return handleBirthdayComponent(customId)
+  if (customId.startsWith('bdaytest:')) return handleBirthdayTestComponent(customId, body.channel_id)
 
   return reply({ content: '❌ Action inconnue.', flags: 64 })
 }
@@ -290,19 +291,33 @@ async function handleBirthdayComponent(customId: string) {
   // depasser cette marge de facon intermittente -- meme pattern que
   // postConcoursParticipationPublic plus haut dans ce fichier.
   waitUntil((async () => {
-    // Republie dans le channel PARENT du thread (pas un channel fixe) --
-    // indispensable pour les tests sur un autre serveur (?channelId= sur le
-    // cron, voir sports-birthday/route.ts) : le thread y a ete cree, l'annonce
-    // finale doit y atterrir aussi, pas sur le channel de prod par defaut.
-    let channelId: string | undefined
-    if (threadId) {
-      try { channelId = (await discordFetch(`/channels/${threadId}`)).parent_id } catch {}
-    }
-    await postPublicBirthday(supabase, player as BirthdayPlayer, postDate, channelId)
+    await postPublicBirthday(supabase, player as BirthdayPlayer, postDate)
     if (threadId) await discordFetch(`/channels/${threadId}`, { method: 'DELETE' }).catch(() => {})
   })())
 
   return reply({ content: `✅ Annonce publiée pour **${player.player_name}**.`, flags: 64 })
+}
+
+// Clic admin dans le thread de TEST (?channelId= sur le cron, voir
+// sports-birthday/route.ts) -- aucune ligne nba_birthday_posts n'existe pour
+// ce run (post_date est une colonne SQL `date`, incompatible avec une cle de
+// test), donc le channelId cible est encode directement dans le custom_id du
+// bouton plutot que lu en base, et le thread a supprimer est celui ou le clic
+// a eu lieu (body.channel_id de l'interaction Discord).
+async function handleBirthdayTestComponent(customId: string, threadId: string) {
+  const [, channelId, playerId] = customId.split(':')
+
+  const { data: player } = await supabase.from('sports_birthdays')
+    .select('id, player_name, birth_date, headshot_url, sport').eq('id', playerId).single()
+  if (!player) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
+
+  const { dateStr } = parisToday()
+  waitUntil((async () => {
+    await postTestBirthday(player as BirthdayPlayer, dateStr, channelId)
+    if (threadId) await discordFetch(`/channels/${threadId}`, { method: 'DELETE' }).catch(() => {})
+  })())
+
+  return reply({ content: `✅ [TEST] Annonce publiée pour **${player.player_name}**.`, flags: 64 })
 }
 
 export const dynamic = 'force-dynamic'
