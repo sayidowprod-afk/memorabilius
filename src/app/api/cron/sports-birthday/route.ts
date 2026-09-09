@@ -17,13 +17,21 @@ const supabase = createClient(
 // (retry, test manuel) ne refait rien. Anciennement NBA seule, couvre
 // desormais 5 sports (nba/nfl/baseball/hockey/football) puises dans le meme
 // pool quotidien -- voir sports_birthdays.sport.
+//
+// Test manuel sur un autre serveur/channel Discord : ?channelId=XXXX poste
+// sur ce channel au lieu du channel prod (DISCORD_BIRTHDAY_CHANNEL_ID) --
+// utilise une cle d'idempotence suffixee "-test" pour ne jamais toucher/bloquer
+// le vrai post du jour sur le serveur principal.
 export async function GET(req: NextRequest) {
   const auth = req.headers.get('authorization')
   if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
-  const { dateStr, month, day } = parisToday()
+  const testChannelId = req.nextUrl.searchParams.get('channelId')
+  const channelId = testChannelId || birthdayChannelId()
+  const { dateStr: realDateStr, month, day } = parisToday()
+  const dateStr = testChannelId ? `${realDateStr}-test` : realDateStr
 
   const { data: existing } = await supabase.from('nba_birthday_posts').select('post_date').eq('post_date', dateStr).maybeSingle()
   if (existing) return NextResponse.json({ ok: true, dateStr, action: 'already_handled' })
@@ -45,7 +53,7 @@ export async function GET(req: NextRequest) {
 
   if (list.length === 1) {
     await supabase.from('nba_birthday_posts').insert({ post_date: dateStr, status: 'awaiting_admin' })
-    const msg = await postPublicBirthday(supabase, list[0], dateStr)
+    const msg = await postPublicBirthday(supabase, list[0], dateStr, channelId)
     return NextResponse.json({ ok: true, dateStr, action: 'posted', player: list[0].player_name, messageId: msg.id })
   }
 
@@ -54,7 +62,7 @@ export async function GET(req: NextRequest) {
   // channel -- Discord ne permet pas de cacher un message precis dans un
   // channel normal, voir discussion produit) et laisse un admin choisir via
   // les boutons -- handleBirthdayComponent (api/discord/route.ts) traite le clic.
-  const thread = await discordFetch(`/channels/${birthdayChannelId()}/threads`, {
+  const thread = await discordFetch(`/channels/${channelId}/threads`, {
     method: 'POST',
     body: JSON.stringify({ name: `🎂 Anniversaires du ${dateStr}`, type: 12, auto_archive_duration: 1440 }),
   })

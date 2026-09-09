@@ -48,8 +48,8 @@ export function birthdayEmbed(player: BirthdayPlayer, dateStr: string) {
 // Poste l'annonce publique et memorise l'etat -- appele soit directement par
 // le cron (1 seul candidat ce jour-la), soit par le clic admin (plusieurs
 // candidats, voir handleBirthdayComponent dans api/discord/route.ts).
-export async function postPublicBirthday(supabase: SupabaseClient, player: BirthdayPlayer, dateStr: string) {
-  const msg = await discordFetch(`/channels/${birthdayChannelId()}/messages`, {
+export async function postPublicBirthday(supabase: SupabaseClient, player: BirthdayPlayer, dateStr: string, channelId: string = birthdayChannelId()) {
+  const msg = await discordFetch(`/channels/${channelId}/messages`, {
     method: 'POST',
     body: JSON.stringify(birthdayEmbed(player, dateStr)),
   })

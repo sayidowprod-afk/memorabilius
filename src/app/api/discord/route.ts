@@ -290,7 +290,15 @@ async function handleBirthdayComponent(customId: string) {
   // depasser cette marge de facon intermittente -- meme pattern que
   // postConcoursParticipationPublic plus haut dans ce fichier.
   waitUntil((async () => {
-    await postPublicBirthday(supabase, player as BirthdayPlayer, postDate)
+    // Republie dans le channel PARENT du thread (pas un channel fixe) --
+    // indispensable pour les tests sur un autre serveur (?channelId= sur le
+    // cron, voir sports-birthday/route.ts) : le thread y a ete cree, l'annonce
+    // finale doit y atterrir aussi, pas sur le channel de prod par defaut.
+    let channelId: string | undefined
+    if (threadId) {
+      try { channelId = (await discordFetch(`/channels/${threadId}`)).parent_id } catch {}
+    }
+    await postPublicBirthday(supabase, player as BirthdayPlayer, postDate, channelId)
     if (threadId) await discordFetch(`/channels/${threadId}`, { method: 'DELETE' }).catch(() => {})
   })())
 
