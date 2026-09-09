@@ -13,6 +13,21 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
     // Le tier gratuit Sentry (5k evenements/mois) suffit au volume actuel du
     // site -- pas de session replay (consommerait le quota bien plus vite).
     debug: false,
+    // Bruit classique "extension navigateur modifie le DOM sous le nez de
+    // React" (Google Translate, Grammarly, bloqueurs de pub) -- React tente
+    // de retirer/deplacer un noeud deja retire par l'extension et leve cette
+    // erreur interne (react#11538, tres documente). Constate en masse sur
+    // /galerie/:userId avec des dizaines de userId differents et aucune
+    // manipulation DOM directe correspondante dans le code -- pas un bug
+    // applicatif, juste du bruit qui mangeait le quota gratuit pour rien.
+    ignoreErrors: [
+      "Cannot read properties of null (reading 'parentNode')",
+      "null is not an object (evaluating 'b.parentNode')",
+      "can't access property \"parentNode\", b is null",
+      "The node to be removed is not a child of this node",
+      "Failed to execute 'removeChild' on 'Node'",
+      "Failed to execute 'insertBefore' on 'Node'",
+    ],
   })
 }
 
