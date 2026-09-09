@@ -447,7 +447,6 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   const [mounted, setMounted] = useState(false)
   const [celebration, setCelebration] = useState<{ label: string; emoji: string } | null>(null)
   const [justUnlockedIds, setJustUnlockedIds] = useState<Set<string>>(new Set())
-  const [expandedCat, setExpandedCat] = useState<string | null>(null)
 
   useEffect(() => setMounted(true), [])
 
@@ -599,12 +598,11 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
             </span>
           </div>
 
-          {/* Velours -- une ligne compacte par categorie (avatar + barre de
-              progression + compte), depliee au clic pour voir tous les
-              paliers. Evite d'afficher d'un coup toutes les rangees a leur
-              pleine largeur (le probleme "trop plein mais vide" -- les
-              categories a peu de paliers laissaient un grand vide a droite
-              des categories a 9 paliers). */}
+          {/* Velours -- une rangee par categorie, tous les paliers affiches
+              d'un coup (verrouilles en gris, debloques en brillant). Deux
+              variantes "ergonomiques" (barre de progression, puis accordion
+              replie/deplie) ont ete tentees puis rejetees par retour direct --
+              ce grid complet est la version retenue. */}
           <div style={{
             margin: '0 10px',
             background: 'linear-gradient(170deg,#50124a 0%,#38083a 50%,#50124a 100%)',
@@ -618,18 +616,11 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4, position: 'relative' }}>
               {BADGE_CATEGORIES.map(cat => {
                 const earnedTiers = earnedTiersByCategory.get(cat.id)!
-                const isOpen = expandedCat === cat.id
-                // Replie : uniquement les vrais badges deja debloques (vitrine
-                // de trophees, pas une liste de reglages) -- si aucun encore,
-                // un seul apercu verrouille (1er palier, avec l'anneau pulsant)
-                // pour que la ligne ne soit jamais totalement vide.
-                const tiersToShow = isOpen ? cat.tiers : (earnedTiers.length > 0 ? earnedTiers : [cat.tiers[0]])
                 return (
                   <div key={cat.id}>
                     <div
                       className="badge-cat-row"
-                      onClick={() => setExpandedCat(v => v === cat.id ? null : cat.id)}
-                      style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px', borderRadius: 10, cursor: 'pointer', transition: 'background .15s' }}
+                      style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px', borderRadius: 10 }}
                     >
                       <div style={{ width: 56, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 1 }}>
                         <span style={{ fontSize: 15 }}>{cat.emoji}</span>
@@ -639,29 +630,25 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
                         }}>{cat.label}</span>
                       </div>
 
-                      <div className="badge-row-gap" style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap', overflowX: isOpen ? 'auto' : 'hidden', WebkitOverflowScrolling: 'touch', flex: 1, minWidth: 0 }}>
-                        {tiersToShow.map((tier) => {
-                          const ti = cat.tiers.indexOf(tier)
-                          return (
-                            <Badge3D
-                              key={tier.id}
-                              cat={cat}
-                              tier={tier}
-                              tierIdx={ti}
-                              totalTiers={cat.tiers.length}
-                              isEarned={earned.has(tier.id)}
-                              statVal={statMap[cat.id] ?? 0}
-                              setTooltip={setTooltip}
-                              justUnlocked={justUnlockedIds.has(tier.id)}
-                              isNext={nextTierByCategory.get(cat.id) === tier.id}
-                            />
-                          )
-                        })}
+                      <div className="badge-row-gap" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', flex: 1, minWidth: 0 }}>
+                        {cat.tiers.map((tier, ti) => (
+                          <Badge3D
+                            key={tier.id}
+                            cat={cat}
+                            tier={tier}
+                            tierIdx={ti}
+                            totalTiers={cat.tiers.length}
+                            isEarned={earned.has(tier.id)}
+                            statVal={statMap[cat.id] ?? 0}
+                            setTooltip={setTooltip}
+                            justUnlocked={justUnlockedIds.has(tier.id)}
+                            isNext={nextTierByCategory.get(cat.id) === tier.id}
+                          />
+                        ))}
                       </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, marginLeft: 'auto', paddingLeft: 8 }}>
+                      <div style={{ flexShrink: 0, marginLeft: 'auto', paddingLeft: 8 }}>
                         <span style={{ fontSize: 10, fontWeight: 800, color: 'rgba(255,255,255,.6)' }}>{earnedTiers.length}/{cat.tiers.length}</span>
-                        <span style={{ fontSize: 9, color: 'rgba(255,255,255,.45)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }}>▼</span>
                       </div>
                     </div>
                   </div>
