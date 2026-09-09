@@ -879,6 +879,10 @@ export const es = {
   badge_unlocked_prefix: 'Insignia desbloqueada:',
   badge_new_unlocked_prefix: 'Nueva insignia desbloqueada:',
   badge_loading: 'Cargando insignias…',
+  badge_progress_unlocked: 'desbloqueadas',
+  badge_filter_unlocked_only: 'Desbloqueadas',
+  badge_filter_show_all: 'Mostrar todo',
+  badge_none_unlocked_yet: 'Ninguna insignia desbloqueada todavía.',
 
   // Setlist Detail
   setlistdetail_loading: 'Cargando...',

@@ -55,7 +55,7 @@ export async function checkAndAwardBadgeXP(supabase: SupabaseClient, userId: str
   if (!b) return
 
   const stat: Record<string, number> = {
-    cartes: b.stat_total, rc: b.stat_rc, patch: b.stat_patch, num: b.stat_num,
+    cartes: b.stat_total, rc: b.stat_rc, auto: b.stat_auto, patch: b.stat_patch, num: b.stat_num,
     mois: b.mois_count, views: Number(b.views_count), teams: b.teams_count,
   }
   const earnedIds: string[] = []

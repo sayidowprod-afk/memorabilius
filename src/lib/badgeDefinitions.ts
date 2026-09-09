@@ -8,7 +8,7 @@ export type BadgeCategory = {
   id: string
   emoji: string
   label: string
-  statKey: 'stat_total' | 'stat_rc' | 'stat_patch' | 'stat_num' | 'mois_count' | 'views_count' | 'teams_count'
+  statKey: 'stat_total' | 'stat_rc' | 'stat_auto' | 'stat_patch' | 'stat_num' | 'mois_count' | 'views_count' | 'teams_count'
   unit: string
   tiers: BadgeTier[]
 }
@@ -39,6 +39,21 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'rc_500',  threshold: 500,  label: '500'   },
       { id: 'rc_750',  threshold: 750,  label: '750'   },
       { id: 'rc_1000', threshold: 1000, label: '1 000' },
+      { id: 'rc_1500', threshold: 1500, label: '1 500' },
+    ],
+  },
+  {
+    id: 'auto', emoji: '✍️', label: 'Autographes', statKey: 'stat_auto', unit: 'autos',
+    tiers: [
+      { id: 'auto_25',   threshold: 25,   label: '25'    },
+      { id: 'auto_50',   threshold: 50,   label: '50'    },
+      { id: 'auto_75',   threshold: 75,   label: '75'    },
+      { id: 'auto_100',  threshold: 100,  label: '100'   },
+      { id: 'auto_250',  threshold: 250,  label: '250'   },
+      { id: 'auto_500',  threshold: 500,  label: '500'   },
+      { id: 'auto_750',  threshold: 750,  label: '750'   },
+      { id: 'auto_1000', threshold: 1000, label: '1 000' },
+      { id: 'auto_1500', threshold: 1500, label: '1 500' },
     ],
   },
   {
@@ -52,6 +67,7 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'patch_500',  threshold: 500,  label: '500'   },
       { id: 'patch_750',  threshold: 750,  label: '750'   },
       { id: 'patch_1000', threshold: 1000, label: '1 000' },
+      { id: 'patch_1500', threshold: 1500, label: '1 500' },
     ],
   },
   {
@@ -65,6 +81,7 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
       { id: 'num_500',  threshold: 500,  label: '500'   },
       { id: 'num_750',  threshold: 750,  label: '750'   },
       { id: 'num_1000', threshold: 1000, label: '1 000' },
+      { id: 'num_1500', threshold: 1500, label: '1 500' },
     ],
   },
   {
@@ -93,5 +110,4 @@ export const BADGE_CATEGORIES: BadgeCategory[] = [
   },
 ]
 
-// 9+8+8+8+5+3+1 = 42
 export const TOTAL_BADGES = BADGE_CATEGORIES.reduce((s, c) => s + c.tiers.length, 0)

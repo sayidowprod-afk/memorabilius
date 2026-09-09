@@ -725,6 +725,14 @@ body {
 }
 @media (prefers-reduced-motion: reduce) { .badge-unlock-shine { display: none; } }
 
+/* ===== prochain palier de badge atteignable — anneau pulsant discret ===== */
+@keyframes badgeNextPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(240,204,112,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(240,204,112,0); }
+}
+.badge-next-pulse { animation: badgeNextPulse 1.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .badge-next-pulse { animation: none; box-shadow: 0 0 0 3px rgba(240,204,112,0.5); } }
+
 /* ===== BATCH 7 — viseur QR du scanner : pulsation + confirmation de detection ===== */
 @keyframes scannerCornerPulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 .scanner-corner-pulse { animation: scannerCornerPulse 1.6s ease-in-out infinite; }

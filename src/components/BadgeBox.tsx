@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
-import { BADGE_CATEGORIES, BadgeCategory, BadgeTier } from '@/lib/badgeDefinitions'
+import { BADGE_CATEGORIES, BadgeCategory, BadgeTier, TOTAL_BADGES } from '@/lib/badgeDefinitions'
 import { toast } from '@/lib/toast'
 import { hapticSuccess } from '@/lib/haptics'
 import { maybePromptReview } from '@/lib/reviewPrompt'
@@ -45,6 +45,11 @@ const CAT_SHAPE: Record<string, Shape> = {
     outer: starPath(5, 44, 17),
     inner: starPath(5, 36, 13),
     field: circleField(10),
+  },
+  auto: {
+    outer: polyPath(8, 44),
+    inner: polyPath(8, 34),
+    field: circleField(24),
   },
   patch: {
     outer: starPath(4, 44, 26),
@@ -96,7 +101,7 @@ function fmtN(n: number) { return n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ?
 // ── Data types ───────────────────────────────────────────────────────────
 type BadgeData = {
   earned_badges: string[]
-  stat_total: number; stat_rc: number; stat_patch: number; stat_num: number
+  stat_total: number; stat_rc: number; stat_auto: number; stat_patch: number; stat_num: number
   mois_count: number; views_count: number; teams_count: number
 }
 type TooltipInfo = {
@@ -132,6 +137,10 @@ function BadgeSVG({ cat, tier, palIdx, isEarned, size = 64 }: {
           const a = (i / 6) * 2 * Math.PI - Math.PI / 2
           return <line key={i} x1={(50 + 8 * Math.cos(a)).toFixed(1)} y1={(50 + 8 * Math.sin(a)).toFixed(1)} x2={(50 + 28 * Math.cos(a)).toFixed(1)} y2={(50 + 28 * Math.sin(a)).toFixed(1)} stroke="rgba(255,255,255,0.16)" strokeWidth="1.2" />
         })
+      case 'auto':
+        // Paraphe stylise (trait de signature) plutot qu'un motif geometrique
+        // repetitif -- coherent avec le theme "autographe" de la categorie.
+        return <path d="M28,60 Q38,34 48,54 T72,40" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="2" strokeLinecap="round" />
       case 'mois':
         return <line x1="20" y1="37" x2="80" y2="37" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeLinecap="round" />
       case 'views':
@@ -304,11 +313,12 @@ function BadgeTooltip({ t: info }: { t: TooltipInfo }) {
 }
 
 // ── Badge3D — hover wrapper ───────────────────────────────────────────────
-function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip, justUnlocked }: {
+function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip, justUnlocked, isNext }: {
   cat: BadgeCategory; tier: BadgeTier; tierIdx: number; totalTiers: number
   isEarned: boolean; statVal: number
   setTooltip: (t: TooltipInfo | null) => void
   justUnlocked?: boolean
+  isNext?: boolean
 }) {
   const palIdx = tierColorIdx(tierIdx, totalTiers)
   const pal = TIER[palIdx] as Pal
@@ -358,6 +368,13 @@ function Badge3D({ cat, tier, tierIdx, totalTiers, isEarned, statVal, setTooltip
           <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: '50%', pointerEvents: 'none' }}>
             <div className="badge-unlock-shine" />
           </div>
+        )}
+        {/* Prochain palier atteignable : anneau pulsant pour guider l'oeil
+            vers un objectif realiste plutot que noyer dans une grille de
+            cadenas identiques -- seul le tout premier palier non-debloque
+            de chaque categorie le recoit (voir calcul nextTierByCategory). */}
+        {isNext && !isEarned && (
+          <div className="badge-next-pulse" style={{ position: 'absolute', inset: -4, borderRadius: '50%', pointerEvents: 'none' }} />
         )}
       </div>
 
@@ -430,6 +447,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   const [mounted, setMounted] = useState(false)
   const [celebration, setCelebration] = useState<{ label: string; emoji: string } | null>(null)
   const [justUnlockedIds, setJustUnlockedIds] = useState<Set<string>>(new Set())
+  const [showUnlockedOnly, setShowUnlockedOnly] = useState(false)
 
   useEffect(() => setMounted(true), [])
 
@@ -461,7 +479,7 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   }, [userId])
 
   const statMap: Record<string, number> = data ? {
-    cartes: data.stat_total, rc: data.stat_rc, patch: data.stat_patch,
+    cartes: data.stat_total, rc: data.stat_rc, auto: data.stat_auto, patch: data.stat_patch,
     num: data.stat_num, mois: data.mois_count,
     views: Number(data.views_count), teams: data.teams_count,
   } : {}
@@ -472,6 +490,15 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
     for (const t of cat.tiers) { if (v >= t.threshold) earned.add(t.id) }
   }
   const earnedKey = Array.from(earned).sort().join(',')
+
+  // Premier palier non-debloque de chaque categorie -- celui qui recoit
+  // l'anneau pulsant (voir Badge3D isNext) pour guider vers un objectif
+  // concret plutot que noyer dans une grille uniforme de cadenas.
+  const nextTierByCategory = new Map<string, string>()
+  for (const cat of BADGE_CATEGORIES) {
+    const next = cat.tiers.find(t => !earned.has(t.id))
+    if (next) nextTierByCategory.set(cat.id, next.id)
+  }
 
   // Détecte les badges nouvellement débloqués (uniquement sur sa propre galerie)
   // et déclenche célébration (confetti + vibration + toast) et, à partir du
@@ -524,6 +551,12 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   )
   if (!data) return null
 
+  const visibleCategories = showUnlockedOnly
+    ? BADGE_CATEGORIES
+        .map(cat => ({ cat, tiers: cat.tiers.filter(t => earned.has(t.id)) }))
+        .filter(c => c.tiers.length > 0)
+    : BADGE_CATEGORIES.map(cat => ({ cat, tiers: cat.tiers }))
+
   return (
     <div>
       {celebration && <ConfettiBurst label={celebration.label} emoji={celebration.emoji} />}
@@ -536,6 +569,12 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
         @keyframes tooltip-in {
           from { opacity:0; transform:translate(-50%,-88%) }
           to   { opacity:1; transform:translate(-50%,-100%) }
+        }
+        .badge-cat-label { width: 60px; }
+        .badge-row-gap { gap: 14px; }
+        @media (max-width: 480px) {
+          .badge-cat-label { width: 44px; }
+          .badge-row-gap { gap: 9px; }
         }
       `}</style>
 
@@ -551,8 +590,24 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
           <div style={{ position: 'absolute', inset: 0, borderRadius: 18, backgroundImage: 'repeating-linear-gradient(87deg,transparent 0px,rgba(0,0,0,.06) 1px,transparent 3px,transparent 12px)', pointerEvents: 'none' }} />
 
           {/* Moulure */}
-          <div style={{ height: 28, background: 'linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(0,0,0,.15) 100%)', borderRadius: '18px 18px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ minHeight: 28, background: 'linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(0,0,0,.15) 100%)', borderRadius: '18px 18px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5px 10px', gap: 3 }}>
             <span style={{ fontWeight: 900, fontSize: 11, color: '#6b3c00', letterSpacing: '.18em', textTransform: 'uppercase', textShadow: '0 1px 0 rgba(255,255,255,.25)' }}>{t('badge_case_label')}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 10.5, fontWeight: 800, color: '#5a3200', textShadow: '0 1px 0 rgba(255,255,255,.2)' }}>
+                {earned.size}/{TOTAL_BADGES} {t('badge_progress_unlocked')}
+              </span>
+              <button
+                onClick={() => setShowUnlockedOnly(v => !v)}
+                style={{
+                  fontSize: 9.5, fontWeight: 800, padding: '2px 9px', borderRadius: 20, cursor: 'pointer',
+                  border: '1px solid rgba(90,50,0,.35)',
+                  background: showUnlockedOnly ? '#6b3c00' : 'rgba(255,255,255,.35)',
+                  color: showUnlockedOnly ? '#f0cc70' : '#5a3200',
+                }}
+              >
+                {showUnlockedOnly ? `✓ ${t('badge_filter_unlocked_only')}` : t('badge_filter_show_all')}
+              </button>
+            </div>
           </div>
 
           {/* Velours */}
@@ -561,35 +616,49 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
             background: 'linear-gradient(170deg,#50124a 0%,#38083a 50%,#50124a 100%)',
             borderRadius: 8, padding: '16px 10px 24px',
             boxShadow: 'inset 0 6px 24px rgba(0,0,0,.75),inset 0 0 50px rgba(90,0,90,.4)',
-            position: 'relative', overflowX: 'auto',
+            position: 'relative', overflowX: 'auto', WebkitOverflowScrolling: 'touch',
           }}>
             <div style={{ position: 'absolute', inset: 0, borderRadius: 8, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize: '6px 6px', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', bottom: 0, left: '5%', right: '5%', height: 40, background: 'radial-gradient(ellipse at 50% 100%,rgba(180,20,220,.55) 0%,transparent 70%)', pointerEvents: 'none' }} />
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20, minWidth: 400, position: 'relative' }}>
-              {BADGE_CATEGORIES.map(cat => (
-                <div key={cat.id} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ width: 26, textAlign: 'center', flexShrink: 0 }}>
-                    <span style={{ fontSize: 17, filter: 'drop-shadow(0 1px 3px rgba(0,0,0,.6))' }}>{cat.emoji}</span>
+            {visibleCategories.length === 0 ? (
+              <div style={{ padding: '24px 8px', textAlign: 'center', fontSize: 12, color: 'rgba(255,255,255,.55)', position: 'relative' }}>
+                {t('badge_none_unlocked_yet')}
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20, minWidth: 340, position: 'relative' }}>
+                {visibleCategories.map(({ cat, tiers }) => (
+                  <div key={cat.id} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div className="badge-cat-label" style={{ textAlign: 'center', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                      <span style={{ fontSize: 17, filter: 'drop-shadow(0 1px 3px rgba(0,0,0,.6))' }}>{cat.emoji}</span>
+                      <span style={{
+                        fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,.55)', lineHeight: 1.1,
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%',
+                      }}>{cat.label}</span>
+                    </div>
+                    <div className="badge-row-gap" style={{ display: 'flex', alignItems: 'center', flexWrap: 'nowrap' }}>
+                      {tiers.map((tier) => {
+                        const ti = cat.tiers.indexOf(tier)
+                        return (
+                          <Badge3D
+                            key={tier.id}
+                            cat={cat}
+                            tier={tier}
+                            tierIdx={ti}
+                            totalTiers={cat.tiers.length}
+                            isEarned={earned.has(tier.id)}
+                            statVal={statMap[cat.id] ?? 0}
+                            setTooltip={setTooltip}
+                            justUnlocked={justUnlockedIds.has(tier.id)}
+                            isNext={nextTierByCategory.get(cat.id) === tier.id}
+                          />
+                        )
+                      })}
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'nowrap' }}>
-                    {cat.tiers.map((tier, ti) => (
-                      <Badge3D
-                        key={tier.id}
-                        cat={cat}
-                        tier={tier}
-                        tierIdx={ti}
-                        totalTiers={cat.tiers.length}
-                        isEarned={earned.has(tier.id)}
-                        statVal={statMap[cat.id] ?? 0}
-                        setTooltip={setTooltip}
-                        justUnlocked={justUnlockedIds.has(tier.id)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Pied */}
