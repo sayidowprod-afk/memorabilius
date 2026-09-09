@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 /**
- * Backfill (une seule fois par sport) : Hall of Fame/legendes + roster actuel
- * -> table sports_birthdays (sport = 'nfl' | 'baseball' | 'hockey' | 'football').
+ * Backfill (une seule fois par sport) : Hall of Fame/legendes + All-Stars de
+ * l'histoire (NFL/MLB/NHL) ou roster actuel (Football/soccer) -> table
+ * sports_birthdays (sport = 'nfl' | 'baseball' | 'hockey' | 'football').
  * Generalisation multi-sport de backfill-nba-allstar-birthdays.js (NBA garde
  * son propre script car ses sources/son repli sont specifiques). Alimente le
  * meme bot anniversaire Discord (voir src/app/api/cron/sports-birthday).
  *
- * Contrairement a la NBA, les rosters actuels ESPN des 4 sports ci-dessous
- * exposent directement dateOfBirth + headshot.href sur chaque athlete -- pas
- * besoin de repli ESPN-search/NBA-CDN pour ces joueurs. Le repli (ESPN
- * search -> Wikidata -> Wikipedia) ne sert que pour les joueurs HOF/legendes
- * absents des rosters actuels.
+ * NFL/MLB/NHL : pas de cap "top 100 actuels" (demande explicitement --
+ * impossible a definir proprement sans metrique de popularite ESPN) mais TOUS
+ * les Pro Bowlers/All-Stars de l'histoire de la ligue (listes/categories
+ * Wikipedia) -- ces noms n'ont ni date de naissance ni photo directement,
+ * repli generique (ESPN search -> Wikidata -> Wikipedia) systematique.
+ * Football (soccer) : roster actuel ESPN (marquee clubs, voir SOCCER_LEAGUES)
+ * qui expose dateOfBirth + headshot.href directement -- pas de repli necessaire.
  *
  * Usage:
  *   node scripts/backfill-sport-birthdays.js --sport=nfl
@@ -53,6 +56,14 @@ const SPORT_CONFIG = {
     hofTableIndexes: [1, 2],
     hofRowMinCells: 5,
     hofNameSelector: 'cells',
+    // Pas de categorie Wikipedia plate pour "tous les Pro Bowlers de l'histoire"
+    // -- la categorie "Pro Bowl players" ne contient que ces 9 pages-listes
+    // alphabetiques (A / B / C-F / .../ W-Z), chacune une table wikitable.
+    allStarListPages: [
+      'List_of_Pro_Bowl_players,_A', 'List_of_Pro_Bowl_players,_B', 'List_of_Pro_Bowl_players,_C–F',
+      'List_of_Pro_Bowl_players,_G–H', 'List_of_Pro_Bowl_players,_I–K', 'List_of_Pro_Bowl_players,_L–M',
+      'List_of_Pro_Bowl_players,_N–R', 'List_of_Pro_Bowl_players,_S–V', 'List_of_Pro_Bowl_players,_W–Z',
+    ],
   },
   baseball: {
     espnPath: 'baseball/mlb',
@@ -60,6 +71,9 @@ const SPORT_CONFIG = {
     hofUrl: 'https://en.wikipedia.org/wiki/List_of_members_of_the_National_Baseball_Hall_of_Fame',
     hofTableIndexes: [2],
     hofNameSelector: 'th',
+    // Deux ligues distinctes -- verifie via categorymembers, chacune couvre
+    // tous les All-Stars MLB de l'histoire selectionnes dans cette ligue.
+    allStarCategories: ['National League All-Stars', 'American League All-Stars'],
   },
   hockey: {
     espnPath: 'hockey/nhl',
@@ -67,6 +81,7 @@ const SPORT_CONFIG = {
     hofUrl: 'https://en.wikipedia.org/wiki/List_of_members_of_the_Hockey_Hall_of_Fame',
     hofTableIndexes: [1],
     hofNameSelector: 'th',
+    allStarCategories: ['National Hockey League All-Stars'],
   },
   football: {
     // Pas un seul path ESPN -- top 5 ligues europeennes, voir SOCCER_LEAGUES.
@@ -191,12 +206,62 @@ async function fetchLeagueRoster(espnPath, teamFilter) {
   return players
 }
 
-async function fetchCurrentRosterList() {
+// ── All-Stars de l'histoire (NFL/MLB/NHL) ───────────────────────────────────
+// Sur demande explicite : pas de cap "top 100 actuels" (impossible a definir
+// proprement sans metrique de popularite) mais TOUS les All-Stars/Pro
+// Bowlers de l'histoire de la ligue -- meme logique que la liste Wikipedia
+// "List of NBA All-Stars" utilisee par le script NBA. Contrairement au roster
+// ESPN, ces noms n'ont ni date de naissance ni photo directement -- retombe
+// sur le repli generique (ESPN search/Wikidata/Wikipedia) comme pour le HOF.
+async function fetchWikiCategoryPlayers(categoryTitle) {
+  const players = []
+  let cmcontinue = null
+  do {
+    const url = `https://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=${encodeURIComponent('Category:' + categoryTitle)}&cmlimit=500&cmnamespace=0&format=json${cmcontinue ? `&cmcontinue=${encodeURIComponent(cmcontinue)}` : ''}`
+    const r = await nodeFetch(url, { headers: { 'User-Agent': UA }, timeout: 15000 })
+    if (!r.ok) throw new Error(`Wikipedia categorymembers ${categoryTitle} ${r.status}`)
+    const data = await r.json()
+    for (const m of data.query?.categorymembers || []) {
+      const name = m.title.replace(/\s*\([^)]*\)\s*$/, '').trim()
+      if (name) players.push({ name, selections: 0 })
+    }
+    cmcontinue = data.continue?.cmcontinue || null
+  } while (cmcontinue)
+  return players
+}
+
+async function fetchNflProBowlList() {
+  const perPage = await Promise.all(CFG.allStarListPages.map(async page => {
+    try {
+      const r = await nodeFetch(`https://en.wikipedia.org/wiki/${page}`, { headers: { 'User-Agent': UA }, timeout: 15000 })
+      if (!r.ok) throw new Error(`${page} ${r.status}`)
+      const html = await r.text()
+      const $ = cheerio.load(html)
+      const table = $('table.wikitable').eq(0)
+      const players = []
+      table.find('tr').each((i, tr) => {
+        if (i === 0) return
+        const link = $(tr).find('td').eq(0).find('a').first()
+        const href = link.attr('href') || ''
+        const m = /\/wiki\/([^#]+)$/.exec(href)
+        if (!m) return
+        const name = decodeURIComponent(m[1]).replace(/_/g, ' ').replace(/\s*\([^)]*\)\s*$/, '').trim()
+        if (name) players.push({ name, selections: 0 })
+      })
+      return players
+    } catch (e) { console.error(page, e.message); return [] }
+  }))
+  return perPage.flat()
+}
+
+async function fetchAllStarOrRosterList() {
   if (SPORT === 'football') {
     const perLeague = await Promise.all(SOCCER_LEAGUES.map(l => fetchLeagueRoster(`soccer/${l.slug}`, l.clubs).catch(e => { console.error(`soccer/${l.slug}:`, e.message); return [] })))
     return perLeague.flat()
   }
-  return fetchLeagueRoster(CFG.espnPath, null)
+  if (SPORT === 'nfl') return fetchNflProBowlList()
+  const perCategory = await Promise.all(CFG.allStarCategories.map(c => fetchWikiCategoryPlayers(c).catch(e => { console.error(c, e.message); return [] })))
+  return perCategory.flat()
 }
 
 // ── Repli generique (ESPN search / Wikidata / Wikipedia) pour les joueurs HOF
@@ -374,12 +439,12 @@ function mergeSources(lists) {
 }
 
 async function main() {
-  console.log(`[${SPORT}] Recuperation HOF/legendes (Wikipedia) + roster actuel (ESPN)...`)
+  console.log(`[${SPORT}] Recuperation HOF/legendes + All-Stars de l'histoire (Wikipedia)...`)
   const [hof, roster] = await Promise.all([
     fetchHofList().catch(e => { console.error('HOF Wikipedia:', e.message); return [] }),
-    fetchCurrentRosterList().catch(e => { console.error('Roster ESPN:', e.message); return [] }),
+    fetchAllStarOrRosterList().catch(e => { console.error('All-Stars/Roster:', e.message); return [] }),
   ])
-  console.log(`HOF/legendes: ${hof.length} | Roster actuel: ${roster.length}`)
+  console.log(`HOF/legendes: ${hof.length} | All-Stars/Roster actuel: ${roster.length}`)
   let players = mergeSources([hof, roster])
   console.log(`${players.length} joueurs uniques apres fusion/dedoublonnage.`)
 
