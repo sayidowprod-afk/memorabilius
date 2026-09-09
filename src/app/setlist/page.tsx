@@ -246,18 +246,25 @@ export default function SetlistPage() {
     }
     const normBrand = (b: string) => { const n = norm(b); return BRAND_PARENT[n] ?? n }
 
-    // Alias de noms de collection : "Flagship" ↔ "Topps Flagship" ↔ "Topps", "NBA Hoops" ↔ "Hoops"
+    // Alias de noms de collection : "Flagship" ↔ "Topps Flagship" ↔ "Topps", "NBA Hoops" ↔ "Hoops",
+    // "Optic" ↔ "Donruss Optic" (nom colloquial tres repandu du produit phare Donruss).
+    // Valeurs avec espaces (pas de forme compactee) : necessaire pour que
+    // collWords() puisse les redecomposer mot par mot via words() plus bas.
     const COLL_ALIASES: Record<string, string[]> = {
-      topps:        ['toppsflagship', 'flagship'],
+      topps:        ['topps flagship', 'flagship'],
       toppsflagship: ['topps', 'flagship'],
-      flagship:     ['topps', 'toppsflagship'],
+      flagship:     ['topps', 'topps flagship'],
       nbahoops:     ['hoops'],
-      hoops:        ['nbahoops'],
+      hoops:        ['nba hoops'],
+      optic:        ['donruss optic'],
+      donrussoptic: ['optic'],
     }
     const collWords = (coll: string) => {
       const base = words(coll)
-      const extra = COLL_ALIASES[norm(coll)] || []
-      return [...new Set([...base, ...extra])]
+      const aliasPhrases = COLL_ALIASES[norm(coll)] || []
+      const aliasCompact = aliasPhrases.map(norm)       // forme compactee (sans espaces) -- test de sous-chaine existant
+      const aliasWords = aliasPhrases.flatMap(words)    // mots separes -- verification "pas de mot en trop" plus bas
+      return [...new Set([...base, ...aliasCompact, ...aliasWords])]
     }
 
     // Mots trop génériques pour, seuls, désigner un produit précis (ex: "Panini" matche
@@ -403,6 +410,15 @@ export default function SetlistPage() {
 
         // La collection doit matcher le nom du set
         if (!uw.some(w => norm(set.name).includes(w))) continue
+
+        // Le nom du set ne doit pas contenir de mot significatif ABSENT de la
+        // collection de la carte -- sans ca, "Hoops" matchait aussi "Hoops
+        // Premium Stock" (produit distinct, sa propre numerotation) simplement
+        // parce que son nom contient "hoops". Les alias legitimes (Optic ↔
+        // Donruss Optic, Hoops ↔ NBA Hoops...) restent geres via COLL_ALIASES
+        // ci-dessus, qui enrichit deja `uw` avant ce test.
+        const setSignificantWords = words(set.name).filter(w => w.length > 3 && !GENERIC_WORDS.has(w))
+        if (setSignificantWords.some(w => !uw.includes(w))) continue
 
         // Brand optionnel — avec résolution des sous-marques (Hoops→Panini, Flagship→Topps…)
         if (card.marque && set.brand) {
