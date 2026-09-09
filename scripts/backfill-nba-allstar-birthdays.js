@@ -5,9 +5,10 @@
  * des plus grands joueurs de l'histoire (basketball-reference.com, comble
  * les joueurs marquants jamais selectionnes All-Star -- rare mais existe)
  * + date de naissance et photo (ESPN, avec repli NBA stats CDN / Wikipedia
- * pour les tres vieux joueurs absents d'ESPN) -> table nba_allstar_birthdays.
+ * pour les tres vieux joueurs absents d'ESPN) -> table sports_birthdays (sport='nba').
  * Alimente le post anniversaire quotidien du bot Discord (voir
- * src/app/api/cron/nba-birthday).
+ * src/app/api/cron/sports-birthday). Les 4 autres sports (NFL/MLB/NHL/Football)
+ * sont backfilles par scripts/backfill-sport-birthdays.js.
  *
  * Usage:
  *   node scripts/backfill-nba-allstar-birthdays.js
@@ -389,7 +390,7 @@ async function main() {
 
   let existingByName = new Map()
   if (!FORCE) {
-    const { data: existing } = await supabase.from('nba_allstar_birthdays').select('player_name, birth_date, headshot_url')
+    const { data: existing } = await supabase.from('sports_birthdays').select('player_name, birth_date, headshot_url').eq('sport', 'nba')
     existingByName = new Map((existing || []).map(r => [r.player_name, r]))
     // Retente un joueur deja en base seulement s'il lui manque encore la
     // photo (birth_date est NOT NULL en base -- une ligne existante l'a
@@ -422,14 +423,15 @@ async function main() {
       const [y, m, d] = finalBirthDate.split('-').map(Number)
       console.log(`OK (${finalBirthDate}${finalHeadshot ? ', photo trouvee' : ', SANS photo'})`)
       if (!DRY_RUN) {
-        const { error } = await supabase.from('nba_allstar_birthdays').upsert({
+        const { error } = await supabase.from('sports_birthdays').upsert({
           player_name: p.name,
+          sport: 'nba',
           birth_date: finalBirthDate,
           birth_month: m,
           birth_day: d,
           all_star_count: p.selections,
           headshot_url: finalHeadshot,
-        }, { onConflict: 'player_name' })
+        }, { onConflict: 'player_name,sport' })
         if (error) console.log(`   -> erreur DB: ${error.message}`)
       }
       ok++

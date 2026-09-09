@@ -14,7 +14,9 @@ const supabase = createClient(
 
 // Appele par Vercel Cron une fois par jour (voir vercel.json). Idempotent via
 // nba_birthday_posts.post_date (cle primaire) -- un appel repete le meme jour
-// (retry, test manuel) ne refait rien.
+// (retry, test manuel) ne refait rien. Anciennement NBA seule, couvre
+// desormais 5 sports (nba/nfl/baseball/hockey/football) puises dans le meme
+// pool quotidien -- voir sports_birthdays.sport.
 export async function GET(req: NextRequest) {
   const auth = req.headers.get('authorization')
   if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -27,8 +29,8 @@ export async function GET(req: NextRequest) {
   if (existing) return NextResponse.json({ ok: true, dateStr, action: 'already_handled' })
 
   const { data: candidates } = await supabase
-    .from('nba_allstar_birthdays')
-    .select('id, player_name, birth_date, headshot_url')
+    .from('sports_birthdays')
+    .select('id, player_name, birth_date, headshot_url, sport')
     .eq('birth_month', month)
     .eq('birth_day', day)
     .not('headshot_url', 'is', null) // une annonce sans photo n'a pas d'interet ici
@@ -62,7 +64,7 @@ export async function GET(req: NextRequest) {
   await discordFetch(`/channels/${thread.id}/messages`, {
     method: 'POST',
     body: JSON.stringify({
-      content: `🎂 Plusieurs anniversaires marquants aujourd'hui — choisis lequel publier :\n${list.map(p => `• ${p.player_name}`).join('\n')}`,
+      content: `🎂 Plusieurs anniversaires marquants aujourd'hui — choisis lequel publier :\n${list.map(p => `• ${p.player_name} (${p.sport})`).join('\n')}`,
       components: birthdayPickButtons(dateStr, list),
     }),
   })

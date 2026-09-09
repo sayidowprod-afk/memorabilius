@@ -37,7 +37,7 @@
       "schedule": "0 * * * *"
     },
     {
-      "path": "/api/cron/nba-birthday",
+      "path": "/api/cron/sports-birthday",
       "schedule": "0 7 * * *"
     }
   ],

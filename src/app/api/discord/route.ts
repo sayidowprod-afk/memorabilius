@@ -263,7 +263,7 @@ async function handleContestComponent(body: any) {
 }
 
 // Clic admin dans le thread prive (plusieurs anniversaires marquants le meme
-// jour, voir api/cron/nba-birthday) -- l'update conditionne sur
+// jour, voir api/cron/sports-birthday) -- l'update conditionne sur
 // status='awaiting_admin' sert de verrou atomique : si deux admins cliquent
 // des boutons differents en meme temps, un seul touche une ligne (0 ligne
 // modifiee pour l'autre => on lui indique qu'un choix a deja ete fait,
@@ -281,8 +281,8 @@ async function handleBirthdayComponent(customId: string) {
   }
   const threadId: string | null = claimed[0].thread_id
 
-  const { data: player } = await supabase.from('nba_allstar_birthdays')
-    .select('id, player_name, birth_date, headshot_url').eq('id', playerId).single()
+  const { data: player } = await supabase.from('sports_birthdays')
+    .select('id, player_name, birth_date, headshot_url, sport').eq('id', playerId).single()
   if (!player) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
 
   // Publication + suppression du thread en arriere-plan (waitUntil) : l'ACK

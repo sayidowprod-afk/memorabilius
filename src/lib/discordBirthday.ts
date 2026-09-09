@@ -20,6 +20,13 @@ export interface BirthdayPlayer {
   player_name: string
   birth_date: string
   headshot_url: string | null
+  sport: string
+}
+
+// Emoji par sport pour le message public -- avant le multi-sport, "🏀" etait
+// hardcode ici (n'avait pas d'importance tant que seule la NBA existait).
+const SPORT_EMOJI: Record<string, string> = {
+  nba: '🏀', nfl: '🏈', baseball: '⚾', hockey: '🏒', football: '⚽',
 }
 
 function age(player: BirthdayPlayer, dateStr: string): number | null {
@@ -31,8 +38,9 @@ function age(player: BirthdayPlayer, dateStr: string): number | null {
 
 export function birthdayEmbed(player: BirthdayPlayer, dateStr: string) {
   const a = age(player, dateStr)
+  const emoji = SPORT_EMOJI[player.sport] || '🎉'
   return {
-    content: `🎂 Aujourd'hui c'est l'anniversaire de **${player.player_name}**${a ? ` (${a} ans)` : ''} ! Alors postons une carte pour lui souhaiter un bon anniversaire 🏀`,
+    content: `🎂 Aujourd'hui c'est l'anniversaire de **${player.player_name}**${a ? ` (${a} ans)` : ''} ! Alors postons une carte pour lui souhaiter un bon anniversaire ${emoji}`,
     embeds: player.headshot_url ? [{ image: { url: player.headshot_url }, color: 0xf39c12 }] : [],
   }
 }
@@ -52,11 +60,12 @@ export async function postPublicBirthday(supabase: SupabaseClient, player: Birth
 }
 
 // Discord limite a 5 boutons par action row et 5 rows par message (25 max) --
-// largement suffisant, le nombre de joueurs marquants nes le meme jour parmi
-// ~1000 depasse rarement 2-3 dans les faits.
+// largement suffisant. Avec 5 sports desormais confondus dans le meme pool
+// quotidien, prefixer le sport sur chaque bouton evite toute ambiguite pour
+// l'admin qui choisit (ex: deux "Chris Paul" plausibles si jamais).
 export function birthdayPickButtons(dateStr: string, candidates: BirthdayPlayer[]) {
   const buttons = candidates.slice(0, 25).map(p => ({
-    type: 2, style: 1, label: p.player_name.slice(0, 80), custom_id: `bday:${dateStr}:${p.id}`,
+    type: 2, style: 1, label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 80), custom_id: `bday:${dateStr}:${p.id}`,
   }))
   const rows = []
   for (let i = 0; i < buttons.length; i += 5) rows.push({ type: 1, components: buttons.slice(i, i + 5) })
