@@ -85,24 +85,20 @@ export async function postPublicBirthday(supabase: SupabaseClient, player: Birth
 // Discord limite a 5 boutons par action row et 5 rows par message (25 max) --
 // largement suffisant. Avec 5 sports desormais confondus dans le meme pool
 // quotidien, prefixer le sport sur chaque bouton evite toute ambiguite pour
-// l'admin qui choisit (ex: deux "Chris Paul" plausibles si jamais). Une row ne
-// mixe jamais 2 sports (chaque sport demarre sa propre row), pour rester
-// visuellement groupe comme le message texte au-dessus (groupCandidatesBySport).
+// l'admin qui choisit (ex: deux "Chris Paul" plausibles si jamais). Trie par
+// sport (meme ordre que groupCandidatesBySport) puis remplit les rows a 5 sans
+// sauter de row au changement de sport -- forcer une nouvelle row par sport
+// gaspillait des emplacements et faisait deborder la limite de 5 rows/25
+// boutons, coupant silencieusement les derniers sports de la liste (bug
+// constate en test : Hockey/Football absents des boutons alors que presents
+// dans le texte). Une row peut donc melanger 2 sports adjacents en frontiere,
+// c'est un compromis acceptable face a des boutons manquants.
 export function birthdayPickButtons(dateStr: string, candidates: BirthdayPlayer[]) {
   const sorted = [...candidates].sort((a, b) => SPORT_ORDER.indexOf(a.sport) - SPORT_ORDER.indexOf(b.sport)).slice(0, 25)
-  const rows: { type: number; components: unknown[] }[] = []
-  let currentSport: string | null = null
-  for (const p of sorted) {
-    const button = {
-      type: 2, style: 1, label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 80), custom_id: `bday:${dateStr}:${p.id}`,
-    }
-    const last = rows[rows.length - 1]
-    if (last && p.sport === currentSport && last.components.length < 5) {
-      last.components.push(button)
-    } else {
-      rows.push({ type: 1, components: [button] })
-      currentSport = p.sport
-    }
-  }
-  return rows.slice(0, 5)
+  const buttons = sorted.map(p => ({
+    type: 2, style: 1, label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 80), custom_id: `bday:${dateStr}:${p.id}`,
+  }))
+  const rows = []
+  for (let i = 0; i < buttons.length; i += 5) rows.push({ type: 1, components: buttons.slice(i, i + 5) })
+  return rows
 }
