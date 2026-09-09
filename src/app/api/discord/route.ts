@@ -279,12 +279,21 @@ async function handleBirthdayComponent(customId: string) {
   if (!claimed || claimed.length === 0) {
     return reply({ content: '⏱️ Un choix a déjà été fait pour ce jour.', flags: 64 })
   }
+  const threadId: string | null = claimed[0].thread_id
 
   const { data: player } = await supabase.from('nba_allstar_birthdays')
     .select('id, player_name, birth_date, headshot_url').eq('id', playerId).single()
   if (!player) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
 
-  await postPublicBirthday(supabase, player as BirthdayPlayer, postDate)
+  // Publication + suppression du thread en arriere-plan (waitUntil) : l'ACK
+  // Discord doit repondre sous 3s, la suite (2 appels API sequentiels) peut
+  // depasser cette marge de facon intermittente -- meme pattern que
+  // postConcoursParticipationPublic plus haut dans ce fichier.
+  waitUntil((async () => {
+    await postPublicBirthday(supabase, player as BirthdayPlayer, postDate)
+    if (threadId) await discordFetch(`/channels/${threadId}`, { method: 'DELETE' }).catch(() => {})
+  })())
+
   return reply({ content: `✅ Annonce publiée pour **${player.player_name}**.`, flags: 64 })
 }
 
