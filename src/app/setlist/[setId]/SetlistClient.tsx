@@ -61,6 +61,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
   const [previewCard, setPreviewCard] = useState<{ image: string; nom: string; variation: string } | null>(null)
   const [copied, setCopied] = useState(false)
   const [wishlistKeys, setWishlistKeys] = useState<Map<string, string>>(new Map())
+  const [addingAllWishlist, setAddingAllWishlist] = useState(false)
+  const [addedAllWishlist, setAddedAllWishlist] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 600)
@@ -111,6 +113,42 @@ export default function SetlistClient({ setId }: { setId: string }) {
       }).select('id').single()
       if (!error && data) setWishlistKeys(prev => new Map(prev).set(key, data.id))
     }
+  }
+
+  // Ajoute en une fois toutes les cartes manquantes (parmi les variations
+  // déjà chargées, même limitation que le bouton "Copier la liste" existant)
+  // et pas déjà en wishlist, en un seul insert groupé.
+  async function addAllMissingToWishlist() {
+    if (!userId || !set || addingAllWishlist) return
+    const toAdd = variations
+      .flatMap(v => v.entries.filter(e => !e.owned))
+      .filter(e => !wishlistKeys.has(wishKey(e.player_name, set.name, e.variation || '')))
+    if (toAdd.length === 0) return
+    setAddingAllWishlist(true)
+    const rows = toAdd.map(e => ({
+      user_id: userId,
+      nom: e.player_name,
+      annee: set.year ? String(set.year) : '',
+      marque: set.brand || '',
+      collection: set.name,
+      variation: e.variation || '',
+      num: '',
+      rc: e.is_rc,
+      auto: false,
+      patch: false,
+      notes: [e.card_number ? `#${e.card_number}` : '', e.team || ''].filter(Boolean).join(' · '),
+    }))
+    const { data, error } = await supabase.from('wishlist').insert(rows).select('id, nom, collection, variation')
+    if (!error && data) {
+      setWishlistKeys(prev => {
+        const n = new Map(prev)
+        for (const w of data) n.set(wishKey(w.nom, w.collection, w.variation || ''), w.id)
+        return n
+      })
+      setAddedAllWishlist(true)
+      setTimeout(() => setAddedAllWishlist(false), 2000)
+    }
+    setAddingAllWishlist(false)
   }
 
   async function loadSet() {
@@ -558,6 +596,12 @@ export default function SetlistClient({ setId }: { setId: string }) {
           }}
             style={{ padding: '10px 16px', border: `1.5px solid ${copied ? '#2ecc71' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: copied ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: copied ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
             {copied ? t('setlistdetail_copied') : t('setlistdetail_copy_list')}
+          </button>
+        )}
+        {userId && filter === 'missing' && (
+          <button onClick={addAllMissingToWishlist} disabled={addingAllWishlist}
+            style={{ padding: '10px 16px', border: `1.5px solid ${addedAllWishlist ? '#2ecc71' : '#f39c12'}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: addingAllWishlist ? 'default' : 'pointer', background: addedAllWishlist ? '#2ecc71' : '#f39c12', color: 'white', whiteSpace: 'nowrap', opacity: addingAllWishlist ? 0.6 : 1 }}>
+            {addingAllWishlist ? '…' : addedAllWishlist ? t('setlistdetail_wishlist_added') : t('setlistdetail_add_all_wishlist')}
           </button>
         )}
       </div>

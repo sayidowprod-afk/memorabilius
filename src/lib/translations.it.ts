@@ -903,6 +903,8 @@ export const it = {
   setlistdetail_filter_missing: '✗ Mancanti',
   setlistdetail_copied: '✓ Copiato!',
   setlistdetail_copy_list: '📋 Copia la lista',
+  setlistdetail_add_all_wishlist: '⭐ Aggiungi tutto alla wishlist',
+  setlistdetail_wishlist_added: '✓ Aggiunto!',
   setlistdetail_uncheck_all: 'Deseleziona tutto',
   setlistdetail_check_all: 'Seleziona tutto',
   setlistdetail_uncheck_all_short: '✗ Tutto',

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 import CardValueModule from './CardValueModule'
+import ShareButton from './ShareButton'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -80,11 +81,20 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
         <Link href="/" style={{ textDecoration: 'none' }}>
           <img src="/memorabilius-logo.png" alt="Memorabilius" height={28} style={{ display: 'block' }} />
         </Link>
-        {profile && (
-          <Link href={galLink} style={{ color: 'white', fontSize: 13, fontWeight: 700, textDecoration: 'none', opacity: 0.9 }}>
-            Galerie de {profile.display_name} →
-          </Link>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          {profile && (
+            <Link href={galLink} style={{ color: 'white', fontSize: 13, fontWeight: 700, textDecoration: 'none', opacity: 0.9 }}>
+              Galerie de {profile.display_name} →
+            </Link>
+          )}
+          <ShareButton
+            url={`/s/${cardId}`}
+            title={card.nom}
+            subtitle={[card.marque, card.collection, card.annee].filter(Boolean).join(' · ')}
+            compact
+            buttonStyle={{ background: 'rgba(255,255,255,0.18)', border: 'none', borderRadius: 8, padding: '7px 9px', cursor: 'pointer', fontSize: 16, color: 'white', display: 'flex', alignItems: 'center' }}
+          />
+        </div>
       </div>
 
       <div style={{ maxWidth: 560, margin: '0 auto', padding: '28px 16px 60px' }}>
