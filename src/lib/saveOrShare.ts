@@ -41,25 +41,36 @@ export async function saveOrShareFile(source: Blob | string, filename: string, o
 
   const { Filesystem, Directory } = await import('@capacitor/filesystem')
   const { Share } = await import('@capacitor/share')
-  // Un pont Capacitor natif qui ne repond jamais (observe en prod sur l'export
-  // setlist : le bouton restait bloque sur "Generation..." sans fin ni erreur,
-  // et resignale depuis sur d'autres exports) laissait l'appelant en attente
-  // indefinie -- un timeout transforme ce cas en echec explicite plutot qu'un
-  // blocage silencieux. Le timeout d'ecriture reste court (pure I/O, doit
-  // etre rapide) ; Share.share() en a maintenant un aussi, beaucoup plus
-  // large (le choix de l'utilisateur dans la feuille de partage peut
-  // legitimement prendre du temps) -- sans lui, un appel Share.share() qui
-  // n'aboutit jamais (l'app ne repond pas, la feuille ne s'ouvre meme pas)
-  // bloquait le bouton sur "Telechargement..." sans fin, ce qui est
-  // exactement ce qui a ete signale.
+  // Confirme en prod (rapport utilisateur, "Timeout (ecriture fichier)"
+  // systematique) : la cause reelle du "telechargement qui ne marche jamais"
+  // etait bien l'ecriture, pas le partage. Passer TOUT le fichier encode en
+  // base64 (donc ~33% plus gros que l'original) en un seul appel writeFile()
+  // envoie un unique message JSON geant a travers le pont JS<->natif de la
+  // WebView -- ca peut suffire a bloquer ce pont pendant plusieurs dizaines
+  // de secondes (voire indefiniment) sur un appareil bas/moyen de gamme des
+  // que le fichier depasse quelques Mo (une video de quelques secondes y
+  // arrive largement). C'est un probleme connu de @capacitor/filesystem sur
+  // Android -- le contournement standard est d'ecrire par morceaux (chaque
+  // appel reste petit et rapide) plutot qu'en un seul bloc.
+  const CHUNK_SIZE = 512 * 1024 // 512 Ko de texte base64 par appel
+  async function writeFileChunked(path: string, base64: string): Promise<string> {
+    const { uri } = await Filesystem.writeFile({ path, data: base64.slice(0, CHUNK_SIZE), directory: Directory.Cache })
+    for (let i = CHUNK_SIZE; i < base64.length; i += CHUNK_SIZE) {
+      await Filesystem.appendFile({ path, data: base64.slice(i, i + CHUNK_SIZE), directory: Directory.Cache })
+    }
+    return uri
+  }
+
   try {
     const base64 = await Promise.race([
       blobToBase64(blob),
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (conversion fichier)")), opts?.timeoutMs ?? 15000)),
     ])
-    const { uri } = await Promise.race([
-      Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache }),
-      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), opts?.timeoutMs ?? 15000)),
+    // Timeout large : desormais plusieurs appels natifs a la suite (un par
+    // morceau), pas un seul -- doit couvrir le total, pas juste un appel.
+    const uri = await Promise.race([
+      writeFileChunked(filename, base64),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), Math.max(opts?.timeoutMs ?? 15000, 30000))),
     ])
     await Promise.race([
       Share.share({ url: uri, title: filename }),
