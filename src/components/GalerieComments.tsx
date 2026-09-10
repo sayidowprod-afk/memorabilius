@@ -335,7 +335,8 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       const what = binderId ? 'votre classeur' : cardKey ? 'votre carte' : 'votre galerie'
       const msg = `${name} a commenté ${what} : "${message.trim().slice(0, 60)}${message.length > 60 ? '…' : ''}"`
       const lien = commentLink()
-      await supabase.from('notifications').insert({ user_id: target, type: 'comment', lu: false, message: msg, lien })
+      // L'insert dans "notifications" se fait desormais cote serveur (voir
+      // comment-notify), seul endroit capable de verifier les preferences.
       sendCommentPush(target, msg, lien)
     }
     setMessage('')
@@ -377,7 +378,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       const name = await getMyName()
       const notifMsg = `${name} a répondu à votre commentaire : "${msg.slice(0, 60)}${msg.length > 60 ? '…' : ''}"`
       const lien = commentLink()
-      await supabase.from('notifications').insert({ user_id: parentComment.author_id, type: 'comment', lu: false, message: notifMsg, lien })
+      // Voir commentaire plus haut dans ce fichier -- insert deplace cote serveur.
       sendCommentPush(parentComment.author_id, notifMsg, lien)
     }
     load()

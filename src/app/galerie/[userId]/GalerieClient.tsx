@@ -3322,19 +3322,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
                             const likerName = liker?.display_name || 'Quelqu\'un'
                             const lien = d.id_manuelle ? `/s/${d.id_manuelle}` : await getCsvCardSharePath(userId, d.f)
-                            await supabase.from('notifications').insert({
-                              user_id: userId,
-                              type: 'like',
-                              message: `${likerName} a aimé votre carte`,
-                              lien,
-                              lu: false,
-                            })
+                            // L'insert dans "notifications" se fait desormais cote serveur
+                            // (api/like-notify), seul endroit capable de verifier les
+                            // preferences de notification sans exposer la cle service-role.
                             const { data: { session } } = await supabase.auth.getSession()
                             if (session?.access_token) {
                               fetch('/api/like-notify', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-                                body: JSON.stringify({ toUserId: userId, likerName }),
+                                body: JSON.stringify({ toUserId: userId, likerName, lien }),
                               }).catch(() => {})
                             }
                           }
@@ -3514,10 +3510,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
                 const likerName = liker?.display_name || 'Quelqu\'un'
                 const lien = popup.id_manuelle ? `/s/${popup.id_manuelle}` : await getCsvCardSharePath(userId, popup.f)
-                await supabase.from('notifications').insert({ user_id: userId, type: 'like', message: `${likerName} a aimé votre carte`, lien, lu: false })
+                // Voir commentaire plus haut dans ce fichier -- insert deplace cote serveur.
                 const { data: { session } } = await supabase.auth.getSession()
                 if (session?.access_token) {
-                  fetch('/api/like-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` }, body: JSON.stringify({ toUserId: userId, likerName }) }).catch(() => {})
+                  fetch('/api/like-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` }, body: JSON.stringify({ toUserId: userId, likerName, lien }) }).catch(() => {})
                 }
               }
             }

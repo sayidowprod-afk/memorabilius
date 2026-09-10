@@ -92,7 +92,7 @@ const CHANNEL_PREF_COLUMN: Record<NonNullable<PushPayload['channelId']>, string>
 // la preference du destinataire ici couvre tous les canaux sans avoir a
 // modifier chacun des appelants (messages, trades, wishlist, communaute...).
 // Pas de payload.channelId -> on envoie quand meme (canal non classifie).
-async function isChannelAllowed(userId: string, channelId?: PushPayload['channelId']): Promise<boolean> {
+export async function isChannelAllowed(userId: string, channelId?: PushPayload['channelId']): Promise<boolean> {
   if (!channelId) return true
   const column = CHANNEL_PREF_COLUMN[channelId]
   const { data } = await supabaseAdmin.from('profiles').select(column).eq('id', userId).single()
