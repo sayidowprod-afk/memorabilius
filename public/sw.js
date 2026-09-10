@@ -10,64 +10,18 @@ const CACHE_NAME = 'memorabilius-v7'
 const IMAGE_CACHE_NAME = 'memorabilius-images-v1'
 const IMAGE_CACHE_MAX_ENTRIES = 500
 
-// La coquille HTML seule ne sert a rien hors-ligne si ses scripts/styles ne
-// se chargent pas -- avant ca, seule la NAVIGATION (le HTML) etait mise en
-// cache (voir plus bas), jamais /_next/static/* : React ne pouvait donc
-// jamais demarrer hors-ligne (page figee sur le rendu SSR initial, aucune
-// des resiliences cote app -- cache localStorage, retry -- ne s'executait,
-// puisqu'aucun JS ne tournait). Ces fichiers sont content-hashes par build
-// (nom different a chaque changement), donc un cache-first sans expiration
-// est correct : jamais perime, jamais a invalider explicitement.
-const ASSET_CACHE_NAME = 'memorabilius-assets-v1'
-const ASSET_CACHE_MAX_ENTRIES = 200
-
-function isBuildAsset(request) {
-  return request.url.includes('/_next/static/')
-}
-
-async function trimAssetCache() {
-  const cache = await caches.open(ASSET_CACHE_NAME)
-  const keys = await cache.keys()
-  const overflow = keys.length - ASSET_CACHE_MAX_ENTRIES
-  if (overflow > 0) await Promise.all(keys.slice(0, overflow).map((k) => cache.delete(k)))
-}
-
-async function handleAssetFetch(request) {
-  const cache = await caches.open(ASSET_CACHE_NAME)
-  const cached = await cache.match(request)
-  if (cached) return cached
-  try {
-    const res = await fetch(request)
-    if (res.ok) {
-      cache.put(request, res.clone())
-      trimAssetCache()
-    }
-    return res
-  } catch {
-    return cached || Response.error()
-  }
-}
-
-// Signale : sur certains appareils (rapporte sur un Nothing Phone 2a), TOUS les
-// appels aux plugins Capacitor charges via import() dynamique (Filesystem, Share,
-// App, Network, capacitor-native-biometric...) restaient bloques indefiniment,
-// alors que le code deja present dans le bundle principal (pas de chunk separe a
-// aller chercher) fonctionnait normalement. Ces import() dynamiques correspondent
-// a une requete reseau vers /_next/static/... -- exactement ce que ce handler
-// intercepte. Le Cache Storage API (caches.open/match/put, tout ce bloc) peut
-// occasionnellement se bloquer sans jamais rejeter sur certains WebView Android
-// (sous pression memoire, apres eviction des donnees de l'app par l'OS...) --
-// dans ce cas, respondWith() n'est jamais resolu, et le import() correspondant
-// reste en attente pour toujours cote JS, sans la moindre erreur. On court-circuite
-// donc avec un timeout : si handleAssetFetch ne repond pas assez vite, on bascule
-// sur un fetch() reseau direct (sans passer par le Cache Storage du tout), qui a
-// beaucoup moins de raisons de rester bloque indefiniment.
-function assetFetchWithTimeout(request) {
-  return Promise.race([
-    handleAssetFetch(request),
-    new Promise((resolve) => setTimeout(() => resolve(fetch(request)), 4000)),
-  ])
-}
+// Ancien cache-first pour /_next/static/* (chunks JS) retire entierement --
+// voir commit precedent : un timeout interne (Promise.race + setTimeout) avait
+// ete tente pour contourner un Cache Storage API bloque sans jamais rejeter,
+// mais le signalement persiste identique meme apres deploiement + redemarrage
+// complet de l'app. Si le CONTEXTE du service worker lui-meme est suspendu par
+// l'OS sur cet appareil (pas juste un appel Cache Storage lent), aucun fallback
+// interne au SW ne peut s'en sortir : le setTimeout depend du meme event loop
+// suspendu. Seule option fiable : ne plus intercepter ces requetes du tout, et
+// laisser le navigateur les gerer nativement (il a de toute facon deja son
+// propre cache HTTP standard sur ces fichiers, servis avec un Cache-Control
+// immutable par Next.js -- cette couche SW n'etait qu'une redondance qui s'est
+// revelee activement nuisible sur certains appareils).
 
 // Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
 const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
@@ -120,7 +74,10 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME && k !== IMAGE_CACHE_NAME && k !== ASSET_CACHE_NAME).map((k) => caches.delete(k)))
+      // 'memorabilius-assets-v1' (ancien cache de chunks JS, retire) est volontairement
+      // absent de cette liste : il sera nettoye comme n'importe quel cache perime, sur
+      // les appareils qui l'avaient encore.
+      Promise.all(keys.filter((k) => k !== CACHE_NAME && k !== IMAGE_CACHE_NAME).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -180,9 +137,9 @@ self.addEventListener('fetch', (event) => {
       // qui reste pense pour l'affichage <img> classique hors-ligne uniquement.
       if (event.request.mode === 'cors') return
       event.respondWith(handleImageFetch(event.request))
-    } else if (event.request.method === 'GET' && isBuildAsset(event.request)) {
-      event.respondWith(assetFetchWithTimeout(event.request))
     }
+    // /_next/static/* (chunks JS, dont ceux des import() dynamiques) n'est plus
+    // intercepte du tout -- laisse au navigateur, voir commentaire plus haut.
     return
   }
   event.respondWith(

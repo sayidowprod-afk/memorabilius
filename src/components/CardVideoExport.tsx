@@ -561,77 +561,26 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     }
     ctx.restore()
 
-    // ── Écran de fin ── logo (avec halo accent + léger rebond d'entrée),
-    // séparateur, nom de la carte puis accroche -- en fondu par-dessus le
-    // fond assombri, une fois carte et panneau estompés. Remplace le premier
-    // jet (logo + accroche plaqués tels quels, sans mise en scène ni lien
-    // avec la carte qu'on vient de voir).
-    if (endFadeIn > 0) {
-      // Fond assombri -- concentre l'attention sur le logo/l'accroche au lieu
-      // de laisser le halo/grain du fond de la carte "flotter" derrière sans
-      // raison une fois celle-ci disparue.
-      ctx.save()
-      ctx.globalAlpha = endFadeIn * (isDark ? 0.55 : 0.4)
-      ctx.fillStyle = isDark ? '#000000' : '#ffffff'
-      ctx.fillRect(0, 0, W, H)
-      ctx.restore()
-
+    // ── Écran de fin ── simple fondu du logo + accroche, superposés au fond
+    // déjà en place, une fois carte et panneau estompés. Les versions
+    // précédentes (fond assombri, halo pulsé, rebond du logo, séparateur)
+    // ont été jugées pas belles / pas fluides -- revenu à quelque chose de
+    // volontairement sobre : un seul fondu net, sans animation de plus.
+    if (endFadeIn > 0 && logoImg && logoImg.naturalWidth > 0) {
       const cx = W / 2
-      const cy = CARD_ZONE_H * 0.44
+      const cy = CARD_ZONE_H * 0.46
       const logoW = W * 0.30
-      const logoH = logoW * (logoImg && logoImg.naturalWidth > 0 ? logoImg.naturalHeight / logoImg.naturalWidth : 0.28)
+      const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
 
-      // Entrée avec léger rebond (dépassement puis retour à l'échelle finale)
-      // au lieu d'un simple fondu statique -- donne un vrai point d'orgue à
-      // la sortie plutôt qu'un élément qui apparaît platement.
-      const c1 = 1.7, c3 = c1 + 1
-      const backT = endFadeIn - 1
-      const logoScale = 1 + c3 * Math.pow(backT, 3) + c1 * Math.pow(backT, 2)
+      ctx.save()
+      ctx.globalAlpha = endFadeIn
+      ctx.drawImage(logoImg, cx - logoW / 2, cy - logoH / 2, logoW, logoH)
 
-      // Halo doux derrière le logo, léger pouls continu -- reprend la couleur
-      // d'accent de la vidéo pour garder un fil visuel avec le reste, sans
-      // jamais toucher aux pixels de la carte elle-même (déjà effacée ici).
-      const glowPulse = 0.92 + 0.08 * Math.sin(p * Math.PI * 4)
-      const glowR = logoW * 0.9 * glowPulse
-      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR)
-      glow.addColorStop(0, `rgba(${ar},${ag},${ab},${0.30 * endFadeIn})`)
-      glow.addColorStop(1, 'rgba(0,0,0,0)')
-      ctx.fillStyle = glow
-      ctx.fillRect(cx - glowR, cy - glowR, glowR * 2, glowR * 2)
-
-      if (logoImg && logoImg.naturalWidth > 0) {
-        ctx.save()
-        ctx.globalAlpha = endFadeIn
-        ctx.translate(cx, cy)
-        ctx.scale(logoScale, logoScale)
-        ctx.drawImage(logoImg, -logoW / 2, -logoH / 2, logoW, logoH)
-        ctx.restore()
-      }
-
-      // Séparateur + nom de la carte + accroche -- légèrement décalés après
-      // le logo pour un enchaînement en deux temps plutôt qu'un bloc figé.
-      const taglineT = Math.min(1, Math.max(0, (endFadeIn - 0.35) / 0.65))
-      const taglineA = easeInOut(taglineT)
-      if (taglineA > 0) {
-        ctx.save()
-        ctx.globalAlpha = taglineA
-        const dividerY = cy + logoH / 2 + H * 0.030
-        ctx.strokeStyle = `${accent}88`
-        ctx.lineWidth = Math.max(1, W * 0.0022)
-        ctx.beginPath()
-        ctx.moveTo(cx - W * 0.05, dividerY); ctx.lineTo(cx + W * 0.05, dividerY)
-        ctx.stroke()
-
-        ctx.textAlign = 'center'; ctx.textBaseline = 'top'
-        ctx.fillStyle = textMain
-        ctx.font = `700 ${Math.round(W * 0.026)}px Inter, sans-serif`
-        ctx.fillText(truncate(ctx, card.n, W * 0.8), cx, dividerY + H * 0.018)
-
-        ctx.fillStyle = accent
-        ctx.font = `700 ${Math.round(W * 0.021)}px Inter, sans-serif`
-        ctx.fillText(t('video_cta'), cx, dividerY + H * 0.018 + W * 0.038)
-        ctx.restore()
-      }
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top'
+      ctx.fillStyle = accent
+      ctx.font = `700 ${Math.round(W * 0.024)}px Inter, sans-serif`
+      ctx.fillText(t('video_cta'), cx, cy + logoH / 2 + H * 0.028)
+      ctx.restore()
     }
   }
 
