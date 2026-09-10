@@ -69,8 +69,14 @@ export async function checkAndAwardBadgeXP(supabase: SupabaseClient, userId: str
   const newlyEarned = earnedIds.filter(id => !seenSet.has(id))
   if (newlyEarned.length === 0) return
 
+  // xp_events_badge_unique (migration 20260826) rejette deja un doublon en
+  // base -- gere explicitement 23505 ici, comme awardChallengeXPIfNeeded,
+  // au lieu de laisser awardXP ignorer silencieusement l'erreur (deux appels
+  // concurrents pour le meme palier ne versent donc jamais l'XP deux fois,
+  // qu'ils arrivent en meme temps ou non).
   for (const id of newlyEarned) {
-    await awardXP(supabase, userId, 'badge_unlocked', XP_AWARDS.BADGE_UNLOCKED, { badge_id: id })
+    const { error } = await supabase.from('xp_events').insert({ user_id: userId, type: 'badge_unlocked', amount: XP_AWARDS.BADGE_UNLOCKED, meta: { badge_id: id } })
+    if (error && error.code !== '23505') throw error
   }
   await supabase.from('profiles').update({ xp_badges_seen: [...seen, ...newlyEarned] }).eq('id', userId)
 }

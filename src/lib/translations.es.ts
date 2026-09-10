@@ -498,6 +498,7 @@ export const es = {
   wishlist_empty_sub: 'Añade las cartas que buscas',
   wishlist_owned_by: 'Poseída por:',
   wishlist_none: 'Ninguna carta buscada',
+  wishlist_remove_error: 'Error al eliminar, inténtalo de nuevo.',
   wishlist_num_label: 'Numeración',
   wishlist_variation_label: 'Variación',
   wishlist_notes_label: 'Notas',

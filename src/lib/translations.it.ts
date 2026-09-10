@@ -498,6 +498,7 @@ export const it = {
   wishlist_empty_sub: 'Aggiungi le carte che stai cercando',
   wishlist_owned_by: 'Posseduta da:',
   wishlist_none: 'Nessuna carta ricercata',
+  wishlist_remove_error: 'Rimozione non riuscita, riprova.',
   wishlist_num_label: 'Numerazione',
   wishlist_variation_label: 'Variazione',
   wishlist_notes_label: 'Note',

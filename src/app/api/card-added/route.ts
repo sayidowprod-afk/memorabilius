@@ -42,14 +42,11 @@ export async function POST(req: NextRequest) {
 
     const month = new Date().toISOString().slice(0, 7)
 
-    const { data: ma } = await supabase
-      .from('monthly_additions').select('count')
-      .eq('user_id', userId).eq('month', month).maybeSingle()
-
-    await supabase.from('monthly_additions').upsert(
-      { user_id: userId, month, count: (ma?.count || 0) + 1 },
-      { onConflict: 'user_id,month' }
-    )
+    // Increment atomique (RPC) plutot que lecture-modification-ecriture --
+    // deux ajouts rapproches pour le meme utilisateur pouvaient sinon lire la
+    // meme valeur et en perdre un silencieusement (meme classe de bug que
+    // increment_stats, deja corrige de la meme facon).
+    await supabase.rpc('increment_monthly_additions', { p_user_id: userId, p_month: month, p_delta: 1 })
 
     // Recompte complet plutot qu'un increment delta -- un delta qui echoue
     // silencieusement (timeout, erreur reseau cote client sur ce fetch fire-
@@ -84,16 +81,8 @@ export async function DELETE(req: NextRequest) {
     // d'un fetch serveur ici -- la carte a deja ete supprimee de
     // cartes_manuelles au moment ou ce endpoint est appele (voir GalerieClient),
     // donc un SELECT par id ne la trouverait plus.
-    const { data: ma } = await supabase
-      .from('monthly_additions').select('count')
-      .eq('user_id', userId).eq('month', month).maybeSingle()
-
     if (createdAt && createdAt >= startOfMonth) {
-      const newCount = Math.max(0, (ma?.count || 0) - 1)
-      await supabase.from('monthly_additions').upsert(
-        { user_id: userId, month, count: newCount },
-        { onConflict: 'user_id,month' }
-      )
+      await supabase.rpc('increment_monthly_additions', { p_user_id: userId, p_month: month, p_delta: -1 })
     }
 
     // Recompte complet plutot qu'un decrement delta -- voir le meme

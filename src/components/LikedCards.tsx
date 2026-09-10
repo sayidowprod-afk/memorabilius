@@ -49,8 +49,12 @@ export default function LikedCards({ userId }: { userId: string }) {
 
   const unlike = async (item: LikedCard) => {
     setItems(prev => prev.filter(i => !(i.card_key === item.card_key && i.gallery_user_id === item.gallery_user_id)))
-    await supabase.from('card_likes').delete()
+    const { error } = await supabase.from('card_likes').delete()
       .eq('card_key', item.card_key).eq('gallery_user_id', item.gallery_user_id).eq('liker_user_id', userId)
+    // Echec (RLS, reseau) : la carte disparait puis "revient" au lieu de
+    // rester silencieusement retiree en local alors que la BDD ne l'a jamais
+    // ete -- remet la carte dans la liste plutot que de laisser l'UI mentir.
+    if (error) setItems(prev => [...prev, item])
   }
 
   if (loading) return (

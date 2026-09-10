@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useLang } from '@/lib/LangContext'
 import EmptyState from '@/components/EmptyState'
+import { toast } from '@/lib/toast'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -180,7 +181,8 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   }
 
   const remove = async (id: string) => {
-    await supabase.from('wishlist').delete().eq('id', id)
+    const { error } = await supabase.from('wishlist').delete().eq('id', id)
+    if (error) { toast.error(t('wishlist_remove_error')); return }
     setItems(prev => prev.filter(i => i.id !== id))
   }
 
