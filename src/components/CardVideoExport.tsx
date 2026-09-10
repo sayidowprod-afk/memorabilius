@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { toast } from '@/lib/toast'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -42,6 +43,8 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const [progress, setProgress] = useState(0)
   const [done, setDone] = useState(false)
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  const [recordError, setRecordError] = useState<string | null>(null)
+  const [downloading, setDownloading] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [codec, setCodec] = useState<'webm' | 'mp4'>('webm')
   const [vfmt, setVfmt] = useState<VideoFormat>('default')
@@ -448,7 +451,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const { w, h } = scaledDims(vfmtRef.current)
     canvas.width = w; canvas.height = h
 
-    setRecording(true); setProgress(0); setDone(false); setVideoUrl(null)
+    setRecording(true); setProgress(0); setDone(false); setVideoUrl(null); setRecordError(null)
     const ctx = canvas.getContext('2d')!
     const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
 
@@ -469,9 +472,28 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       mimeType,
       videoBitsPerSecond: Math.min(sizeCap, Math.max(3_000_000, qualityBitrate)),
     })
+    // Si l'onglet/l'app passe en arrière-plan pendant l'enregistrement (l'utilisateur
+    // change d'appli, verrouille son téléphone...), requestAnimationFrame est mis en
+    // pause par le navigateur/WebView -- plus aucune frame n'est dessinée ni capturée,
+    // et MediaRecorder.stop() produit alors un blob quasi vide (fichier "corrompu" de
+    // quelques octets une fois écrit sur disque). On le détecte pour donner un message
+    // utile plutôt qu'un fichier silencieusement cassé.
+    let wentHidden = false
+    const onVisibilityChange = () => { if (document.hidden) wentHidden = true }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
     recorder.onstop = () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+      const totalBytes = chunks.reduce((sum, c) => sum + c.size, 0)
+      // Une vidéo de plusieurs secondes valide fait au minimum plusieurs dizaines de Ko
+      // (bitrate plancher de 3 Mb/s) -- en dessous, l'enregistrement a échoué (rien capturé).
+      if (totalBytes < 20_000) {
+        setRecording(false)
+        setRecordError(wentHidden ? t('video_error_backgrounded') : t('video_record_error'))
+        return
+      }
       setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
       setDone(true); setRecording(false)
     }
@@ -499,9 +521,21 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   }
 
   const download = async () => {
-    if (!videoUrl) return
-    const blob = await (await fetch(videoUrl)).blob()
-    await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`)
+    if (!videoUrl || downloading) return
+    setDownloading(true)
+    try {
+      const blob = await (await fetch(videoUrl)).blob()
+      if (blob.size < 20_000) throw new Error('empty-blob')
+      // Timeout d'écriture natif plus large que le défaut (15s, calibré pour de petits
+      // PDF/images) -- une vidéo de plusieurs Mo peut légitimement prendre plus longtemps
+      // à écrire sur un appareil bas de gamme, un timeout trop court la faisait échouer
+      // silencieusement avant que l'écriture n'ait fini.
+      await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`, { timeoutMs: 45000 })
+    } catch (e) {
+      toast.error(t('video_download_error'))
+    } finally {
+      setDownloading(false)
+    }
   }
 
   const chip = (active: boolean) => ({
@@ -567,16 +601,22 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
           </div>
         )}
 
+        {recordError && (
+          <p style={{ color: '#f39c12', fontSize: 12, margin: '0 0 14px', lineHeight: 1.5 }}>
+            ⚠️ {recordError}
+          </p>
+        )}
+
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
           {!recording && !done && (
             <button onClick={startRecording} style={{ background: accent, color: '#fff', border: 'none', borderRadius: 10, padding: '11px 22px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
-              ▶ {t('video_generate')}
+              {recordError ? `🔄 ${t('video_redo')}` : `▶ ${t('video_generate')}`}
             </button>
           )}
           {done && videoUrl && (
             <>
-              <button onClick={download} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 10, padding: '11px 20px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
-                ⬇ {t('video_download')} (.{codec})
+              <button onClick={download} disabled={downloading} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 10, padding: '11px 20px', fontWeight: 800, cursor: downloading ? 'default' : 'pointer', fontSize: 14, opacity: downloading ? 0.6 : 1 }}>
+                {downloading ? `⏳ ${t('video_downloading')}` : `⬇ ${t('video_download')} (.${codec})`}
               </button>
               <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                 🔄 {t('video_redo')}

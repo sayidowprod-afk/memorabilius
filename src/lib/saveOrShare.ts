@@ -18,7 +18,7 @@ async function dataUrlToBlob(dataUrl: string): Promise<Blob> {
  * la WebView Android) ou l'enregistre + ouvre le partage natif sur l'app,
  * seule façon fiable d'exporter un fichier depuis une WebView Capacitor.
  */
-export async function saveOrShareFile(source: Blob | string, filename: string) {
+export async function saveOrShareFile(source: Blob | string, filename: string, opts?: { timeoutMs?: number }) {
   const isNative = Capacitor.isNativePlatform()
   const blob = typeof source === 'string' ? await dataUrlToBlob(source) : source
 
@@ -50,7 +50,7 @@ export async function saveOrShareFile(source: Blob | string, filename: string) {
   // native (peut prendre du temps sans que ce soit un bug).
   const { uri } = await Promise.race([
     Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache }),
-    new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), 15000)),
+    new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), opts?.timeoutMs ?? 15000)),
   ])
   await Share.share({ url: uri, title: filename })
 }
