@@ -86,7 +86,7 @@ export function normalizeGuideBlocks(raw: unknown, legacyContent?: string | null
         : Array.isArray(b.oddsRows) && b.oddsRows.length > 0
           ? { columns: ['Valeur'], rows: b.oddsRows.map((r: any) => ({ label: r.label || '', values: [r.value || ''] })) }
           : { columns: [], rows: [] }
-      return { id: b.id, type: 'insert_grid', title: b.title, cards: Array.isArray(b.cards) ? b.cards : [], oddsTable, players: Array.isArray(b.players) ? b.players : [] }
+      return { id: b.id, type: 'insert_grid', title: b.title, cards: Array.isArray(b.cards) ? b.cards : [], oddsTable, players: Array.isArray(b.players) ? b.players : [], width: b.width }
     }
     return b
   })
