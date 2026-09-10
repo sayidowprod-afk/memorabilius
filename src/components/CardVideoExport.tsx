@@ -655,7 +655,12 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
       : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
       : 'video/webm'
-    const HOLD = 700
+    // 700ms ne laissait quasiment aucun temps réel à l'écran de fin (fondu de
+    // sortie de la carte + apparition du logo se chevauchaient sur ~350-400ms
+    // à peine avant la coupe) -- signalé comme brusque. Palier bien plus long
+    // pour que chaque étape (carte qui s'estompe, logo qui rebondit, texte qui
+    // suit) ait le temps de se voir, avec un vrai temps de pause à la fin.
+    const HOLD = 2200
     const totalSecs = (DURATION + HOLD + 300) / 1000
     const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5)
     const pixels = w * h
