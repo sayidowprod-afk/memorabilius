@@ -156,7 +156,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
 
     // ── Fond statique mis en cache ────────────────────────────────────────────
-    const bgKey = `${W}x${H}-${isDark}-${accent}-${!!logoImg}`
+    const bgKey = `${W}x${H}-${isDark}-${accent}`
     if (!bgCache.current || bgCache.current.key !== bgKey) {
       const oc = document.createElement('canvas')
       oc.width = W; oc.height = H
@@ -202,25 +202,44 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       const grainPattern = octx.createPattern(noise, 'repeat')
       if (grainPattern) { octx.fillStyle = grainPattern; octx.fillRect(0, 0, W, H) }
 
-      // ── Logo Memorabilius ── déplacé en haut du cadre, façon bug de chaîne
-      // discret et permanent, au lieu d'être coincé en bas à droite du panneau
-      // infos à se disputer la place avec le texte année/marque/collection.
-      if (logoImg && logoImg.naturalWidth > 0) {
-        const logoW = W * 0.24
-        const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
-        octx.globalAlpha = isDark ? 0.62 : 0.75
-        octx.drawImage(logoImg, W * 0.055, H * 0.032, logoW, logoH)
-        octx.globalAlpha = 1
-      } else {
-        octx.textAlign = 'left'; octx.textBaseline = 'top'
-        octx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.7)` : `rgba(${ar},${ag},${ab},0.8)`
-        octx.font = `700 ${Math.round(W * 0.03)}px Inter, sans-serif`
-        octx.fillText('memorabilius.fr', W * 0.055, H * 0.032)
-      }
-
       bgCache.current = { key: bgKey, canvas: oc }
     }
     ctx.drawImage(bgCache.current.canvas, 0, 0)
+
+    // ── Zone de sécurité format Reel (9:16) ── les Reels/Stories s'affichent
+    // sous l'UI native de l'appli (barre de progression, boutons de réaction)
+    // qui recouvre le haut et le bas de l'écran -- une marge purement calquée
+    // sur le format Défaut (moins extrême, 9:13) plaçait logo/panneau trop
+    // près des bords sur ce format précis. Marge additionnelle seulement pour
+    // les formats très hauts (aspect > 1.6, en pratique : Reel uniquement).
+    const aspect0     = H / W
+    const isReelish   = aspect0 > 1.6
+    const safeTopExtra    = isReelish ? H * 0.035 : 0
+    const safeBottomExtra = isReelish ? H * 0.045 : 0
+
+    // ── Logo Memorabilius (watermark) ── en haut du cadre, léger souffle
+    // (échelle) au même rythme que le zoom/rebond de la carte pour donner un
+    // peu de vie au lieu d'un logo totalement figé pendant 6 secondes. Dessiné
+    // hors du fond mis en cache (qui ne change pas frame à frame) pour pouvoir
+    // varier son échelle à chaque image.
+    const logoPulse = 1 + 0.035 * Math.sin(p * Math.PI * 2)
+    if (logoImg && logoImg.naturalWidth > 0) {
+      const logoW = W * 0.24 * logoPulse
+      const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
+      const lx = W * 0.055, ly = H * 0.032 + safeTopExtra
+      ctx.save()
+      ctx.globalAlpha = isDark ? 0.62 : 0.75
+      ctx.translate(lx, ly)
+      ctx.drawImage(logoImg, 0, 0, logoW, logoH)
+      ctx.restore()
+    } else {
+      ctx.save()
+      ctx.textAlign = 'left'; ctx.textBaseline = 'top'
+      ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.7)` : `rgba(${ar},${ag},${ab},0.8)`
+      ctx.font = `700 ${Math.round(W * 0.03 * logoPulse)}px Inter, sans-serif`
+      ctx.fillText('memorabilius.fr', W * 0.055, H * 0.032 + safeTopExtra)
+      ctx.restore()
+    }
 
     // ── Layout ────────────────────────────────────────────────────────────────
     const INFO_H     = Math.round(H * 0.19)
@@ -366,7 +385,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     // identique à chaque frame (dégradés, shadowBlur des badges, plusieurs
     // fillText avec changement de police) en pure perte.
     const PM = W * 0.045          // marge horizontale du panneau
-    const PB = H * 0.022          // marge basse -- le panneau flotte, ne touche pas le bord
+    const PB = H * 0.022 + safeBottomExtra // marge basse -- le panneau flotte, ne touche pas le bord
     const panelW = W - PM * 2
     const panelRadius = Math.round(W * 0.055)
     const panelTop = H - INFO_H
@@ -482,12 +501,35 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     // peu de rythme à l'ouverture (carte, puis badges/nom juste après).
     const panelIntroT = Math.min(1, Math.max(0, (p - 0.03) / 0.08))
     const panelIntroAlpha = easeInOut(panelIntroT) * (1 - endFadeOut)
+
+    // ── Petit "settle" du panneau à la fin de chaque demi-tour de la carte ──
+    // le panneau restait totalement immobile pendant que la carte se retourne
+    // juste au-dessus ; un très léger rebond (squash vertical amorti) au moment
+    // précis où la carte termine sa rotation (p≈0.48 : face → dos, p≈0.92 :
+    // dos → face) renforce la sensation physique du flip sans toucher au reste
+    // du panneau (image mise en cache, inchangée).
+    let bounce = 0
+    for (const fp of [0.48, 0.92]) {
+      const d = p - fp
+      if (d >= 0 && d < 0.12) {
+        const lt = d / 0.12
+        bounce += Math.sin(lt * Math.PI * 2.2) * (1 - lt) * 0.05
+      }
+    }
+
     ctx.save()
     ctx.globalAlpha = panelIntroAlpha
     ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
     ctx.shadowBlur = W * 0.028
     ctx.shadowOffsetY = H * 0.006
-    ctx.drawImage(infoCache.current.canvas, PM, panelTop + (1 - panelIntroAlpha) * H * 0.02)
+    const panelY = panelTop + (1 - panelIntroAlpha) * H * 0.02
+    if (Math.abs(bounce) > 0.001) {
+      ctx.translate(PM + panelW / 2, panelY + panelH)
+      ctx.scale(1, 1 - bounce)
+      ctx.drawImage(infoCache.current.canvas, -panelW / 2, -panelH)
+    } else {
+      ctx.drawImage(infoCache.current.canvas, PM, panelY)
+    }
     ctx.restore()
 
     // ── Écran de fin ── logo + accroche centrés, en fondu par-dessus le fond
