@@ -23,6 +23,10 @@ const PHOTO_FORMATS = {
 } as const
 type PhotoFormat = keyof typeof PHOTO_FORMATS
 
+// Mêmes couleurs proposées que l'export vidéo, choisissable indépendamment
+// de la couleur de bordure du profil (qui ne sert que de valeur par défaut).
+const ACCENT_PRESETS = ['#003DA6', '#E67E22', '#2E7D32', '#C0392B', '#7B1FA2', '#16A085', '#B8860B', '#E91E8C']
+
 function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): string {
   if (!text || ctx.measureText(text).width <= maxW) return text
   let t = text
@@ -45,12 +49,15 @@ const loadImage = (src: string): Promise<HTMLImageElement> =>
     img.src = bustedSrc
   })
 
-export default function CardPhotoExport({ card, accent, onClose }: Props) {
+export default function CardPhotoExport({ card, accent: accentProp, onClose }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [pfmt, setPfmt] = useState<PhotoFormat>('portrait')
   const [side, setSide] = useState<'recto' | 'verso'>('recto')
   const [generating, setGenerating] = useState(false)
+  // Couleur d'accent de la photo, choisissable indépendamment de la couleur
+  // de bordure du profil (accentProp) qui ne sert que de valeur par défaut.
+  const [accent, setAccent] = useState(accentProp)
   const { t } = useLang()
 
   const hasVerso = !!card.b && card.b !== card.f
@@ -301,7 +308,7 @@ export default function CardPhotoExport({ card, accent, onClose }: Props) {
     ctx.restore() // fin du clip panneau
   }
 
-  useEffect(() => { draw() }, [pfmt, theme, side]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { draw() }, [pfmt, theme, side, accent]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const download = async () => {
     const canvas = canvasRef.current
@@ -391,6 +398,25 @@ export default function CardPhotoExport({ card, accent, onClose }: Props) {
                 </div>
               </div>
             )}
+          </div>
+          <div>
+            <p style={groupLabel}>{t('video_accent')}</p>
+            <div style={{ display: 'flex', gap: 9, alignItems: 'center', flexWrap: 'wrap' }}>
+              {ACCENT_PRESETS.map(c => (
+                <button key={c} onClick={() => setAccent(c)} aria-label={c} title={c} style={{
+                  width: 24, height: 24, borderRadius: '50%', background: c, border: 'none', cursor: 'pointer', padding: 0,
+                  boxShadow: accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
+                }} />
+              ))}
+              <label title={t('video_accent_custom')} style={{
+                width: 24, height: 24, borderRadius: '50%', position: 'relative', cursor: 'pointer', display: 'block',
+                background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
+                boxShadow: !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
+              }}>
+                <input type="color" value={accent} onChange={e => setAccent(e.target.value)}
+                  style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', padding: 0, width: '100%', height: '100%' }} />
+              </label>
+            </div>
           </div>
         </div>
 
