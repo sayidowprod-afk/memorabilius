@@ -57,6 +57,22 @@ function slugify(text: string): string {
 
 export interface TocItem { id: string; text: string; level: 2 | 3 }
 
+// Le HTML stocké par l'éditeur contient des entités ("&amp;" pour "&"...) --
+// utiles pour un rendu via dangerouslySetInnerHTML, mais le sommaire affiche
+// `text` comme simple chaîne React (pas de HTML), donc "&amp;" apparaissait
+// tel quel au lieu de "&".
+function decodeHtmlEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;|&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
+    .replace(/&#x([0-9a-fA-F]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+}
+
 // Sommaire auto-généré à partir des H2/H3 des blocs texte, dans l'ordre du guide.
 // Les id injectés dans injectHeadingIds() suivent EXACTEMENT le même ordre de
 // parcours (blocs texte/texte+image, dans l'ordre, un <h2>/<h3> à la fois) pour
@@ -70,7 +86,7 @@ export function extractToc(blocks: GuideBlock[]): TocItem[] {
     re.lastIndex = 0
     let m: RegExpExecArray | null
     while ((m = re.exec(b.html))) {
-      const text = m[2].replace(/<[^>]+>/g, '').trim()
+      const text = decodeHtmlEntities(m[2].replace(/<[^>]+>/g, '')).trim()
       if (!text) continue
       let slug = slugify(text) || 'section'
       const count = seen.get(slug) || 0
