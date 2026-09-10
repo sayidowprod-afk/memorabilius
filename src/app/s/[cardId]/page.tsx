@@ -37,14 +37,11 @@ export async function generateMetadata(
     // texte fonce d'origine, illisible (signale en prod, arrivee via un lien
     // de notification "carte aimee").
     colorScheme: 'light',
-    openGraph: {
-      title, description: desc,
-      images: card.image_recto ? [{ url: card.image_recto, width: 400, height: 560 }] : [],
-    },
-    twitter: {
-      card: 'summary_large_image', title, description: desc,
-      images: card.image_recto ? [card.image_recto] : [],
-    },
+    // Les images OG/Twitter viennent de opengraph-image.tsx (convention de
+    // fichier Next.js) -- les definir ici les ecraserait avec la photo brute
+    // de la carte au lieu de l'aperçu marque genere.
+    openGraph: { title, description: desc },
+    twitter: { card: 'summary_large_image', title, description: desc },
   }
 }
 
