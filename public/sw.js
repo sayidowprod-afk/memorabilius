@@ -48,6 +48,27 @@ async function handleAssetFetch(request) {
   }
 }
 
+// Signale : sur certains appareils (rapporte sur un Nothing Phone 2a), TOUS les
+// appels aux plugins Capacitor charges via import() dynamique (Filesystem, Share,
+// App, Network, capacitor-native-biometric...) restaient bloques indefiniment,
+// alors que le code deja present dans le bundle principal (pas de chunk separe a
+// aller chercher) fonctionnait normalement. Ces import() dynamiques correspondent
+// a une requete reseau vers /_next/static/... -- exactement ce que ce handler
+// intercepte. Le Cache Storage API (caches.open/match/put, tout ce bloc) peut
+// occasionnellement se bloquer sans jamais rejeter sur certains WebView Android
+// (sous pression memoire, apres eviction des donnees de l'app par l'OS...) --
+// dans ce cas, respondWith() n'est jamais resolu, et le import() correspondant
+// reste en attente pour toujours cote JS, sans la moindre erreur. On court-circuite
+// donc avec un timeout : si handleAssetFetch ne repond pas assez vite, on bascule
+// sur un fetch() reseau direct (sans passer par le Cache Storage du tout), qui a
+// beaucoup moins de raisons de rester bloque indefiniment.
+function assetFetchWithTimeout(request) {
+  return Promise.race([
+    handleAssetFetch(request),
+    new Promise((resolve) => setTimeout(() => resolve(fetch(request)), 4000)),
+  ])
+}
+
 // Seuls les assets vraiment statiques sont pré-cachés (pas les pages Next.js)
 const STATIC_ASSETS = ['/offline.html', '/icon-192.png', '/icon-512.png', '/manifest.json']
 
@@ -160,7 +181,7 @@ self.addEventListener('fetch', (event) => {
       if (event.request.mode === 'cors') return
       event.respondWith(handleImageFetch(event.request))
     } else if (event.request.method === 'GET' && isBuildAsset(event.request)) {
-      event.respondWith(handleAssetFetch(event.request))
+      event.respondWith(assetFetchWithTimeout(event.request))
     }
     return
   }
