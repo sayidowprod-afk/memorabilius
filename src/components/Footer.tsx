@@ -39,6 +39,14 @@ export default function Footer() {
           <button onClick={() => setFeedbackOpen(true)} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}>
             {t('feedback_title')}
           </button>
+          {/* Lien temporaire de diagnostic natif -- l'app n'a pas de barre d'adresse,
+              donc un lien externe (SMS, notes...) tape par l'utilisateur s'ouvre dans
+              le navigateur au lieu de l'app (App Links non fiable sur tous les
+              appareils/config). Un lien interne comme celui-ci reste dans la meme
+              WebView, sans passer par la resolution d'intent Android. A retirer une
+              fois le diagnostic Filesystem termine (Nothing Phone 2a, timeout
+              ecriture persistant). */}
+          <Link href="/native-diag" style={linkStyle}>Diag natif</Link>
           <a
             href="https://ko-fi.com/gknnn_cards"
             target="_blank"
