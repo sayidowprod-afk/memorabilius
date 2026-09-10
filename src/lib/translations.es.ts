@@ -1197,6 +1197,7 @@ export const es = {
   video_theme: 'Tema',
   video_accent: 'Color',
   video_accent_custom: 'Color personalizado',
+  video_cta: 'Crea tu colección →',
   video_dark: 'Oscuro',
   video_light: 'Claro',
   video_generate: 'Generar',

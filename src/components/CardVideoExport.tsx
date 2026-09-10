@@ -26,6 +26,20 @@ type VideoFormat = keyof typeof VIDEO_FORMATS
 // sans aller changer un réglage de profil.
 const ACCENT_PRESETS = ['#003DA6', '#E67E22', '#2E7D32', '#C0392B', '#7B1FA2', '#16A085', '#B8860B', '#E91E8C']
 
+// Réutilise les derniers réglages choisis (format/thème/codec) d'un export à
+// l'autre -- exporter plusieurs cartes à la suite repartait sinon à chaque
+// fois des valeurs par défaut. Pas la couleur d'accent : elle reste liée à la
+// carte du moment (valeur par défaut = sa propre couleur de bordure).
+const PREFS_KEY = 'memorabilius:video-export-prefs'
+type VideoPrefs = { vfmt: VideoFormat; theme: 'dark' | 'light'; codec: 'webm' | 'mp4' }
+function loadPrefs(): Partial<VideoPrefs> {
+  if (typeof window === 'undefined') return {}
+  try { return JSON.parse(localStorage.getItem(PREFS_KEY) || '{}') } catch { return {} }
+}
+function savePrefs(prefs: VideoPrefs) {
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)) } catch {}
+}
+
 
 function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): string {
   if (!text || ctx.measureText(text).width <= maxW) return text
@@ -42,9 +56,9 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [recordError, setRecordError] = useState<string | null>(null)
   const [downloading, setDownloading] = useState(false)
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
-  const [codec, setCodec] = useState<'webm' | 'mp4'>('webm')
-  const [vfmt, setVfmt] = useState<VideoFormat>('default')
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => loadPrefs().theme ?? 'dark')
+  const [codec, setCodec] = useState<'webm' | 'mp4'>(() => loadPrefs().codec ?? 'webm')
+  const [vfmt, setVfmt] = useState<VideoFormat>(() => loadPrefs().vfmt ?? 'default')
   // Couleur d'accent de la video, choisissable independamment de la couleur de
   // bordure du profil (accentProp) qui ne sert que de valeur par defaut.
   const [accent, setAccent] = useState(accentProp)
@@ -70,6 +84,8 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   const vfmtRef = useRef(vfmt)
   themeRef.current = theme
   vfmtRef.current = vfmt
+
+  useEffect(() => { savePrefs({ vfmt, theme, codec }) }, [vfmt, theme, codec])
 
   const previewImgs = useRef<{ f?: HTMLImageElement; b?: HTMLImageElement }>({})
   const logoImgs = useRef<{ dark?: HTMLImageElement; light?: HTMLImageElement }>({})
@@ -136,7 +152,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     const bgBot    = isDark ? '#0d0d22' : '#e8dfd0'
     const infoBg   = isDark ? '#08081a' : '#fdfaf6'
     const textMain = isDark ? '#ffffff' : '#111111'
-    const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
 
     const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
 
@@ -151,8 +166,15 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
 
       // Un seul halo doux, couleur accent -- fond épuré façon page produit, au
       // lieu de deux halos de teintes concurrentes + vignette qui chargeaient
-      // visuellement la composition.
-      const halo = octx.createRadialGradient(W * 0.82, H * 0.06, 0, W * 0.82, H * 0.06, W * 1.3)
+      // visuellement la composition. Position adaptée au format : un halo calé
+      // dans le coin haut-droit (pensé pour les formats hauts 9:13/9:16) cadrait
+      // mal le carré 1:1, beaucoup moins haut -- se rapproche du centre-haut
+      // quand le cadre s'aplatit.
+      const aspect = H / W
+      const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6)) // 0 = carré, 1 = format haut
+      const haloX = W * (0.62 + 0.20 * haloT)
+      const haloY = H * (0.10 - 0.04 * haloT)
+      const halo = octx.createRadialGradient(haloX, haloY, 0, haloX, haloY, W * 1.3)
       halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.26 : 0.13})`)
       halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.06 : 0.04})`)
       halo.addColorStop(1, 'rgba(0,0,0,0)')
@@ -162,6 +184,23 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       const bgGrad = octx.createLinearGradient(0, 0, 0, H)
       bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '80')
       octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
+
+      // Grain subtil -- un dégradé plat pouvait faire "généré numériquement",
+      // un léger bruit (quelques % d'opacité, imperceptible individuellement)
+      // donne un rendu plus proche d'un print premium. Tuile 96×96 générée une
+      // fois puis répétée -- coût négligeable vu que tout ceci est déjà en cache.
+      const noise = document.createElement('canvas')
+      noise.width = 96; noise.height = 96
+      const nctx = noise.getContext('2d')!
+      const imgData = nctx.createImageData(96, 96)
+      for (let i = 0; i < imgData.data.length; i += 4) {
+        const v = Math.random() * 255
+        imgData.data[i] = v; imgData.data[i + 1] = v; imgData.data[i + 2] = v
+        imgData.data[i + 3] = isDark ? 10 : 14
+      }
+      nctx.putImageData(imgData, 0, 0)
+      const grainPattern = octx.createPattern(noise, 'repeat')
+      if (grainPattern) { octx.fillStyle = grainPattern; octx.fillRect(0, 0, W, H) }
 
       // ── Logo Memorabilius ── déplacé en haut du cadre, façon bug de chaîne
       // discret et permanent, au lieu d'être coincé en bas à droite du panneau
@@ -339,7 +378,19 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
 
       ictx.textAlign = 'center'; ictx.textBaseline = 'top'
       const tx = panelW / 2
-      let ty = panelH * 0.11
+      let ty = panelH * 0.10
+
+      // ── Équipe en eyebrow ── petit label discret au-dessus du nom (façon vraie
+      // carte de sport) au lieu d'une ligne perdue sous la variation, en plus
+      // petit et moins visible que le nom du joueur qu'elle devrait pourtant
+      // introduire.
+      if (card.t) {
+        const teamFs = Math.round(W * 0.020)
+        ictx.fillStyle = accent
+        ictx.font = `800 ${teamFs}px Inter, sans-serif`
+        ictx.fillText(truncate(ictx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
+        ty += teamFs * 1.6
+      }
 
       // ── Badges ─────────────────────────────────────────────────────────────
       // Style plus sobre : fond translucide neutre + texte/pastille colorés,
@@ -403,15 +454,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
         ty += varFs * 1.3
       }
 
-      // ── Équipe ────────────────────────────────────────────────────────────────
-      if (card.t) {
-        const teamFs = Math.round(W * 0.025)
-        ictx.fillStyle = textSub
-        ictx.font = `700 ${teamFs}px Inter, sans-serif`
-        ictx.fillText(truncate(ictx, card.t, panelW * 0.85), tx, ty)
-        ty += teamFs * 1.35
-      }
-
       // ── Année · Marque · Collection ───────────────────────────────────────────
       const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
       if (meta2) {
@@ -424,11 +466,17 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       infoCache.current = { key: infoCacheKey, canvas: ic, top: panelTop }
     }
 
+    // Entrée du panneau légèrement décalée après celle de la carte (qui finit
+    // vers p=0.06) -- au lieu d'arriver d'un bloc en même temps, ça donne un
+    // peu de rythme à l'ouverture (carte, puis badges/nom juste après).
+    const panelIntroT = Math.min(1, Math.max(0, (p - 0.03) / 0.08))
+    const panelIntroAlpha = easeInOut(panelIntroT)
     ctx.save()
+    ctx.globalAlpha = panelIntroAlpha
     ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
     ctx.shadowBlur = W * 0.028
     ctx.shadowOffsetY = H * 0.006
-    ctx.drawImage(infoCache.current.canvas, PM, panelTop)
+    ctx.drawImage(infoCache.current.canvas, PM, panelTop + (1 - panelIntroAlpha) * H * 0.02)
     ctx.restore()
 
     // ── Petit "pop" du logo à l'entrée du palier final (HOLD) ── la fin de vidéo
@@ -446,6 +494,21 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       ctx.translate(lx + logoW / 2, ly + logoH / 2)
       ctx.scale(pop, pop)
       ctx.drawImage(logoImg, -logoW / 2, -logoH / 2, logoW, logoH)
+      ctx.restore()
+    }
+
+    // ── CTA discret en haut à droite pendant le palier final ── le logo en haut
+    // à gauche est un watermark permanent mais silencieux ; un petit appel à
+    // l'action qui apparaît juste à la fin donne une vraie raison de revenir
+    // sur le site si la vidéo est repartagée, sans polluer le reste du rendu.
+    if (holdT > 0.25) {
+      const ctaAlpha = Math.min(1, (holdT - 0.25) / 0.4)
+      ctx.save()
+      ctx.globalAlpha = ctaAlpha * (isDark ? 0.75 : 0.85)
+      ctx.textAlign = 'right'; ctx.textBaseline = 'top'
+      ctx.fillStyle = accent
+      ctx.font = `700 ${Math.round(W * 0.022)}px Inter, sans-serif`
+      ctx.fillText(t('video_cta'), W - W * 0.055, H * 0.038)
       ctx.restore()
     }
   }
