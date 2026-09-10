@@ -26,15 +26,6 @@ type VideoFormat = keyof typeof VIDEO_FORMATS
 // sans aller changer un réglage de profil.
 const ACCENT_PRESETS = ['#003DA6', '#E67E22', '#2E7D32', '#C0392B', '#7B1FA2', '#16A085', '#B8860B', '#E91E8C']
 
-const PARTICLE_COUNT = IS_MOBILE ? 20 : 50
-const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
-  x: (i * 137.508) % 1,
-  y: (i * 97.3) % 1,
-  r: 0.8 + (i % 4) * 0.7,
-  speed: 0.05 + (i % 6) * 0.02,
-  phase: i * 0.73,
-}))
-
 
 function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): string {
   if (!text || ctx.measureText(text).width <= maxW) return text
@@ -90,7 +81,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   // format, puis simplement collé (drawImage) à chaque frame.
   const infoCache = useRef<{ key: string; canvas: HTMLCanvasElement; top: number } | null>(null)
   const shadowCache = useRef<{ key: string; canvas: HTMLCanvasElement; pad: number } | null>(null)
-  const particleSprites = useRef<Map<string, HTMLCanvasElement>>(new Map())
 
   useEffect(() => {
     const load = (src: string) => new Promise<HTMLImageElement>(r => {
@@ -149,8 +139,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     const textMain = isDark ? '#ffffff' : '#111111'
     const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
 
+    const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
+
     // ── Fond statique mis en cache ────────────────────────────────────────────
-    const bgKey = `${W}x${H}-${isDark}-${accent}`
+    const bgKey = `${W}x${H}-${isDark}-${accent}-${!!logoImg}`
     if (!bgCache.current || bgCache.current.key !== bgKey) {
       const oc = document.createElement('canvas')
       oc.width = W; oc.height = H
@@ -158,65 +150,39 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
 
       octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
 
-      // Halo principal — haut-droite, couleur accent
-      const halo = octx.createRadialGradient(W * 0.85, H * 0.08, 0, W * 0.85, H * 0.08, W * 1.1)
-      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.32 : 0.16})`)
-      halo.addColorStop(0.4, `rgba(${ar},${ag},${ab},${isDark ? 0.08 : 0.05})`)
+      // Un seul halo doux, couleur accent -- fond épuré façon page produit, au
+      // lieu de deux halos de teintes concurrentes + vignette qui chargeaient
+      // visuellement la composition.
+      const halo = octx.createRadialGradient(W * 0.82, H * 0.06, 0, W * 0.82, H * 0.06, W * 1.3)
+      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.26 : 0.13})`)
+      halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.06 : 0.04})`)
       halo.addColorStop(1, 'rgba(0,0,0,0)')
       octx.fillStyle = halo; octx.fillRect(0, 0, W, H)
 
-      // Halo secondaire — bas-gauche, teinte complémentaire pour la profondeur
-      const cr = Math.min(255, 255 - ar + 40)
-      const cg = Math.min(255, 255 - ag + 40)
-      const cb = Math.min(255, ab + 60)
-      const halo2 = octx.createRadialGradient(W * 0.1, H * 0.92, 0, W * 0.1, H * 0.92, W * 0.75)
-      halo2.addColorStop(0, `rgba(${cr},${cg},${cb},${isDark ? 0.14 : 0.07})`)
-      halo2.addColorStop(1, 'rgba(0,0,0,0)')
-      octx.fillStyle = halo2; octx.fillRect(0, 0, W, H)
-
-      // Dégradé vertical vers le bas
+      // Dégradé vertical vers le bas -- transition douce vers la zone infos
       const bgGrad = octx.createLinearGradient(0, 0, 0, H)
-      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '99')
+      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '80')
       octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
 
-      // Vignette — assombrit les coins pour la profondeur premium
-      const vig = octx.createRadialGradient(W / 2, H * 0.44, H * 0.30, W / 2, H * 0.44, H * 0.82)
-      vig.addColorStop(0, 'rgba(0,0,0,0)')
-      vig.addColorStop(1, isDark ? 'rgba(0,0,0,0.52)' : 'rgba(80,60,30,0.16)')
-      octx.fillStyle = vig; octx.fillRect(0, 0, W, H)
+      // ── Logo Memorabilius ── déplacé en haut du cadre, façon bug de chaîne
+      // discret et permanent, au lieu d'être coincé en bas à droite du panneau
+      // infos à se disputer la place avec le texte année/marque/collection.
+      if (logoImg && logoImg.naturalWidth > 0) {
+        const logoW = W * 0.24
+        const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
+        octx.globalAlpha = isDark ? 0.62 : 0.75
+        octx.drawImage(logoImg, W * 0.055, H * 0.032, logoW, logoH)
+        octx.globalAlpha = 1
+      } else {
+        octx.textAlign = 'left'; octx.textBaseline = 'top'
+        octx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.7)` : `rgba(${ar},${ag},${ab},0.8)`
+        octx.font = `700 ${Math.round(W * 0.03)}px Inter, sans-serif`
+        octx.fillText('memorabilius.fr', W * 0.055, H * 0.032)
+      }
 
       bgCache.current = { key: bgKey, canvas: oc }
     }
     ctx.drawImage(bgCache.current.canvas, 0, 0)
-
-    // ── Particules montantes ──────────────────────────────────────────────────
-    // Sprite pré-rendu par rayon (4 valeurs distinctes) au lieu de reconstruire un
-    // chemin d'arc + remplissage pour chacune des 20-50 particules à chaque frame --
-    // la couleur ne varie qu'en alpha (globalAlpha), pas besoin d'un sprite par
-    // particule, juste par rayon.
-    const getParticleSprite = (r: number) => {
-      const key = `${r}-${isDark}-${accent}`
-      let sprite = particleSprites.current.get(key)
-      if (!sprite) {
-        const size = Math.ceil(r * 2) + 2
-        sprite = document.createElement('canvas')
-        sprite.width = size; sprite.height = size
-        const sctx = sprite.getContext('2d')!
-        sctx.beginPath(); sctx.arc(size / 2, size / 2, r, 0, Math.PI * 2)
-        sctx.fillStyle = isDark ? `rgb(${ar},${ag},${Math.min(255, ab + 60)})` : 'rgb(80,80,220)'
-        sctx.fill()
-        particleSprites.current.set(key, sprite)
-      }
-      return sprite
-    }
-    PARTICLES.forEach(({ x, y, r, speed, phase }) => {
-      const py = ((y * H - p * speed * H * 3) % H + H) % H
-      const a = (isDark ? 0.06 : 0.10) + 0.04 * Math.sin(p * Math.PI * 5 + phase)
-      const sprite = getParticleSprite(r)
-      ctx.globalAlpha = a
-      ctx.drawImage(sprite, x * W - sprite.width / 2, py - sprite.height / 2)
-      ctx.globalAlpha = 1
-    })
 
     // ── Layout ────────────────────────────────────────────────────────────────
     const INFO_H     = Math.round(H * 0.19)
@@ -384,55 +350,62 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       ctx.globalAlpha = 1
     }
 
-    // ── Zone infos ── pré-rendue une fois (fond, badges, nom, variation, équipe,
-    // meta, logo) : rien dedans ne dépend de `p` sauf la ligne accent, qui reste
-    // dessinée en direct chaque frame juste après. Le reste (dégradés, shadowBlur
-    // des badges, plusieurs fillText avec changement de police) était pourtant
-    // refait identique à chaque frame en pure perte.
-    const infoY = H - INFO_H
-    const infoTop = infoY - INFO_H * 0.42
-    const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
-    const infoCacheKey = `${W}x${H}-${isDark}-${accent}-${!!logoImg}`
+    // ── Panneau infos flottant ── carte arrondie avec marge autour (pas une bande
+    // collée aux bords) + ombre portée, façon widget iOS. Contenu (fond, badges,
+    // nom, variation, équipe, meta, logo) pré-rendu une fois par export/thème/
+    // format/couleur -- rien dedans ne dépend de `p`, ce serait sinon refait
+    // identique à chaque frame (dégradés, shadowBlur des badges, plusieurs
+    // fillText avec changement de police) en pure perte.
+    const PM = W * 0.045          // marge horizontale du panneau
+    const PB = H * 0.022          // marge basse -- le panneau flotte, ne touche pas le bord
+    const panelW = W - PM * 2
+    const panelRadius = Math.round(W * 0.055)
+    const panelTop = H - INFO_H
+    const panelH = (H - PB) - panelTop
+    const infoCacheKey = `${W}x${H}-${isDark}-${accent}`
     if (!infoCache.current || infoCache.current.key !== infoCacheKey) {
       const ic = document.createElement('canvas')
-      ic.width = W
-      ic.height = Math.ceil(H - infoTop)
+      ic.width = Math.ceil(panelW)
+      ic.height = Math.ceil(panelH)
       const ictx = ic.getContext('2d')!
-      const oy = infoTop
 
-      const fadeGrad = ictx.createLinearGradient(0, 0, 0, (infoY + 10) - oy)
-      fadeGrad.addColorStop(0, 'rgba(0,0,0,0)'); fadeGrad.addColorStop(1, infoBg)
-      ictx.fillStyle = fadeGrad; ictx.fillRect(0, 0, W, INFO_H * 0.52)
-      ictx.fillStyle = infoBg; ictx.fillRect(0, (infoY + 10) - oy, W, INFO_H)
+      ictx.beginPath(); ictx.roundRect(0, 0, panelW, panelH, panelRadius); ictx.clip()
+      ictx.fillStyle = infoBg
+      ictx.fillRect(0, 0, panelW, panelH)
+      // Fin liseré accent en haut du panneau -- discret, pas de pulsation (plus
+      // sobre qu'une ligne animée pleine largeur qui ne collait plus au concept
+      // de carte flottante).
+      ictx.fillStyle = `rgba(${ar},${ag},${ab},${isDark ? 0.55 : 0.4})`
+      ictx.fillRect(0, 0, panelW, Math.max(2, W * 0.0035))
 
       ictx.textAlign = 'center'; ictx.textBaseline = 'top'
-      const tx = W / 2
-      let ty = (infoY + INFO_H * 0.09) - oy
+      const tx = panelW / 2
+      let ty = panelH * 0.11
 
       // ── Badges ─────────────────────────────────────────────────────────────
-      const badgeFs  = Math.round(W * 0.026)
-      const badgeH   = Math.round(W * 0.042)
-      const badgePad = Math.round(W * 0.026)
+      // Style plus sobre : fond translucide neutre + texte/pastille colorés,
+      // au lieu de pilules en dégradé saturé avec lueur.
+      const badgeFs  = Math.round(W * 0.024)
+      const badgeH   = Math.round(W * 0.040)
+      const badgePad = Math.round(W * 0.022)
       const badgeR   = badgeH / 2
 
-      type BadgeEntry = { label: string; solid?: string; grad?: [string, string]; textColor: string }
+      type BadgeEntry = { label: string; color: string }
       const tags: BadgeEntry[] = []
-      if (card.rc) tags.push({ label: '★ RC', grad: ['#e67e22', '#f39c12'], textColor: '#fff' })
-      if (card.auto) tags.push({ label: 'AUTO', solid: '#2e7d32', textColor: '#fff' })
+      if (card.rc) tags.push({ label: '★ RC', color: '#e67e22' })
+      if (card.auto) tags.push({ label: 'AUTO', color: '#2e7d32' })
       if (card.num) {
         const m = card.num.trim().match(/\/(\d+)$/)
         const n = m ? parseInt(m[1]) : null
-        if (n === 1)                    tags.push({ label: card.num, grad: ['#b8860b', '#ffd700'], textColor: '#3d2800' })
-        else if (n !== null && n <= 10) tags.push({ label: card.num, grad: ['#555', '#c0c0c0'], textColor: '#111' })
-        else if (n !== null && n <= 25) tags.push({ label: card.num, grad: ['#6d3a00', '#cd7f32'], textColor: '#fff' })
-        else                            tags.push({ label: card.num, solid: '#7b1fa2', textColor: '#fff' })
+        const c = n === 1 ? '#b8860b' : n !== null && n <= 10 ? '#777' : n !== null && n <= 25 ? '#a0622e' : '#7b1fa2'
+        tags.push({ label: card.num, color: c })
       }
-      if (card.patch) tags.push({ label: 'PATCH', solid: '#1565c0', textColor: '#fff' })
+      if (card.patch) tags.push({ label: 'PATCH', color: '#1565c0' })
 
       if (tags.length > 0) {
         ictx.font = `800 ${badgeFs}px Inter, sans-serif`
         const widths  = tags.map(t => ictx.measureText(t.label).width + badgePad * 2)
-        const gap     = Math.round(W * 0.014)
+        const gap     = Math.round(W * 0.012)
         const totalW  = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
         let bx = tx - totalW / 2
 
@@ -440,97 +413,64 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
           const bw  = widths[i]
           const bcy = ty + badgeH / 2
 
-          if (tag.grad) {
-            const g = ictx.createLinearGradient(bx, ty, bx + bw, ty + badgeH)
-            g.addColorStop(0, tag.grad[0]); g.addColorStop(1, tag.grad[1])
-            ictx.fillStyle = g
-          } else {
-            ictx.fillStyle = tag.solid!
-          }
-          if (!IS_MOBILE) {
-            ictx.shadowColor = tag.solid || tag.grad![0]
-            ictx.shadowBlur  = Math.round(W * 0.018)
-          }
+          ictx.fillStyle = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)'
           ictx.beginPath(); ictx.roundRect(bx, ty, bw, badgeH, badgeR); ictx.fill()
-          ictx.shadowBlur  = 0
+          ictx.strokeStyle = `${tag.color}55`
+          ictx.lineWidth = 1
+          ictx.stroke()
 
-          // Reflet interne
-          const shine = ictx.createLinearGradient(bx, ty, bx, ty + badgeH * 0.5)
-          shine.addColorStop(0, 'rgba(255,255,255,0.28)'); shine.addColorStop(1, 'rgba(255,255,255,0)')
-          ictx.fillStyle = shine
-          ictx.beginPath(); ictx.roundRect(bx, ty, bw, badgeH * 0.55, [badgeR, badgeR, 0, 0]); ictx.fill()
-
-          ictx.fillStyle = tag.textColor
+          ictx.fillStyle = tag.color
           ictx.textBaseline = 'middle'
-          ictx.fillText(tag.label, bx + bw / 2, bcy)
+          ictx.fillText(tag.label, bx + bw / 2, bcy + 0.5)
           ictx.textBaseline = 'top'
           bx += bw + gap
         })
-        ty += badgeH + Math.round(INFO_H * 0.07)
+        ty += badgeH + Math.round(panelH * 0.07)
       }
 
       // ── Nom du joueur ─────────────────────────────────────────────────────────
-      const nameFs = Math.round(W * 0.054)
+      const nameFs = Math.round(W * 0.052)
       ictx.fillStyle = textMain
-      ictx.font = `900 ${nameFs}px Inter, sans-serif`
-      ictx.fillText(truncate(ictx, card.n, W * 0.88), tx, ty)
+      ictx.font = `800 ${nameFs}px Inter, sans-serif`
+      ictx.fillText(truncate(ictx, card.n, panelW * 0.92), tx, ty)
       ty += nameFs * 1.15
 
       // ── Variation ─────────────────────────────────────────────────────────────
       if (card.v) {
-        const varFs = Math.round(W * 0.030)
+        const varFs = Math.round(W * 0.028)
         ictx.fillStyle = accent
         ictx.font = `600 italic ${varFs}px Inter, sans-serif`
-        ictx.fillText(truncate(ictx, card.v, W * 0.84), tx, ty)
+        ictx.fillText(truncate(ictx, card.v, panelW * 0.88), tx, ty)
         ty += varFs * 1.3
       }
 
       // ── Équipe ────────────────────────────────────────────────────────────────
       if (card.t) {
-        const teamFs = Math.round(W * 0.026)
+        const teamFs = Math.round(W * 0.025)
         ictx.fillStyle = textSub
         ictx.font = `700 ${teamFs}px Inter, sans-serif`
-        ictx.fillText(truncate(ictx, card.t, W * 0.80), tx, ty)
+        ictx.fillText(truncate(ictx, card.t, panelW * 0.85), tx, ty)
         ty += teamFs * 1.35
       }
 
       // ── Année · Marque · Collection ───────────────────────────────────────────
       const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
       if (meta2) {
-        const metaFs = Math.round(W * 0.022)
+        const metaFs = Math.round(W * 0.021)
         ictx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
         ictx.font = `400 ${metaFs}px Inter, sans-serif`
-        ictx.fillText(truncate(ictx, meta2, W * 0.80), tx, ty)
+        ictx.fillText(truncate(ictx, meta2, panelW * 0.85), tx, ty)
       }
 
-      // ── Logo watermark ────────────────────────────────────────────────────────
-      if (logoImg && logoImg.naturalWidth > 0) {
-        const logoW = W * 0.19
-        const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
-        ictx.globalAlpha = isDark ? 0.50 : 0.65
-        ictx.drawImage(logoImg, W - logoW - W * 0.03, (H - logoH - H * 0.014) - oy, logoW, logoH)
-        ictx.globalAlpha = 1
-      } else {
-        ictx.textAlign = 'right'; ictx.textBaseline = 'bottom'
-        ictx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.55)` : `rgba(${ar},${ag},${ab},0.7)`
-        ictx.font = `600 ${Math.round(W * 0.026)}px Inter, sans-serif`
-        ictx.fillText('memorabilius.fr', W - Math.round(W * 0.03), (H - Math.round(H * 0.012)) - oy)
-      }
-
-      infoCache.current = { key: infoCacheKey, canvas: ic, top: infoTop }
+      infoCache.current = { key: infoCacheKey, canvas: ic, top: panelTop }
     }
-    ctx.drawImage(infoCache.current.canvas, 0, infoCache.current.top)
 
-    // Ligne accent avec légère respiration -- seul élément animé de la zone infos,
-    // dessiné à part par-dessus le panneau mis en cache.
-    const linePulse = 0.72 + 0.28 * Math.sin(p * Math.PI * 4)
-    const lineGrad  = ctx.createLinearGradient(W * 0.08, 0, W * 0.92, 0)
-    lineGrad.addColorStop(0,   'rgba(0,0,0,0)')
-    lineGrad.addColorStop(0.2, `rgba(${ar},${ag},${ab},${linePulse})`)
-    lineGrad.addColorStop(0.5, `rgba(${ar},${ag},${ab},${linePulse})`)
-    lineGrad.addColorStop(0.8, `rgba(${ar},${ag},${ab},${linePulse})`)
-    lineGrad.addColorStop(1,   'rgba(0,0,0,0)')
-    ctx.fillStyle = lineGrad; ctx.fillRect(0, infoY, W, 2)
+    ctx.save()
+    ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
+    ctx.shadowBlur = W * 0.028
+    ctx.shadowOffsetY = H * 0.006
+    ctx.drawImage(infoCache.current.canvas, PM, panelTop)
+    ctx.restore()
 
     // ── Petit "pop" du logo à l'entrée du palier final (HOLD) ── la fin de vidéo
     // était jusqu'ici juste figée sur la dernière frame pendant 700ms sans aucune
