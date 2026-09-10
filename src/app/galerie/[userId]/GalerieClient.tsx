@@ -32,6 +32,7 @@ import { useCountUp } from '@/lib/useCountUp'
 import { useScrollReveal } from '@/lib/useScrollReveal'
 import CardTagBadges, { TAG_COLORS } from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
+import EmptyState from '@/components/EmptyState'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
@@ -392,6 +393,29 @@ interface Card {
 }
 
 interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
+
+// Petit clin d'oeil au langage visuel des cartes flottantes du hero (accueil,
+// HomeHero.tsx `.mb-card`) plutot que le simple emoji nu -- silhouettes de
+// cartes (pas de vraies photos, cet etat vide n'en a justement aucune) pour
+// suggerer "c'est ici que tes cartes vont flotter" plutot qu'un pictogramme
+// generique. Pas d'animation : l'etat au repos suffit, `.scan-result-land`
+// (deja pose sur le conteneur parent) fait deja l'entree.
+function EmptyGalleryIllustration() {
+  const card = (opacity: number) => (
+    <div style={{
+      width: 44, height: 60, borderRadius: 8,
+      background: 'linear-gradient(160deg, var(--bg3, #eee), transparent)',
+      border: '1.5px solid var(--border, #e0e0e0)', opacity,
+    }} />
+  )
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 64, position: 'relative' }}>
+      <div style={{ position: 'absolute', transform: 'translateX(-30px) rotate(-12deg)' }}>{card(0.5)}</div>
+      <div style={{ position: 'absolute', transform: 'translateX(18px) rotate(9deg) translateY(-4px)' }}>{card(0.7)}</div>
+      <div style={{ position: 'relative', fontSize: 40, filter: 'drop-shadow(0 4px 10px rgba(0,0,0,.15))' }}>🃏</div>
+    </div>
+  )
+}
 
 export default function GalerieClient({ userId, initialCardUrl, initialCards, initialGrailCards }: {
   userId: string; initialCardUrl?: string; initialCards?: PreviewCard[]; initialGrailCards?: PreviewCard[]
@@ -3379,20 +3403,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </button>
               </div>
             ) : cards.length === 0 ? (
-              <div style={{ padding: '60px 20px', textAlign: 'center' }}>
-                <div style={{ fontSize: 48, marginBottom: 16 }}>🃏</div>
-                {isOwner ? (
-                  <>
-                    <p style={{ fontWeight: 800, fontSize: 16, marginBottom: 8 }}>Ta galerie est vide</p>
-                    <p style={{ color: '#999', fontSize: 13, marginBottom: 20 }}>Ajoute ta première carte ou connecte ton Google Sheets depuis le profil.</p>
+              <div className="scan-result-land">
+                <EmptyState
+                  icon={<EmptyGalleryIllustration />}
+                  title={isOwner ? 'Ta galerie est vide' : 'Galerie vide'}
+                  subtitle={isOwner ? 'Ajoute ta première carte ou connecte ton Google Sheets depuis le profil.' : "Ce collectionneur n'a pas encore ajouté de cartes."}
+                  action={isOwner ? (
                     <Link href={`/galerie/${userId}/ajouter`} style={{ background: '#003DA6', color: 'white', padding: '12px 24px', borderRadius: 50, fontWeight: 800, fontSize: 14, textDecoration: 'none', display: 'inline-block' }}>+ Ajouter une carte</Link>
-                  </>
-                ) : (
-                  <>
-                    <p style={{ fontWeight: 800, fontSize: 16, marginBottom: 8 }}>Galerie vide</p>
-                    <p style={{ color: '#999', fontSize: 13 }}>Ce collectionneur n'a pas encore ajouté de cartes.</p>
-                  </>
-                )}
+                  ) : undefined}
+                />
               </div>
             ) : null}
           </div>

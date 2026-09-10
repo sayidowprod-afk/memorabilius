@@ -505,7 +505,8 @@ export default function Trades() {
           {loadingOffers ? (
             <div style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: '48px 0' }}>{t('setlist_loading')}</div>
           ) : shownOffers.length === 0 ? (
-            <EmptyState icon="🔁" title={offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')} />
+            <EmptyState icon="🔁" title={offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')}
+              action={<button onClick={() => setMainTab('annonces')} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>{t('trades_browse_forum_cta')}</button>} />
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {shownOffers.map(trade => {

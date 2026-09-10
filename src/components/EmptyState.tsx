@@ -3,7 +3,7 @@
 export default function EmptyState({
   icon, title, subtitle, action, compact = false,
 }: {
-  icon: string
+  icon: string | React.ReactNode
   title: string
   subtitle?: string
   action?: React.ReactNode

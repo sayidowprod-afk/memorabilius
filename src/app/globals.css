@@ -789,6 +789,18 @@ body {
 .nav-tap-bounce:active { transform: scale(0.86); }
 @media (prefers-reduced-motion: reduce) { .nav-tap-bounce:active { transform: none; } }
 
+/* Bouton "Galerie" central de la nav du bas : le plus tape de toute l'app
+   (centre, ergonomie pouce deja soignee) -- flourish dedie plutot que le
+   simple rebond generique partage avec les autres icones : les 2 cartes
+   empilees s'ecartent en eventail a l'appui. */
+.nav-gallery-card-1, .nav-gallery-card-2 { transition: transform 0.16s cubic-bezier(0.34,1.56,0.64,1); }
+.nav-gallery-cards:active .nav-gallery-card-1 { transform: rotate(-24deg) translate(-3px, 1px) !important; }
+.nav-gallery-cards:active .nav-gallery-card-2 { transform: rotate(21deg) translate(3px, 1px) !important; }
+@media (prefers-reduced-motion: reduce) {
+  .nav-gallery-card-1, .nav-gallery-card-2 { transition: none; }
+  .nav-gallery-cards:active .nav-gallery-card-1, .nav-gallery-cards:active .nav-gallery-card-2 { transform: none !important; }
+}
+
 /* ===== BATCH 9 — sceau dore "collection complete" (effet tampon) sur la setlist ===== */
 @keyframes setCompleteStamp {
   0%   { opacity: 0; transform: scale(2.4) rotate(-18deg); }

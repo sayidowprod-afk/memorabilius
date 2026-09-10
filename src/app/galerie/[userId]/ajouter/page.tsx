@@ -8,6 +8,8 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import dynamic from 'next/dynamic'
+import { fireConfetti } from '@/components/Confetti'
+import { hapticSuccess } from '@/lib/haptics'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
@@ -851,6 +853,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       }).catch(() => {})
     })
     setSaving(false)
+
+    // Premiere carte JAMAIS ajoutee sur cet appareil : petit moment "wow" avant
+    // meme le premier badge (flag local, meme pattern que badges-seen-* dans
+    // BadgeBox.tsx -- pas de round-trip DB, juste un signal une fois par appareil).
+    const firstCardKey = 'first-card-celebrated'
+    if (!localStorage.getItem(firstCardKey)) {
+      localStorage.setItem(firstCardKey, '1')
+      hapticSuccess()
+      fireConfetti()
+      toast.success(t('addcard_first_card_celebration'))
+    }
+
     if (form.image_recto) {
       setBinderPrompt({ userId: uid, img: form.image_recto, nom: form.nom })
     } else {

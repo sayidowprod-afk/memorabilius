@@ -179,15 +179,15 @@ export default function MobileBottomNav() {
               textDecoration: 'none', marginTop: -20,
             }}
           >
-            <div style={{ position: 'relative', width: 70, height: 62 }} aria-hidden="true">
-              <div style={{
+            <div className="nav-gallery-cards" style={{ position: 'relative', width: 70, height: 62 }} aria-hidden="true">
+              <div className="nav-gallery-card-1" style={{
                 position: 'absolute', top: 2, left: 8, width: 38, height: 52, borderRadius: 9,
                 background: 'linear-gradient(160deg,#6d97ee,#2352c9)',
                 transform: 'rotate(-15deg)',
                 boxShadow: '0 3px 8px rgba(0,0,0,.28)',
                 border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
               }} />
-              <div style={{
+              <div className="nav-gallery-card-2" style={{
                 position: 'absolute', top: 2, left: 24, width: 38, height: 52, borderRadius: 9,
                 background: 'linear-gradient(160deg,#1e63e0,#00307e)',
                 transform: 'rotate(12deg)',
