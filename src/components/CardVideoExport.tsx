@@ -21,6 +21,11 @@ const VIDEO_FORMATS = {
 } as const
 type VideoFormat = keyof typeof VIDEO_FORMATS
 
+// Couleurs proposées pour l'accent de la vidéo -- indépendant de la couleur de
+// bordure du profil (déjà passée en `accent`), pour permettre un choix ponctuel
+// sans aller changer un réglage de profil.
+const ACCENT_PRESETS = ['#003DA6', '#E67E22', '#2E7D32', '#C0392B', '#7B1FA2', '#16A085', '#B8860B', '#E91E8C']
+
 const PARTICLE_COUNT = IS_MOBILE ? 20 : 50
 const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   x: (i * 137.508) % 1,
@@ -38,7 +43,7 @@ function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
   return t + '…'
 }
 
-export default function CardVideoExport({ card, accent, onClose }: Props) {
+export default function CardVideoExport({ card, accent: accentProp, onClose }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [recording, setRecording] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -49,6 +54,9 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [codec, setCodec] = useState<'webm' | 'mp4'>('webm')
   const [vfmt, setVfmt] = useState<VideoFormat>('default')
+  // Couleur d'accent de la video, choisissable independamment de la couleur de
+  // bordure du profil (accentProp) qui ne sert que de valeur par defaut.
+  const [accent, setAccent] = useState(accentProp)
   const { t, lang } = useLang()
   const fmtLabel = (key: VideoFormat) =>
     key === 'default' ? t('video_format_default') : key === 'square' ? t('video_format_square') : VIDEO_FORMATS[key].label
@@ -116,7 +124,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     }
     return () => { cancelled = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vfmt, theme, recording])
+  }, [vfmt, theme, recording, accent])
 
   const loadImage = (src: string): Promise<HTMLImageElement> =>
     new Promise(resolve => {
@@ -647,66 +655,104 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     }
   }
 
-  const chip = (active: boolean) => ({
-    padding: '7px 16px', border: 'none', borderRadius: 20, cursor: 'pointer',
-    fontWeight: 700, fontSize: 13,
-    background: active ? accent : 'rgba(255,255,255,0.09)',
-    color: active ? '#fff' : 'rgba(255,255,255,0.55)',
-    transition: '0.15s',
+  // ── Style façon iOS : contrôles segmentés (une barre neutre, pas une pilule par
+  // option), fond flouté "frosted glass", coins très arrondis, boutons pleine
+  // largeur empilés. L'accent est réservé à l'action principale / la barre de
+  // progression / le choix de couleur lui-même, pas aux contrôles segmentés
+  // (plus sobre, plus proche d'un vrai contrôle système).
+  const groupLabel: React.CSSProperties = {
+    color: 'rgba(255,255,255,0.45)', fontSize: 11, fontWeight: 700,
+    textTransform: 'uppercase', letterSpacing: 0.5, margin: '0 0 7px',
+  }
+  const segWrap: React.CSSProperties = {
+    display: 'flex', background: 'rgba(255,255,255,0.07)', borderRadius: 12, padding: 3, gap: 2,
+  }
+  const segBtn = (active: boolean): React.CSSProperties => ({
+    flex: 1, padding: '8px 6px', borderRadius: 9, border: 'none', cursor: 'pointer',
+    fontWeight: 700, fontSize: 12.5, whiteSpace: 'nowrap',
+    background: active ? 'rgba(255,255,255,0.16)' : 'transparent',
+    color: active ? '#fff' : 'rgba(255,255,255,0.5)',
+    boxShadow: active ? '0 1px 4px rgba(0,0,0,0.3)' : 'none',
+    transition: 'background 0.15s, color 0.15s',
   })
 
   const { w, h } = scaledDims(vfmt)
 
   if (typeof document === 'undefined') return null
   return createPortal(
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)', zIndex: 10000003, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: '#0d0d22', borderRadius: 20, padding: 28, maxWidth: 480, width: '100%', textAlign: 'center', border: `1px solid ${accent}44` }}>
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 10000003, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        background: 'rgba(26,26,38,0.82)', backdropFilter: 'blur(28px) saturate(180%)', WebkitBackdropFilter: 'blur(28px) saturate(180%)',
+        borderRadius: 28, padding: '26px 22px', maxWidth: 400, width: '100%', textAlign: 'center',
+        border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
+      }}>
 
-        <h2 style={{ color: '#fff', fontWeight: 900, fontSize: 17, margin: '0 0 4px' }}>
-          🎬 {t('video_export_title')}
+        <h2 style={{ color: '#fff', fontWeight: 700, fontSize: 17, margin: '0 0 3px', letterSpacing: -0.2 }}>
+          {t('video_export_title')}
         </h2>
-        <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 12, margin: '0 0 16px' }}>
+        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, margin: '0 0 18px' }}>
           {card.n}{card.v ? ` · ${card.v}` : ''}
         </p>
 
         <canvas ref={canvasRef} width={w} height={h}
-          style={{ width: '100%', maxWidth: 240, height: 'auto', borderRadius: 10, display: 'block', margin: '0 auto 18px', border: `1px solid ${accent}33`, background: '#080818' }} />
+          style={{ width: '100%', maxWidth: 210, height: 'auto', borderRadius: 18, display: 'block', margin: '0 auto 20px', background: '#080818', boxShadow: '0 10px 34px rgba(0,0,0,0.4)' }} />
 
         {!recording && (
-          <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginBottom: 18, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 20, textAlign: 'left' }}>
             <div>
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>Format</p>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <p style={groupLabel}>Format</p>
+              <div style={segWrap}>
                 {(Object.entries(VIDEO_FORMATS) as [VideoFormat, typeof VIDEO_FORMATS[VideoFormat]][]).map(([key, f]) => (
-                  <button key={key} style={chip(vfmt === key)} onClick={() => setVfmt(key)}>
-                    {fmtLabel(key)} <span style={{ opacity: 0.6, fontSize: 11 }}>{f.ratio}</span>
+                  <button key={key} style={segBtn(vfmt === key)} onClick={() => setVfmt(key)}>
+                    {fmtLabel(key)} <span style={{ opacity: 0.6 }}>{f.ratio}</span>
                   </button>
                 ))}
               </div>
             </div>
-            <div>
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>{t('video_theme')}</p>
-              <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
-                <button style={chip(theme === 'dark')} onClick={() => setTheme('dark')}>🌙 {t('video_dark')}</button>
-                <button style={chip(theme === 'light')} onClick={() => setTheme('light')}>☀️ {t('video_light')}</button>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <div style={{ flex: 1 }}>
+                <p style={groupLabel}>{t('video_theme')}</p>
+                <div style={segWrap}>
+                  <button style={segBtn(theme === 'dark')} onClick={() => setTheme('dark')}>🌙 {t('video_dark')}</button>
+                  <button style={segBtn(theme === 'light')} onClick={() => setTheme('light')}>☀️ {t('video_light')}</button>
+                </div>
+              </div>
+              <div style={{ flex: 1 }}>
+                <p style={groupLabel}>Codec</p>
+                <div style={segWrap}>
+                  <button style={segBtn(codec === 'webm')} onClick={() => setCodec('webm')}>WebM</button>
+                  <button style={segBtn(codec === 'mp4')} onClick={() => setCodec('mp4')}>MP4</button>
+                </div>
               </div>
             </div>
             <div>
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>Codec</p>
-              <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
-                <button style={chip(codec === 'webm')} onClick={() => setCodec('webm')}>WebM</button>
-                <button style={chip(codec === 'mp4')} onClick={() => setCodec('mp4')}>MP4</button>
+              <p style={groupLabel}>{t('video_accent')}</p>
+              <div style={{ display: 'flex', gap: 9, alignItems: 'center', flexWrap: 'wrap' }}>
+                {ACCENT_PRESETS.map(c => (
+                  <button key={c} onClick={() => setAccent(c)} aria-label={c} title={c} style={{
+                    width: 24, height: 24, borderRadius: '50%', background: c, border: 'none', cursor: 'pointer', padding: 0,
+                    boxShadow: accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
+                  }} />
+                ))}
+                <label title={t('video_accent_custom')} style={{
+                  width: 24, height: 24, borderRadius: '50%', position: 'relative', cursor: 'pointer', display: 'block',
+                  background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
+                  boxShadow: !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
+                }}>
+                  <input type="color" value={accent} onChange={e => setAccent(e.target.value)}
+                    style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', padding: 0, width: '100%', height: '100%' }} />
+                </label>
               </div>
             </div>
           </div>
         )}
 
         {recording && (
-          <div style={{ margin: '0 0 16px' }}>
-            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 8, height: 6, overflow: 'hidden' }}>
-              <div style={{ background: `linear-gradient(90deg, ${accent}, color-mix(in srgb, ${accent} 60%, white))`, height: '100%', width: `${progress}%`, transition: 'width 0.1s linear', borderRadius: 8 }} />
+          <div style={{ margin: '4px 0 20px' }}>
+            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 99, height: 6, overflow: 'hidden' }}>
+              <div style={{ background: `linear-gradient(90deg, ${accent}, color-mix(in srgb, ${accent} 60%, white))`, height: '100%', width: `${progress}%`, transition: 'width 0.1s linear', borderRadius: 99 }} />
             </div>
-            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 6 }}>{progress}%</p>
+            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 8 }}>{progress}%</p>
           </div>
         )}
 
@@ -716,23 +762,23 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
           </p>
         )}
 
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {!recording && !done && (
-            <button onClick={startRecording} style={{ background: accent, color: '#fff', border: 'none', borderRadius: 10, padding: '11px 22px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
-              {recordError ? `🔄 ${t('video_redo')}` : `▶ ${t('video_generate')}`}
+            <button onClick={startRecording} style={{ background: accent, color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontWeight: 700, cursor: 'pointer', fontSize: 15, width: '100%' }}>
+              {recordError ? t('video_redo') : t('video_generate')}
             </button>
           )}
           {done && videoUrl && (
             <>
-              <button onClick={download} disabled={downloading} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 10, padding: '11px 20px', fontWeight: 800, cursor: downloading ? 'default' : 'pointer', fontSize: 14, opacity: downloading ? 0.6 : 1 }}>
-                {downloading ? `⏳ ${t('video_downloading')}` : `⬇ ${t('video_download')} (.${codec})`}
+              <button onClick={download} disabled={downloading} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontWeight: 700, cursor: downloading ? 'default' : 'pointer', fontSize: 15, width: '100%', opacity: downloading ? 0.6 : 1 }}>
+                {downloading ? `⏳ ${t('video_downloading')}` : `${t('video_download')} (.${codec})`}
               </button>
-              <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-                🔄 {t('video_redo')}
+              <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.09)', color: 'rgba(255,255,255,0.85)', border: 'none', borderRadius: 14, padding: '13px', fontWeight: 600, cursor: 'pointer', fontSize: 14, width: '100%' }}>
+                {t('video_redo')}
               </button>
             </>
           )}
-          <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+          <button onClick={onClose} style={{ background: 'none', color: 'rgba(255,255,255,0.5)', border: 'none', padding: '10px', fontWeight: 600, cursor: 'pointer', fontSize: 14, width: '100%' }}>
             {t('gallery_close')}
           </button>
         </div>

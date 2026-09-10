@@ -1195,6 +1195,8 @@ export const it = {
   home_random_binder: 'Raccoglitore casuale',
   video_export_title: 'Esporta in video',
   video_theme: 'Tema',
+  video_accent: 'Colore',
+  video_accent_custom: 'Colore personalizzato',
   video_dark: 'Scuro',
   video_light: 'Chiaro',
   video_generate: 'Genera',

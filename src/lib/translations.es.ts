@@ -1195,6 +1195,8 @@ export const es = {
   home_random_binder: 'Clasificador aleatorio',
   video_export_title: 'Exportar en vídeo',
   video_theme: 'Tema',
+  video_accent: 'Color',
+  video_accent_custom: 'Color personalizado',
   video_dark: 'Oscuro',
   video_light: 'Claro',
   video_generate: 'Generar',
