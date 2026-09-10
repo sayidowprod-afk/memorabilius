@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { Capacitor } from '@capacitor/core'
 
 interface FrameRect { x: number; y: number; w: number; h: number }
 
@@ -181,7 +182,20 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             <>
               <p style={{ fontSize: 15, margin: 0, fontWeight: 700 }}>Accès à la caméra refusé</p>
               <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 12, padding: '14px 16px', textAlign: 'left', width: '100%', maxWidth: 340 }}>
-                {/iphone|ipad|ipod/i.test(typeof navigator !== 'undefined' ? navigator.userAgent : '') ? (
+                {Capacitor.isNativePlatform() ? (
+                  <>
+                    {/* App native : pas de barre d'adresse ni de permission "par site"
+                        (c'est une permission systeme Android) -- les instructions
+                        navigateur ci-dessous referencent une UI qui n'existe pas ici. */}
+                    <p style={{ margin: '0 0 8px', fontSize: 13, fontWeight: 700, color: '#86CEBC' }}>Sur l'app Memorabilius :</p>
+                    <ol style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.8 }}>
+                      <li>Ouvre <strong>Paramètres</strong> de ton téléphone</li>
+                      <li>Va dans <strong>Applications</strong> → <strong>Memorabilius</strong></li>
+                      <li>Appuie sur <strong>Autorisations</strong> → <strong>Appareil photo</strong></li>
+                      <li>Autorise, puis reviens ici et réessaie</li>
+                    </ol>
+                  </>
+                ) : /iphone|ipad|ipod/i.test(typeof navigator !== 'undefined' ? navigator.userAgent : '') ? (
                   <>
                     <p style={{ margin: '0 0 8px', fontSize: 13, fontWeight: 700, color: '#86CEBC' }}>Sur Safari / iOS :</p>
                     <ol style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.8 }}>
