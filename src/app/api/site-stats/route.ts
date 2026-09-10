@@ -11,18 +11,18 @@ export const revalidate = 15
 export async function GET() {
   const [
     { count },
-    { data: statsData },
+    { data: totalCartesData },
     { count: bindersCount },
     { count: tradeCount },
   ] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
-    supabase.from('profiles').select('stats_total').gt('stats_total', 0),
+    supabase.rpc('get_total_cards'),
     supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
     supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
   ])
 
   const total = count ?? 0
-  const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
+  const totalCartes = totalCartesData ?? 0
   const totalBinders = bindersCount ?? 0
   const totalTrade = tradeCount ?? 0
 
