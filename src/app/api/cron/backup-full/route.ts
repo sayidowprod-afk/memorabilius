@@ -105,6 +105,7 @@ async function processUrl(url: string, results: { images: number; alreadyPresent
 }
 
 export async function GET(req: NextRequest) {
+  if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
   if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }

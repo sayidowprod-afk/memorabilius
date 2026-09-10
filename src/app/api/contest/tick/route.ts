@@ -20,8 +20,11 @@ const supabase = createClient(
 // horaire ne refait rien (idempotent). CONTEST_CRON_SECRET reste accepte
 // pour les appels manuels de test (curl, ancien workflow_dispatch GitHub).
 export async function GET(req: NextRequest) {
+  if (!process.env.CRON_SECRET && !process.env.CONTEST_CRON_SECRET) {
+    return NextResponse.json({ error: 'CRON_SECRET/CONTEST_CRON_SECRET manquants' }, { status: 500 })
+  }
   const auth = req.headers.get('authorization')
-  const validAuth = auth === `Bearer ${process.env.CRON_SECRET}` || auth === `Bearer ${process.env.CONTEST_CRON_SECRET}`
+  const validAuth = (!!process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`) || (!!process.env.CONTEST_CRON_SECRET && auth === `Bearer ${process.env.CONTEST_CRON_SECRET}`)
   if (!validAuth) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }

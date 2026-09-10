@@ -8,6 +8,10 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+function escHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
 const reportSchema = z.object({
   reportedUserId: z.string().uuid().optional(),
   context: z.string().max(300).optional(),
@@ -38,11 +42,11 @@ export async function POST(req: NextRequest) {
         to: 'contact@memorabilius.fr',
         subject: `[Signalement] ${reason}`,
         html: `
-          <p><strong>Signalé par :</strong> ${user.email} (${user.id})</p>
-          <p><strong>Utilisateur signalé :</strong> ${reportedUserId || 'non spécifié'}</p>
-          <p><strong>Contexte :</strong> ${context || 'inconnu'}</p>
-          <p><strong>Motif :</strong> ${reason}</p>
-          ${message ? `<p><strong>Message :</strong></p><p>${message.replace(/\n/g, '<br>')}</p>` : ''}
+          <p><strong>Signalé par :</strong> ${escHtml(user.email || '')} (${escHtml(user.id)})</p>
+          <p><strong>Utilisateur signalé :</strong> ${escHtml(reportedUserId || 'non spécifié')}</p>
+          <p><strong>Contexte :</strong> ${escHtml(context || 'inconnu')}</p>
+          <p><strong>Motif :</strong> ${escHtml(reason)}</p>
+          ${message ? `<p><strong>Message :</strong></p><p>${escHtml(message).replace(/\n/g, '<br>')}</p>` : ''}
         `,
       })
     }

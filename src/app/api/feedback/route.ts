@@ -8,6 +8,10 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+function escHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
 const feedbackSchema = z.object({
   type: z.enum(['bug', 'suggestion']),
   message: z.string().min(3).max(2000),
@@ -44,11 +48,11 @@ export async function POST(req: NextRequest) {
         to: 'contact@memorabilius.fr',
         subject: `[${type === 'bug' ? 'Bug' : 'Suggestion'}] Nouveau feedback Memorabilius`,
         html: `
-          <p><strong>Type :</strong> ${type}</p>
-          <p><strong>Utilisateur :</strong> ${email || 'anonyme'} ${userId ? `(${userId})` : ''}</p>
-          <p><strong>Page :</strong> ${pageUrl || 'inconnue'}</p>
+          <p><strong>Type :</strong> ${escHtml(type)}</p>
+          <p><strong>Utilisateur :</strong> ${escHtml(email || 'anonyme')} ${userId ? `(${escHtml(userId)})` : ''}</p>
+          <p><strong>Page :</strong> ${escHtml(pageUrl || 'inconnue')}</p>
           <p><strong>Message :</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
+          <p>${escHtml(message).replace(/\n/g, '<br>')}</p>
         `,
       })
     }

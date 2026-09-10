@@ -14,6 +14,7 @@ const RESEND_AFTER_DAYS = 30
 // Hebdo : relance les comptes inactifs depuis un moment, plafonné à un envoi
 // par mois par personne (last_winback_sent_at) pour ne pas harceler.
 export async function GET(req: NextRequest) {
+  if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
   const authHeader = req.headers.get('authorization')
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

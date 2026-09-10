@@ -3,6 +3,18 @@ import { createClient } from '@supabase/supabase-js'
 
 export const maxDuration = 20
 
+// Rate limit: 30 req/min par utilisateur -- meme cadence que ebay-sold, qui
+// protege deja le quota eBay partage (5 000/jour) ; cette route en etait
+// depourvue alors qu'elle consomme le meme quota.
+const RATE_MAP = new Map<string, { count: number; reset: number }>()
+function checkRate(key: string): boolean {
+  const now = Date.now()
+  const e = RATE_MAP.get(key)
+  if (!e || now > e.reset) { RATE_MAP.set(key, { count: 1, reset: now + 60_000 }); return true }
+  if (e.count >= 30) return false
+  e.count++; return true
+}
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -38,6 +50,7 @@ export async function POST(req: NextRequest) {
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const { data: { user } } = await supabase.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!checkRate(user.id)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
 
   const appId  = process.env.EBAY_APP_ID
   const certId = process.env.EBAY_CERT_ID

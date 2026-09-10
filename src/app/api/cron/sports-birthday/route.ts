@@ -29,6 +29,7 @@ const supabase = createClient(
 // (prefixe "bdaytest:", voir handleBirthdayTestComponent dans
 // api/discord/route.ts) puisqu'il n'y a pas de ligne DB a consulter au clic.
 export async function GET(req: NextRequest) {
+  if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
   const auth = req.headers.get('authorization')
   if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
