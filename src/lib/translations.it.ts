@@ -1203,6 +1203,7 @@ export const it = {
   video_generate: 'Genera',
   video_download: 'Scarica',
   video_downloading: 'Download in corso…',
+  video_share: 'Condividi',
   video_download_error: 'Download non riuscito, riprova.',
   video_record_error: 'Generazione del video non riuscita, riprova.',
   video_error_backgrounded: "L'app è passata in background durante la generazione, interrompendola. Riprova senza cambiare app né bloccare il telefono durante la generazione.",

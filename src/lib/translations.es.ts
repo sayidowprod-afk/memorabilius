@@ -1203,6 +1203,7 @@ export const es = {
   video_generate: 'Generar',
   video_download: 'Descargar',
   video_downloading: 'Descargando…',
+  video_share: 'Compartir',
   video_download_error: 'Error al descargar, inténtalo de nuevo.',
   video_record_error: 'Error al generar el vídeo, inténtalo de nuevo.',
   video_error_backgrounded: 'La aplicación pasó a segundo plano durante la generación, lo que la interrumpió. Inténtalo de nuevo sin cambiar de aplicación ni bloquear el teléfono mientras se genera.',

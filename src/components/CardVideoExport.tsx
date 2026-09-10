@@ -1,6 +1,7 @@
 'use client'
 import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { Capacitor } from '@capacitor/core'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
@@ -40,6 +41,29 @@ function savePrefs(prefs: VideoPrefs) {
   try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)) } catch {}
 }
 
+// Mémorise la dernière couleur d'accent choisie, par carte (clé = son image
+// recto, déjà utilisée comme identifiant stable ailleurs dans ce fichier) --
+// utile pour réexporter plus tard la même carte avec le même réglage, sans
+// affecter la couleur par défaut des autres cartes (qui reste leur couleur de
+// bordure de profil). Capé à 60 entrées pour ne pas grossir indéfiniment.
+const ACCENT_MEMORY_KEY = 'memorabilius:video-export-accents'
+function loadCardAccent(cardKey: string): string | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const map = JSON.parse(localStorage.getItem(ACCENT_MEMORY_KEY) || '{}')
+    return map[cardKey] ?? null
+  } catch { return null }
+}
+function saveCardAccent(cardKey: string, color: string) {
+  try {
+    const map = JSON.parse(localStorage.getItem(ACCENT_MEMORY_KEY) || '{}')
+    map[cardKey] = color
+    const keys = Object.keys(map)
+    if (keys.length > 60) delete map[keys[0]]
+    localStorage.setItem(ACCENT_MEMORY_KEY, JSON.stringify(map))
+  } catch {}
+}
+
 
 function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): string {
   if (!text || ctx.measureText(text).width <= maxW) return text
@@ -56,12 +80,22 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [recordError, setRecordError] = useState<string | null>(null)
   const [downloading, setDownloading] = useState(false)
+  const [sharing, setSharing] = useState(false)
+  // Partage direct dispo uniquement web/PWA (l'app native partage déjà via le
+  // bouton Télécharger) et si le navigateur supporte le partage de fichiers.
+  const [canShareFiles, setCanShareFiles] = useState(false)
+  useEffect(() => {
+    setCanShareFiles(!Capacitor.isNativePlatform() && typeof navigator !== 'undefined' && !!navigator.share)
+  }, [])
   const [theme, setTheme] = useState<'dark' | 'light'>(() => loadPrefs().theme ?? 'dark')
   const [codec, setCodec] = useState<'webm' | 'mp4'>(() => loadPrefs().codec ?? 'webm')
   const [vfmt, setVfmt] = useState<VideoFormat>(() => loadPrefs().vfmt ?? 'default')
   // Couleur d'accent de la video, choisissable independamment de la couleur de
-  // bordure du profil (accentProp) qui ne sert que de valeur par defaut.
-  const [accent, setAccent] = useState(accentProp)
+  // bordure du profil (accentProp) qui ne sert que de valeur par defaut --
+  // sauf si cette carte precise a deja ete exportee avec une autre couleur,
+  // auquel cas on repart de ce dernier choix.
+  const [accent, setAccentState] = useState(() => loadCardAccent(card.f) ?? accentProp)
+  const setAccent = (color: string) => { setAccentState(color); saveCardAccent(card.f, color) }
   const { t, lang } = useLang()
   const fmtLabel = (key: VideoFormat) =>
     key === 'default' ? t('video_format_default') : key === 'square' ? t('video_format_square') : VIDEO_FORMATS[key].label
@@ -555,6 +589,9 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   }
 
   const startRecording = async () => {
+    // Petit retour haptique au lancement (mobile uniquement, no-op ailleurs) --
+    // cohérent avec le reste du design "app native" du composant.
+    try { navigator.vibrate?.(15) } catch {}
     const canvas = canvasRef.current
     if (!canvas) return
     const { w, h } = scaledDims(vfmtRef.current)
@@ -655,6 +692,31 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       toast.error(t('video_download_error'))
     } finally {
       setDownloading(false)
+    }
+  }
+
+  // Partage direct (Web Share API) -- sur le web/PWA, "Télécharger" ne fait
+  // que déposer le fichier dans les téléchargements ; sur mobile, la plupart
+  // des navigateurs supportent le partage de fichiers directement (Instagram,
+  // Messages, etc.) sans repasser par la galerie. Sur l'app native, le bouton
+  // Télécharger ouvre déjà la feuille de partage Capacitor -- ce bouton reste
+  // donc réservé au web pour ne pas dupliquer la même action deux fois.
+  const shareVideo = async () => {
+    if (!videoUrl || sharing) return
+    setSharing(true)
+    try {
+      const blob = await (await fetch(videoUrl)).blob()
+      if (blob.size < 2_000) throw new Error('empty-blob')
+      const file = new File([blob], `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`, { type: blob.type })
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: card.n })
+      } else {
+        await navigator.share({ title: card.n })
+      }
+    } catch (e) {
+      if ((e as any)?.name !== 'AbortError') toast.error(t('video_download_error'))
+    } finally {
+      setSharing(false)
     }
   }
 
@@ -776,6 +838,11 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
               <button onClick={download} disabled={downloading} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontWeight: 700, cursor: downloading ? 'default' : 'pointer', fontSize: 15, width: '100%', opacity: downloading ? 0.6 : 1 }}>
                 {downloading ? `⏳ ${t('video_downloading')}` : `${t('video_download')} (.${codec})`}
               </button>
+              {canShareFiles && (
+                <button onClick={shareVideo} disabled={sharing} style={{ background: 'rgba(255,255,255,0.09)', color: '#fff', border: 'none', borderRadius: 14, padding: '13px', fontWeight: 600, cursor: sharing ? 'default' : 'pointer', fontSize: 14, width: '100%', opacity: sharing ? 0.6 : 1 }}>
+                  {sharing ? `⏳ ${t('video_downloading')}` : `↗ ${t('video_share')}`}
+                </button>
+              )}
               <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.09)', color: 'rgba(255,255,255,0.85)', border: 'none', borderRadius: 14, padding: '13px', fontWeight: 600, cursor: 'pointer', fontSize: 14, width: '100%' }}>
                 {t('video_redo')}
               </button>
