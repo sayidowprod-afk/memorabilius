@@ -283,9 +283,16 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
         shadowCache.current = { key: shadowKey, canvas: sc, pad }
       }
       {
+        // La hauteur du sprite source inclut aussi le décalage vertical (offY) de
+        // l'ombre, pas seulement le coeur + le rembourrage du flou -- l'oublier
+        // dans la mise à l'échelle de la destination étirait/décalait tout le
+        // sprite (le rectangle sombre "bizarre" qui débordait sous la carte).
+        // On redimensionne le sprite ENTIER (pas juste sa zone coeur) par le même
+        // facteur d'échelle que la carte, pour que le coeur retombe exactement
+        // sur (cardX, cardTop, cardW, cardH) quelle que soit la taille du moment.
         const { canvas: shCanvas, pad } = shadowCache.current
         const sx = cardW / BASE_W, sy = cardH / BASE_H
-        ctx.drawImage(shCanvas, cardX - pad * sx, cardTop - pad * sy, cardW + pad * 2 * sx, cardH + pad * 2 * sy)
+        ctx.drawImage(shCanvas, cardX - pad * sx, cardTop - pad * sy, shCanvas.width * sx, shCanvas.height * sy)
       }
 
       // ── Image de la carte ─────────────────────────────────────────────────
