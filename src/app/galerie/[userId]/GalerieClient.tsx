@@ -16,7 +16,10 @@ import FollowCounts from '@/components/FollowCounts'
 import FollowListModal from '@/components/FollowListModal'
 import LevelBadge from '@/components/LevelBadge'
 import { InstagramIcon, XIcon, DiscordIcon } from '@/components/SocialIcons'
-import CollectorCard from '@/components/CollectorCard'
+// Charge en dynamic import : n'est ouvert que par un clic rare sur "partager
+// ma carte de visite" -- inutile de l'inclure dans le bundle initial de la
+// page la plus visitee du site (24k vues/jour).
+const CollectorCard = dynamic(() => import('@/components/CollectorCard'), { ssr: false })
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useIsNative } from '@/lib/useIsNative'

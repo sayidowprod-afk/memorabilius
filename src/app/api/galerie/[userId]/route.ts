@@ -96,7 +96,13 @@ export async function GET(
       return true
     })
 
-    return NextResponse.json({ cards: filteredCards })
+    // "private" (jamais un cache partage/CDN) -- la reponse depend de isOwner
+    // (les cartes privees ne sont incluses que pour le proprietaire), donc
+    // seul le cache du navigateur de CE viewer peut reutiliser cette reponse.
+    // La fraicheur des donnees CSV est deja bornee par le cache 10 min
+    // ci-dessus ; ce court cache HTTP absorbe juste les refocus/re-renders
+    // rapproches sans rien perdre en fraicheur reelle.
+    return NextResponse.json({ cards: filteredCards }, { headers: { 'Cache-Control': 'private, max-age=30' } })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ error: 'Erreur interne du serveur' }, { status: 500 })

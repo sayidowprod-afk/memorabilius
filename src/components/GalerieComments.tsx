@@ -248,12 +248,16 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     else if (cardKey) query = query.eq('galerie_user_id', galerieUserId).eq('card_key', cardKey)
     else query = query.eq('galerie_user_id', galerieUserId).is('card_key', null).is('binder_id', null)
 
-    const [{ data: rows }, { data: likes }] = await Promise.all([
-      query,
-      supabase.from('galerie_comment_likes').select('comment_id, user_id'),
-    ])
-
+    const { data: rows } = await query
     if (!rows) return
+
+    // Scope aux commentaires de CE fil -- l'ancienne version chargeait tous
+    // les likes de tout le site a chaque ouverture d'un fil (aucun filtre),
+    // cout croissant avec le total site-wide plutot qu'avec le fil affiche.
+    const commentIds = rows.map((r: any) => r.id)
+    const { data: likes } = commentIds.length
+      ? await supabase.from('galerie_comment_likes').select('comment_id, user_id').in('comment_id', commentIds)
+      : { data: [] as { comment_id: string; user_id: string }[] }
 
     // Fetch profiles separately
     const authorIds = [...new Set(rows.map((r: any) => r.author_id))]
