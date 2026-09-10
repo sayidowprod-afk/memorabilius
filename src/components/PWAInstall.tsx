@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '@/lib/LangContext'
 import { supabase } from '@/lib/supabase'
+import { Capacitor } from '@capacitor/core'
 
 function urlBase64ToUint8Array(base64: string): Uint8Array {
   const padding = '='.repeat((4 - base64.length % 4) % 4)
@@ -59,7 +60,12 @@ export default function PWAInstall() {
   const { t } = useLang()
 
   useEffect(() => {
-    if ('serviceWorker' in navigator) {
+    // L'app native charge le site en direct dans la meme WebView -- ce SW s'y
+    // enregistrait aussi, en double avec le mecanisme anti-staleness dedie au
+    // natif (NativeInit.tsx, qui compare une version d'app contre l'API et
+    // force un reload) : deux systemes independants agissant sur les memes
+    // navigations/assets, redondant et potentiellement source de conflit.
+    if ('serviceWorker' in navigator && !Capacitor.isNativePlatform()) {
       navigator.serviceWorker.register('/sw.js').then(async () => {
         // Si l'user est connecté et que la permission est déjà accordée, subscribe silencieusement
         const perm = Notification.permission

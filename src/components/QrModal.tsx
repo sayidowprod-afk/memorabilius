@@ -18,7 +18,7 @@ export default function QrModal({ url, title, onClose }: QrModalProps) {
     let cancelled = false
     import('qrcode').then(QRCode => {
       if (cancelled) return
-      const fullUrl = url.startsWith('http') ? url : `https://memorabilius.fr${url}`
+      const fullUrl = url.startsWith('http') ? url : `https://www.memorabilius.fr${url}`
       QRCode.toDataURL(fullUrl, { width: 300, margin: 2, color: { dark: '#000', light: '#fff' } })
         .then(du => { if (!cancelled) setDataUrl(du) })
     })

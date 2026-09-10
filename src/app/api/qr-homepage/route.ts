@@ -14,7 +14,7 @@ export async function GET() {
   const cx     = phys / 2
   const cy     = phys / 2
 
-  const qrBuf = await (QRCode as any).toBuffer('https://memorabilius.fr', {
+  const qrBuf = await (QRCode as any).toBuffer('https://www.memorabilius.fr', {
     width: phys,
     margin: 2,
     errorCorrectionLevel: 'H',

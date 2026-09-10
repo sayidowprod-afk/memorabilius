@@ -376,7 +376,7 @@ async function cmdCollection(options: any[]) {
         { name: '🔢 Numérotées', value: `**${p.stats_num || 0}**`, inline: true },
         { name: '🪡 Patch',      value: `**${p.stats_patch || 0}**`, inline: true },
       ],
-      url: `https://memorabilius.fr/galerie/${p.id}`,
+      url: `https://www.memorabilius.fr/galerie/${p.id}`,
       footer: { text: 'memorabilius.fr' },
     }],
   })
@@ -404,7 +404,7 @@ async function cmdTop() {
       title: `🏆 Top collectionneurs — ${monthLabel}`,
       color: 0xf39c12,
       description: lines.join('\n'),
-      url: 'https://memorabilius.fr',
+      url: 'https://www.memorabilius.fr',
       footer: { text: 'memorabilius.fr' },
     }],
   })
@@ -481,7 +481,7 @@ interface CardData {
   profileId: string | null; profileName: string | null; cardUrl: string
 }
 
-// Un lien de carte est de la forme https://memorabilius.fr/galerie/{profileId}?card={image}
+// Un lien de carte est de la forme https://www.memorabilius.fr/galerie/{profileId}?card={image}
 // (voir la construction de cardUrl plus bas) -- on extrait les deux pour retrouver
 // directement la ligne exacte plutot que de repasser par une recherche floue.
 function cardDataFromRow(dbCard: any, link: string, fallbackProfileId: string | null = null): CardData {
@@ -695,8 +695,8 @@ async function findCardData(options: any[]): Promise<{ error: string } | { data:
   }
 
   const cardUrl = profileId
-    ? `https://memorabilius.fr/galerie/${profileId}?card=${encodeURIComponent(img)}`
-    : 'https://memorabilius.fr'
+    ? `https://www.memorabilius.fr/galerie/${profileId}?card=${encodeURIComponent(img)}`
+    : 'https://www.memorabilius.fr'
 
   return { data: { nom, img, imgBack, desc, badges, profileId, profileName, cardUrl } }
 }
@@ -711,7 +711,7 @@ function cardEmbed(d: CardData, imageUrl: string) {
     fields: d.badges.length ? [{ name: 'Badges', value: d.badges.join('  '), inline: false }] : [],
     author: d.profileName ? {
       name: d.profileName,
-      url: `https://memorabilius.fr/galerie/${d.profileId}`,
+      url: `https://www.memorabilius.fr/galerie/${d.profileId}`,
     } : undefined,
     footer: { text: 'memorabilius.fr' },
   }

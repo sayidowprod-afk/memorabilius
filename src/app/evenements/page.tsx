@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 type Event = {
   id: number
@@ -29,7 +30,7 @@ const escapeICS = (s: string) => s.replace(/\\/g, '\\\\').replace(/,/g, '\\,').r
 // Evenement sur une seule date (pas d'heure en base) : DTSTART;VALUE=DATE
 // suffit, pas besoin de fuseau horaire -- s'affiche comme un evenement
 // "journee entiere" dans tous les agendas (Google/Apple/Outlook).
-function downloadEventICS(ev: Event) {
+async function downloadEventICS(ev: Event) {
   const dt = ev.date.replace(/-/g, '')
   const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
   const location = [ev.location_name, ev.city, ev.country].filter(Boolean).join(', ')
@@ -45,14 +46,10 @@ function downloadEventICS(ev: Event) {
     'END:VEVENT', 'END:VCALENDAR',
   ].filter(Boolean)
   const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `${ev.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60) || 'evenement'}.ics`
-  document.body.appendChild(a)
-  a.click()
-  a.remove()
-  URL.revokeObjectURL(url)
+  // saveOrShareFile gere le repli natif (Filesystem+Share) -- un <a download>
+  // brut ne fait silencieusement rien dans la WebView Android, meme bug deja
+  // corrige sur l'export setlist.
+  await saveOrShareFile(blob, `${ev.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60) || 'evenement'}.ics`)
 }
 
 export default function Evenements() {

@@ -210,14 +210,9 @@ export default function Profil() {
       const r = await fetch('/api/export-data', { headers: { 'Authorization': `Bearer ${session?.access_token}` } })
       if (!r.ok) throw new Error('export failed')
       const blob = await r.blob()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `memorabilius-mes-donnees-${new Date().toISOString().slice(0, 10)}.json`
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      URL.revokeObjectURL(url)
+      // saveOrShareFile gere le repli natif -- meme <a download> brut, silencieux
+      // sur Android, deja corrige ailleurs (wrap-image juste au-dessus, export setlist).
+      await saveOrShareFile(blob, `memorabilius-mes-donnees-${new Date().toISOString().slice(0, 10)}.json`)
     } catch {
       toast.error(t('profile_err_generic'))
     } finally {

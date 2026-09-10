@@ -26,7 +26,7 @@ export default function QrGen() {
     if (!canvas) return
     const phys = QR_SIZE * SCALE
 
-    QRCode.toCanvas(canvas, 'https://memorabilius.fr', {
+    QRCode.toCanvas(canvas, 'https://www.memorabilius.fr', {
       width: phys,
       margin: 2,
       errorCorrectionLevel: 'H',
