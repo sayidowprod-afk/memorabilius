@@ -80,7 +80,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   // texte) à chaque frame en pure perte. Pré-rendu une fois par export/thème/
   // format, puis simplement collé (drawImage) à chaque frame.
   const infoCache = useRef<{ key: string; canvas: HTMLCanvasElement; top: number } | null>(null)
-  const shadowCache = useRef<{ key: string; canvas: HTMLCanvasElement; pad: number } | null>(null)
 
   useEffect(() => {
     const load = (src: string) => new Promise<HTMLImageElement>(r => {
@@ -260,40 +259,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
         ctx.fillRect(cardX - 2, floorY, cardW + 4, cardH * 0.52)
       }
 
-      // ── Ombre portée ── pré-rendue une fois (shadowBlur = opération Canvas2D la
-      // plus coûteuse qui existe) puis simplement redimensionnée chaque frame au
-      // lieu d'un flou recalculé à chaque fois. Rayon de flou fixe (comme avant),
-      // donc l'ombre reste correcte au repos et se déforme très légèrement pendant
-      // le flip (~0.3 de la durée) -- imperceptible sur une transition aussi rapide.
-      const shadowKeyW = Math.round(BASE_W), shadowKeyH = Math.round(BASE_H)
-      const shadowKey = `${shadowKeyW}x${shadowKeyH}-${isDark}`
-      if (!shadowCache.current || shadowCache.current.key !== shadowKey) {
-        const blurR = BASE_W * (IS_MOBILE ? 0.06 : 0.15)
-        const offY = BASE_H * 0.038
-        const pad = Math.ceil(blurR * 2.5)
-        const sc = document.createElement('canvas')
-        sc.width = shadowKeyW + pad * 2
-        sc.height = shadowKeyH + pad * 2 + Math.ceil(offY)
-        const sctx = sc.getContext('2d')!
-        sctx.shadowColor = `rgba(0,0,0,${isDark ? 0.80 : 0.45})`
-        sctx.shadowBlur = blurR
-        sctx.shadowOffsetY = offY
-        sctx.fillStyle = 'rgba(0,0,0,0.85)'
-        sctx.fillRect(pad, pad, shadowKeyW, shadowKeyH)
-        shadowCache.current = { key: shadowKey, canvas: sc, pad }
-      }
-      {
-        // La hauteur du sprite source inclut aussi le décalage vertical (offY) de
-        // l'ombre, pas seulement le coeur + le rembourrage du flou -- l'oublier
-        // dans la mise à l'échelle de la destination étirait/décalait tout le
-        // sprite (le rectangle sombre "bizarre" qui débordait sous la carte).
-        // On redimensionne le sprite ENTIER (pas juste sa zone coeur) par le même
-        // facteur d'échelle que la carte, pour que le coeur retombe exactement
-        // sur (cardX, cardTop, cardW, cardH) quelle que soit la taille du moment.
-        const { canvas: shCanvas, pad } = shadowCache.current
-        const sx = cardW / BASE_W, sy = cardH / BASE_H
-        ctx.drawImage(shCanvas, cardX - pad * sx, cardTop - pad * sy, shCanvas.width * sx, shCanvas.height * sy)
-      }
+      // Pas d'ombre portée dédiée sous la carte -- deux tentatives (shadowBlur
+      // recalculé chaque frame, puis sprite pré-rendu redimensionné) ont toutes
+      // les deux produit un rendu peu flatteur ("rectangle bizarre"). Le reflet
+      // au sol juste au-dessus suffit à ancrer visuellement la carte.
 
       // ── Image de la carte ─────────────────────────────────────────────────
       ctx.drawImage(face, cardX, cardTop, cardW, cardH)
