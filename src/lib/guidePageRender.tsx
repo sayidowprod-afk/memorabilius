@@ -154,10 +154,15 @@ export function renderGuideBlocks(blocks: GuideBlock[], setlistEmbeds: Map<numbe
   while (i < blocks.length) {
     const block = blocks[i]
     if (block.type === 'insert_grid' && block.width && block.width !== 'full') {
+      // Ne regroupe que des largeurs identiques -- mélanger un bloc "half" (46%)
+      // et un bloc "third" (30%) consécutifs sur une même rangée ne totalisait
+      // jamais 100% (76%), laissant un vide à droite au lieu de remplir la
+      // largeur comme les autres blocs de la page.
+      const groupWidth = block.width
       const group: Extract<GuideBlock, { type: 'insert_grid' }>[] = []
       while (i < blocks.length) {
         const b = blocks[i]
-        if (b.type === 'insert_grid' && b.width && b.width !== 'full') { group.push(b); i++ }
+        if (b.type === 'insert_grid' && b.width === groupWidth) { group.push(b); i++ }
         else break
       }
       nodes.push(
