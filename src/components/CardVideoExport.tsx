@@ -75,6 +75,14 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const previewImgs = useRef<{ f?: HTMLImageElement; b?: HTMLImageElement }>({})
   const logoImgs = useRef<{ dark?: HTMLImageElement; light?: HTMLImageElement }>({})
   const bgCache = useRef<{ key: string; canvas: HTMLCanvasElement } | null>(null)
+  // Zone infos (badges, nom, variation, équipe, logo) + ombre de carte : rien
+  // dedans ne dépend de `p` (progression d'animation) sauf la ligne accent en
+  // pointillé -- tout le reste était pourtant redessiné (dégradés, shadowBlur,
+  // texte) à chaque frame en pure perte. Pré-rendu une fois par export/thème/
+  // format, puis simplement collé (drawImage) à chaque frame.
+  const infoCache = useRef<{ key: string; canvas: HTMLCanvasElement; top: number } | null>(null)
+  const shadowCache = useRef<{ key: string; canvas: HTMLCanvasElement; pad: number } | null>(null)
+  const particleSprites = useRef<Map<string, HTMLCanvasElement>>(new Map())
 
   useEffect(() => {
     const load = (src: string) => new Promise<HTMLImageElement>(r => {
@@ -119,7 +127,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       img.src = src
     })
 
-  const drawFrame = (ctx: CanvasRenderingContext2D, frontImg: HTMLImageElement, backImg: HTMLImageElement, p: number) => {
+  const drawFrame = (ctx: CanvasRenderingContext2D, frontImg: HTMLImageElement, backImg: HTMLImageElement, p: number, holdT = 0) => {
     const W = ctx.canvas.width
     const H = ctx.canvas.height
     const isDark = themeRef.current === 'dark'
@@ -174,12 +182,32 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     ctx.drawImage(bgCache.current.canvas, 0, 0)
 
     // ── Particules montantes ──────────────────────────────────────────────────
+    // Sprite pré-rendu par rayon (4 valeurs distinctes) au lieu de reconstruire un
+    // chemin d'arc + remplissage pour chacune des 20-50 particules à chaque frame --
+    // la couleur ne varie qu'en alpha (globalAlpha), pas besoin d'un sprite par
+    // particule, juste par rayon.
+    const getParticleSprite = (r: number) => {
+      const key = `${r}-${isDark}-${accent}`
+      let sprite = particleSprites.current.get(key)
+      if (!sprite) {
+        const size = Math.ceil(r * 2) + 2
+        sprite = document.createElement('canvas')
+        sprite.width = size; sprite.height = size
+        const sctx = sprite.getContext('2d')!
+        sctx.beginPath(); sctx.arc(size / 2, size / 2, r, 0, Math.PI * 2)
+        sctx.fillStyle = isDark ? `rgb(${ar},${ag},${Math.min(255, ab + 60)})` : 'rgb(80,80,220)'
+        sctx.fill()
+        particleSprites.current.set(key, sprite)
+      }
+      return sprite
+    }
     PARTICLES.forEach(({ x, y, r, speed, phase }) => {
       const py = ((y * H - p * speed * H * 3) % H + H) % H
       const a = (isDark ? 0.06 : 0.10) + 0.04 * Math.sin(p * Math.PI * 5 + phase)
-      ctx.beginPath(); ctx.arc(x * W, py, r, 0, Math.PI * 2)
-      ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab + 60},${a})` : `rgba(80,80,220,${a})`
-      ctx.fill()
+      const sprite = getParticleSprite(r)
+      ctx.globalAlpha = a
+      ctx.drawImage(sprite, x * W - sprite.width / 2, py - sprite.height / 2)
+      ctx.globalAlpha = 1
     })
 
     // ── Layout ────────────────────────────────────────────────────────────────
@@ -212,8 +240,14 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const face     = showBack ? backImg : frontImg
     const bob      = Math.sin(p * Math.PI * 2) * H * 0.006
     const zoom     = 1 + 0.03 * Math.sin(p * Math.PI * 2)
-    const cardW    = BASE_W * absScale * zoom
-    const cardH    = BASE_H * zoom
+    // ── Entrée en fondu/zoom — la carte apparaissait déjà en place dès la 1ère
+    // frame, maintenant un léger zoom-in + fondu sur les ~350 premières ms.
+    const introT     = Math.min(1, p / 0.06)
+    const introEase  = easeInOut(introT)
+    const introScale = 0.85 + 0.15 * introEase
+    const introAlpha = introEase
+    const cardW    = BASE_W * absScale * zoom * introScale
+    const cardH    = BASE_H * zoom * introScale
     const cardCY   = CARD_CY + bob
     const cardX    = W / 2 - cardW / 2
     const cardTop  = cardCY - cardH / 2
@@ -230,6 +264,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     ctx.fillRect(spotX - spotR, CARD_CY - spotR, spotR * 2, spotR * 2)
 
     if (cardW > 2) {
+      ctx.globalAlpha = introAlpha
       const floorY = cardCY + cardH / 2
 
       // ── Reflet sol (coûteux : drawImage + clip supplémentaires, sauté sur mobile) ──
@@ -251,31 +286,52 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
         ctx.fillRect(cardX - 2, floorY, cardW + 4, cardH * 0.52)
       }
 
-      // ── Ombre portée ──────────────────────────────────────────────────────
-      ctx.save()
-      ctx.shadowColor = `rgba(0,0,0,${isDark ? 0.80 : 0.45})`
-      ctx.shadowBlur   = BASE_W * (IS_MOBILE ? 0.06 : 0.15)
-      ctx.shadowOffsetY = BASE_H * 0.038
-      ctx.fillStyle = `rgba(0,0,0,0.85)`
-      ctx.fillRect(cardX, cardTop, cardW, cardH)
-      ctx.restore()
+      // ── Ombre portée ── pré-rendue une fois (shadowBlur = opération Canvas2D la
+      // plus coûteuse qui existe) puis simplement redimensionnée chaque frame au
+      // lieu d'un flou recalculé à chaque fois. Rayon de flou fixe (comme avant),
+      // donc l'ombre reste correcte au repos et se déforme très légèrement pendant
+      // le flip (~0.3 de la durée) -- imperceptible sur une transition aussi rapide.
+      const shadowKeyW = Math.round(BASE_W), shadowKeyH = Math.round(BASE_H)
+      const shadowKey = `${shadowKeyW}x${shadowKeyH}-${isDark}`
+      if (!shadowCache.current || shadowCache.current.key !== shadowKey) {
+        const blurR = BASE_W * (IS_MOBILE ? 0.06 : 0.15)
+        const offY = BASE_H * 0.038
+        const pad = Math.ceil(blurR * 2.5)
+        const sc = document.createElement('canvas')
+        sc.width = shadowKeyW + pad * 2
+        sc.height = shadowKeyH + pad * 2 + Math.ceil(offY)
+        const sctx = sc.getContext('2d')!
+        sctx.shadowColor = `rgba(0,0,0,${isDark ? 0.80 : 0.45})`
+        sctx.shadowBlur = blurR
+        sctx.shadowOffsetY = offY
+        sctx.fillStyle = 'rgba(0,0,0,0.85)'
+        sctx.fillRect(pad, pad, shadowKeyW, shadowKeyH)
+        shadowCache.current = { key: shadowKey, canvas: sc, pad }
+      }
+      {
+        const { canvas: shCanvas, pad } = shadowCache.current
+        const sx = cardW / BASE_W, sy = cardH / BASE_H
+        ctx.drawImage(shCanvas, cardX - pad * sx, cardTop - pad * sy, cardW + pad * 2 * sx, cardH + pad * 2 * sy)
+      }
 
       // ── Image de la carte ─────────────────────────────────────────────────
       ctx.drawImage(face, cardX, cardTop, cardW, cardH)
 
-      // ── Gloss blanc diagonal ──────────────────────────────────────────────
+      // ── Gloss blanc diagonal — détail fin, sauté sur mobile (perf) ────────
       ctx.save()
       ctx.beginPath(); ctx.rect(cardX, cardTop, cardW, cardH); ctx.clip()
-      const sweep  = ((p * 1.6) % 1) * 2 - 0.5
-      const sw0    = cardX + sweep * cardW - cardW * 0.30
-      const sw1    = cardX + sweep * cardW + cardW * 0.30
-      const sweepA = 0.20 * absScale
-      const gloss = ctx.createLinearGradient(sw0, cardTop, sw1, cardTop + cardH)
-      gloss.addColorStop(0,   'rgba(255,255,255,0)')
-      gloss.addColorStop(0.5, `rgba(255,255,255,${sweepA})`)
-      gloss.addColorStop(1,   'rgba(255,255,255,0)')
-      ctx.fillStyle = gloss
-      ctx.fillRect(cardX, cardTop, cardW, cardH)
+      if (!IS_MOBILE) {
+        const sweep  = ((p * 1.6) % 1) * 2 - 0.5
+        const sw0    = cardX + sweep * cardW - cardW * 0.30
+        const sw1    = cardX + sweep * cardW + cardW * 0.30
+        const sweepA = 0.20 * absScale
+        const gloss = ctx.createLinearGradient(sw0, cardTop, sw1, cardTop + cardH)
+        gloss.addColorStop(0,   'rgba(255,255,255,0)')
+        gloss.addColorStop(0.5, `rgba(255,255,255,${sweepA})`)
+        gloss.addColorStop(1,   'rgba(255,255,255,0)')
+        ctx.fillStyle = gloss
+        ctx.fillRect(cardX, cardTop, cardW, cardH)
+      }
 
       // ── Rim light — glow accent sur les bords de la carte ─────────────────
       const rimA = (isDark ? 0.22 : 0.15) * absScale
@@ -301,8 +357,8 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       ctx.strokeStyle = `rgba(255,255,255,${0.12 + 0.22 * (1 - absScale)})`
       ctx.strokeRect(cardX, cardTop, cardW, cardH)
 
-      // ── Éclat de tranche avec aberration chromatique ──────────────────────
-      if (absScale < 0.28) {
+      // ── Éclat de tranche avec aberration chromatique — sauté sur mobile (perf) ──
+      if (absScale < 0.28 && !IS_MOBILE) {
         const glint   = 1 - absScale / 0.28
         const edgeX   = W / 2
         const glintW  = Math.max(8, cardW * 2 + 16)
@@ -317,16 +373,148 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
         ctx.fillStyle = gg
         ctx.fillRect(edgeX - glintW / 2, cardTop, glintW, cardH)
       }
+      ctx.globalAlpha = 1
     }
 
-    // ── Zone infos ────────────────────────────────────────────────────────────
+    // ── Zone infos ── pré-rendue une fois (fond, badges, nom, variation, équipe,
+    // meta, logo) : rien dedans ne dépend de `p` sauf la ligne accent, qui reste
+    // dessinée en direct chaque frame juste après. Le reste (dégradés, shadowBlur
+    // des badges, plusieurs fillText avec changement de police) était pourtant
+    // refait identique à chaque frame en pure perte.
     const infoY = H - INFO_H
-    const fadeGrad = ctx.createLinearGradient(0, infoY - INFO_H * 0.42, 0, infoY + 10)
-    fadeGrad.addColorStop(0, 'rgba(0,0,0,0)'); fadeGrad.addColorStop(1, infoBg)
-    ctx.fillStyle = fadeGrad; ctx.fillRect(0, infoY - INFO_H * 0.42, W, INFO_H * 0.52)
-    ctx.fillStyle = infoBg; ctx.fillRect(0, infoY + 10, W, INFO_H)
+    const infoTop = infoY - INFO_H * 0.42
+    const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
+    const infoCacheKey = `${W}x${H}-${isDark}-${accent}-${!!logoImg}`
+    if (!infoCache.current || infoCache.current.key !== infoCacheKey) {
+      const ic = document.createElement('canvas')
+      ic.width = W
+      ic.height = Math.ceil(H - infoTop)
+      const ictx = ic.getContext('2d')!
+      const oy = infoTop
 
-    // Ligne accent avec légère respiration
+      const fadeGrad = ictx.createLinearGradient(0, 0, 0, (infoY + 10) - oy)
+      fadeGrad.addColorStop(0, 'rgba(0,0,0,0)'); fadeGrad.addColorStop(1, infoBg)
+      ictx.fillStyle = fadeGrad; ictx.fillRect(0, 0, W, INFO_H * 0.52)
+      ictx.fillStyle = infoBg; ictx.fillRect(0, (infoY + 10) - oy, W, INFO_H)
+
+      ictx.textAlign = 'center'; ictx.textBaseline = 'top'
+      const tx = W / 2
+      let ty = (infoY + INFO_H * 0.09) - oy
+
+      // ── Badges ─────────────────────────────────────────────────────────────
+      const badgeFs  = Math.round(W * 0.026)
+      const badgeH   = Math.round(W * 0.042)
+      const badgePad = Math.round(W * 0.026)
+      const badgeR   = badgeH / 2
+
+      type BadgeEntry = { label: string; solid?: string; grad?: [string, string]; textColor: string }
+      const tags: BadgeEntry[] = []
+      if (card.rc) tags.push({ label: '★ RC', grad: ['#e67e22', '#f39c12'], textColor: '#fff' })
+      if (card.auto) tags.push({ label: 'AUTO', solid: '#2e7d32', textColor: '#fff' })
+      if (card.num) {
+        const m = card.num.trim().match(/\/(\d+)$/)
+        const n = m ? parseInt(m[1]) : null
+        if (n === 1)                    tags.push({ label: card.num, grad: ['#b8860b', '#ffd700'], textColor: '#3d2800' })
+        else if (n !== null && n <= 10) tags.push({ label: card.num, grad: ['#555', '#c0c0c0'], textColor: '#111' })
+        else if (n !== null && n <= 25) tags.push({ label: card.num, grad: ['#6d3a00', '#cd7f32'], textColor: '#fff' })
+        else                            tags.push({ label: card.num, solid: '#7b1fa2', textColor: '#fff' })
+      }
+      if (card.patch) tags.push({ label: 'PATCH', solid: '#1565c0', textColor: '#fff' })
+
+      if (tags.length > 0) {
+        ictx.font = `800 ${badgeFs}px Inter, sans-serif`
+        const widths  = tags.map(t => ictx.measureText(t.label).width + badgePad * 2)
+        const gap     = Math.round(W * 0.014)
+        const totalW  = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
+        let bx = tx - totalW / 2
+
+        tags.forEach((tag, i) => {
+          const bw  = widths[i]
+          const bcy = ty + badgeH / 2
+
+          if (tag.grad) {
+            const g = ictx.createLinearGradient(bx, ty, bx + bw, ty + badgeH)
+            g.addColorStop(0, tag.grad[0]); g.addColorStop(1, tag.grad[1])
+            ictx.fillStyle = g
+          } else {
+            ictx.fillStyle = tag.solid!
+          }
+          if (!IS_MOBILE) {
+            ictx.shadowColor = tag.solid || tag.grad![0]
+            ictx.shadowBlur  = Math.round(W * 0.018)
+          }
+          ictx.beginPath(); ictx.roundRect(bx, ty, bw, badgeH, badgeR); ictx.fill()
+          ictx.shadowBlur  = 0
+
+          // Reflet interne
+          const shine = ictx.createLinearGradient(bx, ty, bx, ty + badgeH * 0.5)
+          shine.addColorStop(0, 'rgba(255,255,255,0.28)'); shine.addColorStop(1, 'rgba(255,255,255,0)')
+          ictx.fillStyle = shine
+          ictx.beginPath(); ictx.roundRect(bx, ty, bw, badgeH * 0.55, [badgeR, badgeR, 0, 0]); ictx.fill()
+
+          ictx.fillStyle = tag.textColor
+          ictx.textBaseline = 'middle'
+          ictx.fillText(tag.label, bx + bw / 2, bcy)
+          ictx.textBaseline = 'top'
+          bx += bw + gap
+        })
+        ty += badgeH + Math.round(INFO_H * 0.07)
+      }
+
+      // ── Nom du joueur ─────────────────────────────────────────────────────────
+      const nameFs = Math.round(W * 0.054)
+      ictx.fillStyle = textMain
+      ictx.font = `900 ${nameFs}px Inter, sans-serif`
+      ictx.fillText(truncate(ictx, card.n, W * 0.88), tx, ty)
+      ty += nameFs * 1.15
+
+      // ── Variation ─────────────────────────────────────────────────────────────
+      if (card.v) {
+        const varFs = Math.round(W * 0.030)
+        ictx.fillStyle = accent
+        ictx.font = `600 italic ${varFs}px Inter, sans-serif`
+        ictx.fillText(truncate(ictx, card.v, W * 0.84), tx, ty)
+        ty += varFs * 1.3
+      }
+
+      // ── Équipe ────────────────────────────────────────────────────────────────
+      if (card.t) {
+        const teamFs = Math.round(W * 0.026)
+        ictx.fillStyle = textSub
+        ictx.font = `700 ${teamFs}px Inter, sans-serif`
+        ictx.fillText(truncate(ictx, card.t, W * 0.80), tx, ty)
+        ty += teamFs * 1.35
+      }
+
+      // ── Année · Marque · Collection ───────────────────────────────────────────
+      const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
+      if (meta2) {
+        const metaFs = Math.round(W * 0.022)
+        ictx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
+        ictx.font = `400 ${metaFs}px Inter, sans-serif`
+        ictx.fillText(truncate(ictx, meta2, W * 0.80), tx, ty)
+      }
+
+      // ── Logo watermark ────────────────────────────────────────────────────────
+      if (logoImg && logoImg.naturalWidth > 0) {
+        const logoW = W * 0.19
+        const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
+        ictx.globalAlpha = isDark ? 0.50 : 0.65
+        ictx.drawImage(logoImg, W - logoW - W * 0.03, (H - logoH - H * 0.014) - oy, logoW, logoH)
+        ictx.globalAlpha = 1
+      } else {
+        ictx.textAlign = 'right'; ictx.textBaseline = 'bottom'
+        ictx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.55)` : `rgba(${ar},${ag},${ab},0.7)`
+        ictx.font = `600 ${Math.round(W * 0.026)}px Inter, sans-serif`
+        ictx.fillText('memorabilius.fr', W - Math.round(W * 0.03), (H - Math.round(H * 0.012)) - oy)
+      }
+
+      infoCache.current = { key: infoCacheKey, canvas: ic, top: infoTop }
+    }
+    ctx.drawImage(infoCache.current.canvas, 0, infoCache.current.top)
+
+    // Ligne accent avec légère respiration -- seul élément animé de la zone infos,
+    // dessiné à part par-dessus le panneau mis en cache.
     const linePulse = 0.72 + 0.28 * Math.sin(p * Math.PI * 4)
     const lineGrad  = ctx.createLinearGradient(W * 0.08, 0, W * 0.92, 0)
     lineGrad.addColorStop(0,   'rgba(0,0,0,0)')
@@ -336,117 +524,22 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     lineGrad.addColorStop(1,   'rgba(0,0,0,0)')
     ctx.fillStyle = lineGrad; ctx.fillRect(0, infoY, W, 2)
 
-    ctx.textAlign = 'center'; ctx.textBaseline = 'top'
-    const tx = W / 2
-    let ty   = infoY + INFO_H * 0.09
-
-    // ── Badges ─────────────────────────────────────────────────────────────
-    const badgeFs  = Math.round(W * 0.026)
-    const badgeH   = Math.round(W * 0.042)
-    const badgePad = Math.round(W * 0.026)
-    const badgeR   = badgeH / 2
-
-    type BadgeEntry = { label: string; solid?: string; grad?: [string, string]; textColor: string }
-    const tags: BadgeEntry[] = []
-    if (card.rc) tags.push({ label: '★ RC', grad: ['#e67e22', '#f39c12'], textColor: '#fff' })
-    if (card.auto) tags.push({ label: 'AUTO', solid: '#2e7d32', textColor: '#fff' })
-    if (card.num) {
-      const m = card.num.trim().match(/\/(\d+)$/)
-      const n = m ? parseInt(m[1]) : null
-      if (n === 1)                    tags.push({ label: card.num, grad: ['#b8860b', '#ffd700'], textColor: '#3d2800' })
-      else if (n !== null && n <= 10) tags.push({ label: card.num, grad: ['#555', '#c0c0c0'], textColor: '#111' })
-      else if (n !== null && n <= 25) tags.push({ label: card.num, grad: ['#6d3a00', '#cd7f32'], textColor: '#fff' })
-      else                            tags.push({ label: card.num, solid: '#7b1fa2', textColor: '#fff' })
-    }
-    if (card.patch) tags.push({ label: 'PATCH', solid: '#1565c0', textColor: '#fff' })
-
-    if (tags.length > 0) {
-      ctx.font = `800 ${badgeFs}px Inter, sans-serif`
-      const widths  = tags.map(t => ctx.measureText(t.label).width + badgePad * 2)
-      const gap     = Math.round(W * 0.014)
-      const totalW  = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
-      let bx = tx - totalW / 2
-
-      tags.forEach((tag, i) => {
-        const bw  = widths[i]
-        const bcy = ty + badgeH / 2
-
-        if (tag.grad) {
-          const g = ctx.createLinearGradient(bx, ty, bx + bw, ty + badgeH)
-          g.addColorStop(0, tag.grad[0]); g.addColorStop(1, tag.grad[1])
-          ctx.fillStyle = g
-        } else {
-          ctx.fillStyle = tag.solid!
-        }
-        if (!IS_MOBILE) {
-          ctx.shadowColor = tag.solid || tag.grad![0]
-          ctx.shadowBlur  = Math.round(W * 0.018)
-        }
-        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, badgeR); ctx.fill()
-        ctx.shadowBlur  = 0
-
-        // Reflet interne
-        const shine = ctx.createLinearGradient(bx, ty, bx, ty + badgeH * 0.5)
-        shine.addColorStop(0, 'rgba(255,255,255,0.28)'); shine.addColorStop(1, 'rgba(255,255,255,0)')
-        ctx.fillStyle = shine
-        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH * 0.55, [badgeR, badgeR, 0, 0]); ctx.fill()
-
-        ctx.fillStyle = tag.textColor
-        ctx.textBaseline = 'middle'
-        ctx.fillText(tag.label, bx + bw / 2, bcy)
-        ctx.textBaseline = 'top'
-        bx += bw + gap
-      })
-      ty += badgeH + Math.round(INFO_H * 0.07)
-    }
-
-    // ── Nom du joueur ─────────────────────────────────────────────────────────
-    const nameFs = Math.round(W * 0.054)
-    ctx.fillStyle = textMain
-    ctx.font = `900 ${nameFs}px Inter, sans-serif`
-    ctx.fillText(truncate(ctx, card.n, W * 0.88), tx, ty)
-    ty += nameFs * 1.15
-
-    // ── Variation ─────────────────────────────────────────────────────────────
-    if (card.v) {
-      const varFs = Math.round(W * 0.030)
-      ctx.fillStyle = accent
-      ctx.font = `600 italic ${varFs}px Inter, sans-serif`
-      ctx.fillText(truncate(ctx, card.v, W * 0.84), tx, ty)
-      ty += varFs * 1.3
-    }
-
-    // ── Équipe ────────────────────────────────────────────────────────────────
-    if (card.t) {
-      const teamFs = Math.round(W * 0.026)
-      ctx.fillStyle = textSub
-      ctx.font = `700 ${teamFs}px Inter, sans-serif`
-      ctx.fillText(truncate(ctx, card.t, W * 0.80), tx, ty)
-      ty += teamFs * 1.35
-    }
-
-    // ── Année · Marque · Collection ───────────────────────────────────────────
-    const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
-    if (meta2) {
-      const metaFs = Math.round(W * 0.022)
-      ctx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
-      ctx.font = `400 ${metaFs}px Inter, sans-serif`
-      ctx.fillText(truncate(ctx, meta2, W * 0.80), tx, ty)
-    }
-
-    // ── Logo watermark ────────────────────────────────────────────────────────
-    const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
-    if (logoImg && logoImg.naturalWidth > 0) {
+    // ── Petit "pop" du logo à l'entrée du palier final (HOLD) ── la fin de vidéo
+    // était jusqu'ici juste figée sur la dernière frame pendant 700ms sans aucune
+    // transition. Un bref flash/zoom du logo au tout début du palier rend la sortie
+    // moins abrupte, sans retoucher le panneau (mis en cache) en dessous.
+    if (holdT > 0 && holdT < 1 && logoImg && logoImg.naturalWidth > 0) {
       const logoW = W * 0.19
       const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
-      ctx.globalAlpha = isDark ? 0.50 : 0.65
-      ctx.drawImage(logoImg, W - logoW - W * 0.03, H - logoH - H * 0.014, logoW, logoH)
-      ctx.globalAlpha = 1
-    } else {
-      ctx.textAlign = 'right'; ctx.textBaseline = 'bottom'
-      ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.55)` : `rgba(${ar},${ag},${ab},0.7)`
-      ctx.font = `600 ${Math.round(W * 0.026)}px Inter, sans-serif`
-      ctx.fillText('memorabilius.fr', W - Math.round(W * 0.03), H - Math.round(H * 0.012))
+      const lx = W - logoW - W * 0.03
+      const ly = H - logoH - H * 0.014
+      const pop = 1 + 0.15 * (1 - easeInOut(holdT))
+      ctx.save()
+      ctx.globalAlpha = Math.min(1, holdT * 3) * (isDark ? 0.5 : 0.65)
+      ctx.translate(lx + logoW / 2, ly + logoH / 2)
+      ctx.scale(pop, pop)
+      ctx.drawImage(logoImg, -logoW / 2, -logoH / 2, logoW, logoH)
+      ctx.restore()
     }
   }
 
@@ -522,7 +615,8 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
           lastDraw = now
           const elapsed = now - start
           const p = Math.min(elapsed / DURATION, 1)
-          drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
+          const holdT = Math.min(1, Math.max(0, elapsed - DURATION) / 300)
+          drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p, holdT)
           setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
           if (elapsed >= DURATION + HOLD) { resolve(); return }
         }
