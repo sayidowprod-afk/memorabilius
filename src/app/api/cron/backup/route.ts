@@ -116,13 +116,15 @@ export async function GET(req: NextRequest) {
     results.db++
   } catch { results.errors++ }
 
-  // ── 4. Export DB — classeurs ────────────────────────────────────────────
+  // ── 4. Export DB — classeurs (table "binders", "classeurs" est un nom
+  // legacy pre-migration qui n'existe plus -- cette requete echouait donc
+  // en silence chaque nuit, results.errors++ sans jamais dire pourquoi) ────
   try {
-    const { data: classeurs } = await supabase
-      .from('classeurs')
-      .select('id, user_id, nom, description, created_at')
+    const { data: binders } = await supabase
+      .from('binders')
+      .select('id, user_id, name, layout, color, page_count, position, created_at')
       .limit(10000)
-    await upload(`db/${dateStr}/classeurs.json`, JSON.stringify(classeurs), 'application/json')
+    await upload(`db/${dateStr}/binders.json`, JSON.stringify(binders), 'application/json')
     results.db++
   } catch { results.errors++ }
 

@@ -24,15 +24,20 @@ const TABLES = [
   'card_collections', 'card_likes', 'card_price_history', 'card_set_entries',
   'card_sets', 'card_values', 'carte_tags', 'cartes_manuelles', 'cartes_privees',
   'collection_tab_settings', 'contest_entries', 'contest_votes', 'csv_card_links',
+  'discord_contest_entries', 'discord_contest_entry_votes', 'discord_contest_themes',
+  'discord_contest_theme_votes', 'discord_contest_weeks',
   'ebay_cache', 'entry_images', 'event_attendees', 'event_requests', 'events',
   'fcm_tokens', 'follows', 'galerie_comment_likes', 'galerie_comments',
-  'grail_cards', 'guide_translations', 'guides', 'messages', 'monthly_additions',
+  'grail_cards', 'guide_translations', 'guides', 'login_attempts', 'login_history',
+  'messages', 'monthly_additions', 'nba_birthday_posts',
   'notifications', 'page_views', 'pc_targets', 'profiles', 'push_subscriptions',
+  'reports', 'scan_corrections', 'sports_birthdays',
   'stats_snapshots', 'team_candidatures', 'team_contests', 'team_members',
   'team_message_reactions', 'team_messages', 'team_post_comments',
   'team_post_reactions', 'team_posts', 'teams', 'trade_favorites',
   'trade_offer_cards', 'trade_offers', 'trades', 'training_data', 'user_badges',
-  'user_countries', 'user_sessions', 'user_set_completion', 'wishlist', 'xp_events',
+  'user_countries', 'user_feedback', 'user_sessions', 'user_set_completion',
+  'user_set_rejected', 'wishlist', 'xp_events',
 ]
 
 const supabase = createClient(
