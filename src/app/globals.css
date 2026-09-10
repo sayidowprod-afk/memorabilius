@@ -854,6 +854,17 @@ body {
 .scan-result-land { animation: scanResultLand 0.45s cubic-bezier(0.34,1.56,0.64,1); }
 @media (prefers-reduced-motion: reduce) { .scan-result-land { animation: none; } }
 
+/* Ouverture du viewer 3D (Viewer3D.tsx) : apparaissait brut jusqu'ici, aucune
+   transition d'entree. Un vrai "shared element" (la carte s'envole depuis sa
+   position dans la grille) demanderait de faire transiter les coordonnees de
+   clic a travers tous les points d'entree de ce composant tres largement
+   reutilise -- risque de regression trop eleve pour le gain. Fade+scale
+   generique a la place : meme intention (la carte "arrive"), sans dependance
+   a la position d'origine. */
+@keyframes viewer3dEnter { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+.viewer3d-enter { animation: viewer3dEnter 0.22s cubic-bezier(0.22,1,0.36,1); }
+@media (prefers-reduced-motion: reduce) { .viewer3d-enter { animation: none; } }
+
 /* ===== BATCH 10 — surlignage bref d'un commentaire qui vient d'etre poste ===== */
 @keyframes commentHighlight { 0% { background: rgba(0,61,166,0.14); } 100% { background: transparent; } }
 .comment-just-posted { animation: commentHighlight 1.8s ease; }

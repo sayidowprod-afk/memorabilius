@@ -740,7 +740,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   // au lieu de rester fixee au viewport comme les autres modales de l'app.
   if (typeof document === 'undefined') return null
   return createPortal(
-    <div style={{
+    <div className="viewer3d-enter" style={{
       position: 'fixed', inset: 0,
       background: bg, zIndex: 9999999,
       display: 'flex', overflow: 'hidden',

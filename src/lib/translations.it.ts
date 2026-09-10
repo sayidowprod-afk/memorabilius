@@ -1004,6 +1004,7 @@ export const it = {
   addcard_paste_no_slot: "Tutte le foto sono già occupate — rimuovine una prima di incollare.",
   addcard_err_name_required: 'Il nome è obbligatorio',
   addcard_first_card_celebration: '🎉 La tua prima carta! Benvenuto nella collezione.',
+  addcard_milestone_celebration: '🎉 Carta numero {n}! La tua collezione cresce alla grande.',
   addcard_back_to_gallery: 'Torna alla galleria',
   addcard_title_add: '➕ Aggiungi un oggetto',
   addcard_title_edit: '✏️ Modifica la carta',

@@ -147,6 +147,11 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
         onTouchStart={pause}
         onTouchEnd={scheduleResume}
         onWheel={onWheel}
+        // Souris desktop : pause aussi au simple survol (pas de scroll tactile
+        // natif au trackpad/molette a lire), sinon impossible de s'arreter sur
+        // une carte pour lire son nom sans la faire glisser manuellement.
+        onMouseEnter={pause}
+        onMouseLeave={scheduleResume}
         className="pepites-track"
         style={{
           display: 'flex', gap: 10, overflowX: 'auto', overflowY: 'hidden', cursor: 'grab',

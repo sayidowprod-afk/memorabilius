@@ -1004,6 +1004,7 @@ export const es = {
   addcard_paste_no_slot: 'Todas las fotos ya están rellenas — quita una antes de pegar.',
   addcard_err_name_required: 'El nombre es obligatorio',
   addcard_first_card_celebration: '🎉 ¡Tu primera carta! Bienvenido a la colección.',
+  addcard_milestone_celebration: '🎉 ¡Carta número {n}! Tu colección crece muy bien.',
   addcard_back_to_gallery: 'Volver a la galería',
   addcard_title_add: '➕ Añadir un objeto',
   addcard_title_edit: '✏️ Modificar la carta',

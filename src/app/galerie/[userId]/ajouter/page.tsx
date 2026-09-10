@@ -837,21 +837,24 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         }).then(({ error }) => { if (error) console.error('[training_data]', error) })
       }
     }
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      fetch('/api/card-added', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
-        body: JSON.stringify({ userId: uid, rc: form.rc, auto: form.auto, patch: form.patch, num: !!form.num }),
-      }).catch(() => {})
-      fetch('/api/wishlist-notify', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
-        body: JSON.stringify({
-          card: { nom: form.nom, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch },
-          cardUserId: uid,
-        }),
-      }).catch(() => {})
-    })
+    const { data: { session } } = await supabase.auth.getSession()
+    fetch('/api/wishlist-notify', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+      body: JSON.stringify({
+        card: { nom: form.nom, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch },
+        cardUserId: uid,
+      }),
+    }).catch(() => {})
+    // Attendu (pas fire-and-forget comme wishlist-notify ci-dessus) : la reponse
+    // porte le nouveau total de cartes, necessaire pour detecter un jalon rond
+    // juste en dessous -- seul cout : un aller-retour deja fait de toute facon.
+    const cardAddedTotal = await fetch('/api/card-added', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+      body: JSON.stringify({ userId: uid, rc: form.rc, auto: form.auto, patch: form.patch, num: !!form.num }),
+    }).then(r => r.json()).then(d => d.total as number | undefined).catch(() => undefined)
+
     setSaving(false)
 
     // Premiere carte JAMAIS ajoutee sur cet appareil : petit moment "wow" avant
@@ -863,6 +866,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       hapticSuccess()
       fireConfetti()
       toast.success(t('addcard_first_card_celebration'))
+    } else if (cardAddedTotal !== undefined) {
+      // Jalons ronds de collection (100e/500e/1000e/2500e/5000e carte) --
+      // stats_total est deja suivi (podium, badges) mais jamais celebre en
+      // dehors des badges eux-memes. Double salve de confetti pour marquer
+      // le coup plus fort qu'une celebration de badge normale.
+      const MILESTONES = [100, 500, 1000, 2500, 5000, 10000]
+      if (MILESTONES.includes(cardAddedTotal)) {
+        hapticSuccess()
+        fireConfetti()
+        setTimeout(() => fireConfetti(), 250)
+        toast.success(t('addcard_milestone_celebration').replace('{n}', String(cardAddedTotal)))
+      }
     }
 
     if (form.image_recto) {

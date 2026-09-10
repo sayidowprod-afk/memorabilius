@@ -460,9 +460,12 @@ export default function Trades() {
                         : <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>}
                     </div>
                     <div style={{ padding: '14px 16px' }}>
-                      <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
-                      {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
-                      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
+                      {/* Ecart de taille plus net titre/metadonnees (15->12px etait
+                          un petit pas, tout au meme poids visuel) + un peu plus de
+                          respiration autour des badges pour mieux scanner la grille. */}
+                      <h3 style={{ fontWeight: 900, fontSize: 16, margin: '0 0 5px', lineHeight: 1.25 }}>{trade.titre}</h3>
+                      {trade.joueur && <p style={{ fontSize: 11.5, color: '#003DA6', fontWeight: 600, margin: '0 0 10px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
+                      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
                         <CardTagBadges rc={trade.rc} auto={trade.auto} patch={trade.patch} num={trade.num} size="md" />
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>

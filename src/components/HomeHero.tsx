@@ -247,7 +247,10 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
               }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = dark ? '0 8px 28px rgba(0,0,0,0.5)' : '0 8px 28px rgba(0,61,166,0.13)' }}
               onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)' }}>
-              <span style={{ fontSize: 26 }}>{f.icon}</span>
+              <span style={{
+                width: 44, height: 44, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 22, background: dark ? `${f.color}26` : `${f.color}1a`, flexShrink: 0,
+              }}>{f.icon}</span>
               <h3 style={{ fontSize: 13, fontWeight: 800, margin: 0, color: dark ? '#e8eeff' : '#0a2a6b', lineHeight: 1.3 }}>{f.title}</h3>
               <p style={{ fontSize: 11.5, color: dark ? 'rgba(255,255,255,0.5)' : '#5a6e90', margin: 0, lineHeight: 1.5 }}>{f.desc}</p>
             </div>

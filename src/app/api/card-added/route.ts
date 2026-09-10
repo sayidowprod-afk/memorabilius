@@ -61,7 +61,9 @@ export async function POST(req: NextRequest) {
     await awardXP(supabase, userId, 'card_added', xpForCard({ rc, auto, patch, num }))
     await checkAndAwardBadgeXP(supabase, userId)
 
-    return NextResponse.json({ ok: true })
+    // total renvoye pour permettre au client de detecter un jalon rond
+    // (100e/500e/1000e carte) sans requete supplementaire.
+    return NextResponse.json({ ok: true, total: 'stats' in recalc ? recalc.stats.total : undefined })
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 })
   }
