@@ -741,7 +741,11 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       // silencieusement avant que l'écriture n'ait fini.
       await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`, { timeoutMs: 45000 })
     } catch (e) {
-      toast.error(t('video_download_error'))
+      // Le detail technique (ex: "Timeout (partage)") est ajoute au message --
+      // sans acces a Crashlytics, c'est le seul moyen pour un utilisateur qui
+      // signale le bug de nous dire A QUELLE ETAPE precise ca echoue.
+      const detail = e instanceof Error ? e.message : String(e)
+      toast.error(`${t('video_download_error')} (${detail})`)
     } finally {
       setDownloading(false)
     }

@@ -316,7 +316,10 @@ export default function CardPhotoExport({ card, accent, onClose }: Props) {
       if (!blob) throw new Error('canvas-empty')
       await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.jpg`)
     } catch (e) {
-      toast.error(t('video_download_error'))
+      // Detail technique ajoute au message (ex: "Timeout (partage)") -- seul
+      // moyen de savoir a quelle etape ca echoue sans acces a Crashlytics.
+      const detail = e instanceof Error ? e.message : String(e)
+      toast.error(`${t('video_download_error')} (${detail})`)
     } finally { setGenerating(false) }
   }
 
