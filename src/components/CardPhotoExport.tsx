@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { toast } from '@/lib/toast'
 
 interface Card {
   f: string; b?: string; n: string; t: string; y: string
@@ -308,7 +309,14 @@ export default function CardPhotoExport({ card, accent, onClose }: Props) {
     setGenerating(true)
     try {
       const blob = await new Promise<Blob | null>(res => canvas.toBlob(res, 'image/jpeg', 0.95))
-      if (blob) await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.jpg`)
+      // canvas.toBlob() renvoie silencieusement null si le canvas est "tainted"
+      // (image chargée sans CORS correctement négocié) -- ce cas passait
+      // jusqu'ici totalement inaperçu : ni erreur, ni message, le bouton
+      // revenait juste à son état normal comme si de rien n'était.
+      if (!blob) throw new Error('canvas-empty')
+      await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.jpg`)
+    } catch (e) {
+      toast.error(t('video_download_error'))
     } finally { setGenerating(false) }
   }
 

@@ -1,4 +1,5 @@
 import { Capacitor } from '@capacitor/core'
+import { recordJsError } from '@/lib/crashlytics'
 
 function blobToBase64(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -48,9 +49,22 @@ export async function saveOrShareFile(source: Blob | string, filename: string, o
   // l'ecriture (pure I/O, doit etre rapide) -- jamais sur Share.share(), qui
   // attend legitimement le choix de l'utilisateur dans la feuille de partage
   // native (peut prendre du temps sans que ce soit un bug).
-  const { uri } = await Promise.race([
-    Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache }),
-    new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), opts?.timeoutMs ?? 15000)),
-  ])
-  await Share.share({ url: uri, title: filename })
+  try {
+    const { uri } = await Promise.race([
+      Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache }),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), opts?.timeoutMs ?? 15000)),
+    ])
+    await Share.share({ url: uri, title: filename })
+  } catch (e) {
+    // La plupart des appelants n'ont pas leur propre try/catch autour de
+    // saveOrShareFile -- un echec natif (ecriture, permission, FileProvider)
+    // remontait donc en simple rejet de promesse non intercepte, invisible
+    // pour l'utilisateur ET pour nous (aucun rapport, juste "le telechargement
+    // ne marche pas" sans plus de details). On logue systematiquement dans
+    // Crashlytics ici, au point unique par lequel passent tous les exports,
+    // avant de relancer l'erreur pour ne pas changer le comportement des
+    // appelants qui gerent deja leur propre message.
+    recordJsError(e, `saveOrShareFile (${filename})`)
+    throw e
+  }
 }
