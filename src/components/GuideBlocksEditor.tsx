@@ -236,6 +236,13 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
   }
   const removeRow = (i: number) => onChange({ ...block, rows: block.rows.filter((_, idx) => idx !== i) })
   const addRow = () => onChange({ ...block, rows: [...block.rows, { name: '', printRun: '', patternImage: '', cardImage: '' }] })
+  const moveRow = (i: number, dir: -1 | 1) => {
+    const j = i + dir
+    if (j < 0 || j >= block.rows.length) return
+    const rows = [...block.rows]
+    ;[rows[i], rows[j]] = [rows[j], rows[i]]
+    onChange({ ...block, rows })
+  }
 
   // Bascule teinte unie (patternColor) / dégradé personnalisé (patternGradient, 2+
   // points) - un seul actif à la fois, rowBackground() priorise le dégradé s'il est
@@ -311,11 +318,15 @@ function PyramidEditor({ block, onChange, dark }: { block: Extract<GuideBlock, {
 
       {block.rows.map((row, i) => (
         <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 4, paddingBottom: 6, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px auto auto auto', gap: 6, alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px auto auto auto auto auto', gap: 6, alignItems: 'center' }}>
             <input style={f} placeholder="Nom de la variation" value={row.name} onChange={e => updateRow(i, { name: e.target.value })} />
             <input style={f} placeholder="Print run" value={row.printRun} onChange={e => updateRow(i, { printRun: e.target.value })} />
             {imgBtn(row, i, 'patternImage', 'Motif')}
             {imgBtn(row, i, 'cardImage', 'Carte')}
+            <button type="button" disabled={i === 0} onClick={() => moveRow(i, -1)}
+              style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, background: 'none', borderRadius: 6, padding: '4px 8px', color: dark ? '#ccc' : '#555', cursor: i === 0 ? 'default' : 'pointer', opacity: i === 0 ? 0.4 : 1, fontWeight: 700 }}>↑</button>
+            <button type="button" disabled={i === block.rows.length - 1} onClick={() => moveRow(i, 1)}
+              style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, background: 'none', borderRadius: 6, padding: '4px 8px', color: dark ? '#ccc' : '#555', cursor: i === block.rows.length - 1 ? 'default' : 'pointer', opacity: i === block.rows.length - 1 ? 0.4 : 1, fontWeight: 700 }}>↓</button>
             <button type="button" onClick={() => removeRow(i)} style={{ border: 'none', background: 'none', color: '#e74c3c', cursor: 'pointer', fontWeight: 700 }}>✕</button>
           </div>
           {(() => {
