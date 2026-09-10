@@ -275,8 +275,16 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     ctx.fillStyle = spot
     ctx.fillRect(spotX - spotR, CARD_CY - spotR, spotR * 2, spotR * 2)
 
+    // ── Sortie vers un vrai écran de fin ── jusqu'ici la vidéo se contentait de
+    // geler sur sa dernière frame pendant le palier (HOLD) avec juste un petit
+    // pop de logo + CTA text superposés dessus. Maintenant carte et panneau
+    // s'estompent progressivement et laissent place à un écran dédié (logo +
+    // accroche), au lieu de rester figés à l'écran jusqu'à la coupe.
+    const endFadeOut = holdT > 0 ? easeInOut(Math.min(1, Math.max(0, (holdT - 0.3) / 0.55))) : 0
+    const endFadeIn  = holdT > 0 ? easeInOut(Math.min(1, Math.max(0, (holdT - 0.4) / 0.5))) : 0
+
     if (cardW > 2) {
-      ctx.globalAlpha = introAlpha
+      ctx.globalAlpha = introAlpha * (1 - endFadeOut)
 
       // Ni reflet au sol ni ombre portée sous la carte -- toutes les deux ont
       // produit un rendu peu flatteur (rectangle plein visible) : le reflet avait
@@ -324,9 +332,12 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
 
       ctx.restore() // fin du clip gloss
 
-      // ── Liseré lumineux (bord de la carte) ────────────────────────────────
-      ctx.lineWidth = Math.max(1.5, W * 0.0025)
-      ctx.strokeStyle = `rgba(255,255,255,${0.12 + 0.22 * (1 - absScale)})`
+      // ── Liseré lumineux (bord de la carte) ── épaisseur minimum en px absolus
+      // (pas seulement proportionnelle à W) : sur les formats haute résolution
+      // (Reel/Carré, 1080px) un trait purement proportionnel au format Défaut
+      // (900px) paraissait plus fin à l'écran une fois affiché à taille réelle.
+      ctx.lineWidth = Math.max(2, W * 0.0028)
+      ctx.strokeStyle = `rgba(255,255,255,${0.16 + 0.24 * (1 - absScale)})`
       ctx.strokeRect(cardX, cardTop, cardW, cardH)
 
       // ── Éclat de tranche avec aberration chromatique — sauté sur mobile (perf) ──
@@ -470,7 +481,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     // vers p=0.06) -- au lieu d'arriver d'un bloc en même temps, ça donne un
     // peu de rythme à l'ouverture (carte, puis badges/nom juste après).
     const panelIntroT = Math.min(1, Math.max(0, (p - 0.03) / 0.08))
-    const panelIntroAlpha = easeInOut(panelIntroT)
+    const panelIntroAlpha = easeInOut(panelIntroT) * (1 - endFadeOut)
     ctx.save()
     ctx.globalAlpha = panelIntroAlpha
     ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
@@ -479,36 +490,24 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     ctx.drawImage(infoCache.current.canvas, PM, panelTop + (1 - panelIntroAlpha) * H * 0.02)
     ctx.restore()
 
-    // ── Petit "pop" du logo à l'entrée du palier final (HOLD) ── la fin de vidéo
-    // était jusqu'ici juste figée sur la dernière frame pendant 700ms sans aucune
-    // transition. Un bref flash/zoom du logo au tout début du palier rend la sortie
-    // moins abrupte, sans retoucher le panneau (mis en cache) en dessous.
-    if (holdT > 0 && holdT < 1 && logoImg && logoImg.naturalWidth > 0) {
-      const logoW = W * 0.19
+    // ── Écran de fin ── logo + accroche centrés, en fondu par-dessus le fond
+    // (déjà en place) une fois carte et panneau estompés. Remplace l'ancien
+    // duo "pop du logo en bas à droite" + "CTA en haut à droite" superposés
+    // tels quels sur la dernière frame figée -- ici la sortie de vidéo devient
+    // un vrai écran dédié plutôt qu'un gel avec du texte dessus.
+    if (endFadeIn > 0 && logoImg && logoImg.naturalWidth > 0) {
+      const logoW = W * 0.34
       const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
-      const lx = W - logoW - W * 0.03
-      const ly = H - logoH - H * 0.014
-      const pop = 1 + 0.15 * (1 - easeInOut(holdT))
+      const cx = W / 2
+      const cy = CARD_ZONE_H / 2
+      const rise = (1 - endFadeIn) * H * 0.02
       ctx.save()
-      ctx.globalAlpha = Math.min(1, holdT * 3) * (isDark ? 0.5 : 0.65)
-      ctx.translate(lx + logoW / 2, ly + logoH / 2)
-      ctx.scale(pop, pop)
-      ctx.drawImage(logoImg, -logoW / 2, -logoH / 2, logoW, logoH)
-      ctx.restore()
-    }
-
-    // ── CTA discret en haut à droite pendant le palier final ── le logo en haut
-    // à gauche est un watermark permanent mais silencieux ; un petit appel à
-    // l'action qui apparaît juste à la fin donne une vraie raison de revenir
-    // sur le site si la vidéo est repartagée, sans polluer le reste du rendu.
-    if (holdT > 0.25) {
-      const ctaAlpha = Math.min(1, (holdT - 0.25) / 0.4)
-      ctx.save()
-      ctx.globalAlpha = ctaAlpha * (isDark ? 0.75 : 0.85)
-      ctx.textAlign = 'right'; ctx.textBaseline = 'top'
+      ctx.globalAlpha = endFadeIn
+      ctx.drawImage(logoImg, cx - logoW / 2, cy - logoH / 2 - H * 0.02 + rise, logoW, logoH)
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top'
       ctx.fillStyle = accent
-      ctx.font = `700 ${Math.round(W * 0.022)}px Inter, sans-serif`
-      ctx.fillText(t('video_cta'), W - W * 0.055, H * 0.038)
+      ctx.font = `700 ${Math.round(W * 0.024)}px Inter, sans-serif`
+      ctx.fillText(t('video_cta'), cx, cy + logoH / 2 + H * 0.024 + rise)
       ctx.restore()
     }
   }
