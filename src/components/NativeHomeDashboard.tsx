@@ -96,6 +96,13 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   const [retryKey, setRetryKey] = useState(0)
   const [showXpInfo, setShowXpInfo] = useState(false)
 
+  // Depend sur user?.id (primitif stable), PAS sur l'objet `user` entier --
+  // AuthContext peut fournir plusieurs references differentes pour le meme
+  // utilisateur (lecture localStorage initiale, puis confirmation Supabase
+  // async, puis chaque rafraichissement de token) : avec `user` dans les
+  // deps, cet effet redemarrait tout le chargement a chaque fois, abandonnant
+  // la requete en cours pile au moment ou la page s'affichait -- symptome
+  // exact du dashboard bloque en chargement jusqu'a un F5 manuel.
   useEffect(() => {
     if (!user) return
     let cancelled = false
@@ -170,7 +177,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     }
     load(1)
     return () => { cancelled = true }
-  }, [user, retryKey])
+  }, [user?.id, retryKey])
 
   // Verse la récompense XP du défi hebdomadaire dès qu'il est complété. La
   // route recalcule elle-même la progression côté serveur (voir
