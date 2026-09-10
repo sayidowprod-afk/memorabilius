@@ -148,6 +148,16 @@ self.addEventListener('notificationclick', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.mode !== 'navigate') {
     if (event.request.method === 'GET' && isImageRequest(event.request)) {
+      // Une requete explicitement CORS (crossOrigin="anonymous", ex: canvas de
+      // l'export video) a besoin d'une vraie reponse CORS lisible -- jamais d'une
+      // reponse opaque mise en cache par une precedente requete <img> classique
+      // pour la MEME url (le Cache API ne distingue pas le mode de la requete
+      // dans sa cle). Servir une reponse opaque ici "tainted" le canvas et casse
+      // silencieusement canvas.captureStream() (export video vide/casse, signale
+      // des que ce cache image a ete introduit le 26 aout). On laisse donc ces
+      // requetes-la passer directement au reseau, en dehors du cache image --
+      // qui reste pense pour l'affichage <img> classique hors-ligne uniquement.
+      if (event.request.mode === 'cors') return
       event.respondWith(handleImageFetch(event.request))
     } else if (event.request.method === 'GET' && isBuildAsset(event.request)) {
       event.respondWith(handleAssetFetch(event.request))
