@@ -406,7 +406,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [waitingForVerso, setWaitingForVerso] = useState(false)
   const scannerCornersRef = useRef<Record<string, { gemini: any; final: any; adjusted: boolean; originalBlob: Blob | null }>>({})
   // Après l'insertion : propose de ranger la carte dans un classeur de la bibliothèque
-  const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; nom: string } | null>(null)
+  const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; back?: string; nom: string } | null>(null)
   const [showBinderPicker, setShowBinderPicker] = useState(false)
 
   // Détecte l'orientation réelle de l'image (fiable quelle que soit la source : recadrage
@@ -881,7 +881,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     }
 
     if (form.image_recto) {
-      setBinderPrompt({ userId: uid, img: form.image_recto, nom: form.nom })
+      // back manquant ici -> binder_slots.img_back enregistre a null malgre un
+      // image_verso deja present sur la carte, meme si elle est rangee dans un
+      // classeur quelques secondes apres son ajout (signale : dos absent dans
+      // les classeurs pour les cartes "nouvellement saisies" uniquement).
+      setBinderPrompt({ userId: uid, img: form.image_recto, back: form.image_verso || undefined, nom: form.nom })
     } else {
       router.push(`/galerie/${userId}`)
     }
@@ -1360,7 +1364,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               userId={binderPrompt.userId}
               isOwner={true}
               accent={ACCENT}
-              pendingCard={{ key: binderPrompt.img, img: binderPrompt.img, nom: binderPrompt.nom }}
+              pendingCard={{ key: binderPrompt.img, img: binderPrompt.img, back: binderPrompt.back, nom: binderPrompt.nom }}
               onPlaced={() => { setShowBinderPicker(false); setBinderPrompt(null); resetForm() }}
             />
           </div>
