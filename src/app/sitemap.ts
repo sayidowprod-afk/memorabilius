@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { cardPageUrl } from '@/lib/playerSlug'
+import { cardPageUrl, playerSlug, teamSlug } from '@/lib/playerSlug'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // "Michael Jordan 1993-94 Upper Deck"). Plafonné pour rester dans une taille de
       // sitemap raisonnable ; priorise les cartes les plus récemment ajoutées.
       supabase.from('cartes_manuelles')
-        .select('user_id, nom, annee, marque, collection, image_recto, created_at')
+        .select('user_id, nom, team, annee, marque, collection, image_recto, created_at')
         .not('image_recto', 'is', null)
         .order('created_at', { ascending: false })
         .limit(5000),
@@ -68,7 +68,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }))
 
-    return [...staticPages, ...galeries, ...setPages, ...cardPages, ...guidePages]
+    // Fiches joueur/equipe : absentes du sitemap jusqu'ici malgre des
+    // metadonnees + JSON-LD complets (joueur a meme un schema Person). Derive
+    // des mêmes 5000 cartes deja chargees ci-dessus (pas de requete
+    // supplementaire) -- couverture partielle mais large, sans cout DB en plus.
+    const seenPlayers = new Set<string>()
+    const playerPages: MetadataRoute.Sitemap = []
+    const seenTeams = new Set<string>()
+    const teamPages: MetadataRoute.Sitemap = []
+    for (const c of (cards || []) as any[]) {
+      if (c.nom) {
+        const slug = playerSlug(c.nom)
+        if (slug && !seenPlayers.has(slug)) {
+          seenPlayers.add(slug)
+          playerPages.push({ url: `${base}/joueur/${slug}`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.65 })
+        }
+      }
+      if (c.team) {
+        const slug = teamSlug(c.team)
+        if (slug && !seenTeams.has(slug)) {
+          seenTeams.add(slug)
+          teamPages.push({ url: `${base}/equipe/${slug}`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 })
+        }
+      }
+    }
+
+    return [...staticPages, ...galeries, ...setPages, ...cardPages, ...guidePages, ...playerPages, ...teamPages]
   } catch {
     return staticPages
   }
