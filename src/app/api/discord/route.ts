@@ -84,6 +84,42 @@ async function cmdConcoursThemes() {
   })
 }
 
+const CONCOURS_STATUS_LABEL: Record<string, string> = {
+  theme_voting: '🗳️ Vote du thème en cours',
+  submission_open: '📝 Participations ouvertes',
+  entry_voting: '🗳️ Vote des participations en cours',
+  closed: '✅ Terminé',
+}
+
+// [Admin] Nombre de participants au concours de la semaine en cours --
+// ephemere (flags:64), seul l'admin qui tape la commande voit la reponse.
+async function cmdConcoursParticipants() {
+  const weekStart = parisWeekStart()
+  const { data: week } = await supabase.from('discord_contest_weeks')
+    .select('*, discord_contest_themes(label)')
+    .eq('week_start', weekStart).maybeSingle()
+
+  if (!week) return reply({ content: "📭 Aucun concours n'est en cours cette semaine.", flags: 64 })
+
+  const { count } = await supabase.from('discord_contest_entries')
+    .select('*', { count: 'exact', head: true }).eq('week_id', week.id)
+
+  const theme = (week as any).discord_contest_themes?.label
+
+  return reply({
+    embeds: [{
+      title: '📊 Concours de la semaine',
+      description: [
+        theme ? `**Thème :** ${theme}` : null,
+        `**Statut :** ${CONCOURS_STATUS_LABEL[week.status] || week.status}`,
+        `**Participants :** ${count ?? 0}`,
+      ].filter(Boolean).join('\n'),
+      color: 0x003DA6,
+    }],
+    flags: 64,
+  })
+}
+
 async function cmdConcoursGagnants() {
   const { data } = await supabase
     .from('discord_contest_weeks')
@@ -776,6 +812,7 @@ export async function POST(req: NextRequest) {
     else if (name === 'concours-theme-forcer') result = await cmdConcoursThemeForcer(options)
     else if (name === 'concours-themes') result = await cmdConcoursThemes()
     else if (name === 'concours-gagnants') result = await cmdConcoursGagnants()
+    else if (name === 'concours-participants') result = await cmdConcoursParticipants()
     else if (name === 'concours-participer') result = await cmdConcoursParticiper(body)
     return NextResponse.json(result)
   }

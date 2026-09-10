@@ -111,6 +111,11 @@ const commands = [
     description: 'Historique des gagnants du concours hebdomadaire',
   },
   {
+    name: 'concours-participants',
+    description: "[Admin] Nombre de participants inscrits au concours de la semaine",
+    default_member_permissions: '32',
+  },
+  {
     name: 'concours-theme-ajouter',
     description: '[Admin] Ajoute un thème au pool du concours',
     // Reserve par defaut aux membres avec la permission "Gerer le serveur" --
