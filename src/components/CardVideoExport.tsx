@@ -410,18 +410,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
       const tx = panelW / 2
       let ty = panelH * 0.10
 
-      // ── Équipe en eyebrow ── petit label discret au-dessus du nom (façon vraie
-      // carte de sport) au lieu d'une ligne perdue sous la variation, en plus
-      // petit et moins visible que le nom du joueur qu'elle devrait pourtant
-      // introduire.
-      if (card.t) {
-        const teamFs = Math.round(W * 0.020)
-        ictx.fillStyle = accent
-        ictx.font = `800 ${teamFs}px Inter, sans-serif`
-        ictx.fillText(truncate(ictx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
-        ty += teamFs * 1.6
-      }
-
       // ── Badges ─────────────────────────────────────────────────────────────
       // Style plus sobre : fond translucide neutre + texte/pastille colorés,
       // au lieu de pilules en dégradé saturé avec lueur.
@@ -466,6 +454,18 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
           bx += bw + gap
         })
         ty += badgeH + Math.round(panelH * 0.07)
+      }
+
+      // ── Équipe en eyebrow ── déplacé entre les badges et le nom du joueur
+      // (au lieu d'ouvrir la section, tout en haut) : le nom reste le premier
+      // élément de plus haute hiérarchie visuelle, l'équipe l'introduit juste
+      // avant sans passer devant les badges.
+      if (card.t) {
+        const teamFs = Math.round(W * 0.020)
+        ictx.fillStyle = accent
+        ictx.font = `800 ${teamFs}px Inter, sans-serif`
+        ictx.fillText(truncate(ictx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
+        ty += teamFs * 1.6
       }
 
       // ── Nom du joueur ─────────────────────────────────────────────────────────
