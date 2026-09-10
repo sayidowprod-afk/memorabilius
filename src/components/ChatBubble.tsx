@@ -8,7 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { fireConfetti } from '@/components/Confetti'
 import CardTagBadges from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
@@ -24,7 +24,7 @@ const tradeIdOf = (c: string) => c.slice(TRADE_PREFIX.length, -2)
 
 
 export default function ChatBubble() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const STATUS_LABEL: Record<string, string> = {
     pending: t('chat_status_pending'),
     accepted: t('chat_status_accepted'),
@@ -315,9 +315,9 @@ export default function ChatBubble() {
                   const ts = (() => {
                     const d = new Date(msg.created_at)
                     const today = new Date()
-                    const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+                    const time = d.toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })
                     if (d.toDateString() === today.toDateString()) return time
-                    return `${d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })} ${time}`
+                    return `${d.toLocaleDateString(localeFor(lang), { day: '2-digit', month: '2-digit' })} ${time}`
                   })()
 
                   // ── Bulle trade offer ──

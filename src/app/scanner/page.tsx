@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import CameraCapture from '@/components/CameraCapture'
 
 declare const BarcodeDetector: any
@@ -57,8 +57,8 @@ function cropWithCorners(b64: string, corners: Record<string, {x:number,y:number
   })
 }
 
-function fmtDate(d: string) {
-  try { return new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' }) } catch { return '' }
+function fmtDate(d: string, locale: string) {
+  try { return new Date(d).toLocaleDateString(locale, { day: '2-digit', month: 'short' }) } catch { return '' }
 }
 function usd(n: number) {
   return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -68,7 +68,7 @@ type Phase = 'idle' | 'searching' | 'results' | 'loading-sold' | 'done' | 'error
 
 export default function ScannerPage() {
   const { dark } = useTheme()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const router = useRouter()
   const galleryRef = useRef<HTMLInputElement>(null)
   const videoRef   = useRef<HTMLVideoElement>(null)
@@ -346,7 +346,7 @@ export default function ScannerPage() {
       {item.img && <img src={item.img} alt="" style={{ width: 36, height: 36, objectFit: 'contain', borderRadius: 5, flexShrink: 0 }} />}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 12, color: text, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.title}</div>
-        {item.soldDate && <div style={{ fontSize: 10, color: muted, marginTop: 1 }}>{fmtDate(item.soldDate)}</div>}
+        {item.soldDate && <div style={{ fontSize: 10, color: muted, marginTop: 1 }}>{fmtDate(item.soldDate, localeFor(lang))}</div>}
       </div>
       <div style={{ fontWeight: 900, fontSize: 14, color: blue, flexShrink: 0 }}>{usd(item.price)}</div>
     </a>

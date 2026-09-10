@@ -980,7 +980,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                         title="Répondre">↩</button>
                     </div>
                     <p style={{ fontSize: 10, color: 'var(--text3, #bbb)', margin: '2px 0 0', textAlign: isMe ? 'right' : 'left' }}>
-                      {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                      {new Date(msg.created_at).toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                 </div>

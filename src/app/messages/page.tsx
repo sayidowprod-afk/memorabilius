@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
@@ -68,7 +68,7 @@ function compressImage(file: File): Promise<Blob> {
 }
 
 function MessagesContent() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const { dark } = useTheme()
   const isNative = useIsNative()
   const router = useRouter()
@@ -466,10 +466,10 @@ function MessagesContent() {
     const d = new Date(iso)
     const now = new Date()
     const diffDays = Math.floor((now.getTime() - d.getTime()) / 86400000)
-    if (diffDays === 0) return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+    if (diffDays === 0) return d.toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })
     if (diffDays === 1) return 'Hier'
-    if (diffDays < 7) return d.toLocaleDateString('fr-FR', { weekday: 'short' })
-    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+    if (diffDays < 7) return d.toLocaleDateString(localeFor(lang), { weekday: 'short' })
+    return d.toLocaleDateString(localeFor(lang), { day: 'numeric', month: 'short' })
   }
 
   if (loading) return (
@@ -731,7 +731,7 @@ function MessagesContent() {
                             <div style={{ color: textMuted, fontSize: 13 }}>Chargement de l'offre…</div>
                           )}
                           <div style={{ fontSize: 10, color: textMuted, marginTop: 8, textAlign: 'right' }}>
-                            {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                            {new Date(msg.created_at).toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })}
                           </div>
                         </div>
                       </div>
@@ -828,7 +828,7 @@ function MessagesContent() {
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <span style={{ fontSize: 10, color: textMuted }}>
-                            {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                            {new Date(msg.created_at).toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })}
                           </span>
                           {isMe && msg.lu && msgIdx === messages.length - 1 && (
                             <span style={{ fontSize: 10, color: textMuted, fontStyle: 'italic' }}>{t('messages_seen')}</span>

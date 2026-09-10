@@ -545,7 +545,7 @@ export default function GalerieExport({ cards: allCards, profileName, avatarUrl,
           doc.text(`${profileName} — Collection (${filtered.length} carte${filtered.length > 1 ? 's' : ''})`, ML, y + 5)
           doc.setFont(FONT, 'normal'); doc.setFontSize(7); doc.setTextColor(150)
           const sub = [`Exporté le ${new Date().toLocaleDateString(localeFor(lang))} · memorabilius.fr`,
-            hasPdfValues ? `Valeur totale : ${totalValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` : '']
+            hasPdfValues ? `Valeur totale : ${totalValue.toLocaleString(localeFor(lang), { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` : '']
             .filter(Boolean).join('   ·   ')
           doc.text(sub, ML, y + 10)
           y += HEADER_H
@@ -604,7 +604,7 @@ export default function GalerieExport({ cards: allCards, profileName, avatarUrl,
             const v = cardValues.get(card.f)
             if (v !== undefined) {
               doc.setFont(FONT, 'bold')
-              doc.text(v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €',
+              doc.text(v.toLocaleString(localeFor(lang), { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €',
                 cx + col.w - 1.5, midY, { align: 'right' })
               doc.setFont(FONT, 'normal')
             }

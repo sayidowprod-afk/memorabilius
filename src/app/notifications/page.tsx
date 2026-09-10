@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { subscribePush } from '@/components/PWAInstall'
 import SkeletonBlock from '@/components/SkeletonBlock'
@@ -11,7 +11,7 @@ import EmptyState from '@/components/EmptyState'
 
 export default function Notifications() {
   const router = useRouter()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const { dark } = useTheme()
   const [notifs, setNotifs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -91,8 +91,8 @@ export default function Notifications() {
     const diffDays = Math.round((startOfDay(now).getTime() - startOfDay(d).getTime()) / 86400000)
     if (diffDays === 0) return 'Aujourd\'hui'
     if (diffDays === 1) return 'Hier'
-    if (diffDays < 7) return d.toLocaleDateString('fr-FR', { weekday: 'long' })
-    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
+    if (diffDays < 7) return d.toLocaleDateString(localeFor(lang), { weekday: 'long' })
+    return d.toLocaleDateString(localeFor(lang), { day: 'numeric', month: 'long' })
   }
 
   const timeAgo = (date: string) => {
