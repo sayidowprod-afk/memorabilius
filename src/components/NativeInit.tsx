@@ -12,11 +12,27 @@ import { fetchPendingShare, stagePendingShare } from '@/lib/shareBridge'
 // bundle, et ses appels au nouveau serveur peuvent echouer silencieusement
 // (payload RSC incompatible, chunk supprime...). D'ou le besoin de F5 manuel
 // signale de facon recurrente -- un vrai reload complet resout ca proprement.
+// Garde-fou : plusieurs deploiements qui se suivent de pres (rafale de hotfix)
+// pouvaient faire rechargement sur rechargement sans fin -- chaque reload
+// recharge une page qui compare a nouveau contre /api/app-version, et si UN
+// AUTRE deploiement vient d'atterrir entre-temps, ca redetecte "perime" et
+// rerecharge aussitot. Signale : boucle de rafraichissement infinie avec un
+// Viewer3D ouvert (rouvert automatiquement via l'URL a chaque reload). Meme
+// principe de cooldown que ChunkErrorReload : jamais plus d'un reload pour
+// staleness toutes les 15s, quel que soit le rythme des deploiements.
+function canReloadForStaleness(): boolean {
+  const key = 'stale-reload-at'
+  const last = Number(sessionStorage.getItem(key) || 0)
+  if (Date.now() - last < 15000) return false
+  sessionStorage.setItem(key, String(Date.now()))
+  return true
+}
+
 async function reloadIfStale(): Promise<boolean> {
   try {
     const r = await fetch('/api/app-version', { cache: 'no-store' })
     const { version } = await r.json()
-    if (version && version !== process.env.NEXT_PUBLIC_APP_VERSION) {
+    if (version && version !== process.env.NEXT_PUBLIC_APP_VERSION && canReloadForStaleness()) {
       window.location.reload()
       return true
     }
