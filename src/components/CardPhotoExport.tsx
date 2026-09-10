@@ -154,7 +154,12 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose }: P
     }
 
     // ── Layout ────────────────────────────────────────────────────────────────
-    const INFO_H      = Math.round(h * 0.19)
+    // Hauteur du panneau infos adaptée au format -- signalé : le texte du bas
+    // (année/marque/collection) coupé sur les formats moins hauts (Carré
+    // surtout). Même correctif que la vidéo : élargi jusqu'à 0.27 sur les
+    // formats les plus carrés, revient à 0.19 sur les formats hauts (Story).
+    const infoHT = Math.min(1, Math.max(0, (1.5 - aspect) / 0.5))
+    const INFO_H      = Math.round(h * (0.19 + 0.08 * infoHT))
     const CARD_ZONE_H = h - INFO_H
     const CARD_MAX_W  = w * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88

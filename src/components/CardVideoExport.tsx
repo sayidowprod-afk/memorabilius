@@ -276,7 +276,16 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     }
 
     // ── Layout ────────────────────────────────────────────────────────────────
-    const INFO_H     = Math.round(H * 0.19)
+    // Hauteur du panneau infos adaptée au format -- signalé : le texte du bas
+    // (année/marque/collection) coupé sur les formats moins hauts (Carré
+    // surtout). La hauteur du panneau était une fraction fixe de H, alors que
+    // le contenu (badges + équipe + nom + variation + meta) a une hauteur
+    // dépendante de W -- sur un format proche du carré, H*0.19 ne suffisait
+    // plus à contenir tout ce texte. Élargi jusqu'à 0.27 sur les formats les
+    // plus carrés, revient à 0.19 sur les formats hauts (Reel/Story) où la
+    // marge était déjà suffisante.
+    const infoHT = Math.min(1, Math.max(0, (1.5 - aspect0) / 0.5))
+    const INFO_H     = Math.round(H * (0.19 + 0.08 * infoHT))
     const CARD_ZONE_H = H - INFO_H
     const CARD_MAX_W  = W * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
