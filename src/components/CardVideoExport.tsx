@@ -9,6 +9,7 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string
   auto: boolean; rc: boolean; patch: boolean; g: string
+  is_horizontal?: boolean
 }
 interface Props { card: Card; accent: string; onClose: () => void }
 
@@ -186,7 +187,11 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const CARD_ZONE_H = H - INFO_H
     const CARD_MAX_W  = W * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
-    const CARD_RATIO  = 3.5 / 2.5
+    // Ratio hauteur/largeur -- inversé pour une carte à l'horizontale (plus large que
+    // haute). Jusqu'ici toujours calculé en portrait quelle que soit l'orientation
+    // réelle de la carte, ce qui écrasait/rétrécissait les cartes horizontales dans
+    // leur cadre au lieu de les afficher pleine largeur (signalé : "mauvais format").
+    const CARD_RATIO  = card.is_horizontal ? 2.5 / 3.5 : 3.5 / 2.5
     const BASE_W = Math.min(CARD_MAX_W, CARD_MAX_H / CARD_RATIO)
     const BASE_H = BASE_W * CARD_RATIO
     const CARD_CY = CARD_ZONE_H / 2
