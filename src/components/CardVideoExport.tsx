@@ -472,31 +472,53 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       mimeType,
       videoBitsPerSecond: Math.min(sizeCap, Math.max(3_000_000, qualityBitrate)),
     })
-    // Si l'onglet/l'app passe en arrière-plan pendant l'enregistrement (l'utilisateur
-    // change d'appli, verrouille son téléphone...), requestAnimationFrame est mis en
-    // pause par le navigateur/WebView -- plus aucune frame n'est dessinée ni capturée,
-    // et MediaRecorder.stop() produit alors un blob quasi vide (fichier "corrompu" de
-    // quelques octets une fois écrit sur disque). On le détecte pour donner un message
-    // utile plutôt qu'un fichier silencieusement cassé.
-    let wentHidden = false
-    const onVisibilityChange = () => { if (document.hidden) wentHidden = true }
+    // Historique (voir commits 45b466e5/0809fbbf/7d147b6b, 30 aout) : quand l'onglet/l'app
+    // passe en arrière-plan pendant l'enregistrement (changement d'appli, verrouillage du
+    // téléphone), requestAnimationFrame est mis en pause par le navigateur/WebView -- plus
+    // aucune frame n'est dessinée ni capturée, et MediaRecorder.stop() produit un blob quasi
+    // vide (fichier "corrompu" de quelques octets une fois écrit sur disque). Un remplacement
+    // de rAF par setTimeout avait été tenté pour contourner ça, mais cassait le dessin lui-même
+    // (vidéo figée sur sa 1ère image -- setTimeout n'est pas synchronisé avec le pipeline de
+    // rendu du navigateur dont captureStream() dépend pour capter des frames fraîches) et a été
+    // révert. Le vrai fix : garder rAF pour le dessin (seul mécanisme fiable), mais suspendre
+    // explicitement l'enregistrement pendant la mise en arrière-plan via MediaRecorder.pause()/
+    // resume() (API standard, sans lien avec rAF) au lieu de laisser l'enregistrement continuer
+    // à vide -- l'horloge de l'animation exclut le temps en pause pour reprendre exactement là
+    // où elle s'est arrêtée, sans saut ni frame dupliquée à l'infini.
+    const canPauseResume = typeof recorder.pause === 'function' && typeof recorder.resume === 'function'
+    let totalPausedMs = 0
+    let pausedAt: number | null = null
+    let wentHiddenUnrecoverably = false
+    const onVisibilityChange = () => {
+      if (!canPauseResume) { if (document.hidden) wentHiddenUnrecoverably = true; return }
+      if (document.hidden) {
+        if (recorder.state === 'recording') { recorder.pause(); pausedAt = performance.now() }
+      } else if (recorder.state === 'paused') {
+        recorder.resume()
+        if (pausedAt != null) { totalPausedMs += performance.now() - pausedAt; pausedAt = null }
+      }
+    }
     document.addEventListener('visibilitychange', onVisibilityChange)
 
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
-    recorder.onstop = () => {
-      document.removeEventListener('visibilitychange', onVisibilityChange)
-      const totalBytes = chunks.reduce((sum, c) => sum + c.size, 0)
-      // Une vidéo de plusieurs secondes valide fait au minimum plusieurs dizaines de Ko
-      // (bitrate plancher de 3 Mb/s) -- en dessous, l'enregistrement a échoué (rien capturé).
-      if (totalBytes < 20_000) {
-        setRecording(false)
-        setRecordError(wentHidden ? t('video_error_backgrounded') : t('video_record_error'))
-        return
+    const stopped = new Promise<void>(resolve => {
+      recorder.onstop = () => {
+        document.removeEventListener('visibilitychange', onVisibilityChange)
+        const totalBytes = chunks.reduce((sum, c) => sum + c.size, 0)
+        // Une vidéo de plusieurs secondes valide fait au minimum plusieurs dizaines de Ko
+        // (bitrate plancher de 3 Mb/s) -- en dessous, l'enregistrement a échoué (filet de
+        // sécurité pour le cas navigateur sans pause/resume, ou tout autre échec imprévu).
+        if (totalBytes < 20_000) {
+          setRecording(false)
+          setRecordError(wentHiddenUnrecoverably ? t('video_error_backgrounded') : t('video_record_error'))
+          resolve(); return
+        }
+        setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
+        setDone(true); setRecording(false)
+        resolve()
       }
-      setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
-      setDone(true); setRecording(false)
-    }
+    })
     recorder.start()
 
     const frameInterval = 1000 / FPS
@@ -504,9 +526,11 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     let lastDraw = -1
     await new Promise<void>(resolve => {
       const tick = (now: number) => {
-        if (lastDraw < 0 || now - lastDraw >= frameInterval - 1) {
+        // Pendant la pause, `now` continue d'avancer mais l'horloge de l'animation
+        // n'avance pas -- on se contente de redemander une frame et d'attendre la reprise.
+        if (recorder.state !== 'paused' && (lastDraw < 0 || now - lastDraw >= frameInterval - 1)) {
           lastDraw = now
-          const elapsed = now - start
+          const elapsed = now - start - totalPausedMs
           const p = Math.min(elapsed / DURATION, 1)
           drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
           setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
@@ -517,7 +541,9 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       requestAnimationFrame(tick)
     })
     await new Promise(r => setTimeout(r, 200))
+    if (recorder.state === 'paused') recorder.resume()
     recorder.stop()
+    await stopped
   }
 
   const download = async () => {
