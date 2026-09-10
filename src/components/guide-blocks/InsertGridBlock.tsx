@@ -19,6 +19,12 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
   const hasOdds = oddsTable.columns.length > 0 && oddsTable.rows.length > 0
   if (!cards.length && !hasOdds && !players.length) return null
 
+  // Sans tableau d'odds, la liste des joueurs a toute la place a droite des
+  // cartes (comme le tableau l'aurait occupee) au lieu de laisser ce vide et
+  // de renvoyer les joueurs tout en bas sur toute la largeur.
+  const showInlinePlayers = !hasOdds && cards.length > 0 && players.length > 0
+  const showBottomPlayers = players.length > 0 && !showInlinePlayers
+
   return (
     <div style={{
       border: '1px solid var(--border, #eee)', borderRadius: 14, padding: 18,
@@ -29,7 +35,7 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
       {(cards.length > 0 || hasOdds) && (
         <div className="insert-top-row" style={{
           display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start',
-          marginBottom: players.length > 0 ? 18 : 0, background: 'var(--bg3, #fafafa)',
+          marginBottom: showBottomPlayers ? 18 : 0, background: 'var(--bg3, #fafafa)',
           borderRadius: 10, padding: 18,
         }}>
           {cards.length > 0 && (
@@ -80,10 +86,21 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
               </div>
             </div>
           )}
+
+          {showInlinePlayers && (
+            <div className="insert-players-inline" style={{ border: '1px solid var(--border, #eee)', borderRadius: 10, flex: '1 1 220px', minWidth: 200, background: 'var(--card-bg, #fff)', padding: '14px 18px', boxSizing: 'border-box' }}>
+              <p style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.4, margin: '0 0 8px' }}>Joueurs</p>
+              <div style={{ columns: '140px', columnGap: 18, fontSize: 12.5, lineHeight: 1.8, color: 'var(--text2, #555)' }}>
+                {players.map((name, i) => (
+                  <div key={i} style={{ breakInside: 'avoid' }}>{name}</div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {players.length > 0 && (
+      {showBottomPlayers && (
         <div>
           <p style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: 0.4, margin: '0 0 8px' }}>Joueurs</p>
           <div style={{ columns: '150px', columnGap: 20, fontSize: 12.5, lineHeight: 1.8, color: 'var(--text2, #555)' }}>
