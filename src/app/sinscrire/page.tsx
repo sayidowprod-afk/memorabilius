@@ -148,10 +148,11 @@ export default function Inscription() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)' }}>{t('register_pseudo')}</label>
+              <label htmlFor="signup-pseudo" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)' }}>{t('register_pseudo')}</label>
               {pseudoHint}
             </div>
             <input
+              id="signup-pseudo"
               type="text" required
               placeholder={t('signup_username_placeholder')}
               value={form.display_name}
@@ -160,16 +161,16 @@ export default function Inscription() {
             />
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
-            <input type="email" required placeholder="votre@email.com" value={form.email}
+            <label htmlFor="signup-email" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
+            <input id="signup-email" type="email" required placeholder="votre@email.com" value={form.email}
               onChange={e => setForm({ ...form, email: e.target.value })}
               onBlur={() => setTouched(p => ({ ...p, email: true }))}
               aria-invalid={emailError} style={{ borderColor: emailError ? '#c62828' : undefined }} />
             {emailError && <p style={{ color: '#c62828', fontSize: 12, margin: '4px 0 0' }}>{t('signup_email_invalid')}</p>}
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input type="password" required placeholder={t('signup_password_placeholder')} value={form.password}
+            <label htmlFor="signup-password" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
+            <input id="signup-password" type="password" required placeholder={t('signup_password_placeholder')} value={form.password}
               onChange={e => setForm({ ...form, password: e.target.value })}
               onBlur={() => setTouched(p => ({ ...p, password: true }))}
               aria-invalid={passwordError} style={{ borderColor: passwordError ? '#c62828' : undefined }} />

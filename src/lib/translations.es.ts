@@ -314,6 +314,7 @@ export const es = {
 
   // Notifications
   notif_title: '🔔 Notificaciones',
+  notif_unread_label: 'No leída',
   notif_none: 'Ninguna notificación por ahora',
 
   // Auth

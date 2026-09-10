@@ -334,6 +334,7 @@ const translations = {
 
     // Notifications
     notif_title: '🔔 Notifications',
+    notif_unread_label: 'Non lue',
     notif_none: 'Aucune notification pour l\'instant',
 
     // Auth
@@ -1729,6 +1730,7 @@ const translations = {
 
     // Notifications
     notif_title: '🔔 Notifications',
+    notif_unread_label: 'Unread',
     notif_none: 'No notifications yet',
 
     // Auth
@@ -3124,6 +3126,7 @@ const translations = {
 
     // Benachrichtigungen
     notif_title: '🔔 Benachrichtigungen',
+    notif_unread_label: 'Ungelesen',
     notif_none: 'Noch keine Benachrichtigungen',
 
     // Auth

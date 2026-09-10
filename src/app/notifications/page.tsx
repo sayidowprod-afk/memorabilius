@@ -194,7 +194,13 @@ export default function Notifications() {
                     borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`,
                   }}>{label}</div>
                 )}
-                <div onClick={() => n.lien && router.push(n.lien)} style={{
+                <div
+                  onClick={() => n.lien && router.push(n.lien)}
+                  role={n.lien ? 'button' : undefined}
+                  tabIndex={n.lien ? 0 : undefined}
+                  onKeyDown={e => { if (n.lien && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); router.push(n.lien) } }}
+                  aria-label={!n.lu ? `${t('notif_unread_label')} — ${n.message}` : n.message}
+                  style={{
                   padding: '16px 20px', borderBottom: i < notifs.length - 1 ? `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` : 'none',
                   borderLeft: n.lu ? '4px solid transparent' : '4px solid #003DA6',
                   display: 'flex', alignItems: 'center', gap: 16,
@@ -205,12 +211,12 @@ export default function Notifications() {
                   onMouseEnter={e => { if (n.lien) e.currentTarget.style.background = dark ? '#1a2b57' : '#e8eeff' }}
                   onMouseLeave={e => e.currentTarget.style.background = n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff')}
                 >
-                  <span style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
+                  <span aria-hidden="true" style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
                   <div style={{ flex: 1 }}>
                     <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: dark ? '#f0f0f0' : '#121212' }}>{n.message}</p>
                     <p style={{ margin: '3px 0 0', fontSize: 12, color: 'var(--text3, #999)' }}>{timeAgo(n.created_at)}</p>
                   </div>
-                  {!n.lu && <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
+                  {!n.lu && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
                 </div>
               </div>
             )

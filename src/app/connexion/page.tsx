@@ -172,10 +172,11 @@ export default function Connexion() {
       <div style={{ maxWidth: 460, margin: '60px auto' }}>
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
           <div style={{ fontSize: 40, marginBottom: 12, textAlign: 'center' }}>🔐</div>
-          <h1 style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, textAlign: 'center' }}>{t('login_2fa_title')}</h1>
+          <h1 id="login-2fa-title" style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, textAlign: 'center' }}>{t('login_2fa_title')}</h1>
           <p style={{ color: dark ? '#aaa' : '#666', marginBottom: 24, fontSize: 14, textAlign: 'center' }}>{t('login_2fa_desc')}</p>
           <form onSubmit={handleMfaVerify} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <input
+              aria-labelledby="login-2fa-title"
               value={mfaCode} onChange={e => setMfaCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               inputMode="numeric" autoComplete="one-time-code" placeholder="000000" maxLength={6}
               style={{ textAlign: 'center', fontSize: 24, letterSpacing: 6, fontWeight: 700 }} autoFocus
@@ -223,12 +224,12 @@ export default function Connexion() {
         )}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
-            <input type="email" required placeholder="votre@email.com" autoComplete="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+            <label htmlFor="login-email" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
+            <input id="login-email" type="email" required placeholder="votre@email.com" autoComplete="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input type="password" required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+            <label htmlFor="login-password" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
+            <input id="login-password" type="password" required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
           <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading} aria-busy={loading}>

@@ -20,7 +20,7 @@ export default function OnlineIndicator({ lastSeen, size = 10 }: Props) {
   else { label = `Vu il y a ${Math.floor(mins / 1440)}j` }
 
   return (
-    <span title={label} style={{
+    <span role="img" aria-label={label} title={label} style={{
       display: 'inline-block', width: size, height: size,
       borderRadius: '50%', background: color,
       border: '2px solid white', flexShrink: 0,

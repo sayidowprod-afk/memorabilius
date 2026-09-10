@@ -39,8 +39,8 @@ export default function MotDePasseOublie() {
         <p style={{ color: 'var(--text2, #666)', marginBottom: 30, fontSize: 14 }}>Entrez votre email pour recevoir un lien de réinitialisation.</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Email</label>
-            <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" />
+            <label htmlFor="forgot-email" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Email</label>
+            <input id="forgot-email" type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
           <button type="submit" className="btn-main btn-primary" disabled={loading}>

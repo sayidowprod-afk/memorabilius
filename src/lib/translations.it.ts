@@ -314,6 +314,7 @@ export const it = {
 
   // Notifications
   notif_title: '🔔 Notifiche',
+  notif_unread_label: 'Non letta',
   notif_none: 'Nessuna notifica per ora',
 
   // Auth

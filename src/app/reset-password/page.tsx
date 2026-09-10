@@ -77,12 +77,12 @@ export default function ResetPassword() {
         <p style={{ color: 'var(--text2, #666)', marginBottom: 30, fontSize: 14 }}>Choisissez un nouveau mot de passe pour votre compte.</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Nouveau mot de passe</label>
-            <input type="password" required placeholder="Min. 6 caractères" value={password} onChange={e => setPassword(e.target.value)} />
+            <label htmlFor="reset-password-new" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Nouveau mot de passe</label>
+            <input id="reset-password-new" type="password" required placeholder="Min. 6 caractères" value={password} onChange={e => setPassword(e.target.value)} />
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Confirmer</label>
-            <input type="password" required placeholder="Répétez le mot de passe" value={confirm} onChange={e => setConfirm(e.target.value)} />
+            <label htmlFor="reset-password-confirm" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>Confirmer</label>
+            <input id="reset-password-confirm" type="password" required placeholder="Répétez le mot de passe" value={confirm} onChange={e => setConfirm(e.target.value)} />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
           <button type="submit" className="btn-main btn-primary" disabled={loading}>
