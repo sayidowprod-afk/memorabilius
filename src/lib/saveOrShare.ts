@@ -41,20 +41,30 @@ export async function saveOrShareFile(source: Blob | string, filename: string, o
 
   const { Filesystem, Directory } = await import('@capacitor/filesystem')
   const { Share } = await import('@capacitor/share')
-  const base64 = await blobToBase64(blob)
   // Un pont Capacitor natif qui ne repond jamais (observe en prod sur l'export
-  // setlist : le bouton restait bloque sur "Generation..." sans fin ni erreur)
-  // laissait l'appelant en attente indefinie -- un timeout transforme ce cas
-  // en echec explicite plutot qu'un blocage silencieux. Uniquement sur
-  // l'ecriture (pure I/O, doit etre rapide) -- jamais sur Share.share(), qui
-  // attend legitimement le choix de l'utilisateur dans la feuille de partage
-  // native (peut prendre du temps sans que ce soit un bug).
+  // setlist : le bouton restait bloque sur "Generation..." sans fin ni erreur,
+  // et resignale depuis sur d'autres exports) laissait l'appelant en attente
+  // indefinie -- un timeout transforme ce cas en echec explicite plutot qu'un
+  // blocage silencieux. Le timeout d'ecriture reste court (pure I/O, doit
+  // etre rapide) ; Share.share() en a maintenant un aussi, beaucoup plus
+  // large (le choix de l'utilisateur dans la feuille de partage peut
+  // legitimement prendre du temps) -- sans lui, un appel Share.share() qui
+  // n'aboutit jamais (l'app ne repond pas, la feuille ne s'ouvre meme pas)
+  // bloquait le bouton sur "Telechargement..." sans fin, ce qui est
+  // exactement ce qui a ete signale.
   try {
+    const base64 = await Promise.race([
+      blobToBase64(blob),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (conversion fichier)")), opts?.timeoutMs ?? 15000)),
+    ])
     const { uri } = await Promise.race([
       Filesystem.writeFile({ path: filename, data: base64, directory: Directory.Cache }),
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (ecriture fichier)")), opts?.timeoutMs ?? 15000)),
     ])
-    await Share.share({ url: uri, title: filename })
+    await Promise.race([
+      Share.share({ url: uri, title: filename }),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout (partage)")), 60000)),
+    ])
   } catch (e) {
     // La plupart des appelants n'ont pas leur propre try/catch autour de
     // saveOrShareFile -- un echec natif (ecriture, permission, FileProvider)
