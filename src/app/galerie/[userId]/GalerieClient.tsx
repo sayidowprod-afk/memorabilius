@@ -2035,7 +2035,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
             pointerEvents: 'none',
           }} />
-          <div style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+          <div className="header-row" style={{ position: 'relative', padding: '24px 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <div style={{ position: 'relative', flexShrink: 0 }}>
@@ -2293,7 +2293,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             (et les boutons revenaient cote a cote) des qu'on changeait d'onglet. */}
         <style>{`
           @media (max-width: 768px) {
-            .header-stats-block { width: 100% !important; align-items: center !important; }
+            .header-row { justify-content: center !important; }
+            .header-stats-block { align-items: center !important; margin-left: 0 !important; width: auto !important; }
             .galerie-actions { flex-direction: column !important; align-items: stretch !important; }
             .galerie-actions .btn-ajouter { font-size: 17px !important; padding: 14px 20px !important; text-align: center; width: 100%; box-sizing: border-box; }
             .galerie-actions .btn-menu { width: 100%; }
@@ -2853,7 +2854,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           .card-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
           .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); }
           @media (max-width: 768px) {
-            .header-stats-block { width: 100% !important; align-items: center !important; }
+            .header-row { justify-content: center !important; }
+            .header-stats-block { align-items: center !important; margin-left: 0 !important; width: auto !important; }
             .galerie-actions { flex-direction: column !important; align-items: stretch !important; }
             .galerie-actions .btn-ajouter { font-size: 17px !important; padding: 14px 20px !important; text-align: center; width: 100%; box-sizing: border-box; }
             .galerie-actions .btn-menu { width: 100%; }

@@ -238,31 +238,14 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
 
     if (cardW > 2) {
       ctx.globalAlpha = introAlpha
-      const floorY = cardCY + cardH / 2
 
-      // ── Reflet sol (coûteux : drawImage + clip supplémentaires, sauté sur mobile) ──
-      if (!IS_MOBILE) {
-        ctx.save()
-        ctx.beginPath()
-        ctx.rect(cardX, floorY, cardW, cardH * 0.52)
-        ctx.clip()
-        ctx.translate(W / 2, floorY)
-        ctx.scale(1, -1)
-        ctx.globalAlpha = 0.20 * absScale
-        ctx.drawImage(face, -cardW / 2, 0, cardW, cardH)
-        ctx.restore()
-        // Fondu du reflet
-        const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.52)
-        reflFade.addColorStop(0, isDark ? 'rgba(0,0,0,0)' : 'rgba(240,244,255,0)')
-        reflFade.addColorStop(0.65, bgBot)
-        ctx.fillStyle = reflFade
-        ctx.fillRect(cardX - 2, floorY, cardW + 4, cardH * 0.52)
-      }
-
-      // Pas d'ombre portée dédiée sous la carte -- deux tentatives (shadowBlur
-      // recalculé chaque frame, puis sprite pré-rendu redimensionné) ont toutes
-      // les deux produit un rendu peu flatteur ("rectangle bizarre"). Le reflet
-      // au sol juste au-dessus suffit à ancrer visuellement la carte.
+      // Ni reflet au sol ni ombre portée sous la carte -- toutes les deux ont
+      // produit un rendu peu flatteur (rectangle plein visible) : le reflet avait
+      // un vrai bug (dégradé de fondu qui s'arrêtait sur une couleur opaque sans
+      // jamais retomber à transparent), et l'ombre (deux tentatives, shadowBlur
+      // recalculé chaque frame puis sprite pré-rendu redimensionné) n'a pas
+      // convaincu non plus une fois corrigée. La carte flotte simplement sur le
+      // fond, sans effet d'ancrage dédié.
 
       // ── Image de la carte ─────────────────────────────────────────────────
       ctx.drawImage(face, cardX, cardTop, cardW, cardH)
