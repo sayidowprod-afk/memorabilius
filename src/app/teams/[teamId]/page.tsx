@@ -659,7 +659,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               {postCards.length > 0 && (
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '8px 0' }}>
                   {postCards.map(c => (
-                    <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: '#f5f8ff', borderRadius: 8 }}>
+                    <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: dark ? '#1a2233' : '#f5f8ff', borderRadius: 8 }}>
                       {c.image_recto && <img loading="lazy" src={c.image_recto} style={{ height: 40, borderRadius: 4, objectFit: 'cover' }} alt="" />}
                       <span style={{ fontSize: 12, fontWeight: 700, maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</span>
                       <button onClick={() => setPostCards(prev => prev.filter(x => x.id !== c.id))} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700, fontSize: 14, padding: 0 }}>✕</button>
@@ -774,7 +774,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     <div key={c.id} style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'flex-start' }}>
                       <img loading="lazy" src={c.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                         style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
-                      <div style={{ flex: 1, background: '#f5f7ff', borderRadius: 10, padding: '8px 12px' }}>
+                      <div style={{ flex: 1, background: dark ? '#1a2233' : '#f5f7ff', borderRadius: 10, padding: '8px 12px' }}>
                         <span style={{ fontWeight: 800, fontSize: 12, color: ACCENT }}>{c.profiles?.display_name || 'Membre'}</span>
                         <span style={{ fontSize: 11, color: 'var(--text3, #bbb)', marginLeft: 8 }}>{timeAgo(c.created_at)}</span>
                         <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--text, #222)' }}>{c.content}</p>
@@ -995,7 +995,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           )}
           {/* Réponse en cours */}
           {replyingTo && (
-            <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
+            <div style={{ padding: '6px 16px', background: dark ? '#1a2233' : '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: dark ? '1px solid #2a3548' : '1px solid #e8eef8' }}>
               <span style={{ fontSize: 12, color: ACCENT, flexShrink: 0 }}>↩</span>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ fontSize: 11, fontWeight: 700, color: ACCENT, margin: 0 }}>{replyingTo.profiles?.display_name}</p>
@@ -1008,7 +1008,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           )}
           {/* Carte en attente */}
           {pendingCard && (
-            <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
+            <div style={{ padding: '6px 16px', background: dark ? '#1a2233' : '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: dark ? '1px solid #2a3548' : '1px solid #e8eef8' }}>
               {pendingCard.image_recto && <img loading="lazy" src={pendingCard.image_recto} style={{ height: 40, borderRadius: 4 }} alt="" />}
               <span style={{ fontSize: 13, fontWeight: 700, flex: 1 }}>{pendingCard.nom}</span>
               <button onClick={() => setPendingCard(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>

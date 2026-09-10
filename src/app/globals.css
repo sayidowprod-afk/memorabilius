@@ -50,7 +50,10 @@ button, a, [role="button"] { touch-action: manipulation; }
   --bg3: #f0f0f0;
   --text: #121212;
   --text2: #666;
-  --text3: #999;
+  /* Etait #999 (~2.85:1 sur blanc, echoue le WCAG AA texte normal de 4.5:1) --
+     #767676 est la valeur de reference bien connue qui passe tout juste
+     l'AA sur fond blanc, sans casser visuellement l'aspect "attenue" voulu. */
+  --text3: #767676;
   --border: #eeeeee;
   --input-bg: #ffffff;
   --shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -76,7 +79,9 @@ button, a, [role="button"] { touch-action: manipulation; }
   --bg3: #2a2a2a;
   --text: #f0f0f0;
   --text2: #aaaaaa;
-  --text3: #666666;
+  /* Etait #666666 (~3.35:1 sur --bg, ~2.6:1 sur --bg3, echoue l'AA dans les
+     deux cas) -- #949494 passe l'AA sur les deux fonds sombres utilises. */
+  --text3: #949494;
   --border: #333333;
   --input-bg: #2a2a2a;
   --shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -592,7 +597,10 @@ body {
   0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
   100% { transform: translateY(140px) rotate(540deg); opacity: 0; }
 }
-.confetti-piece { position: fixed; top: 0; pointer-events: none; z-index: 10000000; animation: confetti-fall 1.1s ease-in forwards; }
+/* z-index legerement au-dessus de TradeModal (10000000) -- collision exacte
+   constatee : une celebration (badge/trade) doit toujours rester visible
+   par-dessus une modale encore ouverte, jamais l'inverse. */
+.confetti-piece { position: fixed; top: 0; pointer-events: none; z-index: 10000010; animation: confetti-fall 1.1s ease-in forwards; }
 
 /* ===== NAV CLS FIX ===== */
 /* Ces règles doivent être dans globals.css (pas dans un <style> React)

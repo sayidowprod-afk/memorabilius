@@ -615,7 +615,12 @@ export default function Trades() {
       {/* ── Popup annonce forum ─────────────────────────────────────────────── */}
       {popup && createPortal(
         <div onClick={() => setPopup(null)} className="trade-popup-overlay" style={{
-          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.6)',
+          // inset:0 plutot que width:100vw/height:100vh -- seul endroit du site a
+          // utiliser 100vh pour un plein ecran (sinon toujours position:fixed+inset:0,
+          // voir CommentsModal/TradeModal/QrModal/etc.) : sur WebView Android/mobile
+          // Chrome, 100vh ne se retracte pas avec la barre d'adresse repliable, ce qui
+          // peut deborder ou etre trop court selon son etat au moment du rendu.
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
           // z-index au-dessus de la bottom nav (99999, volontairement tres haute --
           // voir MobileBottomNav.tsx) : sinon la barre de navigation, opaque, passe
           // par-dessus le bas de cette popup plein ecran et cache les boutons d'action.

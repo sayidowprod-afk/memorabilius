@@ -14,7 +14,7 @@ export default function Loading() {
       {/* Content skeleton */}
       <div style={{ maxWidth: 1100, margin: '32px auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 16 }}>
         {[...Array(8)].map((_, i) => (
-          <div key={i} style={{ aspectRatio: '2.5/3.5', background: '#e8eaf0', borderRadius: 12, animation: 'pulse 1.5s ease-in-out infinite', animationDelay: `${i * 0.08}s` }} />
+          <div key={i} style={{ aspectRatio: '2.5/3.5', background: 'var(--bg3, #e8eaf0)', borderRadius: 12, animation: 'pulse 1.5s ease-in-out infinite', animationDelay: `${i * 0.08}s` }} />
         ))}
       </div>
       <style>{`@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.5} }`}</style>

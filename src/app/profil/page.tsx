@@ -488,14 +488,14 @@ export default function Profil() {
 
       {/* Statut synchronisation collection */}
       {csvLinked ? (
-        <div style={{ background: '#eef2f7', borderLeft: '4px solid #2ecc71', padding: 15, borderRadius: 8, marginBottom: 20 }}>
+        <div style={{ background: dark ? '#16281f' : '#eef2f7', borderLeft: '4px solid #2ecc71', padding: 15, borderRadius: 8, marginBottom: 20 }}>
           <strong style={{ color: '#2ecc71' }}>{t('profile_status_label')}</strong> {t('profile_status_synced')}
           {userId && <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, marginLeft: 12 }}>{t('profile_view_gallery')}</Link>}
         </div>
       ) : (
-        <div style={{ background: '#fff5f5', borderLeft: '4px solid #e74c3c', padding: 15, borderRadius: 8, marginBottom: 20 }}>
+        <div style={{ background: dark ? '#2a1616' : '#fff5f5', borderLeft: '4px solid #e74c3c', padding: 15, borderRadius: 8, marginBottom: 20 }}>
           <strong style={{ color: '#e74c3c' }}>{t('profile_status_label')}</strong> {t('profile_status_none')}
-          <p style={{ margin: '5px 0 0', fontSize: 12, color: '#666' }}>{t('profile_status_hint')}</p>
+          <p style={{ margin: '5px 0 0', fontSize: 12, color: dark ? '#aaa' : '#666' }}>{t('profile_status_hint')}</p>
         </div>
       )}
 
