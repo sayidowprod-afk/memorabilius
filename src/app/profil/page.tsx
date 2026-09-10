@@ -42,6 +42,10 @@ export default function Profil() {
   const [wrapSending, setWrapSending] = useState(false)
   const [wrapResult, setWrapResult] = useState<{ ok?: boolean; error?: string; month?: string; newCards?: number } | null>(null)
   const [wrapImgLoading, setWrapImgLoading] = useState<string | null>(null)
+  const [wrapArchiveOpen, setWrapArchiveOpen] = useState(false)
+  const [wrapArchiveLoading, setWrapArchiveLoading] = useState(false)
+  const [wrapArchive, setWrapArchive] = useState<{ year: number; month: number; label: string; squareUrl: string; storyUrl: string }[] | null>(null)
+  const [wrapArchiveDownloading, setWrapArchiveDownloading] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const initialSnapshotRef = useRef<string | null>(null)
 
@@ -181,6 +185,40 @@ export default function Profil() {
       toast.error('Erreur : ' + e.message)
     } finally {
       setWrapImgLoading(null)
+    }
+  }
+
+  // Charge la liste des Wraps mensuels passés à la demande (pas au montage --
+  // les URLs signées restent valables indéfiniment mais generer l'image reste
+  // coûteux, pas besoin de calculer la liste avant que l'utilisateur la demande).
+  const loadWrapArchive = async () => {
+    const next = !wrapArchiveOpen
+    setWrapArchiveOpen(next)
+    if (!next || wrapArchive) return
+    setWrapArchiveLoading(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch('/api/wrap-archive', { headers: { 'Authorization': `Bearer ${session?.access_token}` } })
+      if (res.ok) { const { months } = await res.json(); setWrapArchive(months) }
+    } catch {
+      // silencieux -- section optionnelle
+    } finally {
+      setWrapArchiveLoading(false)
+    }
+  }
+
+  const handleDownloadArchivedWrap = async (m: { year: number; month: number; squareUrl: string; storyUrl: string }, format: 'square' | 'story') => {
+    const key = `${m.year}-${m.month}-${format}`
+    setWrapArchiveDownloading(key)
+    try {
+      const r = await fetch(format === 'square' ? m.squareUrl : m.storyUrl)
+      if (!r.ok) { toast.error(t('profile_err_export_image')); return }
+      const blob = await r.blob()
+      await saveOrShareFile(blob, `memorabilius-wrap-${m.year}-${String(m.month).padStart(2, '0')}-${format}.png`)
+    } catch (e: any) {
+      toast.error('Erreur : ' + e.message)
+    } finally {
+      setWrapArchiveDownloading(null)
     }
   }
 
@@ -395,6 +433,42 @@ export default function Profil() {
               })
             ))}
           </div>
+        </div>
+
+        <div style={{ marginTop: 20, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
+          <button onClick={loadWrapArchive} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#aaa', display: 'flex', alignItems: 'center', gap: 6 }}>
+            🗂 {t('profile_wrap_archive_title')} {wrapArchiveOpen ? '▲' : '▼'}
+          </button>
+          {wrapArchiveOpen && (
+            <div style={{ marginTop: 12 }}>
+              {wrapArchiveLoading && <p style={{ fontSize: 13, color: '#999' }}>{t('profile_wrap_generating')}</p>}
+              {!wrapArchiveLoading && wrapArchive && wrapArchive.length === 0 && (
+                <p style={{ fontSize: 13, color: '#999' }}>{t('profile_wrap_archive_empty')}</p>
+              )}
+              {!wrapArchiveLoading && wrapArchive && wrapArchive.length > 0 && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {wrapArchive.map(m => {
+                    const kSquare = `${m.year}-${m.month}-square`, kStory = `${m.year}-${m.month}-story`
+                    return (
+                      <div key={`${m.year}-${m.month}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, padding: '8px 12px', background: dark ? '#252525' : '#fafafa', borderRadius: 8, flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: dark ? '#eee' : '#333', textTransform: 'capitalize' }}>{m.label}</span>
+                        <div style={{ display: 'flex', gap: 6 }}>
+                          <button onClick={() => handleDownloadArchivedWrap(m, 'square')} disabled={!!wrapArchiveDownloading}
+                            style={{ background: '#f0f4ff', color: '#003DA6', border: '1.5px solid #003DA6', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: wrapArchiveDownloading ? 'not-allowed' : 'pointer', opacity: wrapArchiveDownloading && wrapArchiveDownloading !== kSquare ? 0.5 : 1 }}>
+                            {wrapArchiveDownloading === kSquare ? '⏳' : `⬜ ${t('profile_wrap_square')}`}
+                          </button>
+                          <button onClick={() => handleDownloadArchivedWrap(m, 'story')} disabled={!!wrapArchiveDownloading}
+                            style={{ background: '#f5f0ff', color: '#7b1fa2', border: '1.5px solid #7b1fa2', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: wrapArchiveDownloading ? 'not-allowed' : 'pointer', opacity: wrapArchiveDownloading && wrapArchiveDownloading !== kStory ? 0.5 : 1 }}>
+                            {wrapArchiveDownloading === kStory ? '⏳' : `📱 ${t('profile_wrap_story')}`}
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

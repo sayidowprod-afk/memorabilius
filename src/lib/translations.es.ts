@@ -293,6 +293,8 @@ export const es = {
   profile_wrap_generating: 'Generando…',
   profile_wrap_square: 'Cuadrado',
   profile_wrap_story: 'Story',
+  profile_wrap_archive_title: 'Mis Wraps pasados',
+  profile_wrap_archive_empty: 'Aún no hay un mes completo desde tu registro.',
   profile_wrap_prev_month_short: 'mes anterior',
   profile_wrap_current_month_short: 'mes actual',
   profile_linked_accounts_title: 'Cuentas vinculadas',
