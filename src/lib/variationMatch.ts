@@ -24,7 +24,20 @@ function wordTokens(s: string): string[] {
 // Speckle / Gold Speckle..." ne sont pas des parallèles couleur au sens Refractor,
 // mais restent la même carte physique juste recolorée) — ajouté à la main au
 // vocabulaire de base, comme "refractor".
-const BASE_VOCAB = ['refractor', 'speckle']
+//
+// "mosaic" : signalé sur le guide Panini Mosaic -- TCDB scrape le nom de chaque
+// parallèle couleur avec le nom du PRODUIT en suffixe ("Choice Cherry Blossom
+// Mosaic", "Purple Mosaic", "Fast Break Neon Green Mosaic"...), alors que la
+// pyramide du guide liste les tiers SANS ce suffixe ("Choice Cherry Blossom",
+// "Purple"...). stripColorSuffix ne retire que depuis la FIN de la chaîne : tant
+// que "mosaic" n'est reconnu nulle part, rien n'est jamais retiré et chaque
+// couleur ressort comme son propre groupe au lieu d'être reconnue comme un
+// simple parallèle couleur de la même carte de base. "Mosaic" est un nom de
+// gamme Panini, jamais une couleur en tant que telle -- meme principe
+// generique que "refractor"/"speckle" (d'autres gammes -- Prizm, Optic,
+// Select... -- pourraient avoir le meme souci, mais pas verifie/signale,
+// donc pas ajoutees a l'aveugle ici).
+const BASE_VOCAB = ['refractor', 'speckle', 'mosaic']
 
 export function buildColorVocab(pyramidRowNames: string[]): Set<string> {
   const vocab = new Set<string>(BASE_VOCAB)
