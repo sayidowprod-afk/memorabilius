@@ -9,13 +9,11 @@ type RunResult = { corners: Pt[] | null; conf: number; ms: number }
 
 const MODELS = [
   { key: 'prod', label: 'Prod (actuel)', url: '/models/corners.onnx', color: '#e74c3c' },
-  { key: 'train29dyn', label: 'train-29 FINAL (int8 dynamique, epoch 216 -- sigma resserre, sans augmentation)', url: '/models/corners-train29-dynamic.onnx', color: '#27ae60' },
-  { key: 'train30dyn', label: 'train-30 FINAL (int8 dynamique, epoch 63 -- sigma resserre + augmentation rotation/perspective)', url: '/models/corners-train30-dynamic.onnx', color: '#8e44ad' },
-  { key: 'train32dyn', label: 'train-32 (int8 dynamique, epoch 161 en cours -- meme augmentation que train-30 + dataset re-exporte avec corrections recentes x5)', url: '/models/corners-train32-dynamic.onnx', color: '#f39c12' },
+  { key: 'train33dyn', label: 'train-33 (int8 dynamique, epoch 167 en cours -- sans augmentation + dataset x5, nouveau record fitness 1.94984)', url: '/models/corners-train33-dynamic.onnx', color: '#27ae60' },
   // int8 statique retire : conf 0.000 systematique (bug de quantification irrecuperable
   // sur cette architecture -- teste per-channel + activations UInt8, echec identique dans
-  // les deux cas). Le dynamique donne des scores quasi identiques au fp32 (0.94-0.96 vs
-  // 0.94-0.97), donc pas de perte reelle a l'abandonner.
+  // les deux cas). Le dynamique donne des scores quasi identiques au fp32, pas de perte
+  // reelle a l'abandonner.
 ] as const
 
 function letterbox(img: HTMLImageElement) {
@@ -135,7 +133,7 @@ export default function DevModelTest() {
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
       <h1 style={{ fontSize: 18, fontWeight: 900, marginBottom: 4 }}>🔬 Comparatif détection de coins</h1>
       <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
-        Prod actuelle vs les 2 checkpoints candidats (tous les deux quantifiés en INT8 pour la vitesse)
+        Prod actuelle vs le nouveau meilleur checkpoint (INT8 dynamique)
       </p>
 
       <input
