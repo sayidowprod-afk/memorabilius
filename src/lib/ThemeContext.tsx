@@ -10,7 +10,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    setDark(document.documentElement.getAttribute('data-theme') === 'dark')
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+      setDark(true)
+      return
+    }
+    // Le script inline du <head> lit localStorage AVANT que le stockage natif
+    // de la WebView Android soit forcement pret (course connue au cold start /
+    // reload complet, voir commentaire plus bas) -- si cette lecture rate,
+    // data-theme reste "light" pour toute la session meme si la preference
+    // stockee est bien "dark". Deuxieme essai ici, une fois React monte (le
+    // stockage a eu le temps d'etre pret) : signale par l'utilisateur comme
+    // persistant meme apres un simple refresh, donc la premiere lecture seule
+    // ne suffisait pas.
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        setDark(true)
+        return
+      }
+    } catch {}
+    setDark(false)
   }, [])
 
   // N'ecrit dans le DOM que -- jamais dans localStorage ici. Cet effet
