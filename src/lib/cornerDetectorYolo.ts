@@ -12,6 +12,15 @@
 // trop tolerant pour un modele a 4 keypoints, voir scripts/train_corners_tight_sigma.py)
 // + quantification INT8 dynamique pour la vitesse (meme demarche que
 // precedemment identifiee comme le meilleur compromis vitesse/precision).
+//
+// 11/09 : remplace par train-33 (epoch 176, EarlyStopping) -- meme sigma
+// resserre (0.04) et memes reglages que train-28/29, mais SANS augmentation
+// geometrique/couleur ajoutee (Ultralytics defaults stock) + dataset le plus
+// recent sur-echantillonne x5 sur les corrections utilisateur reelles.
+// Nouveau record toutes sessions confondues : fitness (mAP50-95 box+pose)
+// 1.95056, contre 1.948 pour train-29 (le meilleur run precedent) -- voir
+// scripts/train_corners_zero_aug_x5.py pour le detail des essais compares.
+// Confiance verifiee coherente avant publication (/dev-model-test).
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
