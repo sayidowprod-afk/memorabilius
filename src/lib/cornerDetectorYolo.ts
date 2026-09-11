@@ -73,18 +73,77 @@ function letterbox(img: HTMLImageElement): {
   return { canvas, padX, padY, scale }
 }
 
-// RGBA → tensor RGB CHW normalisé [0,1]
-function toTensor(canvas: HTMLCanvasElement): Float32Array {
+// RGBA → tensor RGB CHW normalisé [0,1]. `flip` mirore horizontalement à la
+// volée pendant la lecture des pixels (pour le TTA ci-dessous) sans avoir à
+// dessiner un second canvas.
+function toTensor(canvas: HTMLCanvasElement, flip = false): Float32Array {
   const { data } = canvas.getContext('2d')!.getImageData(0, 0, IMGSZ, IMGSZ)
   const N   = IMGSZ * IMGSZ
   const out = new Float32Array(3 * N)
-  for (let i = 0; i < N; i++) {
-    out[0 * N + i] = data[i * 4]     / 255
-    out[1 * N + i] = data[i * 4 + 1] / 255
-    out[2 * N + i] = data[i * 4 + 2] / 255
+  for (let y = 0; y < IMGSZ; y++) {
+    for (let x = 0; x < IMGSZ; x++) {
+      const srcX = flip ? IMGSZ - 1 - x : x
+      const si = (y * IMGSZ + srcX) * 4
+      const di = y * IMGSZ + x
+      out[0 * N + di] = data[si]     / 255
+      out[1 * N + di] = data[si + 1] / 255
+      out[2 * N + di] = data[si + 2] / 255
+    }
   }
   return out
 }
+
+type RawDetection = { corners: Pt[]; conf: number }
+
+// Une passe d'inférence sur le tenseur donné -- retourne la meilleure
+// détection en coordonnées du canvas letterboxé (pas encore reprojetée vers
+// l'image d'origine), ou null si rien au-dessus du seuil.
+async function runInference(
+  ort: typeof import('onnxruntime-web'),
+  session: OrtSession,
+  tensorData: Float32Array,
+  confThresh: number,
+  label: string,
+): Promise<RawDetection | null> {
+  const input  = new ort.Tensor('float32', tensorData, [1, 3, IMGSZ, IMGSZ])
+  const result = await session.run({ [session.inputNames[0]]: input })
+  const outTensor = result[session.outputNames[0]]
+  const raw    = outTensor.data as Float32Array
+
+  // Sortie YOLOv8-pose : [1, channels, N] — N déduit dynamiquement
+  // canal 0-3 : cx,cy,w,h  |  canal 4 : conf  |  canaux 5+ : 4 kpts × (x,y,v)
+  const dims = outTensor.dims as number[]
+  const N = dims[2]
+  let bestConf = confThresh
+  let bestIdx  = -1
+  let maxConfAny = 0
+  for (let i = 0; i < N; i++) {
+    const conf = raw[4 * N + i]
+    if (conf > maxConfAny) maxConfAny = conf
+    if (conf > bestConf) { bestConf = conf; bestIdx = i }
+  }
+  console.log(`[YOLO${label}] maxConf=${maxConfAny.toFixed(3)} bestConf=${bestConf.toFixed(3)} threshold=${confThresh}`)
+  if (bestIdx < 0) return null
+
+  const corners: Pt[] = []
+  for (let k = 0; k < 4; k++) {
+    corners.push({
+      x: raw[(5 + k * 3)     * N + bestIdx],
+      y: raw[(5 + k * 3 + 1) * N + bestIdx],
+    })
+  }
+  return { corners, conf: bestConf }
+}
+
+// En dessous de ce seuil de confiance (ou si aucune détection), une seconde
+// passe est tentée sur l'image mirorée horizontalement et moyennée avec la
+// première -- classique "test-time augmentation" par flip, connu pour
+// stabiliser les cas limites (reflet, angle serré) sans coûter le temps
+// d'une 2e passe sur les scans déjà faciles (l'immense majorité).
+const TTA_CONF_THRESHOLD = 0.85
+// Coins dans l'ordre [tl, tr, br, bl] -- un flip horizontal échange
+// tl<->tr et bl<->br (même convention que flip_idx dans data.yaml).
+const FLIP_IDX = [1, 0, 3, 2]
 
 // Détecte les 4 coins d'une carte (tl, tr, br, bl) en pixels image originale.
 // Retourne null si aucune détection confiante ou si le modèle n'est pas disponible.
@@ -98,38 +157,42 @@ export async function detectCornersYOLO(
 
     const { canvas, padX, padY, scale } = letterbox(img)
     const tensorData = toTensor(canvas)
+
+    const primary = await runInference(ort, session, tensorData, confThresh, '')
+
+    let combined: RawDetection | null = primary
+    if (!primary || primary.conf < TTA_CONF_THRESHOLD) {
+      const flippedTensor = toTensor(canvas, true)
+      const flipped = await runInference(ort, session, flippedTensor, confThresh, ' (TTA flip)')
+      if (flipped) {
+        // Reprojette les coins de la passe mirorée dans le repère normal
+        // (mirore x en retour) + reordonne selon FLIP_IDX (un coin "haut-
+        // gauche" sur l'image mirorée est en realite le "haut-droit").
+        const unflipped: Pt[] = FLIP_IDX.map(srcI => ({
+          x: IMGSZ - flipped.corners[srcI].x,
+          y: flipped.corners[srcI].y,
+        }))
+        if (!primary) {
+          combined = { corners: unflipped, conf: flipped.conf }
+        } else {
+          // Moyenne ponderee par la confiance de chaque passe.
+          const wPrimary = primary.conf, wFlip = flipped.conf
+          const wSum = wPrimary + wFlip
+          combined = {
+            corners: primary.corners.map((p, i) => ({
+              x: (p.x * wPrimary + unflipped[i].x * wFlip) / wSum,
+              y: (p.y * wPrimary + unflipped[i].y * wFlip) / wSum,
+            })),
+            conf: Math.max(primary.conf, flipped.conf),
+          }
+        }
+      }
+    }
+
     canvas.width = 0  // libère la mémoire GPU
 
-    const input  = new ort.Tensor('float32', tensorData, [1, 3, IMGSZ, IMGSZ])
-    const result = await session.run({ [session.inputNames[0]]: input })
-    const outTensor = result[session.outputNames[0]]
-    const raw    = outTensor.data as Float32Array
-
-    // Sortie YOLOv8-pose : [1, channels, N] — N déduit dynamiquement
-    // canal 0-3 : cx,cy,w,h  |  canal 4 : conf  |  canaux 5+ : 4 kpts × (x,y,v)
-    const dims = outTensor.dims as number[]
-    const channels = dims[1]
-    const N = dims[2]
-    console.log(`[YOLO] outputDims=[${dims.join(',')}] channels=${channels} N=${N}`)
-    let bestConf = confThresh
-    let bestIdx  = -1
-    let maxConfAny = 0
-    for (let i = 0; i < N; i++) {
-      const conf = raw[4 * N + i]
-      if (conf > maxConfAny) maxConfAny = conf
-      if (conf > bestConf) { bestConf = conf; bestIdx = i }
-    }
-    console.log(`[YOLO] maxConf=${maxConfAny.toFixed(3)} bestConf=${bestConf.toFixed(3)} threshold=${confThresh}`)
-    if (bestIdx < 0) return null
-
-    // Extrait les 4 keypoints et convertit vers l'espace image originale
-    const corners: Pt[] = []
-    for (let k = 0; k < 4; k++) {
-      const kx = raw[(5 + k * 3)     * N + bestIdx]
-      const ky = raw[(5 + k * 3 + 1) * N + bestIdx]
-      corners.push({ x: (kx - padX) / scale, y: (ky - padY) / scale })
-    }
-    return corners
+    if (!combined) return null
+    return combined.corners.map(p => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale }))
   } catch (e) {
     console.warn('[YOLO corners]', e)
     return null
