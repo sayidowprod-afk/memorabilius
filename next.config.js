@@ -106,6 +106,21 @@ const nextConfig = {
           { key: 'Cross-Origin-Embedder-Policy', value: 'credentialless' },
         ],
       },
+      {
+        // Modele de detection de coins (~3.5 Mo, cornerDetectorYolo.ts) sans le
+        // moindre header de cache jusqu'ici : re-telecharge a chaque lancement de
+        // l'app native (le cache memoire de getSession() n'aide qu'AU SEIN d'une
+        // meme session). Pas d'immutable/1 an ici : le fichier est ecrase EN PLACE
+        // a chaque nouveau modele deploye (meme nom corners.onnx, pas de hash dans
+        // l'URL) -- un cache trop long bloquerait la diffusion d'une mise a jour
+        // pendant des mois. max-age 1 jour + stale-while-revalidate 1 semaine :
+        // instantane sur les relances repetees du meme jour (le vrai gain vise),
+        // sans jamais rester perime plus d'un jour ou deux en usage normal.
+        source: '/models/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+        ],
+      },
     ]
   },
 }
