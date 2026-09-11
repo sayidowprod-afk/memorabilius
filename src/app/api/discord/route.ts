@@ -181,6 +181,34 @@ async function postConcoursParticipationPublic(cardInfo: CardData | null, imageU
   }).catch(e => console.error('[postConcoursParticipationPublic] echec annonce publique:', e))
 }
 
+// Les pieces jointes Discord (attachmentOpt) sont servies depuis le CDN Discord
+// avec une URL signee qui EXPIRE (~24h, parametres ex/is/hm) -- signale : plein
+// de participations sans image au moment du vote, qui n'ouvre parfois que
+// plusieurs jours apres la soumission. On retelecharge donc l'image tout de
+// suite et on la re-heberge sur notre propre storage (permanent), au lieu de
+// garder l'URL Discord ephemere telle quelle en base.
+let contestBucketReady = false
+async function persistContestImage(url: string, discordUserId: string): Promise<string> {
+  try {
+    if (!contestBucketReady) {
+      await supabase.storage.createBucket('discord-contest', { public: true }).catch(() => {})
+      contestBucketReady = true
+    }
+    const res = await fetch(url)
+    if (!res.ok) return url
+    const contentType = res.headers.get('content-type') || 'image/png'
+    const ext = contentType.includes('gif') ? 'gif' : contentType.includes('webp') ? 'webp' : contentType.includes('png') ? 'png' : 'jpg'
+    const buffer = Buffer.from(await res.arrayBuffer())
+    const fileName = `${discordUserId}-${Date.now()}.${ext}`
+    const { error } = await supabase.storage.from('discord-contest').upload(fileName, buffer, { contentType, upsert: true })
+    if (error) return url
+    const { data: pub } = supabase.storage.from('discord-contest').getPublicUrl(fileName)
+    return pub.publicUrl
+  } catch {
+    return url
+  }
+}
+
 async function cmdConcoursParticiper(body: any) {
   const options = body.data?.options || []
   const discordUser = body.member?.user || body.user
@@ -193,7 +221,11 @@ async function cmdConcoursParticiper(body: any) {
   let imageUrl: string | null = null
   let cardInfo: CardData | null = null
   if (attachmentOpt) {
-    imageUrl = body.data?.resolved?.attachments?.[attachmentOpt.value]?.url || null
+    const discordUrl = body.data?.resolved?.attachments?.[attachmentOpt.value]?.url || null
+    // URL Discord CDN signee, expire sous ~24h -- re-hebergee tout de suite
+    // pour que l'image reste affichable au moment du vote, potentiellement
+    // plusieurs jours apres la soumission (voir persistContestImage).
+    imageUrl = discordUrl ? await persistContestImage(discordUrl, discordUser.id) : null
   }
   if (!imageUrl && (options.find((o: any) => o.name === 'nom') || options.find((o: any) => o.name === 'lien'))) {
     const result = await findCardData(options)
