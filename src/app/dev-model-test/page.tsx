@@ -9,7 +9,7 @@ type RunResult = { corners: Pt[] | null; conf: number; ms: number }
 
 const MODELS = [
   { key: 'prod', label: 'Prod (actuel)', url: '/models/corners.onnx', color: '#e74c3c' },
-  { key: 'train33dyn', label: 'train-33 (int8 dynamique, epoch 167 en cours -- sans augmentation + dataset x5, nouveau record fitness 1.94984)', url: '/models/corners-train33-dynamic.onnx', color: '#27ae60' },
+  { key: 'train33dyn', label: 'train-33 FINAL (int8 dynamique, epoch 176 -- sans augmentation + dataset x5, nouveau record fitness 1.95056)', url: '/models/corners-train33-dynamic.onnx', color: '#27ae60' },
   // int8 statique retire : conf 0.000 systematique (bug de quantification irrecuperable
   // sur cette architecture -- teste per-channel + activations UInt8, echec identique dans
   // les deux cas). Le dynamique donne des scores quasi identiques au fp32, pas de perte
